@@ -10,8 +10,6 @@
 
 @protocol LoginView <NSObject>
 
-- (void)showValidationErrorMessage:(NSError *)error;
-
-- (void)showInvalidCredentialsMessage;
+- (void)showErrorMessage:(NSString *)message;
 
 @end

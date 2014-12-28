@@ -8,6 +8,7 @@
 
 #import "Common.h"
 #import "LoginInteractor.h"
+#import "LoginErrors.h"
 
 SpecBegin(LoginInteractor)
 
@@ -44,7 +45,7 @@ describe(@"login logic", ^{
         
         it(@"notify presenter of success", ^{
             [interactor loginWithUsername:username password:password];
-            OCMVerify([presenter loginDidSucceed]);
+            OCMVerify([presenter loginSucceeded]);
         });
     });
     
@@ -52,13 +53,29 @@ describe(@"login logic", ^{
        
         context(@"client credentials not found", ^{
             
+            __block id unknownClientErrorChecker;
+            
             before(^{
                 OCMStub([clientCredentialsStore loadClientCredentials]).andReturn(nil);
+
+                unknownClientErrorChecker = [OCMArg checkWithBlock: ^BOOL(id value) {
+                    if ([value isKindOfClass:[NSError class]]) {
+                        NSError *error = (NSError *)value;
+                        
+                        BOOL correctDomain = [error.domain isEqualToString:LoginErrorsDomain];
+                        BOOL correctCode = (error.code == UnknownClient);
+                        
+                        return correctDomain && correctCode;
+                    }
+                    return NO;
+                }];
             });
             
             it(@"notify presenter of unknown client", ^{
+                OCMExpect([presenter loginFailedWithError:unknownClientErrorChecker]);
                 [interactor loginWithUsername:username password:password];
-                OCMVerify([presenter loginDidFailWithUnknownClient]);
+                
+                OCMVerifyAll((id)presenter);
             });
         });
     });

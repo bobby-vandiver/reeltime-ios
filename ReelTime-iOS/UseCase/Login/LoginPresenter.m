@@ -24,20 +24,16 @@
     return self;
 }
 
-- (void)didRequestLoginWithUsername:(NSString *)username
+- (void)requestedLoginWithUsername:(NSString *)username
                            password:(NSString *)password {
     
 }
 
-- (void)loginDidSucceed {
+- (void)loginSucceeded {
     
 }
 
-- (void)loginDidFailWithInvalidCredentials {
-    
-}
-
-- (void)loginDidFailWithUnknownClient {
+- (void)loginFailedWithError:(NSError *)error {
     
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import "LoginInteractor.h"
+#import "LoginErrors.h"
 
 @interface LoginInteractor ()
 
@@ -32,11 +33,15 @@
     ClientCredentials *clientCredentials = [self.clientCredentialsStore loadClientCredentials];
 
     if (!clientCredentials) {
-        [self.presenter loginDidFailWithUnknownClient];
+        NSError *unknownClientError = [NSError errorWithDomain:LoginErrorsDomain
+                                                          code:UnknownClient
+                                                      userInfo:nil];
+     
+        [self.presenter loginFailedWithError:unknownClientError];
         return;
     }
 
-    [self.presenter loginDidSucceed];
+    [self.presenter loginSucceeded];
 }
 
 @end
