@@ -10,6 +10,10 @@
 		5230CA4B4A7751AD6141FA30 /* libPods-ReelTime-iOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41201C1DC28A47F09019E4F1 /* libPods-ReelTime-iOSTests.a */; };
 		713D7A451A509AC000754A06 /* ClientCredentialsStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 713D7A441A509AC000754A06 /* ClientCredentialsStore.m */; };
 		713D7A481A509ACC00754A06 /* ClientCredentials.m in Sources */ = {isa = PBXBuildFile; fileRef = 713D7A471A509ACC00754A06 /* ClientCredentials.m */; };
+		713D7A4C1A50A33300754A06 /* ReelTimeClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 713D7A4B1A50A33300754A06 /* ReelTimeClient.m */; };
+		713D7A4F1A50A67E00754A06 /* UserCredentials.m in Sources */ = {isa = PBXBuildFile; fileRef = 713D7A4E1A50A67E00754A06 /* UserCredentials.m */; };
+		713D7A521A50A88F00754A06 /* OAuth2Token.m in Sources */ = {isa = PBXBuildFile; fileRef = 713D7A511A50A88F00754A06 /* OAuth2Token.m */; };
+		713D7A551A50B06300754A06 /* OAuth2TokenError.m in Sources */ = {isa = PBXBuildFile; fileRef = 713D7A541A50B06300754A06 /* OAuth2TokenError.m */; };
 		718A0BE21A4DA87900137C49 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 718A0BE11A4DA87900137C49 /* main.m */; };
 		718A0BE51A4DA87900137C49 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 718A0BE41A4DA87900137C49 /* AppDelegate.m */; };
 		718A0BE81A4DA87900137C49 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 718A0BE71A4DA87900137C49 /* ViewController.m */; };
@@ -42,6 +46,14 @@
 		713D7A441A509AC000754A06 /* ClientCredentialsStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ClientCredentialsStore.m; path = "ReelTime-iOS/Common/Store/ClientCredentialsStore.m"; sourceTree = SOURCE_ROOT; };
 		713D7A461A509ACC00754A06 /* ClientCredentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ClientCredentials.h; path = "ReelTime-iOS/Common/Model/ClientCredentials.h"; sourceTree = SOURCE_ROOT; };
 		713D7A471A509ACC00754A06 /* ClientCredentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ClientCredentials.m; path = "ReelTime-iOS/Common/Model/ClientCredentials.m"; sourceTree = SOURCE_ROOT; };
+		713D7A4A1A50A33300754A06 /* ReelTimeClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReelTimeClient.h; sourceTree = "<group>"; };
+		713D7A4B1A50A33300754A06 /* ReelTimeClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReelTimeClient.m; sourceTree = "<group>"; };
+		713D7A4D1A50A67E00754A06 /* UserCredentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCredentials.h; sourceTree = SOURCE_ROOT; };
+		713D7A4E1A50A67E00754A06 /* UserCredentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCredentials.m; sourceTree = SOURCE_ROOT; };
+		713D7A501A50A88F00754A06 /* OAuth2Token.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuth2Token.h; sourceTree = SOURCE_ROOT; };
+		713D7A511A50A88F00754A06 /* OAuth2Token.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuth2Token.m; sourceTree = SOURCE_ROOT; };
+		713D7A531A50B06300754A06 /* OAuth2TokenError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuth2TokenError.h; sourceTree = SOURCE_ROOT; };
+		713D7A541A50B06300754A06 /* OAuth2TokenError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuth2TokenError.m; sourceTree = SOURCE_ROOT; };
 		716A9BC41A4F5385005D33F9 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		718A0BDC1A4DA87900137C49 /* ReelTime-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ReelTime-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		718A0BE01A4DA87900137C49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -87,6 +99,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		713D7A491A50A24E00754A06 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				713D7A4A1A50A33300754A06 /* ReelTimeClient.h */,
+				713D7A4B1A50A33300754A06 /* ReelTimeClient.m */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		718A0BD31A4DA87900137C49 = {
 			isa = PBXGroup;
 			children = (
@@ -155,6 +176,7 @@
 		71D9477E1A4FB37E00401963 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				713D7A491A50A24E00754A06 /* Network */,
 				71D947831A4FB7BC00401963 /* Store */,
 				71D9477F1A4FB39C00401963 /* Model */,
 			);
@@ -166,6 +188,12 @@
 			children = (
 				713D7A461A509ACC00754A06 /* ClientCredentials.h */,
 				713D7A471A509ACC00754A06 /* ClientCredentials.m */,
+				713D7A4D1A50A67E00754A06 /* UserCredentials.h */,
+				713D7A4E1A50A67E00754A06 /* UserCredentials.m */,
+				713D7A501A50A88F00754A06 /* OAuth2Token.h */,
+				713D7A511A50A88F00754A06 /* OAuth2Token.m */,
+				713D7A531A50B06300754A06 /* OAuth2TokenError.h */,
+				713D7A541A50B06300754A06 /* OAuth2TokenError.m */,
 			);
 			name = Model;
 			path = Models;
@@ -414,11 +442,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				71D9478F1A4FC81A00401963 /* LoginInteractor.m in Sources */,
+				713D7A4C1A50A33300754A06 /* ReelTimeClient.m in Sources */,
+				713D7A521A50A88F00754A06 /* OAuth2Token.m in Sources */,
 				713D7A451A509AC000754A06 /* ClientCredentialsStore.m in Sources */,
+				713D7A4F1A50A67E00754A06 /* UserCredentials.m in Sources */,
 				718A0BE81A4DA87900137C49 /* ViewController.m in Sources */,
 				718A0BE51A4DA87900137C49 /* AppDelegate.m in Sources */,
 				713D7A481A509ACC00754A06 /* ClientCredentials.m in Sources */,
 				71D947941A4FC96800401963 /* LoginPresenter.m in Sources */,
+				713D7A551A50B06300754A06 /* OAuth2TokenError.m in Sources */,
 				718A0BE21A4DA87900137C49 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
