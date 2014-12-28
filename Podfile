@@ -1,6 +1,8 @@
 platform :ios, '8.0'
+xcodeproj 'ReelTime-iOS'
 
 pod 'Typhoon', '~> 2.3'
+pod 'UICKeyChainStore', '~> 1.1.0'
 
 # RestKit uses some deprecated APIs
 pod 'RestKit', '~> 0.24.0', :inhibit_warnings => true

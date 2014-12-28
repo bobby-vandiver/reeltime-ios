@@ -8,13 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		5230CA4B4A7751AD6141FA30 /* libPods-ReelTime-iOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41201C1DC28A47F09019E4F1 /* libPods-ReelTime-iOSTests.a */; };
-		716A9BC21A4F437C005D33F9 /* SimpleSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 716A9BC11A4F437C005D33F9 /* SimpleSpec.m */; };
 		718A0BE21A4DA87900137C49 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 718A0BE11A4DA87900137C49 /* main.m */; };
 		718A0BE51A4DA87900137C49 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 718A0BE41A4DA87900137C49 /* AppDelegate.m */; };
 		718A0BE81A4DA87900137C49 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 718A0BE71A4DA87900137C49 /* ViewController.m */; };
 		718A0BEB1A4DA87900137C49 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 718A0BE91A4DA87900137C49 /* Main.storyboard */; };
 		718A0BED1A4DA87900137C49 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 718A0BEC1A4DA87900137C49 /* Images.xcassets */; };
 		718A0BF01A4DA87900137C49 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 718A0BEE1A4DA87900137C49 /* LaunchScreen.xib */; };
+		71D947821A4FB3B900401963 /* ClientCredentials.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D947811A4FB3B900401963 /* ClientCredentials.m */; };
+		71D947861A4FB7DB00401963 /* ClientCredentialsStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D947851A4FB7DB00401963 /* ClientCredentialsStore.m */; };
+		71D947881A4FB9FE00401963 /* ClientCredentialsStoreSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D947871A4FB9FE00401963 /* ClientCredentialsStoreSpec.m */; };
 		BCBE070F3639F3393A1BF1A9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2682314A72FFBF85E182F6FE /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -32,7 +34,6 @@
 		2682314A72FFBF85E182F6FE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		41201C1DC28A47F09019E4F1 /* libPods-ReelTime-iOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReelTime-iOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		46C1E9F0B7F6473BE4077A89 /* Pods-ReelTime-iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelTime-iOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReelTime-iOSTests/Pods-ReelTime-iOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		716A9BC11A4F437C005D33F9 /* SimpleSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleSpec.m; sourceTree = "<group>"; };
 		716A9BC41A4F5385005D33F9 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		718A0BDC1A4DA87900137C49 /* ReelTime-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ReelTime-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		718A0BE01A4DA87900137C49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -46,6 +47,11 @@
 		718A0BEF1A4DA87900137C49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		718A0BF51A4DA87900137C49 /* ReelTime-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ReelTime-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		718A0BFA1A4DA87900137C49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		71D947801A4FB3B900401963 /* ClientCredentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClientCredentials.h; sourceTree = "<group>"; };
+		71D947811A4FB3B900401963 /* ClientCredentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClientCredentials.m; sourceTree = "<group>"; };
+		71D947841A4FB7DB00401963 /* ClientCredentialsStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClientCredentialsStore.h; sourceTree = "<group>"; };
+		71D947851A4FB7DB00401963 /* ClientCredentialsStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClientCredentialsStore.m; sourceTree = "<group>"; };
+		71D947871A4FB9FE00401963 /* ClientCredentialsStoreSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ClientCredentialsStoreSpec.m; path = ../ClientCredentialsStoreSpec.m; sourceTree = "<group>"; };
 		7EE6C896A75E4BC2F37AB869 /* Pods-ReelTime-iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelTime-iOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReelTime-iOSTests/Pods-ReelTime-iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A2DD151AB7544BA023B0A4FC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		BFB640030406AE557CFF13E5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -94,6 +100,7 @@
 		718A0BDE1A4DA87900137C49 /* ReelTime-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				71D9477E1A4FB37E00401963 /* Common */,
 				718A0BE31A4DA87900137C49 /* AppDelegate.h */,
 				718A0BE41A4DA87900137C49 /* AppDelegate.m */,
 				718A0BE61A4DA87900137C49 /* ViewController.h */,
@@ -118,8 +125,8 @@
 		718A0BF81A4DA87900137C49 /* ReelTime-iOSTests */ = {
 			isa = PBXGroup;
 			children = (
+				71D947891A4FBC7100401963 /* StoreTests */,
 				718A0BF91A4DA87900137C49 /* Supporting Files */,
-				716A9BC11A4F437C005D33F9 /* SimpleSpec.m */,
 				716A9BC41A4F5385005D33F9 /* Common.h */,
 			);
 			path = "ReelTime-iOSTests";
@@ -131,6 +138,43 @@
 				718A0BFA1A4DA87900137C49 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		71D9477E1A4FB37E00401963 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				71D947831A4FB7BC00401963 /* Store */,
+				71D9477F1A4FB39C00401963 /* Model */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		71D9477F1A4FB39C00401963 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				71D947801A4FB3B900401963 /* ClientCredentials.h */,
+				71D947811A4FB3B900401963 /* ClientCredentials.m */,
+			);
+			name = Model;
+			path = Models;
+			sourceTree = "<group>";
+		};
+		71D947831A4FB7BC00401963 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				71D947841A4FB7DB00401963 /* ClientCredentialsStore.h */,
+				71D947851A4FB7DB00401963 /* ClientCredentialsStore.m */,
+			);
+			name = Store;
+			path = Stores;
+			sourceTree = "<group>";
+		};
+		71D947891A4FBC7100401963 /* StoreTests */ = {
+			isa = PBXGroup;
+			children = (
+				71D947871A4FB9FE00401963 /* ClientCredentialsStoreSpec.m */,
+			);
+			path = StoreTests;
 			sourceTree = "<group>";
 		};
 		9771AF0E969811E0EBA02423 /* Pods */ = {
@@ -322,7 +366,9 @@
 			files = (
 				718A0BE81A4DA87900137C49 /* ViewController.m in Sources */,
 				718A0BE51A4DA87900137C49 /* AppDelegate.m in Sources */,
+				71D947861A4FB7DB00401963 /* ClientCredentialsStore.m in Sources */,
 				718A0BE21A4DA87900137C49 /* main.m in Sources */,
+				71D947821A4FB3B900401963 /* ClientCredentials.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,7 +376,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				716A9BC21A4F437C005D33F9 /* SimpleSpec.m in Sources */,
+				71D947881A4FB9FE00401963 /* ClientCredentialsStoreSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

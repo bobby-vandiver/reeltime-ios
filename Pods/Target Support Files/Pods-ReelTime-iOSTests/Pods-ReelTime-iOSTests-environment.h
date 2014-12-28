@@ -103,3 +103,9 @@
 #define COCOAPODS_VERSION_MINOR_Typhoon_no_arc 3
 #define COCOAPODS_VERSION_PATCH_Typhoon_no_arc 2
 
+// UICKeyChainStore
+#define COCOAPODS_POD_AVAILABLE_UICKeyChainStore
+#define COCOAPODS_VERSION_MAJOR_UICKeyChainStore 1
+#define COCOAPODS_VERSION_MINOR_UICKeyChainStore 1
+#define COCOAPODS_VERSION_PATCH_UICKeyChainStore 0
+
