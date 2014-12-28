@@ -24,28 +24,24 @@ describe(@"login logic", ^{
     __block NSString *password = @"secret";
     
     beforeEach(^{
-        clientCredentialsStore = OCMClassMock([ClientCredentialsStore class]);
+        clientCredentialsStore = mock([ClientCredentialsStore class]);
         clientCredentials = [[ClientCredentials alloc] initWithClientId:@"foo"
                                                            clientSecret:@"bar"];
         
-        presenter = OCMClassMock([LoginPresenter class]);
+        presenter = mock([LoginPresenter class]);
         interactor = [[LoginInteractor alloc] initWithPresenter:presenter
                                          clientCredentialsStore:clientCredentialsStore];
-    });
-
-    afterEach(^{
-        OCMVerify([clientCredentialsStore loadClientCredentials]);
     });
     
     describe(@"successful login", ^{
 
         before(^{
-            OCMStub([clientCredentialsStore loadClientCredentials]).andReturn(clientCredentials);
+            [given([clientCredentialsStore loadClientCredentials]) willReturn:clientCredentials];
         });
         
         it(@"notify presenter of success", ^{
             [interactor loginWithUsername:username password:password];
-            OCMVerify([presenter loginSucceeded]);
+            [verify(presenter) loginSucceeded];
         });
     });
     
@@ -53,29 +49,21 @@ describe(@"login logic", ^{
        
         context(@"client credentials not found", ^{
             
-            __block id unknownClientErrorChecker;
-            
             before(^{
-                OCMStub([clientCredentialsStore loadClientCredentials]).andReturn(nil);
-
-                unknownClientErrorChecker = [OCMArg checkWithBlock: ^BOOL(id value) {
-                    if ([value isKindOfClass:[NSError class]]) {
-                        NSError *error = (NSError *)value;
-                        
-                        BOOL correctDomain = [error.domain isEqualToString:LoginErrorsDomain];
-                        BOOL correctCode = (error.code == UnknownClient);
-                        
-                        return correctDomain && correctCode;
-                    }
-                    return NO;
-                }];
+                [given([clientCredentialsStore loadClientCredentials]) willReturn:nil];
             });
             
             it(@"notify presenter of unknown client", ^{
-                OCMExpect([presenter loginFailedWithError:unknownClientErrorChecker]);
                 [interactor loginWithUsername:username password:password];
+
+                MKTArgumentCaptor *errorCaptor = [[MKTArgumentCaptor alloc] init];
+                [verify(presenter) loginFailedWithError:[errorCaptor capture]];
+
+                expect([errorCaptor value]).to.beKindOf([NSError class]);
                 
-                OCMVerifyAll((id)presenter);
+                NSError *error = [errorCaptor value];
+                expect(error.domain).to.equal(LoginErrorsDomain);
+                expect(error.code).to.equal(UnknownClient);
             });
         });
     });

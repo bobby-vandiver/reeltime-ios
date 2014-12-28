@@ -17,7 +17,7 @@ describe(@"client credentials store", ^{
     __block UICKeyChainStore *mockKeyChainStore;
     
     beforeEach(^{
-        mockKeyChainStore = OCMClassMock([UICKeyChainStore class]);
+        mockKeyChainStore = mock([UICKeyChainStore class]);
         store = [[ClientCredentialsStore alloc] initWithKeyChainStore:mockKeyChainStore];
     });
     

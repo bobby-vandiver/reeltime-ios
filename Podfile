@@ -13,5 +13,5 @@ pod 'ISO8601DateFormatterValueTransformer', '~> 0.6.0', :inhibit_warnings => tru
 target 'ReelTime-iOSTests' do
     pod 'Specta', :git => 'https://github.com/specta/specta.git', :tag => 'v0.3.0.beta1'
     pod 'Expecta', '~> 0.3.1'
-    pod 'OCMock', '~> 3.1.1'
+    pod 'OCMockito', '~> 1.3.1'
 end

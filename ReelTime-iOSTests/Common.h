@@ -10,9 +10,10 @@
 #define ReelTime_iOS_Common_h
 
 #define EXP_SHORTHAND
+#define MOCKITO_SHORTHAND
 
 #import <Specta/Specta.h>
 #import <Expecta/Expecta.h>
-#import <OCMock/OCMock.h>
+#import <OCMockito/OCMockito.h>
 
 #endif
