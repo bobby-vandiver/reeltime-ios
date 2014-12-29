@@ -1,5 +1,4 @@
 platform :ios, '8.0'
-#xcodeproj 'ReelTime-iOS'
 
 target 'ReelTime-iOS', :exclusive => true do
     # Typhoon cannot be linked into the test target

@@ -20,11 +20,13 @@
 		718A0BEB1A4DA87900137C49 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 718A0BE91A4DA87900137C49 /* Main.storyboard */; };
 		718A0BED1A4DA87900137C49 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 718A0BEC1A4DA87900137C49 /* Images.xcassets */; };
 		718A0BF01A4DA87900137C49 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 718A0BEE1A4DA87900137C49 /* LaunchScreen.xib */; };
+		719B35DB1A51012E00FFD543 /* ReelTimeClientAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 719B35DA1A51012E00FFD543 /* ReelTimeClientAssembly.m */; };
 		71D947881A4FB9FE00401963 /* ClientCredentialsStoreSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D947871A4FB9FE00401963 /* ClientCredentialsStoreSpec.m */; };
 		71D9478F1A4FC81A00401963 /* LoginInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D9478E1A4FC81A00401963 /* LoginInteractor.m */; };
 		71D947941A4FC96800401963 /* LoginPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D947931A4FC96800401963 /* LoginPresenter.m */; };
 		71D947981A4FCB5600401963 /* LoginInteractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D947971A4FCB5600401963 /* LoginInteractorSpec.m */; };
 		BCBE070F3639F3393A1BF1A9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2682314A72FFBF85E182F6FE /* libPods.a */; };
+		F5855EE53AD6BF2CC0D24A71 /* libPods-ReelTime-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DFC463C3A66781E8DEEE7436 /* libPods-ReelTime-iOS.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +70,8 @@
 		718A0BEF1A4DA87900137C49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		718A0BF51A4DA87900137C49 /* ReelTime-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ReelTime-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		718A0BFA1A4DA87900137C49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		719B35D91A51012E00FFD543 /* ReelTimeClientAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReelTimeClientAssembly.h; sourceTree = "<group>"; };
+		719B35DA1A51012E00FFD543 /* ReelTimeClientAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReelTimeClientAssembly.m; sourceTree = "<group>"; };
 		71D947871A4FB9FE00401963 /* ClientCredentialsStoreSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ClientCredentialsStoreSpec.m; path = ../ClientCredentialsStoreSpec.m; sourceTree = "<group>"; };
 		71D9478D1A4FC81A00401963 /* LoginInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginInteractor.h; sourceTree = "<group>"; };
 		71D9478E1A4FC81A00401963 /* LoginInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginInteractor.m; sourceTree = "<group>"; };
@@ -76,8 +80,11 @@
 		71D947931A4FC96800401963 /* LoginPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginPresenter.m; sourceTree = "<group>"; };
 		71D947971A4FCB5600401963 /* LoginInteractorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginInteractorSpec.m; sourceTree = "<group>"; };
 		7EE6C896A75E4BC2F37AB869 /* Pods-ReelTime-iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelTime-iOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReelTime-iOSTests/Pods-ReelTime-iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		9F10A54522F42FAE4C712E1A /* Pods-ReelTime-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelTime-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReelTime-iOS/Pods-ReelTime-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		A29C600554F5BB4A5E37291D /* Pods-ReelTime-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelTime-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReelTime-iOS/Pods-ReelTime-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		A2DD151AB7544BA023B0A4FC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		BFB640030406AE557CFF13E5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		DFC463C3A66781E8DEEE7436 /* libPods-ReelTime-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReelTime-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +93,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BCBE070F3639F3393A1BF1A9 /* libPods.a in Frameworks */,
+				F5855EE53AD6BF2CC0D24A71 /* libPods-ReelTime-iOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,9 +183,19 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		719B35D81A51012E00FFD543 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				719B35D91A51012E00FFD543 /* ReelTimeClientAssembly.h */,
+				719B35DA1A51012E00FFD543 /* ReelTimeClientAssembly.m */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
 		71D9477E1A4FB37E00401963 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				719B35D81A51012E00FFD543 /* Assembly */,
 				713D7A491A50A24E00754A06 /* Network */,
 				71D947831A4FB7BC00401963 /* Store */,
 				71D9477F1A4FB39C00401963 /* Model */,
@@ -263,6 +281,8 @@
 				BFB640030406AE557CFF13E5 /* Pods.release.xcconfig */,
 				7EE6C896A75E4BC2F37AB869 /* Pods-ReelTime-iOSTests.debug.xcconfig */,
 				46C1E9F0B7F6473BE4077A89 /* Pods-ReelTime-iOSTests.release.xcconfig */,
+				9F10A54522F42FAE4C712E1A /* Pods-ReelTime-iOS.debug.xcconfig */,
+				A29C600554F5BB4A5E37291D /* Pods-ReelTime-iOS.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -272,6 +292,7 @@
 			children = (
 				2682314A72FFBF85E182F6FE /* libPods.a */,
 				41201C1DC28A47F09019E4F1 /* libPods-ReelTime-iOSTests.a */,
+				DFC463C3A66781E8DEEE7436 /* libPods-ReelTime-iOS.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -388,7 +409,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ReelTime-iOS/Pods-ReelTime-iOS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		2DD2DB5D5148B655E1BBD838 /* Copy Pods Resources */ = {
@@ -448,6 +469,7 @@
 				713D7A521A50A88F00754A06 /* OAuth2Token.m in Sources */,
 				713D7A451A509AC000754A06 /* ClientCredentialsStore.m in Sources */,
 				713D7A4F1A50A67E00754A06 /* UserCredentials.m in Sources */,
+				719B35DB1A51012E00FFD543 /* ReelTimeClientAssembly.m in Sources */,
 				718A0BE81A4DA87900137C49 /* ViewController.m in Sources */,
 				718A0BE51A4DA87900137C49 /* AppDelegate.m in Sources */,
 				713D7A481A509ACC00754A06 /* ClientCredentials.m in Sources */,
@@ -574,7 +596,7 @@
 		};
 		718A0C001A4DA87A00137C49 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A2DD151AB7544BA023B0A4FC /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 9F10A54522F42FAE4C712E1A /* Pods-ReelTime-iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "ReelTime-iOS/Info.plist";
@@ -585,7 +607,7 @@
 		};
 		718A0C011A4DA87A00137C49 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BFB640030406AE557CFF13E5 /* Pods.release.xcconfig */;
+			baseConfigurationReference = A29C600554F5BB4A5E37291D /* Pods-ReelTime-iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "ReelTime-iOS/Info.plist";
