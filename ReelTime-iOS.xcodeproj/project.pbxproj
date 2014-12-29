@@ -54,6 +54,7 @@
 		713D7A511A50A88F00754A06 /* OAuth2Token.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuth2Token.m; sourceTree = SOURCE_ROOT; };
 		713D7A531A50B06300754A06 /* OAuth2TokenError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuth2TokenError.h; sourceTree = SOURCE_ROOT; };
 		713D7A541A50B06300754A06 /* OAuth2TokenError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuth2TokenError.m; sourceTree = SOURCE_ROOT; };
+		713D7A571A50E9D500754A06 /* ReelTimeClientErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReelTimeClientErrors.h; sourceTree = "<group>"; };
 		716A9BC41A4F5385005D33F9 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		718A0BDC1A4DA87900137C49 /* ReelTime-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ReelTime-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		718A0BE01A4DA87900137C49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -104,6 +105,7 @@
 			children = (
 				713D7A4A1A50A33300754A06 /* ReelTimeClient.h */,
 				713D7A4B1A50A33300754A06 /* ReelTimeClient.m */,
+				713D7A571A50E9D500754A06 /* ReelTimeClientErrors.h */,
 			);
 			path = Network;
 			sourceTree = "<group>";

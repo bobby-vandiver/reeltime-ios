@@ -24,4 +24,10 @@
     return self;
 }
 
+- (void)tokenWithClientCredentials:(ClientCredentials *)clientCredentials
+                   userCredentials:(UserCredentials *)userCredentials
+                           success:(TokenSuccessHandler)successHandler
+                           failure:(TokenFailureHandler)failureHandler {
+}
+
 @end
