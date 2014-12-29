@@ -42,7 +42,6 @@
     return [NSURL URLWithString: @"http://localhost:8080/reeltime"];
 }
 
-
 - (RKResponseDescriptor *)tokenDescriptor {
     RKObjectMapping *tokenMapping = [RKObjectMapping mappingForClass:[OAuth2Token class]];
     [tokenMapping addAttributeMappingsFromDictionary:@{
