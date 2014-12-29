@@ -11,7 +11,7 @@
 
 #import <Foundation/Foundation.h>
 
-NSString *const ReelTimeClientTokenErrorDomain = @"in.reeltime.ReelTimeClientToken";
+extern NSString *const ReelTimeClientTokenErrorDomain;
 
 typedef NS_ENUM(NSInteger, ReelTimeClientTokenErrors) {
     Unauthorized,
