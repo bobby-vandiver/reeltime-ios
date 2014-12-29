@@ -21,6 +21,7 @@
 		718A0BED1A4DA87900137C49 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 718A0BEC1A4DA87900137C49 /* Images.xcassets */; };
 		718A0BF01A4DA87900137C49 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 718A0BEE1A4DA87900137C49 /* LaunchScreen.xib */; };
 		719B35DB1A51012E00FFD543 /* ReelTimeClientAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 719B35DA1A51012E00FFD543 /* ReelTimeClientAssembly.m */; };
+		719B35DE1A51140900FFD543 /* ReelTimeRestAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 719B35DD1A51140900FFD543 /* ReelTimeRestAPI.m */; };
 		71D947881A4FB9FE00401963 /* ClientCredentialsStoreSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D947871A4FB9FE00401963 /* ClientCredentialsStoreSpec.m */; };
 		71D9478F1A4FC81A00401963 /* LoginInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D9478E1A4FC81A00401963 /* LoginInteractor.m */; };
 		71D947941A4FC96800401963 /* LoginPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D947931A4FC96800401963 /* LoginPresenter.m */; };
@@ -73,6 +74,7 @@
 		719B35D91A51012E00FFD543 /* ReelTimeClientAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReelTimeClientAssembly.h; sourceTree = "<group>"; };
 		719B35DA1A51012E00FFD543 /* ReelTimeClientAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReelTimeClientAssembly.m; sourceTree = "<group>"; };
 		719B35DC1A51086600FFD543 /* ReelTimeRestAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReelTimeRestAPI.h; sourceTree = "<group>"; };
+		719B35DD1A51140900FFD543 /* ReelTimeRestAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReelTimeRestAPI.m; sourceTree = "<group>"; };
 		71D947871A4FB9FE00401963 /* ClientCredentialsStoreSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ClientCredentialsStoreSpec.m; path = ../ClientCredentialsStoreSpec.m; sourceTree = "<group>"; };
 		71D9478D1A4FC81A00401963 /* LoginInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginInteractor.h; sourceTree = "<group>"; };
 		71D9478E1A4FC81A00401963 /* LoginInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginInteractor.m; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				713D7A4B1A50A33300754A06 /* ReelTimeClient.m */,
 				713D7A571A50E9D500754A06 /* ReelTimeClientErrors.h */,
 				719B35DC1A51086600FFD543 /* ReelTimeRestAPI.h */,
+				719B35DD1A51140900FFD543 /* ReelTimeRestAPI.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -473,6 +476,7 @@
 				713D7A4F1A50A67E00754A06 /* UserCredentials.m in Sources */,
 				719B35DB1A51012E00FFD543 /* ReelTimeClientAssembly.m in Sources */,
 				718A0BE81A4DA87900137C49 /* ViewController.m in Sources */,
+				719B35DE1A51140900FFD543 /* ReelTimeRestAPI.m in Sources */,
 				718A0BE51A4DA87900137C49 /* AppDelegate.m in Sources */,
 				713D7A481A509ACC00754A06 /* ClientCredentials.m in Sources */,
 				71D947941A4FC96800401963 /* LoginPresenter.m in Sources */,
