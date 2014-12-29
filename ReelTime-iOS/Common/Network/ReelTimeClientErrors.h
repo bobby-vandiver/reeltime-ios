@@ -9,6 +9,8 @@
 #ifndef ReelTime_iOS_ReelTimeClientErrors_h
 #define ReelTime_iOS_ReelTimeClientErrors_h
 
+#import <Foundation/Foundation.h>
+
 NSString *const ReelTimeClientTokenErrorDomain = @"in.reeltime.ReelTimeClientToken";
 
 typedef NS_ENUM(NSInteger, ReelTimeClientTokenErrors) {

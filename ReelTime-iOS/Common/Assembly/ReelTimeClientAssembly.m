@@ -7,10 +7,11 @@
 //
 
 #import "ReelTimeClientAssembly.h"
+
 #import "ReelTimeClient.h"
+#import "ReelTimeRestAPI.h"
 
 #import "OAuth2Token.h"
-
 #import <RestKit/RestKit.h>
 
 @implementation ReelTimeClientAssembly
@@ -22,10 +23,6 @@
             [initializer injectParameterWith:[self restKitObjectManager]];
         }];
     }];
-}
-
-- (NSURL *)baseUrl {
-    return [NSURL URLWithString: @"http://localhost:8080"];
 }
 
 - (RKObjectManager *)restKitObjectManager {
@@ -41,21 +38,26 @@
     }];
 }
 
+- (NSURL *)baseUrl {
+    return [NSURL URLWithString: @"http://localhost:8080/reeltime"];
+}
+
+
 - (RKResponseDescriptor *)tokenDescriptor {
     RKObjectMapping *tokenMapping = [RKObjectMapping mappingForClass:[OAuth2Token class]];
     [tokenMapping addAttributeMappingsFromDictionary:@{
-                                                       @"accessToken":  @"access_token",
-                                                       @"refreshToken": @"refresh_token",
-                                                       @"tokenType":    @"token_type",
-                                                       @"expiresIn":    @"expires_in",
-                                                       @"scope":        @"scope"
+                                                       @"access_token":     @"accessToken",
+                                                       @"refresh_token":    @"refreshToken",
+                                                       @"token_type":       @"tokenType",
+                                                       @"expires_in":       @"expiresIn",
+                                                       @"scope":            @"scope"
                                                        }];
     
     NSIndexSet *tokenSuccessfulStatusCodes = RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful);
     
     return [RKResponseDescriptor responseDescriptorWithMapping:tokenMapping
                                                         method:RKRequestMethodPOST
-                                                   pathPattern:@"/oauth/token"
+                                                   pathPattern:API_TOKEN_ENDPOINT
                                                        keyPath:nil
                                                    statusCodes:tokenSuccessfulStatusCodes];
     
