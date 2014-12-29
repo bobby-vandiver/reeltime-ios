@@ -9,8 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <RestKit/RestKit.h>
 
-#import "ReelTimeClientErrors.h"
-
 #import "ClientCredentials.h"
 #import "UserCredentials.h"
 #import "OAuth2Token.h"

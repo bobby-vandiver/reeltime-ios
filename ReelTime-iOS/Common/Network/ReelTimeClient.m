@@ -7,6 +7,7 @@
 //
 
 #import "ReelTimeClient.h"
+#import "ReelTimeClientErrors.h"
 
 @interface ReelTimeClient ()
 
