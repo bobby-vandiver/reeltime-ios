@@ -60,6 +60,12 @@
 #define COCOAPODS_VERSION_MINOR_RestKit_Support 24
 #define COCOAPODS_VERSION_PATCH_RestKit_Support 0
 
+// RestKit/Testing
+#define COCOAPODS_POD_AVAILABLE_RestKit_Testing
+#define COCOAPODS_VERSION_MAJOR_RestKit_Testing 0
+#define COCOAPODS_VERSION_MINOR_RestKit_Testing 24
+#define COCOAPODS_VERSION_PATCH_RestKit_Testing 0
+
 // SOCKit
 #define COCOAPODS_POD_AVAILABLE_SOCKit
 #define COCOAPODS_VERSION_MAJOR_SOCKit 1

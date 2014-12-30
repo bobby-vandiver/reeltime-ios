@@ -3,7 +3,7 @@
 
 @implementation RTRestAPIMappingFactory
 
-+ (RKObjectMapping *)tokenMapping {
++ (RKMapping *)tokenMapping {
     RKObjectMapping *mapping = [RKObjectMapping mappingForClass:[RTOAuth2Token class]];
     [mapping addAttributeMappingsFromDictionary:@{
                                                        @"access_token":     @"accessToken",

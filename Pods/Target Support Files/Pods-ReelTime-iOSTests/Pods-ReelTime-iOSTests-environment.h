@@ -6,23 +6,11 @@
 // project.
 
 
-// AFNetworking
-#define COCOAPODS_POD_AVAILABLE_AFNetworking
-#define COCOAPODS_VERSION_MAJOR_AFNetworking 1
-#define COCOAPODS_VERSION_MINOR_AFNetworking 3
-#define COCOAPODS_VERSION_PATCH_AFNetworking 4
-
 // Expecta
 #define COCOAPODS_POD_AVAILABLE_Expecta
 #define COCOAPODS_VERSION_MAJOR_Expecta 0
 #define COCOAPODS_VERSION_MINOR_Expecta 3
 #define COCOAPODS_VERSION_PATCH_Expecta 1
-
-// ISO8601DateFormatterValueTransformer
-#define COCOAPODS_POD_AVAILABLE_ISO8601DateFormatterValueTransformer
-#define COCOAPODS_VERSION_MAJOR_ISO8601DateFormatterValueTransformer 0
-#define COCOAPODS_VERSION_MINOR_ISO8601DateFormatterValueTransformer 6
-#define COCOAPODS_VERSION_PATCH_ISO8601DateFormatterValueTransformer 0
 
 // OCHamcrest
 #define COCOAPODS_POD_AVAILABLE_OCHamcrest
@@ -36,52 +24,10 @@
 #define COCOAPODS_VERSION_MINOR_OCMockito 3
 #define COCOAPODS_VERSION_PATCH_OCMockito 1
 
-// RKValueTransformers
-#define COCOAPODS_POD_AVAILABLE_RKValueTransformers
-#define COCOAPODS_VERSION_MAJOR_RKValueTransformers 1
-#define COCOAPODS_VERSION_MINOR_RKValueTransformers 1
-#define COCOAPODS_VERSION_PATCH_RKValueTransformers 1
-
-// RestKit/Network
-#define COCOAPODS_POD_AVAILABLE_RestKit_Network
-#define COCOAPODS_VERSION_MAJOR_RestKit_Network 0
-#define COCOAPODS_VERSION_MINOR_RestKit_Network 24
-#define COCOAPODS_VERSION_PATCH_RestKit_Network 0
-
-// RestKit/ObjectMapping
-#define COCOAPODS_POD_AVAILABLE_RestKit_ObjectMapping
-#define COCOAPODS_VERSION_MAJOR_RestKit_ObjectMapping 0
-#define COCOAPODS_VERSION_MINOR_RestKit_ObjectMapping 24
-#define COCOAPODS_VERSION_PATCH_RestKit_ObjectMapping 0
-
-// RestKit/Support
-#define COCOAPODS_POD_AVAILABLE_RestKit_Support
-#define COCOAPODS_VERSION_MAJOR_RestKit_Support 0
-#define COCOAPODS_VERSION_MINOR_RestKit_Support 24
-#define COCOAPODS_VERSION_PATCH_RestKit_Support 0
-
-// RestKit/Testing
-#define COCOAPODS_POD_AVAILABLE_RestKit_Testing
-#define COCOAPODS_VERSION_MAJOR_RestKit_Testing 0
-#define COCOAPODS_VERSION_MINOR_RestKit_Testing 24
-#define COCOAPODS_VERSION_PATCH_RestKit_Testing 0
-
-// SOCKit
-#define COCOAPODS_POD_AVAILABLE_SOCKit
-#define COCOAPODS_VERSION_MAJOR_SOCKit 1
-#define COCOAPODS_VERSION_MINOR_SOCKit 1
-#define COCOAPODS_VERSION_PATCH_SOCKit 0
-
 // Specta
 #define COCOAPODS_POD_AVAILABLE_Specta
 // This library does not follow semantic-versioning,
 // so we were not able to define version macros.
 // Please contact the author.
 // Version: 0.3.0.beta1.
-
-// TransitionKit
-#define COCOAPODS_POD_AVAILABLE_TransitionKit
-#define COCOAPODS_VERSION_MAJOR_TransitionKit 2
-#define COCOAPODS_VERSION_MINOR_TransitionKit 1
-#define COCOAPODS_VERSION_PATCH_TransitionKit 0
 

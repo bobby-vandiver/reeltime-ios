@@ -9,6 +9,10 @@ target 'ReelTime-iOS', :exclusive => true do
     
     # RestKit uses some deprecated APIs
     pod 'RestKit', '~> 0.24.0', :inhibit_warnings => true
+
+    # Testing module must be included in the main target
+    # to avoid introducing duplicate symbols
+    pod 'RestKit/Testing', '~> 0.24.0', :inhibit_warnings => true
     
     # RestKit dependency that uses deprecated APIs
     pod 'ISO8601DateFormatterValueTransformer', '~> 0.6.0', :inhibit_warnings => true
@@ -18,5 +22,4 @@ target 'ReelTime-iOSTests' do
     pod 'Specta', :git => 'https://github.com/specta/specta.git', :tag => 'v0.3.0.beta1'
     pod 'Expecta', '~> 0.3.1'
     pod 'OCMockito', '~> 1.3.1'
-    pod 'RestKit/Testing', '~> 0.24.0', :inhibit_warnings => true
 end

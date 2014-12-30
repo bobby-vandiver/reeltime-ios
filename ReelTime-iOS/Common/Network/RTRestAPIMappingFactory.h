@@ -3,6 +3,6 @@
 
 @interface RTRestAPIMappingFactory : NSObject
 
-+ (RKObjectMapping *)tokenMapping;
++ (RKMapping *)tokenMapping;
 
 @end

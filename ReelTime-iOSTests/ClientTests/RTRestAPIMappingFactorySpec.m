@@ -9,11 +9,7 @@ SpecBegin(RTRestAPIMappingFactory)
 describe(@"API Mapping", ^{
     
     it(@"token", ^{
-        RKObjectMapping *mapping = [RTRestAPIMappingFactory tokenMapping];
-        
-        
-        assert([mapping isKindOfClass:[RKObjectMapping class]]);
-        
+        RKMapping *mapping = [RTRestAPIMappingFactory tokenMapping];
         NSDictionary *response = @{
                                    @"access_token": @"1d49fc35-2af6-477e-8fd4-ab0353a4a76f",
                                    @"token_type": @"bearer",
