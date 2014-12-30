@@ -1,8 +1,7 @@
 #import "RTClientAssembly.h"
 
 #import "RTClient.h"
-#import "RTRestAPI.h"
-#import "RTRestAPIMappingFactory.h"
+#import "RTResponseDescriptorFactory.h"
 
 #import <RestKit/RestKit.h>
 
@@ -25,7 +24,7 @@
         }];
         
         [definition injectMethod:@selector(addResponseDescriptorsFromArray:) parameters:^(TyphoonMethod *method) {
-            [method injectParameterWith:@[[self tokenDescriptor]]];
+            [method injectParameterWith:@[[RTResponseDescriptorFactory tokenDescriptor]]];
         }];
     }];
 }
@@ -34,14 +33,5 @@
     return [NSURL URLWithString: @"http://localhost:8080/reeltime"];
 }
 
-- (RKResponseDescriptor *)tokenDescriptor {
-    NSIndexSet *statusCodes = RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful);
-
-    return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory tokenMapping]
-                                                        method:RKRequestMethodPOST
-                                                   pathPattern:API_TOKEN_ENDPOINT
-                                                       keyPath:nil
-                                                   statusCodes:statusCodes];
-}
 
 @end
