@@ -27,6 +27,7 @@
 		71D9478F1A4FC81A00401963 /* RTLoginInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D9478E1A4FC81A00401963 /* RTLoginInteractor.m */; };
 		71D947941A4FC96800401963 /* RTLoginPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D947931A4FC96800401963 /* RTLoginPresenter.m */; };
 		71D947981A4FCB5600401963 /* RTLoginInteractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D947971A4FCB5600401963 /* RTLoginInteractorSpec.m */; };
+		71DCC4F11A5269E600DC1E3D /* RTRestAPIMappingFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 71DCC4F01A5269E600DC1E3D /* RTRestAPIMappingFactory.m */; };
 		BCBE070F3639F3393A1BF1A9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2682314A72FFBF85E182F6FE /* libPods.a */; };
 		F5855EE53AD6BF2CC0D24A71 /* libPods-ReelTime-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DFC463C3A66781E8DEEE7436 /* libPods-ReelTime-iOS.a */; };
 /* End PBXBuildFile section */
@@ -84,6 +85,8 @@
 		71D947921A4FC96800401963 /* RTLoginPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLoginPresenter.h; sourceTree = "<group>"; };
 		71D947931A4FC96800401963 /* RTLoginPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLoginPresenter.m; sourceTree = "<group>"; };
 		71D947971A4FCB5600401963 /* RTLoginInteractorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLoginInteractorSpec.m; sourceTree = "<group>"; };
+		71DCC4EF1A5269E600DC1E3D /* RTRestAPIMappingFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTRestAPIMappingFactory.h; sourceTree = "<group>"; };
+		71DCC4F01A5269E600DC1E3D /* RTRestAPIMappingFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTRestAPIMappingFactory.m; sourceTree = "<group>"; };
 		7EE6C896A75E4BC2F37AB869 /* Pods-ReelTime-iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelTime-iOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReelTime-iOSTests/Pods-ReelTime-iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9F10A54522F42FAE4C712E1A /* Pods-ReelTime-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelTime-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReelTime-iOS/Pods-ReelTime-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		A29C600554F5BB4A5E37291D /* Pods-ReelTime-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelTime-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReelTime-iOS/Pods-ReelTime-iOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -116,6 +119,8 @@
 		713D7A491A50A24E00754A06 /* Client */ = {
 			isa = PBXGroup;
 			children = (
+				71DCC4EF1A5269E600DC1E3D /* RTRestAPIMappingFactory.h */,
+				71DCC4F01A5269E600DC1E3D /* RTRestAPIMappingFactory.m */,
 				713D7A4A1A50A33300754A06 /* RTClient.h */,
 				713D7A4B1A50A33300754A06 /* RTClient.m */,
 				713D7A571A50E9D500754A06 /* RTClientErrors.h */,
@@ -491,6 +496,7 @@
 				718A0BE81A4DA87900137C49 /* RTViewController.m in Sources */,
 				719B35DE1A51140900FFD543 /* RTRestAPI.m in Sources */,
 				718A0BE51A4DA87900137C49 /* RTAppDelegate.m in Sources */,
+				71DCC4F11A5269E600DC1E3D /* RTRestAPIMappingFactory.m in Sources */,
 				713D7A481A509ACC00754A06 /* RTClientCredentials.m in Sources */,
 				71D947941A4FC96800401963 /* RTLoginPresenter.m in Sources */,
 				713D7A551A50B06300754A06 /* RTOAuth2TokenError.m in Sources */,
