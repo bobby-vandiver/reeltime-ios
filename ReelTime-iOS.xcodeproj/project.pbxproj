@@ -113,7 +113,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		713D7A491A50A24E00754A06 /* Network */ = {
+		713D7A491A50A24E00754A06 /* Client */ = {
 			isa = PBXGroup;
 			children = (
 				713D7A4A1A50A33300754A06 /* RTClient.h */,
@@ -122,7 +122,7 @@
 				719B35DC1A51086600FFD543 /* RTRestAPI.h */,
 				719B35DD1A51140900FFD543 /* RTRestAPI.m */,
 			);
-			path = Network;
+			path = Client;
 			sourceTree = "<group>";
 		};
 		718A0BD31A4DA87900137C49 = {
@@ -212,7 +212,7 @@
 			children = (
 				719B35E11A51150000FFD543 /* Error */,
 				719B35D81A51012E00FFD543 /* Assembly */,
-				713D7A491A50A24E00754A06 /* Network */,
+				713D7A491A50A24E00754A06 /* Client */,
 				71D947831A4FB7BC00401963 /* Store */,
 				71D9477F1A4FB39C00401963 /* Model */,
 			);
