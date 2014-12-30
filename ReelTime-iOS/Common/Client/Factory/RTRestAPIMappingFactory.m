@@ -1,5 +1,7 @@
 #import "RTRestAPIMappingFactory.h"
+
 #import "RTOAuth2Token.h"
+#import "RTOAuth2TokenError.h"
 
 @implementation RTRestAPIMappingFactory
 
@@ -12,6 +14,15 @@
                                                        @"expires_in":       @"expiresIn",
                                                        @"scope":            @"scope"
                                                        }];
+    return mapping;
+}
+
++ (RKMapping *)tokenErrorMapping {
+    RKObjectMapping *mapping = [RKObjectMapping mappingForClass:[RTOAuth2TokenError class]];
+    [mapping addAttributeMappingsFromDictionary:@{
+                                                  @"error":             @"errorCode",
+                                                  @"error_description": @"errorDescription"
+                                                  }];
     return mapping;
 }
 

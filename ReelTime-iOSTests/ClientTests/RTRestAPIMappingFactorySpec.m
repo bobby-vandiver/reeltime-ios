@@ -2,6 +2,8 @@
 #import "RTRestAPIMappingFactory.h"
 
 #import "RTOAuth2Token.h"
+#import "RTOAuth2TokenError.h"
+
 #import <RestKit/Testing.h>
 
 SpecBegin(RTRestAPIMappingFactory)
@@ -47,6 +49,29 @@ describe(@"API Mapping", ^{
         [mappingTest verify];
     });
     
+    it(@"token error", ^{
+        RKMapping *mapping = [RTRestAPIMappingFactory tokenErrorMapping];
+        NSDictionary *response = @{
+                                   @"error": @"invalid_client",
+                                   @"error_description": @"Bad client credentials"
+                                   };
+        
+        RTOAuth2TokenError *tokenError = [[RTOAuth2TokenError alloc] init];
+        RKMappingTest *mappingTest = [RKMappingTest testForMapping:mapping
+                                                      sourceObject:response
+                                                 destinationObject:tokenError];
+        
+        [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:@"error"
+                                                                                destinationKeyPath:@"errorCode"
+                                                                                             value:@"invalid_client"]];
+        
+        [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:@"error_description"
+                                                                                destinationKeyPath:@"errorDescription"
+                                                                                             value:@"Bad client credentials"]];
+
+        [mappingTest performMapping];
+        [mappingTest verify];
+    });
 });
 
 SpecEnd

@@ -4,5 +4,6 @@
 @interface RTRestAPIMappingFactory : NSObject
 
 + (RKMapping *)tokenMapping;
++ (RKMapping *)tokenErrorMapping;
 
 @end
