@@ -1,23 +1,15 @@
-//
-//  ReelTimeClientAssembly.m
-//  ReelTime-iOS
-//
-//  Created by Bobby Vandiver on 12/28/14.
-//  Copyright (c) 2014 ReelTime. All rights reserved.
-//
+#import "RTClientAssembly.h"
 
-#import "ReelTimeClientAssembly.h"
+#import "RTClient.h"
+#import "RTRestAPI.h"
 
-#import "ReelTimeClient.h"
-#import "ReelTimeRestAPI.h"
-
-#import "OAuth2Token.h"
+#import "RTOAuth2Token.h"
 #import <RestKit/RestKit.h>
 
-@implementation ReelTimeClientAssembly
+@implementation RTClientAssembly
 
-- (ReelTimeClient *)reelTimeClient {
-    return [TyphoonDefinition withClass:[ReelTimeClient class] configuration:^(TyphoonDefinition *definition) {
+- (RTClient *)reelTimeClient {
+    return [TyphoonDefinition withClass:[RTClient class] configuration:^(TyphoonDefinition *definition) {
         [definition useInitializer:@selector(initWithRestKitObjectManager:)
                         parameters:^(TyphoonMethod *initializer) {
             [initializer injectParameterWith:[self restKitObjectManager]];
@@ -43,7 +35,7 @@
 }
 
 - (RKResponseDescriptor *)tokenDescriptor {
-    RKObjectMapping *tokenMapping = [RKObjectMapping mappingForClass:[OAuth2Token class]];
+    RKObjectMapping *tokenMapping = [RKObjectMapping mappingForClass:[RTOAuth2Token class]];
     [tokenMapping addAttributeMappingsFromDictionary:@{
                                                        @"access_token":     @"accessToken",
                                                        @"refresh_token":    @"refreshToken",

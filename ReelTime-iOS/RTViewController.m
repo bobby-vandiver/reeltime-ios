@@ -1,18 +1,10 @@
-//
-//  ViewController.m
-//  ReelTime-iOS
-//
-//  Created by Bobby Vandiver on 12/26/14.
-//  Copyright (c) 2014 ReelTime. All rights reserved.
-//
+#import "RTViewController.h"
 
-#import "ViewController.h"
-
-@interface ViewController ()
+@interface RTViewController ()
 
 @end
 
-@implementation ViewController
+@implementation RTViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

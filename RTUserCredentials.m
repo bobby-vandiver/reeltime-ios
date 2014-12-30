@@ -1,21 +1,13 @@
-//
-//  UserCredentials.m
-//  ReelTime-iOS
-//
-//  Created by Bobby Vandiver on 12/28/14.
-//  Copyright (c) 2014 ReelTime. All rights reserved.
-//
+#import "RTUserCredentials.h"
 
-#import "UserCredentials.h"
-
-@interface UserCredentials ()
+@interface RTUserCredentials ()
 
 @property (nonatomic, readwrite, copy) NSString *username;
 @property (nonatomic, readwrite, copy) NSString *password;
 
 @end
 
-@implementation UserCredentials
+@implementation RTUserCredentials
 
 - (instancetype)initWithUsername:(NSString *)username
                         password:(NSString *)password {

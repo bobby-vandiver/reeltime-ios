@@ -1,22 +1,14 @@
-//
-//  ReelTimeClient.m
-//  ReelTime-iOS
-//
-//  Created by Bobby Vandiver on 12/28/14.
-//  Copyright (c) 2014 ReelTime. All rights reserved.
-//
+#import "RTClient.h"
+#import "RTClientErrors.h"
+#import "RTRestAPI.h"
 
-#import "ReelTimeClient.h"
-#import "ReelTimeClientErrors.h"
-#import "ReelTimeRestAPI.h"
-
-@interface ReelTimeClient ()
+@interface RTClient ()
 
 @property RKObjectManager *objectManager;
 
 @end
 
-@implementation ReelTimeClient
+@implementation RTClient
 
 - (instancetype)initWithRestKitObjectManager:(RKObjectManager *)objectManager {
     self = [super init];
@@ -26,8 +18,8 @@
     return self;
 }
 
-- (void)tokenWithClientCredentials:(ClientCredentials *)clientCredentials
-                   userCredentials:(UserCredentials *)userCredentials
+- (void)tokenWithClientCredentials:(RTClientCredentials *)clientCredentials
+                   userCredentials:(RTUserCredentials *)userCredentials
                            success:(TokenSuccessHandler)successHandler
                            failure:(TokenFailureHandler)failureHandler {
     NSDictionary *parameters = @{
@@ -40,7 +32,7 @@
     };
     
     id successCallback = ^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-        OAuth2Token *token = [mappingResult firstObject];
+        RTOAuth2Token *token = [mappingResult firstObject];
         successHandler(token);
     };
     

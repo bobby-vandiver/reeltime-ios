@@ -1,35 +1,27 @@
-//
-//  LoginInteractorSpec.m
-//  ReelTime-iOS
-//
-//  Created by Bobby Vandiver on 12/28/14.
-//  Copyright (c) 2014 ReelTime. All rights reserved.
-//
+#import "RTTestCommon.h"
+#import "RTLoginInteractor.h"
+#import "RTLoginErrors.h"
 
-#import "Common.h"
-#import "LoginInteractor.h"
-#import "LoginErrors.h"
-
-SpecBegin(LoginInteractor)
+SpecBegin(RTLoginInteractor)
 
 describe(@"login logic", ^{
     
-    __block LoginInteractor *interactor;
-    __block LoginPresenter *presenter;
+    __block RTLoginInteractor *interactor;
+    __block RTLoginPresenter *presenter;
 
-    __block ClientCredentialsStore *clientCredentialsStore;
-    __block ClientCredentials *clientCredentials;
+    __block RTClientCredentialsStore *clientCredentialsStore;
+    __block RTClientCredentials *clientCredentials;
     
     __block NSString *username = @"someone";
     __block NSString *password = @"secret";
     
     beforeEach(^{
-        clientCredentialsStore = mock([ClientCredentialsStore class]);
-        clientCredentials = [[ClientCredentials alloc] initWithClientId:@"foo"
+        clientCredentialsStore = mock([RTClientCredentialsStore class]);
+        clientCredentials = [[RTClientCredentials alloc] initWithClientId:@"foo"
                                                            clientSecret:@"bar"];
         
-        presenter = mock([LoginPresenter class]);
-        interactor = [[LoginInteractor alloc] initWithPresenter:presenter
+        presenter = mock([RTLoginPresenter class]);
+        interactor = [[RTLoginInteractor alloc] initWithPresenter:presenter
                                          clientCredentialsStore:clientCredentialsStore];
     });
     
@@ -62,7 +54,7 @@ describe(@"login logic", ^{
                 expect([errorCaptor value]).to.beKindOf([NSError class]);
                 
                 NSError *error = [errorCaptor value];
-                expect(error.domain).to.equal(LoginErrorsDomain);
+                expect(error.domain).to.equal(RTLoginErrorsDomain);
                 expect(error.code).to.equal(UnknownClient);
             });
         });

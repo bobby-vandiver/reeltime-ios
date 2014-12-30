@@ -1,22 +1,14 @@
-//
-//  LoginPresenter.m
-//  ReelTime-iOS
-//
-//  Created by Bobby Vandiver on 12/28/14.
-//  Copyright (c) 2014 ReelTime. All rights reserved.
-//
+#import "RTLoginPresenter.h"
 
-#import "LoginPresenter.h"
+@interface RTLoginPresenter ()
 
-@interface LoginPresenter ()
-
-@property id<LoginView> view;
+@property id<RTLoginView> view;
 
 @end
 
-@implementation LoginPresenter
+@implementation RTLoginPresenter
 
-- (instancetype)initWithView:(id<LoginView>)view {
+- (instancetype)initWithView:(id<RTLoginView>)view {
     self = [super init];
     if (self) {
         self.view = view;

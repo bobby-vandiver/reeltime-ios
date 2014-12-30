@@ -1,18 +1,10 @@
-//
-//  AppDelegate.m
-//  ReelTime-iOS
-//
-//  Created by Bobby Vandiver on 12/26/14.
-//  Copyright (c) 2014 ReelTime. All rights reserved.
-//
+#import "RTAppDelegate.h"
 
-#import "AppDelegate.h"
-
-@interface AppDelegate ()
+@interface RTAppDelegate ()
 
 @end
 
-@implementation AppDelegate
+@implementation RTAppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
