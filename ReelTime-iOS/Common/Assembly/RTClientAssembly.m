@@ -2,8 +2,8 @@
 
 #import "RTClient.h"
 #import "RTRestAPI.h"
+#import "RTRestAPIMappingFactory.h"
 
-#import "RTOAuth2Token.h"
 #import <RestKit/RestKit.h>
 
 @implementation RTClientAssembly
@@ -35,23 +35,13 @@
 }
 
 - (RKResponseDescriptor *)tokenDescriptor {
-    RKObjectMapping *tokenMapping = [RKObjectMapping mappingForClass:[RTOAuth2Token class]];
-    [tokenMapping addAttributeMappingsFromDictionary:@{
-                                                       @"access_token":     @"accessToken",
-                                                       @"refresh_token":    @"refreshToken",
-                                                       @"token_type":       @"tokenType",
-                                                       @"expires_in":       @"expiresIn",
-                                                       @"scope":            @"scope"
-                                                       }];
-    
-    NSIndexSet *tokenSuccessfulStatusCodes = RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful);
-    
-    return [RKResponseDescriptor responseDescriptorWithMapping:tokenMapping
+    NSIndexSet *statusCodes = RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful);
+
+    return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory tokenMapping]
                                                         method:RKRequestMethodPOST
                                                    pathPattern:API_TOKEN_ENDPOINT
                                                        keyPath:nil
-                                                   statusCodes:tokenSuccessfulStatusCodes];
-    
+                                                   statusCodes:statusCodes];
 }
 
 @end
