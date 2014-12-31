@@ -25,38 +25,38 @@ describe(@"login logic", ^{
                                          clientCredentialsStore:clientCredentialsStore];
     });
     
-    describe(@"successful login", ^{
-
-        before(^{
+    context(@"client credentials found", ^{
+        
+        beforeEach(^{
             [given([clientCredentialsStore loadClientCredentials]) willReturn:clientCredentials];
         });
         
-        it(@"notify presenter of success", ^{
+        afterEach(^{
+            [verify(clientCredentialsStore) loadClientCredentials];
+        });
+        
+        it(@"notify presenter of successful login", ^{
             [interactor loginWithUsername:username password:password];
             [verify(presenter) loginSucceeded];
         });
     });
     
-    describe(@"failed login", ^{
-       
-        context(@"client credentials not found", ^{
+    context(@"client credentials not found", ^{
+        before(^{
+            [given([clientCredentialsStore loadClientCredentials]) willReturn:nil];
+        });
+        
+        it(@"notify presenter of failed login due to unknown client", ^{
+            [interactor loginWithUsername:username password:password];
             
-            before(^{
-                [given([clientCredentialsStore loadClientCredentials]) willReturn:nil];
-            });
+            MKTArgumentCaptor *errorCaptor = [[MKTArgumentCaptor alloc] init];
+            [verify(presenter) loginFailedWithError:[errorCaptor capture]];
             
-            it(@"notify presenter of unknown client", ^{
-                [interactor loginWithUsername:username password:password];
-
-                MKTArgumentCaptor *errorCaptor = [[MKTArgumentCaptor alloc] init];
-                [verify(presenter) loginFailedWithError:[errorCaptor capture]];
-
-                expect([errorCaptor value]).to.beKindOf([NSError class]);
-                
-                NSError *error = [errorCaptor value];
-                expect(error.domain).to.equal(RTLoginErrorsDomain);
-                expect(error.code).to.equal(UnknownClient);
-            });
+            expect([errorCaptor value]).to.beKindOf([NSError class]);
+            
+            NSError *error = [errorCaptor value];
+            expect(error.domain).to.equal(RTLoginErrorsDomain);
+            expect(error.code).to.equal(UnknownClient);
         });
     });
 });
