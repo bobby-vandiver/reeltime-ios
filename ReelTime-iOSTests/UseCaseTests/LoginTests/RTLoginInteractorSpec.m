@@ -15,6 +15,8 @@ describe(@"login logic", ^{
     __block NSString *username = @"someone";
     __block NSString *password = @"secret";
     
+    
+    
     beforeEach(^{
         clientCredentialsStore = mock([RTClientCredentialsStore class]);
         clientCredentials = [[RTClientCredentials alloc] initWithClientId:@"foo"
@@ -51,12 +53,7 @@ describe(@"login logic", ^{
             
             MKTArgumentCaptor *errorCaptor = [[MKTArgumentCaptor alloc] init];
             [verify(presenter) loginFailedWithError:[errorCaptor capture]];
-            
-            expect([errorCaptor value]).to.beKindOf([NSError class]);
-            
-            NSError *error = [errorCaptor value];
-            expect(error.domain).to.equal(RTLoginErrorsDomain);
-            expect(error.code).to.equal(UnknownClient);
+            expectError([errorCaptor value], RTLoginErrorsDomain, UnknownClient);
         });
     });
 });
