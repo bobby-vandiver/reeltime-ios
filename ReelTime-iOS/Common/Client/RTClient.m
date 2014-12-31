@@ -1,6 +1,8 @@
 #import "RTClient.h"
 #import "RTClientErrors.h"
+
 #import "RTRestAPI.h"
+#import "RTOAuth2TokenError.h"
 
 @interface RTClient ()
 
@@ -37,7 +39,11 @@
     };
     
     id failureCallback = ^(RKObjectRequestOperation *operation, NSError *error) {
-        
+        RTOAuth2TokenError *tokenError = [[error.userInfo objectForKey:RKObjectMapperErrorObjectsKey] firstObject];
+        NSError *clientTokenError = [NSError errorWithDomain:RTClientTokenErrorDomain
+                                                        code:[self convertOAuth2TokenErrorToClientTokenError:tokenError]
+                                                    userInfo:nil];
+        failureHandler(clientTokenError);
     };
     
     [self.objectManager postObject:nil
@@ -45,6 +51,16 @@
                         parameters:parameters
                            success:successCallback
                            failure:failureCallback];
+}
+
+- (RTClientTokenErrors)convertOAuth2TokenErrorToClientTokenError:(RTOAuth2TokenError *)tokenError {
+    NSString *errorCode = tokenError.errorCode;
+    
+    if ([errorCode isEqualToString:@"invalid_client"]) {
+        return InvalidClientCredentials;
+    }
+    
+    return Unknown;
 }
 
 @end

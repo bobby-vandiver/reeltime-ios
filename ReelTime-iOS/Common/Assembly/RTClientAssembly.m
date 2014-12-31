@@ -19,12 +19,15 @@
 - (RKObjectManager *)restKitObjectManager {
     return [TyphoonDefinition withClass:[RKObjectManager class] configuration:^(TyphoonDefinition *definition) {
         
-        [definition injectMethod:@selector(managerWithBaseURL:) parameters:^(TyphoonMethod *method) {
+        [definition useInitializer:@selector(managerWithBaseURL:) parameters:^(TyphoonMethod *method) {
             [method injectParameterWith:[self baseUrl]];
         }];
         
         [definition injectMethod:@selector(addResponseDescriptorsFromArray:) parameters:^(TyphoonMethod *method) {
-            [method injectParameterWith:@[[RTResponseDescriptorFactory tokenDescriptor]]];
+            [method injectParameterWith:@[
+                                          [RTResponseDescriptorFactory tokenDescriptor],
+                                          [RTResponseDescriptorFactory tokenErrorDescriptor]
+                                          ]];
         }];
     }];
 }

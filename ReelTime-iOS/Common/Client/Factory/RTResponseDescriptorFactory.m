@@ -14,4 +14,14 @@
                                                    statusCodes:statusCodes];
 }
 
++ (RKResponseDescriptor *)tokenErrorDescriptor {
+    NSIndexSet *statusCodes = RKStatusCodeIndexSetForClass(RKStatusCodeClassClientError);
+    
+    return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory tokenErrorMapping]
+                                                        method:RKRequestMethodPOST
+                                                   pathPattern:API_TOKEN_ENDPOINT
+                                                       keyPath:nil
+                                                   statusCodes:statusCodes];
+}
+
 @end

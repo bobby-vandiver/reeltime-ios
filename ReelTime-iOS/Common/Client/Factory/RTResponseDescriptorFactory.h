@@ -4,5 +4,6 @@
 @interface RTResponseDescriptorFactory : NSObject
 
 + (RKResponseDescriptor *)tokenDescriptor;
++ (RKResponseDescriptor *)tokenErrorDescriptor;
 
 @end
