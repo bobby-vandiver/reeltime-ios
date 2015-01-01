@@ -30,6 +30,7 @@
 		719B35DB1A51012E00FFD543 /* RTClientAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 719B35DA1A51012E00FFD543 /* RTClientAssembly.m */; };
 		719B35DE1A51140900FFD543 /* RTRestAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 719B35DD1A51140900FFD543 /* RTRestAPI.m */; };
 		719B35E31A51150E00FFD543 /* RTErrorConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 719B35E21A51150E00FFD543 /* RTErrorConstants.m */; };
+		71C5C09B1A55941700CAAFAC /* RTOAuth2TokenStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C5C09A1A55941700CAAFAC /* RTOAuth2TokenStore.m */; };
 		71D947881A4FB9FE00401963 /* RTClientCredentialsStoreSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D947871A4FB9FE00401963 /* RTClientCredentialsStoreSpec.m */; };
 		71D9478F1A4FC81A00401963 /* RTLoginInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D9478E1A4FC81A00401963 /* RTLoginInteractor.m */; };
 		71D947941A4FC96800401963 /* RTLoginPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D947931A4FC96800401963 /* RTLoginPresenter.m */; };
@@ -96,6 +97,8 @@
 		719B35DC1A51086600FFD543 /* RTRestAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTRestAPI.h; sourceTree = "<group>"; };
 		719B35DD1A51140900FFD543 /* RTRestAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTRestAPI.m; sourceTree = "<group>"; };
 		719B35E21A51150E00FFD543 /* RTErrorConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTErrorConstants.m; sourceTree = "<group>"; };
+		71C5C0991A55941700CAAFAC /* RTOAuth2TokenStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTOAuth2TokenStore.h; sourceTree = SOURCE_ROOT; };
+		71C5C09A1A55941700CAAFAC /* RTOAuth2TokenStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTOAuth2TokenStore.m; sourceTree = SOURCE_ROOT; };
 		71D947871A4FB9FE00401963 /* RTClientCredentialsStoreSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTClientCredentialsStoreSpec.m; path = ../RTClientCredentialsStoreSpec.m; sourceTree = "<group>"; };
 		71D9478D1A4FC81A00401963 /* RTLoginInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLoginInteractor.h; sourceTree = "<group>"; };
 		71D9478E1A4FC81A00401963 /* RTLoginInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLoginInteractor.m; sourceTree = "<group>"; };
@@ -295,6 +298,8 @@
 			children = (
 				713D7A431A509AC000754A06 /* RTClientCredentialsStore.h */,
 				713D7A441A509AC000754A06 /* RTClientCredentialsStore.m */,
+				71C5C0991A55941700CAAFAC /* RTOAuth2TokenStore.h */,
+				71C5C09A1A55941700CAAFAC /* RTOAuth2TokenStore.m */,
 			);
 			name = Store;
 			path = Stores;
@@ -548,6 +553,7 @@
 				719B35DB1A51012E00FFD543 /* RTClientAssembly.m in Sources */,
 				718A0BE81A4DA87900137C49 /* RTViewController.m in Sources */,
 				719B35DE1A51140900FFD543 /* RTRestAPI.m in Sources */,
+				71C5C09B1A55941700CAAFAC /* RTOAuth2TokenStore.m in Sources */,
 				718A0BE51A4DA87900137C49 /* RTAppDelegate.m in Sources */,
 				713D7A481A509ACC00754A06 /* RTClientCredentials.m in Sources */,
 				71D947941A4FC96800401963 /* RTLoginPresenter.m in Sources */,

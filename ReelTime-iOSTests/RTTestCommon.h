@@ -1,9 +1,12 @@
 #define EXP_SHORTHAND
 #define MOCKITO_SHORTHAND
+#define HC_SHORTHAND
 
 #import <Specta/Specta.h>
 #import <Expecta/Expecta.h>
+
 #import <OCMockito/OCMockito.h>
+#import <OCHamcrest/OCHamcrest.h>
 
 #import "EXPMatchers+beError.h"
 

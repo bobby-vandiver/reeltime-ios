@@ -15,6 +15,9 @@ describe(@"login interactor", ^{
     __block RTClientCredentialsStore *clientCredentialsStore;
     __block RTClientCredentials *clientCredentials;
     
+    __block RTOAuth2TokenStore *tokenStore;
+    __block RTOAuth2Token *token;
+    
     __block NSString *username = @"someone";
     __block NSString *password = @"secret";
     
@@ -30,12 +33,16 @@ describe(@"login interactor", ^{
         clientCredentials = [[RTClientCredentials alloc] initWithClientId:@"foo"
                                                            clientSecret:@"bar"];
         
+        tokenStore = mock([RTOAuth2TokenStore class]);
+        token = [[RTOAuth2Token alloc] init];
+        
         presenter = mock([RTLoginPresenter class]);
         client = [[RTFakeClient alloc] init];
         
         interactor = [[RTLoginInteractor alloc] initWithPresenter:presenter
                                                            client:client
-                                           clientCredentialsStore:clientCredentialsStore];
+                                           clientCredentialsStore:clientCredentialsStore
+                                                       tokenStore:tokenStore];
     });
     
     context(@"client credentials found", ^{
@@ -47,18 +54,28 @@ describe(@"login interactor", ^{
             [verify(clientCredentialsStore) loadClientCredentials];
         });
         
-        describe(@"successful login", ^{
+        describe(@"token request succeeded", ^{
             beforeEach(^{
                 client.tokenShouldSucceed = YES;
+                client.token = token;
             });
 
-            it(@"should notify presenter of successful login", ^{
+            it(@"should store token and notify presenter of successful login", ^{
+                [[given([tokenStore storeToken:token error:nil]) withMatcher:anything() forArgument:1]
+                    willReturnBool:YES];
+               
                 [interactor loginWithUsername:username password:password];
+                
+                [[verify(tokenStore) withMatcher:anything() forArgument:1] storeToken:token error:nil];
                 [verify(presenter) loginSucceeded];
+            });
+            
+            xit(@"should handle token storage error", ^{
+                // TODO: Implement test case once error handling strategy is determined
             });
         });
         
-        describe(@"failed login", ^{
+        describe(@"token request failed", ^{
             beforeEach(^{
                 client.tokenShouldSucceed = NO;
             });

@@ -6,6 +6,7 @@
 @property RTLoginPresenter *presenter;
 @property RTClient *client;
 @property RTClientCredentialsStore *clientCredentialsStore;
+@property RTOAuth2TokenStore *tokenStore;
 
 @end
 
@@ -13,12 +14,14 @@
 
 - (instancetype)initWithPresenter:(RTLoginPresenter *)presenter
                            client:(RTClient *)client
-           clientCredentialsStore:(RTClientCredentialsStore *)clientCredentialsStore {
+           clientCredentialsStore:(RTClientCredentialsStore *)clientCredentialsStore
+                       tokenStore:(RTOAuth2TokenStore *)tokenStore {
     self = [super init];
     if (self) {
         self.presenter = presenter;
         self.client = client;
         self.clientCredentialsStore = clientCredentialsStore;
+        self.tokenStore = tokenStore;
     }
     return self;
 }
@@ -42,8 +45,15 @@
 
 - (TokenSuccessHandler)loginSucceded {
     return ^(RTOAuth2Token *token) {
-        // TODO: Store token
-        [self.presenter loginSucceeded];
+        NSError *tokenStoreError;
+        BOOL storeSucceded = [self.tokenStore storeToken:token error:&tokenStoreError];
+        
+        if (storeSucceded) {
+            [self.presenter loginSucceeded];
+        }
+        else {
+            // TODO: Handle token storage errors
+        }
     };
 }
 
