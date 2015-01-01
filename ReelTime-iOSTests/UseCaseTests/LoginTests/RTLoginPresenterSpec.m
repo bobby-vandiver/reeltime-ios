@@ -4,6 +4,8 @@
 #import "RTLoginView.h"
 #import "RTLoginInteractor.h"
 
+#import "NSError+RTErrorFactory.h"
+
 SpecBegin(RTLoginPresenter)
 
 describe(@"login presenter", ^{
@@ -44,6 +46,23 @@ describe(@"login presenter", ^{
         });
     });
     
+    describe(@"login failure messages", ^{
+        it(@"should display generic message if error domain is incorrect", ^{
+            NSError *error = [NSError errorWithDomain:NSPOSIXErrorDomain
+                                                 code:0
+                                             userInfo:nil];
+
+            [presenter loginFailedWithError:error];
+            [verify(view) showErrorMessage:@"An unknown error occurred"];
+        });
+        
+        it(@"should display failure message for invalid credentials", ^{
+            NSError *error = [NSError rt_loginErrorWithCode:InvalidCredentials];
+
+            [presenter loginFailedWithError:error];
+            [verify(view) showErrorMessage:@"Invalid username or password"];
+        });
+    });
 });
 
 SpecEnd

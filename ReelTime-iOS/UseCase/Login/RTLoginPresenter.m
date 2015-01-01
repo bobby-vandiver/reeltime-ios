@@ -52,19 +52,25 @@
 }
 
 - (void)loginFailedWithError:(NSError *)error {
-    NSString *message;
+    NSString *message = @"An unknown error occurred";
     
-    switch (error.code) {
-        case MissingUsername:
-            message = @"Username is required";
-            break;
-            
-        case MissingPassword:
-            message = @"Password is required";
-            break;
-            
-        default:
-            break;
+    if ([error.domain isEqualToString:RTLoginErrorsDomain]) {
+        switch (error.code) {
+            case MissingUsername:
+                message = @"Username is required";
+                break;
+                
+            case MissingPassword:
+                message = @"Password is required";
+                break;
+                
+            case InvalidCredentials:
+                message = @"Invalid username or password";
+                break;
+                
+            default:
+                break;
+        }
     }
     
     [self.view showErrorMessage:message];
