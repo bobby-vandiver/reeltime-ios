@@ -2,6 +2,7 @@
 #import "RTFakeClient.h"
 
 #import "RTLoginInteractor.h"
+#import "RTLoginPresenter.h"
 #import "RTLoginErrors.h"
 
 SpecBegin(RTLoginInteractor)

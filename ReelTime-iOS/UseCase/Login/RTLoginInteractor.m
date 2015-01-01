@@ -1,6 +1,10 @@
 #import "RTLoginInteractor.h"
+#import "RTLoginPresenter.h"
+
 #import "RTLoginErrors.h"
 #import "RTClientErrors.h"
+
+#import "NSError+RTErrorFactory.h"
 
 @interface RTLoginInteractor ()
 
@@ -32,7 +36,7 @@
     RTClientCredentials *clientCredentials = [self.clientCredentialsStore loadClientCredentials];
 
     if (!clientCredentials) {
-        [self loginFailedWithError:UnknownClient];
+        [self loginFailedWithErrorCode:UnknownClient];
     }
     else {
         RTUserCredentials *userCredentials = [[RTUserCredentials alloc] initWithUsername:username
@@ -69,15 +73,12 @@
             errorCode = InvalidCredentials;
         }
         
-        [self loginFailedWithError:errorCode];
+        [self loginFailedWithErrorCode:errorCode];
     };
 }
 
-- (void)loginFailedWithError:(RTLoginErrors)errorCode {
-    NSError *loginError = [NSError errorWithDomain:RTLoginErrorsDomain
-                                              code:errorCode
-                                          userInfo:nil];
-    
+- (void)loginFailedWithErrorCode:(RTLoginErrors)code {
+    NSError *loginError = [NSError rt_loginErrorWithCode:code];
     [self.presenter loginFailedWithError:loginError];
 }
 

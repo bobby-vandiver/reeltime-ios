@@ -3,6 +3,8 @@
 extern NSString *const RTLoginErrorsDomain;
 
 typedef NS_ENUM(NSInteger, RTLoginErrors) {
+    MissingUsername,
+    MissingPassword,
     UnknownClient,
-    InvalidCredentials
+    InvalidCredentials,
 };
