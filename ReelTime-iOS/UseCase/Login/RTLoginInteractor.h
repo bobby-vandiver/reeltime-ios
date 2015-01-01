@@ -1,11 +1,9 @@
 #import <Foundation/Foundation.h>
 
 #import "RTLoginPresenter.h"
-#import "RTLoginErrors.h"
 
 #import "RTClient.h"
 #import "RTClientCredentialsStore.h"
-
 #import "RTOAuth2TokenStore.h"
 
 @interface RTLoginInteractor : NSObject

@@ -1,7 +1,8 @@
 #import "RTTestCommon.h"
+#import "RTFakeClient.h"
 
 #import "RTLoginInteractor.h"
-#import "RTFakeClient.h"
+#import "RTLoginErrors.h"
 
 SpecBegin(RTLoginInteractor)
 

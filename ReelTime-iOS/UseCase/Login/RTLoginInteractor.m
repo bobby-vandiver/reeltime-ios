@@ -1,4 +1,5 @@
 #import "RTLoginInteractor.h"
+#import "RTLoginErrors.h"
 #import "RTClientErrors.h"
 
 @interface RTLoginInteractor ()
