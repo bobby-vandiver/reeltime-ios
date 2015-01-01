@@ -55,21 +55,14 @@
     NSString *message = @"An unknown error occurred";
     
     if ([error.domain isEqualToString:RTLoginErrorsDomain]) {
-        switch (error.code) {
-            case MissingUsername:
-                message = @"Username is required";
-                break;
-                
-            case MissingPassword:
-                message = @"Password is required";
-                break;
-                
-            case InvalidCredentials:
-                message = @"Invalid username or password";
-                break;
-                
-            default:
-                break;
+        if (error.code == MissingUsername) {
+            message = @"Username is required";
+        }
+        else if (error.code == MissingPassword) {
+            message = @"Password is required";
+        }
+        else if (error.code == InvalidCredentials) {
+            message = @"Invalid username or password";
         }
     }
     
