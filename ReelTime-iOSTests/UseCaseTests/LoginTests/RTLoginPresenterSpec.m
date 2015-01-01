@@ -29,7 +29,7 @@ describe(@"login presenter", ^{
         password = @"secret";
     });
     
-    describe(@"login requested", ^{
+    describe(@"when login is requested", ^{
         it(@"should fail when username is missing", ^{
             [presenter requestedLoginWithUsername:@"" password:password];
             [verify(view) showErrorMessage:@"Username is required"];
@@ -46,8 +46,8 @@ describe(@"login presenter", ^{
         });
     });
     
-    describe(@"login failure messages", ^{
-        it(@"should display generic message if error domain is incorrect", ^{
+    describe(@"login failure message", ^{
+        it(@"should be generic if error domain is incorrect", ^{
             NSError *error = [NSError errorWithDomain:NSPOSIXErrorDomain
                                                  code:0
                                              userInfo:nil];
@@ -56,7 +56,7 @@ describe(@"login presenter", ^{
             [verify(view) showErrorMessage:@"An unknown error occurred"];
         });
         
-        it(@"should display failure message for invalid credentials", ^{
+        it(@"should not indicate source of failure for invalid credentials", ^{
             NSError *error = [NSError rt_loginErrorWithCode:InvalidCredentials];
 
             [presenter loginFailedWithError:error];
