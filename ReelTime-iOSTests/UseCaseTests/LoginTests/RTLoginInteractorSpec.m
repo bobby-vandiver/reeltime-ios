@@ -1,6 +1,5 @@
 #import "RTTestCommon.h"
 #import "RTLoginInteractor.h"
-#import "RTLoginErrors.h"
 
 SpecBegin(RTLoginInteractor)
 
@@ -9,6 +8,8 @@ describe(@"login interactor", ^{
     __block RTLoginInteractor *interactor;
     __block RTLoginPresenter *presenter;
 
+    __block RTClient *client;
+    
     __block RTClientCredentialsStore *clientCredentialsStore;
     __block RTClientCredentials *clientCredentials;
     
@@ -21,8 +22,11 @@ describe(@"login interactor", ^{
                                                            clientSecret:@"bar"];
         
         presenter = mock([RTLoginPresenter class]);
+        client = mock([RTClient class]);
+        
         interactor = [[RTLoginInteractor alloc] initWithPresenter:presenter
-                                         clientCredentialsStore:clientCredentialsStore];
+                                                           client:client
+                                           clientCredentialsStore:clientCredentialsStore];
     });
     
     context(@"client credentials found", ^{
