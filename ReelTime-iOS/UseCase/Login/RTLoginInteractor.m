@@ -1,4 +1,5 @@
 #import "RTLoginInteractor.h"
+#import "RTClientErrors.h"
 
 @interface RTLoginInteractor ()
 
@@ -27,15 +28,46 @@
     RTClientCredentials *clientCredentials = [self.clientCredentialsStore loadClientCredentials];
 
     if (!clientCredentials) {
-        NSError *unknownClientError = [NSError errorWithDomain:RTLoginErrorsDomain
-                                                          code:UnknownClient
-                                                      userInfo:nil];
-     
-        [self.presenter loginFailedWithError:unknownClientError];
-        return;
+        [self loginFailedWithError:UnknownClient];
     }
+    else {
+        RTUserCredentials *userCredentials = [[RTUserCredentials alloc] initWithUsername:username
+                                                                                password:password];
+        [self.client tokenWithClientCredentials:clientCredentials
+                                userCredentials:userCredentials
+                                        success:[self loginSucceded]
+                                        failure:[self loginFailed]];
+    }
+}
 
-    [self.presenter loginSucceeded];
+- (TokenSuccessHandler)loginSucceded {
+    return ^(RTOAuth2Token *token) {
+        // TODO: Store token
+        [self.presenter loginSucceeded];
+    };
+}
+
+- (TokenFailureHandler)loginFailed {
+    return ^(NSError *error) {
+        NSInteger errorCode;
+        
+        if (error.code == InvalidClientCredentials) {
+            errorCode = UnknownClient;
+        }
+        else if (error.code == InvalidUserCredentials) {
+            errorCode = InvalidCredentials;
+        }
+        
+        [self loginFailedWithError:errorCode];
+    };
+}
+
+- (void)loginFailedWithError:(RTLoginErrors)errorCode {
+    NSError *loginError = [NSError errorWithDomain:RTLoginErrorsDomain
+                                              code:errorCode
+                                          userInfo:nil];
+    
+    [self.presenter loginFailedWithError:loginError];
 }
 
 @end

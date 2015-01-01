@@ -6,7 +6,7 @@
 - (NSError *)convertToClientTokenError {
     NSString *errorCode = self.errorCode;
     
-    RTClientTokenErrors clientTokenErrorsCode = Unknown;
+    RTClientTokenErrors clientTokenErrorsCode;
     
     if ([errorCode isEqualToString:@"invalid_client"]) {
         clientTokenErrorsCode = InvalidClientCredentials;
