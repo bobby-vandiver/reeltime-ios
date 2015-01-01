@@ -4,7 +4,7 @@
 
 SpecBegin(RTLoginInteractor)
 
-describe(@"login logic", ^{
+describe(@"login interactor", ^{
     
     __block RTLoginInteractor *interactor;
     __block RTLoginPresenter *presenter;
@@ -14,9 +14,7 @@ describe(@"login logic", ^{
     
     __block NSString *username = @"someone";
     __block NSString *password = @"secret";
-    
-    
-    
+       
     beforeEach(^{
         clientCredentialsStore = mock([RTClientCredentialsStore class]);
         clientCredentials = [[RTClientCredentials alloc] initWithClientId:@"foo"
@@ -37,7 +35,7 @@ describe(@"login logic", ^{
             [verify(clientCredentialsStore) loadClientCredentials];
         });
         
-        it(@"notify presenter of successful login", ^{
+        it(@"should notify presenter of successful login", ^{
             [interactor loginWithUsername:username password:password];
             [verify(presenter) loginSucceeded];
         });
@@ -48,12 +46,13 @@ describe(@"login logic", ^{
             [given([clientCredentialsStore loadClientCredentials]) willReturn:nil];
         });
         
-        it(@"notify presenter of failed login due to unknown client", ^{
+        it(@"should notify presenter of failed login due to unknown client", ^{
             [interactor loginWithUsername:username password:password];
             
             MKTArgumentCaptor *errorCaptor = [[MKTArgumentCaptor alloc] init];
             [verify(presenter) loginFailedWithError:[errorCaptor capture]];
-            expectError([errorCaptor value], RTLoginErrorsDomain, UnknownClient);
+            
+            expect([errorCaptor value]).to.beError(RTLoginErrorsDomain, UnknownClient);
         });
     });
 });

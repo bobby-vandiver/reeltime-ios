@@ -32,7 +32,7 @@ describe(@"ReelTime Client", ^{
                                            done();
                                        }
                                        failure:^(NSError *error) {
-                                           expectError(error, RTClientTokenErrorDomain, InvalidClientCredentials);
+                                           expect(error).to.beError(RTClientTokenErrorDomain, InvalidClientCredentials);
                                            done();
                                        }];
         });
