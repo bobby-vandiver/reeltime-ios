@@ -43,15 +43,17 @@
                                                                                 password:password];
         [self.client tokenWithClientCredentials:clientCredentials
                                 userCredentials:userCredentials
-                                        success:[self loginSucceded]
+                                        success:[self loginSuccededForUsername:username]
                                         failure:[self loginFailed]];
     }
 }
 
-- (TokenSuccessHandler)loginSucceded {
+- (TokenSuccessHandler)loginSuccededForUsername:(NSString *)username {
     return ^(RTOAuth2Token *token) {
         NSError *tokenStoreError;
-        BOOL storeSucceded = [self.tokenStore storeToken:token error:&tokenStoreError];
+        BOOL storeSucceded = [self.tokenStore storeToken:token
+                                                username:username
+                                                   error:&tokenStoreError];
         
         if (storeSucceded) {
             [self.presenter loginSucceeded];
