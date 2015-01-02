@@ -14,7 +14,7 @@ describe(@"client credentials store", ^{
     });
     
     it(@"credentials not found", ^{
-        RTClientCredentials *credentials = [store loadClientCredentials];
+        RTClientCredentials *credentials = [store loadClientCredentialsForUsername:@"nobody"];
         expect(credentials).to.beNil;
     });
 });

@@ -16,7 +16,7 @@
     return self;
 }
 
-- (RTClientCredentials *)loadClientCredentials {
+- (RTClientCredentials *)loadClientCredentialsForUsername:(NSString *)username {
     return nil;
 }
 

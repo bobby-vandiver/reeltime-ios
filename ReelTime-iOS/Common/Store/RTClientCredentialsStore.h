@@ -5,6 +5,6 @@
 
 - (instancetype)initWithKeyChainStore:(UICKeyChainStore *)keyChainStore;
 
-- (RTClientCredentials *)loadClientCredentials;
+- (RTClientCredentials *)loadClientCredentialsForUsername:(NSString *)username;
 
 @end

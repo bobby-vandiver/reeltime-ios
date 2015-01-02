@@ -33,7 +33,7 @@
 
 - (void)loginWithUsername:(NSString *)username
                  password:(NSString *)password {
-    RTClientCredentials *clientCredentials = [self.clientCredentialsStore loadClientCredentials];
+    RTClientCredentials *clientCredentials = [self.clientCredentialsStore loadClientCredentialsForUsername:username];
 
     if (!clientCredentials) {
         [self loginFailedWithErrorCode:UnknownClient];

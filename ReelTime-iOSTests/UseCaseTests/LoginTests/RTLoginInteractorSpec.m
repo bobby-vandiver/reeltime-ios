@@ -49,11 +49,11 @@ describe(@"login interactor", ^{
     
     context(@"client credentials found", ^{
         beforeEach(^{
-            [given([clientCredentialsStore loadClientCredentials]) willReturn:clientCredentials];
+            [given([clientCredentialsStore loadClientCredentialsForUsername:username]) willReturn:clientCredentials];
         });
         
         afterEach(^{
-            [verify(clientCredentialsStore) loadClientCredentials];
+            [verify(clientCredentialsStore) loadClientCredentialsForUsername:username];
         });
         
         describe(@"token request succeeded", ^{
@@ -103,7 +103,7 @@ describe(@"login interactor", ^{
     
     context(@"client credentials not found", ^{
         before(^{
-            [given([clientCredentialsStore loadClientCredentials]) willReturn:nil];
+            [given([clientCredentialsStore loadClientCredentialsForUsername:username]) willReturn:nil];
         });
         
         it(@"should notify presenter of failed login due to unknown client", ^{
