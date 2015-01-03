@@ -52,7 +52,7 @@
     return ^(RTOAuth2Token *token) {
         NSError *tokenStoreError;
         BOOL storeSucceded = [self.tokenStore storeToken:token
-                                                username:username
+                                             forUsername:username
                                                    error:&tokenStoreError];
         
         if (storeSucceded) {
