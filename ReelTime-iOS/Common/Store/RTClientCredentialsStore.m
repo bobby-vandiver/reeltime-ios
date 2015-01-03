@@ -17,24 +17,17 @@
 }
 
 - (RTClientCredentials *)loadClientCredentialsForUsername:(NSString *)username {
-    NSData *encodedCredentials = [self.keyChainWrapper dataForKey:[self generateKeyForUsername:username]
-                                                            error:nil];
-    if (encodedCredentials) {
-        return [NSKeyedUnarchiver unarchiveObjectWithData:encodedCredentials];
-    }
-    return nil;
+    return (RTClientCredentials *)[self.keyChainWrapper objectForKey:[self generateKeyForUsername:username]
+                                                               error:nil];
 }
 
 - (BOOL)storeClientCredentials:(RTClientCredentials *)credentials
                    forUsername:(NSString *)username
                          error:(NSError *__autoreleasing *)error {
-    NSError *keyChainStoreError;
-    [self.keyChainWrapper setData:[NSKeyedArchiver archivedDataWithRootObject:credentials]
-                           forKey:[self generateKeyForUsername:username]
-                            error:&keyChainStoreError];
-    
-    if (keyChainStoreError) {
-    }
+    NSError *keyChainError;
+    [self.keyChainWrapper setObject:credentials
+                             forKey:[self generateKeyForUsername:username]
+                              error:&keyChainError];
     
     return YES;
 }

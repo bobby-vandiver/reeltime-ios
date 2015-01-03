@@ -5,11 +5,11 @@
 
 - (instancetype)initWithKeyChainStore:(UICKeyChainStore *)keyChainStore;
 
-- (NSData *)dataForKey:(NSString *)key
-                 error:(NSError *__autoreleasing *)error;
+- (id<NSCoding>)objectForKey:(NSString *)key
+                       error:(NSError *__autoreleasing *)error;
 
-- (void)setData:(NSData *)data
-         forKey:(NSString *)key
-          error:(NSError *__autoreleasing *)error;
+- (void)setObject:(id<NSCoding>)object
+           forKey:(NSString *)key
+            error:(NSError *__autoreleasing *)error;
 
 @end
