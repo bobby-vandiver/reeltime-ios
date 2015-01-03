@@ -54,7 +54,7 @@
 - (void)loginFailedWithError:(NSError *)error {
     NSString *message = @"An unknown error occurred";
     
-    if ([error.domain isEqualToString:RTLoginErrorsDomain]) {
+    if ([error.domain isEqualToString:RTLoginErrorDomain]) {
         if (error.code == MissingUsername) {
             message = @"Username is required";
         }

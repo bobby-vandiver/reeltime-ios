@@ -27,7 +27,7 @@ describe(@"login interactor", ^{
         MKTArgumentCaptor *errorCaptor = [[MKTArgumentCaptor alloc] init];
         [verify(presenter) loginFailedWithError:[errorCaptor capture]];
         
-        expect([errorCaptor value]).to.beError(RTLoginErrorsDomain, expectedErrorCode);
+        expect([errorCaptor value]).to.beError(RTLoginErrorDomain, expectedErrorCode);
     };
     
     beforeEach(^{

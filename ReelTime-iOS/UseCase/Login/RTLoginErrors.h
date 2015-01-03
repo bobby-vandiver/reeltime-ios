@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 
-extern NSString *const RTLoginErrorsDomain;
+extern NSString *const RTLoginErrorDomain;
 
 typedef NS_ENUM(NSInteger, RTLoginErrors) {
     MissingUsername,

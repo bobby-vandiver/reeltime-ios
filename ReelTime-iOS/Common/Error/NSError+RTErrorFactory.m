@@ -3,7 +3,7 @@
 @implementation NSError (RTErrorFactory)
 
 + (NSError *)rt_loginErrorWithCode:(RTLoginErrors)code {
-    return [NSError errorWithDomain:RTLoginErrorsDomain
+    return [NSError errorWithDomain:RTLoginErrorDomain
                                code:code
                            userInfo:nil];
 }
