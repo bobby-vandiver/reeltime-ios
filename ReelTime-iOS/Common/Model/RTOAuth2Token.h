@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 
-@interface RTOAuth2Token : NSObject
+@interface RTOAuth2Token : NSObject <NSSecureCoding>
 
 @property (nonatomic, copy) NSString *accessToken;
 @property (nonatomic, copy) NSString *refreshToken;
