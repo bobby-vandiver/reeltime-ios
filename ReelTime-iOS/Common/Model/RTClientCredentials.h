@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 
-@interface RTClientCredentials : NSObject
+@interface RTClientCredentials : NSObject <NSSecureCoding>
 
 @property (nonatomic, copy) NSString *clientId;
 @property (nonatomic, copy) NSString *clientSecret;
