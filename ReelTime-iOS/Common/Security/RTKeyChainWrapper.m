@@ -16,7 +16,8 @@
     return self;
 }
 
-- (NSData *)dataForKey:(NSString *)key {
+- (NSData *)dataForKey:(NSString *)key
+                 error:(NSError *__autoreleasing *)error{
     return [self.keyChainStore dataForKey:key];
 }
 

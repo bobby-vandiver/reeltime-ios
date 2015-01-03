@@ -17,7 +17,8 @@
 }
 
 - (RTClientCredentials *)loadClientCredentialsForUsername:(NSString *)username {
-    NSData *encodedCredentials = [self.keyChainWrapper dataForKey:[self generateKeyForUsername:username]];
+    NSData *encodedCredentials = [self.keyChainWrapper dataForKey:[self generateKeyForUsername:username]
+                                                            error:nil];
     if (encodedCredentials) {
         return [NSKeyedUnarchiver unarchiveObjectWithData:encodedCredentials];
     }
