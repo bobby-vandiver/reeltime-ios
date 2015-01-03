@@ -2,22 +2,22 @@
 
 @interface RTClientCredentialsStore ()
 
-@property UICKeyChainStore *keyChainStore;
+@property RTKeyChainWrapper *keyChainWrapper;
 
 @end
 
 @implementation RTClientCredentialsStore
 
-- (instancetype)initWithKeyChainStore:(UICKeyChainStore *)keyChainStore {
+- (instancetype)initWithKeyChainWrapper:(RTKeyChainWrapper *)keyChainWrapper {
     self = [super init];
     if (self) {
-        self.keyChainStore = keyChainStore;
+        self.keyChainWrapper = keyChainWrapper;
     }
     return self;
 }
 
 - (RTClientCredentials *)loadClientCredentialsForUsername:(NSString *)username {
-    NSData *encodedCredentials = [self.keyChainStore dataForKey:[self generateKeyForUsername:username]];
+    NSData *encodedCredentials = [self.keyChainWrapper dataForKey:[self generateKeyForUsername:username]];
     if (encodedCredentials) {
         return [NSKeyedUnarchiver unarchiveObjectWithData:encodedCredentials];
     }
@@ -28,10 +28,9 @@
                    forUsername:(NSString *)username
                          error:(NSError *__autoreleasing *)error {
     NSError *keyChainStoreError;
-    [self.keyChainStore setData:[NSKeyedArchiver archivedDataWithRootObject:credentials]
-                         forKey:[self generateKeyForUsername:username]
-                          error:&keyChainStoreError];
-    [self.keyChainStore synchronize];
+    [self.keyChainWrapper setData:[NSKeyedArchiver archivedDataWithRootObject:credentials]
+                           forKey:[self generateKeyForUsername:username]
+                            error:&keyChainStoreError];
     
     if (keyChainStoreError) {
     }

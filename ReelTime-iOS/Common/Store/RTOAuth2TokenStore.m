@@ -2,16 +2,16 @@
 
 @interface RTOAuth2TokenStore ()
 
-@property UICKeyChainStore *keyChainStore;
+@property RTKeyChainWrapper *keyChainWrapper;
 
 @end
 
 @implementation RTOAuth2TokenStore
 
-- (instancetype)initWithKeyChainStore:(UICKeyChainStore *)keyChainStore {
+- (instancetype)initWithKeyChainWrapper:(RTKeyChainWrapper *)keyChainWrapper {
     self = [super init];
     if (self) {
-        self.keyChainStore = keyChainStore;
+        self.keyChainWrapper = keyChainWrapper;
     }
     return self;
 }

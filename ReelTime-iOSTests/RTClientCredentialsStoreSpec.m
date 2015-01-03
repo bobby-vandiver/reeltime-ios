@@ -1,14 +1,14 @@
 #import "RTTestCommon.h"
-#import "RTFakeKeyChainStore.h"
 
 #import "RTClientCredentialsStore.h"
+#import "RTKeyChainWrapper.h"
 
 SpecBegin(RTClientCredentialsStore)
 
 describe(@"client credentials store", ^{
     
     __block RTClientCredentialsStore *store;
-    __block RTFakeKeyChainStore *keyChainStore;
+    __block RTKeyChainWrapper *keyChainWrapper;
     
     __block NSString *username = @"someone";
     
@@ -16,8 +16,10 @@ describe(@"client credentials store", ^{
     __block NSString *clientSecret = @"bar";
     
     beforeEach(^{
-        keyChainStore = (RTFakeKeyChainStore *)[UICKeyChainStore keyChainStore];
-        store = [[RTClientCredentialsStore alloc] initWithKeyChainStore:keyChainStore];
+        UICKeyChainStore *keyChainStore = [UICKeyChainStore keyChainStore];
+        keyChainWrapper = [[RTKeyChainWrapper alloc] initWithKeyChainStore:keyChainStore];
+        
+        store = [[RTClientCredentialsStore alloc] initWithKeyChainWrapper:keyChainWrapper];
     });
     
     context(@"credentials exist in store", ^{

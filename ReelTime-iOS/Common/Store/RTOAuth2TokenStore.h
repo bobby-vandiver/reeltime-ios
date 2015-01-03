@@ -1,9 +1,9 @@
-#import <UICKeyChainStore/UICKeyChainStore.h>
 #import "RTOAuth2Token.h"
+#import "RTKeyChainWrapper.h"
 
 @interface RTOAuth2TokenStore : NSObject
 
-- (instancetype)initWithKeyChainStore:(UICKeyChainStore *)keyChainStore;
+- (instancetype)initWithKeyChainWrapper:(RTKeyChainWrapper *)keyChainWrapper;
 
 - (BOOL)storeToken:(RTOAuth2Token *)token
        forUsername:(NSString *)username

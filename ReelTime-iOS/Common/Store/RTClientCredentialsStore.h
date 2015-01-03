@@ -1,9 +1,9 @@
-#import <UICKeyChainStore/UICKeyChainStore.h>
 #import "RTClientCredentials.h"
+#import "RTKeyChainWrapper.h"
 
 @interface RTClientCredentialsStore : NSObject
 
-- (instancetype)initWithKeyChainStore:(UICKeyChainStore *)keyChainStore;
+- (instancetype)initWithKeyChainWrapper:(RTKeyChainWrapper *)keyChainWrapper;
 
 - (RTClientCredentials *)loadClientCredentialsForUsername:(NSString *)username;
 
