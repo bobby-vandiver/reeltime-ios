@@ -16,8 +16,8 @@
     return self;
 }
 
-- (id<NSCoding>)objectForKey:(NSString *)key
-                       error:(NSError *__autoreleasing *)error {
+- (id<NSSecureCoding>)objectForKey:(NSString *)key
+                             error:(NSError *__autoreleasing *)error {
     NSData *encodedData = [self.keyChainStore dataForKey:key];
     if (encodedData) {
         return [NSKeyedUnarchiver unarchiveObjectWithData:encodedData];
@@ -25,7 +25,7 @@
     return nil;
 }
 
-- (void)setObject:(id<NSCoding>)object
+- (void)setObject:(id<NSSecureCoding>)object
            forKey:(NSString *)key
             error:(NSError *__autoreleasing *)error {
     [self.keyChainStore setData:[NSKeyedArchiver archivedDataWithRootObject:object]
