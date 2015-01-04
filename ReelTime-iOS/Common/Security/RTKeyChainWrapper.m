@@ -23,7 +23,12 @@
     NSData *data = [self.keyChainStore dataForKey:key error:&loadError];
     
     if (!data) {
-        [self mapKeyChainStoreError:loadError toApplicationError:error];
+        if (!loadError && error) {
+            *error = [RTErrorFactory keyChainErrorWithCode:ItemNotFound originalError:nil];
+        }
+        else {
+            [self mapKeyChainStoreError:loadError toApplicationError:error];
+        }
         return nil;
     }
     

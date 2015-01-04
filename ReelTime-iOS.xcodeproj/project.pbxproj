@@ -16,6 +16,7 @@
 		713D7A4C1A50A33300754A06 /* RTClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 713D7A4B1A50A33300754A06 /* RTClient.m */; };
 		7170C8661A598DB600C460BB /* RTError.m in Sources */ = {isa = PBXBuildFile; fileRef = 7170C8651A598DB600C460BB /* RTError.m */; };
 		7170C8691A59926E00C460BB /* RTErrorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7170C8681A59926E00C460BB /* RTErrorFactory.m */; };
+		7170C86D1A59A98600C460BB /* RTKeyChainWrapperSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7170C86C1A59A98600C460BB /* RTKeyChainWrapperSpec.m */; };
 		717A4B781A534EBD004C2BC1 /* RTResponseDescriptorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 717A4B771A534EBD004C2BC1 /* RTResponseDescriptorFactory.m */; };
 		717A4B7B1A534EF8004C2BC1 /* RTRestAPIMappingFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 717A4B7A1A534EF8004C2BC1 /* RTRestAPIMappingFactory.m */; };
 		717A4B7E1A53503B004C2BC1 /* RTRestAPIMappingFactorySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 717A4B7D1A53503B004C2BC1 /* RTRestAPIMappingFactorySpec.m */; };
@@ -78,6 +79,7 @@
 		7170C8671A59926E00C460BB /* RTErrorFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTErrorFactory.h; sourceTree = "<group>"; };
 		7170C8681A59926E00C460BB /* RTErrorFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTErrorFactory.m; sourceTree = "<group>"; };
 		7170C86A1A59934500C460BB /* RTKeyChainErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTKeyChainErrors.h; sourceTree = "<group>"; };
+		7170C86C1A59A98600C460BB /* RTKeyChainWrapperSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTKeyChainWrapperSpec.m; sourceTree = "<group>"; };
 		717A4B761A534EBD004C2BC1 /* RTResponseDescriptorFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTResponseDescriptorFactory.h; sourceTree = "<group>"; };
 		717A4B771A534EBD004C2BC1 /* RTResponseDescriptorFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTResponseDescriptorFactory.m; sourceTree = "<group>"; };
 		717A4B791A534EF8004C2BC1 /* RTRestAPIMappingFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTRestAPIMappingFactory.h; sourceTree = "<group>"; };
@@ -177,6 +179,14 @@
 			path = Client;
 			sourceTree = "<group>";
 		};
+		7170C86B1A59A95000C460BB /* SecurityTests */ = {
+			isa = PBXGroup;
+			children = (
+				7170C86C1A59A98600C460BB /* RTKeyChainWrapperSpec.m */,
+			);
+			path = SecurityTests;
+			sourceTree = "<group>";
+		};
 		717A4B751A534E7B004C2BC1 /* Factory */ = {
 			isa = PBXGroup;
 			children = (
@@ -246,14 +256,15 @@
 		718A0BF81A4DA87900137C49 /* ReelTime-iOSTests */ = {
 			isa = PBXGroup;
 			children = (
-				71921C031A54E1490003A42F /* FakeObjects */,
+				71921C001A54CCBE0003A42F /* EXPMatchers+beError.h */,
+				716A9BC41A4F5385005D33F9 /* RTTestCommon.h */,
+				71921C011A54CCBE0003A42F /* EXPMatchers+beError.m */,
 				717A4B7C1A53503B004C2BC1 /* ClientTests */,
-				71D947951A4FCB1C00401963 /* UseCaseTests */,
+				71921C031A54E1490003A42F /* FakeObjects */,
+				7170C86B1A59A95000C460BB /* SecurityTests */,
 				71D947891A4FBC7100401963 /* StoreTests */,
 				718A0BF91A4DA87900137C49 /* Supporting Files */,
-				716A9BC41A4F5385005D33F9 /* RTTestCommon.h */,
-				71921C001A54CCBE0003A42F /* EXPMatchers+beError.h */,
-				71921C011A54CCBE0003A42F /* EXPMatchers+beError.m */,
+				71D947951A4FCB1C00401963 /* UseCaseTests */,
 			);
 			path = "ReelTime-iOSTests";
 			sourceTree = "<group>";
@@ -609,6 +620,7 @@
 				717A4B7E1A53503B004C2BC1 /* RTRestAPIMappingFactorySpec.m in Sources */,
 				71921C061A54E1610003A42F /* RTFakeClient.m in Sources */,
 				713BCE071A5909DA000F2D96 /* RTFakeKeyChainWrapper.m in Sources */,
+				7170C86D1A59A98600C460BB /* RTKeyChainWrapperSpec.m in Sources */,
 				71921C021A54CCBE0003A42F /* EXPMatchers+beError.m in Sources */,
 				717A4B801A535942004C2BC1 /* RTClientSpec.m in Sources */,
 				713BCE041A5908E4000F2D96 /* RTOAuth2TokenStoreSpec.m in Sources */,
