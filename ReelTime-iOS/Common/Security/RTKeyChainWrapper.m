@@ -19,46 +19,55 @@
 
 - (id<NSSecureCoding>)objectForKey:(NSString *)key
                              error:(RTError *__autoreleasing *)error {
-    NSError *keyChainStoreError;
-    NSData *encodedData = [self.keyChainStore dataForKey:key error:&keyChainStoreError];
-    if (encodedData) {
-        return [NSKeyedUnarchiver unarchiveObjectWithData:encodedData];
+    NSError *loadError;
+    NSData *data = [self.keyChainStore dataForKey:key error:&loadError];
+    
+    if (!data) {
+        [self mapKeyChainStoreError:loadError toApplicationError:error];
+        return nil;
     }
-    if (error) {
-        *error = [self mapKeyChainStoreError:keyChainStoreError];
-    }
-    return nil;
+    
+    return [NSKeyedUnarchiver unarchiveObjectWithData:data];
 }
 
 - (BOOL)setObject:(id<NSSecureCoding>)object
            forKey:(NSString *)key
             error:(RTError *__autoreleasing *)error {
-    [self.keyChainStore setData:[NSKeyedArchiver archivedDataWithRootObject:object]
-                         forKey:key];
-    
-    NSError *keyChainStoreError;
-    [self.keyChainStore synchronizeWithError:&keyChainStoreError];
-    
-    if (error && keyChainStoreError) {
-        *error = [self mapKeyChainStoreError:keyChainStoreError];
+    NSError *storeError;
+    [self.keyChainStore setData:[NSKeyedArchiver archivedDataWithRootObject:object] forKey:key error:&storeError];
+
+    if (storeError) {
+        [self mapKeyChainStoreError:storeError toApplicationError:error];
+        return NO;
     }
-    return keyChainStoreError == nil;
+    
+    NSError *synchError;
+    [self.keyChainStore synchronizeWithError:&synchError];
+    
+    if (synchError) {
+        [self mapKeyChainStoreError:synchError toApplicationError:error];
+        return NO;
+    }
+    
+    return YES;
 }
 
-- (RTError *)mapKeyChainStoreError:(NSError *)error {
-    NSInteger code = Unknown;
-
-    if (error && [error.domain isEqualToString:UICKeyChainStoreErrorDomain]) {
-        if (error.code == errSecItemNotFound) {
-            code = ItemNotFound;
+- (void)mapKeyChainStoreError:(NSError *)error
+           toApplicationError:(RTError *__autoreleasing *)appError {
+    if (appError) {
+        NSInteger code = Unknown;
+        
+        if (error && [error.domain isEqualToString:UICKeyChainStoreErrorDomain]) {
+            if (error.code == errSecItemNotFound) {
+                code = ItemNotFound;
+            }
+            else if (error.code == errSecDuplicateItem) {
+                code = DuplicateItem;
+            }
         }
-        else if (error.code == errSecDuplicateItem) {
-            code = DuplicateItem;
-        }
+        
+        *appError = [RTErrorFactory keyChainErrorWithCode:code originalError:error];
     }
-    
-    return [RTErrorFactory keyChainErrorWithCode:code
-                                   originalError:error];
 }
 
 @end
