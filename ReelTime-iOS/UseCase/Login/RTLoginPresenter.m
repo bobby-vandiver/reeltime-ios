@@ -37,14 +37,14 @@
 
 - (BOOL)validUsername:(NSString *)username
                 password:(NSString *)password
-                   error:(NSError **)outError {
+                   error:(NSError **)error {
     if ([username length] == 0) {
-        *outError = [NSError rt_loginErrorWithCode:MissingUsername];
+        *error = [NSError rt_loginErrorWithCode:MissingUsername];
     }
     else if ([password length] == 0) {
-        *outError = [NSError rt_loginErrorWithCode:MissingPassword];
+        *error = [NSError rt_loginErrorWithCode:MissingPassword];
     }
-    return *outError ? NO : YES;
+    return *error ? NO : YES;
 }
 
 - (void)loginSucceeded {
