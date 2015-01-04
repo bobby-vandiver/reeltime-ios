@@ -1,6 +1,6 @@
 #import "RTLoginPresenter.h"
 #import "RTLoginInteractor.h"
-#import "NSError+RTErrorFactory.h"
+#import "RTErrorFactory.h"
 
 @interface RTLoginPresenter ()
 
@@ -39,10 +39,10 @@
                 password:(NSString *)password
                    error:(NSError **)error {
     if ([username length] == 0) {
-        *error = [NSError rt_loginErrorWithCode:MissingUsername];
+        *error = [RTErrorFactory loginErrorWithCode:MissingUsername];
     }
     else if ([password length] == 0) {
-        *error = [NSError rt_loginErrorWithCode:MissingPassword];
+        *error = [RTErrorFactory loginErrorWithCode:MissingPassword];
     }
     return *error ? NO : YES;
 }

@@ -4,7 +4,7 @@
 #import "RTLoginErrors.h"
 #import "RTClientErrors.h"
 
-#import "NSError+RTErrorFactory.h"
+#import "RTErrorFactory.h"
 
 @interface RTLoginInteractor ()
 
@@ -80,7 +80,7 @@
 }
 
 - (void)loginFailedWithErrorCode:(RTLoginErrors)code {
-    NSError *loginError = [NSError rt_loginErrorWithCode:code];
+    NSError *loginError = [RTErrorFactory loginErrorWithCode:code];
     [self.presenter loginFailedWithError:loginError];
 }
 

@@ -4,7 +4,7 @@
 #import "RTLoginView.h"
 #import "RTLoginInteractor.h"
 
-#import "NSError+RTErrorFactory.h"
+#import "RTErrorFactory.h"
 
 SpecBegin(RTLoginPresenter)
 
@@ -57,7 +57,7 @@ describe(@"login presenter", ^{
         });
         
         it(@"should not indicate source of failure for invalid credentials", ^{
-            NSError *error = [NSError rt_loginErrorWithCode:InvalidCredentials];
+            NSError *error = [RTErrorFactory loginErrorWithCode:InvalidCredentials];
 
             [presenter loginFailedWithError:error];
             [verify(view) showErrorMessage:@"Invalid username or password"];
