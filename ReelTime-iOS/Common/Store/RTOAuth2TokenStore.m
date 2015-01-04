@@ -17,14 +17,14 @@
 }
 
 - (RTOAuth2Token *)loadTokenForUsername:(NSString *)username
-                                  error:(NSError *__autoreleasing *)error {
+                                  error:(RTError *__autoreleasing *)error {
     return (RTOAuth2Token *)[self.keyChainWrapper objectForKey:[self generateKeyForUsername:username]
                                                          error:error];
 }
 
 - (BOOL)storeToken:(RTOAuth2Token *)token
        forUsername:(NSString *)username
-             error:(NSError *__autoreleasing *)error {
+             error:(RTError *__autoreleasing *)error {
     return [self.keyChainWrapper setObject:token
                                     forKey:[self generateKeyForUsername:username]
                                      error:error];

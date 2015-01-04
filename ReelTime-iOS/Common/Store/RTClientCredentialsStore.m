@@ -23,7 +23,7 @@
 
 - (BOOL)storeClientCredentials:(RTClientCredentials *)credentials
                    forUsername:(NSString *)username
-                         error:(NSError *__autoreleasing *)error {
+                         error:(RTError *__autoreleasing *)error {
     return [self.keyChainWrapper setObject:credentials
                                     forKey:[self generateKeyForUsername:username]
                                      error:error];

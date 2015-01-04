@@ -18,7 +18,7 @@
 }
 
 - (id<NSSecureCoding>)objectForKey:(NSString *)key
-                             error:(NSError *__autoreleasing *)error {
+                             error:(RTError *__autoreleasing *)error {
     NSError *keyChainStoreError;
     NSData *encodedData = [self.keyChainStore dataForKey:key error:&keyChainStoreError];
     if (encodedData) {
@@ -32,7 +32,7 @@
 
 - (BOOL)setObject:(id<NSSecureCoding>)object
            forKey:(NSString *)key
-            error:(NSError *__autoreleasing *)error {
+            error:(RTError *__autoreleasing *)error {
     [self.keyChainStore setData:[NSKeyedArchiver archivedDataWithRootObject:object]
                          forKey:key];
     

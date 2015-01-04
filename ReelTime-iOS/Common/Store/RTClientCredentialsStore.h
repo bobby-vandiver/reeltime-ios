@@ -1,5 +1,6 @@
 #import "RTClientCredentials.h"
 #import "RTKeyChainWrapper.h"
+#import "RTError.h"
 
 @interface RTClientCredentialsStore : NSObject
 
@@ -9,6 +10,6 @@
 
 - (BOOL)storeClientCredentials:(RTClientCredentials *)credentials
                    forUsername:(NSString *)username
-                         error:(NSError *__autoreleasing *)error;
+                         error:(RTError *__autoreleasing *)error;
 
 @end

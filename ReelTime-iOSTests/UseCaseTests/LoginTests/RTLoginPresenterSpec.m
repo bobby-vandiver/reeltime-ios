@@ -48,7 +48,7 @@ describe(@"login presenter", ^{
     
     describe(@"login failure message", ^{
         it(@"should be generic if error domain is incorrect", ^{
-            NSError *error = [NSError errorWithDomain:NSPOSIXErrorDomain
+            RTError *error = [RTError errorWithDomain:NSPOSIXErrorDomain
                                                  code:0
                                              userInfo:nil];
 
@@ -57,7 +57,7 @@ describe(@"login presenter", ^{
         });
         
         it(@"should not indicate source of failure for invalid credentials", ^{
-            NSError *error = [RTErrorFactory loginErrorWithCode:InvalidCredentials];
+            RTError *error = [RTErrorFactory loginErrorWithCode:InvalidCredentials];
 
             [presenter loginFailedWithError:error];
             [verify(view) showErrorMessage:@"Invalid username or password"];
