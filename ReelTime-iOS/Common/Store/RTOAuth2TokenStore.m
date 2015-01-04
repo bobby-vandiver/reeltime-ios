@@ -16,10 +16,22 @@
     return self;
 }
 
+- (RTOAuth2Token *)loadTokenForUsername:(NSString *)username
+                                  error:(NSError *__autoreleasing *)outError {
+    return (RTOAuth2Token *)[self.keyChainWrapper objectForKey:[self generateKeyForUsername:username]
+                                                         error:outError];
+}
+
 - (BOOL)storeToken:(RTOAuth2Token *)token
        forUsername:(NSString *)username
              error:(NSError *__autoreleasing *)outError {
-    return NO;
+    return [self.keyChainWrapper setObject:token
+                                    forKey:[self generateKeyForUsername:username]
+                                     error:outError];
+}
+
+- (NSString *)generateKeyForUsername:(NSString *)username {
+    return [NSString stringWithFormat:@"%@-token", username];
 }
 
 @end

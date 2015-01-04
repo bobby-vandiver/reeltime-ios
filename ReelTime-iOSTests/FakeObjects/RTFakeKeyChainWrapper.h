@@ -1,9 +1,6 @@
-#import <Foundation/Foundation.h>
-#import <UICKeyChainStore/UICKeyChainStore.h>
+#import "RTKeyChainWrapper.h"
 
-@interface RTKeyChainWrapper : NSObject
-
-- (instancetype)initWithKeyChainStore:(UICKeyChainStore *)keyChainStore;
+@interface RTFakeKeyChainWrapper : RTKeyChainWrapper
 
 - (id<NSSecureCoding>)objectForKey:(NSString *)key
                              error:(NSError *__autoreleasing *)error;
