@@ -14,4 +14,7 @@
            forKey:(NSString *)key
             error:(RTError *__autoreleasing *)error;
 
+- (BOOL)removeObjectForKey:(NSString *)key
+                     error:(RTError *__autoreleasing *)error;
+
 @end

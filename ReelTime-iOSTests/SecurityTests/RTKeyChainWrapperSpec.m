@@ -25,7 +25,7 @@ describe(@"key chain wrapper", ^{
         error = nil;
     });
     
-    describe(@"loading items from keychain", ^{
+    describe(@"loading item from keychain", ^{
         it(@"should return nil when item is not found", ^{
             id<NSSecureCoding> object = [wrapper objectForKey:@"unknown" error:&error];
             
@@ -62,6 +62,30 @@ describe(@"key chain wrapper", ^{
             
             id<NSSecureCoding> object = [wrapper objectForKey:@"existing" error:nil];
             expect(object).to.equal(@"something");
+        });
+    });
+    
+    describe(@"removing item from keychain", ^{
+        it(@"should return YES when removing item that doesn't exist", ^{
+            BOOL success = [wrapper removeObjectForKey:@"unknown" error:&error];
+            
+            expect(success).to.beTruthy();
+            expect(error).to.beNil();
+        });
+        
+        it(@"should return YES when removing item succesfully", ^{
+            [wrapper setObject:@"something" forKey:@"remove" error:nil];
+
+            id<NSSecureCoding> object = [wrapper objectForKey:@"remove" error:nil];
+            expect(object).to.equal(@"something");
+            
+            BOOL success = [wrapper removeObjectForKey:@"remove" error:&error];
+
+            expect(success).to.beTruthy();
+            expect(error).to.beNil();
+            
+            object = [wrapper objectForKey:@"remove" error:nil];
+            expect(object).to.beNil();
         });
     });
     
@@ -104,6 +128,11 @@ describe(@"key chain wrapper", ^{
                 
                 mapping++;
             }
+        });
+        
+        xcontext(@"force keychain store operations to fail", ^{
+            // TODO: Check error path once version UICKeyChainStore
+            // is updated to return BOOL for operation failures
         });
     });
 });

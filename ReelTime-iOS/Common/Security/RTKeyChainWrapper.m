@@ -46,6 +46,23 @@
         return NO;
     }
     
+    return [self synchKeyChainStoreWithError:error];
+}
+
+- (BOOL)removeObjectForKey:(NSString *)key
+                     error:(RTError *__autoreleasing *)error {
+    NSError *removeError;
+    [self.keyChainStore removeItemForKey:key error:&removeError];
+    
+    if (removeError) {
+        [self mapKeyChainStoreError:removeError toApplicationError:error];
+        return NO;
+    }
+    
+    return [self synchKeyChainStoreWithError:error];
+}
+
+- (BOOL)synchKeyChainStoreWithError:(RTError *__autoreleasing *)error {
     NSError *synchError;
     [self.keyChainStore synchronizeWithError:&synchError];
     
