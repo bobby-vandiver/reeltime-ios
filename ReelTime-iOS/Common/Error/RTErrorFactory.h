@@ -4,6 +4,7 @@
 
 #import "RTLoginErrors.h"
 #import "RTKeyChainErrors.h"
+#import "RTClientErrors.h"
 
 @interface RTErrorFactory : NSObject
 
@@ -11,4 +12,7 @@
 
 + (RTError *)keyChainErrorWithCode:(RTKeyChainErrors)code
                      originalError:(NSError *)error;
+
++ (RTError *)clientTokenErrorWithCode:(RTClientTokenErrors)code;
+
 @end

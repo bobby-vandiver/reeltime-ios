@@ -17,4 +17,10 @@
                       originalError:error];
 }
 
++ (RTError *)clientTokenErrorWithCode:(RTClientTokenErrors)code {
+    return [RTError errorWithDomain:RTClientTokenErrorDomain
+                               code:code
+                           userInfo:nil];
+}
+
 @end

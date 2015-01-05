@@ -4,11 +4,12 @@
 #import "RTClientCredentials.h"
 #import "RTUserCredentials.h"
 #import "RTOAuth2Token.h"
+#import "RTError.h"
 
 @interface RTClient : NSObject
 
 typedef void (^TokenSuccessHandler)(RTOAuth2Token *token);
-typedef void (^TokenFailureHandler)(NSError *error);
+typedef void (^TokenFailureHandler)(RTError *error);
 
 - (instancetype)initWithRestKitObjectManager:(RKObjectManager *)objectManager;
 

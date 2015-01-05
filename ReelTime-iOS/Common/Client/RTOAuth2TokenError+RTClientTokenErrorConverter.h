@@ -1,8 +1,9 @@
 #import "RTOAuth2TokenError.h"
+#import "RTError.h"
 
-@interface RTOAuth2TokenError (ClientTokenErrorConverter)
+@interface RTOAuth2TokenError (RTClientTokenErrorConverter)
 
-- (NSError *)convertToClientTokenError;
+- (RTError *)convertToClientTokenError;
 
 @end
 

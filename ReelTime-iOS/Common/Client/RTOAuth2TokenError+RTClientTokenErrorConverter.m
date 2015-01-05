@@ -1,9 +1,9 @@
 #import "RTOAuth2TokenError+RTClientTokenErrorConverter.h"
-#import "RTClientErrors.h"
+#import "RTErrorFactory.h"
 
 @implementation RTOAuth2TokenError (ClientTokenErrorConverter)
 
-- (NSError *)convertToClientTokenError {
+- (RTError *)convertToClientTokenError {
     NSString *errorCode = self.errorCode;
     
     RTClientTokenErrors clientTokenErrorsCode;
@@ -12,9 +12,7 @@
         clientTokenErrorsCode = InvalidClientCredentials;
     }
     
-    return [NSError errorWithDomain:RTClientTokenErrorDomain
-                               code:clientTokenErrorsCode
-                           userInfo:nil];
+    return [RTErrorFactory clientTokenErrorWithCode:clientTokenErrorsCode];
 }
 
 @end

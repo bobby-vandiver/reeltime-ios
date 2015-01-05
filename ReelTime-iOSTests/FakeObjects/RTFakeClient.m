@@ -1,4 +1,5 @@
 #import "RTFakeClient.h"
+#import "RTErrorFactory.h"
 
 @implementation RTFakeClient
 
@@ -10,9 +11,7 @@
         successHandler(self.token);
     }
     else {
-        NSError *error = [NSError errorWithDomain:RTClientTokenErrorDomain
-                                             code:self.tokenErrorCode
-                                         userInfo:nil];
+        RTError *error = [RTErrorFactory clientTokenErrorWithCode:self.tokenErrorCode];
         failureHandler(error);
     }
 }
