@@ -61,19 +61,25 @@ describe(@"login interactor", ^{
                 client.tokenShouldSucceed = YES;
                 client.token = token;
             });
+            
+            afterEach(^{
+                [[verify(tokenStore) withMatcher:anything() forArgument:2] storeToken:token forUsername:username error:nil];
+            });
 
             it(@"should store token and notify presenter of successful login", ^{
                 [[given([tokenStore storeToken:token forUsername:username error:nil]) withMatcher:anything() forArgument:2]
                     willReturnBool:YES];
                
                 [interactor loginWithUsername:username password:password];
-                
-                [[verify(tokenStore) withMatcher:anything() forArgument:2] storeToken:token forUsername:username error:nil];
                 [verify(presenter) loginSucceeded];
             });
             
-            xit(@"should handle token storage error", ^{
-                // TODO: Implement test case once error handling strategy is determined
+            it(@"should notify presenter of token storage error", ^{
+                [[given([tokenStore storeToken:token forUsername:username error:nil]) withMatcher:anything() forArgument:2]
+                 willReturnBool:NO];
+                
+                [interactor loginWithUsername:username password:password];
+                [[verify(presenter) withMatcher:anything() forArgument:1] loginFailedWithError:nil];
             });
         });
         

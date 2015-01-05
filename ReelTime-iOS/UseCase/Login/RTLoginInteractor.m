@@ -59,7 +59,7 @@
             [self.presenter loginSucceeded];
         }
         else {
-            // TODO: Handle token storage errors
+            [self.presenter loginFailedWithError:tokenStoreError];
         }
     };
 }
