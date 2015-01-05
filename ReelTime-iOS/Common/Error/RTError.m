@@ -1,11 +1,5 @@
 #import "RTError.h"
 
-@interface RTError ()
-
-@property (readwrite) NSError *originalError;
-
-@end
-
 @implementation RTError
 
 + (RTError *)errorWithDomain:(NSString *)domain
@@ -22,13 +16,22 @@
                           code:(NSInteger)code
                       userInfo:(NSDictionary *)dict
                  originalError:(NSError *)error {
-    self = [super initWithDomain:domain
-                            code:code
-                        userInfo:dict];
-    if (self) {
-        self.originalError = error;
+    NSMutableDictionary *userInfo = [dict mutableCopy];
+    
+    if (error) {
+        if (!userInfo) {
+            userInfo = [[NSMutableDictionary alloc] init];
+        }
+        [userInfo setObject:error forKey:NSUnderlyingErrorKey];
     }
-    return self;
+    
+    return [super initWithDomain:domain
+                            code:code
+                        userInfo:userInfo];
+}
+
+- (NSError *)originalError {
+    return [self.userInfo objectForKey:NSUnderlyingErrorKey];
 }
 
 @end

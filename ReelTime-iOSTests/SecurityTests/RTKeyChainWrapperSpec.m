@@ -124,7 +124,7 @@ describe(@"key chain wrapper", ^{
                 [wrapper mapKeyChainStoreError:keyChainError toApplicationError:&error];
                 
                 expect(error).to.beError(RTKeyChainWrapperErrorDomain, mapping->applicationCode);
-                expect(error.originalError).to.equal(keyChainError);
+                expect([error originalError]).to.equal(keyChainError);
                 
                 mapping++;
             }
