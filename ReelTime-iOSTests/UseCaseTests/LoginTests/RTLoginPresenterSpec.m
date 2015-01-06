@@ -3,6 +3,7 @@
 #import "RTLoginPresenter.h"
 #import "RTLoginView.h"
 #import "RTLoginInteractor.h"
+#import "RTLoginWireframe.h"
 
 #import "RTErrorFactory.h"
 
@@ -12,8 +13,9 @@ describe(@"login presenter", ^{
     
     __block RTLoginPresenter *presenter;
     
-    __block RTLoginInteractor *interactor;
     __block id<RTLoginView> view;
+    __block RTLoginInteractor *interactor;
+    __block RTLoginWireframe *wireframe;
     
     __block NSString *username;
     __block NSString *password;
@@ -21,9 +23,11 @@ describe(@"login presenter", ^{
     beforeEach(^{
         view = mockProtocol(@protocol(RTLoginView));
         interactor = mock([RTLoginInteractor class]);
+        wireframe = mock([RTLoginWireframe class]);
         
         presenter = [[RTLoginPresenter alloc] initWithView:view
-                                                interactor:interactor];
+                                                interactor:interactor
+                                                 wireframe:wireframe];
         
         username = @"someone";
         password = @"secret";
@@ -61,6 +65,20 @@ describe(@"login presenter", ^{
 
             [presenter loginFailedWithError:error];
             [verify(view) showErrorMessage:@"Invalid username or password"];
+        });
+    });
+    
+    describe(@"routing to other modules", ^{
+        it(@"should present post login interface when login succeeds", ^{
+            [presenter loginSucceeded];
+            [verify(wireframe) presentPostLoginInterface];
+        });
+        
+        it(@"should present device registration interface for an unknown client", ^{
+            NSError *error = [RTErrorFactory loginErrorWithCode:UnknownClient];
+            
+            [presenter loginFailedWithError:error];
+            [verify(wireframe) presentDeviceRegistrationInterface];
         });
     });
 });

@@ -22,6 +22,7 @@
 		717A4B801A535942004C2BC1 /* RTClientSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 717A4B7F1A535942004C2BC1 /* RTClientSpec.m */; };
 		717A4B851A53A212004C2BC1 /* RTOAuth2TokenError+RTClientTokenErrorConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 717A4B841A53A212004C2BC1 /* RTOAuth2TokenError+RTClientTokenErrorConverter.m */; };
 		717D926D1A5B722300EAB6BF /* NSError+RTError.m in Sources */ = {isa = PBXBuildFile; fileRef = 717D926C1A5B722300EAB6BF /* NSError+RTError.m */; };
+		717D92731A5B8ABB00EAB6BF /* RTLoginWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 717D92721A5B8ABB00EAB6BF /* RTLoginWireframe.m */; };
 		718A0BE21A4DA87900137C49 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 718A0BE11A4DA87900137C49 /* main.m */; };
 		718A0BE51A4DA87900137C49 /* RTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 718A0BE41A4DA87900137C49 /* RTAppDelegate.m */; };
 		718A0BE81A4DA87900137C49 /* RTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 718A0BE71A4DA87900137C49 /* RTViewController.m */; };
@@ -88,6 +89,8 @@
 		717A4B841A53A212004C2BC1 /* RTOAuth2TokenError+RTClientTokenErrorConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RTOAuth2TokenError+RTClientTokenErrorConverter.m"; sourceTree = "<group>"; };
 		717D926B1A5B722300EAB6BF /* NSError+RTError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+RTError.h"; sourceTree = "<group>"; };
 		717D926C1A5B722300EAB6BF /* NSError+RTError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+RTError.m"; sourceTree = "<group>"; };
+		717D92711A5B8ABB00EAB6BF /* RTLoginWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLoginWireframe.h; sourceTree = "<group>"; };
+		717D92721A5B8ABB00EAB6BF /* RTLoginWireframe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLoginWireframe.m; sourceTree = "<group>"; };
 		718A0BDC1A4DA87900137C49 /* ReelTime-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ReelTime-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		718A0BE01A4DA87900137C49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		718A0BE11A4DA87900137C49 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -376,6 +379,8 @@
 				71D947911A4FC88300401963 /* RTLoginView.h */,
 				71D947921A4FC96800401963 /* RTLoginPresenter.h */,
 				71D947931A4FC96800401963 /* RTLoginPresenter.m */,
+				717D92711A5B8ABB00EAB6BF /* RTLoginWireframe.h */,
+				717D92721A5B8ABB00EAB6BF /* RTLoginWireframe.m */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -598,6 +603,7 @@
 				71C5C0AD1A55EAE700CAAFAC /* RTOAuth2TokenError.m in Sources */,
 				717A4B851A53A212004C2BC1 /* RTOAuth2TokenError+RTClientTokenErrorConverter.m in Sources */,
 				717A4B7B1A534EF8004C2BC1 /* RTRestAPIMappingFactory.m in Sources */,
+				717D92731A5B8ABB00EAB6BF /* RTLoginWireframe.m in Sources */,
 				71C5C0AF1A55EAE700CAAFAC /* RTUserCredentials.m in Sources */,
 				719B35DB1A51012E00FFD543 /* RTClientAssembly.m in Sources */,
 				718A0BE81A4DA87900137C49 /* RTViewController.m in Sources */,

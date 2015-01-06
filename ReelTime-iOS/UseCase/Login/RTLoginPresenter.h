@@ -3,11 +3,13 @@
 #import "RTLoginView.h"
 
 @class RTLoginInteractor;
+@class RTLoginWireframe;
 
 @interface RTLoginPresenter : NSObject
 
 - (instancetype)initWithView:(id<RTLoginView>)view
-                  interactor:(RTLoginInteractor *)interactor;
+                  interactor:(RTLoginInteractor *)interactor
+                   wireframe:(RTLoginWireframe *)wireframe;
 
 - (void)requestedLoginWithUsername:(NSString *)username
                            password:(NSString *)password;

@@ -1,22 +1,27 @@
 #import "RTLoginPresenter.h"
 #import "RTLoginInteractor.h"
+#import "RTLoginWireframe.h"
+
 #import "RTErrorFactory.h"
 
 @interface RTLoginPresenter ()
 
 @property id<RTLoginView> view;
 @property RTLoginInteractor *interactor;
+@property RTLoginWireframe *wireframe;
 
 @end
 
 @implementation RTLoginPresenter
 
 - (instancetype)initWithView:(id<RTLoginView>)view
-                  interactor:(RTLoginInteractor *)interactor {
+                  interactor:(RTLoginInteractor *)interactor
+                   wireframe:(RTLoginWireframe *)wireframe {
     self = [super init];
     if (self) {
         self.view = view;
         self.interactor = interactor;
+        self.wireframe = wireframe;
     }
     return self;
 }
@@ -48,7 +53,7 @@
 }
 
 - (void)loginSucceeded {
-    
+    [self.wireframe presentPostLoginInterface];
 }
 
 - (void)loginFailedWithError:(NSError *)error {
@@ -63,6 +68,10 @@
         }
         else if (error.code == InvalidCredentials) {
             message = @"Invalid username or password";
+        }
+        else if (error.code == UnknownClient) {
+            [self.wireframe presentDeviceRegistrationInterface];
+            return;
         }
     }
     
