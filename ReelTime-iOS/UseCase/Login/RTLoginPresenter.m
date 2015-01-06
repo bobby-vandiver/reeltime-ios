@@ -23,7 +23,7 @@
 
 - (void)requestedLoginWithUsername:(NSString *)username
                            password:(NSString *)password {
-    RTError *error;
+    NSError *error;
     BOOL credentialsAreValid = [self validUsername:username
                                              password:password
                                                 error:&error];
@@ -51,7 +51,7 @@
     
 }
 
-- (void)loginFailedWithError:(RTError *)error {
+- (void)loginFailedWithError:(NSError *)error {
     NSString *message = @"An unknown error occurred";
     
     if ([error.domain isEqualToString:RTLoginErrorDomain]) {

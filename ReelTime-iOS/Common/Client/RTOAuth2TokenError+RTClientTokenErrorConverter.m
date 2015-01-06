@@ -3,7 +3,7 @@
 
 @implementation RTOAuth2TokenError (ClientTokenErrorConverter)
 
-- (RTError *)convertToClientTokenError {
+- (NSError *)convertToClientTokenError {
     NSString *errorCode = self.errorCode;
     
     RTClientTokenErrors clientTokenErrorsCode;

@@ -1,24 +1,25 @@
 #import "RTErrorFactory.h"
+#import "NSError+RTError.h"
 
 @implementation RTErrorFactory
 
-+ (RTError *)loginErrorWithCode:(RTLoginErrors)code {
-    return [RTError errorWithDomain:RTLoginErrorDomain
++ (NSError *)loginErrorWithCode:(RTLoginErrors)code {
+    return [NSError errorWithDomain:RTLoginErrorDomain
                                code:code
                            userInfo:nil
                       originalError:nil];
 }
 
-+ (RTError *)keyChainErrorWithCode:(RTKeyChainErrors)code
++ (NSError *)keyChainErrorWithCode:(RTKeyChainErrors)code
                      originalError:(NSError *)error {
-    return [RTError errorWithDomain:RTKeyChainWrapperErrorDomain
+    return [NSError errorWithDomain:RTKeyChainWrapperErrorDomain
                                code:code
                            userInfo:nil
                       originalError:error];
 }
 
-+ (RTError *)clientTokenErrorWithCode:(RTClientTokenErrors)code {
-    return [RTError errorWithDomain:RTClientTokenErrorDomain
++ (NSError *)clientTokenErrorWithCode:(RTClientTokenErrors)code {
+    return [NSError errorWithDomain:RTClientTokenErrorDomain
                                code:code
                            userInfo:nil];
 }

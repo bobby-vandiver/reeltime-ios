@@ -1,12 +1,12 @@
-#import "RTError.h"
+#import "NSError+RTError.h"
 
-@implementation RTError
+@implementation NSError (RTError)
 
-+ (RTError *)errorWithDomain:(NSString *)domain
++ (NSError *)errorWithDomain:(NSString *)domain
                         code:(NSInteger)code
                     userInfo:(NSDictionary *)dict
                originalError:(NSError *)error {
-    return [[RTError alloc] initWithDomain:domain
+    return [[NSError alloc] initWithDomain:domain
                                       code:code
                                   userInfo:dict
                              originalError:error];
@@ -25,12 +25,12 @@
         [userInfo setObject:error forKey:NSUnderlyingErrorKey];
     }
     
-    return [super initWithDomain:domain
+    return [self initWithDomain:domain
                             code:code
                         userInfo:userInfo];
 }
 
-- (NSError *)originalError {
+- (NSError *)underlyingError {
     return [self.userInfo objectForKey:NSUnderlyingErrorKey];
 }
 

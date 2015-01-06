@@ -50,7 +50,7 @@
 
 - (TokenSuccessHandler)loginSuccededForUsername:(NSString *)username {
     return ^(RTOAuth2Token *token) {
-        RTError *tokenStoreError;
+        NSError *tokenStoreError;
         BOOL storeSucceded = [self.tokenStore storeToken:token
                                              forUsername:username
                                                    error:&tokenStoreError];
@@ -80,7 +80,7 @@
 }
 
 - (void)loginFailedWithErrorCode:(RTLoginErrors)code {
-    RTError *loginError = [RTErrorFactory loginErrorWithCode:code];
+    NSError *loginError = [RTErrorFactory loginErrorWithCode:code];
     [self.presenter loginFailedWithError:loginError];
 }
 

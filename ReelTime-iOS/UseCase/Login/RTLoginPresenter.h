@@ -1,7 +1,6 @@
 #import <Foundation/Foundation.h>
 
 #import "RTLoginView.h"
-#import "RTError.h"
 
 @class RTLoginInteractor;
 
@@ -15,6 +14,6 @@
 
 - (void)loginSucceeded;
 
-- (void)loginFailedWithError:(RTError *)error;
+- (void)loginFailedWithError:(NSError *)error;
 
 @end

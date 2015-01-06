@@ -14,7 +14,6 @@
 		713D7A451A509AC000754A06 /* RTClientCredentialsStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 713D7A441A509AC000754A06 /* RTClientCredentialsStore.m */; };
 		713D7A481A509ACC00754A06 /* RTClientCredentials.m in Sources */ = {isa = PBXBuildFile; fileRef = 713D7A471A509ACC00754A06 /* RTClientCredentials.m */; };
 		713D7A4C1A50A33300754A06 /* RTClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 713D7A4B1A50A33300754A06 /* RTClient.m */; };
-		7170C8661A598DB600C460BB /* RTError.m in Sources */ = {isa = PBXBuildFile; fileRef = 7170C8651A598DB600C460BB /* RTError.m */; };
 		7170C8691A59926E00C460BB /* RTErrorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7170C8681A59926E00C460BB /* RTErrorFactory.m */; };
 		7170C86D1A59A98600C460BB /* RTKeyChainWrapperSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7170C86C1A59A98600C460BB /* RTKeyChainWrapperSpec.m */; };
 		717A4B781A534EBD004C2BC1 /* RTResponseDescriptorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 717A4B771A534EBD004C2BC1 /* RTResponseDescriptorFactory.m */; };
@@ -22,6 +21,7 @@
 		717A4B7E1A53503B004C2BC1 /* RTRestAPIMappingFactorySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 717A4B7D1A53503B004C2BC1 /* RTRestAPIMappingFactorySpec.m */; };
 		717A4B801A535942004C2BC1 /* RTClientSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 717A4B7F1A535942004C2BC1 /* RTClientSpec.m */; };
 		717A4B851A53A212004C2BC1 /* RTOAuth2TokenError+RTClientTokenErrorConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 717A4B841A53A212004C2BC1 /* RTOAuth2TokenError+RTClientTokenErrorConverter.m */; };
+		717D926D1A5B722300EAB6BF /* NSError+RTError.m in Sources */ = {isa = PBXBuildFile; fileRef = 717D926C1A5B722300EAB6BF /* NSError+RTError.m */; };
 		718A0BE21A4DA87900137C49 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 718A0BE11A4DA87900137C49 /* main.m */; };
 		718A0BE51A4DA87900137C49 /* RTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 718A0BE41A4DA87900137C49 /* RTAppDelegate.m */; };
 		718A0BE81A4DA87900137C49 /* RTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 718A0BE71A4DA87900137C49 /* RTViewController.m */; };
@@ -74,8 +74,6 @@
 		713D7A4B1A50A33300754A06 /* RTClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTClient.m; sourceTree = "<group>"; };
 		713D7A571A50E9D500754A06 /* RTClientErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTClientErrors.h; sourceTree = "<group>"; };
 		716A9BC41A4F5385005D33F9 /* RTTestCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTTestCommon.h; sourceTree = "<group>"; };
-		7170C8641A598DB600C460BB /* RTError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTError.h; sourceTree = "<group>"; };
-		7170C8651A598DB600C460BB /* RTError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTError.m; sourceTree = "<group>"; };
 		7170C8671A59926E00C460BB /* RTErrorFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTErrorFactory.h; sourceTree = "<group>"; };
 		7170C8681A59926E00C460BB /* RTErrorFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTErrorFactory.m; sourceTree = "<group>"; };
 		7170C86A1A59934500C460BB /* RTKeyChainErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTKeyChainErrors.h; sourceTree = "<group>"; };
@@ -88,6 +86,8 @@
 		717A4B7F1A535942004C2BC1 /* RTClientSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTClientSpec.m; sourceTree = "<group>"; };
 		717A4B831A53A212004C2BC1 /* RTOAuth2TokenError+RTClientTokenErrorConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RTOAuth2TokenError+RTClientTokenErrorConverter.h"; sourceTree = "<group>"; };
 		717A4B841A53A212004C2BC1 /* RTOAuth2TokenError+RTClientTokenErrorConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RTOAuth2TokenError+RTClientTokenErrorConverter.m"; sourceTree = "<group>"; };
+		717D926B1A5B722300EAB6BF /* NSError+RTError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+RTError.h"; sourceTree = "<group>"; };
+		717D926C1A5B722300EAB6BF /* NSError+RTError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+RTError.m"; sourceTree = "<group>"; };
 		718A0BDC1A4DA87900137C49 /* ReelTime-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ReelTime-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		718A0BE01A4DA87900137C49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		718A0BE11A4DA87900137C49 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -300,9 +300,9 @@
 		719B35E11A51150000FFD543 /* Error */ = {
 			isa = PBXGroup;
 			children = (
+				717D926B1A5B722300EAB6BF /* NSError+RTError.h */,
+				717D926C1A5B722300EAB6BF /* NSError+RTError.m */,
 				719B35E21A51150E00FFD543 /* RTErrorConstants.m */,
-				7170C8641A598DB600C460BB /* RTError.h */,
-				7170C8651A598DB600C460BB /* RTError.m */,
 				7170C8671A59926E00C460BB /* RTErrorFactory.h */,
 				7170C8681A59926E00C460BB /* RTErrorFactory.m */,
 			);
@@ -590,6 +590,7 @@
 			files = (
 				71C5C0B21A55EB3900CAAFAC /* RTOAuth2TokenStore.m in Sources */,
 				71D9478F1A4FC81A00401963 /* RTLoginInteractor.m in Sources */,
+				717D926D1A5B722300EAB6BF /* NSError+RTError.m in Sources */,
 				713D7A4C1A50A33300754A06 /* RTClient.m in Sources */,
 				719B35E31A51150E00FFD543 /* RTErrorConstants.m in Sources */,
 				717A4B781A534EBD004C2BC1 /* RTResponseDescriptorFactory.m in Sources */,
@@ -598,7 +599,6 @@
 				717A4B851A53A212004C2BC1 /* RTOAuth2TokenError+RTClientTokenErrorConverter.m in Sources */,
 				717A4B7B1A534EF8004C2BC1 /* RTRestAPIMappingFactory.m in Sources */,
 				71C5C0AF1A55EAE700CAAFAC /* RTUserCredentials.m in Sources */,
-				7170C8661A598DB600C460BB /* RTError.m in Sources */,
 				719B35DB1A51012E00FFD543 /* RTClientAssembly.m in Sources */,
 				718A0BE81A4DA87900137C49 /* RTViewController.m in Sources */,
 				71C5C0AC1A55EAE700CAAFAC /* RTOAuth2Token.m in Sources */,

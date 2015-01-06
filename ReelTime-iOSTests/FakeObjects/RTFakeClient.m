@@ -11,7 +11,7 @@
         successHandler(self.token);
     }
     else {
-        RTError *error = [RTErrorFactory clientTokenErrorWithCode:self.tokenErrorCode];
+        NSError *error = [RTErrorFactory clientTokenErrorWithCode:self.tokenErrorCode];
         failureHandler(error);
     }
 }

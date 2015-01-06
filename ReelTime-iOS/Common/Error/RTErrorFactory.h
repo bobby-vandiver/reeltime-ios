@@ -1,18 +1,16 @@
 #import <Foundation/Foundation.h>
 
-#import "RTError.h"
-
 #import "RTLoginErrors.h"
 #import "RTKeyChainErrors.h"
 #import "RTClientErrors.h"
 
 @interface RTErrorFactory : NSObject
 
-+ (RTError *)loginErrorWithCode:(RTLoginErrors)code;
++ (NSError *)loginErrorWithCode:(RTLoginErrors)code;
 
-+ (RTError *)keyChainErrorWithCode:(RTKeyChainErrors)code
++ (NSError *)keyChainErrorWithCode:(RTKeyChainErrors)code
                      originalError:(NSError *)error;
 
-+ (RTError *)clientTokenErrorWithCode:(RTClientTokenErrors)code;
++ (NSError *)clientTokenErrorWithCode:(RTClientTokenErrors)code;
 
 @end

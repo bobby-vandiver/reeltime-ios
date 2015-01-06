@@ -6,7 +6,7 @@
 @interface RTKeyChainWrapper ()
 
 - (void)mapKeyChainStoreError:(NSError *)error
-           toApplicationError:(RTError *__autoreleasing *)appError;
+           toApplicationError:(NSError *__autoreleasing *)appError;
 
 @end
 
@@ -15,7 +15,7 @@ SpecBegin(RTKeyChainWrapper)
 describe(@"key chain wrapper", ^{
     
     __block RTKeyChainWrapper *wrapper;
-    __block RTError *error;
+    __block NSError *error;
    
     beforeEach(^{
         UICKeyChainStore *keyChainStore = [UICKeyChainStore keyChainStore];
@@ -124,7 +124,7 @@ describe(@"key chain wrapper", ^{
                 [wrapper mapKeyChainStoreError:keyChainError toApplicationError:&error];
                 
                 expect(error).to.beError(RTKeyChainWrapperErrorDomain, mapping->applicationCode);
-                expect([error originalError]).to.equal(keyChainError);
+                expect([error underlyingError]).to.equal(keyChainError);
                 
                 mapping++;
             }

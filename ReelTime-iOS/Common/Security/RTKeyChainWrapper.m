@@ -18,7 +18,7 @@
 }
 
 - (id<NSSecureCoding>)objectForKey:(NSString *)key
-                             error:(RTError *__autoreleasing *)error {
+                             error:(NSError *__autoreleasing *)error {
     NSError *loadError;
     NSData *data = [self.keyChainStore dataForKey:key error:&loadError];
     
@@ -37,7 +37,7 @@
 
 - (BOOL)setObject:(id<NSSecureCoding>)object
            forKey:(NSString *)key
-            error:(RTError *__autoreleasing *)error {
+            error:(NSError *__autoreleasing *)error {
     NSError *storeError;
     [self.keyChainStore setData:[NSKeyedArchiver archivedDataWithRootObject:object] forKey:key error:&storeError];
 
@@ -50,7 +50,7 @@
 }
 
 - (BOOL)removeObjectForKey:(NSString *)key
-                     error:(RTError *__autoreleasing *)error {
+                     error:(NSError *__autoreleasing *)error {
     NSError *removeError;
     [self.keyChainStore removeItemForKey:key error:&removeError];
     
@@ -62,7 +62,7 @@
     return [self synchKeyChainStoreWithError:error];
 }
 
-- (BOOL)synchKeyChainStoreWithError:(RTError *__autoreleasing *)error {
+- (BOOL)synchKeyChainStoreWithError:(NSError *__autoreleasing *)error {
     NSError *synchError;
     [self.keyChainStore synchronizeWithError:&synchError];
     
@@ -75,7 +75,7 @@
 }
 
 - (void)mapKeyChainStoreError:(NSError *)error
-           toApplicationError:(RTError *__autoreleasing *)appError {
+           toApplicationError:(NSError *__autoreleasing *)appError {
     if (appError) {
         NSInteger code = Unknown;
         
