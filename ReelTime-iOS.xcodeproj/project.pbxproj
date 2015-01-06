@@ -23,6 +23,7 @@
 		717A4B851A53A212004C2BC1 /* RTOAuth2TokenError+RTClientTokenErrorConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 717A4B841A53A212004C2BC1 /* RTOAuth2TokenError+RTClientTokenErrorConverter.m */; };
 		717D926D1A5B722300EAB6BF /* NSError+RTError.m in Sources */ = {isa = PBXBuildFile; fileRef = 717D926C1A5B722300EAB6BF /* NSError+RTError.m */; };
 		717D92731A5B8ABB00EAB6BF /* RTLoginWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 717D92721A5B8ABB00EAB6BF /* RTLoginWireframe.m */; };
+		717D92761A5B925700EAB6BF /* RTCurrentUserStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 717D92751A5B925700EAB6BF /* RTCurrentUserStore.m */; };
 		718A0BE21A4DA87900137C49 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 718A0BE11A4DA87900137C49 /* main.m */; };
 		718A0BE51A4DA87900137C49 /* RTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 718A0BE41A4DA87900137C49 /* RTAppDelegate.m */; };
 		718A0BE81A4DA87900137C49 /* RTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 718A0BE71A4DA87900137C49 /* RTViewController.m */; };
@@ -91,6 +92,8 @@
 		717D926C1A5B722300EAB6BF /* NSError+RTError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+RTError.m"; sourceTree = "<group>"; };
 		717D92711A5B8ABB00EAB6BF /* RTLoginWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLoginWireframe.h; sourceTree = "<group>"; };
 		717D92721A5B8ABB00EAB6BF /* RTLoginWireframe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLoginWireframe.m; sourceTree = "<group>"; };
+		717D92741A5B925700EAB6BF /* RTCurrentUserStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTCurrentUserStore.h; path = "ReelTime-iOS/Common/Store/RTCurrentUserStore.h"; sourceTree = SOURCE_ROOT; };
+		717D92751A5B925700EAB6BF /* RTCurrentUserStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTCurrentUserStore.m; path = "ReelTime-iOS/Common/Store/RTCurrentUserStore.m"; sourceTree = SOURCE_ROOT; };
 		718A0BDC1A4DA87900137C49 /* ReelTime-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ReelTime-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		718A0BE01A4DA87900137C49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		718A0BE11A4DA87900137C49 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -348,6 +351,8 @@
 				71C5C0B11A55EB3900CAAFAC /* RTOAuth2TokenStore.m */,
 				713D7A431A509AC000754A06 /* RTClientCredentialsStore.h */,
 				713D7A441A509AC000754A06 /* RTClientCredentialsStore.m */,
+				717D92741A5B925700EAB6BF /* RTCurrentUserStore.h */,
+				717D92751A5B925700EAB6BF /* RTCurrentUserStore.m */,
 			);
 			name = Store;
 			path = Stores;
@@ -594,6 +599,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				71C5C0B21A55EB3900CAAFAC /* RTOAuth2TokenStore.m in Sources */,
+				717D92761A5B925700EAB6BF /* RTCurrentUserStore.m in Sources */,
 				71D9478F1A4FC81A00401963 /* RTLoginInteractor.m in Sources */,
 				717D926D1A5B722300EAB6BF /* NSError+RTError.m in Sources */,
 				713D7A4C1A50A33300754A06 /* RTClient.m in Sources */,
