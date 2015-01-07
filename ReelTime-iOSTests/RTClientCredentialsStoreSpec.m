@@ -1,4 +1,5 @@
 #import "RTTestCommon.h"
+#import "RTFakeKeyChainWrapper.h"
 
 #import "RTClientCredentialsStore.h"
 #import "RTKeyChainWrapper.h"
@@ -16,9 +17,7 @@ describe(@"client credentials store", ^{
     __block NSString *clientSecret = @"bar";
     
     beforeEach(^{
-        UICKeyChainStore *keyChainStore = [UICKeyChainStore keyChainStore];
-        keyChainWrapper = [[RTKeyChainWrapper alloc] initWithKeyChainStore:keyChainStore];
-        
+        keyChainWrapper = [[RTFakeKeyChainWrapper alloc] init];
         store = [[RTClientCredentialsStore alloc] initWithKeyChainWrapper:keyChainWrapper];
     });
     
