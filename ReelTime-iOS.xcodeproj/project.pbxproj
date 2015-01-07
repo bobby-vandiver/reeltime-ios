@@ -30,6 +30,7 @@
 		718A0BEB1A4DA87900137C49 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 718A0BE91A4DA87900137C49 /* Main.storyboard */; };
 		718A0BED1A4DA87900137C49 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 718A0BEC1A4DA87900137C49 /* Images.xcassets */; };
 		718A0BF01A4DA87900137C49 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 718A0BEE1A4DA87900137C49 /* LaunchScreen.xib */; };
+		7190DABA1A5CC55D00BDCE4C /* RTCurrentUserStoreSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7190DAB91A5CC55D00BDCE4C /* RTCurrentUserStoreSpec.m */; };
 		71921C021A54CCBE0003A42F /* EXPMatchers+beError.m in Sources */ = {isa = PBXBuildFile; fileRef = 71921C011A54CCBE0003A42F /* EXPMatchers+beError.m */; };
 		71921C061A54E1610003A42F /* RTFakeClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 71921C051A54E1610003A42F /* RTFakeClient.m */; };
 		719B35DB1A51012E00FFD543 /* RTClientAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 719B35DA1A51012E00FFD543 /* RTClientAssembly.m */; };
@@ -106,6 +107,7 @@
 		718A0BEF1A4DA87900137C49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		718A0BF51A4DA87900137C49 /* ReelTime-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ReelTime-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		718A0BFA1A4DA87900137C49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7190DAB91A5CC55D00BDCE4C /* RTCurrentUserStoreSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTCurrentUserStoreSpec.m; sourceTree = "<group>"; };
 		71921C001A54CCBE0003A42F /* EXPMatchers+beError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+beError.h"; sourceTree = "<group>"; };
 		71921C011A54CCBE0003A42F /* EXPMatchers+beError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EXPMatchers+beError.m"; sourceTree = "<group>"; };
 		71921C041A54E1610003A42F /* RTFakeClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTFakeClient.h; sourceTree = "<group>"; };
@@ -363,6 +365,7 @@
 			children = (
 				71D947871A4FB9FE00401963 /* RTClientCredentialsStoreSpec.m */,
 				713BCE031A5908E4000F2D96 /* RTOAuth2TokenStoreSpec.m */,
+				7190DAB91A5CC55D00BDCE4C /* RTCurrentUserStoreSpec.m */,
 			);
 			path = StoreTests;
 			sourceTree = "<group>";
@@ -638,6 +641,7 @@
 				713BCE041A5908E4000F2D96 /* RTOAuth2TokenStoreSpec.m in Sources */,
 				71D947881A4FB9FE00401963 /* RTClientCredentialsStoreSpec.m in Sources */,
 				71D947981A4FCB5600401963 /* RTLoginInteractorSpec.m in Sources */,
+				7190DABA1A5CC55D00BDCE4C /* RTCurrentUserStoreSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
