@@ -41,12 +41,12 @@
                                                                                 password:password];
         [self.client tokenWithClientCredentials:clientCredentials
                                 userCredentials:userCredentials
-                                        success:[self loginSucceededForUsername:username]
-                                        failure:[self loginFailed]];
+                                        success:[self retrievedTokenForUsername:username]
+                                        failure:[self failedToRetrieveToken]];
     }
 }
 
-- (TokenSuccessHandler)loginSucceededForUsername:(NSString *)username {
+- (TokenSuccessHandler)retrievedTokenForUsername:(NSString *)username {
     return ^(RTOAuth2Token *token) {
         NSError *error;
         BOOL success = [self.dataManager rememberToken:token
@@ -70,7 +70,7 @@
     };
 }
 
-- (TokenFailureHandler)loginFailed {
+- (TokenFailureHandler)failedToRetrieveToken {
     return ^(NSError *error) {
         if (![error.domain isEqualToString:RTClientTokenErrorDomain]) {
             [self.presenter loginFailedWithError:error];
