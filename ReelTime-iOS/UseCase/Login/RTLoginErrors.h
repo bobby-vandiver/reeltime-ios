@@ -7,4 +7,7 @@ typedef NS_ENUM(NSInteger, RTLoginErrors) {
     MissingPassword,
     UnknownClient,
     InvalidCredentials,
+    UnableToStoreToken,
+    UnableToRemoveToken,
+    UnableToSetCurrentlyLoggedInUser
 };

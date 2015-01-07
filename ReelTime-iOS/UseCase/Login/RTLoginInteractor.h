@@ -6,14 +6,13 @@
 #import "RTCurrentUserStore.h"
 
 @class RTLoginPresenter;
+@class RTLoginDataManager;
 
 @interface RTLoginInteractor : NSObject
 
 - (instancetype)initWithPresenter:(RTLoginPresenter *)presenter
-                           client:(RTClient *)client
-           clientCredentialsStore:(RTClientCredentialsStore *)clientCredentialsStore
-                       tokenStore:(RTOAuth2TokenStore *)tokenStore
-                 currentUserStore:(RTCurrentUserStore *)currentUserStore;
+                      dataManager:(RTLoginDataManager *)dataManager
+                           client:(RTClient *)client;
 
 - (void)loginWithUsername:(NSString *)username
                  password:(NSString *)password;

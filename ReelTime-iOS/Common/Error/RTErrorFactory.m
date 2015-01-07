@@ -4,10 +4,16 @@
 @implementation RTErrorFactory
 
 + (NSError *)loginErrorWithCode:(RTLoginErrors)code {
+    return [self loginErrorWithCode:code
+                      originalError:nil];
+}
+
++ (NSError *)loginErrorWithCode:(RTLoginErrors)code
+                  originalError:(NSError *)error {
     return [NSError errorWithDomain:RTLoginErrorDomain
                                code:code
                            userInfo:nil
-                      originalError:nil];
+                      originalError:error];
 }
 
 + (NSError *)keyChainErrorWithCode:(RTKeyChainErrors)code

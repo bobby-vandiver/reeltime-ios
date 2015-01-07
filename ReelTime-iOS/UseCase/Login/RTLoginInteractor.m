@@ -1,5 +1,6 @@
 #import "RTLoginInteractor.h"
 #import "RTLoginPresenter.h"
+#import "RTLoginDataManager.h"
 
 #import "RTLoginErrors.h"
 #import "RTClientErrors.h"
@@ -9,34 +10,28 @@
 @interface RTLoginInteractor ()
 
 @property RTLoginPresenter *presenter;
+@property RTLoginDataManager *dataManager;
 @property RTClient *client;
-@property RTClientCredentialsStore *clientCredentialsStore;
-@property RTOAuth2TokenStore *tokenStore;
-@property RTCurrentUserStore *currentUserStore;
 
 @end
 
 @implementation RTLoginInteractor
 
 - (instancetype)initWithPresenter:(RTLoginPresenter *)presenter
-                           client:(RTClient *)client
-           clientCredentialsStore:(RTClientCredentialsStore *)clientCredentialsStore
-                       tokenStore:(RTOAuth2TokenStore *)tokenStore
-                 currentUserStore:(RTCurrentUserStore *)currentUserStore {
+                      dataManager:(RTLoginDataManager *)dataManager
+                           client:(RTClient *)client {
     self = [super init];
     if (self) {
         self.presenter = presenter;
+        self.dataManager = dataManager;
         self.client = client;
-        self.clientCredentialsStore = clientCredentialsStore;
-        self.tokenStore = tokenStore;
-        self.currentUserStore = currentUserStore;
     }
     return self;
 }
 
 - (void)loginWithUsername:(NSString *)username
                  password:(NSString *)password {
-    RTClientCredentials *clientCredentials = [self.clientCredentialsStore loadClientCredentialsForUsername:username];
+    RTClientCredentials *clientCredentials = [self.dataManager clientCredentialsForUsername:username];
 
     if (!clientCredentials) {
         [self loginFailedWithErrorCode:UnknownClient];
@@ -46,48 +41,50 @@
                                                                                 password:password];
         [self.client tokenWithClientCredentials:clientCredentials
                                 userCredentials:userCredentials
-                                        success:[self loginSuccededForUsername:username]
+                                        success:[self loginSucceededForUsername:username]
                                         failure:[self loginFailed]];
     }
 }
 
-- (TokenSuccessHandler)loginSuccededForUsername:(NSString *)username {
+- (TokenSuccessHandler)loginSucceededForUsername:(NSString *)username {
     return ^(RTOAuth2Token *token) {
-        NSError *tokenStoreError;
-        BOOL storeSucceded = [self.tokenStore storeToken:token
-                                             forUsername:username
-                                                   error:&tokenStoreError];
+        NSError *error;
+        BOOL success = [self.dataManager rememberToken:token
+                                           forUsername:username
+                                                 error:&error];
         
-        if (storeSucceded) {
-            NSError *currentUserError;
-            BOOL setCurrentUserSucceeded = [self.currentUserStore storeCurrentUsername:username
-                                                                                 error:&currentUserError];
+        if (success) {
+            success = [self.dataManager setCurrentlyLoggedInUsername:username error:&error];
 
-            if (setCurrentUserSucceeded) {
-                [self.presenter loginSucceeded];
-            }
-            else {
-                [self.tokenStore removeTokenForUsername:username error:&tokenStoreError];
-                [self.presenter loginFailedWithError:currentUserError];
+            if (!success) {
+                [self.dataManager forgetTokenForUsername:username error:&error];
             }
         }
+        
+        if (success) {
+            [self.presenter loginSucceeded];
+        }
         else {
-            [self.presenter loginFailedWithError:tokenStoreError];
+            [self.presenter loginFailedWithError:error];
         }
     };
 }
 
 - (TokenFailureHandler)loginFailed {
     return ^(NSError *error) {
-        NSInteger errorCode;
+        if (![error.domain isEqualToString:RTClientTokenErrorDomain]) {
+            [self.presenter loginFailedWithError:error];
+        }
         
+        NSInteger errorCode;
+
         if (error.code == InvalidClientCredentials) {
             errorCode = UnknownClient;
         }
         else if (error.code == InvalidUserCredentials) {
             errorCode = InvalidCredentials;
         }
-        
+
         [self loginFailedWithErrorCode:errorCode];
     };
 }
