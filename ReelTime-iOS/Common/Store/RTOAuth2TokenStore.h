@@ -14,4 +14,7 @@
        forUsername:(NSString *)username
              error:(NSError *__autoreleasing *)error;
 
+- (BOOL)removeTokenForUsername:(NSString *)username
+                         error:(NSError *__autoreleasing *)error;
+
 @end

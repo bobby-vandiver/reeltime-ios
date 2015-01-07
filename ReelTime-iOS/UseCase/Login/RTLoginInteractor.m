@@ -12,6 +12,7 @@
 @property RTClient *client;
 @property RTClientCredentialsStore *clientCredentialsStore;
 @property RTOAuth2TokenStore *tokenStore;
+@property RTCurrentUserStore *currentUserStore;
 
 @end
 
@@ -20,13 +21,15 @@
 - (instancetype)initWithPresenter:(RTLoginPresenter *)presenter
                            client:(RTClient *)client
            clientCredentialsStore:(RTClientCredentialsStore *)clientCredentialsStore
-                       tokenStore:(RTOAuth2TokenStore *)tokenStore {
+                       tokenStore:(RTOAuth2TokenStore *)tokenStore
+                 currentUserStore:(RTCurrentUserStore *)currentUserStore {
     self = [super init];
     if (self) {
         self.presenter = presenter;
         self.client = client;
         self.clientCredentialsStore = clientCredentialsStore;
         self.tokenStore = tokenStore;
+        self.currentUserStore = currentUserStore;
     }
     return self;
 }
@@ -56,7 +59,17 @@
                                                    error:&tokenStoreError];
         
         if (storeSucceded) {
-            [self.presenter loginSucceeded];
+            NSError *currentUserError;
+            BOOL setCurrentUserSucceeded = [self.currentUserStore storeCurrentUsername:username
+                                                                                 error:&currentUserError];
+
+            if (setCurrentUserSucceeded) {
+                [self.presenter loginSucceeded];
+            }
+            else {
+                [self.tokenStore removeTokenForUsername:username error:&tokenStoreError];
+                [self.presenter loginFailedWithError:currentUserError];
+            }
         }
         else {
             [self.presenter loginFailedWithError:tokenStoreError];

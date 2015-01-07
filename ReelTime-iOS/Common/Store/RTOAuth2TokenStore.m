@@ -30,6 +30,12 @@
                                      error:error];
 }
 
+- (BOOL)removeTokenForUsername:(NSString *)username
+                         error:(NSError *__autoreleasing *)error {
+    // TODO: Implement!
+    return YES;
+}
+
 - (NSString *)generateKeyForUsername:(NSString *)username {
     return [NSString stringWithFormat:@"%@-token", username];
 }

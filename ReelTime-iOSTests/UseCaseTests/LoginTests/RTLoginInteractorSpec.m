@@ -20,6 +20,8 @@ describe(@"login interactor", ^{
     __block RTOAuth2TokenStore *tokenStore;
     __block RTOAuth2Token *token;
     
+    __block RTCurrentUserStore *currentUserStore;
+    
     __block NSString *username = @"someone";
     __block NSString *password = @"secret";
     
@@ -38,13 +40,16 @@ describe(@"login interactor", ^{
         tokenStore = mock([RTOAuth2TokenStore class]);
         token = [[RTOAuth2Token alloc] init];
         
+        currentUserStore = mock([RTCurrentUserStore class]);
+        
         presenter = mock([RTLoginPresenter class]);
         client = [[RTFakeClient alloc] init];
         
         interactor = [[RTLoginInteractor alloc] initWithPresenter:presenter
                                                            client:client
                                            clientCredentialsStore:clientCredentialsStore
-                                                       tokenStore:tokenStore];
+                                                       tokenStore:tokenStore
+                                                 currentUserStore:currentUserStore];
     });
     
     context(@"client credentials found", ^{
@@ -66,12 +71,35 @@ describe(@"login interactor", ^{
                 [[verify(tokenStore) withMatcher:anything() forArgument:2] storeToken:token forUsername:username error:nil];
             });
 
-            it(@"should store token and notify presenter of successful login", ^{
-                [[given([tokenStore storeToken:token forUsername:username error:nil]) withMatcher:anything() forArgument:2]
-                    willReturnBool:YES];
-               
-                [interactor loginWithUsername:username password:password];
-                [verify(presenter) loginSucceeded];
+            context(@"token was stored successfully", ^{
+                beforeEach(^{
+                    [[given([tokenStore storeToken:token forUsername:username error:nil]) withMatcher:anything() forArgument:2]
+                     willReturnBool:YES];
+                });
+            
+                it(@"should set current username and notify presenter of successful login", ^{
+                    [[given([currentUserStore storeCurrentUsername:username error:nil]) withMatcher:anything() forArgument:1] willReturnBool:YES];
+                   
+                    [interactor loginWithUsername:username password:password];
+                    
+                    [[verify(currentUserStore) withMatcher:anything() forArgument:1]
+                        storeCurrentUsername:username error:nil];
+
+                    [verify(presenter) loginSucceeded];
+                });
+                
+                it(@"should remove token and notify presenter of failure to set current username", ^{
+                    [[given([currentUserStore storeCurrentUsername:username error:nil]) withMatcher:anything() forArgument:1] willReturnBool:NO];
+
+                    [interactor loginWithUsername:username password:password];
+                    
+                    [[verify(currentUserStore) withMatcher:anything() forArgument:1]
+                     storeCurrentUsername:username error:nil];
+
+                    [[verify(tokenStore) withMatcher:anything() forArgument:1] removeTokenForUsername:username error:nil];
+                   
+                    [[verify(presenter) withMatcher:anything() forArgument:1] loginFailedWithError:nil];
+                });
             });
             
             it(@"should notify presenter of token storage error", ^{
