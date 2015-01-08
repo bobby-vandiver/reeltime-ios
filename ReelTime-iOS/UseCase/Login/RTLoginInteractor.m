@@ -13,20 +13,17 @@
 
 @property RTLoginPresenter *presenter;
 @property RTLoginDataManager *dataManager;
-@property RTClient *client;
 
 @end
 
 @implementation RTLoginInteractor
 
 - (instancetype)initWithPresenter:(RTLoginPresenter *)presenter
-                      dataManager:(RTLoginDataManager *)dataManager
-                           client:(RTClient *)client {
+                      dataManager:(RTLoginDataManager *)dataManager {
     self = [super init];
     if (self) {
         self.presenter = presenter;
         self.dataManager = dataManager;
-        self.client = client;
     }
     return self;
 }
