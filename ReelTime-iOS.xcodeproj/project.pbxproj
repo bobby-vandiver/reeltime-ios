@@ -66,6 +66,7 @@
 		46C1E9F0B7F6473BE4077A89 /* Pods-ReelTime-iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelTime-iOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReelTime-iOSTests/Pods-ReelTime-iOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		7102A7B31A57AB0A00DEDA83 /* RTKeyChainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTKeyChainWrapper.h; sourceTree = "<group>"; };
 		7102A7B41A57AB0A00DEDA83 /* RTKeyChainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTKeyChainWrapper.m; sourceTree = "<group>"; };
+		7119C8A91A5E1F6700C5EA16 /* RTLoginInteractor+RTLoginDataManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RTLoginInteractor+RTLoginDataManagerDelegate.h"; sourceTree = "<group>"; };
 		713BCE031A5908E4000F2D96 /* RTOAuth2TokenStoreSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTOAuth2TokenStoreSpec.m; sourceTree = "<group>"; };
 		713BCE051A5909DA000F2D96 /* RTFakeKeyChainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTFakeKeyChainWrapper.h; sourceTree = "<group>"; };
 		713BCE061A5909DA000F2D96 /* RTFakeKeyChainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTFakeKeyChainWrapper.m; sourceTree = "<group>"; };
@@ -384,16 +385,17 @@
 		71D9478B1A4FC70B00401963 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				7190DABB1A5CDDFB00BDCE4C /* RTLoginDataManager.h */,
+				7190DABC1A5CDDFB00BDCE4C /* RTLoginDataManager.m */,
 				713D7A411A508BA800754A06 /* RTLoginErrors.h */,
 				71D9478D1A4FC81A00401963 /* RTLoginInteractor.h */,
 				71D9478E1A4FC81A00401963 /* RTLoginInteractor.m */,
-				71D947911A4FC88300401963 /* RTLoginView.h */,
 				71D947921A4FC96800401963 /* RTLoginPresenter.h */,
 				71D947931A4FC96800401963 /* RTLoginPresenter.m */,
+				71D947911A4FC88300401963 /* RTLoginView.h */,
 				717D92711A5B8ABB00EAB6BF /* RTLoginWireframe.h */,
 				717D92721A5B8ABB00EAB6BF /* RTLoginWireframe.m */,
-				7190DABB1A5CDDFB00BDCE4C /* RTLoginDataManager.h */,
-				7190DABC1A5CDDFB00BDCE4C /* RTLoginDataManager.m */,
+				7119C8A91A5E1F6700C5EA16 /* RTLoginInteractor+RTLoginDataManagerDelegate.h */,
 			);
 			path = Login;
 			sourceTree = "<group>";

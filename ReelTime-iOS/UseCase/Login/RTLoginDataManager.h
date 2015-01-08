@@ -1,25 +1,27 @@
 #import <Foundation/Foundation.h>
 
+#import "RTClient.h"
 #import "RTClientCredentialsStore.h"
 #import "RTOAuth2TokenStore.h"
 #import "RTCurrentUserStore.h"
 
+@class RTLoginInteractor;
+
 @interface RTLoginDataManager : NSObject
 
-- (instancetype)initWithClientCredentialsStore:(RTClientCredentialsStore *)clientCredentialsStore
-                                    tokenStore:(RTOAuth2TokenStore *)tokenStore
-                              currentUserStore:(RTCurrentUserStore *)currentUserStore;
+- (instancetype)initWithInteractor:(RTLoginInteractor *)interactor
+                            client:(RTClient *)client
+            clientCredentialsStore:(RTClientCredentialsStore *)clientCredentialsStore
+                        tokenStore:(RTOAuth2TokenStore *)tokenStore
+                  currentUserStore:(RTCurrentUserStore *)currentUserStore;
 
 - (RTClientCredentials *)clientCredentialsForUsername:(NSString *)username;
 
-- (BOOL)rememberToken:(RTOAuth2Token *)token
-          forUsername:(NSString *)username
-                error:(NSError *__autoreleasing *)error;
+- (void)fetchTokenWithClientCredentials:(RTClientCredentials *)clientCredentials
+                        userCredentials:(RTUserCredentials *)userCredentials
+                               callback:(void (^)(RTOAuth2Token *token, NSString *username))callback;
 
-- (BOOL)forgetTokenForUsername:(NSString *)username
-                         error:(NSError *__autoreleasing *)error;
-
-- (BOOL)setCurrentlyLoggedInUsername:(NSString *)username
-                               error:(NSError *__autoreleasing *)error;
+- (void)setLoggedInUserWithToken:(RTOAuth2Token *)token
+                        username:(NSString *)username;
 
 @end

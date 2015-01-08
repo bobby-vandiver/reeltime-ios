@@ -1,4 +1,6 @@
 #import "RTLoginInteractor.h"
+#import "RTLoginInteractor+RTLoginDataManagerDelegate.h"
+
 #import "RTLoginPresenter.h"
 #import "RTLoginDataManager.h"
 
@@ -39,54 +41,36 @@
     else {
         RTUserCredentials *userCredentials = [[RTUserCredentials alloc] initWithUsername:username
                                                                                 password:password];
-        [self.client tokenWithClientCredentials:clientCredentials
-                                userCredentials:userCredentials
-                                        success:[self retrievedTokenForUsername:username]
-                                        failure:[self failedToRetrieveToken]];
+
+        id callback = ^(RTOAuth2Token *token, NSString *username) {
+            [self.dataManager setLoggedInUserWithToken:token username:username];
+        };
+        
+        [self.dataManager fetchTokenWithClientCredentials:clientCredentials
+                                          userCredentials:userCredentials
+                                                 callback:callback];
     }
 }
 
-- (TokenSuccessHandler)retrievedTokenForUsername:(NSString *)username {
-    return ^(RTOAuth2Token *token) {
-        NSError *error;
-        BOOL success = [self.dataManager rememberToken:token
-                                           forUsername:username
-                                                 error:&error];
-        
-        if (success) {
-            success = [self.dataManager setCurrentlyLoggedInUsername:username error:&error];
-
-            if (!success) {
-                [self.dataManager forgetTokenForUsername:username error:&error];
-            }
-        }
-        
-        if (success) {
-            [self.presenter loginSucceeded];
-        }
-        else {
-            [self.presenter loginFailedWithError:error];
-        }
-    };
+- (void)didSetLoggedInUser {
+    [self.presenter loginSucceeded];
 }
 
-- (TokenFailureHandler)failedToRetrieveToken {
-    return ^(NSError *error) {
-        if (![error.domain isEqualToString:RTClientTokenErrorDomain]) {
-            [self.presenter loginFailedWithError:error];
-        }
-        
-        NSInteger errorCode;
-
-        if (error.code == InvalidClientCredentials) {
-            errorCode = UnknownClient;
-        }
-        else if (error.code == InvalidUserCredentials) {
-            errorCode = InvalidCredentials;
-        }
-
-        [self loginFailedWithErrorCode:errorCode];
-    };
+- (void)loginDataOperationFailedWithError:(NSError *)error {
+    if (![error.domain isEqualToString:RTClientTokenErrorDomain]) {
+        [self.presenter loginFailedWithError:error];
+    }
+    
+    NSInteger errorCode;
+    
+    if (error.code == InvalidClientCredentials) {
+        errorCode = UnknownClient;
+    }
+    else if (error.code == InvalidUserCredentials) {
+        errorCode = InvalidCredentials;
+    }
+    
+    [self loginFailedWithErrorCode:errorCode];
 }
 
 - (void)loginFailedWithErrorCode:(RTLoginErrors)code {
