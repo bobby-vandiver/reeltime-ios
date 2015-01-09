@@ -56,6 +56,7 @@
 - (void)loginDataOperationFailedWithError:(NSError *)error {
     if (![error.domain isEqualToString:RTClientTokenErrorDomain]) {
         [self.presenter loginFailedWithError:error];
+        return;
     }
     
     NSInteger errorCode;
