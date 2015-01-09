@@ -113,6 +113,37 @@ describe(@"login data manager", ^{
             [verify(interactor) loginDataOperationFailedWithError:error];
         });
     });
+    
+    describe(@"setting logged in user", ^{
+        context(@"token successfully saved", ^{
+            __block RTOAuth2Token *token;
+            
+            beforeEach(^{
+                token = [[RTOAuth2Token alloc] init];
+
+                [[given([tokenStore storeToken:token forUsername:username error:nil])
+                  withMatcher:anything() forArgument:2]
+                 willReturnBool:YES];
+            });
+            
+            afterEach(^{
+                [[verify(tokenStore) withMatcher:anything() forArgument:2]
+                 storeToken:token forUsername:username error:nil];
+            });
+
+            it(@"should set the current username and notify interactor on success", ^{
+                [[given([currentUserStore storeCurrentUsername:username error:nil])
+                  withMatcher:anything() forArgument:1]
+                 willReturnBool:YES];
+                
+                [dataManager setLoggedInUserWithToken:token username:username];
+                [verify(interactor) didSetLoggedInUser];
+                
+                [[verify(currentUserStore) withMatcher:anything() forArgument:1]
+                 storeCurrentUsername:username error:nil];
+            });
+        });
+    });
 });
 
 SpecEnd
