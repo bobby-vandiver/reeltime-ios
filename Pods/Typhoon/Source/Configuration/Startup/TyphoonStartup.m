@@ -1,7 +1,13 @@
+////////////////////////////////////////////////////////////////////////////////
 //
-// Created by Aleksey Garbarev on 05.06.14.
-// Copyright (c) 2014 typhoonframework.org. All rights reserved.
+//  TYPHOON FRAMEWORK
+//  Copyright 2013, Typhoon Framework Contributors
+//  All Rights Reserved.
 //
+//  NOTICE: The authors permit you to use, modify, and distribute this file
+//  in accordance with the terms of the license agreement accompanying it.
+//
+////////////////////////////////////////////////////////////////////////////////
 
 #import "TyphoonStartup.h"
 #import "TyphoonComponentFactory.h"
@@ -18,6 +24,7 @@
 #endif
 
 #if TARGET_OS_IPHONE
+#import <UIKit/UIKit.h>
 #define ApplicationDidFinishLaunchingNotification UIApplicationDidFinishLaunchingNotification
 #elif TARGET_OS_MAC
 #define ApplicationDidFinishLaunchingNotification NSApplicationDidFinishLaunchingNotification
@@ -122,6 +129,7 @@ static TyphoonComponentFactory *initialFactory;
         }
         if (initialFactory) {
             [self injectInitialFactoryIntoDelegate:delegate];
+            [TyphoonComponentFactory setFactoryForResolvingFromXibs:initialFactory];
         }
 
         originalImp(instance, sel, delegate);

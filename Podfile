@@ -22,4 +22,7 @@ target 'ReelTime-iOSTests' do
     pod 'Specta', :git => 'https://github.com/specta/specta.git', :tag => 'v0.3.0.beta1'
     pod 'Expecta', '~> 0.3.1'
     pod 'OCMockito', '~> 1.3.1'
+
+    # Nocilla has a few conversion warnings
+    pod 'Nocilla', '~> 0.9.0', :inhibit_warnings => true
 end
