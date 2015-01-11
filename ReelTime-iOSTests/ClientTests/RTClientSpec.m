@@ -31,18 +31,21 @@ describe(@"ReelTime Client", ^{
     afterEach(^{
         [[LSNocilla sharedInstance] clearStubs];
     });
+
+    NSRegularExpression *(^createUrlRegexForEndpoint)(NSString *) = ^(NSString *endpoint) {
+        return [NSString stringWithFormat:@"http://(.*?)/%@", endpoint].regex;
+    };
+    
+    NSString *(^pathForRawResponseFile)(NSString *) = ^(NSString *filename) {
+        NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+        return [bundle pathForResource:filename ofType:@"txt"];
+    };
     
     describe(@"requesting a token", ^{
-        __block NSRegularExpression *tokenUrlRegex;
-        
-        beforeEach(^{
-            NSString *url = [NSString stringWithFormat:@"http://(.*?)/%@", API_TOKEN_ENDPOINT];
-            tokenUrlRegex = url.regex;
-        });
+        __block NSRegularExpression *tokenUrlRegex = createUrlRegexForEndpoint(API_TOKEN_ENDPOINT);
         
         it(@"bad client credentials", ^{
-            NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-            NSString *path = [bundle pathForResource:@"bad-client-credentials" ofType:@"txt"];
+            NSString *path = pathForRawResponseFile(@"bad-client-credentials");
             
             stubRequest(@"POST", tokenUrlRegex).
             andReturnRawResponse([NSData dataWithContentsOfFile:path]);
