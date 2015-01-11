@@ -30,6 +30,15 @@
 
 - (void)loginWithUsername:(NSString *)username
                  password:(NSString *)password {
+    if ([username length] == 0) {
+        [self loginFailedWithErrorCode:MissingUsername];
+        return;
+    }
+    else if ([password length] == 0) {
+        [self loginFailedWithErrorCode:MissingPassword];
+        return;
+    }
+   
     RTClientCredentials *clientCredentials = [self.dataManager clientCredentialsForUsername:username];
 
     if (!clientCredentials) {

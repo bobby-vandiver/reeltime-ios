@@ -28,28 +28,7 @@
 
 - (void)requestedLoginWithUsername:(NSString *)username
                            password:(NSString *)password {
-    NSError *error;
-    BOOL credentialsAreValid = [self validUsername:username
-                                             password:password
-                                                error:&error];
-    if (!credentialsAreValid) {
-        [self loginFailedWithError:error];
-    }
-    else {
-        [self.interactor loginWithUsername:username password:password];
-    }
-}
-
-- (BOOL)validUsername:(NSString *)username
-                password:(NSString *)password
-                   error:(NSError **)error {
-    if ([username length] == 0) {
-        *error = [RTErrorFactory loginErrorWithCode:MissingUsername];
-    }
-    else if ([password length] == 0) {
-        *error = [RTErrorFactory loginErrorWithCode:MissingPassword];
-    }
-    return *error ? NO : YES;
+    [self.interactor loginWithUsername:username password:password];
 }
 
 - (void)loginSucceeded {

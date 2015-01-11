@@ -34,16 +34,6 @@ describe(@"login presenter", ^{
     });
     
     describe(@"when login is requested", ^{
-        it(@"should fail when username is missing", ^{
-            [presenter requestedLoginWithUsername:@"" password:password];
-            [verify(view) showErrorMessage:@"Username is required"];
-        });
-        
-        it(@"should fail when password is missing", ^{
-            [presenter requestedLoginWithUsername:username password:@""];
-            [verify(view) showErrorMessage:@"Password is required"];
-        });
-        
         it(@"should pass credentials to interactor", ^{
             [presenter requestedLoginWithUsername:username password:password];
             [verify(interactor) loginWithUsername:username password:password];
@@ -60,9 +50,23 @@ describe(@"login presenter", ^{
             [verify(view) showErrorMessage:@"An unknown error occurred"];
         });
         
+        it(@"should report missing username", ^{
+            NSError *error = [RTErrorFactory loginErrorWithCode:MissingUsername];
+            
+            [presenter loginFailedWithError:error];
+            [verify(view) showErrorMessage:@"Username is required"];
+        });
+        
+        it(@"should report missing password", ^{
+            NSError *error = [RTErrorFactory loginErrorWithCode:MissingPassword];
+            
+            [presenter loginFailedWithError:error];
+            [verify(view) showErrorMessage:@"Password is required"];
+        });
+        
         it(@"should not indicate source of failure for invalid credentials", ^{
             NSError *error = [RTErrorFactory loginErrorWithCode:InvalidCredentials];
-
+            
             [presenter loginFailedWithError:error];
             [verify(view) showErrorMessage:@"Invalid username or password"];
         });

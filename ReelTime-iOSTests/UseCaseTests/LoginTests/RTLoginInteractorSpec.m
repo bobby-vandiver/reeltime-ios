@@ -46,6 +46,18 @@ describe(@"login interactor", ^{
     
     describe(@"login requested", ^{
 
+        context(@"missing parameters", ^{
+            it(@"should fail when username is missing", ^{
+                [interactor loginWithUsername:@"" password:password];
+                expectLoginFailureError(MissingUsername);
+            });
+            
+            it(@"should fail when password is missing", ^{
+                [interactor loginWithUsername:username password:@""];
+                expectLoginFailureError(MissingPassword);
+            });
+        });
+
         context(@"client credentials found", ^{
             beforeEach(^{
                 [given([dataManager clientCredentialsForUsername:username]) willReturn:clientCredentials];
