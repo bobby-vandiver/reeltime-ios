@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5230CA4B4A7751AD6141FA30 /* libPods-ReelTime-iOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41201C1DC28A47F09019E4F1 /* libPods-ReelTime-iOSTests.a */; };
 		7102A7B51A57AB0A00DEDA83 /* RTKeyChainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7102A7B41A57AB0A00DEDA83 /* RTKeyChainWrapper.m */; };
+		711F336E1A6234C800D8D843 /* bad-client-credentials.txt in Resources */ = {isa = PBXBuildFile; fileRef = 711F336D1A6234C800D8D843 /* bad-client-credentials.txt */; };
 		713BCE041A5908E4000F2D96 /* RTOAuth2TokenStoreSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 713BCE031A5908E4000F2D96 /* RTOAuth2TokenStoreSpec.m */; };
 		713BCE071A5909DA000F2D96 /* RTFakeKeyChainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 713BCE061A5909DA000F2D96 /* RTFakeKeyChainWrapper.m */; };
 		713D7A451A509AC000754A06 /* RTClientCredentialsStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 713D7A441A509AC000754A06 /* RTClientCredentialsStore.m */; };
@@ -68,6 +69,7 @@
 		7102A7B31A57AB0A00DEDA83 /* RTKeyChainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTKeyChainWrapper.h; sourceTree = "<group>"; };
 		7102A7B41A57AB0A00DEDA83 /* RTKeyChainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTKeyChainWrapper.m; sourceTree = "<group>"; };
 		7119C8A91A5E1F6700C5EA16 /* RTLoginInteractor+RTLoginDataManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RTLoginInteractor+RTLoginDataManagerDelegate.h"; sourceTree = "<group>"; };
+		711F336D1A6234C800D8D843 /* bad-client-credentials.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "bad-client-credentials.txt"; sourceTree = "<group>"; };
 		713BCE031A5908E4000F2D96 /* RTOAuth2TokenStoreSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTOAuth2TokenStoreSpec.m; sourceTree = "<group>"; };
 		713BCE051A5909DA000F2D96 /* RTFakeKeyChainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTFakeKeyChainWrapper.h; sourceTree = "<group>"; };
 		713BCE061A5909DA000F2D96 /* RTFakeKeyChainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTFakeKeyChainWrapper.m; sourceTree = "<group>"; };
@@ -178,6 +180,22 @@
 			path = Security;
 			sourceTree = "<group>";
 		};
+		711F336B1A6234AE00D8D843 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				711F336C1A6234AE00D8D843 /* Server JSON Responses */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		711F336C1A6234AE00D8D843 /* Server JSON Responses */ = {
+			isa = PBXGroup;
+			children = (
+				711F336D1A6234C800D8D843 /* bad-client-credentials.txt */,
+			);
+			path = "Server JSON Responses";
+			sourceTree = "<group>";
+		};
 		713D7A491A50A24E00754A06 /* Client */ = {
 			isa = PBXGroup;
 			children = (
@@ -270,6 +288,7 @@
 		718A0BF81A4DA87900137C49 /* ReelTime-iOSTests */ = {
 			isa = PBXGroup;
 			children = (
+				711F336B1A6234AE00D8D843 /* Resources */,
 				71921C001A54CCBE0003A42F /* EXPMatchers+beError.h */,
 				716A9BC41A4F5385005D33F9 /* RTTestCommon.h */,
 				71921C011A54CCBE0003A42F /* EXPMatchers+beError.m */,
@@ -538,6 +557,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				711F336E1A6234C800D8D843 /* bad-client-credentials.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

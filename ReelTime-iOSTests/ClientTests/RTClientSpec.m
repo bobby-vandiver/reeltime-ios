@@ -33,7 +33,20 @@ describe(@"ReelTime Client", ^{
     });
     
     describe(@"requesting a token", ^{
-        it(@"bad credentials", ^{
+        __block NSRegularExpression *tokenUrlRegex;
+        
+        beforeEach(^{
+            NSString *url = [NSString stringWithFormat:@"http://(.*?)/%@", API_TOKEN_ENDPOINT];
+            tokenUrlRegex = url.regex;
+        });
+        
+        it(@"bad client credentials", ^{
+            NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+            NSString *path = [bundle pathForResource:@"bad-client-credentials" ofType:@"txt"];
+            
+            stubRequest(@"POST", tokenUrlRegex).
+            andReturnRawResponse([NSData dataWithContentsOfFile:path]);
+            
             RTClientCredentials *clientCredentials = [[RTClientCredentials alloc] initWithClientId:@"foo"
                                                                                     clientSecret:@"bar"];
 
