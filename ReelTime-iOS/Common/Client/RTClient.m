@@ -6,6 +6,8 @@
 #import "RTOAuth2TokenError.h"
 #import "RTOAuth2TokenError+RTClientTokenErrorConverter.h"
 
+static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read reels-write users-read users-write videos-read videos-write";
+
 @interface RTClient ()
 
 @property RKObjectManager *objectManager;
@@ -32,7 +34,7 @@
         @"password":        userCredentials.password,
         @"client_id":       clientCredentials.clientId,
         @"client_secret":   clientCredentials.clientSecret,
-        @"scope":           @"TODO"
+        @"scope":           ALL_SCOPES
     };
     
     id successCallback = ^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
