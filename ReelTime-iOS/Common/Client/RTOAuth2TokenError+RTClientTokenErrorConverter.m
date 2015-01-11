@@ -11,6 +11,9 @@
     if ([errorCode isEqualToString:@"invalid_client"]) {
         clientTokenErrorsCode = InvalidClientCredentials;
     }
+    else if ([errorCode isEqualToString:@"invalid_grant"]) {
+        clientTokenErrorsCode = InvalidUserCredentials;
+    }
     
     return [RTErrorFactory clientTokenErrorWithCode:clientTokenErrorsCode];
 }

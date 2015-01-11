@@ -1,0 +1,7 @@
+HTTP/1.1 201 Created
+Server: Apache-Coyote/1.1
+Content-Type: application/json;charset=UTF-8
+Transfer-Encoding: chunked
+Date: Sun, 11 Jan 2015 15:05:38 GMT
+
+{"client_id":"5bdee758-cf71-4cd5-9bd9-aded45ce9964","client_secret":"g70mC9ZbpKa6p6R1tJPVWTm55BWHnSkmCv27F=oSI6"}

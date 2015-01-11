@@ -1,0 +1,9 @@
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+Cache-Control: no-store
+Pragma: no-cache
+Content-Type: application/json;charset=UTF-8
+Transfer-Encoding: chunked
+Date: Sun, 11 Jan 2015 15:11:31 GMT
+
+{"access_token":"940a0300-ddd7-4302-873c-815a2a6b87ac","token_type":"bearer","refresh_token":"cb9f2c52-3e74-4bd7-9327-ba29bd31cb13","expires_in":43163,"scope":"reels-read audiences-read videos-write users-write videos-read audiences-write users-read reels-write"}

@@ -9,6 +9,8 @@
 #import <Typhoon/Typhoon.h>
 #import <Nocilla/Nocilla.h>
 
+static NSString *const POST = @"POST";
+
 SpecBegin(RTClient)
 
 describe(@"ReelTime Client", ^{
@@ -36,26 +38,31 @@ describe(@"ReelTime Client", ^{
         return [NSString stringWithFormat:@"http://(.*?)/%@", endpoint].regex;
     };
     
-    NSString *(^pathForRawResponseFile)(NSString *) = ^(NSString *filename) {
+    NSData *(^rawResponseFromFile)(NSString *) = ^(NSString *filename) {
         NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-        return [bundle pathForResource:filename ofType:@"txt"];
+        NSString *path = [bundle pathForResource:filename ofType:@"txt"];
+        return [NSData dataWithContentsOfFile:path];
     };
     
     describe(@"requesting a token", ^{
         __block NSRegularExpression *tokenUrlRegex = createUrlRegexForEndpoint(API_TOKEN_ENDPOINT);
         
-        it(@"bad client credentials", ^{
-            NSString *path = pathForRawResponseFile(@"bad-client-credentials");
+        __block RTClientCredentials *clientCredentials;
+        __block RTUserCredentials *userCredentials;
+        
+        
+        beforeEach(^{
+            clientCredentials = [[RTClientCredentials alloc] initWithClientId:@"foo"
+                                                                 clientSecret:@"bar"];
             
-            stubRequest(@"POST", tokenUrlRegex).
-            andReturnRawResponse([NSData dataWithContentsOfFile:path]);
+            userCredentials = [[RTUserCredentials alloc] initWithUsername:@"buzz"
+                                                                 password:@"bazz"];
+        });
+        
+        it(@"should fail for bad client credentials", ^{
+            stubRequest(POST, tokenUrlRegex).
+            andReturnRawResponse(rawResponseFromFile(@"bad-client-credentials"));
             
-            RTClientCredentials *clientCredentials = [[RTClientCredentials alloc] initWithClientId:@"foo"
-                                                                                    clientSecret:@"bar"];
-
-            RTUserCredentials *userCredentials = [[RTUserCredentials alloc] initWithUsername:@"buzz"
-                                                                                    password:@"bazz"];
-
             waitUntil(^(DoneCallback done) {
                 [client tokenWithClientCredentials:clientCredentials
                                    userCredentials:userCredentials
@@ -68,7 +75,42 @@ describe(@"ReelTime Client", ^{
                                                done();
                                            }];
             });
-            
+        });
+        
+        it(@"should fail for bad user credentials", ^{
+            stubRequest(POST, tokenUrlRegex).
+            andReturnRawResponse(rawResponseFromFile(@"bad-user-credentials"));
+
+            waitUntil(^(DoneCallback done) {
+                [client tokenWithClientCredentials:clientCredentials
+                                   userCredentials:userCredentials
+                                           success:^(RTOAuth2Token *token) {
+                                               fail();
+                                               done();
+                                           }
+                                           failure:^(NSError *error) {
+                                               expect(error).to.beError(RTClientTokenErrorDomain, InvalidUserCredentials);
+                                               done();
+                                           }];
+            });
+        });
+        
+        it(@"should pass token to callback when successful", ^{
+            stubRequest(POST, tokenUrlRegex).
+            andReturnRawResponse(rawResponseFromFile(@"successful-token-request"));
+
+            waitUntil(^(DoneCallback done) {
+                [client tokenWithClientCredentials:clientCredentials
+                                   userCredentials:userCredentials
+                                           success:^(RTOAuth2Token *token) {
+                                               expect(token.accessToken).to.equal(@"940a0300-ddd7-4302-873c-815a2a6b87ac");
+                                               done();
+                                           }
+                                           failure:^(NSError *error) {
+                                               fail();
+                                               done();
+                                           }];
+            });
         });
     });
 });
