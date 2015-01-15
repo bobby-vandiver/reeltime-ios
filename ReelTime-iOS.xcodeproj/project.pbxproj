@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		5230CA4B4A7751AD6141FA30 /* libPods-ReelTime-iOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41201C1DC28A47F09019E4F1 /* libPods-ReelTime-iOSTests.a */; };
 		7102A7B51A57AB0A00DEDA83 /* RTKeyChainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7102A7B41A57AB0A00DEDA83 /* RTKeyChainWrapper.m */; };
+		7130FD8C1A67593D00AE2ACD /* boxxy.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7130FD891A67593D00AE2ACD /* boxxy.jpg */; };
+		7130FD8D1A67593D00AE2ACD /* maddox.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7130FD8A1A67593D00AE2ACD /* maddox.jpg */; };
+		7130FD8E1A67593D00AE2ACD /* boogie2988-rage.png in Resources */ = {isa = PBXBuildFile; fileRef = 7130FD8B1A67593D00AE2ACD /* boogie2988-rage.png */; };
 		713BCE041A5908E4000F2D96 /* RTOAuth2TokenStoreSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 713BCE031A5908E4000F2D96 /* RTOAuth2TokenStoreSpec.m */; };
 		713BCE071A5909DA000F2D96 /* RTFakeKeyChainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 713BCE061A5909DA000F2D96 /* RTFakeKeyChainWrapper.m */; };
 		713D7A451A509AC000754A06 /* RTClientCredentialsStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 713D7A441A509AC000754A06 /* RTClientCredentialsStore.m */; };
@@ -71,6 +74,9 @@
 		7102A7B31A57AB0A00DEDA83 /* RTKeyChainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTKeyChainWrapper.h; sourceTree = "<group>"; };
 		7102A7B41A57AB0A00DEDA83 /* RTKeyChainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTKeyChainWrapper.m; sourceTree = "<group>"; };
 		7119C8A91A5E1F6700C5EA16 /* RTLoginInteractor+RTLoginDataManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RTLoginInteractor+RTLoginDataManagerDelegate.h"; sourceTree = "<group>"; };
+		7130FD891A67593D00AE2ACD /* boxxy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = boxxy.jpg; sourceTree = "<group>"; };
+		7130FD8A1A67593D00AE2ACD /* maddox.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = maddox.jpg; sourceTree = "<group>"; };
+		7130FD8B1A67593D00AE2ACD /* boogie2988-rage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boogie2988-rage.png"; sourceTree = "<group>"; };
 		713BCE031A5908E4000F2D96 /* RTOAuth2TokenStoreSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTOAuth2TokenStoreSpec.m; sourceTree = "<group>"; };
 		713BCE051A5909DA000F2D96 /* RTFakeKeyChainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTFakeKeyChainWrapper.h; sourceTree = "<group>"; };
 		713BCE061A5909DA000F2D96 /* RTFakeKeyChainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTFakeKeyChainWrapper.m; sourceTree = "<group>"; };
@@ -201,6 +207,24 @@
 			path = "Server JSON Responses";
 			sourceTree = "<group>";
 		};
+		7130FD871A67591200AE2ACD /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				7130FD881A67592400AE2ACD /* Placeholders */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		7130FD881A67592400AE2ACD /* Placeholders */ = {
+			isa = PBXGroup;
+			children = (
+				7130FD891A67593D00AE2ACD /* boxxy.jpg */,
+				7130FD8A1A67593D00AE2ACD /* maddox.jpg */,
+				7130FD8B1A67593D00AE2ACD /* boogie2988-rage.png */,
+			);
+			path = Placeholders;
+			sourceTree = "<group>";
+		};
 		713D7A491A50A24E00754A06 /* Client */ = {
 			isa = PBXGroup;
 			children = (
@@ -284,6 +308,7 @@
 		718A0BDE1A4DA87900137C49 /* ReelTime-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				7130FD871A67591200AE2ACD /* Assets */,
 				71D9478A1A4FC6FD00401963 /* UseCase */,
 				71D9477E1A4FB37E00401963 /* Common */,
 				718A0BE31A4DA87900137C49 /* RTAppDelegate.h */,
@@ -569,8 +594,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7130FD8E1A67593D00AE2ACD /* boogie2988-rage.png in Resources */,
 				718A0BEB1A4DA87900137C49 /* Main.storyboard in Resources */,
+				7130FD8D1A67593D00AE2ACD /* maddox.jpg in Resources */,
 				718A0BF01A4DA87900137C49 /* LaunchScreen.xib in Resources */,
+				7130FD8C1A67593D00AE2ACD /* boxxy.jpg in Resources */,
 				718A0BED1A4DA87900137C49 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

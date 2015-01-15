@@ -19,15 +19,63 @@
                         <subviews>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uJL-Fd-vtF" userLabel="Top Background">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
-                                <color key="backgroundColor" red="0.49803921580314636" green="0.49803921580314636" blue="0.49803921580314636" alpha="1" colorSpace="calibratedRGB"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ReelTime" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZOu-R6-b6y">
+                                        <rect key="frame" x="235" y="81" width="131" height="39"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                        <color key="textColor" red="0.86274509803921573" green="0.88235294117647056" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Register to tell your video blog story to your audience" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eNn-CW-DK6">
+                                        <rect key="frame" x="139" y="140" width="323" height="16"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" red="0.86274509803921573" green="0.88235294117647056" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.17254901960784313" green="0.17254901960784313" blue="0.17254901960784313" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstItem="eNn-CW-DK6" firstAttribute="centerX" secondItem="ZOu-R6-b6y" secondAttribute="centerX" id="1eu-Zp-au4"/>
+                                    <constraint firstAttribute="centerY" secondItem="ZOu-R6-b6y" secondAttribute="centerY" id="REf-aq-FK6"/>
+                                    <constraint firstAttribute="centerX" secondItem="ZOu-R6-b6y" secondAttribute="centerX" id="a09-3N-KQg"/>
+                                    <constraint firstAttribute="centerX" secondItem="eNn-CW-DK6" secondAttribute="centerX" id="gxF-bu-bef"/>
+                                    <constraint firstItem="eNn-CW-DK6" firstAttribute="top" secondItem="ZOu-R6-b6y" secondAttribute="bottom" constant="20" id="p8L-1m-JEA"/>
+                                </constraints>
                             </view>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xxs-aK-Qr3" userLabel="Middle Background">
                                 <rect key="frame" x="0.0" y="200" width="600" height="200"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="boogie2988-rage.png" translatesAutoresizingMaskIntoConstraints="NO" id="GvC-d4-XbO" userLabel="Left Thumbnail">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="boxxy.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="O2g-9P-M7Z" userLabel="Center Thumbnail">
+                                        <rect key="frame" x="200" y="0.0" width="200" height="200"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="maddox.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="tXQ-bP-nyI" userLabel="Right Thumbnail">
+                                        <rect key="frame" x="400" y="0.0" width="200" height="200"/>
+                                    </imageView>
+                                </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.25098040699958801" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="tXQ-bP-nyI" firstAttribute="leading" secondItem="O2g-9P-M7Z" secondAttribute="trailing" id="1uV-6R-gx8"/>
+                                    <constraint firstAttribute="bottom" secondItem="tXQ-bP-nyI" secondAttribute="bottom" id="2kd-Ug-R2N"/>
+                                    <constraint firstItem="O2g-9P-M7Z" firstAttribute="top" secondItem="Xxs-aK-Qr3" secondAttribute="top" id="7uQ-Kw-fef"/>
+                                    <constraint firstItem="tXQ-bP-nyI" firstAttribute="width" secondItem="O2g-9P-M7Z" secondAttribute="width" id="Ba9-Km-yM4"/>
+                                    <constraint firstItem="tXQ-bP-nyI" firstAttribute="top" secondItem="Xxs-aK-Qr3" secondAttribute="top" id="JVm-OM-dBO"/>
+                                    <constraint firstAttribute="bottom" secondItem="O2g-9P-M7Z" secondAttribute="bottom" id="Kct-bB-xsx"/>
+                                    <constraint firstItem="O2g-9P-M7Z" firstAttribute="leading" secondItem="GvC-d4-XbO" secondAttribute="trailing" id="KgR-iS-UXx"/>
+                                    <constraint firstAttribute="centerX" secondItem="O2g-9P-M7Z" secondAttribute="centerX" id="Nts-Ke-NJt"/>
+                                    <constraint firstAttribute="centerY" secondItem="GvC-d4-XbO" secondAttribute="centerY" id="Pao-Ut-WAq"/>
+                                    <constraint firstItem="GvC-d4-XbO" firstAttribute="leading" secondItem="Xxs-aK-Qr3" secondAttribute="leading" id="Ppm-k0-ye4"/>
+                                    <constraint firstAttribute="centerY" secondItem="O2g-9P-M7Z" secondAttribute="centerY" id="QNd-mV-2XN"/>
+                                    <constraint firstItem="GvC-d4-XbO" firstAttribute="width" secondItem="O2g-9P-M7Z" secondAttribute="width" id="Woj-e6-gCS"/>
+                                    <constraint firstAttribute="trailing" secondItem="tXQ-bP-nyI" secondAttribute="trailing" id="ehF-oV-fCa"/>
+                                    <constraint firstAttribute="bottom" secondItem="GvC-d4-XbO" secondAttribute="bottom" id="iGH-De-u04"/>
+                                </constraints>
                             </view>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MPx-03-GJB" userLabel="Bottom Background">
                                 <rect key="frame" x="0.0" y="400" width="600" height="200"/>
-                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.9882352941176471" green="0.97647058823529409" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -55,4 +103,9 @@
             <point key="canvasLocation" x="-248" y="114"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="boogie2988-rage.png" width="421" height="516"/>
+        <image name="boxxy.jpg" width="480" height="449"/>
+        <image name="maddox.jpg" width="208" height="156"/>
+    </resources>
 </document>
