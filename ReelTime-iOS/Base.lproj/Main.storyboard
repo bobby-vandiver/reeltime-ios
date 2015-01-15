@@ -75,7 +75,49 @@
                             </view>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MPx-03-GJB" userLabel="Bottom Background">
                                 <rect key="frame" x="0.0" y="400" width="600" height="200"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="204" placeholderIntrinsicHeight="30" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bq4-dk-Lkf">
+                                        <rect key="frame" x="200" y="60" width="200" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                    </textField>
+                                    <button contentMode="scaleToFill" placeholderIntrinsicWidth="70" placeholderIntrinsicHeight="44" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gcb-M7-TSW">
+                                        <rect key="frame" x="200" y="98" width="200" height="44"/>
+                                        <color key="backgroundColor" red="0.84705882352941175" green="0.50980392156862742" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="WLb-ye-H2Z"/>
+                                            <constraint firstAttribute="width" constant="200" id="svn-lQ-zbC"/>
+                                        </constraints>
+                                        <state key="normal" title="Login">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="0"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="204" placeholderIntrinsicHeight="30" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d0h-gA-XQH">
+                                        <rect key="frame" x="200" y="22" width="200" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
                                 <color key="backgroundColor" red="0.9882352941176471" green="0.97647058823529409" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerY" secondItem="d0h-gA-XQH" secondAttribute="centerY" constant="63" id="35q-rQ-ySS"/>
+                                    <constraint firstItem="Bq4-dk-Lkf" firstAttribute="centerX" secondItem="d0h-gA-XQH" secondAttribute="centerX" id="8Kk-Qo-UUF"/>
+                                    <constraint firstAttribute="centerY" secondItem="Bq4-dk-Lkf" secondAttribute="centerY" constant="25" id="Ase-eg-pTX"/>
+                                    <constraint firstAttribute="centerX" secondItem="Bq4-dk-Lkf" secondAttribute="centerX" id="Ixv-q2-ybM"/>
+                                    <constraint firstAttribute="centerX" secondItem="gcb-M7-TSW" secondAttribute="centerX" id="JKg-1e-fa9"/>
+                                    <constraint firstItem="Bq4-dk-Lkf" firstAttribute="width" secondItem="gcb-M7-TSW" secondAttribute="width" id="Pdh-Pi-Ab9"/>
+                                    <constraint firstAttribute="centerX" secondItem="d0h-gA-XQH" secondAttribute="centerX" id="Xko-TQ-cLA"/>
+                                    <constraint firstAttribute="centerY" secondItem="gcb-M7-TSW" secondAttribute="centerY" constant="-20" id="aPR-l9-dwV"/>
+                                    <constraint firstItem="Bq4-dk-Lkf" firstAttribute="centerX" secondItem="gcb-M7-TSW" secondAttribute="centerX" id="eOh-bF-7l4"/>
+                                    <constraint firstItem="Bq4-dk-Lkf" firstAttribute="width" secondItem="d0h-gA-XQH" secondAttribute="width" id="ksh-K0-Of8"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -100,7 +142,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-248" y="114"/>
+            <point key="canvasLocation" x="-23" y="96"/>
         </scene>
     </scenes>
     <resources>
