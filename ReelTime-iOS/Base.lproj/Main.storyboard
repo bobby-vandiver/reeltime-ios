@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -9,17 +10,49 @@
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="RTViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
-                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                        <viewControllerLayoutGuide type="top" id="gSO-Bz-E6f"/>
+                        <viewControllerLayoutGuide type="bottom" id="tLI-XD-Xfj"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                    <view key="view" contentMode="scaleToFill" id="3CT-If-axz">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uJL-Fd-vtF" userLabel="Top Background">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
+                                <color key="backgroundColor" red="0.49803921580314636" green="0.49803921580314636" blue="0.49803921580314636" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xxs-aK-Qr3" userLabel="Middle Background">
+                                <rect key="frame" x="0.0" y="200" width="600" height="200"/>
+                                <color key="backgroundColor" red="0.0" green="0.25098040699958801" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MPx-03-GJB" userLabel="Bottom Background">
+                                <rect key="frame" x="0.0" y="400" width="600" height="200"/>
+                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="uJL-Fd-vtF" firstAttribute="top" secondItem="3CT-If-axz" secondAttribute="topMargin" id="0ix-iO-YAT"/>
+                            <constraint firstItem="Xxs-aK-Qr3" firstAttribute="top" secondItem="uJL-Fd-vtF" secondAttribute="bottom" id="44I-im-87B"/>
+                            <constraint firstItem="MPx-03-GJB" firstAttribute="top" secondItem="Xxs-aK-Qr3" secondAttribute="bottom" id="4uI-7n-Tng"/>
+                            <constraint firstItem="uJL-Fd-vtF" firstAttribute="height" secondItem="Xxs-aK-Qr3" secondAttribute="height" id="64D-3H-o0S"/>
+                            <constraint firstAttribute="trailing" secondItem="Xxs-aK-Qr3" secondAttribute="trailing" id="Bib-Zc-hn7"/>
+                            <constraint firstAttribute="trailing" secondItem="uJL-Fd-vtF" secondAttribute="trailing" id="KFh-9d-ctY"/>
+                            <constraint firstItem="uJL-Fd-vtF" firstAttribute="leading" secondItem="3CT-If-axz" secondAttribute="leading" id="Kz4-c2-Oig"/>
+                            <constraint firstItem="Xxs-aK-Qr3" firstAttribute="leading" secondItem="3CT-If-axz" secondAttribute="leading" id="QT4-NH-jkJ"/>
+                            <constraint firstItem="MPx-03-GJB" firstAttribute="leading" secondItem="3CT-If-axz" secondAttribute="leading" id="W4c-TL-3LV"/>
+                            <constraint firstItem="Xxs-aK-Qr3" firstAttribute="height" secondItem="MPx-03-GJB" secondAttribute="height" id="XJN-Xd-OTa"/>
+                            <constraint firstItem="Xxs-aK-Qr3" firstAttribute="top" secondItem="uJL-Fd-vtF" secondAttribute="bottom" id="asV-5E-XGo"/>
+                            <constraint firstItem="tLI-XD-Xfj" firstAttribute="top" secondItem="MPx-03-GJB" secondAttribute="bottom" id="kZy-vE-Mrk"/>
+                            <constraint firstAttribute="trailing" secondItem="MPx-03-GJB" secondAttribute="trailing" id="l0P-4d-M86"/>
+                            <constraint firstItem="MPx-03-GJB" firstAttribute="top" secondItem="Xxs-aK-Qr3" secondAttribute="bottom" id="yiH-yg-jUx"/>
+                            <constraint firstItem="uJL-Fd-vtF" firstAttribute="leading" secondItem="3CT-If-axz" secondAttribute="leading" id="zXV-Ya-xJ6"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-248" y="114"/>
         </scene>
     </scenes>
 </document>
