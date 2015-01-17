@@ -28,11 +28,21 @@
 }
 
 - (void)presentPostLoginInterface {
-    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Post Login"
+                                                        message:@"Login Succeeded"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+    [alertView show];
 }
 
 - (void)presentDeviceRegistrationInterface {
-    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Register Device"
+                                                        message:@"Unknown Device"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+    [alertView show];
 }
 
 @end

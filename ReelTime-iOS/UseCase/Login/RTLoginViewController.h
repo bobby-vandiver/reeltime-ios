@@ -7,6 +7,4 @@
 
 + (NSString *)storyboardIdentifier;
 
-- (instancetype)initWithPresenter:(RTLoginPresenter *)presenter;
-
 @end

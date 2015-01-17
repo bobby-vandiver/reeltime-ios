@@ -16,14 +16,6 @@
     return @"Login View Controller";
 }
 
-- (instancetype)initWithPresenter:(RTLoginPresenter *)presenter {
-    self = [super init];
-    if (self) {
-        self.presenter = presenter;
-    }
-    return self;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
 }
@@ -33,10 +25,8 @@
 }
 
 - (IBAction)pressedLoginButton:(UIButton *)sender {
-    NSString *message = [NSString stringWithFormat:@"pressed button -- username: %@, password: %@",
-                         self.usernameField.text, self.passwordField.text];
-    
-    [self showErrorMessage:message];
+    [self.presenter requestedLoginWithUsername:self.usernameField.text
+                                      password:self.passwordField.text];
 }
 
 - (void)showErrorMessage:(NSString *)message {

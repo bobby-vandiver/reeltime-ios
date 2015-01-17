@@ -16,6 +16,7 @@
 - (RTLoginViewController *)viewController {
     return [TyphoonDefinition withClass:[RTStoryboardViewControllerFactory class] configuration:^(TyphoonDefinition *definition) {
         [definition useInitializer:@selector(loginViewController)];
+        [definition injectProperty:@selector(presenter) with:[self presenter]];
     }];
 }
 
