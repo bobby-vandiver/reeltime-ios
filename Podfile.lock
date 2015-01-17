@@ -35,7 +35,7 @@ PODS:
   - Typhoon (2.3.3):
     - Typhoon/no-arc (= 2.3.3)
   - Typhoon/no-arc (2.3.3)
-  - UICKeyChainStore (1.1.0)
+  - UICKeyChainStore (2.0.1)
 
 DEPENDENCIES:
   - Expecta (~> 0.3.1)
@@ -46,7 +46,7 @@ DEPENDENCIES:
   - RestKit/Testing (~> 0.24.0)
   - Specta (from `https://github.com/specta/specta.git`, tag `v0.3.0.beta1`)
   - Typhoon (~> 2.3)
-  - UICKeyChainStore (~> 1.1.0)
+  - UICKeyChainStore (~> 2.0.1)
 
 EXTERNAL SOURCES:
   Specta:
@@ -71,6 +71,6 @@ SPEC CHECKSUMS:
   Specta: 63e8ac8e07db6675c7096d37f77a266a1be4c02d
   TransitionKit: 6a6f3ddda38ae758778aa889dcb930e4f8d64edc
   Typhoon: 4a4069a559bc0a033fba95611382a69ab194bec6
-  UICKeyChainStore: 257d869d42527b9853ebb11d6dc3ac377b270e72
+  UICKeyChainStore: 779de9c089920a79d8755e7ba887e51c745819a8
 
 COCOAPODS: 0.35.0

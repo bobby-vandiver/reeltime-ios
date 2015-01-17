@@ -5,7 +5,7 @@ target 'ReelTime-iOS', :exclusive => true do
     # See: https://github.com/appsquickly/Typhoon/issues/242
     pod 'Typhoon', '~> 2.3'
 
-    pod 'UICKeyChainStore', '~> 1.1.0'
+    pod 'UICKeyChainStore', '~> 2.0.1'
     
     # RestKit uses some deprecated APIs
     pod 'RestKit', '~> 0.24.0', :inhibit_warnings => true
