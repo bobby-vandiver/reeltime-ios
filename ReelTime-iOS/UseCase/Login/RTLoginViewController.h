@@ -1,5 +1,10 @@
 #import <UIKit/UIKit.h>
+#import "RTLoginView.h"
 
-@interface RTLoginViewController : UIViewController
+@class RTLoginPresenter;
+
+@interface RTLoginViewController : UIViewController <RTLoginView>
+
+- (instancetype)initWithPresenter:(RTLoginPresenter *)presenter;
 
 @end
