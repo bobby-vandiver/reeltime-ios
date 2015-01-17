@@ -22,6 +22,12 @@
 }
 
 - (void)presentLoginInterfaceFromWindow:(UIWindow *)window {
+    UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    NSString *identifier = [RTLoginViewController storyboardIdentifier];
+    RTLoginViewController *loginViewController = [mainStoryBoard instantiateViewControllerWithIdentifier:identifier];
+
+    window.rootViewController = loginViewController;
 }
 
 - (void)presentPostLoginInterface {

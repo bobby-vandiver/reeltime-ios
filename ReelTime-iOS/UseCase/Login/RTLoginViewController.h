@@ -5,6 +5,8 @@
 
 @interface RTLoginViewController : UIViewController <RTLoginView>
 
++ (NSString *)storyboardIdentifier;
+
 - (instancetype)initWithPresenter:(RTLoginPresenter *)presenter;
 
 @end

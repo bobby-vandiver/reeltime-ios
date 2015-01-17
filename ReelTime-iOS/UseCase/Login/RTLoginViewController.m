@@ -12,6 +12,10 @@
 
 @implementation RTLoginViewController
 
++ (NSString *)storyboardIdentifier {
+    return @"Login View Controller";
+}
+
 - (instancetype)initWithPresenter:(RTLoginPresenter *)presenter {
     self = [super init];
     if (self) {
