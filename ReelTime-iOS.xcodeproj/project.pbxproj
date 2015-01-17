@@ -398,14 +398,14 @@
 		719B35D81A51012E00FFD543 /* Assembly */ = {
 			isa = PBXGroup;
 			children = (
-				719B35D91A51012E00FFD543 /* RTClientAssembly.h */,
-				719B35DA1A51012E00FFD543 /* RTClientAssembly.m */,
-				7116908D1A6AB3970031578E /* RTSecurityAssembly.h */,
-				7116908E1A6AB3970031578E /* RTSecurityAssembly.m */,
-				711690901A6AB5510031578E /* RTSecureStoreAssembly.h */,
-				711690911A6AB5510031578E /* RTSecureStoreAssembly.m */,
 				711690A01A6B00210031578E /* RTApplicationAssembly.h */,
 				711690A11A6B00210031578E /* RTApplicationAssembly.m */,
+				719B35D91A51012E00FFD543 /* RTClientAssembly.h */,
+				719B35DA1A51012E00FFD543 /* RTClientAssembly.m */,
+				711690901A6AB5510031578E /* RTSecureStoreAssembly.h */,
+				711690911A6AB5510031578E /* RTSecureStoreAssembly.m */,
+				7116908D1A6AB3970031578E /* RTSecurityAssembly.h */,
+				7116908E1A6AB3970031578E /* RTSecurityAssembly.m */,
 			);
 			path = Assembly;
 			sourceTree = "<group>";

@@ -14,7 +14,12 @@
 }
 
 - (UICKeyChainStore *)keyChainStore {
-    return [UICKeyChainStore keyChainStore];
+    return [TyphoonDefinition withClass:[UICKeyChainStore class] configuration:^(TyphoonDefinition *definition) {
+        [definition useInitializer:@selector(keyChainStore)];
+        
+        NSValue *accessibility = [NSNumber numberWithInteger:UICKeyChainStoreAccessibilityWhenUnlockedThisDeviceOnly];
+        [definition injectProperty:@selector(accessibility) with:accessibility];
+    }];
 }
 
 @end
