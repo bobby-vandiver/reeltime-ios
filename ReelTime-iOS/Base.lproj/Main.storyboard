@@ -5,10 +5,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="RTViewController" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" userLabel="Login View Controller" customClass="RTLoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gSO-Bz-E6f"/>
                         <viewControllerLayoutGuide type="bottom" id="tLI-XD-Xfj"/>
@@ -73,7 +73,7 @@
                                     <constraint firstAttribute="bottom" secondItem="GvC-d4-XbO" secondAttribute="bottom" id="iGH-De-u04"/>
                                 </constraints>
                             </view>
-                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MPx-03-GJB" userLabel="Bottom Background">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MPx-03-GJB" userLabel="Bottom Background">
                                 <rect key="frame" x="0.0" y="400" width="600" height="200"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="204" placeholderIntrinsicHeight="30" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bq4-dk-Lkf">
@@ -92,12 +92,9 @@
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="0"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="pressedLoginButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="gGs-dV-z7C"/>
+                                        </connections>
                                     </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="204" placeholderIntrinsicHeight="30" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d0h-gA-XQH">
                                         <rect key="frame" x="200" y="22" width="200" height="30"/>
@@ -106,6 +103,9 @@
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" red="0.9882352941176471" green="0.97647058823529409" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="centerY" secondItem="d0h-gA-XQH" secondAttribute="centerY" constant="63" id="35q-rQ-ySS"/>
                                     <constraint firstItem="Bq4-dk-Lkf" firstAttribute="centerX" secondItem="d0h-gA-XQH" secondAttribute="centerX" id="8Kk-Qo-UUF"/>
@@ -121,6 +121,9 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <accessibility key="accessibilityConfiguration">
+                            <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
+                        </accessibility>
                         <constraints>
                             <constraint firstItem="uJL-Fd-vtF" firstAttribute="top" secondItem="3CT-If-axz" secondAttribute="topMargin" id="0ix-iO-YAT"/>
                             <constraint firstItem="Xxs-aK-Qr3" firstAttribute="top" secondItem="uJL-Fd-vtF" secondAttribute="bottom" id="44I-im-87B"/>
@@ -139,10 +142,14 @@
                             <constraint firstItem="uJL-Fd-vtF" firstAttribute="leading" secondItem="3CT-If-axz" secondAttribute="leading" id="zXV-Ya-xJ6"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="passwordField" destination="Bq4-dk-Lkf" id="IFQ-Vf-IXa"/>
+                        <outlet property="usernameField" destination="d0h-gA-XQH" id="cXq-4A-3hh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-23" y="96"/>
+            <point key="canvasLocation" x="9" y="54"/>
         </scene>
     </scenes>
     <resources>
