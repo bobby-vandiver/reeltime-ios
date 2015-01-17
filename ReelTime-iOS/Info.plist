@@ -5,6 +5,8 @@
 	<key>TyphoonInitialAssemblies</key>
 	<array>
 		<string>RTClientAssembly</string>
+		<string>RTSecurityAssembly</string>
+		<string>RTSecureStoreAssembly</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
