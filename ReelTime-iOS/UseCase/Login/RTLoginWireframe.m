@@ -2,6 +2,8 @@
 #import "RTLoginPresenter.h"
 #import "RTLoginViewController.h"
 
+#import "RTStoryboardViewControllerFactory.h"
+
 @interface RTLoginWireframe ()
 
 @property RTLoginPresenter *presenter;
@@ -22,12 +24,7 @@
 }
 
 - (void)presentLoginInterfaceFromWindow:(UIWindow *)window {
-    UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    
-    NSString *identifier = [RTLoginViewController storyboardIdentifier];
-    RTLoginViewController *loginViewController = [mainStoryBoard instantiateViewControllerWithIdentifier:identifier];
-
-    window.rootViewController = loginViewController;
+    window.rootViewController = [RTStoryboardViewControllerFactory loginViewController];
 }
 
 - (void)presentPostLoginInterface {
