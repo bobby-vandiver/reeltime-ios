@@ -1,4 +1,5 @@
 #import "RTAppDelegate.h"
+#import "RTLoginViewController.h"
 
 @interface RTAppDelegate ()
 
@@ -9,6 +10,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    RTLoginViewController *loginViewController = [mainStoryBoard instantiateViewControllerWithIdentifier:@"Login View Controller"];
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = loginViewController;
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
