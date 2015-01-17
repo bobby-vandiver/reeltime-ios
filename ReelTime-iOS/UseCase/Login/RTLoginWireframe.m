@@ -24,7 +24,7 @@
 }
 
 - (void)presentLoginInterfaceFromWindow:(UIWindow *)window {
-    window.rootViewController = [RTStoryboardViewControllerFactory loginViewController];
+    window.rootViewController = self.viewController;
 }
 
 - (void)presentPostLoginInterface {

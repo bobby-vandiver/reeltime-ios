@@ -1,5 +1,4 @@
 #import "RTAppDelegate.h"
-#import "RTLoginWireframe.h"
 
 @interface RTAppDelegate ()
 
@@ -13,9 +12,8 @@
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window makeKeyAndVisible];
-
-    RTLoginWireframe *wireframe = [[RTLoginWireframe alloc] init];
-    [wireframe presentLoginInterfaceFromWindow:self.window];
+   
+    [self.loginWireframe presentLoginInterfaceFromWindow:self.window];
     
     return YES;
 }

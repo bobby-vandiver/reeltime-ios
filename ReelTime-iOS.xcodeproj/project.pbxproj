@@ -12,6 +12,8 @@
 		7116908F1A6AB3970031578E /* RTSecurityAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 7116908E1A6AB3970031578E /* RTSecurityAssembly.m */; };
 		711690921A6AB5510031578E /* RTSecureStoreAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 711690911A6AB5510031578E /* RTSecureStoreAssembly.m */; };
 		7116909C1A6AEBDA0031578E /* RTStoryboardViewControllerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7116909B1A6AEBDA0031578E /* RTStoryboardViewControllerFactory.m */; };
+		7116909F1A6AF0020031578E /* RTLoginAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 7116909E1A6AF0020031578E /* RTLoginAssembly.m */; };
+		711690A21A6B00210031578E /* RTApplicationAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 711690A11A6B00210031578E /* RTApplicationAssembly.m */; };
 		7130FD8C1A67593D00AE2ACD /* boxxy.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7130FD891A67593D00AE2ACD /* boxxy.jpg */; };
 		7130FD8D1A67593D00AE2ACD /* maddox.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7130FD8A1A67593D00AE2ACD /* maddox.jpg */; };
 		7130FD8E1A67593D00AE2ACD /* boogie2988-rage.png in Resources */ = {isa = PBXBuildFile; fileRef = 7130FD8B1A67593D00AE2ACD /* boogie2988-rage.png */; };
@@ -83,6 +85,10 @@
 		711690911A6AB5510031578E /* RTSecureStoreAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTSecureStoreAssembly.m; sourceTree = "<group>"; };
 		7116909A1A6AEBDA0031578E /* RTStoryboardViewControllerFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTStoryboardViewControllerFactory.h; sourceTree = "<group>"; };
 		7116909B1A6AEBDA0031578E /* RTStoryboardViewControllerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTStoryboardViewControllerFactory.m; sourceTree = "<group>"; };
+		7116909D1A6AF0020031578E /* RTLoginAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLoginAssembly.h; sourceTree = "<group>"; };
+		7116909E1A6AF0020031578E /* RTLoginAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLoginAssembly.m; sourceTree = "<group>"; };
+		711690A01A6B00210031578E /* RTApplicationAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTApplicationAssembly.h; sourceTree = "<group>"; };
+		711690A11A6B00210031578E /* RTApplicationAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTApplicationAssembly.m; sourceTree = "<group>"; };
 		7119C8A91A5E1F6700C5EA16 /* RTLoginInteractor+RTLoginDataManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RTLoginInteractor+RTLoginDataManagerDelegate.h"; sourceTree = "<group>"; };
 		7130FD891A67593D00AE2ACD /* boxxy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = boxxy.jpg; sourceTree = "<group>"; };
 		7130FD8A1A67593D00AE2ACD /* maddox.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = maddox.jpg; sourceTree = "<group>"; };
@@ -398,6 +404,8 @@
 				7116908E1A6AB3970031578E /* RTSecurityAssembly.m */,
 				711690901A6AB5510031578E /* RTSecureStoreAssembly.h */,
 				711690911A6AB5510031578E /* RTSecureStoreAssembly.m */,
+				711690A01A6B00210031578E /* RTApplicationAssembly.h */,
+				711690A11A6B00210031578E /* RTApplicationAssembly.m */,
 			);
 			path = Assembly;
 			sourceTree = "<group>";
@@ -492,6 +500,8 @@
 				717D92711A5B8ABB00EAB6BF /* RTLoginWireframe.h */,
 				717D92721A5B8ABB00EAB6BF /* RTLoginWireframe.m */,
 				7119C8A91A5E1F6700C5EA16 /* RTLoginInteractor+RTLoginDataManagerDelegate.h */,
+				7116909D1A6AF0020031578E /* RTLoginAssembly.h */,
+				7116909E1A6AF0020031578E /* RTLoginAssembly.m */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -716,6 +726,7 @@
 				71D9478F1A4FC81A00401963 /* RTLoginInteractor.m in Sources */,
 				718FA35B1A689DEF005FD2A2 /* RTLoginViewController.m in Sources */,
 				717D926D1A5B722300EAB6BF /* NSError+RTError.m in Sources */,
+				7116909F1A6AF0020031578E /* RTLoginAssembly.m in Sources */,
 				7116908F1A6AB3970031578E /* RTSecurityAssembly.m in Sources */,
 				713D7A4C1A50A33300754A06 /* RTClient.m in Sources */,
 				719B35E31A51150E00FFD543 /* RTErrorConstants.m in Sources */,
@@ -724,6 +735,7 @@
 				71C5C0AD1A55EAE700CAAFAC /* RTOAuth2TokenError.m in Sources */,
 				717A4B851A53A212004C2BC1 /* RTOAuth2TokenError+RTClientTokenErrorConverter.m in Sources */,
 				717A4B7B1A534EF8004C2BC1 /* RTRestAPIMappingFactory.m in Sources */,
+				711690A21A6B00210031578E /* RTApplicationAssembly.m in Sources */,
 				717D92731A5B8ABB00EAB6BF /* RTLoginWireframe.m in Sources */,
 				71C5C0AF1A55EAE700CAAFAC /* RTUserCredentials.m in Sources */,
 				7190DABD1A5CDDFB00BDCE4C /* RTLoginDataManager.m in Sources */,
