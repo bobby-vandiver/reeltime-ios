@@ -9,8 +9,12 @@
 /* Begin PBXBuildFile section */
 		5230CA4B4A7751AD6141FA30 /* libPods-ReelTime-iOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41201C1DC28A47F09019E4F1 /* libPods-ReelTime-iOSTests.a */; };
 		7102A7B51A57AB0A00DEDA83 /* RTKeyChainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7102A7B41A57AB0A00DEDA83 /* RTKeyChainWrapper.m */; };
-		71166E0F1A6C2C3200EAE5BA /* RTAccountRegistrationAutoLoginPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 71166E0E1A6C2C3200EAE5BA /* RTAccountRegistrationAutoLoginPresenter.m */; };
 		71166E121A6C2F6100EAE5BA /* RTAccountRegistrationAutoLoginPresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71166E111A6C2F6100EAE5BA /* RTAccountRegistrationAutoLoginPresenterSpec.m */; };
+		71166E201A6C36C800EAE5BA /* RTAccountRegistrationAutoLoginPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 71166E151A6C36C800EAE5BA /* RTAccountRegistrationAutoLoginPresenter.m */; };
+		71166E211A6C36C800EAE5BA /* RTAccountRegistrationDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 71166E171A6C36C800EAE5BA /* RTAccountRegistrationDataManager.m */; };
+		71166E221A6C36C800EAE5BA /* RTAccountRegistrationInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 71166E1A1A6C36C800EAE5BA /* RTAccountRegistrationInteractor.m */; };
+		71166E231A6C36C800EAE5BA /* RTAccountRegistrationPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 71166E1C1A6C36C800EAE5BA /* RTAccountRegistrationPresenter.m */; };
+		71166E241A6C36C800EAE5BA /* RTAccountRegistrationWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 71166E1F1A6C36C800EAE5BA /* RTAccountRegistrationWireframe.m */; };
 		7116908F1A6AB3970031578E /* RTSecurityAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 7116908E1A6AB3970031578E /* RTSecurityAssembly.m */; };
 		711690921A6AB5510031578E /* RTSecureStoreAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 711690911A6AB5510031578E /* RTSecureStoreAssembly.m */; };
 		7116909C1A6AEBDA0031578E /* RTStoryboardViewControllerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7116909B1A6AEBDA0031578E /* RTStoryboardViewControllerFactory.m */; };
@@ -44,10 +48,6 @@
 		718A0BEB1A4DA87900137C49 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 718A0BE91A4DA87900137C49 /* Main.storyboard */; };
 		718A0BED1A4DA87900137C49 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 718A0BEC1A4DA87900137C49 /* Images.xcassets */; };
 		718A0BF01A4DA87900137C49 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 718A0BEE1A4DA87900137C49 /* LaunchScreen.xib */; };
-		718CFFBC1A6BF5F600B418F9 /* RTAccountRegistrationInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 718CFFBB1A6BF5F600B418F9 /* RTAccountRegistrationInteractor.m */; };
-		718CFFBF1A6BF61000B418F9 /* RTAccountRegistrationPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 718CFFBE1A6BF61000B418F9 /* RTAccountRegistrationPresenter.m */; };
-		718CFFC21A6BF63000B418F9 /* RTAccountRegistrationDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 718CFFC11A6BF63000B418F9 /* RTAccountRegistrationDataManager.m */; };
-		718CFFC61A6BF67C00B418F9 /* RTAccountRegistrationWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 718CFFC51A6BF67C00B418F9 /* RTAccountRegistrationWireframe.m */; };
 		718CFFCA1A6C007C00B418F9 /* RTAccountRegistration.m in Sources */ = {isa = PBXBuildFile; fileRef = 718CFFC91A6C007C00B418F9 /* RTAccountRegistration.m */; };
 		718FA35B1A689DEF005FD2A2 /* RTLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 718FA35A1A689DEF005FD2A2 /* RTLoginViewController.m */; };
 		7190DABA1A5CC55D00BDCE4C /* RTCurrentUserStoreSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7190DAB91A5CC55D00BDCE4C /* RTCurrentUserStoreSpec.m */; };
@@ -86,9 +86,19 @@
 		46C1E9F0B7F6473BE4077A89 /* Pods-ReelTime-iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelTime-iOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReelTime-iOSTests/Pods-ReelTime-iOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		7102A7B31A57AB0A00DEDA83 /* RTKeyChainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTKeyChainWrapper.h; sourceTree = "<group>"; };
 		7102A7B41A57AB0A00DEDA83 /* RTKeyChainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTKeyChainWrapper.m; sourceTree = "<group>"; };
-		71166E0D1A6C2C3200EAE5BA /* RTAccountRegistrationAutoLoginPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTAccountRegistrationAutoLoginPresenter.h; sourceTree = "<group>"; };
-		71166E0E1A6C2C3200EAE5BA /* RTAccountRegistrationAutoLoginPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAccountRegistrationAutoLoginPresenter.m; sourceTree = "<group>"; };
 		71166E111A6C2F6100EAE5BA /* RTAccountRegistrationAutoLoginPresenterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAccountRegistrationAutoLoginPresenterSpec.m; sourceTree = "<group>"; };
+		71166E141A6C36C800EAE5BA /* RTAccountRegistrationAutoLoginPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTAccountRegistrationAutoLoginPresenter.h; sourceTree = "<group>"; };
+		71166E151A6C36C800EAE5BA /* RTAccountRegistrationAutoLoginPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAccountRegistrationAutoLoginPresenter.m; sourceTree = "<group>"; };
+		71166E161A6C36C800EAE5BA /* RTAccountRegistrationDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTAccountRegistrationDataManager.h; sourceTree = "<group>"; };
+		71166E171A6C36C800EAE5BA /* RTAccountRegistrationDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAccountRegistrationDataManager.m; sourceTree = "<group>"; };
+		71166E181A6C36C800EAE5BA /* RTAccountRegistrationErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTAccountRegistrationErrors.h; sourceTree = "<group>"; };
+		71166E191A6C36C800EAE5BA /* RTAccountRegistrationInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTAccountRegistrationInteractor.h; sourceTree = "<group>"; };
+		71166E1A1A6C36C800EAE5BA /* RTAccountRegistrationInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAccountRegistrationInteractor.m; sourceTree = "<group>"; };
+		71166E1B1A6C36C800EAE5BA /* RTAccountRegistrationPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTAccountRegistrationPresenter.h; sourceTree = "<group>"; };
+		71166E1C1A6C36C800EAE5BA /* RTAccountRegistrationPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAccountRegistrationPresenter.m; sourceTree = "<group>"; };
+		71166E1D1A6C36C800EAE5BA /* RTAccountRegistrationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTAccountRegistrationView.h; sourceTree = "<group>"; };
+		71166E1E1A6C36C800EAE5BA /* RTAccountRegistrationWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTAccountRegistrationWireframe.h; sourceTree = "<group>"; };
+		71166E1F1A6C36C800EAE5BA /* RTAccountRegistrationWireframe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAccountRegistrationWireframe.m; sourceTree = "<group>"; };
 		7116908D1A6AB3970031578E /* RTSecurityAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTSecurityAssembly.h; sourceTree = "<group>"; };
 		7116908E1A6AB3970031578E /* RTSecurityAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTSecurityAssembly.m; sourceTree = "<group>"; };
 		711690901A6AB5510031578E /* RTSecureStoreAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTSecureStoreAssembly.h; sourceTree = "<group>"; };
@@ -149,16 +159,6 @@
 		718A0BEF1A4DA87900137C49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		718A0BF51A4DA87900137C49 /* ReelTime-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ReelTime-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		718A0BFA1A4DA87900137C49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		718CFFBA1A6BF5F600B418F9 /* RTAccountRegistrationInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTAccountRegistrationInteractor.h; sourceTree = "<group>"; };
-		718CFFBB1A6BF5F600B418F9 /* RTAccountRegistrationInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAccountRegistrationInteractor.m; sourceTree = "<group>"; };
-		718CFFBD1A6BF61000B418F9 /* RTAccountRegistrationPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTAccountRegistrationPresenter.h; sourceTree = "<group>"; };
-		718CFFBE1A6BF61000B418F9 /* RTAccountRegistrationPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAccountRegistrationPresenter.m; sourceTree = "<group>"; };
-		718CFFC01A6BF63000B418F9 /* RTAccountRegistrationDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTAccountRegistrationDataManager.h; sourceTree = "<group>"; };
-		718CFFC11A6BF63000B418F9 /* RTAccountRegistrationDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAccountRegistrationDataManager.m; sourceTree = "<group>"; };
-		718CFFC31A6BF65200B418F9 /* RTAccountRegistrationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTAccountRegistrationView.h; sourceTree = "<group>"; };
-		718CFFC41A6BF67C00B418F9 /* RTAccountRegistrationWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTAccountRegistrationWireframe.h; sourceTree = "<group>"; };
-		718CFFC51A6BF67C00B418F9 /* RTAccountRegistrationWireframe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAccountRegistrationWireframe.m; sourceTree = "<group>"; };
-		718CFFC71A6BF7FF00B418F9 /* RTAccountRegistrationErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTAccountRegistrationErrors.h; sourceTree = "<group>"; };
 		718CFFC81A6C007C00B418F9 /* RTAccountRegistration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTAccountRegistration.h; path = "ReelTime-iOS/Common/Model/RTAccountRegistration.h"; sourceTree = SOURCE_ROOT; };
 		718CFFC91A6C007C00B418F9 /* RTAccountRegistration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTAccountRegistration.m; path = "ReelTime-iOS/Common/Model/RTAccountRegistration.m"; sourceTree = SOURCE_ROOT; };
 		718FA3591A689DEF005FD2A2 /* RTLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLoginViewController.h; sourceTree = "<group>"; };
@@ -236,6 +236,25 @@
 				71166E111A6C2F6100EAE5BA /* RTAccountRegistrationAutoLoginPresenterSpec.m */,
 			);
 			path = AccountRegistrationTests;
+			sourceTree = "<group>";
+		};
+		71166E131A6C36C800EAE5BA /* AccountRegistration */ = {
+			isa = PBXGroup;
+			children = (
+				71166E141A6C36C800EAE5BA /* RTAccountRegistrationAutoLoginPresenter.h */,
+				71166E151A6C36C800EAE5BA /* RTAccountRegistrationAutoLoginPresenter.m */,
+				71166E161A6C36C800EAE5BA /* RTAccountRegistrationDataManager.h */,
+				71166E171A6C36C800EAE5BA /* RTAccountRegistrationDataManager.m */,
+				71166E181A6C36C800EAE5BA /* RTAccountRegistrationErrors.h */,
+				71166E191A6C36C800EAE5BA /* RTAccountRegistrationInteractor.h */,
+				71166E1A1A6C36C800EAE5BA /* RTAccountRegistrationInteractor.m */,
+				71166E1B1A6C36C800EAE5BA /* RTAccountRegistrationPresenter.h */,
+				71166E1C1A6C36C800EAE5BA /* RTAccountRegistrationPresenter.m */,
+				71166E1D1A6C36C800EAE5BA /* RTAccountRegistrationView.h */,
+				71166E1E1A6C36C800EAE5BA /* RTAccountRegistrationWireframe.h */,
+				71166E1F1A6C36C800EAE5BA /* RTAccountRegistrationWireframe.m */,
+			);
+			path = AccountRegistration;
 			sourceTree = "<group>";
 		};
 		711690991A6AEBA80031578E /* Storyboard */ = {
@@ -414,25 +433,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		718CFFB91A6BF5CF00B418F9 /* Account Registration */ = {
-			isa = PBXGroup;
-			children = (
-				718CFFC01A6BF63000B418F9 /* RTAccountRegistrationDataManager.h */,
-				718CFFC11A6BF63000B418F9 /* RTAccountRegistrationDataManager.m */,
-				718CFFC71A6BF7FF00B418F9 /* RTAccountRegistrationErrors.h */,
-				718CFFBA1A6BF5F600B418F9 /* RTAccountRegistrationInteractor.h */,
-				718CFFBB1A6BF5F600B418F9 /* RTAccountRegistrationInteractor.m */,
-				718CFFBD1A6BF61000B418F9 /* RTAccountRegistrationPresenter.h */,
-				718CFFBE1A6BF61000B418F9 /* RTAccountRegistrationPresenter.m */,
-				718CFFC31A6BF65200B418F9 /* RTAccountRegistrationView.h */,
-				718CFFC41A6BF67C00B418F9 /* RTAccountRegistrationWireframe.h */,
-				718CFFC51A6BF67C00B418F9 /* RTAccountRegistrationWireframe.m */,
-				71166E0D1A6C2C3200EAE5BA /* RTAccountRegistrationAutoLoginPresenter.h */,
-				71166E0E1A6C2C3200EAE5BA /* RTAccountRegistrationAutoLoginPresenter.m */,
-			);
-			path = "Account Registration";
-			sourceTree = "<group>";
-		};
 		71921C031A54E1490003A42F /* FakeObjects */ = {
 			isa = PBXGroup;
 			children = (
@@ -530,7 +530,7 @@
 		71D9478A1A4FC6FD00401963 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
-				718CFFB91A6BF5CF00B418F9 /* Account Registration */,
+				71166E131A6C36C800EAE5BA /* AccountRegistration */,
 				71D9478B1A4FC70B00401963 /* Login */,
 			);
 			path = UseCase;
@@ -776,9 +776,8 @@
 			files = (
 				71C5C0B21A55EB3900CAAFAC /* RTOAuth2TokenStore.m in Sources */,
 				718CFFCA1A6C007C00B418F9 /* RTAccountRegistration.m in Sources */,
+				71166E211A6C36C800EAE5BA /* RTAccountRegistrationDataManager.m in Sources */,
 				717D92761A5B925700EAB6BF /* RTCurrentUserStore.m in Sources */,
-				718CFFC21A6BF63000B418F9 /* RTAccountRegistrationDataManager.m in Sources */,
-				718CFFBF1A6BF61000B418F9 /* RTAccountRegistrationPresenter.m in Sources */,
 				71D9478F1A4FC81A00401963 /* RTLoginInteractor.m in Sources */,
 				718FA35B1A689DEF005FD2A2 /* RTLoginViewController.m in Sources */,
 				717D926D1A5B722300EAB6BF /* NSError+RTError.m in Sources */,
@@ -787,18 +786,16 @@
 				713D7A4C1A50A33300754A06 /* RTClient.m in Sources */,
 				719B35E31A51150E00FFD543 /* RTErrorConstants.m in Sources */,
 				717A4B781A534EBD004C2BC1 /* RTResponseDescriptorFactory.m in Sources */,
-				718CFFC61A6BF67C00B418F9 /* RTAccountRegistrationWireframe.m in Sources */,
 				713D7A451A509AC000754A06 /* RTClientCredentialsStore.m in Sources */,
 				71C5C0AD1A55EAE700CAAFAC /* RTOAuth2TokenError.m in Sources */,
-				71166E0F1A6C2C3200EAE5BA /* RTAccountRegistrationAutoLoginPresenter.m in Sources */,
 				717A4B851A53A212004C2BC1 /* RTOAuth2TokenError+RTClientTokenErrorConverter.m in Sources */,
 				717A4B7B1A534EF8004C2BC1 /* RTRestAPIMappingFactory.m in Sources */,
 				711690A21A6B00210031578E /* RTApplicationAssembly.m in Sources */,
 				717D92731A5B8ABB00EAB6BF /* RTLoginWireframe.m in Sources */,
 				71C5C0AF1A55EAE700CAAFAC /* RTUserCredentials.m in Sources */,
-				718CFFBC1A6BF5F600B418F9 /* RTAccountRegistrationInteractor.m in Sources */,
 				7190DABD1A5CDDFB00BDCE4C /* RTLoginDataManager.m in Sources */,
 				719B35DB1A51012E00FFD543 /* RTClientAssembly.m in Sources */,
+				71166E221A6C36C800EAE5BA /* RTAccountRegistrationInteractor.m in Sources */,
 				718A0BE81A4DA87900137C49 /* RTViewController.m in Sources */,
 				71C5C0AC1A55EAE700CAAFAC /* RTOAuth2Token.m in Sources */,
 				719B35DE1A51140900FFD543 /* RTRestAPI.m in Sources */,
@@ -807,8 +804,11 @@
 				7102A7B51A57AB0A00DEDA83 /* RTKeyChainWrapper.m in Sources */,
 				711690921A6AB5510031578E /* RTSecureStoreAssembly.m in Sources */,
 				7116909C1A6AEBDA0031578E /* RTStoryboardViewControllerFactory.m in Sources */,
+				71166E201A6C36C800EAE5BA /* RTAccountRegistrationAutoLoginPresenter.m in Sources */,
 				7170C8691A59926E00C460BB /* RTErrorFactory.m in Sources */,
+				71166E231A6C36C800EAE5BA /* RTAccountRegistrationPresenter.m in Sources */,
 				71D947941A4FC96800401963 /* RTLoginPresenter.m in Sources */,
+				71166E241A6C36C800EAE5BA /* RTAccountRegistrationWireframe.m in Sources */,
 				718A0BE21A4DA87900137C49 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
