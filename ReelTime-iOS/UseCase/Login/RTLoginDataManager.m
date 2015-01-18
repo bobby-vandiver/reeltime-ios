@@ -42,11 +42,11 @@
                                callback:(void (^)(RTOAuth2Token *, NSString *))callback {
     NSString *username = userCredentials.username;
     
-    TokenSuccessHandler success = ^(RTOAuth2Token *token) {
+    id success = ^(RTOAuth2Token *token) {
         callback(token, username);
     };
     
-    TokenFailureHandler failure = ^(NSError *error) {
+    id failure = ^(NSError *error) {
         [self.interactor loginDataOperationFailedWithError:error];
     };
     

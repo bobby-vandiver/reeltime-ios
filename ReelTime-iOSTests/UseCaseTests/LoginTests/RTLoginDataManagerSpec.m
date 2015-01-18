@@ -90,7 +90,7 @@ describe(@"login data manager", ^{
             
             expect(callbackExecuted).to.beFalsy();
             
-            TokenSuccessHandler successHandler = [successCaptor value];
+            void (^successHandler)(RTOAuth2Token *) = [successCaptor value];
             successHandler(nil);
 
             expect(callbackExecuted).to.beTruthy();
@@ -107,7 +107,7 @@ describe(@"login data manager", ^{
             [verifyCount(interactor, never()) loginDataOperationFailedWithError:anything()];
             
             NSError *error = [NSError errorWithDomain:@"TEST" code:-1 userInfo:nil];
-            TokenFailureHandler failureHandler = [failureCaptor value];
+            void (^failureHandler)(NSError *) = [failureCaptor value];
 
             failureHandler(error);
             [verify(interactor) loginDataOperationFailedWithError:error];

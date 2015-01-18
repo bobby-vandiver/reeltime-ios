@@ -7,14 +7,11 @@
 
 @interface RTClient : NSObject
 
-typedef void (^TokenSuccessHandler)(RTOAuth2Token *token);
-typedef void (^TokenFailureHandler)(NSError *error);
-
 - (instancetype)initWithRestKitObjectManager:(RKObjectManager *)objectManager;
 
 - (void)tokenWithClientCredentials:(RTClientCredentials *)clientCredentials
                    userCredentials:(RTUserCredentials *)userCredentials
-                           success:(TokenSuccessHandler)successHandler
-                           failure:(TokenFailureHandler)failureHandler;
+                           success:(void (^)(RTOAuth2Token *token))success
+                           failure:(void (^)(NSError *error))failure;
 
 @end

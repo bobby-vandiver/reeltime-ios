@@ -26,8 +26,8 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
 
 - (void)tokenWithClientCredentials:(RTClientCredentials *)clientCredentials
                    userCredentials:(RTUserCredentials *)userCredentials
-                           success:(TokenSuccessHandler)successHandler
-                           failure:(TokenFailureHandler)failureHandler {
+                           success:(void (^)(RTOAuth2Token *token))success
+                           failure:(void (^)(NSError *error))failure {
     NSDictionary *parameters = @{
         @"grant_type":      @"password",
         @"username":        userCredentials.username,
@@ -39,12 +39,12 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
     
     id successCallback = ^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         RTOAuth2Token *token = [mappingResult firstObject];
-        successHandler(token);
+        success(token);
     };
     
     id failureCallback = ^(RKObjectRequestOperation *operation, NSError *error) {
         RTOAuth2TokenError *tokenError = [[error.userInfo objectForKey:RKObjectMapperErrorObjectsKey] firstObject];
-        failureHandler([tokenError convertToClientTokenError]);
+        failure([tokenError convertToClientTokenError]);
     };
     
     [self.objectManager postObject:nil
