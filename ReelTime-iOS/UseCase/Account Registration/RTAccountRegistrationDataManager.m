@@ -4,6 +4,9 @@
 #import "RTClient.h"
 #import "RTClientCredentialsStore.h"
 
+#import "RTAccountRegistration.h"
+#import "RTClientCredentials.h"
+
 @interface RTAccountRegistrationDataManager ()
 
 @property RTAccountRegistrationInteractor *interactor;
@@ -24,6 +27,16 @@
         self.clientCredentialsStore = clientCredentialsStore;
     }
     return self;
+}
+
+- (void)registerAccount:(RTAccountRegistration *)registration
+               callback:(void (^)(RTClientCredentials *))callback {
+    
+}
+
+- (void)saveClientCredentials:(RTClientCredentials *)clientCredentials
+                  forUsername:(NSString *)username {
+    
 }
 
 @end
