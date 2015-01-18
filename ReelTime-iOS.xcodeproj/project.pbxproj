@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		5230CA4B4A7751AD6141FA30 /* libPods-ReelTime-iOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41201C1DC28A47F09019E4F1 /* libPods-ReelTime-iOSTests.a */; };
 		7102A7B51A57AB0A00DEDA83 /* RTKeyChainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7102A7B41A57AB0A00DEDA83 /* RTKeyChainWrapper.m */; };
+		71166E0F1A6C2C3200EAE5BA /* RTAccountRegistrationAutoLoginPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 71166E0E1A6C2C3200EAE5BA /* RTAccountRegistrationAutoLoginPresenter.m */; };
+		71166E121A6C2F6100EAE5BA /* RTAccountRegistrationAutoLoginPresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71166E111A6C2F6100EAE5BA /* RTAccountRegistrationAutoLoginPresenterSpec.m */; };
 		7116908F1A6AB3970031578E /* RTSecurityAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 7116908E1A6AB3970031578E /* RTSecurityAssembly.m */; };
 		711690921A6AB5510031578E /* RTSecureStoreAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 711690911A6AB5510031578E /* RTSecureStoreAssembly.m */; };
 		7116909C1A6AEBDA0031578E /* RTStoryboardViewControllerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7116909B1A6AEBDA0031578E /* RTStoryboardViewControllerFactory.m */; };
@@ -84,6 +86,9 @@
 		46C1E9F0B7F6473BE4077A89 /* Pods-ReelTime-iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelTime-iOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReelTime-iOSTests/Pods-ReelTime-iOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		7102A7B31A57AB0A00DEDA83 /* RTKeyChainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTKeyChainWrapper.h; sourceTree = "<group>"; };
 		7102A7B41A57AB0A00DEDA83 /* RTKeyChainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTKeyChainWrapper.m; sourceTree = "<group>"; };
+		71166E0D1A6C2C3200EAE5BA /* RTAccountRegistrationAutoLoginPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTAccountRegistrationAutoLoginPresenter.h; sourceTree = "<group>"; };
+		71166E0E1A6C2C3200EAE5BA /* RTAccountRegistrationAutoLoginPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAccountRegistrationAutoLoginPresenter.m; sourceTree = "<group>"; };
+		71166E111A6C2F6100EAE5BA /* RTAccountRegistrationAutoLoginPresenterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAccountRegistrationAutoLoginPresenterSpec.m; sourceTree = "<group>"; };
 		7116908D1A6AB3970031578E /* RTSecurityAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTSecurityAssembly.h; sourceTree = "<group>"; };
 		7116908E1A6AB3970031578E /* RTSecurityAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTSecurityAssembly.m; sourceTree = "<group>"; };
 		711690901A6AB5510031578E /* RTSecureStoreAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTSecureStoreAssembly.h; sourceTree = "<group>"; };
@@ -223,6 +228,14 @@
 				7170C86A1A59934500C460BB /* RTKeyChainErrors.h */,
 			);
 			path = Security;
+			sourceTree = "<group>";
+		};
+		71166E101A6C2F3900EAE5BA /* AccountRegistrationTests */ = {
+			isa = PBXGroup;
+			children = (
+				71166E111A6C2F6100EAE5BA /* RTAccountRegistrationAutoLoginPresenterSpec.m */,
+			);
+			path = AccountRegistrationTests;
 			sourceTree = "<group>";
 		};
 		711690991A6AEBA80031578E /* Storyboard */ = {
@@ -379,12 +392,12 @@
 		718A0BF81A4DA87900137C49 /* ReelTime-iOSTests */ = {
 			isa = PBXGroup;
 			children = (
-				711F336B1A6234AE00D8D843 /* Resources */,
 				71921C001A54CCBE0003A42F /* EXPMatchers+beError.h */,
 				716A9BC41A4F5385005D33F9 /* RTTestCommon.h */,
 				71921C011A54CCBE0003A42F /* EXPMatchers+beError.m */,
 				717A4B7C1A53503B004C2BC1 /* ClientTests */,
 				71921C031A54E1490003A42F /* FakeObjects */,
+				711F336B1A6234AE00D8D843 /* Resources */,
 				7170C86B1A59A95000C460BB /* SecurityTests */,
 				71D947891A4FBC7100401963 /* StoreTests */,
 				718A0BF91A4DA87900137C49 /* Supporting Files */,
@@ -414,6 +427,8 @@
 				718CFFC31A6BF65200B418F9 /* RTAccountRegistrationView.h */,
 				718CFFC41A6BF67C00B418F9 /* RTAccountRegistrationWireframe.h */,
 				718CFFC51A6BF67C00B418F9 /* RTAccountRegistrationWireframe.m */,
+				71166E0D1A6C2C3200EAE5BA /* RTAccountRegistrationAutoLoginPresenter.h */,
+				71166E0E1A6C2C3200EAE5BA /* RTAccountRegistrationAutoLoginPresenter.m */,
 			);
 			path = "Account Registration";
 			sourceTree = "<group>";
@@ -546,6 +561,7 @@
 		71D947951A4FCB1C00401963 /* UseCaseTests */ = {
 			isa = PBXGroup;
 			children = (
+				71166E101A6C2F3900EAE5BA /* AccountRegistrationTests */,
 				71D947961A4FCB2900401963 /* LoginTests */,
 			);
 			path = UseCaseTests;
@@ -774,6 +790,7 @@
 				718CFFC61A6BF67C00B418F9 /* RTAccountRegistrationWireframe.m in Sources */,
 				713D7A451A509AC000754A06 /* RTClientCredentialsStore.m in Sources */,
 				71C5C0AD1A55EAE700CAAFAC /* RTOAuth2TokenError.m in Sources */,
+				71166E0F1A6C2C3200EAE5BA /* RTAccountRegistrationAutoLoginPresenter.m in Sources */,
 				717A4B851A53A212004C2BC1 /* RTOAuth2TokenError+RTClientTokenErrorConverter.m in Sources */,
 				717A4B7B1A534EF8004C2BC1 /* RTRestAPIMappingFactory.m in Sources */,
 				711690A21A6B00210031578E /* RTApplicationAssembly.m in Sources */,
@@ -800,6 +817,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71166E121A6C2F6100EAE5BA /* RTAccountRegistrationAutoLoginPresenterSpec.m in Sources */,
 				71C5C09D1A55B29700CAAFAC /* RTLoginPresenterSpec.m in Sources */,
 				717A4B7E1A53503B004C2BC1 /* RTRestAPIMappingFactorySpec.m in Sources */,
 				7169F1761A5F6CDD00E161C4 /* RTLoginDataManagerSpec.m in Sources */,

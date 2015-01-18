@@ -35,7 +35,11 @@
     
 }
 
-- (void)registrationSucceeded {
+- (void)registrationWithAutoLoginSucceeded {
+    
+}
+
+- (void)registrationWithAutoLoginFailedWithError:(NSError *)error {
     
 }
 

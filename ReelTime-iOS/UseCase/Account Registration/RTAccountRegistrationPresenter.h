@@ -17,7 +17,9 @@
                                      displayName:(NSString *)displayName
                                       clientName:(NSString *)clientName;
 
-- (void)registrationSucceeded;
+- (void)registrationWithAutoLoginSucceeded;
+
+- (void)registrationWithAutoLoginFailedWithError:(NSError *)error;
 
 - (void)registrationFailedWithError:(NSError *)error;
 
