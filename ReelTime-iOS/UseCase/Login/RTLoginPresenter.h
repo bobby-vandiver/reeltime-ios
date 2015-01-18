@@ -1,7 +1,6 @@
 #import <Foundation/Foundation.h>
 
-#import "RTLoginView.h"
-
+@protocol RTLoginView;
 @class RTLoginInteractor;
 @class RTLoginWireframe;
 
