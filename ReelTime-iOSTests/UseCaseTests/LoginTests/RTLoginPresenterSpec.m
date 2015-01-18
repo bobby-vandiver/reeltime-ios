@@ -51,21 +51,21 @@ describe(@"login presenter", ^{
         });
         
         it(@"should report missing username", ^{
-            NSError *error = [RTErrorFactory loginErrorWithCode:MissingUsername];
+            NSError *error = [RTErrorFactory loginErrorWithCode:LoginMissingUsername];
             
             [presenter loginFailedWithError:error];
             [verify(view) showErrorMessage:@"Username is required"];
         });
         
         it(@"should report missing password", ^{
-            NSError *error = [RTErrorFactory loginErrorWithCode:MissingPassword];
+            NSError *error = [RTErrorFactory loginErrorWithCode:LoginMissingPassword];
             
             [presenter loginFailedWithError:error];
             [verify(view) showErrorMessage:@"Password is required"];
         });
         
         it(@"should not indicate source of failure for invalid credentials", ^{
-            NSError *error = [RTErrorFactory loginErrorWithCode:InvalidCredentials];
+            NSError *error = [RTErrorFactory loginErrorWithCode:LoginInvalidCredentials];
             
             [presenter loginFailedWithError:error];
             [verify(view) showErrorMessage:@"Invalid username or password"];
@@ -79,7 +79,7 @@ describe(@"login presenter", ^{
         });
         
         it(@"should present device registration interface for an unknown client", ^{
-            NSError *error = [RTErrorFactory loginErrorWithCode:UnknownClient];
+            NSError *error = [RTErrorFactory loginErrorWithCode:LoginUnknownClient];
             
             [presenter loginFailedWithError:error];
             [verify(wireframe) presentDeviceRegistrationInterface];

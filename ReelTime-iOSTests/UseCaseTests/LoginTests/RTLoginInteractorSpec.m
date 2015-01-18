@@ -49,12 +49,12 @@ describe(@"login interactor", ^{
         context(@"missing parameters", ^{
             it(@"should fail when username is missing", ^{
                 [interactor loginWithUsername:@"" password:password];
-                expectLoginFailureError(MissingUsername);
+                expectLoginFailureError(LoginMissingUsername);
             });
             
             it(@"should fail when password is missing", ^{
                 [interactor loginWithUsername:username password:@""];
-                expectLoginFailureError(MissingPassword);
+                expectLoginFailureError(LoginMissingPassword);
             });
         });
 
@@ -105,7 +105,7 @@ describe(@"login interactor", ^{
             
             it(@"should notify presenter of failed login due to unknown client", ^{
                 [interactor loginWithUsername:username password:password];
-                expectLoginFailureError(UnknownClient);
+                expectLoginFailureError(LoginUnknownClient);
             });
         });
     });
@@ -122,21 +122,21 @@ describe(@"login interactor", ^{
             NSError *error = [RTErrorFactory clientTokenErrorWithCode:InvalidClientCredentials];
 
             [interactor loginDataOperationFailedWithError:error];
-            expectLoginFailureError(UnknownClient);
+            expectLoginFailureError(LoginUnknownClient);
         });
         
         it(@"should notify presenter of invalid user credetials", ^{
             NSError *error = [RTErrorFactory clientTokenErrorWithCode:InvalidUserCredentials];
             
             [interactor loginDataOperationFailedWithError:error];
-            expectLoginFailureError(InvalidCredentials);
+            expectLoginFailureError(LoginInvalidCredentials);
         });
         
         it(@"should notify presenter of all other errors as-is", ^{
-            NSError *error = [RTErrorFactory loginErrorWithCode:UnableToStoreToken];
+            NSError *error = [RTErrorFactory loginErrorWithCode:LoginUnableToStoreToken];
             
             [interactor loginDataOperationFailedWithError:error];
-            expectLoginFailureError(UnableToStoreToken);
+            expectLoginFailureError(LoginUnableToStoreToken);
         });
     });
 });

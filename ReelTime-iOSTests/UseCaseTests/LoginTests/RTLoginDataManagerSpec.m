@@ -174,7 +174,7 @@ describe(@"login data manager", ^{
                     [verify(interactor) loginDataOperationFailedWithError:[errorCaptor capture]];
                     
                     capturedError = [errorCaptor value];
-                    expect(capturedError).to.beError(RTLoginErrorDomain, UnableToSetCurrentlyLoggedInUser);
+                    expect(capturedError).to.beError(RTLoginErrorDomain, LoginUnableToSetCurrentlyLoggedInUser);
                 });
                 
                 it(@"should notify interactor of failure to delete stored token", ^{
@@ -186,7 +186,7 @@ describe(@"login data manager", ^{
                     [verify(interactor) loginDataOperationFailedWithError:[errorCaptor capture]];
                     
                     capturedError = [errorCaptor value];
-                    expect(capturedError).to.beError(RTLoginErrorDomain, UnableToRemoveToken);
+                    expect(capturedError).to.beError(RTLoginErrorDomain, LoginUnableToRemoveToken);
                 });
             });
             
@@ -204,7 +204,7 @@ describe(@"login data manager", ^{
                 [verify(interactor) loginDataOperationFailedWithError:[errorCaptor capture]];
                 
                 capturedError = [errorCaptor value];
-                expect(capturedError).to.beError(RTLoginErrorDomain, UnableToStoreToken);
+                expect(capturedError).to.beError(RTLoginErrorDomain, LoginUnableToStoreToken);
             });
         });
     });

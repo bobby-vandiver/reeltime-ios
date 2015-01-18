@@ -31,18 +31,18 @@
 - (void)loginWithUsername:(NSString *)username
                  password:(NSString *)password {
     if ([username length] == 0) {
-        [self loginFailedWithErrorCode:MissingUsername];
+        [self loginFailedWithErrorCode:LoginMissingUsername];
         return;
     }
     else if ([password length] == 0) {
-        [self loginFailedWithErrorCode:MissingPassword];
+        [self loginFailedWithErrorCode:LoginMissingPassword];
         return;
     }
    
     RTClientCredentials *clientCredentials = [self.dataManager clientCredentialsForUsername:username];
 
     if (!clientCredentials) {
-        [self loginFailedWithErrorCode:UnknownClient];
+        [self loginFailedWithErrorCode:LoginUnknownClient];
     }
     else {
         RTUserCredentials *userCredentials = [[RTUserCredentials alloc] initWithUsername:username
@@ -71,10 +71,10 @@
     NSInteger errorCode;
     
     if (error.code == InvalidClientCredentials) {
-        errorCode = UnknownClient;
+        errorCode = LoginUnknownClient;
     }
     else if (error.code == InvalidUserCredentials) {
-        errorCode = InvalidCredentials;
+        errorCode = LoginInvalidCredentials;
     }
     
     [self loginFailedWithErrorCode:errorCode];

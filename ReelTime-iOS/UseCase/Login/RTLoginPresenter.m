@@ -39,16 +39,16 @@
     NSString *message = @"An unknown error occurred";
     
     if ([error.domain isEqualToString:RTLoginErrorDomain]) {
-        if (error.code == MissingUsername) {
+        if (error.code == LoginMissingUsername) {
             message = @"Username is required";
         }
-        else if (error.code == MissingPassword) {
+        else if (error.code == LoginMissingPassword) {
             message = @"Password is required";
         }
-        else if (error.code == InvalidCredentials) {
+        else if (error.code == LoginInvalidCredentials) {
             message = @"Invalid username or password";
         }
-        else if (error.code == UnknownClient) {
+        else if (error.code == LoginUnknownClient) {
             [self.wireframe presentDeviceRegistrationInterface];
             return;
         }

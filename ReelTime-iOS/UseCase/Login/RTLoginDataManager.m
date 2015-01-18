@@ -84,7 +84,7 @@
     BOOL success = [self.tokenStore storeToken:token forUsername:username error:&storeError];
     
     if (!success && error) {
-        *error = [RTErrorFactory loginErrorWithCode:UnableToStoreToken originalError:storeError];
+        *error = [RTErrorFactory loginErrorWithCode:LoginUnableToStoreToken originalError:storeError];
     }
     
     return success;
@@ -96,7 +96,7 @@
     BOOL success = [self.currentUserStore storeCurrentUsername:username error:&storeError];
     
     if (!success && error) {
-        *error = [RTErrorFactory loginErrorWithCode:UnableToSetCurrentlyLoggedInUser
+        *error = [RTErrorFactory loginErrorWithCode:LoginUnableToSetCurrentlyLoggedInUser
                                               originalError:storeError];
     }
     
@@ -109,7 +109,7 @@
     BOOL success = [self.tokenStore removeTokenForUsername:username error:&storeError];
     
     if (!success && error) {
-        *error = [RTErrorFactory loginErrorWithCode:UnableToRemoveToken originalError:storeError];
+        *error = [RTErrorFactory loginErrorWithCode:LoginUnableToRemoveToken originalError:storeError];
     }
     
     return success;
