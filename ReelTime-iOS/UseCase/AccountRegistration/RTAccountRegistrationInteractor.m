@@ -3,21 +3,26 @@
 #import "RTAccountRegistrationDataManager.h"
 #import "RTAccountRegistration.h"
 
+#import "RTLoginInteractor.h"
+
 @interface RTAccountRegistrationInteractor ()
 
 @property RTAccountRegistrationPresenter *presenter;
 @property RTAccountRegistrationDataManager *dataManager;
+@property RTLoginInteractor *loginInteractor;
 
 @end
 
 @implementation RTAccountRegistrationInteractor
 
 - (instancetype)initWithPresenter:(RTAccountRegistrationPresenter *)presenter
-                      dataManager:(RTAccountRegistrationDataManager *)dataManager {
+                      dataManager:(RTAccountRegistrationDataManager *)dataManager
+                  loginInteractor:(RTLoginInteractor *)loginInteractor {
     self = [super init];
     if (self) {
         self.presenter = presenter;
         self.dataManager = dataManager;
+        self.loginInteractor = loginInteractor;
     }
     return self;
 }
@@ -28,16 +33,19 @@
                               email:(NSString *)email
                         displayName:(NSString *)displayName
                          clientName:(NSString *)clientName {
-    // Validate registration
-    // Request registration from data manager
-    
+    // TODO: Validate registration
+   
     RTAccountRegistration *registration = [[RTAccountRegistration alloc] initWithUsername:username
                                                                                  password:password
                                                                                     email:email
                                                                               displayName:displayName
                                                                                clientName:clientName];
     
-    (void)registration;
+    [self.dataManager registerAccount:registration callback:^(RTClientCredentials *clientCredentials) {
+        [self.dataManager saveClientCredentials:clientCredentials forUsername:username callback:^{
+            [self.loginInteractor loginWithUsername:username password:password];
+        }];
+    }];
 }
 
 @end

@@ -2,11 +2,13 @@
 
 @class RTAccountRegistrationPresenter;
 @class RTAccountRegistrationDataManager;
+@class RTLoginInteractor;
 
 @interface RTAccountRegistrationInteractor : NSObject
 
 - (instancetype)initWithPresenter:(RTAccountRegistrationPresenter *)presenter
-                      dataManager:(RTAccountRegistrationDataManager *)dataManager;
+                      dataManager:(RTAccountRegistrationDataManager *)dataManager
+                  loginInteractor:(RTLoginInteractor *)loginInteractor;
 
 - (void)registerAccountWithUsername:(NSString *)username
                            password:(NSString *)password

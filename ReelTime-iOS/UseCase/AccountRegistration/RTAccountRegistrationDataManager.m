@@ -35,7 +35,8 @@
 }
 
 - (void)saveClientCredentials:(RTClientCredentials *)clientCredentials
-                  forUsername:(NSString *)username {
+                  forUsername:(NSString *)username
+                     callback:(void (^)())callback {
     
 }
 
