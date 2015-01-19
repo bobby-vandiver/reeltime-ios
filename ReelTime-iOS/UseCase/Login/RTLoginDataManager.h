@@ -22,6 +22,7 @@
                                callback:(void (^)(RTOAuth2Token *token, NSString *username))callback;
 
 - (void)setLoggedInUserWithToken:(RTOAuth2Token *)token
-                        username:(NSString *)username;
+                        username:(NSString *)username
+                        callback:(void (^)())callback;
 
 @end

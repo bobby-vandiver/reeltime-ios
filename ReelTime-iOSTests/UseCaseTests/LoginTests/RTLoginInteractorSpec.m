@@ -68,7 +68,7 @@ describe(@"login interactor", ^{
             });
             
             describe(@"when fetching a token", ^{
-                it(@"should set logged in user on success", ^{
+                it(@"should set logged in user on success and notify presenter of successful login", ^{
                     [interactor loginWithUsername:username password:password];
                     
                     MKTArgumentCaptor *clientCredentialsCaptor= [[MKTArgumentCaptor alloc] init];
@@ -87,12 +87,20 @@ describe(@"login interactor", ^{
                     expect(clientCredentialsArg.clientId).to.equal(clientId);
                     expect(clientCredentialsArg.clientSecret).to.equal(clientSecret);
 
-                    [verifyCount(dataManager, never()) setLoggedInUserWithToken:token username:username];
+                    [verifyCount(dataManager, never()) setLoggedInUserWithToken:token username:username callback:anything()];
 
                     void (^callback)(RTOAuth2Token *token, NSString *username) = [callbackCaptor value];
                     callback(token, username);
 
-                    [verify(dataManager) setLoggedInUserWithToken:token username:username];
+                    MKTArgumentCaptor *nestedCallbackCaptor = [[MKTArgumentCaptor alloc] init];
+                    [verify(dataManager) setLoggedInUserWithToken:token username:username callback:[nestedCallbackCaptor capture]];
+                    
+                    [verifyCount(presenter, never()) loginSucceeded];
+                    
+                    void (^nestedCallback)() = [nestedCallbackCaptor value];
+                    nestedCallback();
+                    
+                    [verify(presenter) loginSucceeded];
                 });
                 
             });
@@ -107,13 +115,6 @@ describe(@"login interactor", ^{
                 [interactor loginWithUsername:username password:password];
                 expectLoginFailureError(LoginUnknownClient);
             });
-        });
-    });
-    
-    describe(@"successful login", ^{
-        it(@"should notify presenter of successful login", ^{
-            [interactor didSetLoggedInUser];
-            [verify(presenter) loginSucceeded];
         });
     });
     

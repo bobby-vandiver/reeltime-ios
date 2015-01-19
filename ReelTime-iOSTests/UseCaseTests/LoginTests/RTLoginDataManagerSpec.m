@@ -120,11 +120,19 @@ describe(@"login data manager", ^{
         __block MKTArgumentCaptor *errorCaptor;
         __block NSError *capturedError;
         
+        __block BOOL callbackExecuted;
+        
+        void (^callback)() = ^(){
+            callbackExecuted = YES;
+        };
+
         beforeEach(^{
             token = [[RTOAuth2Token alloc] init];
             
             errorCaptor = [[MKTArgumentCaptor alloc] init];
             capturedError = nil;
+            
+            callbackExecuted = NO;
         });
         
         afterEach(^{
@@ -144,13 +152,13 @@ describe(@"login data manager", ^{
                  storeCurrentUsername:username error:nil];
             });
 
-            it(@"should set the current username and notify interactor on success", ^{
+            it(@"should set the current username and execute callback on success", ^{
                 [[given([currentUserStore storeCurrentUsername:username error:nil])
                   withMatcher:anything() forArgument:1]
                  willReturnBool:YES];
                 
-                [dataManager setLoggedInUserWithToken:token username:username];
-                [verify(interactor) didSetLoggedInUser];
+                [dataManager setLoggedInUserWithToken:token username:username callback:callback];
+                expect(callbackExecuted).to.beTruthy();
             });
             
             context(@"unable to set current username", ^{
@@ -163,6 +171,8 @@ describe(@"login data manager", ^{
                 afterEach(^{
                     [[verify(tokenStore) withMatcher:anything() forArgument:1]
                      removeTokenForUsername:username error:nil];
+
+                    expect(callbackExecuted).to.beFalsy();
                 });
                 
                 it(@"should delete stored token", ^{
@@ -170,7 +180,7 @@ describe(@"login data manager", ^{
                       withMatcher:anything() forArgument:1]
                      willReturnBool:YES];
                     
-                    [dataManager setLoggedInUserWithToken:token username:username];
+                    [dataManager setLoggedInUserWithToken:token username:username callback:callback];
                     [verify(interactor) loginDataOperationFailedWithError:[errorCaptor capture]];
                     
                     capturedError = [errorCaptor value];
@@ -182,7 +192,7 @@ describe(@"login data manager", ^{
                       withMatcher:anything() forArgument:1]
                      willReturnBool:NO];
                     
-                    [dataManager setLoggedInUserWithToken:token username:username];
+                    [dataManager setLoggedInUserWithToken:token username:username callback:callback];
                     [verify(interactor) loginDataOperationFailedWithError:[errorCaptor capture]];
                     
                     capturedError = [errorCaptor value];
@@ -200,11 +210,13 @@ describe(@"login data manager", ^{
             });
             
             it(@"should notify interactor of failure to save token", ^{
-                [dataManager setLoggedInUserWithToken:token username:username];
+                [dataManager setLoggedInUserWithToken:token username:username callback:callback];
                 [verify(interactor) loginDataOperationFailedWithError:[errorCaptor capture]];
                 
                 capturedError = [errorCaptor value];
                 expect(capturedError).to.beError(RTLoginErrorDomain, LoginUnableToStoreToken);
+                
+                expect(callbackExecuted).to.beFalsy();
             });
         });
     });

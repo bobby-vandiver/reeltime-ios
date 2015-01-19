@@ -57,7 +57,8 @@
 }
 
 - (void)setLoggedInUserWithToken:(RTOAuth2Token *)token
-                        username:(NSString *)username {
+                        username:(NSString *)username
+                        callback:(void (^)())callback {
     NSError *error;
     BOOL success = [self saveToken:token forUsername:username error:&error];
     
@@ -70,7 +71,7 @@
     }
     
     if (success) {
-        [self.interactor didSetLoggedInUser];
+        callback();
     }
     else {
         [self.interactor loginDataOperationFailedWithError:error];

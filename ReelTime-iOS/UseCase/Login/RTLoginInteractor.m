@@ -47,19 +47,16 @@
     else {
         RTUserCredentials *userCredentials = [[RTUserCredentials alloc] initWithUsername:username
                                                                                 password:password];
+        __weak typeof(self) welf = self;
 
-        id callback = ^(RTOAuth2Token *token, NSString *username) {
-            [self.dataManager setLoggedInUserWithToken:token username:username];
-        };
-        
         [self.dataManager fetchTokenWithClientCredentials:clientCredentials
                                           userCredentials:userCredentials
-                                                 callback:callback];
+                                                 callback:^(RTOAuth2Token *token, NSString *username) {
+            [self.dataManager setLoggedInUserWithToken:token username:username callback:^{
+                [welf.presenter loginSucceeded];
+            }];
+        }];
     }
-}
-
-- (void)didSetLoggedInUser {
-    [self.presenter loginSucceeded];
 }
 
 - (void)loginDataOperationFailedWithError:(NSError *)error {
