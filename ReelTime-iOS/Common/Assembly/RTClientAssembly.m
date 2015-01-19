@@ -26,7 +26,8 @@
         [definition injectMethod:@selector(addResponseDescriptorsFromArray:) parameters:^(TyphoonMethod *method) {
             [method injectParameterWith:@[
                                           [RTResponseDescriptorFactory tokenDescriptor],
-                                          [RTResponseDescriptorFactory tokenErrorDescriptor]
+                                          [RTResponseDescriptorFactory tokenErrorDescriptor],
+                                          [RTResponseDescriptorFactory accountRegistrationDescriptor]
                                           ]];
         }];
     }];

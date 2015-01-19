@@ -4,6 +4,8 @@
 #import "RTClientErrors.h"
 #import "RTClientAssembly.h"
 
+#import "RTAccountRegistration.h"
+
 #import "RTRestAPI.h"
 
 #import <Typhoon/Typhoon.h>
@@ -110,6 +112,38 @@ describe(@"ReelTime Client", ^{
                                                fail();
                                                done();
                                            }];
+            });
+        });
+    });
+    
+    describe(@"requesting account registration", ^{
+        __block NSRegularExpression *accountRegistrationUrlRegex = createUrlRegexForEndpoint(API_ACCOUNT_REGISTRATION_ENDPOINT);
+
+        __block RTAccountRegistration *registration;
+        
+        beforeEach(^{
+            registration = [[RTAccountRegistration alloc] initWithUsername:@"user"
+                                                                  password:@"secret"
+                                                                     email:@"user@test.com"
+                                                               displayName:@"some user"
+                                                                clientName:@"iPhone"];
+        });
+        
+        it(@"should pass client credentials to callback when successful", ^{
+            stubRequest(POST, accountRegistrationUrlRegex).
+            andReturnRawResponse(rawResponseFromFile(@"successful-registration"));
+            
+            waitUntil(^(DoneCallback done) {
+                [client registerAccount:registration
+                                success:^(RTClientCredentials *clientCredentials) {
+                                    expect(clientCredentials.clientId).to.equal(@"5bdee758-cf71-4cd5-9bd9-aded45ce9964");
+                                    expect(clientCredentials.clientSecret).to.equal(@"g70mC9ZbpKa6p6R1tJPVWTm55BWHnSkmCv27F=oSI6");
+                                    done();
+                                }
+                                failure:^(NSError *error) {
+                                    fail();
+                                    done();
+                                }];
             });
         });
     });

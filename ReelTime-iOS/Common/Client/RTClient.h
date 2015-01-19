@@ -5,6 +5,8 @@
 #import "RTUserCredentials.h"
 #import "RTOAuth2Token.h"
 
+#import "RTAccountRegistration.h"
+
 @interface RTClient : NSObject
 
 - (instancetype)initWithRestKitObjectManager:(RKObjectManager *)objectManager;
@@ -13,5 +15,9 @@
                    userCredentials:(RTUserCredentials *)userCredentials
                            success:(void (^)(RTOAuth2Token *token))success
                            failure:(void (^)(NSError *error))failure;
+
+- (void)registerAccount:(RTAccountRegistration *)registration
+                success:(void (^)(RTClientCredentials *clientCredentials))success
+                failure:(void (^)(NSError *error))failure;
 
 @end
