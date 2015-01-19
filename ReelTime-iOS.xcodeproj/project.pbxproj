@@ -28,6 +28,8 @@
 		713D7A451A509AC000754A06 /* RTClientCredentialsStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 713D7A441A509AC000754A06 /* RTClientCredentialsStore.m */; };
 		713D7A481A509ACC00754A06 /* RTClientCredentials.m in Sources */ = {isa = PBXBuildFile; fileRef = 713D7A471A509ACC00754A06 /* RTClientCredentials.m */; };
 		713D7A4C1A50A33300754A06 /* RTClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 713D7A4B1A50A33300754A06 /* RTClient.m */; };
+		713DCAA61A6C850C0032B252 /* successful-registration.txt in Resources */ = {isa = PBXBuildFile; fileRef = 713DCAA51A6C850C0032B252 /* successful-registration.txt */; };
+		713DCAA91A6C8B330032B252 /* RTServerErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 713DCAA81A6C8B330032B252 /* RTServerErrors.m */; };
 		71476ADC1A62C74A0023DE6C /* bad-client-credentials.txt in Resources */ = {isa = PBXBuildFile; fileRef = 71476ADB1A62C74A0023DE6C /* bad-client-credentials.txt */; };
 		71476AE01A62CA550023DE6C /* bad-user-credentials.txt in Resources */ = {isa = PBXBuildFile; fileRef = 71476ADE1A62CA550023DE6C /* bad-user-credentials.txt */; };
 		71476AE11A62CA550023DE6C /* successful-token-request.txt in Resources */ = {isa = PBXBuildFile; fileRef = 71476ADF1A62CA550023DE6C /* successful-token-request.txt */; };
@@ -124,6 +126,9 @@
 		713D7A4A1A50A33300754A06 /* RTClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTClient.h; sourceTree = "<group>"; };
 		713D7A4B1A50A33300754A06 /* RTClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTClient.m; sourceTree = "<group>"; };
 		713D7A571A50E9D500754A06 /* RTClientErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTClientErrors.h; sourceTree = "<group>"; };
+		713DCAA51A6C850C0032B252 /* successful-registration.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "successful-registration.txt"; sourceTree = "<group>"; };
+		713DCAA71A6C8B330032B252 /* RTServerErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTServerErrors.h; path = "ReelTime-iOS/Common/Model/RTServerErrors.h"; sourceTree = SOURCE_ROOT; };
+		713DCAA81A6C8B330032B252 /* RTServerErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTServerErrors.m; path = "ReelTime-iOS/Common/Model/RTServerErrors.m"; sourceTree = SOURCE_ROOT; };
 		71476ADB1A62C74A0023DE6C /* bad-client-credentials.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "bad-client-credentials.txt"; sourceTree = "<group>"; };
 		71476ADE1A62CA550023DE6C /* bad-user-credentials.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "bad-user-credentials.txt"; sourceTree = "<group>"; };
 		71476ADF1A62CA550023DE6C /* successful-token-request.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "successful-token-request.txt"; sourceTree = "<group>"; };
@@ -329,6 +334,7 @@
 		71476ADD1A62C8B50023DE6C /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				713DCAA51A6C850C0032B252 /* successful-registration.txt */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -498,6 +504,8 @@
 				713D7A471A509ACC00754A06 /* RTClientCredentials.m */,
 				718CFFC81A6C007C00B418F9 /* RTAccountRegistration.h */,
 				718CFFC91A6C007C00B418F9 /* RTAccountRegistration.m */,
+				713DCAA71A6C8B330032B252 /* RTServerErrors.h */,
+				713DCAA81A6C8B330032B252 /* RTServerErrors.m */,
 			);
 			name = Model;
 			path = Models;
@@ -699,6 +707,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				71476AE01A62CA550023DE6C /* bad-user-credentials.txt in Resources */,
+				713DCAA61A6C850C0032B252 /* successful-registration.txt in Resources */,
 				71476ADC1A62C74A0023DE6C /* bad-client-credentials.txt in Resources */,
 				71476AE11A62CA550023DE6C /* successful-token-request.txt in Resources */,
 			);
@@ -788,6 +797,7 @@
 				717A4B781A534EBD004C2BC1 /* RTResponseDescriptorFactory.m in Sources */,
 				713D7A451A509AC000754A06 /* RTClientCredentialsStore.m in Sources */,
 				71C5C0AD1A55EAE700CAAFAC /* RTOAuth2TokenError.m in Sources */,
+				713DCAA91A6C8B330032B252 /* RTServerErrors.m in Sources */,
 				717A4B851A53A212004C2BC1 /* RTOAuth2TokenError+RTClientTokenErrorConverter.m in Sources */,
 				717A4B7B1A534EF8004C2BC1 /* RTRestAPIMappingFactory.m in Sources */,
 				711690A21A6B00210031578E /* RTApplicationAssembly.m in Sources */,

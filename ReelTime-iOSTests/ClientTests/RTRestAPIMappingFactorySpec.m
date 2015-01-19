@@ -4,6 +4,9 @@
 #import "RTOAuth2Token.h"
 #import "RTOAuth2TokenError.h"
 
+#import "RTServerErrors.h"
+#import "RTClientCredentials.h"
+
 #import <RestKit/Testing.h>
 
 SpecBegin(RTRestAPIMappingFactory)
@@ -69,6 +72,71 @@ describe(@"API Mapping", ^{
                                                                                 destinationKeyPath:@"errorDescription"
                                                                                              value:@"Bad client credentials"]];
 
+        [mappingTest performMapping];
+        [mappingTest verify];
+    });
+
+    it(@"single server error", ^{
+        RKMapping *mapping = [RTRestAPIMappingFactory serverErrorsMapping];
+        NSDictionary *response = @{
+                                   @"errors": @[@"single error"]
+                                   };
+        
+        RTServerErrors *serverErrors = [[RTServerErrors alloc] init];
+        RKMappingTest *mappingTest = [RKMappingTest testForMapping:mapping
+                                                      sourceObject:response
+                                                 destinationObject:serverErrors];
+        
+        [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:@"errors"
+                                                                                destinationKeyPath:@"errors"
+                                                                                             value:@[@"single error"]]];
+        
+        [mappingTest performMapping];
+        [mappingTest verify];
+    });
+    
+    it(@"multiple server errors", ^{
+        RKMapping *mapping = [RTRestAPIMappingFactory serverErrorsMapping];
+        NSDictionary *response = @{
+                                   @"errors": @[@"first error", @"second error", @"third error"]
+                                   };
+        
+        RTServerErrors *serverErrors = [[RTServerErrors alloc] init];
+        RKMappingTest *mappingTest = [RKMappingTest testForMapping:mapping
+                                                      sourceObject:response
+                                                 destinationObject:serverErrors];
+        
+        [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:@"errors"
+                                                                                destinationKeyPath:@"errors"
+                                                                                             value:@[
+                                                                                                     @"first error",
+                                                                                                     @"second error",
+                                                                                                     @"third error"
+                                                                                                     ]]];
+        [mappingTest performMapping];
+        [mappingTest verify];
+    });
+    
+    it(@"account registration", ^{
+        RKMapping *mapping = [RTRestAPIMappingFactory accountRegistrationMapping];
+        NSDictionary *response = @{
+                                   @"client_id": @"5bdee758-cf71-4cd5-9bd9-aded45ce9964",
+                                   @"client_secret": @"g70mC9ZbpKa6p6R1tJPVWTm55BWHnSkmCv27F=oSI6"
+                                   };
+        
+        RTClientCredentials *clientCredentials = [[RTClientCredentials alloc] init];
+        RKMappingTest *mappingTest = [RKMappingTest testForMapping:mapping
+                                                      sourceObject:response
+                                                 destinationObject:clientCredentials];
+        
+        [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:@"client_id"
+                                                                                destinationKeyPath:@"clientId"
+                                                                                             value:@"5bdee758-cf71-4cd5-9bd9-aded45ce9964"]];
+        
+        [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:@"client_secret"
+                                                                                destinationKeyPath:@"clientSecret"
+                                                                                             value:@"g70mC9ZbpKa6p6R1tJPVWTm55BWHnSkmCv27F=oSI6"]];
+        
         [mappingTest performMapping];
         [mappingTest verify];
     });

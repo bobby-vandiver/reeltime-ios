@@ -6,4 +6,8 @@
 + (RKMapping *)tokenMapping;
 + (RKMapping *)tokenErrorMapping;
 
++ (RKMapping *)serverErrorsMapping;
+
++ (RKMapping *)accountRegistrationMapping;
+
 @end
