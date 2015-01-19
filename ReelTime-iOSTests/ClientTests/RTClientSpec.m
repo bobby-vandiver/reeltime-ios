@@ -54,11 +54,11 @@ describe(@"ReelTime Client", ^{
         
         
         beforeEach(^{
-            clientCredentials = [[RTClientCredentials alloc] initWithClientId:@"foo"
-                                                                 clientSecret:@"bar"];
+            clientCredentials = [[RTClientCredentials alloc] initWithClientId:clientId
+                                                                 clientSecret:clientSecret];
             
-            userCredentials = [[RTUserCredentials alloc] initWithUsername:@"buzz"
-                                                                 password:@"bazz"];
+            userCredentials = [[RTUserCredentials alloc] initWithUsername:username
+                                                                 password:password];
         });
         
         it(@"should fail for bad client credentials", ^{
@@ -122,11 +122,11 @@ describe(@"ReelTime Client", ^{
         __block RTAccountRegistration *registration;
         
         beforeEach(^{
-            registration = [[RTAccountRegistration alloc] initWithUsername:@"user"
-                                                                  password:@"secret"
-                                                                     email:@"user@test.com"
-                                                               displayName:@"some user"
-                                                                clientName:@"iPhone"];
+            registration = [[RTAccountRegistration alloc] initWithUsername:username
+                                                                  password:password
+                                                                     email:email
+                                                               displayName:displayName
+                                                                clientName:clientName];
         });
         
         it(@"should pass client credentials to callback when successful", ^{

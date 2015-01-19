@@ -9,8 +9,6 @@ describe(@"token store", ^{
     
     __block RTOAuth2TokenStore *store;
     __block RTKeyChainWrapper *keyChainWrapper;
-    
-    __block NSString *username = @"someone";
 
     __block NSString *accessToken = @"access";
     __block NSString *refreshToken = @"refresh";

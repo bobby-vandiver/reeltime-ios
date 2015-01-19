@@ -20,12 +20,6 @@ describe(@"login data manager", ^{
     __block RTClientCredentials *clientCredentials;
     __block RTUserCredentials *userCredentials;
 
-    __block NSString *clientId = @"foo";
-    __block NSString *clientSecret = @"bar";
-    
-    __block NSString *username = @"someone";
-    __block NSString *password = @"secret";
-
     beforeEach(^{
         interactor = mock([RTLoginInteractor class]);
 

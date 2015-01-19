@@ -11,11 +11,6 @@ describe(@"client credentials store", ^{
     __block RTClientCredentialsStore *store;
     __block RTKeyChainWrapper *keyChainWrapper;
     
-    __block NSString *username = @"someone";
-    
-    __block NSString *clientId = @"foo";
-    __block NSString *clientSecret = @"bar";
-    
     beforeEach(^{
         keyChainWrapper = [[RTFakeKeyChainWrapper alloc] init];
         store = [[RTClientCredentialsStore alloc] initWithKeyChainWrapper:keyChainWrapper];

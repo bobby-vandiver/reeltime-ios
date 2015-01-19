@@ -17,12 +17,6 @@ describe(@"account registration interactor", ^{
     __block RTAccountRegistrationDataManager *dataManager;
     
     __block RTLoginInteractor *loginInteractor;
-
-    __block NSString *username = @"someone";
-    __block NSString *password = @"secret";
-    __block NSString *email = @"someone@test.com";
-    __block NSString *displayName = @"Some One";
-    __block NSString *clientName = @"iPhone";
     
     beforeEach(^{
         presenter = mock([RTAccountRegistrationPresenter class]);
@@ -49,8 +43,8 @@ describe(@"account registration interactor", ^{
             __block RTClientCredentials *clientCredentials;
             
             beforeEach(^{
-                clientCredentials = [[RTClientCredentials alloc] initWithClientId:@"foo"
-                                                                     clientSecret:@"bar"];
+                clientCredentials = [[RTClientCredentials alloc] initWithClientId:clientId
+                                                                     clientSecret:clientSecret];
             });
             
             it(@"should save client credentials and attempt to login user automatically", ^{

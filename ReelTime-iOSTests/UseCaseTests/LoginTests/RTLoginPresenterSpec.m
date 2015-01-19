@@ -17,9 +17,6 @@ describe(@"login presenter", ^{
     __block RTLoginInteractor *interactor;
     __block RTLoginWireframe *wireframe;
     
-    __block NSString *username;
-    __block NSString *password;
-    
     beforeEach(^{
         view = mockProtocol(@protocol(RTLoginView));
         interactor = mock([RTLoginInteractor class]);
@@ -28,9 +25,6 @@ describe(@"login presenter", ^{
         presenter = [[RTLoginPresenter alloc] initWithView:view
                                                 interactor:interactor
                                                  wireframe:wireframe];
-        
-        username = @"someone";
-        password = @"secret";
     });
     
     describe(@"when login is requested", ^{

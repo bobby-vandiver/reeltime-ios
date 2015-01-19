@@ -19,12 +19,6 @@ describe(@"login interactor", ^{
     __block RTClientCredentials *clientCredentials;
     __block RTOAuth2Token *token;
    
-    __block NSString *clientId = @"foo";
-    __block NSString *clientSecret = @"bar";
-    
-    __block NSString *username = @"someone";
-    __block NSString *password = @"secret";
-    
     void (^expectLoginFailureError)(RTLoginErrors) = ^(RTLoginErrors expectedErrorCode) {
         MKTArgumentCaptor *errorCaptor = [[MKTArgumentCaptor alloc] init];
         [verify(presenter) loginFailedWithError:[errorCaptor capture]];
