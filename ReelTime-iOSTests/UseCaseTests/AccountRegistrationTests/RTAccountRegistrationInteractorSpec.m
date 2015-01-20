@@ -28,9 +28,11 @@ describe(@"account registration interactor", ^{
     
     void (^expectRegistrationFailureError)(RTAccountRegistrationErrors) = ^(RTAccountRegistrationErrors expectedErrorCode) {
         MKTArgumentCaptor *errorCaptor = [[MKTArgumentCaptor alloc] init];
-        [verify(presenter) registrationFailedWithError:[errorCaptor capture]];
+        [verify(presenter) registrationFailedWithErrors:[errorCaptor capture]];
         
-        expect([errorCaptor value]).to.beError(RTAccountRegistrationErrorDomain, expectedErrorCode);
+        NSArray *errors = [errorCaptor value];
+        expect([errors count]).to.equal(1);
+        expect([errors objectAtIndex:0]).to.beError(RTAccountRegistrationErrorDomain, expectedErrorCode);
     };
 
     void (^expectErrorForBadParameters)(NSDictionary *parameters, RTAccountRegistrationErrors expectedErrorCode) =

@@ -101,7 +101,7 @@
 
 - (void)registrationFailedWithErrorCode:(RTAccountRegistrationErrors)code {
     NSError *registrationError = [RTErrorFactory accountRegistrationErrorWithCode:code];
-    [self.presenter registrationFailedWithError:registrationError];
+    [self.presenter registrationFailedWithErrors:@[registrationError]];
 }
 
 @end

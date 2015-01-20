@@ -34,7 +34,7 @@
 }
 
 - (void)loginFailedWithError:(NSError *)error {
-    [self.registrationPresenter registrationWithAutoLoginFailedWithError:error];
+    [self.registrationPresenter registrationWithAutoLoginFailedWithErrors:@[error]];
 }
 
 @end

@@ -39,11 +39,11 @@
     
 }
 
-- (void)registrationWithAutoLoginFailedWithError:(NSError *)error {
+- (void)registrationWithAutoLoginFailedWithErrors:(NSArray *)errors {
     
 }
 
-- (void)registrationFailedWithError:(NSError *)error {
+- (void)registrationFailedWithErrors:(NSArray *)errors {
     
 }
 

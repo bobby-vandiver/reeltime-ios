@@ -39,8 +39,11 @@ describe(@"account registration auto login presenter", ^{
         [autoLoginPresenter loginFailedWithError:loginError];
 
         MKTArgumentCaptor *errorCaptor = [[MKTArgumentCaptor alloc] init];
-        [verify(registrationPresenter) registrationWithAutoLoginFailedWithError:[errorCaptor capture]];
-        expect([errorCaptor value]).to.equal(loginError);
+        [verify(registrationPresenter) registrationWithAutoLoginFailedWithErrors:[errorCaptor capture]];
+        
+        NSArray *errors = [errorCaptor value];
+        expect([errors count]).to.equal(1);
+        expect([errors objectAtIndex:0]).to.equal(loginError);
     });
 });
 
