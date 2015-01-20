@@ -26,16 +26,8 @@ describe(@"login interactor", ^{
         expect([errors count]).to.equal([expectedErrorCodes count]);
         
         for (NSNumber *errorCode in expectedErrorCodes) {
-            NSUInteger foundIdx = [errors indexOfObjectPassingTest:^(id obj, NSUInteger idx, BOOL *stop) {
-                NSError *error = obj;
-                
-                BOOL sameDomain = [error.domain isEqualToString:RTLoginErrorDomain];
-                BOOL sameCode = (error.code == [errorCode integerValue]);
-                
-                return (BOOL)(sameDomain && sameCode);
-            }];
-            
-            expect(foundIdx).toNot.equal(NSNotFound);
+            NSError *expected = [RTErrorFactory loginErrorWithCode:[errorCode integerValue]];
+            expect(errors).to.contain(expected);
         }
     };
     
@@ -68,9 +60,9 @@ describe(@"login interactor", ^{
                 expectLoginFailureError(LoginMissingPassword);
             });
             
-            xit(@"should fail when both username and password are missing", ^{
+            it(@"should fail when both username and password are missing", ^{
                 [interactor loginWithUsername:@"" password:@""];
-                //TODO: Update expectLoginFailureError to handle multiple errors
+                expectLoginFailureErrors(@[@(LoginMissingUsername), @(LoginMissingPassword)]);
             });
         });
 
