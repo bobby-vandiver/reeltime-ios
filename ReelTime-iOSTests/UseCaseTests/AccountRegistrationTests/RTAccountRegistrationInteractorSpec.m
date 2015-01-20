@@ -6,6 +6,7 @@
 
 #import "RTAccountRegistration.h"
 #import "RTClientCredentials.h"
+#import "RTAccountRegistrationErrors.h"
 
 SpecBegin(RTAccountRegistrationInteractor)
 
@@ -17,6 +18,40 @@ describe(@"account registration interactor", ^{
     __block RTAccountRegistrationDataManager *dataManager;
     
     __block RTLoginInteractor *loginInteractor;
+    
+    NSString *const USERNAME_KEY = @"username";
+    NSString *const PASSWORD_KEY = @"password";
+    NSString *const CONFIRMATION_PASSWORD_KEY = @"confirmationPassword";
+    NSString *const EMAIL_KEY = @"email";
+    NSString *const DISPLAY_NAME_KEY = @"displayName";
+    NSString *const CLIENT_NAME_KEY = @"clientName";
+    
+    void (^expectRegistrationFailureError)(RTAccountRegistrationErrors) = ^(RTAccountRegistrationErrors expectedErrorCode) {
+        MKTArgumentCaptor *errorCaptor = [[MKTArgumentCaptor alloc] init];
+        [verify(presenter) registrationFailedWithError:[errorCaptor capture]];
+        
+        expect([errorCaptor value]).to.beError(RTAccountRegistrationErrorDomain, expectedErrorCode);
+    };
+
+    void (^expectErrorForBadParameters)(NSDictionary *parameters, RTAccountRegistrationErrors expectedErrorCode) =
+    ^(NSDictionary *parameters, RTAccountRegistrationErrors expectedErrorCode) {
+        
+        NSString *usernameParam = [parameters objectForKey:USERNAME_KEY];
+        NSString *passwordParam = [parameters objectForKey:PASSWORD_KEY];
+        NSString *confirmationParam = [parameters objectForKey:CONFIRMATION_PASSWORD_KEY];
+        NSString *emailParam = [parameters objectForKey:EMAIL_KEY];
+        NSString *displayNameParam = [parameters objectForKey:DISPLAY_NAME_KEY];
+        NSString *clientNameParam = [parameters objectForKey:CLIENT_NAME_KEY];
+        
+        [interactor registerAccountWithUsername:(usernameParam ? usernameParam : username)
+                                       password:(passwordParam ? passwordParam : password)
+                           confirmationPassword:(confirmationParam ? confirmationParam : password)
+                                          email:(emailParam ? emailParam : email)
+                                    displayName:(displayNameParam ? displayNameParam : displayName)
+                                     clientName:(clientNameParam ? clientNameParam : clientName)];
+        
+        expectRegistrationFailureError(expectedErrorCode);
+    };
     
     beforeEach(^{
         presenter = mock([RTAccountRegistrationPresenter class]);
@@ -31,8 +66,36 @@ describe(@"account registration interactor", ^{
     
     describe(@"account registration requested", ^{
         
-        xcontext(@"missing parameters", ^{
-            // TODO
+        context(@"missing parameters", ^{
+            NSString *const BLANK = @"";
+            
+            afterEach(^{
+                [verifyCount(dataManager, never()) registerAccount:anything() callback:anything()];
+            });
+            
+            it(@"blank username", ^{
+                expectErrorForBadParameters(@{USERNAME_KEY: BLANK}, AccountRegistrationMissingUsername);
+            });
+            
+            it(@"blank password", ^{
+                expectErrorForBadParameters(@{PASSWORD_KEY: BLANK}, AccountRegistrationMissingPassword);
+            });
+            
+            it(@"blank confirmation password", ^{
+                expectErrorForBadParameters(@{CONFIRMATION_PASSWORD_KEY: BLANK}, AccountRegistrationMissingConfirmationPassword);
+            });
+            
+            it(@"blank email", ^{
+                expectErrorForBadParameters(@{EMAIL_KEY: BLANK}, AccountRegistrationMissingEmail);
+            });
+            
+            it(@"blank display name", ^{
+                expectErrorForBadParameters(@{DISPLAY_NAME_KEY: BLANK}, AccountRegistrationMissingDisplayName);
+            });
+            
+            it(@"blank client name", ^{
+                expectErrorForBadParameters(@{CLIENT_NAME_KEY: BLANK}, AccountRegistrationMissingClientName);
+            });
         });
         
         xcontext(@"invalid parameters", ^{

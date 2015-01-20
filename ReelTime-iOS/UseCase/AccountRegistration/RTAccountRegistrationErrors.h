@@ -5,6 +5,7 @@ extern NSString *const RTAccountRegistrationErrorDomain;
 typedef NS_ENUM(NSInteger, RTAccountRegistrationErrors) {
     AccountRegistrationMissingUsername,
     AccountRegistrationMissingPassword,
+    AccountRegistrationMissingConfirmationPassword,
     AccountRegistrationMissingEmail,
     AccountRegistrationMissingDisplayName,
     AccountRegistrationMissingClientName,

@@ -57,7 +57,6 @@
 		7190DABA1A5CC55D00BDCE4C /* RTCurrentUserStoreSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7190DAB91A5CC55D00BDCE4C /* RTCurrentUserStoreSpec.m */; };
 		7190DABD1A5CDDFB00BDCE4C /* RTLoginDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7190DABC1A5CDDFB00BDCE4C /* RTLoginDataManager.m */; };
 		71921C021A54CCBE0003A42F /* EXPMatchers+beError.m in Sources */ = {isa = PBXBuildFile; fileRef = 71921C011A54CCBE0003A42F /* EXPMatchers+beError.m */; };
-		71921C061A54E1610003A42F /* RTFakeClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 71921C051A54E1610003A42F /* RTFakeClient.m */; };
 		719B35DB1A51012E00FFD543 /* RTClientAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 719B35DA1A51012E00FFD543 /* RTClientAssembly.m */; };
 		719B35DE1A51140900FFD543 /* RTRestAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 719B35DD1A51140900FFD543 /* RTRestAPI.m */; };
 		719B35E31A51150E00FFD543 /* RTErrorConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 719B35E21A51150E00FFD543 /* RTErrorConstants.m */; };
@@ -177,8 +176,6 @@
 		7190DABC1A5CDDFB00BDCE4C /* RTLoginDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLoginDataManager.m; sourceTree = "<group>"; };
 		71921C001A54CCBE0003A42F /* EXPMatchers+beError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+beError.h"; sourceTree = "<group>"; };
 		71921C011A54CCBE0003A42F /* EXPMatchers+beError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EXPMatchers+beError.m"; sourceTree = "<group>"; };
-		71921C041A54E1610003A42F /* RTFakeClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTFakeClient.h; sourceTree = "<group>"; };
-		71921C051A54E1610003A42F /* RTFakeClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTFakeClient.m; sourceTree = "<group>"; };
 		719B35D91A51012E00FFD543 /* RTClientAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTClientAssembly.h; sourceTree = "<group>"; };
 		719B35DA1A51012E00FFD543 /* RTClientAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTClientAssembly.m; sourceTree = "<group>"; };
 		719B35DC1A51086600FFD543 /* RTRestAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTRestAPI.h; sourceTree = "<group>"; };
@@ -448,8 +445,6 @@
 		71921C031A54E1490003A42F /* FakeObjects */ = {
 			isa = PBXGroup;
 			children = (
-				71921C041A54E1610003A42F /* RTFakeClient.h */,
-				71921C051A54E1610003A42F /* RTFakeClient.m */,
 				713BCE051A5909DA000F2D96 /* RTFakeKeyChainWrapper.h */,
 				713BCE061A5909DA000F2D96 /* RTFakeKeyChainWrapper.m */,
 			);
@@ -839,7 +834,6 @@
 				717A4B7E1A53503B004C2BC1 /* RTRestAPIMappingFactorySpec.m in Sources */,
 				7169F1761A5F6CDD00E161C4 /* RTLoginDataManagerSpec.m in Sources */,
 				713DCAAB1A6C9D1C0032B252 /* RTAccountRegistrationInteractorSpec.m in Sources */,
-				71921C061A54E1610003A42F /* RTFakeClient.m in Sources */,
 				713BCE071A5909DA000F2D96 /* RTFakeKeyChainWrapper.m in Sources */,
 				7170C86D1A59A98600C460BB /* RTKeyChainWrapperSpec.m in Sources */,
 				71921C021A54CCBE0003A42F /* EXPMatchers+beError.m in Sources */,
