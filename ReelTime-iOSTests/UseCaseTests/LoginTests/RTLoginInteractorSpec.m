@@ -19,13 +19,30 @@ describe(@"login interactor", ^{
     __block RTClientCredentials *clientCredentials;
     __block RTOAuth2Token *token;
    
-    void (^expectLoginFailureError)(RTLoginErrors) = ^(RTLoginErrors expectedErrorCode) {
+    void (^expectLoginFailureErrors)(NSArray *) = ^(NSArray *expectedErrorCodes) {
         MKTArgumentCaptor *errorCaptor = [[MKTArgumentCaptor alloc] init];
         [verify(presenter) loginFailedWithErrors:[errorCaptor capture]];
         
         NSArray *errors = [errorCaptor value];
-        expect([errors count]).to.equal(1);
-        expect([errors objectAtIndex:0]).to.beError(RTLoginErrorDomain, expectedErrorCode);
+        expect([errors count]).to.equal([expectedErrorCodes count]);
+        
+        for (NSNumber *errorCode in expectedErrorCodes) {
+            NSUInteger foundIdx = [errors indexOfObjectPassingTest:^(id obj, NSUInteger idx, BOOL *stop) {
+                NSError *error = obj;
+                
+                BOOL sameDomain = [error.domain isEqualToString:RTLoginErrorDomain];
+                BOOL sameCode = (error.code == [errorCode integerValue]);
+                
+                return (BOOL)(sameDomain && sameCode);
+            }];
+            
+            expect(foundIdx).toNot.equal(NSNotFound);
+        }
+    };
+    
+    void (^expectLoginFailureError)(RTLoginErrors) = ^(RTLoginErrors expectedErrorCode) {
+        NSNumber *code = [NSNumber numberWithInt:expectedErrorCode];
+        expectLoginFailureErrors(@[code]);
     };
 
     beforeEach(^{
