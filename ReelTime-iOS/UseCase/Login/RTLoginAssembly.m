@@ -33,7 +33,7 @@
 
 - (RTLoginInteractor *)interactor {
     return [TyphoonDefinition withClass:[RTLoginInteractor class] configuration:^(TyphoonDefinition *definition) {
-        [definition injectMethod:@selector(initWithPresenter:dataManager:)
+        [definition injectMethod:@selector(initWithDelegate:dataManager:)
                       parameters:^(TyphoonMethod *initializer) {
                           [initializer injectParameterWith:[self presenter]];
                           [initializer injectParameterWith:[self dataManager]];
@@ -43,7 +43,7 @@
 
 - (RTLoginDataManager *)dataManager {
     return [TyphoonDefinition withClass:[RTLoginDataManager class] configuration:^(TyphoonDefinition *definition) {
-        [definition injectMethod:@selector(initWithInteractor:client:clientCredentialsStore:tokenStore:currentUserStore:)
+        [definition injectMethod:@selector(initWithDelegate:client:clientCredentialsStore:tokenStore:currentUserStore:)
                       parameters:^(TyphoonMethod *initializer) {
                           [initializer injectParameterWith:[self interactor]];
                           [initializer injectParameterWith:[self.clientAssembly reelTimeClient]];

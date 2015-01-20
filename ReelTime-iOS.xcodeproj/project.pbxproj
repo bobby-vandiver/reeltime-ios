@@ -89,6 +89,7 @@
 		46C1E9F0B7F6473BE4077A89 /* Pods-ReelTime-iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelTime-iOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReelTime-iOSTests/Pods-ReelTime-iOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		7102A7B31A57AB0A00DEDA83 /* RTKeyChainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTKeyChainWrapper.h; sourceTree = "<group>"; };
 		7102A7B41A57AB0A00DEDA83 /* RTKeyChainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTKeyChainWrapper.m; sourceTree = "<group>"; };
+		7111D6551A6F0E5B001664E6 /* RTLoginInteractorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLoginInteractorDelegate.h; sourceTree = "<group>"; };
 		71166E111A6C2F6100EAE5BA /* RTAccountRegistrationAutoLoginPresenterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAccountRegistrationAutoLoginPresenterSpec.m; sourceTree = "<group>"; };
 		71166E141A6C36C800EAE5BA /* RTAccountRegistrationAutoLoginPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTAccountRegistrationAutoLoginPresenter.h; sourceTree = "<group>"; };
 		71166E151A6C36C800EAE5BA /* RTAccountRegistrationAutoLoginPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAccountRegistrationAutoLoginPresenter.m; sourceTree = "<group>"; };
@@ -112,7 +113,7 @@
 		7116909E1A6AF0020031578E /* RTLoginAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLoginAssembly.m; sourceTree = "<group>"; };
 		711690A01A6B00210031578E /* RTApplicationAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTApplicationAssembly.h; sourceTree = "<group>"; };
 		711690A11A6B00210031578E /* RTApplicationAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTApplicationAssembly.m; sourceTree = "<group>"; };
-		7119C8A91A5E1F6700C5EA16 /* RTLoginInteractor+RTLoginDataManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RTLoginInteractor+RTLoginDataManagerDelegate.h"; sourceTree = "<group>"; };
+		7119C8A91A5E1F6700C5EA16 /* RTLoginDataManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLoginDataManagerDelegate.h; sourceTree = "<group>"; };
 		7130FD891A67593D00AE2ACD /* boxxy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = boxxy.jpg; sourceTree = "<group>"; };
 		7130FD8A1A67593D00AE2ACD /* maddox.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = maddox.jpg; sourceTree = "<group>"; };
 		7130FD8B1A67593D00AE2ACD /* boogie2988-rage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boogie2988-rage.png"; sourceTree = "<group>"; };
@@ -552,10 +553,11 @@
 				7116909E1A6AF0020031578E /* RTLoginAssembly.m */,
 				7190DABB1A5CDDFB00BDCE4C /* RTLoginDataManager.h */,
 				7190DABC1A5CDDFB00BDCE4C /* RTLoginDataManager.m */,
+				7119C8A91A5E1F6700C5EA16 /* RTLoginDataManagerDelegate.h */,
 				713D7A411A508BA800754A06 /* RTLoginErrors.h */,
 				71D9478D1A4FC81A00401963 /* RTLoginInteractor.h */,
 				71D9478E1A4FC81A00401963 /* RTLoginInteractor.m */,
-				7119C8A91A5E1F6700C5EA16 /* RTLoginInteractor+RTLoginDataManagerDelegate.h */,
+				7111D6551A6F0E5B001664E6 /* RTLoginInteractorDelegate.h */,
 				71D947921A4FC96800401963 /* RTLoginPresenter.h */,
 				71D947931A4FC96800401963 /* RTLoginPresenter.m */,
 				71D947911A4FC88300401963 /* RTLoginView.h */,

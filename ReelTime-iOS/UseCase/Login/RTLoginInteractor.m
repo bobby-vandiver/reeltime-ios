@@ -1,7 +1,4 @@
 #import "RTLoginInteractor.h"
-#import "RTLoginInteractor+RTLoginDataManagerDelegate.h"
-
-#import "RTLoginPresenter.h"
 #import "RTLoginDataManager.h"
 
 #import "RTLoginErrors.h"
@@ -11,18 +8,18 @@
 
 @interface RTLoginInteractor ()
 
-@property RTLoginPresenter *presenter;
+@property (weak) id<RTLoginInteractorDelegate> delegate;
 @property RTLoginDataManager *dataManager;
 
 @end
 
 @implementation RTLoginInteractor
 
-- (instancetype)initWithPresenter:(RTLoginPresenter *)presenter
-                      dataManager:(RTLoginDataManager *)dataManager {
+- (instancetype)initWithDelegate:(id<RTLoginInteractorDelegate>)delegate
+                     dataManager:(RTLoginDataManager *)dataManager {
     self = [super init];
     if (self) {
-        self.presenter = presenter;
+        self.delegate = delegate;
         self.dataManager = dataManager;
     }
     return self;
@@ -54,7 +51,7 @@
                                           userCredentials:userCredentials
                                                  callback:^(RTOAuth2Token *token, NSString *username) {
             [self.dataManager setLoggedInUserWithToken:token username:username callback:^{
-                [welf.presenter loginSucceeded];
+                [welf.delegate loginSucceeded];
             }];
         }];
     }
@@ -62,7 +59,7 @@
 
 - (void)loginDataOperationFailedWithError:(NSError *)error {
     if (![error.domain isEqualToString:RTClientTokenErrorDomain]) {
-        [self.presenter loginFailedWithErrors:@[error]];
+        [self.delegate loginFailedWithErrors:@[error]];
         return;
     }
     
@@ -80,7 +77,7 @@
 
 - (void)loginFailedWithErrorCode:(RTLoginErrors)code {
     NSError *loginError = [RTErrorFactory loginErrorWithCode:code];
-    [self.presenter loginFailedWithErrors:@[loginError]];
+    [self.delegate loginFailedWithErrors:@[loginError]];
 }
 
 @end

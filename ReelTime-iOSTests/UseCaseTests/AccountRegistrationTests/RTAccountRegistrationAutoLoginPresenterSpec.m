@@ -23,12 +23,6 @@ describe(@"account registration auto login presenter", ^{
         autoLoginPresenter = [[RTAccountRegistrationAutoLoginPresenter alloc] initWithAccountRegistrationPresenter:registrationPresenter loginInteractor:loginInteractor];
     });
     
-    it(@"should not allow direct login requests", ^{
-        expect(^{
-            [autoLoginPresenter requestedLoginWithUsername:nil password:nil];
-        }).to.raise(@"RTDirectAutoLoginRequestNotAllowed");
-    });
-    
     it(@"should notify registration presenter of successful login", ^{
         [autoLoginPresenter loginSucceeded];
         [verify(registrationPresenter) registrationWithAutoLoginSucceeded];

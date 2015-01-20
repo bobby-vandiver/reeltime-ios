@@ -1,7 +1,6 @@
 #import "RTTestCommon.h"
 
 #import "RTLoginInteractor.h"
-#import "RTLoginInteractor+RTLoginDataManagerDelegate.h"
 #import "RTLoginPresenter.h"
 #import "RTLoginDataManager.h"
 #import "RTLoginErrors.h"
@@ -52,8 +51,8 @@ describe(@"login interactor", ^{
         presenter = mock([RTLoginPresenter class]);
         dataManager = mock([RTLoginDataManager class]);
         
-        interactor = [[RTLoginInteractor alloc] initWithPresenter:presenter
-                                                      dataManager:dataManager];
+        interactor = [[RTLoginInteractor alloc] initWithDelegate:presenter
+                                                     dataManager:dataManager];
     });
     
     describe(@"login requested", ^{

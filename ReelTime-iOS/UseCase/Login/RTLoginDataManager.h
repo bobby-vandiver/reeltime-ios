@@ -5,15 +5,15 @@
 #import "RTOAuth2TokenStore.h"
 #import "RTCurrentUserStore.h"
 
-@class RTLoginInteractor;
+@protocol RTLoginDataManagerDelegate;
 
 @interface RTLoginDataManager : NSObject
 
-- (instancetype)initWithInteractor:(RTLoginInteractor *)interactor
-                            client:(RTClient *)client
-            clientCredentialsStore:(RTClientCredentialsStore *)clientCredentialsStore
-                        tokenStore:(RTOAuth2TokenStore *)tokenStore
-                  currentUserStore:(RTCurrentUserStore *)currentUserStore;
+- (instancetype)initWithDelegate:(id<RTLoginDataManagerDelegate>)delegate
+                          client:(RTClient *)client
+          clientCredentialsStore:(RTClientCredentialsStore *)clientCredentialsStore
+                      tokenStore:(RTOAuth2TokenStore *)tokenStore
+                currentUserStore:(RTCurrentUserStore *)currentUserStore;
 
 - (RTClientCredentials *)clientCredentialsForUsername:(NSString *)username;
 

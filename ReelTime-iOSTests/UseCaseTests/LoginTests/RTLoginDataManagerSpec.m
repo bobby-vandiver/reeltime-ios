@@ -2,7 +2,6 @@
 
 #import "RTLoginDataManager.h"
 #import "RTLoginInteractor.h"
-#import "RTLoginInteractor+RTLoginDataManagerDelegate.h"
 
 SpecBegin(RTLoginDataManager)
 
@@ -29,11 +28,11 @@ describe(@"login data manager", ^{
         tokenStore = mock([RTOAuth2TokenStore class]);
         currentUserStore = mock([RTCurrentUserStore class]);
         
-        dataManager = [[RTLoginDataManager alloc] initWithInteractor:interactor
-                                                              client:client
-                                              clientCredentialsStore:clientCredentialsStore
-                                                          tokenStore:tokenStore
-                                                    currentUserStore:currentUserStore];
+        dataManager = [[RTLoginDataManager alloc] initWithDelegate:interactor
+                                                            client:client
+                                            clientCredentialsStore:clientCredentialsStore
+                                                        tokenStore:tokenStore
+                                                  currentUserStore:currentUserStore];
 
         clientCredentials = [[RTClientCredentials alloc] initWithClientId:clientId
                                                              clientSecret:clientSecret];

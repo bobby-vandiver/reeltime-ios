@@ -1,7 +1,5 @@
 #import "RTAccountRegistrationAutoLoginPresenter.h"
-
 #import "RTAccountRegistrationPresenter.h"
-#import "RTLoginPresenter.h"
 
 @interface RTAccountRegistrationAutoLoginPresenter ()
 
@@ -13,20 +11,11 @@
 
 - (instancetype)initWithAccountRegistrationPresenter:(RTAccountRegistrationPresenter *)registrationPresenter
                                      loginInteractor:(RTLoginInteractor *)loginInteractor {
-    self = [super initWithView:nil
-                    interactor:loginInteractor
-                     wireframe:nil];
+    self = [super init];
     if (self) {
         self.registrationPresenter = registrationPresenter;
     }
     return self;
-}
-
-- (void)requestedLoginWithUsername:(NSString *)username
-                          password:(NSString *)password {
-    @throw [NSException exceptionWithName:@"RTDirectAutoLoginRequestNotAllowed"
-                                   reason:@"Auto login presenter cannot handle direct requests"
-                                 userInfo:nil];
 }
 
 - (void)loginSucceeded {

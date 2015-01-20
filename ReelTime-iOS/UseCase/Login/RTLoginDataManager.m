@@ -1,13 +1,11 @@
 #import "RTLoginDataManager.h"
-
 #import "RTLoginInteractor.h"
-#import "RTLoginInteractor+RTLoginDataManagerDelegate.h"
 
 #import "RTErrorFactory.h"
 
 @interface RTLoginDataManager ()
 
-@property RTLoginInteractor *interactor;
+@property (weak) id<RTLoginDataManagerDelegate> delegate;
 @property RTClient *client;
 @property RTClientCredentialsStore *clientCredentialsStore;
 @property RTOAuth2TokenStore *tokenStore;
@@ -17,14 +15,14 @@
 
 @implementation RTLoginDataManager
 
-- (instancetype)initWithInteractor:(RTLoginInteractor *)interactor
-                            client:(RTClient *)client
-            clientCredentialsStore:(RTClientCredentialsStore *)clientCredentialsStore
-                        tokenStore:(RTOAuth2TokenStore *)tokenStore
-                  currentUserStore:(RTCurrentUserStore *)currentUserStore {
+- (instancetype)initWithDelegate:(id<RTLoginDataManagerDelegate>)delegate
+                          client:(RTClient *)client
+          clientCredentialsStore:(RTClientCredentialsStore *)clientCredentialsStore
+                      tokenStore:(RTOAuth2TokenStore *)tokenStore
+                currentUserStore:(RTCurrentUserStore *)currentUserStore {
     self = [super init];
     if (self) {
-        self.interactor = interactor;
+        self.delegate = delegate;
         self.client = client;
         self.clientCredentialsStore = clientCredentialsStore;
         self.tokenStore = tokenStore;
@@ -47,7 +45,7 @@
     };
     
     id failure = ^(NSError *error) {
-        [self.interactor loginDataOperationFailedWithError:error];
+        [self.delegate loginDataOperationFailedWithError:error];
     };
     
     [self.client tokenWithClientCredentials:clientCredentials
@@ -74,7 +72,7 @@
         callback();
     }
     else {
-        [self.interactor loginDataOperationFailedWithError:error];
+        [self.delegate loginDataOperationFailedWithError:error];
     }
 }
 
