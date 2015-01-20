@@ -1,7 +1,6 @@
 #import "RTTestCommon.h"
 
 #import "RTLoginInteractor.h"
-#import "RTLoginPresenter.h"
 #import "RTLoginDataManager.h"
 #import "RTLoginErrors.h"
 
@@ -12,7 +11,7 @@ SpecBegin(RTLoginInteractor)
 describe(@"login interactor", ^{
     
     __block RTLoginInteractor *interactor;
-    __block RTLoginPresenter *presenter;
+    __block id<RTLoginInteractorDelegate> delegate;
     __block RTLoginDataManager *dataManager;
 
     __block RTClientCredentials *clientCredentials;
@@ -20,7 +19,7 @@ describe(@"login interactor", ^{
    
     void (^expectLoginFailureErrors)(NSArray *) = ^(NSArray *expectedErrorCodes) {
         MKTArgumentCaptor *errorCaptor = [[MKTArgumentCaptor alloc] init];
-        [verify(presenter) loginFailedWithErrors:[errorCaptor capture]];
+        [verify(delegate) loginFailedWithErrors:[errorCaptor capture]];
         
         NSArray *errors = [errorCaptor value];
         expect([errors count]).to.equal([expectedErrorCodes count]);
@@ -40,10 +39,10 @@ describe(@"login interactor", ^{
                                                            clientSecret:clientSecret];
         token = [[RTOAuth2Token alloc] init];
         
-        presenter = mock([RTLoginPresenter class]);
+        delegate = mockProtocol(@protocol(RTLoginInteractorDelegate));
         dataManager = mock([RTLoginDataManager class]);
         
-        interactor = [[RTLoginInteractor alloc] initWithDelegate:presenter
+        interactor = [[RTLoginInteractor alloc] initWithDelegate:delegate
                                                      dataManager:dataManager];
     });
     
@@ -76,7 +75,7 @@ describe(@"login interactor", ^{
             });
             
             describe(@"when fetching a token", ^{
-                it(@"should set logged in user on success and notify presenter of successful login", ^{
+                it(@"should set logged in user on success and notify delegate of successful login", ^{
                     [interactor loginWithUsername:username password:password];
                     
                     MKTArgumentCaptor *clientCredentialsCaptor= [[MKTArgumentCaptor alloc] init];
@@ -103,12 +102,12 @@ describe(@"login interactor", ^{
                     MKTArgumentCaptor *nestedCallbackCaptor = [[MKTArgumentCaptor alloc] init];
                     [verify(dataManager) setLoggedInUserWithToken:token username:username callback:[nestedCallbackCaptor capture]];
                     
-                    [verifyCount(presenter, never()) loginSucceeded];
+                    [verifyCount(delegate, never()) loginSucceeded];
                     
                     void (^nestedCallback)() = [nestedCallbackCaptor value];
                     nestedCallback();
                     
-                    [verify(presenter) loginSucceeded];
+                    [verify(delegate) loginSucceeded];
                 });
                 
             });
@@ -119,7 +118,7 @@ describe(@"login interactor", ^{
                 [given([dataManager clientCredentialsForUsername:username]) willReturn:nil];
             });
             
-            it(@"should notify presenter of failed login due to unknown client", ^{
+            it(@"should notify delegate of failed login due to unknown client", ^{
                 [interactor loginWithUsername:username password:password];
                 expectLoginFailureError(LoginUnknownClient);
             });
@@ -134,14 +133,14 @@ describe(@"login interactor", ^{
             expectLoginFailureError(LoginUnknownClient);
         });
         
-        it(@"should notify presenter of invalid user credetials", ^{
+        it(@"should notify delegate of invalid user credetials", ^{
             NSError *error = [RTErrorFactory clientTokenErrorWithCode:InvalidUserCredentials];
             
             [interactor loginDataOperationFailedWithError:error];
             expectLoginFailureError(LoginInvalidCredentials);
         });
         
-        it(@"should notify presenter of all other errors as-is", ^{
+        it(@"should notify delegate of all other errors as-is", ^{
             NSError *error = [RTErrorFactory loginErrorWithCode:LoginUnableToStoreToken];
             
             [interactor loginDataOperationFailedWithError:error];

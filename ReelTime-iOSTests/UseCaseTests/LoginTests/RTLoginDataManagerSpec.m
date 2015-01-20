@@ -1,14 +1,13 @@
 #import "RTTestCommon.h"
 
 #import "RTLoginDataManager.h"
-#import "RTLoginInteractor.h"
 
 SpecBegin(RTLoginDataManager)
 
 describe(@"login data manager", ^{
     
     __block RTLoginDataManager *dataManager;
-    __block RTLoginInteractor *interactor;
+    __block id<RTLoginDataManagerDelegate> delegate;
     
     __block RTClient *client;
     __block RTClientCredentialsStore *clientCredentialsStore;
@@ -20,7 +19,7 @@ describe(@"login data manager", ^{
     __block RTUserCredentials *userCredentials;
 
     beforeEach(^{
-        interactor = mock([RTLoginInteractor class]);
+        delegate = mockProtocol(@protocol(RTLoginDataManagerDelegate));
 
         client = mock([RTClient class]);
         clientCredentialsStore = mock([RTClientCredentialsStore class]);
@@ -28,7 +27,7 @@ describe(@"login data manager", ^{
         tokenStore = mock([RTOAuth2TokenStore class]);
         currentUserStore = mock([RTCurrentUserStore class]);
         
-        dataManager = [[RTLoginDataManager alloc] initWithDelegate:interactor
+        dataManager = [[RTLoginDataManager alloc] initWithDelegate:delegate
                                                             client:client
                                             clientCredentialsStore:clientCredentialsStore
                                                         tokenStore:tokenStore
@@ -89,7 +88,7 @@ describe(@"login data manager", ^{
             expect(callbackExecuted).to.beTruthy();
         });
         
-        it(@"should notify interactor of failure to retrieve token", ^{
+        it(@"should notify delegate of failure to retrieve token", ^{
             MKTArgumentCaptor *failureCaptor = [[MKTArgumentCaptor alloc] init];
             
             [verify(client) tokenWithClientCredentials:clientCredentials
@@ -97,13 +96,13 @@ describe(@"login data manager", ^{
                                                success:anything()
                                                failure:[failureCaptor capture]];
 
-            [verifyCount(interactor, never()) loginDataOperationFailedWithError:anything()];
+            [verifyCount(delegate, never()) loginDataOperationFailedWithError:anything()];
             
             NSError *error = [NSError errorWithDomain:@"TEST" code:-1 userInfo:nil];
             void (^failureHandler)(NSError *) = [failureCaptor value];
 
             failureHandler(error);
-            [verify(interactor) loginDataOperationFailedWithError:error];
+            [verify(delegate) loginDataOperationFailedWithError:error];
         });
     });
     
@@ -174,19 +173,19 @@ describe(@"login data manager", ^{
                      willReturnBool:YES];
                     
                     [dataManager setLoggedInUserWithToken:token username:username callback:callback];
-                    [verify(interactor) loginDataOperationFailedWithError:[errorCaptor capture]];
+                    [verify(delegate) loginDataOperationFailedWithError:[errorCaptor capture]];
                     
                     capturedError = [errorCaptor value];
                     expect(capturedError).to.beError(RTLoginErrorDomain, LoginUnableToSetCurrentlyLoggedInUser);
                 });
                 
-                it(@"should notify interactor of failure to delete stored token", ^{
+                it(@"should notify delegate of failure to delete stored token", ^{
                     [[given([tokenStore removeTokenForUsername:username error:nil])
                       withMatcher:anything() forArgument:1]
                      willReturnBool:NO];
                     
                     [dataManager setLoggedInUserWithToken:token username:username callback:callback];
-                    [verify(interactor) loginDataOperationFailedWithError:[errorCaptor capture]];
+                    [verify(delegate) loginDataOperationFailedWithError:[errorCaptor capture]];
                     
                     capturedError = [errorCaptor value];
                     expect(capturedError).to.beError(RTLoginErrorDomain, LoginUnableToRemoveToken);
@@ -202,9 +201,9 @@ describe(@"login data manager", ^{
                  willReturnBool:NO];
             });
             
-            it(@"should notify interactor of failure to save token", ^{
+            it(@"should notify delegate of failure to save token", ^{
                 [dataManager setLoggedInUserWithToken:token username:username callback:callback];
-                [verify(interactor) loginDataOperationFailedWithError:[errorCaptor capture]];
+                [verify(delegate) loginDataOperationFailedWithError:[errorCaptor capture]];
                 
                 capturedError = [errorCaptor value];
                 expect(capturedError).to.beError(RTLoginErrorDomain, LoginUnableToStoreToken);
