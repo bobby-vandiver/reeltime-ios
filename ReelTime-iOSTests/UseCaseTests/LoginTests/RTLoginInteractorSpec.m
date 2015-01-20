@@ -41,8 +41,7 @@ describe(@"login interactor", ^{
     };
     
     void (^expectLoginFailureError)(RTLoginErrors) = ^(RTLoginErrors expectedErrorCode) {
-        NSNumber *code = [NSNumber numberWithInt:expectedErrorCode];
-        expectLoginFailureErrors(@[code]);
+        expectLoginFailureErrors(@[@(expectedErrorCode)]);
     };
 
     beforeEach(^{
