@@ -36,7 +36,7 @@ describe(@"account registration auto login presenter", ^{
     
     it(@"should notify registration presenter of login failure", ^{
         NSError *loginError = [RTErrorFactory loginErrorWithCode:LoginUnableToSetCurrentlyLoggedInUser];
-        [autoLoginPresenter loginFailedWithError:loginError];
+        [autoLoginPresenter loginFailedWithErrors:@[loginError]];
 
         MKTArgumentCaptor *errorCaptor = [[MKTArgumentCaptor alloc] init];
         [verify(registrationPresenter) registrationWithAutoLoginFailedWithErrors:[errorCaptor capture]];

@@ -15,6 +15,6 @@
 
 - (void)loginSucceeded;
 
-- (void)loginFailedWithError:(NSError *)error;
+- (void)loginFailedWithErrors:(NSArray *)errors;
 
 @end

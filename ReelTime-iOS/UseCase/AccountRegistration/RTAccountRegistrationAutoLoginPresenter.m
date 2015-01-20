@@ -33,8 +33,8 @@
     [self.registrationPresenter registrationWithAutoLoginSucceeded];
 }
 
-- (void)loginFailedWithError:(NSError *)error {
-    [self.registrationPresenter registrationWithAutoLoginFailedWithErrors:@[error]];
+- (void)loginFailedWithErrors:(NSArray *)errors {
+    [self.registrationPresenter registrationWithAutoLoginFailedWithErrors:errors];
 }
 
 @end

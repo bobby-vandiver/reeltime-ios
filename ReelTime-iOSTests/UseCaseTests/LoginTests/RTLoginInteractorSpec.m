@@ -21,9 +21,11 @@ describe(@"login interactor", ^{
    
     void (^expectLoginFailureError)(RTLoginErrors) = ^(RTLoginErrors expectedErrorCode) {
         MKTArgumentCaptor *errorCaptor = [[MKTArgumentCaptor alloc] init];
-        [verify(presenter) loginFailedWithError:[errorCaptor capture]];
+        [verify(presenter) loginFailedWithErrors:[errorCaptor capture]];
         
-        expect([errorCaptor value]).to.beError(RTLoginErrorDomain, expectedErrorCode);
+        NSArray *errors = [errorCaptor value];
+        expect([errors count]).to.equal(1);
+        expect([errors objectAtIndex:0]).to.beError(RTLoginErrorDomain, expectedErrorCode);
     };
 
     beforeEach(^{
@@ -49,6 +51,11 @@ describe(@"login interactor", ^{
             it(@"should fail when password is missing", ^{
                 [interactor loginWithUsername:username password:@""];
                 expectLoginFailureError(LoginMissingPassword);
+            });
+            
+            xit(@"should fail when both username and password are missing", ^{
+                [interactor loginWithUsername:@"" password:@""];
+                //TODO: Update expectLoginFailureError to handle multiple errors
             });
         });
 

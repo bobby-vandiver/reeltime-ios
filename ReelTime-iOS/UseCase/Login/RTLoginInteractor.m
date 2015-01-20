@@ -30,6 +30,7 @@
 
 - (void)loginWithUsername:(NSString *)username
                  password:(NSString *)password {
+    // TODO: Check for both missing username and password and include both errors
     if ([username length] == 0) {
         [self loginFailedWithErrorCode:LoginMissingUsername];
         return;
@@ -61,7 +62,7 @@
 
 - (void)loginDataOperationFailedWithError:(NSError *)error {
     if (![error.domain isEqualToString:RTClientTokenErrorDomain]) {
-        [self.presenter loginFailedWithError:error];
+        [self.presenter loginFailedWithErrors:@[error]];
         return;
     }
     
@@ -79,7 +80,7 @@
 
 - (void)loginFailedWithErrorCode:(RTLoginErrors)code {
     NSError *loginError = [RTErrorFactory loginErrorWithCode:code];
-    [self.presenter loginFailedWithError:loginError];
+    [self.presenter loginFailedWithErrors:@[loginError]];
 }
 
 @end

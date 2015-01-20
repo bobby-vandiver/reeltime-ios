@@ -36,22 +36,27 @@
     [self.wireframe presentPostLoginInterface];
 }
 
-- (void)loginFailedWithError:(NSError *)error {
+- (void)loginFailedWithErrors:(NSArray *)errors {
     NSString *message = @"An unknown error occurred";
+
+    if ([errors count] > 0) {
+        // TODO: Handle all errors when the presentation is defined
+        NSError *error = [errors objectAtIndex:0];
     
-    if ([error.domain isEqualToString:RTLoginErrorDomain]) {
-        if (error.code == LoginMissingUsername) {
-            message = @"Username is required";
-        }
-        else if (error.code == LoginMissingPassword) {
-            message = @"Password is required";
-        }
-        else if (error.code == LoginInvalidCredentials) {
-            message = @"Invalid username or password";
-        }
-        else if (error.code == LoginUnknownClient) {
-            [self.wireframe presentDeviceRegistrationInterface];
-            return;
+        if ([error.domain isEqualToString:RTLoginErrorDomain]) {
+            if (error.code == LoginMissingUsername) {
+                message = @"Username is required";
+            }
+            else if (error.code == LoginMissingPassword) {
+                message = @"Password is required";
+            }
+            else if (error.code == LoginInvalidCredentials) {
+                message = @"Invalid username or password";
+            }
+            else if (error.code == LoginUnknownClient) {
+                [self.wireframe presentDeviceRegistrationInterface];
+                return;
+            }
         }
     }
     
