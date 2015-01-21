@@ -136,6 +136,8 @@
 		71476ADB1A62C74A0023DE6C /* bad-client-credentials.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "bad-client-credentials.txt"; sourceTree = "<group>"; };
 		71476ADE1A62CA550023DE6C /* bad-user-credentials.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "bad-user-credentials.txt"; sourceTree = "<group>"; };
 		71476ADF1A62CA550023DE6C /* successful-token-request.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "successful-token-request.txt"; sourceTree = "<group>"; };
+		7160C2B91A6F2CF40045ADDA /* RTAccountRegistrationInteractorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTAccountRegistrationInteractorDelegate.h; sourceTree = "<group>"; };
+		7160C2BA1A6F31450045ADDA /* RTAccountRegistrationDataManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTAccountRegistrationDataManagerDelegate.h; sourceTree = "<group>"; };
 		7169F1751A5F6CDD00E161C4 /* RTLoginDataManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLoginDataManagerSpec.m; sourceTree = "<group>"; };
 		716A9BC41A4F5385005D33F9 /* RTTestCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTTestCommon.h; sourceTree = "<group>"; };
 		7170C8671A59926E00C460BB /* RTErrorFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTErrorFactory.h; sourceTree = "<group>"; };
@@ -253,9 +255,11 @@
 				71166E151A6C36C800EAE5BA /* RTAccountRegistrationAutoLoginPresenter.m */,
 				71166E161A6C36C800EAE5BA /* RTAccountRegistrationDataManager.h */,
 				71166E171A6C36C800EAE5BA /* RTAccountRegistrationDataManager.m */,
+				7160C2BA1A6F31450045ADDA /* RTAccountRegistrationDataManagerDelegate.h */,
 				71166E181A6C36C800EAE5BA /* RTAccountRegistrationErrors.h */,
 				71166E191A6C36C800EAE5BA /* RTAccountRegistrationInteractor.h */,
 				71166E1A1A6C36C800EAE5BA /* RTAccountRegistrationInteractor.m */,
+				7160C2B91A6F2CF40045ADDA /* RTAccountRegistrationInteractorDelegate.h */,
 				71166E1B1A6C36C800EAE5BA /* RTAccountRegistrationPresenter.h */,
 				71166E1C1A6C36C800EAE5BA /* RTAccountRegistrationPresenter.m */,
 				71166E1D1A6C36C800EAE5BA /* RTAccountRegistrationView.h */,

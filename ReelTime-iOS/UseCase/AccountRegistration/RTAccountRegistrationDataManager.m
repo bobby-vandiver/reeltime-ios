@@ -1,5 +1,5 @@
 #import "RTAccountRegistrationDataManager.h"
-#import "RTAccountRegistrationInteractor.h"
+#import "RTAccountRegistrationDataManagerDelegate.h"
 
 #import "RTClient.h"
 #import "RTClientCredentialsStore.h"
@@ -9,7 +9,7 @@
 
 @interface RTAccountRegistrationDataManager ()
 
-@property RTAccountRegistrationInteractor *interactor;
+@property (weak) id<RTAccountRegistrationDataManagerDelegate> delegate;
 @property RTClient *client;
 @property RTClientCredentialsStore *clientCredentialsStore;
 
@@ -17,12 +17,12 @@
 
 @implementation RTAccountRegistrationDataManager
 
-- (instancetype)initWithInteractor:(RTAccountRegistrationInteractor *)interactor
-                            client:(RTClient *)client
-            clientCredentialsStore:(RTClientCredentialsStore *)clientCredentialsStore {
+- (instancetype)initWithDelegate:(id<RTAccountRegistrationDataManagerDelegate>)delegate
+                          client:(RTClient *)client
+          clientCredentialsStore:(RTClientCredentialsStore *)clientCredentialsStore {
     self = [super init];
     if (self) {
-        self.interactor = interactor;
+        self.delegate = delegate;
         self.client = client;
         self.clientCredentialsStore = clientCredentialsStore;
     }

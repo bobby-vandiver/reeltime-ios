@@ -1,10 +1,12 @@
 #import <Foundation/Foundation.h>
 
+#import "RTAccountRegistrationInteractorDelegate.h"
+
 @protocol RTAccountRegistrationView;
 @class RTAccountRegistrationInteractor;
 @class RTAccountRegistrationWireframe;
 
-@interface RTAccountRegistrationPresenter : NSObject
+@interface RTAccountRegistrationPresenter : NSObject <RTAccountRegistrationInteractorDelegate>
 
 - (instancetype)initWithView:(id<RTAccountRegistrationView>)view
                   interactor:(RTAccountRegistrationInteractor *)interactor
@@ -16,11 +18,5 @@
                                            email:(NSString *)email
                                      displayName:(NSString *)displayName
                                       clientName:(NSString *)clientName;
-
-- (void)registrationWithAutoLoginSucceeded;
-
-- (void)registrationWithAutoLoginFailedWithErrors:(NSArray *)errors;
-
-- (void)registrationFailedWithErrors:(NSArray *)errors;
 
 @end

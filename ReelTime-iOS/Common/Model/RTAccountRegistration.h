@@ -4,12 +4,14 @@
 
 @property (nonatomic, readonly, copy) NSString *username;
 @property (nonatomic, readonly, copy) NSString *password;
+@property (nonatomic, readonly, copy) NSString *confirmationPassword;
 @property (nonatomic, readonly, copy) NSString *email;
 @property (nonatomic, readonly, copy) NSString *displayName;
 @property (nonatomic, readonly, copy) NSString *clientName;
 
 - (instancetype)initWithUsername:(NSString *)username
                         password:(NSString *)password
+            confirmationPassword:(NSString *)confirmationPassword
                            email:(NSString *)email
                      displayName:(NSString *)displayName
                       clientName:(NSString *)clientName;

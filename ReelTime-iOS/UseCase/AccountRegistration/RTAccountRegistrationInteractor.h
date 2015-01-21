@@ -1,20 +1,20 @@
 #import <Foundation/Foundation.h>
 
-@class RTAccountRegistrationPresenter;
+#import "RTAccountRegistrationDataManagerDelegate.h"
+
+@protocol RTAccountRegistrationInteractorDelegate;
+
 @class RTAccountRegistrationDataManager;
 @class RTLoginInteractor;
 
-@interface RTAccountRegistrationInteractor : NSObject
+@class RTAccountRegistration;
 
-- (instancetype)initWithPresenter:(RTAccountRegistrationPresenter *)presenter
-                      dataManager:(RTAccountRegistrationDataManager *)dataManager
-                  loginInteractor:(RTLoginInteractor *)loginInteractor;
+@interface RTAccountRegistrationInteractor : NSObject <RTAccountRegistrationDataManagerDelegate>
 
-- (void)registerAccountWithUsername:(NSString *)username
-                           password:(NSString *)password
-               confirmationPassword:(NSString *)confirmationPassword
-                              email:(NSString *)email
-                        displayName:(NSString *)displayName
-                         clientName:(NSString *)clientName;
+- (instancetype)initWithDelegate:(id<RTAccountRegistrationInteractorDelegate>)delegate
+                     dataManager:(RTAccountRegistrationDataManager *)dataManager
+                 loginInteractor:(RTLoginInteractor *)loginInteractor;
+
+- (void)registerAccount:(RTAccountRegistration *)registration;
 
 @end

@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
 
-@class RTAccountRegistrationInteractor;
+@protocol RTAccountRegistrationDataManagerDelegate;
+
 @class RTClient;
 @class RTClientCredentialsStore;
 
@@ -9,9 +10,9 @@
 
 @interface RTAccountRegistrationDataManager : NSObject
 
-- (instancetype)initWithInteractor:(RTAccountRegistrationInteractor *)interactor
-                            client:(RTClient *)client
-            clientCredentialsStore:(RTClientCredentialsStore *)clientCredentialsStore;
+- (instancetype)initWithDelegate:(id<RTAccountRegistrationDataManagerDelegate>)delegate
+                          client:(RTClient *)client
+          clientCredentialsStore:(RTClientCredentialsStore *)clientCredentialsStore;
 
 - (void)registerAccount:(RTAccountRegistration *)registration
                callback:(void (^)(RTClientCredentials *clientCredentials))callback;

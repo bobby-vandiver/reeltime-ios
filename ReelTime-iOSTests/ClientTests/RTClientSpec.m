@@ -124,6 +124,7 @@ describe(@"ReelTime Client", ^{
         beforeEach(^{
             registration = [[RTAccountRegistration alloc] initWithUsername:username
                                                                   password:password
+                                                      confirmationPassword:password
                                                                      email:email
                                                                displayName:displayName
                                                                 clientName:clientName];

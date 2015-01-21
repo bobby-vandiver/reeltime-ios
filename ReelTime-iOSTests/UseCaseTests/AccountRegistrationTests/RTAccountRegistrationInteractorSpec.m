@@ -1,6 +1,8 @@
 #import "RTTestCommon.h"
+
 #import "RTAccountRegistrationInteractor.h"
-#import "RTAccountRegistrationPresenter.h"
+#import "RTAccountRegistrationInteractorDelegate.h"
+
 #import "RTAccountRegistrationDataManager.h"
 #import "RTLoginInteractor.h"
 
@@ -14,10 +16,12 @@ describe(@"account registration interactor", ^{
     
     __block RTAccountRegistrationInteractor *interactor;
 
-    __block RTAccountRegistrationPresenter *presenter;
+    __block id<RTAccountRegistrationInteractorDelegate> delegate;
     __block RTAccountRegistrationDataManager *dataManager;
     
     __block RTLoginInteractor *loginInteractor;
+    
+    __block RTAccountRegistration *accountRegistration;
     
     NSString *const USERNAME_KEY = @"username";
     NSString *const PASSWORD_KEY = @"password";
@@ -28,7 +32,7 @@ describe(@"account registration interactor", ^{
     
     void (^expectRegistrationFailureError)(RTAccountRegistrationErrors) = ^(RTAccountRegistrationErrors expectedErrorCode) {
         MKTArgumentCaptor *errorCaptor = [[MKTArgumentCaptor alloc] init];
-        [verify(presenter) registrationFailedWithErrors:[errorCaptor capture]];
+        [verify(delegate) registrationFailedWithErrors:[errorCaptor capture]];
         
         NSArray *errors = [errorCaptor value];
         expect([errors count]).to.equal(1);
@@ -45,25 +49,35 @@ describe(@"account registration interactor", ^{
         NSString *displayNameParam = [parameters objectForKey:DISPLAY_NAME_KEY];
         NSString *clientNameParam = [parameters objectForKey:CLIENT_NAME_KEY];
         
-        [interactor registerAccountWithUsername:(usernameParam ? usernameParam : username)
-                                       password:(passwordParam ? passwordParam : password)
-                           confirmationPassword:(confirmationParam ? confirmationParam : password)
-                                          email:(emailParam ? emailParam : email)
-                                    displayName:(displayNameParam ? displayNameParam : displayName)
-                                     clientName:(clientNameParam ? clientNameParam : clientName)];
+        RTAccountRegistration *registration = [RTAccountRegistration alloc];
+        registration = [registration initWithUsername:(usernameParam ? usernameParam : username)
+                                             password:(passwordParam ? passwordParam : password)
+                                 confirmationPassword:(confirmationParam ? confirmationParam : password)
+                                                email:(emailParam ? emailParam : email)
+                                          displayName:(displayNameParam ? displayNameParam : displayName)
+                                           clientName:(clientNameParam ? clientNameParam : clientName)];
         
+        [interactor registerAccount:registration];
+
         expectRegistrationFailureError(expectedErrorCode);
     };
     
     beforeEach(^{
-        presenter = mock([RTAccountRegistrationPresenter class]);
+        delegate = mockProtocol(@protocol(RTAccountRegistrationInteractorDelegate));
         dataManager = mock([RTAccountRegistrationDataManager class]);
 
         loginInteractor = mock([RTLoginInteractor class]);
         
-        interactor = [[RTAccountRegistrationInteractor alloc] initWithPresenter:presenter
-                                                                    dataManager:dataManager
-                                                                loginInteractor:loginInteractor];
+        interactor = [[RTAccountRegistrationInteractor alloc] initWithDelegate:delegate
+                                                                   dataManager:dataManager
+                                                               loginInteractor:loginInteractor];
+        
+        accountRegistration = [[RTAccountRegistration alloc] initWithUsername:username
+                                                                     password:password
+                                                         confirmationPassword:password
+                                                                        email:email
+                                                                  displayName:displayName
+                                                                   clientName:clientName];
     });
     
     describe(@"account registration requested", ^{
@@ -113,12 +127,7 @@ describe(@"account registration interactor", ^{
             });
             
             it(@"should save client credentials and attempt to login user automatically", ^{
-                [interactor registerAccountWithUsername:username
-                                               password:password
-                                   confirmationPassword:password
-                                                  email:email
-                                            displayName:displayName
-                                             clientName:clientName];
+                [interactor registerAccount:accountRegistration];
                 
                 MKTArgumentCaptor *registrationCaptor = [[MKTArgumentCaptor alloc] init];
                 MKTArgumentCaptor *callbackCaptor = [[MKTArgumentCaptor alloc] init];
