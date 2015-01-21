@@ -432,6 +432,7 @@
 				71921C001A54CCBE0003A42F /* EXPMatchers+beError.h */,
 				716A9BC41A4F5385005D33F9 /* RTTestCommon.h */,
 				71921C011A54CCBE0003A42F /* EXPMatchers+beError.m */,
+				713DCAAC1A6CB52C0032B252 /* RTTestCommon.m */,
 				717A4B7C1A53503B004C2BC1 /* ClientTests */,
 				71921C031A54E1490003A42F /* FakeObjects */,
 				711F336B1A6234AE00D8D843 /* Resources */,
@@ -439,7 +440,6 @@
 				71D947891A4FBC7100401963 /* StoreTests */,
 				718A0BF91A4DA87900137C49 /* Supporting Files */,
 				71D947951A4FCB1C00401963 /* UseCaseTests */,
-				713DCAAC1A6CB52C0032B252 /* RTTestCommon.m */,
 			);
 			path = "ReelTime-iOSTests";
 			sourceTree = "<group>";

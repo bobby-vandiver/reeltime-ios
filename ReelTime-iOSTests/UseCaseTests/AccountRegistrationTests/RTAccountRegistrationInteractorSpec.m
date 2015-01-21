@@ -11,6 +11,8 @@
 #import "RTClientCredentials.h"
 #import "RTAccountRegistrationErrors.h"
 
+#import "RTErrorFactory.h"
+
 SpecBegin(RTAccountRegistrationInteractor)
 
 describe(@"account registration interactor", ^{
@@ -31,17 +33,21 @@ describe(@"account registration interactor", ^{
     NSString *const DISPLAY_NAME_KEY = @"displayName";
     NSString *const CLIENT_NAME_KEY = @"clientName";
     
-    void (^expectRegistrationFailureError)(RTAccountRegistrationErrors) = ^(RTAccountRegistrationErrors expectedErrorCode) {
+    void (^expectRegistrationFailureErrors)(NSArray *) = ^(NSArray *expectedErrorCodes) {
         MKTArgumentCaptor *errorCaptor = [[MKTArgumentCaptor alloc] init];
         [verify(delegate) registrationFailedWithErrors:[errorCaptor capture]];
         
         NSArray *errors = [errorCaptor value];
-        expect([errors count]).to.equal(1);
-        expect([errors objectAtIndex:0]).to.beError(RTAccountRegistrationErrorDomain, expectedErrorCode);
+        expect([errors count]).to.equal([expectedErrorCodes count]);
+        
+        for (NSNumber *errorCode in expectedErrorCodes) {
+            NSError *expected = [RTErrorFactory accountRegistrationErrorWithCode:[errorCode integerValue]];
+            expect(errors).to.contain(expected);
+        }
     };
 
-    void (^expectErrorForBadParameters)(NSDictionary *parameters, RTAccountRegistrationErrors expectedErrorCode) =
-    ^(NSDictionary *parameters, RTAccountRegistrationErrors expectedErrorCode) {
+    void (^expectErrorForBadParameters)(NSDictionary *parameters, NSArray *expectedErrorCodes) =
+    ^(NSDictionary *parameters, NSArray *expectedErrorCodes) {
         
         NSString *usernameParam = [parameters objectForKey:USERNAME_KEY];
         NSString *passwordParam = [parameters objectForKey:PASSWORD_KEY];
@@ -60,7 +66,7 @@ describe(@"account registration interactor", ^{
         
         [interactor registerAccount:registration];
 
-        expectRegistrationFailureError(expectedErrorCode);
+        expectRegistrationFailureErrors(expectedErrorCodes);
     };
     
     beforeEach(^{
@@ -94,27 +100,49 @@ describe(@"account registration interactor", ^{
             });
             
             it(@"blank username", ^{
-                expectErrorForBadParameters(@{USERNAME_KEY: BLANK}, AccountRegistrationMissingUsername);
+                expectErrorForBadParameters(@{USERNAME_KEY: BLANK}, @[@(AccountRegistrationMissingUsername)]);
             });
             
             it(@"blank password", ^{
-                expectErrorForBadParameters(@{PASSWORD_KEY: BLANK}, AccountRegistrationMissingPassword);
+                expectErrorForBadParameters(@{PASSWORD_KEY: BLANK}, @[@(AccountRegistrationMissingPassword)]);
             });
             
             it(@"blank confirmation password", ^{
-                expectErrorForBadParameters(@{CONFIRMATION_PASSWORD_KEY: BLANK}, AccountRegistrationMissingConfirmationPassword);
+                expectErrorForBadParameters(@{CONFIRMATION_PASSWORD_KEY: BLANK}, @[@(AccountRegistrationMissingConfirmationPassword)]);
             });
             
             it(@"blank email", ^{
-                expectErrorForBadParameters(@{EMAIL_KEY: BLANK}, AccountRegistrationMissingEmail);
+                expectErrorForBadParameters(@{EMAIL_KEY: BLANK}, @[@(AccountRegistrationMissingEmail)]);
             });
             
             it(@"blank display name", ^{
-                expectErrorForBadParameters(@{DISPLAY_NAME_KEY: BLANK}, AccountRegistrationMissingDisplayName);
+                expectErrorForBadParameters(@{DISPLAY_NAME_KEY: BLANK}, @[@(AccountRegistrationMissingDisplayName)]);
             });
             
             it(@"blank client name", ^{
-                expectErrorForBadParameters(@{CLIENT_NAME_KEY: BLANK}, AccountRegistrationMissingClientName);
+                expectErrorForBadParameters(@{CLIENT_NAME_KEY: BLANK}, @[@(AccountRegistrationMissingClientName)]);
+            });
+            
+            it(@"all blank", ^{
+                NSDictionary *parameters = @{
+                                             USERNAME_KEY: BLANK,
+                                             PASSWORD_KEY: BLANK,
+                                             CONFIRMATION_PASSWORD_KEY: BLANK,
+                                             EMAIL_KEY: BLANK,
+                                             DISPLAY_NAME_KEY: BLANK,
+                                             CLIENT_NAME_KEY: BLANK
+                                             };
+
+                NSArray *expectedErrorCodes = @[
+                                                @(AccountRegistrationMissingUsername),
+                                                @(AccountRegistrationMissingPassword),
+                                                @(AccountRegistrationMissingConfirmationPassword),
+                                                @(AccountRegistrationMissingEmail),
+                                                @(AccountRegistrationMissingDisplayName),
+                                                @(AccountRegistrationMissingClientName)
+                                                ];
+                
+                expectErrorForBadParameters(parameters, expectedErrorCodes);
             });
         });
         
