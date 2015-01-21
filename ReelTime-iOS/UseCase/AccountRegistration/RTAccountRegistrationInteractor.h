@@ -5,6 +5,7 @@
 @protocol RTAccountRegistrationInteractorDelegate;
 
 @class RTAccountRegistrationDataManager;
+@class RTAccountRegistrationValidator;
 @class RTLoginInteractor;
 
 @class RTAccountRegistration;
@@ -13,6 +14,7 @@
 
 - (instancetype)initWithDelegate:(id<RTAccountRegistrationInteractorDelegate>)delegate
                      dataManager:(RTAccountRegistrationDataManager *)dataManager
+                       validator:(RTAccountRegistrationValidator *)validator
                  loginInteractor:(RTLoginInteractor *)loginInteractor;
 
 - (void)registerAccount:(RTAccountRegistration *)registration;

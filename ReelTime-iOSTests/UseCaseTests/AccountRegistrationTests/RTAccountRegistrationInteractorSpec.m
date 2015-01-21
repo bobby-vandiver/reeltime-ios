@@ -4,6 +4,7 @@
 #import "RTAccountRegistrationInteractorDelegate.h"
 
 #import "RTAccountRegistrationDataManager.h"
+#import "RTAccountRegistrationValidator.h"
 #import "RTLoginInteractor.h"
 
 #import "RTAccountRegistration.h"
@@ -68,8 +69,11 @@ describe(@"account registration interactor", ^{
 
         loginInteractor = mock([RTLoginInteractor class]);
         
+        RTAccountRegistrationValidator *validator = [[RTAccountRegistrationValidator alloc] init];
+        
         interactor = [[RTAccountRegistrationInteractor alloc] initWithDelegate:delegate
                                                                    dataManager:dataManager
+                                                                     validator:validator
                                                                loginInteractor:loginInteractor];
         
         accountRegistration = [[RTAccountRegistration alloc] initWithUsername:username
