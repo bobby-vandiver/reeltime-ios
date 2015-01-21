@@ -146,8 +146,26 @@ describe(@"account registration interactor", ^{
             });
         });
         
-        xcontext(@"invalid parameters", ^{
-            // TODO
+        context(@"invalid parameters", ^{
+            
+            describe(@"invalid username", ^{
+                it(@"too short", ^{
+                    expectErrorForBadParameters(@{USERNAME_KEY: @"a"}, @[@(AccountRegistrationInvalidUsername)]);
+                    expectErrorForBadParameters(@{USERNAME_KEY: @"ab"}, @[@(AccountRegistrationInvalidUsername)]);
+                });
+                
+                it(@"too long", ^{
+                    expectErrorForBadParameters(@{USERNAME_KEY: @"abcdefghijklmnop"}, @[@(AccountRegistrationInvalidUsername)]);
+                    expectErrorForBadParameters(@{USERNAME_KEY: @"aBcdEFghIjklmnop1234"}, @[@(AccountRegistrationInvalidUsername)]);
+                });
+
+                it(@"invalid characters", ^{
+                    expectErrorForBadParameters(@{USERNAME_KEY: @"!ab"}, @[@(AccountRegistrationIn0validUsername)]);
+                    expectErrorForBadParameters(@{USERNAME_KEY: @"a!b"}, @[@(AccountRegistrationInvalidUsername)]);
+                    expectErrorForBadParameters(@{USERNAME_KEY: @"ab!"}, @[@(AccountRegistrationInvalidUsername)]);
+                });
+            });
+            
         });
         
         describe(@"when registration is successful", ^{

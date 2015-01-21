@@ -10,7 +10,19 @@
     BOOL valid = YES;
     NSMutableArray *errorContainer = [NSMutableArray array];
     
-    if ([registration.username length] == 0) {
+    if ([registration.username length] > 0) {
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^\\w{2,15}$"
+                                                                               options:0
+                                                                                 error:nil];
+        
+        NSUInteger matches = [regex numberOfMatchesInString:registration.username
+                                                    options:0
+                                                      range:NSMakeRange(0, [registration.username length])];
+        if (matches < 1) {
+            [self addRegistrationErrorCode:AccountRegistrationInvalidUsername toErrors:errorContainer];
+        }
+    }
+    else if([registration.username length] == 0) {
         [self addRegistrationErrorCode:AccountRegistrationMissingUsername toErrors:errorContainer];
     }
     if([registration.password length] == 0) {
