@@ -3,6 +3,8 @@
 
 #import "RTErrorFactory.h"
 
+NSString *const USERNAME_REGEX = @"^\\w{2,15}$";
+
 @implementation RTAccountRegistrationValidator
 
 - (BOOL)validateAccountRegistration:(RTAccountRegistration *)registration
@@ -10,21 +12,8 @@
     BOOL valid = YES;
     NSMutableArray *errorContainer = [NSMutableArray array];
     
-    if ([registration.username length] > 0) {
-        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^\\w{2,15}$"
-                                                                               options:0
-                                                                                 error:nil];
-        
-        NSUInteger matches = [regex numberOfMatchesInString:registration.username
-                                                    options:0
-                                                      range:NSMakeRange(0, [registration.username length])];
-        if (matches < 1) {
-            [self addRegistrationErrorCode:AccountRegistrationInvalidUsername toErrors:errorContainer];
-        }
-    }
-    else if([registration.username length] == 0) {
-        [self addRegistrationErrorCode:AccountRegistrationMissingUsername toErrors:errorContainer];
-    }
+    [self validateUsername:registration.username errors:errorContainer];
+    
     if([registration.password length] == 0) {
         [self addRegistrationErrorCode:AccountRegistrationMissingPassword toErrors:errorContainer];
     }
@@ -50,6 +39,35 @@
     }
     
     return valid;
+}
+
+- (void)validateUsername:(NSString *)username
+                  errors:(NSMutableArray *)errors {
+    if ([username length] == 0) {
+        [self addRegistrationErrorCode:AccountRegistrationMissingUsername toErrors:errors];
+    }
+    else {
+        [self validateParameter:username
+                    withPattern:USERNAME_REGEX
+               invalidErrorCode:AccountRegistrationInvalidUsername
+                         errors:errors];
+    }
+}
+
+- (void)validateParameter:(NSString *)parameter
+              withPattern:(NSString *)pattern
+         invalidErrorCode:(NSInteger)code
+                   errors:(NSMutableArray *)errors {
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern
+                                                                           options:0
+                                                                             error:nil];
+    
+    NSUInteger matches = [regex numberOfMatchesInString:parameter
+                                                options:0
+                                                  range:NSMakeRange(0, [parameter length])];
+    if (matches < 1) {
+        [self addRegistrationErrorCode:code toErrors:errors];
+    }
 }
 
 - (void)addRegistrationErrorCode:(RTAccountRegistrationErrors)code
