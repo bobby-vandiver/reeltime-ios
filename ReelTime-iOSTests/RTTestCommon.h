@@ -23,3 +23,6 @@ extern NSString *const password;
 extern NSString *const email;
 extern NSString *const displayName;
 extern NSString *const clientName;
+
+extern NSString *const BLANK;
+

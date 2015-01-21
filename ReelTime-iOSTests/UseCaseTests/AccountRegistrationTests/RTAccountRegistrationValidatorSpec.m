@@ -52,8 +52,6 @@ describe(@"account registration validator", ^{
     });
     
     context(@"missing parameters", ^{
-        NSString *const BLANK = @"";
-        
         it(@"blank username", ^{
             expectErrorForBadParameters(@{USERNAME_KEY: BLANK}, @[@(AccountRegistrationMissingUsername)]);
         });
@@ -113,6 +111,12 @@ describe(@"account registration validator", ^{
                 expectErrorForBadParameters(@{USERNAME_KEY: @"aBcdEFghIjklmnop1234"}, @[@(AccountRegistrationInvalidUsername)]);
             });
             
+            it(@"cannot contain space", ^{
+                expectErrorForBadParameters(@{USERNAME_KEY: @"a b"}, @[@(AccountRegistrationInvalidUsername)]);
+                expectErrorForBadParameters(@{USERNAME_KEY: @" ab"}, @[@(AccountRegistrationInvalidUsername)]);
+                expectErrorForBadParameters(@{USERNAME_KEY: @"ab "}, @[@(AccountRegistrationInvalidUsername)]);
+            });
+            
             it(@"invalid characters", ^{
                 expectErrorForBadParameters(@{USERNAME_KEY: @"!ab"}, @[@(AccountRegistrationInvalidUsername)]);
                 expectErrorForBadParameters(@{USERNAME_KEY: @"a!b"}, @[@(AccountRegistrationInvalidUsername)]);
@@ -120,6 +124,33 @@ describe(@"account registration validator", ^{
             });
         });
         
+        describe(@"invalid password", ^{
+            it(@"matches confirmation password but is too short", ^{
+                expectErrorForBadParameters(@{PASSWORD_KEY: @"a", CONFIRMATION_PASSWORD_KEY: @"a"},
+                                            @[@(AccountRegistrationInvalidPassword)]);
+                
+                expectErrorForBadParameters(@{PASSWORD_KEY: @"abcde", CONFIRMATION_PASSWORD_KEY: @"abcde"},
+                                            @[@(AccountRegistrationInvalidPassword)]);
+            });
+
+            // TODO: Explore this more
+            xit(@"does not count control characters", ^{
+                expectErrorForBadParameters(@{PASSWORD_KEY: @"abcd\n"}, @[@(AccountRegistrationInvalidPassword)]);
+                expectErrorForBadParameters(@{PASSWORD_KEY: @"abcde\n"}, @[@(AccountRegistrationInvalidPassword)]);
+            });
+            
+            it(@"does not match confirmation password", ^{
+                expectErrorForBadParameters(@{PASSWORD_KEY: BLANK, CONFIRMATION_PASSWORD_KEY: @"a"},
+                                            @[@(AccountRegistrationMissingPassword)]);
+                
+                expectErrorForBadParameters(@{PASSWORD_KEY: @"a", CONFIRMATION_PASSWORD_KEY: BLANK},
+                                            @[@(AccountRegistrationInvalidPassword),
+                                              @(AccountRegistrationMissingConfirmationPassword)]);
+                
+                expectErrorForBadParameters(@{PASSWORD_KEY: @"abcdef", CONFIRMATION_PASSWORD_KEY: @"ABCDEF"},
+                                            @[@(AccountRegistrationConfirmationPasswordDoesNotMatch)]);
+            });
+        });
     });
 });
 

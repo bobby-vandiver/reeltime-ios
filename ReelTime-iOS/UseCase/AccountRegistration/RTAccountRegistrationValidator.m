@@ -4,6 +4,7 @@
 #import "RTErrorFactory.h"
 
 NSString *const USERNAME_REGEX = @"^\\w{2,15}$";
+const NSInteger PASSWORD_MINIMUM_LENGTH = 6;
 
 @implementation RTAccountRegistrationValidator
 
@@ -13,13 +14,8 @@ NSString *const USERNAME_REGEX = @"^\\w{2,15}$";
     NSMutableArray *errorContainer = [NSMutableArray array];
     
     [self validateUsername:registration.username errors:errorContainer];
+    [self validatePassword:registration.password confirmationPassword:registration.confirmationPassword errors:errorContainer];
     
-    if([registration.password length] == 0) {
-        [self addRegistrationErrorCode:AccountRegistrationMissingPassword toErrors:errorContainer];
-    }
-    if ([registration.confirmationPassword length] == 0) {
-        [self addRegistrationErrorCode:AccountRegistrationMissingConfirmationPassword toErrors:errorContainer];
-    }
     if ([registration.email length] == 0) {
         [self addRegistrationErrorCode:AccountRegistrationMissingEmail toErrors:errorContainer];
     }
@@ -51,6 +47,24 @@ NSString *const USERNAME_REGEX = @"^\\w{2,15}$";
                     withPattern:USERNAME_REGEX
                invalidErrorCode:AccountRegistrationInvalidUsername
                          errors:errors];
+    }
+}
+
+- (void)validatePassword:(NSString *)password
+    confirmationPassword:(NSString *)confirmationPassword
+                  errors:(NSMutableArray *)errors {
+    if ([password length] == 0) {
+        [self addRegistrationErrorCode:AccountRegistrationMissingPassword toErrors:errors];
+    }
+    else if ([password length] < PASSWORD_MINIMUM_LENGTH) {
+        [self addRegistrationErrorCode:AccountRegistrationInvalidPassword toErrors:errors];
+    }
+    
+    if ([confirmationPassword length] == 0) {
+        [self addRegistrationErrorCode:AccountRegistrationMissingConfirmationPassword toErrors:errors];
+    }
+    else if ([password length] >= PASSWORD_MINIMUM_LENGTH && ![confirmationPassword isEqualToString:password]) {
+        [self addRegistrationErrorCode:AccountRegistrationConfirmationPasswordDoesNotMatch toErrors:errors];
     }
 }
 
