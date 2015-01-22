@@ -6,6 +6,16 @@
 NSString *const USERNAME_REGEX = @"^\\w{2,15}$";
 const NSInteger PASSWORD_MINIMUM_LENGTH = 6;
 
+NSString *const EMAIL_REGEX = @"(?:[a-z0-9!#$%\\&'*+/=?\\^_`{|}~-]+(?:\\.[a-z0-9!#$%\\&'*+/=?\\^_`{|}"
+                              @"~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\"
+                              @"x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-"
+                              @"z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5"
+                              @"]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-"
+                              @"9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21"
+                              @"-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])";
+
+NSString *const DISPLAY_NAME_REGEX = @"^\\w{1}[\\w ]{0,18}?\\w{1}$";
+
 @implementation RTAccountRegistrationValidator
 
 - (BOOL)validateAccountRegistration:(RTAccountRegistration *)registration
@@ -16,12 +26,9 @@ const NSInteger PASSWORD_MINIMUM_LENGTH = 6;
     [self validateUsername:registration.username errors:errorContainer];
     [self validatePassword:registration.password confirmationPassword:registration.confirmationPassword errors:errorContainer];
     
-    if ([registration.email length] == 0) {
-        [self addRegistrationErrorCode:AccountRegistrationMissingEmail toErrors:errorContainer];
-    }
-    if ([registration.displayName length] == 0) {
-        [self addRegistrationErrorCode:AccountRegistrationMissingDisplayName toErrors:errorContainer];
-    }
+    [self validateEmail:registration.email errors:errorContainer];
+    [self validateDisplayName:registration.displayName errors:errorContainer];
+    
     if ([registration.clientName length] == 0) {
         [self addRegistrationErrorCode:AccountRegistrationMissingClientName toErrors:errorContainer];
     }
@@ -68,18 +75,40 @@ const NSInteger PASSWORD_MINIMUM_LENGTH = 6;
     }
 }
 
+- (void)validateEmail:(NSString *)email
+               errors:(NSMutableArray *)errors {
+    if ([email length] == 0) {
+        [self addRegistrationErrorCode:AccountRegistrationMissingEmail toErrors:errors];
+    }
+    else {
+        [self validateParameter:email
+                    withPattern:EMAIL_REGEX
+               invalidErrorCode:AccountRegistrationInvalidEmail
+                         errors:errors];
+    }
+}
+
+- (void)validateDisplayName:(NSString *)displayName
+                     errors:(NSMutableArray *)errors {
+    if ([displayName length] == 0) {
+        [self addRegistrationErrorCode:AccountRegistrationMissingDisplayName toErrors:errors];
+    }
+    else {
+        [self validateParameter:displayName
+                    withPattern:DISPLAY_NAME_REGEX
+               invalidErrorCode:AccountRegistrationInvalidDisplayName
+                         errors:errors];
+    }
+}
+
 - (void)validateParameter:(NSString *)parameter
               withPattern:(NSString *)pattern
          invalidErrorCode:(NSInteger)code
                    errors:(NSMutableArray *)errors {
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern
-                                                                           options:0
-                                                                             error:nil];
-    
-    NSUInteger matches = [regex numberOfMatchesInString:parameter
-                                                options:0
-                                                  range:NSMakeRange(0, [parameter length])];
-    if (matches < 1) {
+    NSPredicate *regexPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", pattern];
+    BOOL matches = [regexPredicate evaluateWithObject:parameter];
+
+    if (!matches) {
         [self addRegistrationErrorCode:code toErrors:errors];
     }
 }

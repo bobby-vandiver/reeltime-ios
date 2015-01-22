@@ -50,7 +50,8 @@ describe(@"account registration validator", ^{
     beforeEach(^{
         validator = [[RTAccountRegistrationValidator alloc] init];
     });
-    
+
+    // TODO: Test nil values
     context(@"missing parameters", ^{
         it(@"blank username", ^{
             expectErrorForBadParameters(@{USERNAME_KEY: BLANK}, @[@(AccountRegistrationMissingUsername)]);
@@ -159,6 +160,38 @@ describe(@"account registration validator", ^{
                 
                 expectErrorForBadParameters(@{PASSWORD_KEY: @"abcdef", CONFIRMATION_PASSWORD_KEY: @"ABCDEF"},
                                             @[@(AccountRegistrationConfirmationPasswordDoesNotMatch)]);
+            });
+        });
+        
+        describe(@"invalid email", ^{
+            it(@"does not match email regex", ^{
+                expectErrorForBadParameters(@{EMAIL_KEY: @"oops"}, @[@(AccountRegistrationInvalidEmail)]);
+                expectErrorForBadParameters(@{EMAIL_KEY: @"foo@"}, @[@(AccountRegistrationInvalidEmail)]);
+                expectErrorForBadParameters(@{EMAIL_KEY: @"foo@b"}, @[@(AccountRegistrationInvalidEmail)]);
+                expectErrorForBadParameters(@{EMAIL_KEY: @"@coffee"}, @[@(AccountRegistrationInvalidEmail)]);
+            });
+        });
+        
+        describe(@"invalid display name", ^{
+            it(@"too short", ^{
+                expectErrorForBadParameters(@{DISPLAY_NAME_KEY: @"a"}, @[@(AccountRegistrationInvalidDisplayName)]);
+            });
+            
+            it(@"too long", ^{
+                expectErrorForBadParameters(@{DISPLAY_NAME_KEY: @"123456789012345678901"},
+                                            @[@(AccountRegistrationInvalidDisplayName)]);
+            });
+            
+            it(@"cannot contain leading or trailing space", ^{
+                expectErrorForBadParameters(@{DISPLAY_NAME_KEY: @" "}, @[@(AccountRegistrationInvalidDisplayName)]);
+                expectErrorForBadParameters(@{DISPLAY_NAME_KEY: @" a"}, @[@(AccountRegistrationInvalidDisplayName)]);
+                expectErrorForBadParameters(@{DISPLAY_NAME_KEY: @"a "}, @[@(AccountRegistrationInvalidDisplayName)]);
+            });
+            
+            it(@"cannot contain non-word characters", ^{
+                expectErrorForBadParameters(@{DISPLAY_NAME_KEY: @"!a"}, @[@(AccountRegistrationInvalidDisplayName)]);
+                expectErrorForBadParameters(@{DISPLAY_NAME_KEY: @"!ab"}, @[@(AccountRegistrationInvalidDisplayName)]);
+                expectErrorForBadParameters(@{DISPLAY_NAME_KEY: @"1234567890123456789!"}, @[@(AccountRegistrationInvalidDisplayName)]);
             });
         });
     });
