@@ -17,6 +17,20 @@ describe(@"account registration validator", ^{
     NSString *const DISPLAY_NAME_KEY = @"displayName";
     NSString *const CLIENT_NAME_KEY = @"clientName";
 
+    NSString *(^getParameterOrDefault)(NSString *parameter, NSString *defaultValue) =
+    ^NSString *(NSString *parameter, NSString *defaultValue) {
+        NSString *value;
+
+        if (parameter) {
+            value = [parameter isEqual:[NSNull null]] ? nil : parameter;
+        }
+        else {
+            value = defaultValue;
+        }
+        
+        return value;
+    };
+    
     void (^expectErrorForBadParameters)(NSDictionary *parameters, NSArray *expectedErrorCodes) =
     ^(NSDictionary *parameters, NSArray *expectedErrorCodes) {
         
@@ -28,12 +42,12 @@ describe(@"account registration validator", ^{
         NSString *clientNameParam = [parameters objectForKey:CLIENT_NAME_KEY];
         
         RTAccountRegistration *registration = [RTAccountRegistration alloc];
-        registration = [registration initWithUsername:(usernameParam ? usernameParam : username)
-                                             password:(passwordParam ? passwordParam : password)
-                                 confirmationPassword:(confirmationParam ? confirmationParam : password)
-                                                email:(emailParam ? emailParam : email)
-                                          displayName:(displayNameParam ? displayNameParam : displayName)
-                                           clientName:(clientNameParam ? clientNameParam : clientName)];
+        registration = [registration initWithUsername:getParameterOrDefault(usernameParam, username)
+                                             password:getParameterOrDefault(passwordParam, password)
+                                 confirmationPassword:getParameterOrDefault(confirmationParam, password)
+                                                email:getParameterOrDefault(emailParam, email)
+                                          displayName:getParameterOrDefault(displayNameParam, displayName)
+                                           clientName:getParameterOrDefault(clientNameParam, clientName)];
         
         NSArray *errors;
         BOOL valid = [validator validateAccountRegistration:registration errors:&errors];
@@ -51,30 +65,36 @@ describe(@"account registration validator", ^{
         validator = [[RTAccountRegistrationValidator alloc] init];
     });
 
-    // TODO: Test nil values
     context(@"missing parameters", ^{
         it(@"blank username", ^{
             expectErrorForBadParameters(@{USERNAME_KEY: BLANK}, @[@(AccountRegistrationMissingUsername)]);
+            expectErrorForBadParameters(@{USERNAME_KEY: [NSNull null]}, @[@(AccountRegistrationMissingUsername)]);
         });
         
         it(@"blank password", ^{
             expectErrorForBadParameters(@{PASSWORD_KEY: BLANK}, @[@(AccountRegistrationMissingPassword)]);
+            expectErrorForBadParameters(@{PASSWORD_KEY: [NSNull null]}, @[@(AccountRegistrationMissingPassword)]);
         });
         
         it(@"blank confirmation password", ^{
             expectErrorForBadParameters(@{CONFIRMATION_PASSWORD_KEY: BLANK}, @[@(AccountRegistrationMissingConfirmationPassword)]);
+            expectErrorForBadParameters(@{CONFIRMATION_PASSWORD_KEY: [NSNull null]},
+                                        @[@(AccountRegistrationMissingConfirmationPassword)]);
         });
         
         it(@"blank email", ^{
             expectErrorForBadParameters(@{EMAIL_KEY: BLANK}, @[@(AccountRegistrationMissingEmail)]);
+            expectErrorForBadParameters(@{EMAIL_KEY: [NSNull null]}, @[@(AccountRegistrationMissingEmail)]);
         });
         
         it(@"blank display name", ^{
             expectErrorForBadParameters(@{DISPLAY_NAME_KEY: BLANK}, @[@(AccountRegistrationMissingDisplayName)]);
+            expectErrorForBadParameters(@{DISPLAY_NAME_KEY: [NSNull null]}, @[@(AccountRegistrationMissingDisplayName)]);
         });
         
         it(@"blank client name", ^{
             expectErrorForBadParameters(@{CLIENT_NAME_KEY: BLANK}, @[@(AccountRegistrationMissingClientName)]);
+            expectErrorForBadParameters(@{CLIENT_NAME_KEY: [NSNull null]}, @[@(AccountRegistrationMissingClientName)]);
         });
         
         it(@"all blank", ^{
