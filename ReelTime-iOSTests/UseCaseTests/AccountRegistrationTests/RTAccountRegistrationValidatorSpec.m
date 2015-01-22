@@ -211,7 +211,8 @@ describe(@"account registration validator", ^{
             it(@"cannot contain non-word characters", ^{
                 expectErrorForBadParameters(@{DISPLAY_NAME_KEY: @"!a"}, @[@(AccountRegistrationInvalidDisplayName)]);
                 expectErrorForBadParameters(@{DISPLAY_NAME_KEY: @"!ab"}, @[@(AccountRegistrationInvalidDisplayName)]);
-                expectErrorForBadParameters(@{DISPLAY_NAME_KEY: @"1234567890123456789!"}, @[@(AccountRegistrationInvalidDisplayName)]);
+                expectErrorForBadParameters(@{DISPLAY_NAME_KEY: @"1234567890123456789!"},
+                                            @[@(AccountRegistrationInvalidDisplayName)]);
             });
         });
     });

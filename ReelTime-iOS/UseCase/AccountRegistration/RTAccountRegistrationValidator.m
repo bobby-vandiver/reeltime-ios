@@ -29,9 +29,7 @@ NSString *const DISPLAY_NAME_REGEX = @"^\\w{1}[\\w ]{0,18}?\\w{1}$";
     [self validateEmail:registration.email errors:errorContainer];
     [self validateDisplayName:registration.displayName errors:errorContainer];
     
-    if ([registration.clientName length] == 0) {
-        [self addRegistrationErrorCode:AccountRegistrationMissingClientName toErrors:errorContainer];
-    }
+    [self validateClientName:registration.clientName errors:errorContainer];
     
     if ([errorContainer count] > 0) {
         valid = NO;
@@ -98,6 +96,13 @@ NSString *const DISPLAY_NAME_REGEX = @"^\\w{1}[\\w ]{0,18}?\\w{1}$";
                     withPattern:DISPLAY_NAME_REGEX
                invalidErrorCode:AccountRegistrationInvalidDisplayName
                          errors:errors];
+    }
+}
+
+- (void)validateClientName:(NSString *)clientName
+                    errors:(NSMutableArray *)errors {
+    if ([clientName length] == 0) {
+        [self addRegistrationErrorCode:AccountRegistrationMissingClientName toErrors:errors];
     }
 }
 
