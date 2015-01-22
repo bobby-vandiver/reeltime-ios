@@ -140,12 +140,22 @@ describe(@"account registration validator", ^{
             });
             
             it(@"does not match confirmation password", ^{
+                expectErrorForBadParameters(@{PASSWORD_KEY: BLANK, CONFIRMATION_PASSWORD_KEY: BLANK},
+                                            @[@(AccountRegistrationMissingPassword),
+                                              @(AccountRegistrationMissingConfirmationPassword)]);
+                
                 expectErrorForBadParameters(@{PASSWORD_KEY: BLANK, CONFIRMATION_PASSWORD_KEY: @"a"},
                                             @[@(AccountRegistrationMissingPassword)]);
                 
                 expectErrorForBadParameters(@{PASSWORD_KEY: @"a", CONFIRMATION_PASSWORD_KEY: BLANK},
                                             @[@(AccountRegistrationInvalidPassword),
                                               @(AccountRegistrationMissingConfirmationPassword)]);
+                
+                expectErrorForBadParameters(@{PASSWORD_KEY: @"abcdef", CONFIRMATION_PASSWORD_KEY: BLANK},
+                                            @[@(AccountRegistrationMissingConfirmationPassword)]);
+                
+                expectErrorForBadParameters(@{PASSWORD_KEY: BLANK, CONFIRMATION_PASSWORD_KEY: @"abcdef"},
+                                            @[@(AccountRegistrationMissingPassword)]);
                 
                 expectErrorForBadParameters(@{PASSWORD_KEY: @"abcdef", CONFIRMATION_PASSWORD_KEY: @"ABCDEF"},
                                             @[@(AccountRegistrationConfirmationPasswordDoesNotMatch)]);
