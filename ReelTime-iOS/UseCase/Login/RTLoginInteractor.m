@@ -1,5 +1,8 @@
 #import "RTLoginInteractor.h"
+#import "RTLoginInteractorDelegate.h"
+
 #import "RTLoginDataManager.h"
+#import "RTUserCredentials.h"
 
 #import "RTLoginErrors.h"
 #import "RTClientErrors.h"
@@ -80,21 +83,7 @@
 }
 
 - (void)loginDataOperationFailedWithError:(NSError *)error {
-    if (![error.domain isEqualToString:RTClientTokenErrorDomain]) {
-        [self.delegate loginFailedWithErrors:@[error]];
-        return;
-    }
-    
-    NSInteger errorCode;
-    
-    if (error.code == InvalidClientCredentials) {
-        errorCode = LoginUnknownClient;
-    }
-    else if (error.code == InvalidUserCredentials) {
-        errorCode = LoginInvalidCredentials;
-    }
-    
-    [self loginFailedWithErrorCode:errorCode];
+    [self.delegate loginFailedWithErrors:@[error]];
 }
 
 - (void)loginFailedWithErrorCode:(RTLoginErrors)code {

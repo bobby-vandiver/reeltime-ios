@@ -3,8 +3,13 @@
 
 #import "RTRestAPI.h"
 
+#import "RTClientCredentials.h"
+#import "RTUserCredentials.h"
+
+#import "RTOAuth2Token.h"
 #import "RTOAuth2TokenError.h"
-#import "RTOAuth2TokenError+RTClientTokenErrorConverter.h"
+
+#import "RTAccountRegistration.h"
 
 static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read reels-write users-read users-write videos-read videos-write";
 
@@ -27,7 +32,7 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
 - (void)tokenWithClientCredentials:(RTClientCredentials *)clientCredentials
                    userCredentials:(RTUserCredentials *)userCredentials
                            success:(void (^)(RTOAuth2Token *token))success
-                           failure:(void (^)(NSError *error))failure {
+                           failure:(void (^)(RTOAuth2TokenError *error))failure {
     NSDictionary *parameters = @{
                                  @"grant_type":      @"password",
                                  @"username":        userCredentials.username,
@@ -44,7 +49,7 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
     
     id failureCallback = ^(RKObjectRequestOperation *operation, NSError *error) {
         RTOAuth2TokenError *tokenError = [[error.userInfo objectForKey:RKObjectMapperErrorObjectsKey] firstObject];
-        failure([tokenError convertToClientTokenError]);
+        failure(tokenError);
     };
     
     [self.objectManager postObject:nil

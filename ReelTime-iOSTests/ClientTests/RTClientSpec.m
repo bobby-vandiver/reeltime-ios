@@ -4,6 +4,12 @@
 #import "RTClientErrors.h"
 #import "RTClientAssembly.h"
 
+#import "RTClientCredentials.h"
+#import "RTUserCredentials.h"
+
+#import "RTOAuth2Token.h"
+#import "RTOAuth2TokenError.h"
+
 #import "RTAccountRegistration.h"
 
 #import "RTRestAPI.h"
@@ -72,8 +78,9 @@ describe(@"ReelTime Client", ^{
                                                fail();
                                                done();
                                            }
-                                           failure:^(NSError *error) {
-                                               expect(error).to.beError(RTClientTokenErrorDomain, InvalidClientCredentials);
+                                           failure:^(RTOAuth2TokenError *error) {
+                                               expect(error.errorCode).to.equal(@"invalid_client");
+                                               expect(error.errorDescription).to.equal(@"Bad client credentials");
                                                done();
                                            }];
             });
@@ -90,8 +97,9 @@ describe(@"ReelTime Client", ^{
                                                fail();
                                                done();
                                            }
-                                           failure:^(NSError *error) {
-                                               expect(error).to.beError(RTClientTokenErrorDomain, InvalidUserCredentials);
+                                           failure:^(RTOAuth2TokenError *error) {
+                                               expect(error.errorCode).to.equal(@"invalid_grant");
+                                               expect(error.errorDescription).to.equal(@"Bad credentials");
                                                done();
                                            }];
             });
@@ -108,7 +116,7 @@ describe(@"ReelTime Client", ^{
                                                expect(token.accessToken).to.equal(@"940a0300-ddd7-4302-873c-815a2a6b87ac");
                                                done();
                                            }
-                                           failure:^(NSError *error) {
+                                           failure:^(RTOAuth2TokenError *error) {
                                                fail();
                                                done();
                                            }];

@@ -5,5 +5,6 @@ extern NSString *const RTClientTokenErrorDomain;
 
 typedef NS_ENUM(NSInteger, RTClientTokenErrors) {
     InvalidClientCredentials,
-    InvalidUserCredentials
+    InvalidUserCredentials,
+    UnknownTokenError
 };

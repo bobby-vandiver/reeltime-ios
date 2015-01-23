@@ -7,6 +7,7 @@ typedef NS_ENUM(NSInteger, RTLoginErrors) {
     LoginMissingPassword,
     LoginUnknownClient,
     LoginInvalidCredentials,
+    LoginUnknownTokenError,
     LoginUnableToStoreToken,
     LoginUnableToRemoveToken,
     LoginUnableToSetCurrentlyLoggedInUser

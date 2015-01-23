@@ -1,10 +1,15 @@
 #import <Foundation/Foundation.h>
 
-#import "RTLoginDataManagerDelegate.h"
-#import "RTClient.h"
-#import "RTClientCredentialsStore.h"
-#import "RTOAuth2TokenStore.h"
-#import "RTCurrentUserStore.h"
+@protocol RTLoginDataManagerDelegate;
+
+@class RTClient;
+@class RTClientCredentialsStore;
+@class RTOAuth2TokenStore;
+@class RTCurrentUserStore;
+
+@class RTClientCredentials;
+@class RTUserCredentials;
+@class RTOAuth2Token;
 
 @interface RTLoginDataManager : NSObject
 

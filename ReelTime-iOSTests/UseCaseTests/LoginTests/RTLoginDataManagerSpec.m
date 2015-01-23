@@ -1,6 +1,16 @@
 #import "RTTestCommon.h"
 
 #import "RTLoginDataManager.h"
+#import "RTLoginDataManagerDelegate.h"
+
+#import "RTClient.h"
+#import "RTClientCredentialsStore.h"
+#import "RTOAuth2TokenStore.h"
+#import "RTCurrentUserStore.h"
+
+#import "RTUserCredentials.h"
+#import "RTClientCredentials.h"
+
 
 SpecBegin(RTLoginDataManager)
 
@@ -17,6 +27,9 @@ describe(@"login data manager", ^{
 
     __block RTClientCredentials *clientCredentials;
     __block RTUserCredentials *userCredentials;
+
+    __block MKTArgumentCaptor *errorCaptor;
+    __block NSError *capturedError;
 
     beforeEach(^{
         delegate = mockProtocol(@protocol(RTLoginDataManagerDelegate));
@@ -38,6 +51,10 @@ describe(@"login data manager", ^{
 
         userCredentials = [[RTUserCredentials alloc] initWithUsername:username
                                                              password:password];
+        
+        
+        errorCaptor = [[MKTArgumentCaptor alloc] init];
+        capturedError = nil;
     });
     
     describe(@"load client credentials", ^{
@@ -88,29 +105,63 @@ describe(@"login data manager", ^{
             expect(callbackExecuted).to.beTruthy();
         });
         
-        it(@"should notify delegate of failure to retrieve token", ^{
-            MKTArgumentCaptor *failureCaptor = [[MKTArgumentCaptor alloc] init];
+        describe(@"mapping token error to client error and notifying delegate of failure to retrieve token", ^{
+            __block RTOAuth2TokenError *tokenError;
             
-            [verify(client) tokenWithClientCredentials:clientCredentials
-                                       userCredentials:userCredentials
-                                               success:anything()
-                                               failure:[failureCaptor capture]];
-
-            [verifyCount(delegate, never()) loginDataOperationFailedWithError:anything()];
+            __block MKTArgumentCaptor *failureCaptor;
+            __block void (^failureHandler)(RTOAuth2TokenError *);
             
-            NSError *error = [NSError errorWithDomain:@"TEST" code:-1 userInfo:nil];
-            void (^failureHandler)(NSError *) = [failureCaptor value];
+            beforeEach(^{
+                tokenError = [[RTOAuth2TokenError alloc] init];
+                failureCaptor = [[MKTArgumentCaptor alloc] init];
+                
+                [verify(client) tokenWithClientCredentials:clientCredentials
+                                           userCredentials:userCredentials
+                                                   success:anything()
+                                                   failure:[failureCaptor capture]];
+                
+                [verifyCount(delegate, never()) loginDataOperationFailedWithError:anything()];
 
-            failureHandler(error);
-            [verify(delegate) loginDataOperationFailedWithError:error];
+                failureHandler = [failureCaptor value];
+            });
+            
+            it(@"should map invalid_client to unknown client", ^{
+                tokenError.errorCode = @"invalid_client";
+                tokenError.errorDescription = @"Bad client credentials";
+                
+                failureHandler(tokenError);
+                [verify(delegate) loginDataOperationFailedWithError:[errorCaptor capture]];
+                
+                capturedError = [errorCaptor value];
+                expect(capturedError).to.beError(RTLoginErrorDomain, LoginUnknownClient);
+            });
+            
+            it(@"should map invalid_grant to invalid credentials", ^{
+                tokenError.errorCode = @"invalid_grant";
+                tokenError.errorDescription = @"Bad credentials";
+                
+                failureHandler(tokenError);
+                [verify(delegate) loginDataOperationFailedWithError:[errorCaptor capture]];
+                
+                capturedError = [errorCaptor value];
+                expect(capturedError).to.beError(RTLoginErrorDomain, LoginInvalidCredentials);
+            });
+            
+            it(@"should other errors to unknown token error", ^{
+                tokenError.errorCode = @"unknown";
+                tokenError.errorDescription = @"Unknown error";
+                
+                failureHandler(tokenError);
+                [verify(delegate) loginDataOperationFailedWithError:[errorCaptor capture]];
+                
+                capturedError = [errorCaptor value];
+                expect(capturedError).to.beError(RTLoginErrorDomain, LoginUnknownTokenError);
+            });
         });
     });
     
     describe(@"setting logged in user", ^{
         __block RTOAuth2Token *token;
-        
-        __block MKTArgumentCaptor *errorCaptor;
-        __block NSError *capturedError;
         
         __block BOOL callbackExecuted;
         
@@ -120,10 +171,6 @@ describe(@"login data manager", ^{
 
         beforeEach(^{
             token = [[RTOAuth2Token alloc] init];
-            
-            errorCaptor = [[MKTArgumentCaptor alloc] init];
-            capturedError = nil;
-            
             callbackExecuted = NO;
         });
         

@@ -1,7 +1,20 @@
 #import "RTLoginDataManager.h"
-#import "RTLoginInteractor.h"
+#import "RTLoginDataManagerDelegate.h"
+
+#import "RTClient.h"
+#import "RTClientCredentialsStore.h"
+
+#import "RTOAuth2TokenStore.h"
+#import "RTCurrentUserStore.h"
+
+#import "RTUserCredentials.h"
+#import "RTClientCredentials.h"
+
+#import "RTOAuth2Token.h"
+#import "RTOAuth2TokenError.h"
 
 #import "RTErrorFactory.h"
+#import "RTOAuth2TokenError+RTClientTokenErrorConverter.h"
 
 @interface RTLoginDataManager ()
 
@@ -44,7 +57,25 @@
         callback(token, username);
     };
     
-    id failure = ^(NSError *error) {
+    id failure = ^(RTOAuth2TokenError *tokenError) {
+        NSError *error = [tokenError convertToClientTokenError];
+        
+        if ([error.domain isEqualToString:RTClientTokenErrorDomain]) {
+            NSInteger errorCode;
+            
+            if (error.code == InvalidClientCredentials) {
+                errorCode = LoginUnknownClient;
+            }
+            else if (error.code == InvalidUserCredentials) {
+                errorCode = LoginInvalidCredentials;
+            }
+            else {
+                errorCode = LoginUnknownTokenError;
+            }
+            
+            error = [RTErrorFactory loginErrorWithCode:errorCode];
+        }
+        
         [self.delegate loginDataOperationFailedWithError:error];
     };
     

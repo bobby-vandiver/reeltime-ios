@@ -1,8 +1,14 @@
 #import "RTTestCommon.h"
 
 #import "RTLoginInteractor.h"
+#import "RTLoginInteractorDelegate.h"
+
 #import "RTLoginDataManager.h"
 #import "RTLoginErrors.h"
+
+#import "RTClientCredentials.h"
+#import "RTUserCredentials.h"
+#import "RTOAuth2Token.h"
 
 #import "RTErrorFactory.h"
 
@@ -126,25 +132,26 @@ describe(@"login interactor", ^{
     });
     
     describe(@"login failures", ^{
-        it(@"should treat client with bad credentials or not associated with user as an unknown client", ^{
-            NSError *error = [RTErrorFactory clientTokenErrorWithCode:InvalidClientCredentials];
-
-            [interactor loginDataOperationFailedWithError:error];
-            expectLoginFailureError(LoginUnknownClient);
-        });
-        
-        it(@"should notify delegate of invalid user credetials", ^{
-            NSError *error = [RTErrorFactory clientTokenErrorWithCode:InvalidUserCredentials];
-            
-            [interactor loginDataOperationFailedWithError:error];
-            expectLoginFailureError(LoginInvalidCredentials);
-        });
-        
-        it(@"should notify delegate of all other errors as-is", ^{
+        it(@"should notify delegate of all other login errors as-is", ^{
             NSError *error = [RTErrorFactory loginErrorWithCode:LoginUnableToStoreToken];
             
             [interactor loginDataOperationFailedWithError:error];
             expectLoginFailureError(LoginUnableToStoreToken);
+        });
+        
+        it(@"should notify delegate of all non-login errors as-is", ^{
+            NSError *error = [NSError errorWithDomain:@"TEST" code:-1 userInfo:nil];
+            
+            [interactor loginDataOperationFailedWithError:error];
+
+            MKTArgumentCaptor *errorCaptor = [[MKTArgumentCaptor alloc] init];
+            [verify(delegate) loginFailedWithErrors:[errorCaptor capture]];
+            
+            NSArray *errors = [errorCaptor value];
+            expect([errors count]).to.equal(1);
+
+            NSError *capturedError = [errors objectAtIndex:0];
+            expect(capturedError).to.equal(error);
         });
     });
 });

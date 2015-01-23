@@ -1,7 +1,8 @@
 #import <Foundation/Foundation.h>
 
-#import "RTLoginInteractorDelegate.h"
 #import "RTLoginDataManagerDelegate.h"
+
+@protocol RTLoginInteractorDelegate;
 
 @class RTLoginPresenter;
 @class RTLoginDataManager;

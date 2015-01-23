@@ -1,4 +1,14 @@
 #import "RTLoginAssembly.h"
+
+#import "RTClientAssembly.h"
+#import "RTSecureStoreAssembly.h"
+
+#import "RTLoginWireframe.h"
+#import "RTLoginViewController.h"
+#import "RTLoginPresenter.h"
+#import "RTLoginInteractor.h"
+#import "RTLoginDataManager.h"
+
 #import "RTStoryboardViewControllerFactory.h"
 
 @implementation RTLoginAssembly

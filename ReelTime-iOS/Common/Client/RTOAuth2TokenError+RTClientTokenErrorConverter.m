@@ -14,6 +14,9 @@
     else if ([errorCode isEqualToString:@"invalid_grant"]) {
         clientTokenErrorsCode = InvalidUserCredentials;
     }
+    else {
+        clientTokenErrorsCode = UnknownTokenError;
+    }
     
     return [RTErrorFactory clientTokenErrorWithCode:clientTokenErrorsCode];
 }

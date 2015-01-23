@@ -1,13 +1,13 @@
 #import <Typhoon/Typhoon.h>
 
-#import "RTClientAssembly.h"
-#import "RTSecureStoreAssembly.h"
+@class RTClientAssembly;
+@class RTSecureStoreAssembly;
 
-#import "RTLoginWireframe.h"
-#import "RTLoginViewController.h"
-#import "RTLoginPresenter.h"
-#import "RTLoginInteractor.h"
-#import "RTLoginDataManager.h"
+@class RTLoginWireframe;
+@class RTLoginViewController;
+@class RTLoginPresenter;
+@class RTLoginInteractor;
+@class RTLoginDataManager;
 
 @interface RTLoginAssembly : TyphoonAssembly
 
