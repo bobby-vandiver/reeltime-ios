@@ -14,7 +14,6 @@
 #import "RTOAuth2TokenError.h"
 
 #import "RTErrorFactory.h"
-#import "RTOAuth2TokenError+RTClientTokenErrorConverter.h"
 
 @interface RTLoginDataManager ()
 
@@ -58,24 +57,20 @@
     };
     
     id failure = ^(RTOAuth2TokenError *tokenError) {
-        NSError *error = [tokenError convertToClientTokenError];
+        RTLoginErrors loginErrorCode;
+        NSString *errorCode = tokenError.errorCode;
         
-        if ([error.domain isEqualToString:RTClientTokenErrorDomain]) {
-            NSInteger errorCode;
-            
-            if (error.code == InvalidClientCredentials) {
-                errorCode = LoginUnknownClient;
-            }
-            else if (error.code == InvalidUserCredentials) {
-                errorCode = LoginInvalidCredentials;
-            }
-            else {
-                errorCode = LoginUnknownTokenError;
-            }
-            
-            error = [RTErrorFactory loginErrorWithCode:errorCode];
+        if ([errorCode isEqualToString:@"invalid_client"]) {
+            loginErrorCode = LoginUnknownClient;
         }
-        
+        else if ([errorCode isEqualToString:@"invalid_grant"]) {
+            loginErrorCode = LoginInvalidCredentials;
+        }
+        else {
+            loginErrorCode = LoginUnknownTokenError;
+        }
+
+        NSError *error = [RTErrorFactory loginErrorWithCode:loginErrorCode];
         [self.delegate loginDataOperationFailedWithError:error];
     };
     
