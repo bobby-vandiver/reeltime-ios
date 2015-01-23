@@ -147,7 +147,7 @@ describe(@"login data manager", ^{
                 expect(capturedError).to.beError(RTLoginErrorDomain, LoginInvalidCredentials);
             });
             
-            it(@"should other errors to unknown token error", ^{
+            it(@"should map other errors to unknown token error", ^{
                 tokenError.errorCode = @"unknown";
                 tokenError.errorDescription = @"Unknown error";
                 
