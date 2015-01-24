@@ -113,23 +113,48 @@ describe(@"account registration data manager", ^{
             } while(0)
             
             it(@"should map username required to missing username", ^{
-                expectServerMessageMapping("[username] is required", AccountRegistrationMissingUsername);
+                expectServerMessageMapping("[username] is required",
+                                           AccountRegistrationMissingUsername);
             });
             
             it(@"should map password required to missing password", ^{
-                expectServerMessageMapping("[password] is required", AccountRegistrationMissingPassword);
+                expectServerMessageMapping("[password] is required",
+                                           AccountRegistrationMissingPassword);
             });
             
             it(@"should map email required to missing email", ^{
-                expectServerMessageMapping("[email] is required", AccountRegistrationMissingEmail);
+                expectServerMessageMapping("[email] is required",
+                                           AccountRegistrationMissingEmail);
             });
             
             it(@"should map display name required to missing display name", ^{
-                expectServerMessageMapping("[display_name] is required", AccountRegistrationMissingDisplayName);
+                expectServerMessageMapping("[display_name] is required",
+                                           AccountRegistrationMissingDisplayName);
             });
             
             it(@"should map client name required to missing client name", ^{
-                expectServerMessageMapping("[client_name] is required", AccountRegistrationMissingClientName);
+                expectServerMessageMapping("[client_name] is required",
+                                           AccountRegistrationMissingClientName);
+            });
+            
+            it(@"should map invalid username", ^{
+                expectServerMessageMapping("[username] must be 2-15 alphanumeric characters long",
+                                           AccountRegistrationInvalidUsername);
+            });
+            
+            it(@"should map invalid password", ^{
+                expectServerMessageMapping("[password] must be at least 6 characters long",
+                                           AccountRegistrationInvalidPassword);
+            });
+            
+            it(@"should map invalid email", ^{
+                expectServerMessageMapping("[email] is not a valid e-mail address",
+                                           AccountRegistrationInvalidEmail);
+            });
+            
+            it(@"should map invalid display name", ^{
+                expectServerMessageMapping("[display_name] must be 2-20 alphanumeric or space characters long",
+                                           AccountRegistrationInvalidDisplayName);
             });
         });
     });

@@ -23,9 +23,17 @@
 + (NSDictionary *)serverMessageToErrorCodeMap {
     return @{
              @"[username] is required": @(AccountRegistrationMissingUsername),
+             @"[username] must be 2-15 alphanumeric characters long": @(AccountRegistrationInvalidUsername),
+             
              @"[password] is required": @(AccountRegistrationMissingPassword),
+             @"[password] must be at least 6 characters long": @(AccountRegistrationInvalidPassword),
+             
              @"[email] is required": @(AccountRegistrationMissingEmail),
+             @"[email] is not a valid e-mail address": @(AccountRegistrationInvalidEmail),
+             
              @"[display_name] is required": @(AccountRegistrationMissingDisplayName),
+             @"[display_name] must be 2-20 alphanumeric or space characters long": @(AccountRegistrationInvalidDisplayName),
+             
              @"[client_name] is required": @(AccountRegistrationMissingClientName),
              };
 }
