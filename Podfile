@@ -6,6 +6,7 @@ target 'ReelTime-iOS', :exclusive => true do
     pod 'Typhoon', '~> 2.3'
 
     pod 'UICKeyChainStore', '~> 2.0.1'
+    pod 'CocoaLumberjack', '~> 2.0.0-rc'
     
     # RestKit uses some deprecated APIs
     pod 'RestKit', '~> 0.24.0', :inhibit_warnings => true
