@@ -104,62 +104,68 @@ describe(@"account registration data manager", ^{
                 expect(callbackExecuted).to.beFalsy();
             });
             
-            #define expectServerMessageMapping(msg, e) do {                                                 \
+            #define expectServerMessageMapping(msg, e, c) do {                                              \
                 serverErrors.errors = [NSArray arrayWithObject:@msg];                                       \
                                                                                                             \
                 failureHandler(serverErrors);                                                               \
                 [verify(delegate) accountRegistrationDataOperationFailedWithErrors:[errorCaptor capture]];  \
                                                                                                             \
                 capturedErrors = [errorCaptor value];                                                       \
-                expect([capturedErrors count]).to.equal(1);                                                 \
+                expect([capturedErrors count]).to.equal(c);                                                 \
                                                                                                             \
-                firstError = [capturedErrors objectAtIndex:0];                                              \
-                expect(firstError).to.beError(RTAccountRegistrationErrorDomain, e);                         \
+                if (c > 0) {                                                                                \
+                    firstError = [capturedErrors objectAtIndex:0];                                          \
+                    expect(firstError).to.beError(RTAccountRegistrationErrorDomain, e);                     \
+                }                                                                                           \
             } while(0)
             
             it(@"should map username required to missing username", ^{
                 expectServerMessageMapping("[username] is required",
-                                           AccountRegistrationMissingUsername);
+                                           AccountRegistrationMissingUsername, 1);
             });
             
             it(@"should map password required to missing password", ^{
                 expectServerMessageMapping("[password] is required",
-                                           AccountRegistrationMissingPassword);
+                                           AccountRegistrationMissingPassword, 1);
             });
             
             it(@"should map email required to missing email", ^{
                 expectServerMessageMapping("[email] is required",
-                                           AccountRegistrationMissingEmail);
+                                           AccountRegistrationMissingEmail, 1);
             });
             
             it(@"should map display name required to missing display name", ^{
                 expectServerMessageMapping("[display_name] is required",
-                                           AccountRegistrationMissingDisplayName);
+                                           AccountRegistrationMissingDisplayName, 1);
             });
             
             it(@"should map client name required to missing client name", ^{
                 expectServerMessageMapping("[client_name] is required",
-                                           AccountRegistrationMissingClientName);
+                                           AccountRegistrationMissingClientName, 1);
             });
             
             it(@"should map invalid username", ^{
                 expectServerMessageMapping("[username] must be 2-15 alphanumeric characters long",
-                                           AccountRegistrationInvalidUsername);
+                                           AccountRegistrationInvalidUsername, 1);
             });
             
             it(@"should map invalid password", ^{
                 expectServerMessageMapping("[password] must be at least 6 characters long",
-                                           AccountRegistrationInvalidPassword);
+                                           AccountRegistrationInvalidPassword, 1);
             });
             
             it(@"should map invalid email", ^{
                 expectServerMessageMapping("[email] is not a valid e-mail address",
-                                           AccountRegistrationInvalidEmail);
+                                           AccountRegistrationInvalidEmail, 1);
             });
             
             it(@"should map invalid display name", ^{
                 expectServerMessageMapping("[display_name] must be 2-20 alphanumeric or space characters long",
-                                           AccountRegistrationInvalidDisplayName);
+                                           AccountRegistrationInvalidDisplayName, 1);
+            });
+            
+            it(@"should not map unexpected message", ^{
+                expectServerMessageMapping("unknown registration error", 0, 0);
             });
         });
     });
