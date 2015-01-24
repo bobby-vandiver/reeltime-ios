@@ -82,11 +82,6 @@ describe(@"account registration data manager", ^{
             __block MKTArgumentCaptor *failureCaptor;
             __block void (^failureHandler)(RTServerErrors *);
 
-            struct ErrorMessageMapping {
-                int errorCode;
-                char *serverMessage;
-            };
-
             beforeEach(^{
                 serverErrors = [[RTServerErrors alloc] init];
                 failureCaptor = [[MKTArgumentCaptor alloc] init];
@@ -98,6 +93,10 @@ describe(@"account registration data manager", ^{
                 [verifyCount(delegate, never()) accountRegistrationDataOperationFailedWithErrors:anything()];
                 
                 failureHandler = [failureCaptor value];
+            });
+            
+            afterEach(^{
+                expect(callbackExecuted).to.beFalsy();
             });
             
             #define expectServerMessageMapping(msg, e) do {                                                 \
