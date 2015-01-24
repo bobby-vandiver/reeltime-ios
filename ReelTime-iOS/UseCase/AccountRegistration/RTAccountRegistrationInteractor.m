@@ -53,4 +53,8 @@
     }];
 }
 
+- (void)accountRegistrationDataOperationFailedWithErrors:(NSArray *)errors {
+    
+}
+
 @end
