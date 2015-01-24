@@ -10,6 +10,8 @@
 #import "RTServerErrors.h"
 #import "RTErrorFactory.h"
 
+#import <CocoaLumberjack/CocoaLumberjack.h>
+
 @interface RTAccountRegistrationDataManager ()
 
 @property (weak) id<RTAccountRegistrationDataManagerDelegate> delegate;
@@ -17,6 +19,8 @@
 @property RTClientCredentialsStore *clientCredentialsStore;
 
 @end
+
+static const DDLogLevel ddLogLevel = DDLogLevelVerbose;
 
 @implementation RTAccountRegistrationDataManager
 
@@ -77,10 +81,14 @@
     
     for (NSString *message in serverErrors.errors) {
         NSNumber *code = [conversionMap objectForKey:message];
-
-        // TODO: Handle unknown message
-        error = [RTErrorFactory accountRegistrationErrorWithCode:[code integerValue]];
-        [errors addObject:error];
+        
+        if (code) {
+            error = [RTErrorFactory accountRegistrationErrorWithCode:[code integerValue]];
+            [errors addObject:error];
+        }
+        else {
+            DDLogWarn(@"Received unknown server messsage: %@", message);
+        }
     }
     
     if (registrationErrors) {
