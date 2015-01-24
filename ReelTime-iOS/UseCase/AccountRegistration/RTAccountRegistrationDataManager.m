@@ -8,19 +8,18 @@
 #import "RTClientCredentials.h"
 
 #import "RTServerErrors.h"
-#import "RTErrorFactory.h"
+#import "RTServerErrorsConverter.h"
 
-#import <CocoaLumberjack/CocoaLumberjack.h>
+#import "RTErrorFactory.h"
 
 @interface RTAccountRegistrationDataManager ()
 
 @property (weak) id<RTAccountRegistrationDataManagerDelegate> delegate;
 @property RTClient *client;
+@property RTServerErrorsConverter *serverErrorsConverter;
 @property RTClientCredentialsStore *clientCredentialsStore;
 
 @end
-
-static const DDLogLevel ddLogLevel = DDLogLevelVerbose;
 
 @implementation RTAccountRegistrationDataManager
 
@@ -44,11 +43,13 @@ static const DDLogLevel ddLogLevel = DDLogLevelVerbose;
 
 - (instancetype)initWithDelegate:(id<RTAccountRegistrationDataManagerDelegate>)delegate
                           client:(RTClient *)client
+           serverErrorsConverter:(RTServerErrorsConverter *)serverErrorsConverter
           clientCredentialsStore:(RTClientCredentialsStore *)clientCredentialsStore {
     self = [super init];
     if (self) {
         self.delegate = delegate;
         self.client = client;
+        self.serverErrorsConverter = serverErrorsConverter;
         self.clientCredentialsStore = clientCredentialsStore;
     }
     return self;
@@ -62,8 +63,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelVerbose;
     };
     
     id failureCallback = ^(RTServerErrors *serverErrors) {
-        NSArray *registrationErrors;
-        [self convertServerErrors:serverErrors toRegistrationErrors:&registrationErrors];
+        NSArray *registrationErrors = [self convertServerErrors:serverErrors];
         [self.delegate accountRegistrationDataOperationFailedWithErrors:registrationErrors];
     };
     
@@ -72,28 +72,16 @@ static const DDLogLevel ddLogLevel = DDLogLevelVerbose;
                          failure:failureCallback];
 }
 
-- (void)convertServerErrors:(RTServerErrors *)serverErrors
-       toRegistrationErrors:(NSArray *__autoreleasing *)registrationErrors {
-    NSDictionary *conversionMap = [RTAccountRegistrationDataManager serverMessageToErrorCodeMap];
+- (NSArray *)convertServerErrors:(RTServerErrors *)serverErrors {
+    NSDictionary *mapping = [RTAccountRegistrationDataManager serverMessageToErrorCodeMap];
 
-    NSMutableArray *errors = [[NSMutableArray alloc] init];
-    NSError *error;
+    id converter = ^NSError *(NSInteger code) {
+        return [RTErrorFactory accountRegistrationErrorWithCode:code];
+    };
     
-    for (NSString *message in serverErrors.errors) {
-        NSNumber *code = [conversionMap objectForKey:message];
-        
-        if (code) {
-            error = [RTErrorFactory accountRegistrationErrorWithCode:[code integerValue]];
-            [errors addObject:error];
-        }
-        else {
-            DDLogWarn(@"Received unknown server messsage: %@", message);
-        }
-    }
-    
-    if (registrationErrors) {
-        *registrationErrors = errors;
-    }
+    return [self.serverErrorsConverter convertServerErrors:serverErrors
+                                               withMapping:mapping
+                                                 converter:converter];
 }
 
 - (void)saveClientCredentials:(RTClientCredentials *)clientCredentials

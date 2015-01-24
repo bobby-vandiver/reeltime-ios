@@ -12,6 +12,8 @@
 #import "RTAccountRegistrationErrors.h"
 #import "RTServerErrors.h"
 
+#import "RTServerErrorsConverter.h"
+
 SpecBegin(RTAccountRegistrationDataManager)
 
 describe(@"account registration data manager", ^{
@@ -32,8 +34,11 @@ describe(@"account registration data manager", ^{
         client = mock([RTClient class]);
         clientCredentialsStore = mock([RTClient class]);
 
+        RTServerErrorsConverter *converter = [[RTServerErrorsConverter alloc] init];
+        
         dataManager = [[RTAccountRegistrationDataManager alloc] initWithDelegate:delegate
                                                                           client:client
+                                                           serverErrorsConverter:converter
                                                           clientCredentialsStore:clientCredentialsStore];
         
         errorCaptor = [[MKTArgumentCaptor alloc] init];
