@@ -1,0 +1,8 @@
+HTTP/1.1 400 Bad Request
+Server: Apache-Coyote/1.1
+Content-Type: application/json;charset=UTF-8
+Transfer-Encoding: chunked
+Date: Sat, 24 Jan 2015 02:05:23 GMT
+Connection: close
+
+{"errors":["[email] is required","[password] is required","[username] is required","[display_name] is required","[client_name] is required"]}

@@ -34,4 +34,16 @@
                                                    statusCodes:statusCodes];
 }
 
++ (RKResponseDescriptor *)accountRegistrationErrorDescriptor {
+    NSMutableIndexSet *statusCodes = [[NSMutableIndexSet alloc] init];
+    [statusCodes addIndex:400];
+    [statusCodes addIndex:503];
+    
+    return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory serverErrorsMapping]
+                                                        method:RKRequestMethodPOST
+                                                   pathPattern:API_ACCOUNT_REGISTRATION_ENDPOINT
+                                                       keyPath:nil
+                                                   statusCodes:statusCodes];
+}
+
 @end

@@ -10,6 +10,7 @@
 #import "RTOAuth2Token.h"
 #import "RTOAuth2TokenError.h"
 
+#import "RTServerErrors.h"
 #import "RTAccountRegistration.h"
 
 #import "RTRestAPI.h"
@@ -149,8 +150,48 @@ describe(@"ReelTime Client", ^{
                                     expect(clientCredentials.clientSecret).to.equal(@"g70mC9ZbpKa6p6R1tJPVWTm55BWHnSkmCv27F=oSI6");
                                     done();
                                 }
-                                failure:^(NSError *error) {
+                                failure:^(RTServerErrors *errors) {
                                     fail();
+                                    done();
+                                }];
+            });
+        });
+        
+        it(@"should pass server errors to failure callback", ^{
+            stubRequest(POST, accountRegistrationUrlRegex).
+            andReturnRawResponse(rawResponseFromFile(@"missing-all-registration-params"));
+            
+            waitUntil(^(DoneCallback done) {
+                [client registerAccount:registration
+                                success:^(RTClientCredentials *clientCredentials) {
+                                    fail();
+                                    done();
+                                }
+                                failure:^(RTServerErrors *errors) {
+                                    expect(errors.errors.count).to.equal(5);
+                                    expect(errors.errors).to.contain(@"[email] is required");
+                                    expect(errors.errors).to.contain(@"[password] is required");
+                                    expect(errors.errors).to.contain(@"[username] is required");
+                                    expect(errors.errors).to.contain(@"[display_name] is required");
+                                    expect(errors.errors).to.contain(@"[client_name] is required");
+                                    done();
+                                }];
+            });
+        });
+        
+        it(@"should pass registration unavailable error to failure callback", ^{
+            stubRequest(POST, accountRegistrationUrlRegex).
+            andReturnRawResponse(rawResponseFromFile(@"registration-temporarily-unavailable"));
+            
+            waitUntil(^(DoneCallback done) {
+                [client registerAccount:registration
+                                success:^(RTClientCredentials *clientCredentials) {
+                                    fail();
+                                    done();
+                                }
+                                failure:^(RTServerErrors *errors) {
+                                    expect(errors.errors.count).to.equal(1);
+                                    expect(errors.errors).to.contain(@"Unable to register. Please try again.");
                                     done();
                                 }];
             });

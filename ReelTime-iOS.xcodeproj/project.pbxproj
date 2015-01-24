@@ -66,6 +66,8 @@
 		71C5C0AD1A55EAE700CAAFAC /* RTOAuth2TokenError.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C5C0A71A55EAE700CAAFAC /* RTOAuth2TokenError.m */; };
 		71C5C0AF1A55EAE700CAAFAC /* RTUserCredentials.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C5C0AB1A55EAE700CAAFAC /* RTUserCredentials.m */; };
 		71C5C0B21A55EB3900CAAFAC /* RTOAuth2TokenStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C5C0B11A55EB3900CAAFAC /* RTOAuth2TokenStore.m */; };
+		71C8D91B1A7335EB00673F1A /* missing-all-registration-params.txt in Resources */ = {isa = PBXBuildFile; fileRef = 71C8D91A1A7335EB00673F1A /* missing-all-registration-params.txt */; };
+		71C8D91D1A7343C100673F1A /* registration-temporarily-unavailable.txt in Resources */ = {isa = PBXBuildFile; fileRef = 71C8D91C1A7343C100673F1A /* registration-temporarily-unavailable.txt */; };
 		71D947881A4FB9FE00401963 /* RTClientCredentialsStoreSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D947871A4FB9FE00401963 /* RTClientCredentialsStoreSpec.m */; };
 		71D9478F1A4FC81A00401963 /* RTLoginInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D9478E1A4FC81A00401963 /* RTLoginInteractor.m */; };
 		71D947941A4FC96800401963 /* RTLoginPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D947931A4FC96800401963 /* RTLoginPresenter.m */; };
@@ -195,6 +197,8 @@
 		71C5C0AB1A55EAE700CAAFAC /* RTUserCredentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTUserCredentials.m; path = "ReelTime-iOS/Common/Model/RTUserCredentials.m"; sourceTree = SOURCE_ROOT; };
 		71C5C0B01A55EB3900CAAFAC /* RTOAuth2TokenStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTOAuth2TokenStore.h; path = "ReelTime-iOS/Common/Store/RTOAuth2TokenStore.h"; sourceTree = SOURCE_ROOT; };
 		71C5C0B11A55EB3900CAAFAC /* RTOAuth2TokenStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTOAuth2TokenStore.m; path = "ReelTime-iOS/Common/Store/RTOAuth2TokenStore.m"; sourceTree = SOURCE_ROOT; };
+		71C8D91A1A7335EB00673F1A /* missing-all-registration-params.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "missing-all-registration-params.txt"; sourceTree = "<group>"; };
+		71C8D91C1A7343C100673F1A /* registration-temporarily-unavailable.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "registration-temporarily-unavailable.txt"; sourceTree = "<group>"; };
 		71D947871A4FB9FE00401963 /* RTClientCredentialsStoreSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTClientCredentialsStoreSpec.m; path = ../RTClientCredentialsStoreSpec.m; sourceTree = "<group>"; };
 		71D9478D1A4FC81A00401963 /* RTLoginInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLoginInteractor.h; sourceTree = "<group>"; };
 		71D9478E1A4FC81A00401963 /* RTLoginInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLoginInteractor.m; sourceTree = "<group>"; };
@@ -344,6 +348,8 @@
 		71476ADD1A62C8B50023DE6C /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				71C8D91C1A7343C100673F1A /* registration-temporarily-unavailable.txt */,
+				71C8D91A1A7335EB00673F1A /* missing-all-registration-params.txt */,
 				713DCAA51A6C850C0032B252 /* successful-registration.txt */,
 			);
 			path = Account;
@@ -718,6 +724,8 @@
 			files = (
 				71476AE01A62CA550023DE6C /* bad-user-credentials.txt in Resources */,
 				713DCAA61A6C850C0032B252 /* successful-registration.txt in Resources */,
+				71C8D91B1A7335EB00673F1A /* missing-all-registration-params.txt in Resources */,
+				71C8D91D1A7343C100673F1A /* registration-temporarily-unavailable.txt in Resources */,
 				71476ADC1A62C74A0023DE6C /* bad-client-credentials.txt in Resources */,
 				71476AE11A62CA550023DE6C /* successful-token-request.txt in Resources */,
 			);

@@ -9,6 +9,7 @@
 #import "RTOAuth2Token.h"
 #import "RTOAuth2TokenError.h"
 
+#import "RTServerErrors.h"
 #import "RTAccountRegistration.h"
 
 static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read reels-write users-read users-write videos-read videos-write";
@@ -31,8 +32,8 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
 
 - (void)tokenWithClientCredentials:(RTClientCredentials *)clientCredentials
                    userCredentials:(RTUserCredentials *)userCredentials
-                           success:(void (^)(RTOAuth2Token *token))success
-                           failure:(void (^)(RTOAuth2TokenError *error))failure {
+                           success:(void (^)(RTOAuth2Token *))success
+                           failure:(void (^)(RTOAuth2TokenError *))failure {
     NSDictionary *parameters = @{
                                  @"grant_type":      @"password",
                                  @"username":        userCredentials.username,
@@ -61,7 +62,7 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
 
 - (void)registerAccount:(RTAccountRegistration *)registration
                 success:(void (^)(RTClientCredentials *))success
-                failure:(void (^)(NSError *))failure {
+                failure:(void (^)(RTServerErrors *))failure {
     NSDictionary *parameters = @{
                                  @"username":       registration.username,
                                  @"password":       registration.password,
@@ -75,15 +76,20 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
         success(clientCredentials);
     };
     
-    id failureCallback = ^(RKObjectRequestOperation *operation, NSError *error) {
-        
-    };
+    id failureCallback = [self serverFailureHandlerWithCallback:failure];
     
     [self.objectManager postObject:nil
                               path:API_ACCOUNT_REGISTRATION_ENDPOINT
                         parameters:parameters
                            success:successCallback
                            failure:failureCallback];
+}
+
+- (void (^)(RKObjectRequestOperation *, NSError *))serverFailureHandlerWithCallback:(void (^)(RTServerErrors *))callback {
+    return ^(RKObjectRequestOperation *operation, NSError *error) {
+        RTServerErrors *serverErrors = [[error.userInfo objectForKey:RKObjectMapperErrorObjectsKey] firstObject];
+        callback(serverErrors);
+    };
 }
 
 @end

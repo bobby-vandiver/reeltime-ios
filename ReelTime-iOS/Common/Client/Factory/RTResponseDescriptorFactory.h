@@ -7,5 +7,6 @@
 + (RKResponseDescriptor *)tokenErrorDescriptor;
 
 + (RKResponseDescriptor *)accountRegistrationDescriptor;
++ (RKResponseDescriptor *)accountRegistrationErrorDescriptor;
 
 @end

@@ -27,7 +27,8 @@
             [method injectParameterWith:@[
                                           [RTResponseDescriptorFactory tokenDescriptor],
                                           [RTResponseDescriptorFactory tokenErrorDescriptor],
-                                          [RTResponseDescriptorFactory accountRegistrationDescriptor]
+                                          [RTResponseDescriptorFactory accountRegistrationDescriptor],
+                                          [RTResponseDescriptorFactory accountRegistrationErrorDescriptor]
                                           ]];
         }];
     }];

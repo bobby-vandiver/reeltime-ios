@@ -7,6 +7,7 @@
 @class RTOAuth2Token;
 @class RTOAuth2TokenError;
 
+@class RTServerErrors;
 @class RTAccountRegistration;
 
 @interface RTClient : NSObject
@@ -20,6 +21,6 @@
 
 - (void)registerAccount:(RTAccountRegistration *)registration
                 success:(void (^)(RTClientCredentials *clientCredentials))success
-                failure:(void (^)(NSError *error))failure;
+                failure:(void (^)(RTServerErrors *errors))failure;
 
 @end
