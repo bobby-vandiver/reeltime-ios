@@ -8,6 +8,8 @@
 #import "RTAccountRegistration.h"
 #import "RTAccountRegistrationErrors.h"
 
+#import "RTErrorFactory.h"
+
 SpecBegin(RTAccountRegistrationPresenter)
 
 describe(@"account registration presenter", ^{
@@ -52,6 +54,35 @@ describe(@"account registration presenter", ^{
             expect(registration.email).to.equal(email);
             expect(registration.displayName).to.equal(displayName);
             expect(registration.clientName).to.equal(clientName);
+        });
+    });
+    
+    describe(@"successful registration", ^{
+        it(@"should present the post auto login interface when registration and auto login succeed", ^{
+            [presenter registrationWithAutoLoginSucceeded];
+            [verify(wireframe) presentPostAutoLoginInterface];
+        });
+        
+        it(@"should inform user of failure to associate device then present device registration inteface", ^{
+            NSError *error = [RTErrorFactory accountRegistrationErrorWithCode:AccountRegistrationUnableToAssociateClientWithDevice];
+            [presenter registrationWithAutoLoginFailedWithError:error];
+            
+            NSString *message = @"Account was registered but we were unable to associate your device with your account."
+                                @"Please register your device separately.";
+            
+            [verify(view) showErrorMessages:@[message]];
+            [verify(wireframe) presentDeviceRegistrationInterface];
+        });
+        
+        it(@"should inform user of failure to auto login and present login interface", ^{
+            NSError *error = [RTErrorFactory loginErrorWithCode:LoginUnableToSetCurrentlyLoggedInUser];
+            [presenter registrationWithAutoLoginFailedWithError:error];
+            
+            NSString *message = @"Account was registered but we were unable to log you in automatically."
+                                @"Please login.";
+            
+            [verify(view) showErrorMessages:@[message]];
+            [verify(wireframe) presentLoginInterface];
         });
     });
 });

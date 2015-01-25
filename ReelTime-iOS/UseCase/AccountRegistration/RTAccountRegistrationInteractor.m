@@ -60,7 +60,7 @@
 - (void)failedToSaveClientCredentials:(RTClientCredentials *)clientCredentials
                           forUsername:(NSString *)username {
     NSError *error = [RTErrorFactory accountRegistrationErrorWithCode:AccountRegistrationUnableToAssociateClientWithDevice];
-    [self.delegate registrationFailedWithErrors:@[error]];
+    [self.delegate registrationWithAutoLoginFailedWithError:error];
 }
 
 @end

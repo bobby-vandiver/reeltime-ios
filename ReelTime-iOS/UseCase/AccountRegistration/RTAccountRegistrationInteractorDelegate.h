@@ -4,7 +4,7 @@
 
 - (void)registrationWithAutoLoginSucceeded;
 
-- (void)registrationWithAutoLoginFailedWithErrors:(NSArray *)errors;
+- (void)registrationWithAutoLoginFailedWithError:(NSError *)error;
 
 - (void)registrationFailedWithErrors:(NSArray *)errors;
 

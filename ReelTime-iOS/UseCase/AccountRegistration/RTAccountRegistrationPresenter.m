@@ -6,6 +6,9 @@
 
 #import "RTAccountRegistration.h"
 
+#import "RTAccountRegistrationErrors.h"
+#import "RTLoginErrors.h"
+
 @interface RTAccountRegistrationPresenter ()
 
 @property id<RTAccountRegistrationView> view;
@@ -44,15 +47,32 @@
 }
 
 - (void)registrationWithAutoLoginSucceeded {
-    
+    [self.wireframe presentPostAutoLoginInterface];
 }
 
-- (void)registrationWithAutoLoginFailedWithErrors:(NSArray *)errors {
-    
+- (void)registrationWithAutoLoginFailedWithError:(NSError *)error {
+    if ([self failedToAssociateClientWithDevice:error]) {
+        NSString *message = @"Account was registered but we were unable to associate your device with your account."
+                            @"Please register your device separately.";
+        
+        [self.view showErrorMessages:@[message]];
+        [self.wireframe presentDeviceRegistrationInterface];
+    }
+    else {
+        NSString *message = @"Account was registered but we were unable to log you in automatically."
+                            @"Please login.";
+        
+        [self.view showErrorMessages:@[message]];
+        [self.wireframe presentLoginInterface];
+    }
+}
+
+- (BOOL)failedToAssociateClientWithDevice:(NSError *)error {
+    return [error.domain isEqualToString:RTAccountRegistrationErrorDomain] &&
+    error.code == AccountRegistrationUnableToAssociateClientWithDevice;
 }
 
 - (void)registrationFailedWithErrors:(NSArray *)errors {
-    
 }
 
 @end

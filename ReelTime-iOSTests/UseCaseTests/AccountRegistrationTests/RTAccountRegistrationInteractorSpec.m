@@ -100,13 +100,10 @@ describe(@"account registration interactor", ^{
         it(@"should notify delegate of account creation but unable to register device", ^{
             [interactor failedToSaveClientCredentials:clientCredentials forUsername:username];
             
-            MKTArgumentCaptor *errorsCaptor = [[MKTArgumentCaptor alloc] init];
-            [verify(delegate) registrationFailedWithErrors:[errorsCaptor capture]];
+            MKTArgumentCaptor *errorCaptor = [[MKTArgumentCaptor alloc] init];
+            [verify(delegate) registrationWithAutoLoginFailedWithError:[errorCaptor capture]];
             
-            NSArray *errors = [errorsCaptor value];
-            expect([errors count]).to.equal(1);
-            
-            NSError *error = [errors objectAtIndex:0];
+            NSError *error = [errorCaptor value];
             expect(error).to.beError(RTAccountRegistrationErrorDomain, AccountRegistrationUnableToAssociateClientWithDevice);
         });
     });

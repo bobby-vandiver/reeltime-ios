@@ -2,4 +2,10 @@
 
 @interface RTAccountRegistrationWireframe : NSObject
 
+- (void)presentLoginInterface;
+
+- (void)presentPostAutoLoginInterface;
+
+- (void)presentDeviceRegistrationInterface;
+
 @end
