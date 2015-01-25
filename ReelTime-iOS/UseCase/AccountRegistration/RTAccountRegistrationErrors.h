@@ -18,5 +18,6 @@ typedef NS_ENUM(NSInteger, RTAccountRegistrationErrors) {
     AccountRegistrationUsernameIsUnavailable,
     AccountRegistrationConfirmationPasswordDoesNotMatch,
     
-    AccountRegistrationRegistrationServiceUnavailable
+    AccountRegistrationRegistrationServiceUnavailable,
+    AccountRegistrationUnableToAssociateClientWithDevice
 };

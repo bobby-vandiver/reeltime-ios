@@ -54,11 +54,13 @@
 }
 
 - (void)registerAccountFailedWithErrors:(NSArray *)errors {
-    
+    [self.delegate registrationFailedWithErrors:errors];
 }
 
 - (void)failedToSaveClientCredentials:(RTClientCredentials *)clientCredentials
                           forUsername:(NSString *)username {
+    NSError *error = [RTErrorFactory accountRegistrationErrorWithCode:AccountRegistrationUnableToAssociateClientWithDevice];
+    [self.delegate registrationFailedWithErrors:@[error]];
 }
 
 @end

@@ -104,19 +104,19 @@ describe(@"account registration data manager", ^{
                 expect(callbackExecuted).to.beFalsy();
             });
             
-            #define expectServerMessageMapping(msg, e, c) do {                                              \
-                serverErrors.errors = [NSArray arrayWithObject:@msg];                                       \
-                                                                                                            \
-                failureHandler(serverErrors);                                                               \
-                [verify(delegate) registerAccountFailedWithErrors:[errorCaptor capture]];                   \
-                                                                                                            \
-                capturedErrors = [errorCaptor value];                                                       \
-                expect([capturedErrors count]).to.equal(c);                                                 \
-                                                                                                            \
-                if (c > 0) {                                                                                \
-                    firstError = [capturedErrors objectAtIndex:0];                                          \
-                    expect(firstError).to.beError(RTAccountRegistrationErrorDomain, e);                     \
-                }                                                                                           \
+            #define expectServerMessageMapping(msg, e, c) do {                              \
+                serverErrors.errors = [NSArray arrayWithObject:@msg];                       \
+                                                                                            \
+                failureHandler(serverErrors);                                               \
+                [verify(delegate) registerAccountFailedWithErrors:[errorCaptor capture]];   \
+                                                                                            \
+                capturedErrors = [errorCaptor value];                                       \
+                expect([capturedErrors count]).to.equal(c);                                 \
+                                                                                            \
+                if (c > 0) {                                                                \
+                    firstError = [capturedErrors objectAtIndex:0];                          \
+                    expect(firstError).to.beError(RTAccountRegistrationErrorDomain, e);     \
+                }                                                                           \
             } while(0)
             
             it(@"should map username required to missing username", ^{
