@@ -89,6 +89,37 @@ describe(@"key chain wrapper", ^{
         });
     });
     
+    describe(@"keychain operations fail", ^{
+        __block UICKeyChainStore *keyChainStore;
+        
+        beforeEach(^{
+            keyChainStore = mock([UICKeyChainStore class]);
+            wrapper = [[RTKeyChainWrapper alloc] initWithKeyChainStore:keyChainStore];
+        });
+        
+        it(@"should return NO when storing object fails", ^{
+            [[given([keyChainStore setData:anything() forKey:@"store" error:nil])
+              withMatcher:anything() forArgument:2]
+             willReturnBool:NO];
+            
+            BOOL success = [wrapper setObject:@"something" forKey:@"store" error:&error];
+            expect(success).to.beFalsy();
+            
+            [[verify(keyChainStore) withMatcher:anything() forArgument:2] setData:anything() forKey:@"store" error:nil];
+        });
+        
+        it(@"should return NO when removing object fails", ^{
+            [[given([keyChainStore removeItemForKey:@"remove" error:nil])
+              withMatcher:anything() forArgument:1]
+             willReturnBool:NO];
+            
+            BOOL success = [wrapper removeObjectForKey:@"remove" error:&error];
+            expect(success).to.beFalsy();
+            
+            [[verify(keyChainStore) withMatcher:anything() forArgument:1] removeItemForKey:@"remove" error:nil];
+        });
+    });
+    
     describe(@"error mapping", ^{
         struct ErrorCodeMapping {
             int keyChainCode;
@@ -128,11 +159,6 @@ describe(@"key chain wrapper", ^{
                 
                 mapping++;
             }
-        });
-        
-        xcontext(@"force keychain store operations to fail", ^{
-            // TODO: Check error path once version UICKeyChainStore
-            // is updated to return BOOL for operation failures
         });
     });
 });

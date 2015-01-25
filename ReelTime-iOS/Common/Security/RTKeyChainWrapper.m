@@ -39,39 +39,27 @@
            forKey:(NSString *)key
             error:(NSError *__autoreleasing *)error {
     NSError *storeError;
-    [self.keyChainStore setData:[NSKeyedArchiver archivedDataWithRootObject:object] forKey:key error:&storeError];
+    BOOL success = [self.keyChainStore setData:[NSKeyedArchiver archivedDataWithRootObject:object]
+                                        forKey:key
+                                         error:&storeError];
 
-    if (storeError) {
+    if (!success) {
         [self mapKeyChainStoreError:storeError toApplicationError:error];
-        return NO;
     }
     
-    return [self synchKeyChainStoreWithError:error];
+    return success;
 }
 
 - (BOOL)removeObjectForKey:(NSString *)key
                      error:(NSError *__autoreleasing *)error {
     NSError *removeError;
-    [self.keyChainStore removeItemForKey:key error:&removeError];
+    BOOL success = [self.keyChainStore removeItemForKey:key error:&removeError];
     
-    if (removeError) {
+    if (!success) {
         [self mapKeyChainStoreError:removeError toApplicationError:error];
-        return NO;
     }
     
-    return [self synchKeyChainStoreWithError:error];
-}
-
-- (BOOL)synchKeyChainStoreWithError:(NSError *__autoreleasing *)error {
-    NSError *synchError;
-    [self.keyChainStore synchronizeWithError:&synchError];
-    
-    if (synchError) {
-        [self mapKeyChainStoreError:synchError toApplicationError:error];
-        return NO;
-    }
-    
-    return YES;
+    return success;
 }
 
 - (void)mapKeyChainStoreError:(NSError *)error
