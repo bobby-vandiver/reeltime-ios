@@ -57,4 +57,8 @@
     
 }
 
+- (void)unableToSaveClientCredentials:(RTClientCredentials *)clientCredentials
+                          forUsername:(NSString *)username {
+}
+
 @end

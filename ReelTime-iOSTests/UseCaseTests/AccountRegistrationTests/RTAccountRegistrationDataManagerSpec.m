@@ -207,7 +207,7 @@ describe(@"account registration data manager", ^{
             expect(callbackExecuted).to.beTruthy();
         });
         
-        it(@"should notify delegate of error", ^{
+        it(@"should notify delegate when unable to store client credentials", ^{
             [[given([clientCredentialsStore storeClientCredentials:clientCredentials forUsername:username error:nil])
               withMatcher:anything() forArgument:2]
              willReturnBool:NO];
@@ -217,6 +217,8 @@ describe(@"account registration data manager", ^{
                                       callback:callback];
             
             expect(callbackExecuted).to.beFalsy();
+            
+            [verify(delegate) unableToSaveClientCredentials:clientCredentials forUsername:username];
         });
     });
 });

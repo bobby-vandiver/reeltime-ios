@@ -95,8 +95,9 @@
     if (success) {
         callback();
     }
-    
-    // TODO: How should an error be handled?
+    else {
+        [self.delegate unableToSaveClientCredentials:clientCredentials forUsername:username];
+    }
 }
 
 @end
