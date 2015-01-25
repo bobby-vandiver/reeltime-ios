@@ -87,7 +87,15 @@
 - (void)saveClientCredentials:(RTClientCredentials *)clientCredentials
                   forUsername:(NSString *)username
                      callback:(void (^)())callback {
+    NSError *storeError;
+    BOOL success = [self.clientCredentialsStore storeClientCredentials:clientCredentials
+                                                           forUsername:username
+                                                                 error:&storeError];
+    if (success) {
+        callback();
+    }
     
+    // TODO: How should an error be handled?
 }
 
 @end

@@ -32,7 +32,7 @@ describe(@"account registration data manager", ^{
         delegate = mockProtocol(@protocol(RTAccountRegistrationDataManagerDelegate));
         
         client = mock([RTClient class]);
-        clientCredentialsStore = mock([RTClient class]);
+        clientCredentialsStore = mock([RTClientCredentialsStore class]);
 
         RTServerErrorsConverter *converter = [[RTServerErrorsConverter alloc] init];
         
@@ -170,6 +170,50 @@ describe(@"account registration data manager", ^{
         });
     });
     
+    describe(@"saving client credentials", ^{
+        __block RTClientCredentials *clientCredentials;
+        __block BOOL callbackExecuted;
+        
+        void (^callback)() = ^{
+            callbackExecuted = YES;
+        };
+        
+        beforeEach(^{
+            clientCredentials = [[RTClientCredentials alloc] initWithClientId:clientId
+                                                                 clientSecret:clientSecret];
+            callbackExecuted = NO;
+            
+        });
+        
+        afterEach(^{
+            [[verify(clientCredentialsStore) withMatcher:anything() forArgument:2]
+             storeClientCredentials:clientCredentials forUsername:username error:nil];
+        });
+        
+        it(@"should store client credentials and execute callback", ^{
+            [[given([clientCredentialsStore storeClientCredentials:clientCredentials forUsername:username error:nil])
+              withMatcher:anything() forArgument:2]
+             willReturnBool:YES];
+
+            [dataManager saveClientCredentials:clientCredentials
+                                   forUsername:username
+                                      callback:callback];
+
+            expect(callbackExecuted).to.beTruthy();
+        });
+        
+        it(@"should notify delegate of error", ^{
+            [[given([clientCredentialsStore storeClientCredentials:clientCredentials forUsername:username error:nil])
+              withMatcher:anything() forArgument:2]
+             willReturnBool:NO];
+            
+            [dataManager saveClientCredentials:clientCredentials
+                                   forUsername:username
+                                      callback:callback];
+            
+            expect(callbackExecuted).to.beFalsy();
+        });
+    });
 });
 
 SpecEnd
