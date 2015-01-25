@@ -53,11 +53,11 @@
     }];
 }
 
-- (void)accountRegistrationDataOperationFailedWithErrors:(NSArray *)errors {
+- (void)registerAccountFailedWithErrors:(NSArray *)errors {
     
 }
 
-- (void)unableToSaveClientCredentials:(RTClientCredentials *)clientCredentials
+- (void)failedToSaveClientCredentials:(RTClientCredentials *)clientCredentials
                           forUsername:(NSString *)username {
 }
 

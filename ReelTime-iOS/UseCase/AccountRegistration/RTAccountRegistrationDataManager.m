@@ -65,7 +65,7 @@
     
     id failureCallback = ^(RTServerErrors *serverErrors) {
         NSArray *registrationErrors = [self convertServerErrors:serverErrors];
-        [self.delegate accountRegistrationDataOperationFailedWithErrors:registrationErrors];
+        [self.delegate registerAccountFailedWithErrors:registrationErrors];
     };
     
     [self.client registerAccount:registration
@@ -96,7 +96,7 @@
         callback();
     }
     else {
-        [self.delegate unableToSaveClientCredentials:clientCredentials forUsername:username];
+        [self.delegate failedToSaveClientCredentials:clientCredentials forUsername:username];
     }
 }
 

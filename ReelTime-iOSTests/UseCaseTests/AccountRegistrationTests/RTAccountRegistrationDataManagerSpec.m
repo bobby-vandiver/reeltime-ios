@@ -95,7 +95,7 @@ describe(@"account registration data manager", ^{
                                         success:anything()
                                         failure:[failureCaptor capture]];
                 
-                [verifyCount(delegate, never()) accountRegistrationDataOperationFailedWithErrors:anything()];
+                [verifyCount(delegate, never()) registerAccountFailedWithErrors:anything()];
                 
                 failureHandler = [failureCaptor value];
             });
@@ -108,7 +108,7 @@ describe(@"account registration data manager", ^{
                 serverErrors.errors = [NSArray arrayWithObject:@msg];                                       \
                                                                                                             \
                 failureHandler(serverErrors);                                                               \
-                [verify(delegate) accountRegistrationDataOperationFailedWithErrors:[errorCaptor capture]];  \
+                [verify(delegate) registerAccountFailedWithErrors:[errorCaptor capture]];                   \
                                                                                                             \
                 capturedErrors = [errorCaptor value];                                                       \
                 expect([capturedErrors count]).to.equal(c);                                                 \
@@ -218,7 +218,7 @@ describe(@"account registration data manager", ^{
             
             expect(callbackExecuted).to.beFalsy();
             
-            [verify(delegate) unableToSaveClientCredentials:clientCredentials forUsername:username];
+            [verify(delegate) failedToSaveClientCredentials:clientCredentials forUsername:username];
         });
     });
 });
