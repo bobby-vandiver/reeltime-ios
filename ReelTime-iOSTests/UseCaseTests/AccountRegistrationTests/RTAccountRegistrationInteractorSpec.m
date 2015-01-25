@@ -22,10 +22,22 @@ describe(@"account registration interactor", ^{
     __block id<RTAccountRegistrationInteractorDelegate> delegate;
     __block RTAccountRegistrationDataManager *dataManager;
     
+    __block RTAccountRegistrationValidator *validator;
     __block RTLoginInteractor *loginInteractor;
     
     __block RTAccountRegistration *accountRegistration;
     __block RTClientCredentials *clientCredentials;
+    
+    NSArray *(^createRegistrationErrorArray)(NSArray *codes) = ^NSArray *(NSArray *codes) {
+        NSMutableArray *errors = [[NSMutableArray alloc] init];
+        
+        for (NSNumber *code in codes) {
+            NSError *error = [RTErrorFactory accountRegistrationErrorWithCode:[code integerValue]];
+            [errors addObject:error];
+        };
+        
+        return nil;
+    };
     
     beforeEach(^{
         delegate = mockProtocol(@protocol(RTAccountRegistrationInteractorDelegate));
@@ -33,7 +45,7 @@ describe(@"account registration interactor", ^{
 
         loginInteractor = mock([RTLoginInteractor class]);
         
-        RTAccountRegistrationValidator *validator = [[RTAccountRegistrationValidator alloc] init];
+        validator = mock([RTAccountRegistrationValidator class]);
         
         interactor = [[RTAccountRegistrationInteractor alloc] initWithDelegate:delegate
                                                                    dataManager:dataManager
@@ -52,6 +64,12 @@ describe(@"account registration interactor", ^{
     });
     
     describe(@"successful registration", ^{
+        beforeEach(^{
+            [[given([validator validateAccountRegistration:accountRegistration errors:nil])
+              withMatcher:anything() forArgument:1]
+             willReturnBool:YES];
+        });
+        
         it(@"should save client credentials and attempt to login user automatically", ^{
             [interactor registerAccount:accountRegistration];
             
@@ -89,14 +107,25 @@ describe(@"account registration interactor", ^{
             [verify(loginInteractor) loginWithUsername:username password:password];
         });
     });
-    
-    describe(@"registration failure", ^{
-        it(@"should pass registration errors on to delegate", ^{
-            NSArray *errors = @[[RTErrorFactory accountRegistrationErrorWithCode:AccountRegistrationInvalidUsername]];
-            [interactor registerAccountFailedWithErrors:errors];
-            [verify(delegate) registrationFailedWithErrors:errors];
+
+    describe(@"registration fails validation", ^{
+        beforeEach(^{
+            [[given([validator validateAccountRegistration:accountRegistration errors:nil])
+              withMatcher:anything() forArgument:1]
+             willReturnBool:NO];
         });
         
+        it(@"should not attempt registration if the unable to validate parameters locally", ^{
+            [interactor registerAccount:accountRegistration];
+            [verify(delegate) registrationFailedWithValidationErrors:anything()];
+
+            [verifyCount(dataManager, never()) saveClientCredentials:anything()
+                                                         forUsername:anything()
+                                                            callback:anything()];
+        });
+    });
+    
+    describe(@"registration failure", ^{
         it(@"should notify delegate of account creation but unable to register device", ^{
             [interactor failedToSaveClientCredentials:clientCredentials forUsername:username];
             
@@ -105,6 +134,51 @@ describe(@"account registration interactor", ^{
             
             NSError *error = [errorCaptor value];
             expect(error).to.beError(RTAccountRegistrationErrorDomain, AccountRegistrationUnableToAssociateClientWithDevice);
+        });
+        
+        it(@"should filter registration errors and notify delegate", ^{
+            NSArray *validationCodes = @[
+                                         @(AccountRegistrationMissingUsername),
+                                         @(AccountRegistrationMissingPassword),
+                                         @(AccountRegistrationMissingConfirmationPassword),
+                                         @(AccountRegistrationMissingEmail),
+                                         @(AccountRegistrationMissingDisplayName),
+                                         @(AccountRegistrationMissingClientName),
+                                         
+                                         @(AccountRegistrationInvalidUsername),
+                                         @(AccountRegistrationInvalidPassword),
+                                         @(AccountRegistrationInvalidEmail),
+                                         @(AccountRegistrationInvalidDisplayName),
+
+                                         @(AccountRegistrationConfirmationPasswordDoesNotMatch)
+                                         ];
+            
+            NSArray *otherCodes = @[
+                                    @(AccountRegistrationUsernameIsUnavailable),
+                                    @(AccountRegistrationRegistrationServiceUnavailable)
+                                    ];
+            
+            NSArray *validationErrors = createRegistrationErrorArray(validationCodes);
+            NSArray *otherErrors = createRegistrationErrorArray(otherCodes);
+            
+            NSMutableArray *allRegistrationErrors = [[NSMutableArray alloc] init];
+
+            [allRegistrationErrors addObjectsFromArray:validationErrors];
+            [allRegistrationErrors addObjectsFromArray:otherErrors];
+            
+            [interactor registerAccountFailedWithErrors:allRegistrationErrors];
+            
+            MKTArgumentCaptor *validationErrorsCaptor = [[MKTArgumentCaptor alloc] init];
+            [verify(delegate) registrationFailedWithValidationErrors:[validationErrorsCaptor capture]];
+            
+            NSArray *capturedValidationErrors = [validationErrorsCaptor value];
+            expect(capturedValidationErrors).to.equal(validationErrors);
+            
+            MKTArgumentCaptor *otherErrorsCaptor = [[MKTArgumentCaptor alloc] init];
+            [verify(delegate) registrationFailedWithErrors:[otherErrorsCaptor capture]];
+            
+            NSArray *capturedOtherErrors = [otherErrorsCaptor value];
+            expect(capturedOtherErrors).to.equal(otherErrors);
         });
     });
 });

@@ -39,7 +39,7 @@
     BOOL valid = [self.validator validateAccountRegistration:registration errors:&errors];
     
     if (!valid) {
-        [self.delegate registrationFailedWithErrors:errors];
+        [self.delegate registrationFailedWithValidationErrors:errors];
         return;
     }
     
