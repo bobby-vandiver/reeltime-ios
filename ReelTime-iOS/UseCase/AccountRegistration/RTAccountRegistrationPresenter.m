@@ -4,6 +4,8 @@
 #import "RTAccountRegistrationInteractor.h"
 #import "RTAccountRegistrationWireframe.h"
 
+#import "RTAccountRegistration.h"
+
 @interface RTAccountRegistrationPresenter ()
 
 @property id<RTAccountRegistrationView> view;
@@ -32,7 +34,13 @@
                                            email:(NSString *)email
                                      displayName:(NSString *)displayName
                                       clientName:(NSString *)clientName {
-    
+    RTAccountRegistration *registration = [[RTAccountRegistration alloc] initWithUsername:username
+                                                                                 password:password
+                                                                     confirmationPassword:confirmationPassword
+                                                                                    email:email
+                                                                              displayName:displayName
+                                                                               clientName:clientName];
+    [self.interactor registerAccount:registration];
 }
 
 - (void)registrationWithAutoLoginSucceeded {
