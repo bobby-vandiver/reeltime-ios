@@ -38,6 +38,7 @@
              @"[display_name] must be 2-20 alphanumeric or space characters long": @(AccountRegistrationInvalidDisplayName),
              
              @"[client_name] is required": @(AccountRegistrationMissingClientName),
+             @"Unable to register. Please try again.": @(AccountRegistrationRegistrationServiceUnavailable)
              };
 }
 

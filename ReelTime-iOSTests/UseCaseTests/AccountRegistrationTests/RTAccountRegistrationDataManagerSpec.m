@@ -164,6 +164,11 @@ describe(@"account registration data manager", ^{
                                            AccountRegistrationInvalidDisplayName, 1);
             });
             
+            it(@"should map registration unavailable", ^{
+                expectServerMessageMapping("Unable to register. Please try again.",
+                                           AccountRegistrationRegistrationServiceUnavailable, 1);
+            });
+            
             it(@"should not map unexpected message", ^{
                 expectServerMessageMapping("unknown registration error", 0, 0);
             });
