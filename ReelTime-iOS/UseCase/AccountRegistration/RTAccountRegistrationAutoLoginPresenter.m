@@ -23,8 +23,7 @@
 }
 
 - (void)loginFailedWithErrors:(NSArray *)errors {
-    NSError *error = [errors objectAtIndex:0];
-    [self.registrationPresenter registrationWithAutoLoginFailedWithError:error];
+    [self.registrationPresenter registrationWithAutoLoginFailedWithError:errors];
 }
 
 @end

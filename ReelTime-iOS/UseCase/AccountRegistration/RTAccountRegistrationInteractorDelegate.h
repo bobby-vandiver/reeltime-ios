@@ -8,6 +8,4 @@
 
 - (void)registrationFailedWithErrors:(NSArray *)errors;
 
-- (void)registrationFailedWithValidationErrors:(NSArray *)errors;
-
 @end
