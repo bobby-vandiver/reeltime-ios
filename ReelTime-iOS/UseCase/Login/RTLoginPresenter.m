@@ -39,10 +39,7 @@
 - (void)loginFailedWithErrors:(NSArray *)errors {
     NSString *message = @"An unknown error occurred";
 
-    if ([errors count] > 0) {
-        // TODO: Handle all errors when the presentation is defined
-        NSError *error = [errors objectAtIndex:0];
-    
+    for (NSError *error in errors) {
         if ([error.domain isEqualToString:RTLoginErrorDomain]) {
             if (error.code == LoginMissingUsername) {
                 message = @"Username is required";
@@ -55,12 +52,11 @@
             }
             else if (error.code == LoginUnknownClient) {
                 [self.wireframe presentDeviceRegistrationInterface];
-                return;
+                break;
             }
         }
+        [self.view showErrorMessage:message];
     }
-    
-    [self.view showErrorMessage:message];
 }
 
 @end
