@@ -1,0 +1,18 @@
+#!/bin/sh
+
+lines_of_prod_code=`find ReelTime-iOS/ -name '*.m' | xargs wc -l | grep total | awk '{print $1}'`
+lines_of_prod_headers=`find ReelTime-iOS/ -name '*.h' | xargs wc -l | grep total | awk '{print $1}'`
+
+lines_of_test_code=`find ReelTime-iOSTests/ -name '*.m' | xargs wc -l | grep total | awk '{print $1}'`
+lines_of_test_headers=`find ReelTime-iOSTests/ -name '*.h' | xargs wc -l | grep total | awk '{print $1}'`
+
+total_lines_of_code=`expr "$lines_of_prod_code" + "$lines_of_test_code"`
+total_lines_of_headers=`expr "$lines_of_prod_headers" + "$lines_of_test_headers"`
+
+total_lines_of_code_and_headers=`expr "$total_lines_of_code" + "$total_lines_of_headers"`
+
+echo "prod:\t$lines_of_prod_code\theaders: $lines_of_prod_headers"
+echo "test:\t$lines_of_test_code\theaders: $lines_of_test_headers"
+
+echo "total:\t$total_lines_of_code\theaders: $total_lines_of_headers\tcombined: $total_lines_of_code_and_headers"
+
