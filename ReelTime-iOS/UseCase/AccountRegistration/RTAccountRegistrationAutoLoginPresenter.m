@@ -23,7 +23,10 @@
 }
 
 - (void)loginFailedWithErrors:(NSArray *)errors {
-    [self.registrationPresenter registrationWithAutoLoginFailedWithError:errors];
+    if ([errors count] > 0) {
+        NSError *error = [errors objectAtIndex:0];
+        [self.registrationPresenter registrationWithAutoLoginFailedWithError:error];
+    }
 }
 
 @end
