@@ -15,9 +15,7 @@
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
     [[DDTTYLogger sharedInstance] setColorsEnabled:YES];
     
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window makeKeyAndVisible];
-   
     [self.loginWireframe presentLoginInterfaceFromWindow:self.window];
     
     return YES;
