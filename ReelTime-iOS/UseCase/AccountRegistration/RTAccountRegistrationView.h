@@ -2,6 +2,6 @@
 
 @protocol RTAccountRegistrationView <NSObject>
 
-- (void)showErrorMessages:(NSArray *)messages;
+- (void)showErrorMessage:(NSString *)message;
 
 @end

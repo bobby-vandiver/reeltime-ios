@@ -70,7 +70,7 @@ describe(@"account registration presenter", ^{
             NSString *message = @"Account was registered but we were unable to associate your device with your account."
                                 @"Please register your device separately.";
             
-            [verify(view) showErrorMessages:@[message]];
+            [verify(view) showErrorMessage:message];
             [verify(wireframe) presentDeviceRegistrationInterface];
         });
         
@@ -81,8 +81,83 @@ describe(@"account registration presenter", ^{
             NSString *message = @"Account was registered but we were unable to log you in automatically."
                                 @"Please login.";
             
-            [verify(view) showErrorMessages:@[message]];
+            [verify(view) showErrorMessage:message];
             [verify(wireframe) presentLoginInterface];
+        });
+    });
+    
+    describe(@"registration failure message", ^{
+        
+        #define verifyErrorMessageIsShown(msg, code) do {                               \
+            NSError *error = [RTErrorFactory accountRegistrationErrorWithCode:code];    \
+                                                                                        \
+            [presenter registrationFailedWithErrors:@[error]];                          \
+            [verify(view) showErrorMessage:@msg];                                       \
+        } while(0)
+        
+        it(@"missing username", ^{
+            verifyErrorMessageIsShown("Username is required",
+                                      AccountRegistrationMissingUsername);
+        });
+        
+        it(@"invalid username", ^{
+            verifyErrorMessageIsShown("Username must be 2-15 alphanumeric characters",
+                                      AccountRegistrationInvalidUsername);
+        });
+        
+        it(@"username is not available", ^{
+            verifyErrorMessageIsShown("Username is unavailable",
+                                      AccountRegistrationUsernameIsUnavailable);
+        });
+        
+        it(@"missing password", ^{
+            verifyErrorMessageIsShown("Password is required",
+                                      AccountRegistrationMissingPassword);
+        });
+        
+        it(@"invalid password", ^{
+            verifyErrorMessageIsShown("Password must be at least 6 characters",
+                                      AccountRegistrationInvalidPassword);
+        });
+        
+        it(@"missing confirmation password", ^{
+            verifyErrorMessageIsShown("Confirmation password is required",
+                                      AccountRegistrationMissingConfirmationPassword);
+        });
+        
+        it(@"password and confirmation password do not match", ^{
+            verifyErrorMessageIsShown("Password and confirmation password must match",
+                                      AccountRegistrationConfirmationPasswordDoesNotMatch);
+        });
+        
+        it(@"missing email", ^{
+            verifyErrorMessageIsShown("Email is required",
+                                      AccountRegistrationMissingEmail);
+        });
+        
+        it(@"invalid email", ^{
+            verifyErrorMessageIsShown("Email is not a valid email address",
+                                      AccountRegistrationInvalidEmail);
+        });
+        
+        it(@"missing display name", ^{
+            verifyErrorMessageIsShown("Display name is required",
+                                      AccountRegistrationMissingDisplayName);
+        });
+        
+        it(@"invalid display name", ^{
+            verifyErrorMessageIsShown("Display name must be 2-20 alphanumeric or space characters",
+                                      AccountRegistrationInvalidDisplayName);
+        });
+        
+        it(@"missing client name", ^{
+            verifyErrorMessageIsShown("Client name is required",
+                                      AccountRegistrationMissingClientName);
+        });
+        
+        it(@"registration service is unavailable", ^{
+            verifyErrorMessageIsShown("Unable to register at this time. Please try again.",
+                                      AccountRegistrationRegistrationServiceUnavailable);
         });
     });
 });

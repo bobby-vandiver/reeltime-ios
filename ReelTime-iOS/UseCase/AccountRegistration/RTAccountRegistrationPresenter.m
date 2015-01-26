@@ -31,6 +31,29 @@
     return self;
 }
 
++ (NSDictionary *)registrationErrorCodeToErrorMessageMap {
+    return @{
+             @(AccountRegistrationMissingUsername): @"Username is required",
+             @(AccountRegistrationInvalidUsername): @"Username must be 2-15 alphanumeric characters",
+             @(AccountRegistrationUsernameIsUnavailable): @"Username is unavailable",
+             
+             @(AccountRegistrationMissingPassword): @"Password is required",
+             @(AccountRegistrationInvalidPassword): @"Password must be at least 6 characters",
+             
+             @(AccountRegistrationMissingConfirmationPassword): @"Confirmation password is required",
+             @(AccountRegistrationConfirmationPasswordDoesNotMatch): @"Password and confirmation password must match",
+             
+             @(AccountRegistrationMissingEmail): @"Email is required",
+             @(AccountRegistrationInvalidEmail): @"Email is not a valid email address",
+             
+             @(AccountRegistrationMissingDisplayName): @"Display name is required",
+             @(AccountRegistrationInvalidDisplayName): @"Display name must be 2-20 alphanumeric or space characters",
+             
+             @(AccountRegistrationMissingClientName): @"Client name is required",
+             @(AccountRegistrationRegistrationServiceUnavailable): @"Unable to register at this time. Please try again."
+             };
+}
+
 - (void)requestedAccountRegistrationWithUsername:(NSString *)username
                                         password:(NSString *)password
                             confirmationPassword:(NSString *)confirmationPassword
@@ -55,14 +78,14 @@
         NSString *message = @"Account was registered but we were unable to associate your device with your account."
                             @"Please register your device separately.";
         
-        [self.view showErrorMessages:@[message]];
+        [self.view showErrorMessage:message];
         [self.wireframe presentDeviceRegistrationInterface];
     }
     else {
         NSString *message = @"Account was registered but we were unable to log you in automatically."
                             @"Please login.";
         
-        [self.view showErrorMessages:@[message]];
+        [self.view showErrorMessage:message];
         [self.wireframe presentLoginInterface];
     }
 }
@@ -73,6 +96,19 @@
 }
 
 - (void)registrationFailedWithErrors:(NSArray *)errors {
+    for (NSError *error in errors) {
+        if ([error.domain isEqual:RTAccountRegistrationErrorDomain]) {
+            [self showErrorMessageForRegistrationErrorCode:error.code];
+        }
+    }
+}
+
+- (void)showErrorMessageForRegistrationErrorCode:(RTAccountRegistrationErrors)code {
+    NSDictionary *messages = [RTAccountRegistrationPresenter registrationErrorCodeToErrorMessageMap];
+    NSString *message = messages[@(code)];
+    if (message) {
+        [self.view showErrorMessage:message];
+    }
 }
 
 @end
