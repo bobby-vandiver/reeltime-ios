@@ -164,6 +164,11 @@ describe(@"account registration data manager", ^{
                                            AccountRegistrationInvalidDisplayName, 1);
             });
             
+            it(@"should map username is unavailable", ^{
+                expectServerMessageMapping("[username] is not available",
+                                           AccountRegistrationUsernameIsUnavailable, 1);
+            });
+            
             it(@"should map registration unavailable", ^{
                 expectServerMessageMapping("Unable to register. Please try again.",
                                            AccountRegistrationRegistrationServiceUnavailable, 1);

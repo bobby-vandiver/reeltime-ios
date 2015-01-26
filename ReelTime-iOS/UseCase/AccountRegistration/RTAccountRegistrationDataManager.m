@@ -27,6 +27,7 @@
     return @{
              @"[username] is required": @(AccountRegistrationMissingUsername),
              @"[username] must be 2-15 alphanumeric characters long": @(AccountRegistrationInvalidUsername),
+             @"[username] is not available": @(AccountRegistrationUsernameIsUnavailable),
              
              @"[password] is required": @(AccountRegistrationMissingPassword),
              @"[password] must be at least 6 characters long": @(AccountRegistrationInvalidPassword),
