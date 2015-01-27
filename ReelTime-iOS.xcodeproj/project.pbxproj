@@ -50,6 +50,7 @@
 		717D92731A5B8ABB00EAB6BF /* RTLoginWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 717D92721A5B8ABB00EAB6BF /* RTLoginWireframe.m */; };
 		717D92761A5B925700EAB6BF /* RTCurrentUserStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 717D92751A5B925700EAB6BF /* RTCurrentUserStore.m */; };
 		7188580A1A78296900B9C0DC /* RTAccountRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 718858091A78296900B9C0DC /* RTAccountRegistrationViewController.m */; };
+		7188580E1A782EB300B9C0DC /* RTAccountRegistrationAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 7188580D1A782EB300B9C0DC /* RTAccountRegistrationAssembly.m */; };
 		718A0BE21A4DA87900137C49 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 718A0BE11A4DA87900137C49 /* main.m */; };
 		718A0BE51A4DA87900137C49 /* RTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 718A0BE41A4DA87900137C49 /* RTAppDelegate.m */; };
 		718A0BE81A4DA87900137C49 /* RTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 718A0BE71A4DA87900137C49 /* RTViewController.m */; };
@@ -172,6 +173,8 @@
 		718858081A78296900B9C0DC /* RTAccountRegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTAccountRegistrationViewController.h; sourceTree = "<group>"; };
 		718858091A78296900B9C0DC /* RTAccountRegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAccountRegistrationViewController.m; sourceTree = "<group>"; };
 		7188580B1A782A3300B9C0DC /* RTStoryboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTStoryboardViewController.h; sourceTree = "<group>"; };
+		7188580C1A782EB300B9C0DC /* RTAccountRegistrationAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTAccountRegistrationAssembly.h; sourceTree = "<group>"; };
+		7188580D1A782EB300B9C0DC /* RTAccountRegistrationAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAccountRegistrationAssembly.m; sourceTree = "<group>"; };
 		718A0BDC1A4DA87900137C49 /* ReelTime-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ReelTime-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		718A0BE01A4DA87900137C49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		718A0BE11A4DA87900137C49 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -289,6 +292,8 @@
 				7160C2BC1A6F32BB0045ADDA /* RTAccountRegistrationValidator.m */,
 				718858081A78296900B9C0DC /* RTAccountRegistrationViewController.h */,
 				718858091A78296900B9C0DC /* RTAccountRegistrationViewController.m */,
+				7188580C1A782EB300B9C0DC /* RTAccountRegistrationAssembly.h */,
+				7188580D1A782EB300B9C0DC /* RTAccountRegistrationAssembly.m */,
 			);
 			path = AccountRegistration;
 			sourceTree = "<group>";
@@ -851,6 +856,7 @@
 				7190DABD1A5CDDFB00BDCE4C /* RTLoginDataManager.m in Sources */,
 				719B35DB1A51012E00FFD543 /* RTClientAssembly.m in Sources */,
 				71166E221A6C36C800EAE5BA /* RTAccountRegistrationInteractor.m in Sources */,
+				7188580E1A782EB300B9C0DC /* RTAccountRegistrationAssembly.m in Sources */,
 				718A0BE81A4DA87900137C49 /* RTViewController.m in Sources */,
 				71C5C0AC1A55EAE700CAAFAC /* RTOAuth2Token.m in Sources */,
 				719B35DE1A51140900FFD543 /* RTRestAPI.m in Sources */,

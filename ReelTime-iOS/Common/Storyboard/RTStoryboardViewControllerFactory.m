@@ -1,5 +1,8 @@
 #import "RTStoryboardViewControllerFactory.h"
 
+#import "RTLoginViewController.h"
+#import "RTAccountRegistrationViewController.h"
+
 @implementation RTStoryboardViewControllerFactory
 
 + (UIStoryboard *)mainStoryboard {
@@ -8,6 +11,11 @@
 
 + (RTLoginViewController *)loginViewController {
     NSString *identifier = [RTLoginViewController storyboardIdentifier];
+    return [[self mainStoryboard] instantiateViewControllerWithIdentifier:identifier];
+}
+
++ (RTAccountRegistrationViewController *)accountRegistrationViewController {
+    NSString *identifier = [RTAccountRegistrationViewController storyboardIdentifier];
     return [[self mainStoryboard] instantiateViewControllerWithIdentifier:identifier];
 }
 

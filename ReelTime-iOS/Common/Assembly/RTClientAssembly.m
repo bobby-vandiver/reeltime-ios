@@ -3,6 +3,8 @@
 #import "RTClient.h"
 #import "RTResponseDescriptorFactory.h"
 
+#import "RTServerErrorsConverter.h"
+
 #import <RestKit/RestKit.h>
 
 @implementation RTClientAssembly
@@ -38,5 +40,8 @@
     return [NSURL URLWithString: @"http://localhost:8080/reeltime"];
 }
 
+- (RTServerErrorsConverter *)serverErrorsConverter {
+    return [TyphoonDefinition withClass:[RTServerErrorsConverter class]];
+}
 
 @end

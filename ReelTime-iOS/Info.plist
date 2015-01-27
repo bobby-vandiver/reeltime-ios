@@ -6,6 +6,7 @@
 	<string>Main</string>
 	<key>TyphoonInitialAssemblies</key>
 	<array>
+		<string>RTAccountRegistrationAssembly</string>
 		<string>RTClientAssembly</string>
 		<string>RTSecurityAssembly</string>
 		<string>RTSecureStoreAssembly</string>
