@@ -16,14 +16,6 @@
     return @"Login View Controller";
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
 - (IBAction)pressedLoginButton:(UIButton *)sender {
     [self.presenter requestedLoginWithUsername:self.usernameField.text
                                       password:self.passwordField.text];

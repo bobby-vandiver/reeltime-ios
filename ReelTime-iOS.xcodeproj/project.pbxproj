@@ -49,6 +49,7 @@
 		717D926D1A5B722300EAB6BF /* NSError+RTError.m in Sources */ = {isa = PBXBuildFile; fileRef = 717D926C1A5B722300EAB6BF /* NSError+RTError.m */; };
 		717D92731A5B8ABB00EAB6BF /* RTLoginWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 717D92721A5B8ABB00EAB6BF /* RTLoginWireframe.m */; };
 		717D92761A5B925700EAB6BF /* RTCurrentUserStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 717D92751A5B925700EAB6BF /* RTCurrentUserStore.m */; };
+		7188580A1A78296900B9C0DC /* RTAccountRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 718858091A78296900B9C0DC /* RTAccountRegistrationViewController.m */; };
 		718A0BE21A4DA87900137C49 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 718A0BE11A4DA87900137C49 /* main.m */; };
 		718A0BE51A4DA87900137C49 /* RTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 718A0BE41A4DA87900137C49 /* RTAppDelegate.m */; };
 		718A0BE81A4DA87900137C49 /* RTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 718A0BE71A4DA87900137C49 /* RTViewController.m */; };
@@ -168,6 +169,9 @@
 		717D92721A5B8ABB00EAB6BF /* RTLoginWireframe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLoginWireframe.m; sourceTree = "<group>"; };
 		717D92741A5B925700EAB6BF /* RTCurrentUserStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTCurrentUserStore.h; path = "ReelTime-iOS/Common/Store/RTCurrentUserStore.h"; sourceTree = SOURCE_ROOT; };
 		717D92751A5B925700EAB6BF /* RTCurrentUserStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTCurrentUserStore.m; path = "ReelTime-iOS/Common/Store/RTCurrentUserStore.m"; sourceTree = SOURCE_ROOT; };
+		718858081A78296900B9C0DC /* RTAccountRegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTAccountRegistrationViewController.h; sourceTree = "<group>"; };
+		718858091A78296900B9C0DC /* RTAccountRegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAccountRegistrationViewController.m; sourceTree = "<group>"; };
+		7188580B1A782A3300B9C0DC /* RTStoryboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTStoryboardViewController.h; sourceTree = "<group>"; };
 		718A0BDC1A4DA87900137C49 /* ReelTime-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ReelTime-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		718A0BE01A4DA87900137C49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		718A0BE11A4DA87900137C49 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -283,6 +287,8 @@
 				71166E1F1A6C36C800EAE5BA /* RTAccountRegistrationWireframe.m */,
 				7160C2BB1A6F32BB0045ADDA /* RTAccountRegistrationValidator.h */,
 				7160C2BC1A6F32BB0045ADDA /* RTAccountRegistrationValidator.m */,
+				718858081A78296900B9C0DC /* RTAccountRegistrationViewController.h */,
+				718858091A78296900B9C0DC /* RTAccountRegistrationViewController.m */,
 			);
 			path = AccountRegistration;
 			sourceTree = "<group>";
@@ -292,6 +298,7 @@
 			children = (
 				7116909A1A6AEBDA0031578E /* RTStoryboardViewControllerFactory.h */,
 				7116909B1A6AEBDA0031578E /* RTStoryboardViewControllerFactory.m */,
+				7188580B1A782A3300B9C0DC /* RTStoryboardViewController.h */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -833,6 +840,7 @@
 				713D7A4C1A50A33300754A06 /* RTClient.m in Sources */,
 				719B35E31A51150E00FFD543 /* RTErrorConstants.m in Sources */,
 				717A4B781A534EBD004C2BC1 /* RTResponseDescriptorFactory.m in Sources */,
+				7188580A1A78296900B9C0DC /* RTAccountRegistrationViewController.m in Sources */,
 				713D7A451A509AC000754A06 /* RTClientCredentialsStore.m in Sources */,
 				71C5C0AD1A55EAE700CAAFAC /* RTOAuth2TokenError.m in Sources */,
 				713DCAA91A6C8B330032B252 /* RTServerErrors.m in Sources */,
