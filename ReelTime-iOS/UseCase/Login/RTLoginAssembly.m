@@ -13,49 +13,49 @@
 
 @implementation RTLoginAssembly
 
-- (RTLoginWireframe *)wireframe {
+- (RTLoginWireframe *)loginWireframe {
     return [TyphoonDefinition withClass:[RTLoginWireframe class] configuration:^(TyphoonDefinition *definition) {
         [definition injectMethod:@selector(initWithPresenter:viewController:)
                       parameters:^(TyphoonMethod *initializer) {
-                          [initializer injectParameterWith:[self presenter]];
-                          [initializer injectParameterWith:[self viewController]];
+                          [initializer injectParameterWith:[self loginPresenter]];
+                          [initializer injectParameterWith:[self loginViewController]];
         }];
     }];
 }
 
-- (RTLoginViewController *)viewController {
+- (RTLoginViewController *)loginViewController {
     return [TyphoonDefinition withClass:[RTStoryboardViewControllerFactory class] configuration:^(TyphoonDefinition *definition) {
         [definition useInitializer:@selector(loginViewController)];
-        [definition injectProperty:@selector(presenter) with:[self presenter]];
+        [definition injectProperty:@selector(presenter) with:[self loginPresenter]];
     }];
 }
 
-- (RTLoginPresenter *)presenter {
+- (RTLoginPresenter *)loginPresenter {
     return [TyphoonDefinition withClass:[RTLoginPresenter class] configuration:^(TyphoonDefinition *definition) {
         [definition injectMethod:@selector(initWithView:interactor:wireframe:)
                       parameters:^(TyphoonMethod *initializer) {
-                          [initializer injectParameterWith:[self viewController]];
-                          [initializer injectParameterWith:[self interactor]];
-                          [initializer injectParameterWith:[self wireframe]];
+                          [initializer injectParameterWith:[self loginViewController]];
+                          [initializer injectParameterWith:[self loginInteractor]];
+                          [initializer injectParameterWith:[self loginWireframe]];
         }];
     }];
 }
 
-- (RTLoginInteractor *)interactor {
+- (RTLoginInteractor *)loginInteractor {
     return [TyphoonDefinition withClass:[RTLoginInteractor class] configuration:^(TyphoonDefinition *definition) {
         [definition injectMethod:@selector(initWithDelegate:dataManager:)
                       parameters:^(TyphoonMethod *initializer) {
-                          [initializer injectParameterWith:[self presenter]];
-                          [initializer injectParameterWith:[self dataManager]];
+                          [initializer injectParameterWith:[self loginPresenter]];
+                          [initializer injectParameterWith:[self loginDataManager]];
         }];
     }];
 }
 
-- (RTLoginDataManager *)dataManager {
+- (RTLoginDataManager *)loginDataManager {
     return [TyphoonDefinition withClass:[RTLoginDataManager class] configuration:^(TyphoonDefinition *definition) {
         [definition injectMethod:@selector(initWithDelegate:client:clientCredentialsStore:tokenStore:currentUserStore:)
                       parameters:^(TyphoonMethod *initializer) {
-                          [initializer injectParameterWith:[self interactor]];
+                          [initializer injectParameterWith:[self loginInteractor]];
                           [initializer injectParameterWith:[self.clientAssembly reelTimeClient]];
                           [initializer injectParameterWith:[self.secureStoreAssembly clientCredentialsStore]];
                           [initializer injectParameterWith:[self.secureStoreAssembly tokenStore]];

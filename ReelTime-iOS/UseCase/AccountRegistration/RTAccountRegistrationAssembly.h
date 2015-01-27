@@ -16,14 +16,14 @@
 @property (nonatomic, strong, readonly) RTSecureStoreAssembly *secureStoreAssembly;
 @property (nonatomic, strong, readonly) RTLoginAssembly *loginAssembly;
 
-- (RTAccountRegistrationWireframe *)wireframe;
+- (RTAccountRegistrationWireframe *)accountRegistrationWireframe;
 
-- (RTAccountRegistrationViewController *)viewController;
+- (RTAccountRegistrationViewController *)accountRegistrationViewController;
 
-- (RTAccountRegistrationPresenter *)presenter;
+- (RTAccountRegistrationPresenter *)accountRegistrationPresenter;
 
-- (RTAccountRegistrationInteractor *)interactor;
+- (RTAccountRegistrationInteractor *)accountRegistrationInteractor;
 
-- (RTAccountRegistrationDataManager *)dataManager;
+- (RTAccountRegistrationDataManager *)accountRegistrationDataManager;
 
 @end

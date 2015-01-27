@@ -16,7 +16,7 @@
     return @"Login View Controller";
 }
 
-- (IBAction)pressedLoginButton:(UIButton *)sender {
+- (IBAction)pressedLoginButton {
     [self.presenter requestedLoginWithUsername:self.usernameField.text
                                       password:self.passwordField.text];
 }

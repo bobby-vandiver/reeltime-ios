@@ -14,14 +14,14 @@
 @property (nonatomic, strong, readonly) RTClientAssembly *clientAssembly;
 @property (nonatomic, strong, readonly) RTSecureStoreAssembly *secureStoreAssembly;
 
-- (RTLoginWireframe *)wireframe;
+- (RTLoginWireframe *)loginWireframe;
 
-- (RTLoginViewController *)viewController;
+- (RTLoginViewController *)loginViewController;
 
-- (RTLoginPresenter *)presenter;
+- (RTLoginPresenter *)loginPresenter;
 
-- (RTLoginInteractor *)interactor;
+- (RTLoginInteractor *)loginInteractor;
 
-- (RTLoginDataManager *)dataManager;
+- (RTLoginDataManager *)loginDataManager;
 
 @end

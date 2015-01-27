@@ -19,65 +19,65 @@
 
 @implementation RTAccountRegistrationAssembly
 
-- (RTAccountRegistrationWireframe *)wireframe {
+- (RTAccountRegistrationWireframe *)accountRegistrationWireframe {
     return [TyphoonDefinition withClass:[RTAccountRegistrationWireframe class]];
 }
 
-- (RTAccountRegistrationViewController *)viewController {
+- (RTAccountRegistrationViewController *)accountRegistrationViewController {
     return [TyphoonDefinition withClass:[RTStoryboardViewControllerFactory class] configuration:^(TyphoonDefinition *definition) {
         [definition useInitializer:@selector(accountRegistrationViewController)];
-        [definition injectProperty:@selector(presenter) with:[self presenter]];
+        [definition injectProperty:@selector(presenter) with:[self accountRegistrationPresenter]];
     }];
 }
 
-- (RTAccountRegistrationPresenter *)presenter {
+- (RTAccountRegistrationPresenter *)accountRegistrationPresenter {
     return [TyphoonDefinition withClass:[RTAccountRegistrationPresenter class] configuration:^(TyphoonDefinition *definition) {
         [definition injectMethod:@selector(initWithView:interactor:wireframe:)
                       parameters:^(TyphoonMethod *initializer) {
-                          [initializer injectParameterWith:[self viewController]];
-                          [initializer injectParameterWith:[self interactor]];
-                          [initializer injectParameterWith:[self wireframe]];
+                          [initializer injectParameterWith:[self accountRegistrationViewController]];
+                          [initializer injectParameterWith:[self accountRegistrationInteractor]];
+                          [initializer injectParameterWith:[self accountRegistrationWireframe]];
         }];
     }];
 }
 
-- (RTAccountRegistrationInteractor *)interactor {
+- (RTAccountRegistrationInteractor *)accountRegistrationInteractor {
     return [TyphoonDefinition withClass:[RTAccountRegistrationInteractor class] configuration:^(TyphoonDefinition *definition) {
         [definition injectMethod:@selector(initWithDelegate:dataManager:validator:loginInteractor:)
                       parameters:^(TyphoonMethod *initializer) {
-                          [initializer injectParameterWith:[self presenter]];
-                          [initializer injectParameterWith:[self dataManager]];
-                          [initializer injectParameterWith:[self validator]];
-                          [initializer injectParameterWith:[self autoLoginInteractor]];
+                          [initializer injectParameterWith:[self accountRegistrationPresenter]];
+                          [initializer injectParameterWith:[self accountRegistrationDataManager]];
+                          [initializer injectParameterWith:[self accountRegistrationValidator]];
+                          [initializer injectParameterWith:[self accountRegistrationAutoLoginInteractor]];
         }];
     }];
 }
 
-- (RTAccountRegistrationValidator *)validator {
+- (RTAccountRegistrationValidator *)accountRegistrationValidator {
     return [TyphoonDefinition withClass:[RTAccountRegistrationValidator class]];
 }
 
-- (RTLoginInteractor *)autoLoginInteractor {
+- (RTLoginInteractor *)accountRegistrationAutoLoginInteractor {
     return [TyphoonDefinition withClass:[RTLoginInteractor class] configuration:^(TyphoonDefinition *definition) {
         
     }];
 }
 
-- (RTAccountRegistrationAutoLoginPresenter *)autoLoginPresenter {
+- (RTAccountRegistrationAutoLoginPresenter *)accountRegistrationAutoLoginPresenter {
     return [TyphoonDefinition withClass:[RTAccountRegistrationAutoLoginPresenter class] configuration:^(TyphoonDefinition *definition) {
         [definition injectMethod:@selector(initWithAccountRegistrationPresenter:loginInteractor:)
                       parameters:^(TyphoonMethod *initializer) {
-                          [initializer injectParameterWith:[self presenter]];
-                          [initializer injectParameterWith:[self.loginAssembly interactor]];
+                          [initializer injectParameterWith:[self accountRegistrationPresenter]];
+                          [initializer injectParameterWith:[self.loginAssembly loginInteractor]];
         }];
     }];
 }
 
-- (RTAccountRegistrationDataManager *)dataManager {
+- (RTAccountRegistrationDataManager *)accountRegistrationDataManager {
     return [TyphoonDefinition withClass:[RTAccountRegistrationDataManager class] configuration:^(TyphoonDefinition *definition) {
         [definition injectMethod:@selector(initWithDelegate:client:serverErrorsConverter:clientCredentialsStore:)
                       parameters:^(TyphoonMethod *initializer) {
-                          [initializer injectParameterWith:[self interactor]];
+                          [initializer injectParameterWith:[self accountRegistrationInteractor]];
                           [initializer injectParameterWith:[self.clientAssembly reelTimeClient]];
                           [initializer injectParameterWith:[self.clientAssembly serverErrorsConverter]];
                           [initializer injectParameterWith:[self.secureStoreAssembly clientCredentialsStore]];
