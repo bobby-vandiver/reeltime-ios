@@ -163,18 +163,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ytE-zy-06p" userLabel="Registration Form Container">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ytE-zy-06p" userLabel="Registration Form Container">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9NU-nj-2os" userLabel="Username Container">
-                                        <rect key="frame" x="8" y="150" width="584" height="36"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9NU-nj-2os" userLabel="Username Container">
+                                        <rect key="frame" x="62" y="150" width="322" height="36"/>
                                         <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bjZ-Zm-yfj">
+                                                <rect key="frame" x="43" y="7" width="104" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pdu-up-zY1" userLabel="Username Field">
-                                                <rect key="frame" x="166" y="3" width="251" height="30"/>
+                                                <rect key="frame" x="155" y="3" width="167" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bjZ-Zm-yfj">
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="36" id="z8V-Zx-eOr"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C1k-lz-2iX" userLabel="Password Container">
+                                        <rect key="frame" x="62" y="194" width="322" height="36"/>
+                                        <subviews>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ar4-ug-CD8" userLabel="Password Field">
+                                                <rect key="frame" x="156" y="3" width="164" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                            </textField>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Password" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2SV-FD-8Oi">
                                                 <rect key="frame" x="44" y="7" width="104" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -182,34 +202,20 @@
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="36" id="72X-tU-2Yr"/>
+                                        </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C1k-lz-2iX" userLabel="Password Container">
-                                        <rect key="frame" x="8" y="194" width="584" height="36"/>
-                                        <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ar4-ug-CD8" userLabel="Password Field">
-                                                <rect key="frame" x="166" y="3" width="251" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                                            </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Password" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2SV-FD-8Oi">
-                                                <rect key="frame" x="54" y="8" width="104" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </view>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YTK-hc-hbt" userLabel="Confirmation Password Container">
-                                        <rect key="frame" x="8" y="238" width="584" height="36"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YTK-hc-hbt" userLabel="Confirmation Password Container">
+                                        <rect key="frame" x="62" y="238" width="322" height="36"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qmq-Vj-UHn" userLabel="Confirm Password Field">
-                                                <rect key="frame" x="167" y="3" width="251" height="30"/>
+                                                <rect key="frame" x="155" y="3" width="167" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Confirm Password" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mAV-kP-8Bd">
-                                                <rect key="frame" x="11" y="8" width="148" height="21"/>
+                                                <rect key="frame" x="-1" y="7" width="148" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
@@ -217,16 +223,16 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C3N-Uq-2gU" userLabel="Email Container">
-                                        <rect key="frame" x="8" y="282" width="584" height="36"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C3N-Uq-2gU" userLabel="Email Container">
+                                        <rect key="frame" x="62" y="282" width="322" height="36"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hhh-H1-FEc" userLabel="Email Field">
-                                                <rect key="frame" x="167" y="3" width="251" height="30"/>
+                                                <rect key="frame" x="155" y="3" width="167" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Email" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hic-Yd-n7r">
-                                                <rect key="frame" x="43" y="3" width="104" height="21"/>
+                                                <rect key="frame" x="43" y="8" width="104" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
@@ -234,35 +240,86 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UdW-W7-HGk" userLabel="Client Name Container">
-                                        <rect key="frame" x="8" y="326" width="584" height="36"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Client Name" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ySG-9U-gRg">
-                                                <rect key="frame" x="49" y="6" width="104" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OWQ-NM-jW9" userLabel="Client Name Field">
-                                                <rect key="frame" x="167" y="2" width="251" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </view>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CPV-Kt-JgK">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CPV-Kt-JgK">
                                         <rect key="frame" x="257" y="370" width="86" height="30"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="86" id="v1P-3y-p6x"/>
+                                        </constraints>
                                         <color key="tintColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Register">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UdW-W7-HGk" userLabel="Client Name Container">
+                                        <rect key="frame" x="62" y="326" width="322" height="36"/>
+                                        <subviews>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OWQ-NM-jW9" userLabel="Client Name Field">
+                                                <rect key="frame" x="156" y="2" width="167" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Client Name" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ySG-9U-gRg">
+                                                <rect key="frame" x="44" y="8" width="104" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="322" id="V3n-Ez-H7S"/>
+                                            <constraint firstAttribute="height" constant="36" id="mtb-9R-Av5"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="centerY" secondItem="CPV-Kt-JgK" secondAttribute="centerY" constant="-85" id="18H-d2-U3F"/>
+                                    <constraint firstAttribute="centerX" secondItem="9NU-nj-2os" secondAttribute="centerX" constant="77" id="AtJ-nP-Sda">
+                                        <variation key="widthClass=compact" constant="0.0"/>
+                                    </constraint>
+                                    <constraint firstAttribute="centerX" secondItem="C1k-lz-2iX" secondAttribute="centerX" constant="77" id="E1e-Vu-D72">
+                                        <variation key="widthClass=compact" constant="0.0"/>
+                                    </constraint>
+                                    <constraint firstItem="UdW-W7-HGk" firstAttribute="top" secondItem="C3N-Uq-2gU" secondAttribute="bottom" constant="8" id="GJO-PT-Po4"/>
+                                    <constraint firstItem="C3N-Uq-2gU" firstAttribute="top" secondItem="YTK-hc-hbt" secondAttribute="bottom" constant="8" id="LJq-p0-Q8h"/>
+                                    <constraint firstItem="UdW-W7-HGk" firstAttribute="leading" secondItem="C3N-Uq-2gU" secondAttribute="leading" id="PVO-5n-Heq"/>
+                                    <constraint firstAttribute="centerX" secondItem="YTK-hc-hbt" secondAttribute="centerX" constant="77" id="QDe-gz-rqd">
+                                        <variation key="widthClass=compact" constant="0.0"/>
+                                    </constraint>
+                                    <constraint firstItem="UdW-W7-HGk" firstAttribute="top" secondItem="ytE-zy-06p" secondAttribute="top" constant="326" id="RpJ-up-FKu"/>
+                                    <constraint firstAttribute="centerX" secondItem="UdW-W7-HGk" secondAttribute="centerX" constant="77" id="S01-1D-oNi">
+                                        <variation key="widthClass=compact" constant="0.0"/>
+                                    </constraint>
+                                    <constraint firstItem="UdW-W7-HGk" firstAttribute="leading" secondItem="9NU-nj-2os" secondAttribute="leading" id="S6i-4j-VYG"/>
+                                    <constraint firstItem="C3N-Uq-2gU" firstAttribute="centerY" secondItem="ytE-zy-06p" secondAttribute="centerY" id="WKL-4B-fqO"/>
+                                    <constraint firstItem="9NU-nj-2os" firstAttribute="top" secondItem="ytE-zy-06p" secondAttribute="top" constant="150" id="XgZ-El-hXp"/>
+                                    <constraint firstAttribute="bottom" secondItem="CPV-Kt-JgK" secondAttribute="bottom" constant="200" id="YXc-fg-QJS"/>
+                                    <constraint firstItem="CPV-Kt-JgK" firstAttribute="top" secondItem="UdW-W7-HGk" secondAttribute="bottom" constant="8" id="cR1-c8-W2j"/>
+                                    <constraint firstItem="UdW-W7-HGk" firstAttribute="leading" secondItem="C1k-lz-2iX" secondAttribute="leading" id="dI9-fg-nqM"/>
+                                    <constraint firstAttribute="centerX" secondItem="CPV-Kt-JgK" secondAttribute="centerX" id="e43-J7-Lce"/>
+                                    <constraint firstItem="UdW-W7-HGk" firstAttribute="top" secondItem="C3N-Uq-2gU" secondAttribute="bottom" constant="8" symbolic="YES" id="edO-FW-RQ3"/>
+                                    <constraint firstItem="UdW-W7-HGk" firstAttribute="leading" secondItem="YTK-hc-hbt" secondAttribute="leading" id="hiq-vf-tp4"/>
+                                    <constraint firstAttribute="centerX" secondItem="C3N-Uq-2gU" secondAttribute="centerX" constant="77" id="ioM-ge-zfx">
+                                        <variation key="widthClass=compact" constant="0.0"/>
+                                    </constraint>
+                                    <constraint firstItem="YTK-hc-hbt" firstAttribute="top" secondItem="C1k-lz-2iX" secondAttribute="bottom" constant="8" id="llL-sO-TQh"/>
+                                    <constraint firstItem="UdW-W7-HGk" firstAttribute="top" secondItem="C3N-Uq-2gU" secondAttribute="bottom" constant="8" id="nFf-VP-J4c"/>
+                                    <constraint firstItem="C1k-lz-2iX" firstAttribute="top" secondItem="9NU-nj-2os" secondAttribute="bottom" constant="8" id="tm4-Cm-RN1"/>
+                                    <constraint firstItem="UdW-W7-HGk" firstAttribute="leading" secondItem="ytE-zy-06p" secondAttribute="leadingMargin" constant="54" id="vMs-fO-zmI">
+                                        <variation key="widthClass=compact" constant="131"/>
+                                    </constraint>
+                                    <constraint firstItem="UdW-W7-HGk" firstAttribute="trailing" secondItem="ytE-zy-06p" secondAttribute="trailingMargin" constant="-208" id="yzc-Ps-rG2">
+                                        <variation key="widthClass=compact" constant="-131"/>
+                                    </constraint>
+                                </constraints>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="ytE-zy-06p" secondAttribute="centerY" id="TyI-pI-B19"/>
+                            <constraint firstAttribute="centerX" secondItem="ytE-zy-06p" secondAttribute="centerX" id="xy8-T0-iNx"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WhH-Nz-GZA" userLabel="First Responder" sceneMemberID="firstResponder"/>
