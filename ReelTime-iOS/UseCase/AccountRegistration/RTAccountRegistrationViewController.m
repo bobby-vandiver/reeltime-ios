@@ -11,7 +11,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet UITextField *confirmationPasswordField;
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
-@property (weak, nonatomic) IBOutlet UITextField *clientField;
+@property (weak, nonatomic) IBOutlet UITextField *displayNameField;
+@property (weak, nonatomic) IBOutlet UITextField *clientNameField;
 
 @end
 
@@ -32,7 +33,12 @@
 }
 
 - (IBAction)pressedRegisterButton {
-    NSLog(@"hello");
+    [self.presenter requestedAccountRegistrationWithUsername:self.usernameField.text
+                                                    password:self.passwordField.text
+                                        confirmationPassword:self.confirmationPasswordField.text
+                                                       email:self.emailField.text
+                                                 displayName:self.displayNameField.text
+                                                  clientName:self.clientNameField.text];
 }
 
 - (void)showErrorMessage:(NSString *)message {

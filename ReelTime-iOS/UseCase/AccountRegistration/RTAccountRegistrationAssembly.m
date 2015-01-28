@@ -64,7 +64,7 @@
 
 - (RTLoginInteractor *)accountRegistrationAutoLoginInteractor {
     return [TyphoonDefinition withClass:[RTLoginInteractor class] configuration:^(TyphoonDefinition *definition) {
-        [definition useInitializer:@selector(initWithDelegate:dataManager:)
+        [definition injectMethod:@selector(initWithDelegate:dataManager:)
                         parameters:^(TyphoonMethod *initializer) {
                             [initializer injectParameterWith:[self accountRegistrationAutoLoginPresenter]];
                             [initializer injectParameterWith:[self.loginAssembly loginDataManager]];
