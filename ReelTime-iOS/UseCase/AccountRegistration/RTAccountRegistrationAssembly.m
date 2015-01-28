@@ -18,14 +18,19 @@
 @implementation RTAccountRegistrationAssembly
 
 - (RTAccountRegistrationWireframe *)accountRegistrationWireframe {
-    return [TyphoonDefinition withClass:[RTAccountRegistrationWireframe class]];
+    return [TyphoonDefinition withClass:[RTAccountRegistrationWireframe class] configuration:^(TyphoonDefinition *definition) {
+        [definition useInitializer:@selector(initWithViewController:)
+                        parameters:^(TyphoonMethod *initializer) {
+                            [initializer injectParameterWith:[self accountRegistrationViewController]];
+        }];
+    }];
 }
 
 - (RTAccountRegistrationViewController *)accountRegistrationViewController {
     return [TyphoonDefinition withClass:[RTAccountRegistrationViewController class] configuration:^(TyphoonDefinition *definition) {
         [definition useInitializer:@selector(viewControllerWithPresenter:)
                         parameters:^(TyphoonMethod *initializer) {
-            [initializer injectParameterWith:[self accountRegistrationPresenter]];
+                            [initializer injectParameterWith:[self accountRegistrationPresenter]];
         }];
     }];
 }
@@ -59,7 +64,11 @@
 
 - (RTLoginInteractor *)accountRegistrationAutoLoginInteractor {
     return [TyphoonDefinition withClass:[RTLoginInteractor class] configuration:^(TyphoonDefinition *definition) {
-        
+        [definition useInitializer:@selector(initWithDelegate:dataManager:)
+                        parameters:^(TyphoonMethod *initializer) {
+                            [initializer injectParameterWith:[self accountRegistrationAutoLoginPresenter]];
+                            [initializer injectParameterWith:[self.loginAssembly loginDataManager]];
+        }];
     }];
 }
 

@@ -1,12 +1,7 @@
 #import "RTAppDelegate.h"
 #import <CocoaLumberjack/CocoaLumberjack.h>
 
-@interface RTAppDelegate ()
-
-@end
-
 @implementation RTAppDelegate
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
@@ -16,7 +11,8 @@
     [[DDTTYLogger sharedInstance] setColorsEnabled:YES];
     
     [self.window makeKeyAndVisible];
-    [self.loginWireframe presentLoginInterfaceFromWindow:self.window];
+//    [self.loginWireframe presentLoginInterfaceFromWindow:self.window];
+    [self.accountRegistrationWireframe presentAccountRegistrationInterfaceFromWindow:self.window];
     
     return YES;
 }
