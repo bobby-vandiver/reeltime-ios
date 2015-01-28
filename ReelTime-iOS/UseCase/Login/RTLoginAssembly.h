@@ -2,6 +2,7 @@
 
 @class RTClientAssembly;
 @class RTSecureStoreAssembly;
+@class RTAccountRegistrationAssembly;
 
 @class RTLoginWireframe;
 @class RTLoginViewController;
@@ -13,6 +14,7 @@
 
 @property (nonatomic, strong, readonly) RTClientAssembly *clientAssembly;
 @property (nonatomic, strong, readonly) RTSecureStoreAssembly *secureStoreAssembly;
+@property (nonatomic, strong, readonly) RTAccountRegistrationAssembly *accountRegistrationAssembly;
 
 - (RTLoginWireframe *)loginWireframe;
 

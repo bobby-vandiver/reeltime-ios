@@ -32,6 +32,10 @@
     [self.interactor loginWithUsername:username password:password];
 }
 
+- (void)requestedAccountRegistration {
+    [self.wireframe presentAccountRegistrationInterface];
+}
+
 - (void)loginSucceeded {
     [self.wireframe presentPostLoginInterface];
 }

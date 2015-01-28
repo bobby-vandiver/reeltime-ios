@@ -67,6 +67,11 @@ describe(@"login presenter", ^{
     });
     
     describe(@"routing to other modules", ^{
+        it(@"should present account registration interface when requested", ^{
+            [presenter requestedAccountRegistration];
+            [verify(wireframe) presentAccountRegistrationInterface];
+        });
+        
         it(@"should present post login interface when login succeeds", ^{
             [presenter loginSucceeded];
             [verify(wireframe) presentPostLoginInterface];

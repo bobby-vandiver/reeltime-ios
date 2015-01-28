@@ -101,14 +101,43 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hlT-Vp-n2Z">
+                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                        <color key="backgroundColor" red="0.84705882352941175" green="0.50980392156862742" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="CJI-tJ-Atp"/>
+                                            <constraint firstAttribute="height" constant="42" id="e5U-Md-aUD"/>
+                                        </constraints>
+                                        <state key="normal" title="Register">
+                                            <color key="titleColor" red="0.17254901959999999" green="0.17254901959999999" blue="0.17254901959999999" alpha="1" colorSpace="deviceRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="CJI-tJ-Atp"/>
+                                                <exclude reference="e5U-Md-aUD"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="widthClass=compact">
+                                            <mask key="constraints">
+                                                <include reference="CJI-tJ-Atp"/>
+                                                <include reference="e5U-Md-aUD"/>
+                                            </mask>
+                                        </variation>
+                                        <connections>
+                                            <action selector="pressedRegisterButton" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ays-ju-mo7"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.9882352941176471" green="0.97647058823529409" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
                                 </accessibility>
                                 <constraints>
+                                    <constraint firstItem="hlT-Vp-n2Z" firstAttribute="top" secondItem="gcb-M7-TSW" secondAttribute="bottom" constant="8" symbolic="YES" id="0eD-O8-HI5"/>
                                     <constraint firstAttribute="centerY" secondItem="d0h-gA-XQH" secondAttribute="centerY" constant="63" id="35q-rQ-ySS"/>
                                     <constraint firstItem="Bq4-dk-Lkf" firstAttribute="centerX" secondItem="d0h-gA-XQH" secondAttribute="centerX" id="8Kk-Qo-UUF"/>
+                                    <constraint firstItem="hlT-Vp-n2Z" firstAttribute="leading" secondItem="gcb-M7-TSW" secondAttribute="leading" id="9es-jH-ImC"/>
                                     <constraint firstAttribute="centerY" secondItem="Bq4-dk-Lkf" secondAttribute="centerY" constant="25" id="Ase-eg-pTX"/>
                                     <constraint firstAttribute="centerX" secondItem="Bq4-dk-Lkf" secondAttribute="centerX" id="Ixv-q2-ybM"/>
                                     <constraint firstAttribute="centerX" secondItem="gcb-M7-TSW" secondAttribute="centerX" id="JKg-1e-fa9"/>
@@ -118,6 +147,24 @@
                                     <constraint firstItem="Bq4-dk-Lkf" firstAttribute="centerX" secondItem="gcb-M7-TSW" secondAttribute="centerX" id="eOh-bF-7l4"/>
                                     <constraint firstItem="Bq4-dk-Lkf" firstAttribute="width" secondItem="d0h-gA-XQH" secondAttribute="width" id="ksh-K0-Of8"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="hlT-Vp-n2Z"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <exclude reference="0eD-O8-HI5"/>
+                                        <exclude reference="9es-jH-ImC"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="subviews">
+                                        <include reference="hlT-Vp-n2Z"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <include reference="0eD-O8-HI5"/>
+                                        <include reference="9es-jH-ImC"/>
+                                    </mask>
+                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -149,7 +196,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-311" y="54"/>
+            <point key="canvasLocation" x="-312" y="54"/>
         </scene>
         <!--Account Registration View Controller-->
         <scene sceneID="U7v-AF-ObX">

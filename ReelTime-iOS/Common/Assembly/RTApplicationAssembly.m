@@ -6,7 +6,6 @@
     return [TyphoonDefinition withClass:[RTAppDelegate class] configuration:^(TyphoonDefinition *definition) {
         [definition injectProperty:@selector(window) with:[self mainWindow]];
         [definition injectProperty:@selector(loginWireframe) with:[self.loginAssembly loginWireframe]];
-        [definition injectProperty:@selector(accountRegistrationWireframe) with:[self.accountRegistrationAssembly accountRegistrationWireframe]];
     }];
 }
 

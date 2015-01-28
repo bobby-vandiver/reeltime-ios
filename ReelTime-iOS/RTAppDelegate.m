@@ -11,8 +11,7 @@
     [[DDTTYLogger sharedInstance] setColorsEnabled:YES];
     
     [self.window makeKeyAndVisible];
-//    [self.loginWireframe presentLoginInterfaceFromWindow:self.window];
-    [self.accountRegistrationWireframe presentAccountRegistrationInterfaceFromWindow:self.window];
+    [self.loginWireframe presentLoginInterfaceFromWindow:self.window];
     
     return YES;
 }

@@ -33,6 +33,10 @@
                                       password:self.passwordField.text];
 }
 
+- (IBAction)pressedRegisterButton {
+    [self.presenter requestedAccountRegistration];
+}
+
 - (void)showErrorMessage:(NSString *)message {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
                                                         message:message
