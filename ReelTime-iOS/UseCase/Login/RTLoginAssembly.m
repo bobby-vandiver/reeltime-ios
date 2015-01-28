@@ -13,9 +13,8 @@
 
 - (RTLoginWireframe *)loginWireframe {
     return [TyphoonDefinition withClass:[RTLoginWireframe class] configuration:^(TyphoonDefinition *definition) {
-        [definition injectMethod:@selector(initWithPresenter:viewController:)
+        [definition injectMethod:@selector(initWithViewController:)
                       parameters:^(TyphoonMethod *initializer) {
-                          [initializer injectParameterWith:[self loginPresenter]];
                           [initializer injectParameterWith:[self loginViewController]];
         }];
     }];
