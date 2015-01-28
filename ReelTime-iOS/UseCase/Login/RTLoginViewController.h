@@ -7,4 +7,6 @@
 
 @interface RTLoginViewController : UIViewController <RTLoginView, RTStoryboardViewController>
 
++ (RTLoginViewController *)viewControllerWithPresenter:(RTLoginPresenter *)presenter;
+
 @end

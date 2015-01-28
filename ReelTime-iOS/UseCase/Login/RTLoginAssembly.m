@@ -9,8 +9,6 @@
 #import "RTLoginInteractor.h"
 #import "RTLoginDataManager.h"
 
-#import "RTStoryboardViewControllerFactory.h"
-
 @implementation RTLoginAssembly
 
 - (RTLoginWireframe *)loginWireframe {
@@ -24,9 +22,11 @@
 }
 
 - (RTLoginViewController *)loginViewController {
-    return [TyphoonDefinition withClass:[RTStoryboardViewControllerFactory class] configuration:^(TyphoonDefinition *definition) {
-        [definition useInitializer:@selector(loginViewController)];
-        [definition injectProperty:@selector(presenter) with:[self loginPresenter]];
+    return [TyphoonDefinition withClass:[RTLoginViewController class] configuration:^(TyphoonDefinition *definition) {
+        [definition useInitializer:@selector(viewControllerWithPresenter:)
+                        parameters:^(TyphoonMethod *initializer) {
+                            [initializer injectParameterWith:[self loginPresenter]];
+        }];
     }];
 }
 

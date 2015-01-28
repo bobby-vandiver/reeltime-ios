@@ -5,8 +5,6 @@
 
 @interface RTStoryboardViewControllerFactory : NSObject
 
-+ (RTLoginViewController *)loginViewController;
-
-+ (RTAccountRegistrationViewController *)accountRegistrationViewController;
++ (id)viewControllerWithStoryboardIdentifier:(NSString *)identifier;
 
 @end

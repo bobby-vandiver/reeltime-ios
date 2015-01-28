@@ -274,6 +274,8 @@
 		71166E131A6C36C800EAE5BA /* AccountRegistration */ = {
 			isa = PBXGroup;
 			children = (
+				7188580C1A782EB300B9C0DC /* RTAccountRegistrationAssembly.h */,
+				7188580D1A782EB300B9C0DC /* RTAccountRegistrationAssembly.m */,
 				71166E141A6C36C800EAE5BA /* RTAccountRegistrationAutoLoginPresenter.h */,
 				71166E151A6C36C800EAE5BA /* RTAccountRegistrationAutoLoginPresenter.m */,
 				71166E161A6C36C800EAE5BA /* RTAccountRegistrationDataManager.h */,
@@ -285,15 +287,13 @@
 				7160C2B91A6F2CF40045ADDA /* RTAccountRegistrationInteractorDelegate.h */,
 				71166E1B1A6C36C800EAE5BA /* RTAccountRegistrationPresenter.h */,
 				71166E1C1A6C36C800EAE5BA /* RTAccountRegistrationPresenter.m */,
-				71166E1D1A6C36C800EAE5BA /* RTAccountRegistrationView.h */,
-				71166E1E1A6C36C800EAE5BA /* RTAccountRegistrationWireframe.h */,
-				71166E1F1A6C36C800EAE5BA /* RTAccountRegistrationWireframe.m */,
 				7160C2BB1A6F32BB0045ADDA /* RTAccountRegistrationValidator.h */,
 				7160C2BC1A6F32BB0045ADDA /* RTAccountRegistrationValidator.m */,
+				71166E1D1A6C36C800EAE5BA /* RTAccountRegistrationView.h */,
 				718858081A78296900B9C0DC /* RTAccountRegistrationViewController.h */,
 				718858091A78296900B9C0DC /* RTAccountRegistrationViewController.m */,
-				7188580C1A782EB300B9C0DC /* RTAccountRegistrationAssembly.h */,
-				7188580D1A782EB300B9C0DC /* RTAccountRegistrationAssembly.m */,
+				71166E1E1A6C36C800EAE5BA /* RTAccountRegistrationWireframe.h */,
+				71166E1F1A6C36C800EAE5BA /* RTAccountRegistrationWireframe.m */,
 			);
 			path = AccountRegistration;
 			sourceTree = "<group>";

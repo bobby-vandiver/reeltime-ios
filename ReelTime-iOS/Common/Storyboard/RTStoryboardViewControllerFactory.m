@@ -5,18 +5,9 @@
 
 @implementation RTStoryboardViewControllerFactory
 
-+ (UIStoryboard *)mainStoryboard {
-    return [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-}
-
-+ (RTLoginViewController *)loginViewController {
-    NSString *identifier = [RTLoginViewController storyboardIdentifier];
-    return [[self mainStoryboard] instantiateViewControllerWithIdentifier:identifier];
-}
-
-+ (RTAccountRegistrationViewController *)accountRegistrationViewController {
-    NSString *identifier = [RTAccountRegistrationViewController storyboardIdentifier];
-    return [[self mainStoryboard] instantiateViewControllerWithIdentifier:identifier];
++ (id)viewControllerWithStoryboardIdentifier:(NSString *)identifier {
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    return [mainStoryboard instantiateViewControllerWithIdentifier:identifier];
 }
 
 @end

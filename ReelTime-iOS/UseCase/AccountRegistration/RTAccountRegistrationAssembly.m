@@ -15,8 +15,6 @@
 #import "RTAccountRegistrationValidator.h"
 #import "RTAccountRegistrationAutoLoginPresenter.h"
 
-#import "RTStoryboardViewControllerFactory.h"
-
 @implementation RTAccountRegistrationAssembly
 
 - (RTAccountRegistrationWireframe *)accountRegistrationWireframe {
@@ -24,9 +22,11 @@
 }
 
 - (RTAccountRegistrationViewController *)accountRegistrationViewController {
-    return [TyphoonDefinition withClass:[RTStoryboardViewControllerFactory class] configuration:^(TyphoonDefinition *definition) {
-        [definition useInitializer:@selector(accountRegistrationViewController)];
-        [definition injectProperty:@selector(presenter) with:[self accountRegistrationPresenter]];
+    return [TyphoonDefinition withClass:[RTAccountRegistrationViewController class] configuration:^(TyphoonDefinition *definition) {
+        [definition useInitializer:@selector(viewControllerWithPresenter:)
+                        parameters:^(TyphoonMethod *initializer) {
+            [initializer injectParameterWith:[self accountRegistrationPresenter]];
+        }];
     }];
 }
 
