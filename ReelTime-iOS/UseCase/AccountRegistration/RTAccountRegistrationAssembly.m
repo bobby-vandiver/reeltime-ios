@@ -13,7 +13,6 @@
 #import "RTAccountRegistrationDataManager.h"
 
 #import "RTAccountRegistrationValidator.h"
-#import "RTAccountRegistrationAutoLoginPresenter.h"
 
 @implementation RTAccountRegistrationAssembly
 

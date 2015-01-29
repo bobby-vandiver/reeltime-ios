@@ -58,8 +58,9 @@ describe(@"account registration presenter", ^{
     });
     
     describe(@"successful registration", ^{
+        
         it(@"should present the post auto login interface when registration and auto login succeed", ^{
-            [presenter registrationWithAutoLoginSucceeded];
+            [presenter loginSucceeded];
             [verify(wireframe) presentPostAutoLoginInterface];
         });
         
@@ -76,7 +77,7 @@ describe(@"account registration presenter", ^{
         
         it(@"should inform user of failure to auto login and present login interface", ^{
             NSError *error = [RTErrorFactory loginErrorWithCode:LoginUnableToSetCurrentlyLoggedInUser];
-            [presenter registrationWithAutoLoginFailedWithError:error];
+            [presenter loginFailedWithErrors:@[error]];
             
             NSString *message = @"Account was registered but we were unable to log you in automatically."
                                 @"Please login.";

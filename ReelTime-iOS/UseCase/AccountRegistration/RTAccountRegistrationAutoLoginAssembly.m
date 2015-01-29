@@ -4,29 +4,17 @@
 #import "RTSecureStoreAssembly.h"
 #import "RTAccountRegistrationAssembly.h"
 
-#import "RTAccountRegistrationAutoLoginPresenter.h"
-
 #import "RTLoginPresenter.h"
 #import "RTLoginInteractor.h"
 #import "RTLoginDataManager.h"
 
 @implementation RTAccountRegistrationAutoLoginAssembly
 
-- (RTAccountRegistrationAutoLoginPresenter *)accountRegistrationAutoLoginPresenter {
-    return [TyphoonDefinition withClass:[RTAccountRegistrationAutoLoginPresenter class] configuration:^(TyphoonDefinition *definition) {
-        [definition injectMethod:@selector(initWithAccountRegistrationPresenter:loginInteractor:)
-                      parameters:^(TyphoonMethod *initializer) {
-                          [initializer injectParameterWith:[self.accountRegistrationAssembly accountRegistrationPresenter]];
-                          [initializer injectParameterWith:[self accountRegistrationAutoLoginInteractor]];
-        }];
-    }];
-}
-
 - (RTLoginInteractor *)accountRegistrationAutoLoginInteractor {
     return [TyphoonDefinition withClass:[RTLoginInteractor class] configuration:^(TyphoonDefinition *definition) {
         [definition injectMethod:@selector(initWithDelegate:dataManager:)
                       parameters:^(TyphoonMethod *initializer) {
-                          [initializer injectParameterWith:[self accountRegistrationAutoLoginPresenter]];
+                          [initializer injectParameterWith:[self.accountRegistrationAssembly accountRegistrationPresenter]];
                           [initializer injectParameterWith:[self accountRegistrationAutoLoginDataManager]];
         }];
     }];

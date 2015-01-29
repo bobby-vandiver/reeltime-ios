@@ -69,10 +69,6 @@
     [self.interactor registerAccount:registration];
 }
 
-- (void)registrationWithAutoLoginSucceeded {
-    [self.wireframe presentPostAutoLoginInterface];
-}
-
 - (void)registrationWithAutoLoginFailedWithError:(NSError *)error {
     if ([self failedToAssociateClientWithDevice:error]) {
         NSString *message = @"Account was registered but we were unable to associate your device with your account."
@@ -108,6 +104,17 @@
     NSString *message = messages[@(code)];
     if (message) {
         [self.view showErrorMessage:message];
+    }
+}
+
+- (void)loginSucceeded {
+    [self.wireframe presentPostAutoLoginInterface];
+}
+
+- (void)loginFailedWithErrors:(NSArray *)errors {
+    if ([errors count] > 0) {
+        NSError *error = [errors objectAtIndex:0];
+        [self registrationWithAutoLoginFailedWithError:error];
     }
 }
 
