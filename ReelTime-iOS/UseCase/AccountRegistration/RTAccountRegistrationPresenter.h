@@ -5,6 +5,7 @@
 @protocol RTAccountRegistrationView;
 @class RTAccountRegistrationInteractor;
 @class RTAccountRegistrationWireframe;
+@class RTAccountRegistrationAutoLoginPresenter;
 
 @interface RTAccountRegistrationPresenter : NSObject <RTAccountRegistrationInteractorDelegate>
 

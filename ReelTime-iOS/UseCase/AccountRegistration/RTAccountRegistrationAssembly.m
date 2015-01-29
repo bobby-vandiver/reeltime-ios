@@ -4,7 +4,7 @@
 #import "RTSecureStoreAssembly.h"
 
 #import "RTLoginAssembly.h"
-#import "RTLoginInteractor.h"
+#import "RTAccountRegistrationAutoLoginAssembly.h"
 
 #import "RTAccountRegistrationWireframe.h"
 #import "RTAccountRegistrationViewController.h"
@@ -53,33 +53,13 @@
                           [initializer injectParameterWith:[self accountRegistrationPresenter]];
                           [initializer injectParameterWith:[self accountRegistrationDataManager]];
                           [initializer injectParameterWith:[self accountRegistrationValidator]];
-                          [initializer injectParameterWith:[self accountRegistrationAutoLoginInteractor]];
+                          [initializer injectParameterWith:[self.accountRegistrationAutoLoginAssembly accountRegistrationAutoLoginInteractor]];
         }];
     }];
 }
 
 - (RTAccountRegistrationValidator *)accountRegistrationValidator {
     return [TyphoonDefinition withClass:[RTAccountRegistrationValidator class]];
-}
-
-- (RTLoginInteractor *)accountRegistrationAutoLoginInteractor {
-    return [TyphoonDefinition withClass:[RTLoginInteractor class] configuration:^(TyphoonDefinition *definition) {
-        [definition injectMethod:@selector(initWithDelegate:dataManager:)
-                        parameters:^(TyphoonMethod *initializer) {
-                            [initializer injectParameterWith:[self accountRegistrationAutoLoginPresenter]];
-                            [initializer injectParameterWith:[self.loginAssembly loginDataManager]];
-        }];
-    }];
-}
-
-- (RTAccountRegistrationAutoLoginPresenter *)accountRegistrationAutoLoginPresenter {
-    return [TyphoonDefinition withClass:[RTAccountRegistrationAutoLoginPresenter class] configuration:^(TyphoonDefinition *definition) {
-        [definition injectMethod:@selector(initWithAccountRegistrationPresenter:loginInteractor:)
-                      parameters:^(TyphoonMethod *initializer) {
-                          [initializer injectParameterWith:[self accountRegistrationPresenter]];
-                          [initializer injectParameterWith:[self.loginAssembly loginInteractor]];
-        }];
-    }];
 }
 
 - (RTAccountRegistrationDataManager *)accountRegistrationDataManager {
