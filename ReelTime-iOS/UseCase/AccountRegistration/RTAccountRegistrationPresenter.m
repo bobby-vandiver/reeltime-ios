@@ -13,7 +13,7 @@
 
 @property id<RTAccountRegistrationView> view;
 @property RTAccountRegistrationInteractor *interactor;
-@property RTAccountRegistrationWireframe *wireframe;
+@property (weak) RTAccountRegistrationWireframe *wireframe;
 
 @end
 

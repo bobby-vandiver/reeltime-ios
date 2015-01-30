@@ -9,7 +9,7 @@
 
 @property id<RTLoginView> view;
 @property RTLoginInteractor *interactor;
-@property RTLoginWireframe *wireframe;
+@property (weak) RTLoginWireframe *wireframe;
 
 @end
 
