@@ -7,6 +7,11 @@
 #import "RTServerErrors.h"
 #import "RTClientCredentials.h"
 
+#import "RTActivity.h"
+#import "RTUser.h"
+#import "RTReel.h"
+#import "RTVideo.h"
+
 #import <RestKit/Testing.h>
 
 SpecBegin(RTRestAPIMappingFactory)
@@ -139,6 +144,145 @@ describe(@"API Mapping", ^{
         
         [mappingTest performMapping];
         [mappingTest verify];
+    });
+    
+    it(@"user", ^{
+        RKMapping *mapping = [RTRestAPIMappingFactory userMapping];
+        NSDictionary *response = @{
+                                   @"username": @"someone",
+                                   @"display_name": @"some display",
+                                   @"follower_count": @(42),
+                                   @"followee_count": @(87)
+                                   };
+        
+        RTUser *user = [[RTUser alloc] init];
+        RKMappingTest *mappingTest = [RKMappingTest testForMapping:mapping
+                                                      sourceObject:response
+                                                 destinationObject:user];
+        
+        [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:@"username"
+                                                                                destinationKeyPath:@"username"
+                                                                                             value:@"someone"]];
+        
+        [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:@"display_name"
+                                                                                destinationKeyPath:@"displayName"
+                                                                                             value:@"some display"]];
+        
+        [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:@"follower_count"
+                                                                                destinationKeyPath:@"numberOfFollowers"
+                                                                                             value:@(42)]];
+        
+        [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:@"followee_count"
+                                                                                destinationKeyPath:@"numberOfFollowees"
+                                                                                             value:@(87)]];
+        
+        [mappingTest performMapping];
+        [mappingTest verify];
+    });
+    
+    it(@"reel", ^{
+        RKMapping *mapping = [RTRestAPIMappingFactory reelMapping];
+        NSDictionary *response = @{
+                                   @"reel_id": @(12),
+                                   @"name": @"some reel",
+                                   @"audience_size": @(2),
+                                   @"video_count": @(20)
+                                   };
+        
+        RTReel *reel = [[RTReel alloc] init];
+        RKMappingTest *mappingTest = [RKMappingTest testForMapping:mapping
+                                                      sourceObject:response
+                                                 destinationObject:reel];
+        
+        [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:@"reel_id"
+                                                                                destinationKeyPath:@"reelId"
+                                                                                             value:@(12)]];
+         
+        [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:@"name"
+                                                                                destinationKeyPath:@"name"
+                                                                                             value:@"some reel"]];
+        
+        [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:@"audience_size"
+                                                                                destinationKeyPath:@"audienceSize"
+                                                                                             value:@(2)]];
+        
+        [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:@"video_count"
+                                                                                destinationKeyPath:@"numberOfVideos"
+                                                                                             value:@(20)]];
+        
+        [mappingTest performMapping];
+        [mappingTest verify];
+    });
+    
+    it(@"video", ^{
+        RKMapping *mapping = [RTRestAPIMappingFactory videoMapping];
+        NSDictionary *response = @{
+                                   @"video_id": @(72),
+                                   @"title": @"some video"
+                                   };
+        
+        RTVideo *video = [[RTVideo alloc] init];
+        RKMappingTest *mappingTest = [RKMappingTest testForMapping:mapping
+                                                      sourceObject:response
+                                                 destinationObject:video];
+        
+        [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:@"video_id"
+                                                                                destinationKeyPath:@"videoId"
+                                                                                             value:@(72)]];
+        
+        [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:@"title"
+                                                                                destinationKeyPath:@"title"
+                                                                                             value:@"some video"]];
+        
+        [mappingTest performMapping];
+        [mappingTest verify];
+    });
+
+    xdescribe(@"newsfeed activities", ^{
+       
+        it(@"create reel activity" , ^{
+            RKMapping *mapping = [RTRestAPIMappingFactory activityMapping];
+            NSDictionary *response = @{
+                                       @"type": @"create-reel",
+                                       @"user": @{
+                                               @"username": @"someone",
+                                               @"display_name": @"some display",
+                                               @"follower_count": @(42),
+                                               @"followee_count": @(87)
+                                               },
+                                       @"reel": @{
+                                               @"reel_id": @(12),
+                                               @"name": @"some reel",
+                                               @"audience_size": @(2),
+                                               @"video_count": @(20)
+                                               }
+                                       };
+            
+            RTActivity *activity = [[RTActivity alloc] init];
+            activity.user = [[RTUser alloc] init];
+            activity.reel = [[RTReel alloc] init];
+
+            RKMappingTest *mappingTest = [RKMappingTest testForMapping:mapping
+                                                          sourceObject:response
+                                                     destinationObject:activity];
+            
+            [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:@"type"
+                                                                                    destinationKeyPath:@"type"
+                                                                                                 value:@(RTActivityTypeCreateReel)]];
+            
+            RKMapping *userMapping = [RTRestAPIMappingFactory userMapping];
+            [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:@"user"
+                                                                                    destinationKeyPath:@"user"
+                                                                                               mapping:userMapping]];
+            
+            RKMapping *reelMapping = [RTRestAPIMappingFactory reelMapping];
+            [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:@"reel"
+                                                                                    destinationKeyPath:@"reel"
+                                                                                               mapping:reelMapping]];
+            
+            [mappingTest performMapping];
+            [mappingTest verify];
+        });
     });
 });
 

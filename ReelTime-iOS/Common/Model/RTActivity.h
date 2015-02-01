@@ -5,14 +5,14 @@
 @class RTVideo;
 
 typedef NS_ENUM(NSInteger, RTActivityType) {
-    ActivityCreateReel,
-    ActivityJoinReelAudience,
-    ActivityAddVideoToReel
+    RTActivityTypeCreateReel,
+    RTActivityTypeJoinReelAudience,
+    RTActivityTypeAddVideoToReel
 };
 
 @interface RTActivity : NSObject
 
-@property (nonatomic, copy) NSNumber *type;
+@property (nonatomic, assign) RTActivityType type;
 
 @property (nonatomic, copy) RTUser *user;
 @property (nonatomic, copy) RTReel *reel;

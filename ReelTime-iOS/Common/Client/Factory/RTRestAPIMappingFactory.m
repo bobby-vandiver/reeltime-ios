@@ -6,6 +6,13 @@
 #import "RTServerErrors.h"
 #import "RTClientCredentials.h"
 
+#import "RTUser.h"
+#import "RTReel.h"
+#import "RTVideo.h"
+
+#import "RTActivity.h"
+#import "RTNewsfeed.h"
+
 @implementation RTRestAPIMappingFactory
 
 + (RKMapping *)tokenMapping {
@@ -43,6 +50,47 @@
                                                   @"client_id":         @"clientId",
                                                   @"client_secret":     @"clientSecret"
                                                   }];
+    return mapping;
+}
+
++ (RKMapping *)userMapping {
+    RKObjectMapping *mapping = [RKObjectMapping mappingForClass:[RTUser class]];
+    [mapping addAttributeMappingsFromDictionary:@{
+                                                  @"username":          @"username",
+                                                  @"display_name":      @"displayName",
+                                                  @"follower_count":    @"numberOfFollowers",
+                                                  @"followee_count":    @"numberOfFollowees"
+                                                  }];
+    return mapping;
+}
+
++ (RKMapping *)reelMapping {
+    RKObjectMapping *mapping = [RKObjectMapping mappingForClass:[RTReel class]];
+    [mapping addAttributeMappingsFromDictionary:@{
+                                                  @"reel_id":           @"reelId",
+                                                  @"name":              @"name",
+                                                  @"audience_size":     @"audienceSize",
+                                                  @"video_count":       @"numberOfVideos"
+                                                  }];
+    return mapping;
+}
+
++ (RKMapping *)videoMapping {
+    RKObjectMapping *mapping = [RKObjectMapping mappingForClass:[RTVideo class]];
+    [mapping addAttributeMappingsFromDictionary:@{
+                                                  @"video_id":          @"videoId",
+                                                  @"title":             @"title"
+                                                  }];
+    return mapping;
+}
+
++ (RKMapping *)activityMapping {
+    RKObjectMapping *mapping = [RKObjectMapping mappingForClass:[RTActivity class]];
+    return mapping;
+}
+
++ (RKMapping *)newsfeedMapping {
+    RKObjectMapping *mapping = [RKObjectMapping mappingForClass:[RTNewsfeed class]];
     return mapping;
 }
 

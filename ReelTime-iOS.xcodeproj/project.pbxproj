@@ -42,6 +42,7 @@
 		71647BD81A7E7F9D00F44996 /* RTUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 71647BD71A7E7F9D00F44996 /* RTUser.m */; };
 		71647BDB1A7E802200F44996 /* RTReel.m in Sources */ = {isa = PBXBuildFile; fileRef = 71647BDA1A7E802200F44996 /* RTReel.m */; };
 		71647BDE1A7E817000F44996 /* RTActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 71647BDD1A7E817000F44996 /* RTActivity.m */; };
+		71647BE31A7EA68C00F44996 /* RTNewsfeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 71647BE21A7EA68C00F44996 /* RTNewsfeed.m */; };
 		7169F1761A5F6CDD00E161C4 /* RTLoginDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7169F1751A5F6CDD00E161C4 /* RTLoginDataManagerSpec.m */; };
 		7170C8691A59926E00C460BB /* RTErrorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7170C8681A59926E00C460BB /* RTErrorFactory.m */; };
 		7170C86D1A59A98600C460BB /* RTKeyChainWrapperSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7170C86C1A59A98600C460BB /* RTKeyChainWrapperSpec.m */; };
@@ -162,6 +163,8 @@
 		71647BDD1A7E817000F44996 /* RTActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTActivity.m; path = "ReelTime-iOS/Common/Model/RTActivity.m"; sourceTree = SOURCE_ROOT; };
 		71647BDF1A7E8A9D00F44996 /* RTLoginError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLoginError.h; sourceTree = "<group>"; };
 		71647BE01A7E8CD800F44996 /* RTAccountRegistrationError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTAccountRegistrationError.h; sourceTree = "<group>"; };
+		71647BE11A7EA68C00F44996 /* RTNewsfeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTNewsfeed.h; path = "ReelTime-iOS/Common/Model/RTNewsfeed.h"; sourceTree = SOURCE_ROOT; };
+		71647BE21A7EA68C00F44996 /* RTNewsfeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTNewsfeed.m; path = "ReelTime-iOS/Common/Model/RTNewsfeed.m"; sourceTree = SOURCE_ROOT; };
 		7169F1751A5F6CDD00E161C4 /* RTLoginDataManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLoginDataManagerSpec.m; sourceTree = "<group>"; };
 		7170C8671A59926E00C460BB /* RTErrorFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTErrorFactory.h; sourceTree = "<group>"; };
 		7170C8681A59926E00C460BB /* RTErrorFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTErrorFactory.m; sourceTree = "<group>"; };
@@ -549,8 +552,12 @@
 			children = (
 				718CFFC81A6C007C00B418F9 /* RTAccountRegistration.h */,
 				718CFFC91A6C007C00B418F9 /* RTAccountRegistration.m */,
+				71647BDC1A7E817000F44996 /* RTActivity.h */,
+				71647BDD1A7E817000F44996 /* RTActivity.m */,
 				713D7A461A509ACC00754A06 /* RTClientCredentials.h */,
 				713D7A471A509ACC00754A06 /* RTClientCredentials.m */,
+				71647BE11A7EA68C00F44996 /* RTNewsfeed.h */,
+				71647BE21A7EA68C00F44996 /* RTNewsfeed.m */,
 				71C5C0A41A55EAE700CAAFAC /* RTOAuth2Token.h */,
 				71C5C0A51A55EAE700CAAFAC /* RTOAuth2Token.m */,
 				71C5C0A61A55EAE700CAAFAC /* RTOAuth2TokenError.h */,
@@ -565,8 +572,6 @@
 				71C5C0AB1A55EAE700CAAFAC /* RTUserCredentials.m */,
 				71647BD31A7E7EEA00F44996 /* RTVideo.h */,
 				71647BD41A7E7EEA00F44996 /* RTVideo.m */,
-				71647BDC1A7E817000F44996 /* RTActivity.h */,
-				71647BDD1A7E817000F44996 /* RTActivity.m */,
 			);
 			name = Model;
 			path = Models;
@@ -880,6 +885,7 @@
 				719B35DE1A51140900FFD543 /* RTRestAPI.m in Sources */,
 				718A0BE51A4DA87900137C49 /* RTAppDelegate.m in Sources */,
 				713D7A481A509ACC00754A06 /* RTClientCredentials.m in Sources */,
+				71647BE31A7EA68C00F44996 /* RTNewsfeed.m in Sources */,
 				7102A7B51A57AB0A00DEDA83 /* RTKeyChainWrapper.m in Sources */,
 				711690921A6AB5510031578E /* RTSecureStoreAssembly.m in Sources */,
 				7116909C1A6AEBDA0031578E /* RTStoryboardViewControllerFactory.m in Sources */,
