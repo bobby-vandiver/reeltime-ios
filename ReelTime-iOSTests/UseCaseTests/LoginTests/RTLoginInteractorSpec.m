@@ -57,17 +57,17 @@ describe(@"login interactor", ^{
         context(@"missing parameters", ^{
             it(@"should fail when username is missing", ^{
                 [interactor loginWithUsername:@"" password:password];
-                expectLoginFailureError(LoginMissingUsername);
+                expectLoginFailureError(RTLoginErrorMissingUsername);
             });
             
             it(@"should fail when password is missing", ^{
                 [interactor loginWithUsername:username password:@""];
-                expectLoginFailureError(LoginMissingPassword);
+                expectLoginFailureError(RTLoginErrorMissingPassword);
             });
             
             it(@"should fail when both username and password are missing", ^{
                 [interactor loginWithUsername:@"" password:@""];
-                expectLoginFailureErrors(@[@(LoginMissingUsername), @(LoginMissingPassword)]);
+                expectLoginFailureErrors(@[@(RTLoginErrorMissingUsername), @(RTLoginErrorMissingPassword)]);
             });
         });
 
@@ -126,17 +126,17 @@ describe(@"login interactor", ^{
             
             it(@"should notify delegate of failed login due to unknown client", ^{
                 [interactor loginWithUsername:username password:password];
-                expectLoginFailureError(LoginUnknownClient);
+                expectLoginFailureError(RTLoginErrorUnknownClient);
             });
         });
     });
     
     describe(@"login failures", ^{
         it(@"should notify delegate of all other login errors as-is", ^{
-            NSError *error = [RTErrorFactory loginErrorWithCode:LoginUnableToStoreToken];
+            NSError *error = [RTErrorFactory loginErrorWithCode:RTLoginErrorUnableToStoreToken];
             
             [interactor loginDataOperationFailedWithError:error];
-            expectLoginFailureError(LoginUnableToStoreToken);
+            expectLoginFailureError(RTLoginErrorUnableToStoreToken);
         });
         
         it(@"should notify delegate of all non-login errors as-is", ^{

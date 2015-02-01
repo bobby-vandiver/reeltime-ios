@@ -45,16 +45,16 @@
 
     for (NSError *error in errors) {
         if ([error.domain isEqualToString:RTLoginErrorDomain]) {
-            if (error.code == LoginMissingUsername) {
+            if (error.code == RTLoginErrorMissingUsername) {
                 message = @"Username is required";
             }
-            else if (error.code == LoginMissingPassword) {
+            else if (error.code == RTLoginErrorMissingPassword) {
                 message = @"Password is required";
             }
-            else if (error.code == LoginInvalidCredentials) {
+            else if (error.code == RTLoginErrorInvalidCredentials) {
                 message = @"Invalid username or password";
             }
-            else if (error.code == LoginUnknownClient) {
+            else if (error.code == RTLoginErrorUnknownClient) {
                 [self.wireframe presentDeviceRegistrationInterface];
                 break;
             }

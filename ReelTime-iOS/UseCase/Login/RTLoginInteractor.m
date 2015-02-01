@@ -39,7 +39,7 @@
     RTClientCredentials *clientCredentials = [self.dataManager clientCredentialsForUsername:username];
 
     if (!clientCredentials) {
-        [self loginFailedWithErrorCode:LoginUnknownClient];
+        [self loginFailedWithErrorCode:RTLoginErrorUnknownClient];
     }
     else {
         RTUserCredentials *userCredentials = [[RTUserCredentials alloc] initWithUsername:username
@@ -63,10 +63,10 @@
     NSMutableArray *errorContainer = [NSMutableArray array];
     
     if ([username length] == 0) {
-        [errorContainer addObject:[RTErrorFactory loginErrorWithCode:LoginMissingUsername]];
+        [errorContainer addObject:[RTErrorFactory loginErrorWithCode:RTLoginErrorMissingUsername]];
     }
     if ([password length] == 0) {
-        [errorContainer addObject:[RTErrorFactory loginErrorWithCode:LoginMissingPassword]];
+        [errorContainer addObject:[RTErrorFactory loginErrorWithCode:RTLoginErrorMissingPassword]];
     }
     
     if ([errorContainer count] > 0) {

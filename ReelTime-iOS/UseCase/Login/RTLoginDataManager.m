@@ -61,13 +61,13 @@
         NSString *errorCode = tokenError.errorCode;
         	
         if ([errorCode isEqualToString:@"invalid_client"]) {
-            loginErrorCode = LoginUnknownClient;
+            loginErrorCode = RTLoginErrorUnknownClient;
         }
         else if ([errorCode isEqualToString:@"invalid_grant"]) {
-            loginErrorCode = LoginInvalidCredentials;
+            loginErrorCode = RTLoginErrorInvalidCredentials;
         }
         else {
-            loginErrorCode = LoginUnknownTokenError;
+            loginErrorCode = RTLoginErrorUnknownTokenError;
         }
 
         NSError *error = [RTErrorFactory loginErrorWithCode:loginErrorCode];
@@ -109,7 +109,7 @@
     BOOL success = [self.tokenStore storeToken:token forUsername:username error:&storeError];
     
     if (!success && error) {
-        *error = [RTErrorFactory loginErrorWithCode:LoginUnableToStoreToken originalError:storeError];
+        *error = [RTErrorFactory loginErrorWithCode:RTLoginErrorUnableToStoreToken originalError:storeError];
     }
     
     return success;
@@ -121,7 +121,7 @@
     BOOL success = [self.currentUserStore storeCurrentUsername:username error:&storeError];
     
     if (!success && error) {
-        *error = [RTErrorFactory loginErrorWithCode:LoginUnableToSetCurrentlyLoggedInUser
+        *error = [RTErrorFactory loginErrorWithCode:RTLoginErrorUnableToSetCurrentlyLoggedInUser
                                               originalError:storeError];
     }
     
@@ -134,7 +134,7 @@
     BOOL success = [self.tokenStore removeTokenForUsername:username error:&storeError];
     
     if (!success && error) {
-        *error = [RTErrorFactory loginErrorWithCode:LoginUnableToRemoveToken originalError:storeError];
+        *error = [RTErrorFactory loginErrorWithCode:RTLoginErrorUnableToRemoveToken originalError:storeError];
     }
     
     return success;

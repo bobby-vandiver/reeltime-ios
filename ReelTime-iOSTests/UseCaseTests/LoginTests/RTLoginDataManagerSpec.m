@@ -137,7 +137,7 @@ describe(@"login data manager", ^{
                 [verify(delegate) loginDataOperationFailedWithError:[errorCaptor capture]];
                 
                 capturedError = [errorCaptor value];
-                expect(capturedError).to.beError(RTLoginErrorDomain, LoginUnknownClient);
+                expect(capturedError).to.beError(RTLoginErrorDomain, RTLoginErrorUnknownClient);
             });
             
             it(@"should map invalid_grant to invalid credentials", ^{
@@ -148,7 +148,7 @@ describe(@"login data manager", ^{
                 [verify(delegate) loginDataOperationFailedWithError:[errorCaptor capture]];
                 
                 capturedError = [errorCaptor value];
-                expect(capturedError).to.beError(RTLoginErrorDomain, LoginInvalidCredentials);
+                expect(capturedError).to.beError(RTLoginErrorDomain, RTLoginErrorInvalidCredentials);
             });
             
             it(@"should map other errors to unknown token error", ^{
@@ -159,7 +159,7 @@ describe(@"login data manager", ^{
                 [verify(delegate) loginDataOperationFailedWithError:[errorCaptor capture]];
                 
                 capturedError = [errorCaptor value];
-                expect(capturedError).to.beError(RTLoginErrorDomain, LoginUnknownTokenError);
+                expect(capturedError).to.beError(RTLoginErrorDomain, RTLoginErrorUnknownTokenError);
             });
         });
     });
@@ -227,7 +227,7 @@ describe(@"login data manager", ^{
                     [verify(delegate) loginDataOperationFailedWithError:[errorCaptor capture]];
                     
                     capturedError = [errorCaptor value];
-                    expect(capturedError).to.beError(RTLoginErrorDomain, LoginUnableToSetCurrentlyLoggedInUser);
+                    expect(capturedError).to.beError(RTLoginErrorDomain, RTLoginErrorUnableToSetCurrentlyLoggedInUser);
                 });
                 
                 it(@"should notify delegate of failure to delete stored token", ^{
@@ -239,7 +239,7 @@ describe(@"login data manager", ^{
                     [verify(delegate) loginDataOperationFailedWithError:[errorCaptor capture]];
                     
                     capturedError = [errorCaptor value];
-                    expect(capturedError).to.beError(RTLoginErrorDomain, LoginUnableToRemoveToken);
+                    expect(capturedError).to.beError(RTLoginErrorDomain, RTLoginErrorUnableToRemoveToken);
                 });
             });
             
@@ -257,7 +257,7 @@ describe(@"login data manager", ^{
                 [verify(delegate) loginDataOperationFailedWithError:[errorCaptor capture]];
                 
                 capturedError = [errorCaptor value];
-                expect(capturedError).to.beError(RTLoginErrorDomain, LoginUnableToStoreToken);
+                expect(capturedError).to.beError(RTLoginErrorDomain, RTLoginErrorUnableToStoreToken);
                 
                 expect(callbackExecuted).to.beFalsy();
             });

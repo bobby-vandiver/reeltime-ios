@@ -76,7 +76,7 @@ describe(@"account registration presenter", ^{
         });
         
         it(@"should inform user of failure to auto login and present login interface", ^{
-            NSError *error = [RTErrorFactory loginErrorWithCode:LoginUnableToSetCurrentlyLoggedInUser];
+            NSError *error = [RTErrorFactory loginErrorWithCode:RTLoginErrorUnableToSetCurrentlyLoggedInUser];
             [presenter loginFailedWithErrors:@[error]];
             
             NSString *message = @"Account was registered but we were unable to log you in automatically."
