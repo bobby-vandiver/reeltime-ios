@@ -6,7 +6,7 @@
 
 #import "RTAccountRegistration.h"
 
-#import "RTAccountRegistrationErrors.h"
+#import "RTAccountRegistrationError.h"
 #import "RTLoginError.h"
 
 @interface RTAccountRegistrationPresenter ()
@@ -33,24 +33,24 @@
 
 + (NSDictionary *)registrationErrorCodeToErrorMessageMap {
     return @{
-             @(AccountRegistrationMissingUsername): @"Username is required",
-             @(AccountRegistrationInvalidUsername): @"Username must be 2-15 alphanumeric characters",
-             @(AccountRegistrationUsernameIsUnavailable): @"Username is unavailable",
+             @(RTAccountRegistrationErrorMissingUsername): @"Username is required",
+             @(RTAccountRegistrationErrorInvalidUsername): @"Username must be 2-15 alphanumeric characters",
+             @(RTAccountRegistrationErrorUsernameIsUnavailable): @"Username is unavailable",
              
-             @(AccountRegistrationMissingPassword): @"Password is required",
-             @(AccountRegistrationInvalidPassword): @"Password must be at least 6 characters",
+             @(RTAccountRegistrationErrorMissingPassword): @"Password is required",
+             @(RTAccountRegistrationErrorInvalidPassword): @"Password must be at least 6 characters",
              
-             @(AccountRegistrationMissingConfirmationPassword): @"Confirmation password is required",
-             @(AccountRegistrationConfirmationPasswordDoesNotMatch): @"Password and confirmation password must match",
+             @(RTAccountRegistrationErrorMissingConfirmationPassword): @"Confirmation password is required",
+             @(RTAccountRegistrationErrorConfirmationPasswordDoesNotMatch): @"Password and confirmation password must match",
              
-             @(AccountRegistrationMissingEmail): @"Email is required",
-             @(AccountRegistrationInvalidEmail): @"Email is not a valid email address",
+             @(RTAccountRegistrationErrorMissingEmail): @"Email is required",
+             @(RTAccountRegistrationErrorInvalidEmail): @"Email is not a valid email address",
              
-             @(AccountRegistrationMissingDisplayName): @"Display name is required",
-             @(AccountRegistrationInvalidDisplayName): @"Display name must be 2-20 alphanumeric or space characters",
+             @(RTAccountRegistrationErrorMissingDisplayName): @"Display name is required",
+             @(RTAccountRegistrationErrorInvalidDisplayName): @"Display name must be 2-20 alphanumeric or space characters",
              
-             @(AccountRegistrationMissingClientName): @"Client name is required",
-             @(AccountRegistrationRegistrationServiceUnavailable): @"Unable to register at this time. Please try again."
+             @(RTAccountRegistrationErrorMissingClientName): @"Client name is required",
+             @(RTAccountRegistrationErrorRegistrationServiceUnavailable): @"Unable to register at this time. Please try again."
              };
 }
 
@@ -88,7 +88,7 @@
 
 - (BOOL)failedToAssociateClientWithDevice:(NSError *)error {
     return [error.domain isEqualToString:RTAccountRegistrationErrorDomain] &&
-    error.code == AccountRegistrationUnableToAssociateClientWithDevice;
+    error.code == RTAccountRegistrationErrorUnableToAssociateClientWithDevice;
 }
 
 - (void)registrationFailedWithErrors:(NSArray *)errors {
@@ -99,7 +99,7 @@
     }
 }
 
-- (void)showErrorMessageForRegistrationErrorCode:(RTAccountRegistrationErrors)code {
+- (void)showErrorMessageForRegistrationErrorCode:(RTAccountRegistrationError)code {
     NSDictionary *messages = [RTAccountRegistrationPresenter registrationErrorCodeToErrorMessageMap];
     NSString *message = messages[@(code)];
     if (message) {

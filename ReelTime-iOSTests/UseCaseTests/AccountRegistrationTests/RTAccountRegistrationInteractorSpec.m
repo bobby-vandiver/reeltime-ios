@@ -9,7 +9,7 @@
 
 #import "RTAccountRegistration.h"
 #import "RTClientCredentials.h"
-#import "RTAccountRegistrationErrors.h"
+#import "RTAccountRegistrationError.h"
 
 #import "RTErrorFactory.h"
 
@@ -92,7 +92,7 @@ describe(@"account registration interactor", ^{
     
     describe(@"registration failure", ^{
         it(@"should pass registration errors on to delegate", ^{
-            NSArray *errors = @[[RTErrorFactory accountRegistrationErrorWithCode:AccountRegistrationInvalidUsername]];
+            NSArray *errors = @[[RTErrorFactory accountRegistrationErrorWithCode:RTAccountRegistrationErrorInvalidUsername]];
             [interactor registerAccountFailedWithErrors:errors];
             [verify(delegate) registrationFailedWithErrors:errors];
         });
@@ -104,7 +104,7 @@ describe(@"account registration interactor", ^{
             [verify(delegate) registrationWithAutoLoginFailedWithError:[errorCaptor capture]];
             
             NSError *error = [errorCaptor value];
-            expect(error).to.beError(RTAccountRegistrationErrorDomain, AccountRegistrationUnableToAssociateClientWithDevice);
+            expect(error).to.beError(RTAccountRegistrationErrorDomain, RTAccountRegistrationErrorUnableToAssociateClientWithDevice);
         });
     });
 });

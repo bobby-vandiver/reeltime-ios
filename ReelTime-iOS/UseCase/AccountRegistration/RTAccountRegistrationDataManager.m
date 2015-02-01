@@ -25,21 +25,21 @@
 
 + (NSDictionary *)serverMessageToErrorCodeMap {
     return @{
-             @"[username] is required": @(AccountRegistrationMissingUsername),
-             @"[username] must be 2-15 alphanumeric characters long": @(AccountRegistrationInvalidUsername),
-             @"[username] is not available": @(AccountRegistrationUsernameIsUnavailable),
+             @"[username] is required": @(RTAccountRegistrationErrorMissingUsername),
+             @"[username] must be 2-15 alphanumeric characters long": @(RTAccountRegistrationErrorInvalidUsername),
+             @"[username] is not available": @(RTAccountRegistrationErrorUsernameIsUnavailable),
              
-             @"[password] is required": @(AccountRegistrationMissingPassword),
-             @"[password] must be at least 6 characters long": @(AccountRegistrationInvalidPassword),
+             @"[password] is required": @(RTAccountRegistrationErrorMissingPassword),
+             @"[password] must be at least 6 characters long": @(RTAccountRegistrationErrorInvalidPassword),
              
-             @"[email] is required": @(AccountRegistrationMissingEmail),
-             @"[email] is not a valid e-mail address": @(AccountRegistrationInvalidEmail),
+             @"[email] is required": @(RTAccountRegistrationErrorMissingEmail),
+             @"[email] is not a valid e-mail address": @(RTAccountRegistrationErrorInvalidEmail),
              
-             @"[display_name] is required": @(AccountRegistrationMissingDisplayName),
-             @"[display_name] must be 2-20 alphanumeric or space characters long": @(AccountRegistrationInvalidDisplayName),
+             @"[display_name] is required": @(RTAccountRegistrationErrorMissingDisplayName),
+             @"[display_name] must be 2-20 alphanumeric or space characters long": @(RTAccountRegistrationErrorInvalidDisplayName),
              
-             @"[client_name] is required": @(AccountRegistrationMissingClientName),
-             @"Unable to register. Please try again.": @(AccountRegistrationRegistrationServiceUnavailable)
+             @"[client_name] is required": @(RTAccountRegistrationErrorMissingClientName),
+             @"Unable to register. Please try again.": @(RTAccountRegistrationErrorRegistrationServiceUnavailable)
              };
 }
 

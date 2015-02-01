@@ -2,7 +2,7 @@
 
 #import "RTAccountRegistration.h"
 #import "RTAccountRegistrationValidator.h"
-#import "RTAccountRegistrationErrors.h"
+#import "RTAccountRegistrationError.h"
 #import "RTErrorFactory.h"
 
 SpecBegin(RTAccountRegistrationValidator)
@@ -67,34 +67,34 @@ describe(@"account registration validator", ^{
 
     context(@"missing parameters", ^{
         it(@"blank username", ^{
-            expectErrorForBadParameters(@{USERNAME_KEY: BLANK}, @[@(AccountRegistrationMissingUsername)]);
-            expectErrorForBadParameters(@{USERNAME_KEY: [NSNull null]}, @[@(AccountRegistrationMissingUsername)]);
+            expectErrorForBadParameters(@{USERNAME_KEY: BLANK}, @[@(RTAccountRegistrationErrorMissingUsername)]);
+            expectErrorForBadParameters(@{USERNAME_KEY: [NSNull null]}, @[@(RTAccountRegistrationErrorMissingUsername)]);
         });
         
         it(@"blank password", ^{
-            expectErrorForBadParameters(@{PASSWORD_KEY: BLANK}, @[@(AccountRegistrationMissingPassword)]);
-            expectErrorForBadParameters(@{PASSWORD_KEY: [NSNull null]}, @[@(AccountRegistrationMissingPassword)]);
+            expectErrorForBadParameters(@{PASSWORD_KEY: BLANK}, @[@(RTAccountRegistrationErrorMissingPassword)]);
+            expectErrorForBadParameters(@{PASSWORD_KEY: [NSNull null]}, @[@(RTAccountRegistrationErrorMissingPassword)]);
         });
         
         it(@"blank confirmation password", ^{
-            expectErrorForBadParameters(@{CONFIRMATION_PASSWORD_KEY: BLANK}, @[@(AccountRegistrationMissingConfirmationPassword)]);
+            expectErrorForBadParameters(@{CONFIRMATION_PASSWORD_KEY: BLANK}, @[@(RTAccountRegistrationErrorMissingConfirmationPassword)]);
             expectErrorForBadParameters(@{CONFIRMATION_PASSWORD_KEY: [NSNull null]},
-                                        @[@(AccountRegistrationMissingConfirmationPassword)]);
+                                        @[@(RTAccountRegistrationErrorMissingConfirmationPassword)]);
         });
         
         it(@"blank email", ^{
-            expectErrorForBadParameters(@{EMAIL_KEY: BLANK}, @[@(AccountRegistrationMissingEmail)]);
-            expectErrorForBadParameters(@{EMAIL_KEY: [NSNull null]}, @[@(AccountRegistrationMissingEmail)]);
+            expectErrorForBadParameters(@{EMAIL_KEY: BLANK}, @[@(RTAccountRegistrationErrorMissingEmail)]);
+            expectErrorForBadParameters(@{EMAIL_KEY: [NSNull null]}, @[@(RTAccountRegistrationErrorMissingEmail)]);
         });
         
         it(@"blank display name", ^{
-            expectErrorForBadParameters(@{DISPLAY_NAME_KEY: BLANK}, @[@(AccountRegistrationMissingDisplayName)]);
-            expectErrorForBadParameters(@{DISPLAY_NAME_KEY: [NSNull null]}, @[@(AccountRegistrationMissingDisplayName)]);
+            expectErrorForBadParameters(@{DISPLAY_NAME_KEY: BLANK}, @[@(RTAccountRegistrationErrorMissingDisplayName)]);
+            expectErrorForBadParameters(@{DISPLAY_NAME_KEY: [NSNull null]}, @[@(RTAccountRegistrationErrorMissingDisplayName)]);
         });
         
         it(@"blank client name", ^{
-            expectErrorForBadParameters(@{CLIENT_NAME_KEY: BLANK}, @[@(AccountRegistrationMissingClientName)]);
-            expectErrorForBadParameters(@{CLIENT_NAME_KEY: [NSNull null]}, @[@(AccountRegistrationMissingClientName)]);
+            expectErrorForBadParameters(@{CLIENT_NAME_KEY: BLANK}, @[@(RTAccountRegistrationErrorMissingClientName)]);
+            expectErrorForBadParameters(@{CLIENT_NAME_KEY: [NSNull null]}, @[@(RTAccountRegistrationErrorMissingClientName)]);
         });
         
         it(@"all blank", ^{
@@ -108,12 +108,12 @@ describe(@"account registration validator", ^{
                                          };
             
             NSArray *expectedErrorCodes = @[
-                                            @(AccountRegistrationMissingUsername),
-                                            @(AccountRegistrationMissingPassword),
-                                            @(AccountRegistrationMissingConfirmationPassword),
-                                            @(AccountRegistrationMissingEmail),
-                                            @(AccountRegistrationMissingDisplayName),
-                                            @(AccountRegistrationMissingClientName)
+                                            @(RTAccountRegistrationErrorMissingUsername),
+                                            @(RTAccountRegistrationErrorMissingPassword),
+                                            @(RTAccountRegistrationErrorMissingConfirmationPassword),
+                                            @(RTAccountRegistrationErrorMissingEmail),
+                                            @(RTAccountRegistrationErrorMissingDisplayName),
+                                            @(RTAccountRegistrationErrorMissingClientName)
                                             ];
             
             expectErrorForBadParameters(parameters, expectedErrorCodes);
@@ -124,95 +124,95 @@ describe(@"account registration validator", ^{
         
         describe(@"invalid username", ^{
             it(@"too short", ^{
-                expectErrorForBadParameters(@{USERNAME_KEY: @"a"}, @[@(AccountRegistrationInvalidUsername)]);
+                expectErrorForBadParameters(@{USERNAME_KEY: @"a"}, @[@(RTAccountRegistrationErrorInvalidUsername)]);
             });
             
             it(@"too long", ^{
-                expectErrorForBadParameters(@{USERNAME_KEY: @"abcdefghijklmnop"}, @[@(AccountRegistrationInvalidUsername)]);
-                expectErrorForBadParameters(@{USERNAME_KEY: @"aBcdEFghIjklmnop1234"}, @[@(AccountRegistrationInvalidUsername)]);
+                expectErrorForBadParameters(@{USERNAME_KEY: @"abcdefghijklmnop"}, @[@(RTAccountRegistrationErrorInvalidUsername)]);
+                expectErrorForBadParameters(@{USERNAME_KEY: @"aBcdEFghIjklmnop1234"}, @[@(RTAccountRegistrationErrorInvalidUsername)]);
             });
             
             it(@"cannot contain space", ^{
-                expectErrorForBadParameters(@{USERNAME_KEY: @"a b"}, @[@(AccountRegistrationInvalidUsername)]);
-                expectErrorForBadParameters(@{USERNAME_KEY: @" ab"}, @[@(AccountRegistrationInvalidUsername)]);
-                expectErrorForBadParameters(@{USERNAME_KEY: @"ab "}, @[@(AccountRegistrationInvalidUsername)]);
+                expectErrorForBadParameters(@{USERNAME_KEY: @"a b"}, @[@(RTAccountRegistrationErrorInvalidUsername)]);
+                expectErrorForBadParameters(@{USERNAME_KEY: @" ab"}, @[@(RTAccountRegistrationErrorInvalidUsername)]);
+                expectErrorForBadParameters(@{USERNAME_KEY: @"ab "}, @[@(RTAccountRegistrationErrorInvalidUsername)]);
             });
             
             it(@"invalid characters", ^{
-                expectErrorForBadParameters(@{USERNAME_KEY: @"!ab"}, @[@(AccountRegistrationInvalidUsername)]);
-                expectErrorForBadParameters(@{USERNAME_KEY: @"a!b"}, @[@(AccountRegistrationInvalidUsername)]);
-                expectErrorForBadParameters(@{USERNAME_KEY: @"ab!"}, @[@(AccountRegistrationInvalidUsername)]);
+                expectErrorForBadParameters(@{USERNAME_KEY: @"!ab"}, @[@(RTAccountRegistrationErrorInvalidUsername)]);
+                expectErrorForBadParameters(@{USERNAME_KEY: @"a!b"}, @[@(RTAccountRegistrationErrorInvalidUsername)]);
+                expectErrorForBadParameters(@{USERNAME_KEY: @"ab!"}, @[@(RTAccountRegistrationErrorInvalidUsername)]);
             });
         });
         
         describe(@"invalid password", ^{
             it(@"matches confirmation password but is too short", ^{
                 expectErrorForBadParameters(@{PASSWORD_KEY: @"a", CONFIRMATION_PASSWORD_KEY: @"a"},
-                                            @[@(AccountRegistrationInvalidPassword)]);
+                                            @[@(RTAccountRegistrationErrorInvalidPassword)]);
                 
                 expectErrorForBadParameters(@{PASSWORD_KEY: @"abcde", CONFIRMATION_PASSWORD_KEY: @"abcde"},
-                                            @[@(AccountRegistrationInvalidPassword)]);
+                                            @[@(RTAccountRegistrationErrorInvalidPassword)]);
             });
 
             // TODO: Explore this more
             xit(@"does not count control characters", ^{
-                expectErrorForBadParameters(@{PASSWORD_KEY: @"abcd\n"}, @[@(AccountRegistrationInvalidPassword)]);
-                expectErrorForBadParameters(@{PASSWORD_KEY: @"abcde\n"}, @[@(AccountRegistrationInvalidPassword)]);
+                expectErrorForBadParameters(@{PASSWORD_KEY: @"abcd\n"}, @[@(RTAccountRegistrationErrorInvalidPassword)]);
+                expectErrorForBadParameters(@{PASSWORD_KEY: @"abcde\n"}, @[@(RTAccountRegistrationErrorInvalidPassword)]);
             });
             
             it(@"does not match confirmation password", ^{
                 expectErrorForBadParameters(@{PASSWORD_KEY: BLANK, CONFIRMATION_PASSWORD_KEY: BLANK},
-                                            @[@(AccountRegistrationMissingPassword),
-                                              @(AccountRegistrationMissingConfirmationPassword)]);
+                                            @[@(RTAccountRegistrationErrorMissingPassword),
+                                              @(RTAccountRegistrationErrorMissingConfirmationPassword)]);
                 
                 expectErrorForBadParameters(@{PASSWORD_KEY: BLANK, CONFIRMATION_PASSWORD_KEY: @"a"},
-                                            @[@(AccountRegistrationMissingPassword)]);
+                                            @[@(RTAccountRegistrationErrorMissingPassword)]);
                 
                 expectErrorForBadParameters(@{PASSWORD_KEY: @"a", CONFIRMATION_PASSWORD_KEY: BLANK},
-                                            @[@(AccountRegistrationInvalidPassword),
-                                              @(AccountRegistrationMissingConfirmationPassword)]);
+                                            @[@(RTAccountRegistrationErrorInvalidPassword),
+                                              @(RTAccountRegistrationErrorMissingConfirmationPassword)]);
                 
                 expectErrorForBadParameters(@{PASSWORD_KEY: @"abcdef", CONFIRMATION_PASSWORD_KEY: BLANK},
-                                            @[@(AccountRegistrationMissingConfirmationPassword)]);
+                                            @[@(RTAccountRegistrationErrorMissingConfirmationPassword)]);
                 
                 expectErrorForBadParameters(@{PASSWORD_KEY: BLANK, CONFIRMATION_PASSWORD_KEY: @"abcdef"},
-                                            @[@(AccountRegistrationMissingPassword)]);
+                                            @[@(RTAccountRegistrationErrorMissingPassword)]);
                 
                 expectErrorForBadParameters(@{PASSWORD_KEY: @"abcdef", CONFIRMATION_PASSWORD_KEY: @"ABCDEF"},
-                                            @[@(AccountRegistrationConfirmationPasswordDoesNotMatch)]);
+                                            @[@(RTAccountRegistrationErrorConfirmationPasswordDoesNotMatch)]);
             });
         });
         
         describe(@"invalid email", ^{
             it(@"does not match email regex", ^{
-                expectErrorForBadParameters(@{EMAIL_KEY: @"oops"}, @[@(AccountRegistrationInvalidEmail)]);
-                expectErrorForBadParameters(@{EMAIL_KEY: @"foo@"}, @[@(AccountRegistrationInvalidEmail)]);
-                expectErrorForBadParameters(@{EMAIL_KEY: @"foo@b"}, @[@(AccountRegistrationInvalidEmail)]);
-                expectErrorForBadParameters(@{EMAIL_KEY: @"@coffee"}, @[@(AccountRegistrationInvalidEmail)]);
+                expectErrorForBadParameters(@{EMAIL_KEY: @"oops"}, @[@(RTAccountRegistrationErrorInvalidEmail)]);
+                expectErrorForBadParameters(@{EMAIL_KEY: @"foo@"}, @[@(RTAccountRegistrationErrorInvalidEmail)]);
+                expectErrorForBadParameters(@{EMAIL_KEY: @"foo@b"}, @[@(RTAccountRegistrationErrorInvalidEmail)]);
+                expectErrorForBadParameters(@{EMAIL_KEY: @"@coffee"}, @[@(RTAccountRegistrationErrorInvalidEmail)]);
             });
         });
         
         describe(@"invalid display name", ^{
             it(@"too short", ^{
-                expectErrorForBadParameters(@{DISPLAY_NAME_KEY: @"a"}, @[@(AccountRegistrationInvalidDisplayName)]);
+                expectErrorForBadParameters(@{DISPLAY_NAME_KEY: @"a"}, @[@(RTAccountRegistrationErrorInvalidDisplayName)]);
             });
             
             it(@"too long", ^{
                 expectErrorForBadParameters(@{DISPLAY_NAME_KEY: @"123456789012345678901"},
-                                            @[@(AccountRegistrationInvalidDisplayName)]);
+                                            @[@(RTAccountRegistrationErrorInvalidDisplayName)]);
             });
             
             it(@"cannot contain leading or trailing space", ^{
-                expectErrorForBadParameters(@{DISPLAY_NAME_KEY: @" "}, @[@(AccountRegistrationInvalidDisplayName)]);
-                expectErrorForBadParameters(@{DISPLAY_NAME_KEY: @" a"}, @[@(AccountRegistrationInvalidDisplayName)]);
-                expectErrorForBadParameters(@{DISPLAY_NAME_KEY: @"a "}, @[@(AccountRegistrationInvalidDisplayName)]);
+                expectErrorForBadParameters(@{DISPLAY_NAME_KEY: @" "}, @[@(RTAccountRegistrationErrorInvalidDisplayName)]);
+                expectErrorForBadParameters(@{DISPLAY_NAME_KEY: @" a"}, @[@(RTAccountRegistrationErrorInvalidDisplayName)]);
+                expectErrorForBadParameters(@{DISPLAY_NAME_KEY: @"a "}, @[@(RTAccountRegistrationErrorInvalidDisplayName)]);
             });
             
             it(@"cannot contain non-word characters", ^{
-                expectErrorForBadParameters(@{DISPLAY_NAME_KEY: @"!a"}, @[@(AccountRegistrationInvalidDisplayName)]);
-                expectErrorForBadParameters(@{DISPLAY_NAME_KEY: @"!ab"}, @[@(AccountRegistrationInvalidDisplayName)]);
+                expectErrorForBadParameters(@{DISPLAY_NAME_KEY: @"!a"}, @[@(RTAccountRegistrationErrorInvalidDisplayName)]);
+                expectErrorForBadParameters(@{DISPLAY_NAME_KEY: @"!ab"}, @[@(RTAccountRegistrationErrorInvalidDisplayName)]);
                 expectErrorForBadParameters(@{DISPLAY_NAME_KEY: @"1234567890123456789!"},
-                                            @[@(AccountRegistrationInvalidDisplayName)]);
+                                            @[@(RTAccountRegistrationErrorInvalidDisplayName)]);
             });
         });
     });

@@ -9,7 +9,7 @@
 #import "RTAccountRegistration.h"
 #import "RTClientCredentials.h"
 
-#import "RTAccountRegistrationErrors.h"
+#import "RTAccountRegistrationError.h"
 #import "RTServerErrors.h"
 
 #import "RTServerErrorsConverter.h"
@@ -121,57 +121,57 @@ describe(@"account registration data manager", ^{
             
             it(@"should map username required to missing username", ^{
                 expectServerMessageMapping("[username] is required",
-                                           AccountRegistrationMissingUsername, 1);
+                                           RTAccountRegistrationErrorMissingUsername, 1);
             });
             
             it(@"should map password required to missing password", ^{
                 expectServerMessageMapping("[password] is required",
-                                           AccountRegistrationMissingPassword, 1);
+                                           RTAccountRegistrationErrorMissingPassword, 1);
             });
             
             it(@"should map email required to missing email", ^{
                 expectServerMessageMapping("[email] is required",
-                                           AccountRegistrationMissingEmail, 1);
+                                           RTAccountRegistrationErrorMissingEmail, 1);
             });
             
             it(@"should map display name required to missing display name", ^{
                 expectServerMessageMapping("[display_name] is required",
-                                           AccountRegistrationMissingDisplayName, 1);
+                                           RTAccountRegistrationErrorMissingDisplayName, 1);
             });
             
             it(@"should map client name required to missing client name", ^{
                 expectServerMessageMapping("[client_name] is required",
-                                           AccountRegistrationMissingClientName, 1);
+                                           RTAccountRegistrationErrorMissingClientName, 1);
             });
             
             it(@"should map invalid username", ^{
                 expectServerMessageMapping("[username] must be 2-15 alphanumeric characters long",
-                                           AccountRegistrationInvalidUsername, 1);
+                                           RTAccountRegistrationErrorInvalidUsername, 1);
             });
             
             it(@"should map invalid password", ^{
                 expectServerMessageMapping("[password] must be at least 6 characters long",
-                                           AccountRegistrationInvalidPassword, 1);
+                                           RTAccountRegistrationErrorInvalidPassword, 1);
             });
             
             it(@"should map invalid email", ^{
                 expectServerMessageMapping("[email] is not a valid e-mail address",
-                                           AccountRegistrationInvalidEmail, 1);
+                                           RTAccountRegistrationErrorInvalidEmail, 1);
             });
             
             it(@"should map invalid display name", ^{
                 expectServerMessageMapping("[display_name] must be 2-20 alphanumeric or space characters long",
-                                           AccountRegistrationInvalidDisplayName, 1);
+                                           RTAccountRegistrationErrorInvalidDisplayName, 1);
             });
             
             it(@"should map username is unavailable", ^{
                 expectServerMessageMapping("[username] is not available",
-                                           AccountRegistrationUsernameIsUnavailable, 1);
+                                           RTAccountRegistrationErrorUsernameIsUnavailable, 1);
             });
             
             it(@"should map registration unavailable", ^{
                 expectServerMessageMapping("Unable to register. Please try again.",
-                                           AccountRegistrationRegistrationServiceUnavailable, 1);
+                                           RTAccountRegistrationErrorRegistrationServiceUnavailable, 1);
             });
             
             it(@"should not map unexpected message", ^{

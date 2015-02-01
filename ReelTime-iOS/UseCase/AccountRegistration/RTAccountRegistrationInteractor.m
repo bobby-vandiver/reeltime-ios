@@ -6,7 +6,7 @@
 #import "RTAccountRegistration.h"
 
 #import "RTLoginInteractor.h"
-#import "RTAccountRegistrationErrors.h"
+#import "RTAccountRegistrationError.h"
 #import "RTErrorFactory.h"
 
 @interface RTAccountRegistrationInteractor ()
@@ -59,7 +59,7 @@
 
 - (void)failedToSaveClientCredentials:(RTClientCredentials *)clientCredentials
                           forUsername:(NSString *)username {
-    NSError *error = [RTErrorFactory accountRegistrationErrorWithCode:AccountRegistrationUnableToAssociateClientWithDevice];
+    NSError *error = [RTErrorFactory accountRegistrationErrorWithCode:RTAccountRegistrationErrorUnableToAssociateClientWithDevice];
     [self.delegate registrationWithAutoLoginFailedWithError:error];
 }
 

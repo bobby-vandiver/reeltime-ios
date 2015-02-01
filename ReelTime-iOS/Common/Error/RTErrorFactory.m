@@ -16,7 +16,7 @@
                       originalError:error];
 }
 
-+ (NSError *)accountRegistrationErrorWithCode:(RTAccountRegistrationErrors)code {
++ (NSError *)accountRegistrationErrorWithCode:(RTAccountRegistrationError)code {
     return [NSError errorWithDomain:RTAccountRegistrationErrorDomain
                                code:code
                            userInfo:nil];

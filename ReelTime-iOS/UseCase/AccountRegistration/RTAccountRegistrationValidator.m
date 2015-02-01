@@ -45,12 +45,12 @@ NSString *const DISPLAY_NAME_REGEX = @"^\\w{1}[\\w ]{0,18}?\\w{1}$";
 - (void)validateUsername:(NSString *)username
                   errors:(NSMutableArray *)errors {
     if ([username length] == 0) {
-        [self addRegistrationErrorCode:AccountRegistrationMissingUsername toErrors:errors];
+        [self addRegistrationErrorCode:RTAccountRegistrationErrorMissingUsername toErrors:errors];
     }
     else {
         [self validateParameter:username
                     withPattern:USERNAME_REGEX
-               invalidErrorCode:AccountRegistrationInvalidUsername
+               invalidErrorCode:RTAccountRegistrationErrorInvalidUsername
                          errors:errors];
     }
 }
@@ -59,29 +59,29 @@ NSString *const DISPLAY_NAME_REGEX = @"^\\w{1}[\\w ]{0,18}?\\w{1}$";
     confirmationPassword:(NSString *)confirmationPassword
                   errors:(NSMutableArray *)errors {
     if ([password length] == 0) {
-        [self addRegistrationErrorCode:AccountRegistrationMissingPassword toErrors:errors];
+        [self addRegistrationErrorCode:RTAccountRegistrationErrorMissingPassword toErrors:errors];
     }
     else if ([password length] < PASSWORD_MINIMUM_LENGTH) {
-        [self addRegistrationErrorCode:AccountRegistrationInvalidPassword toErrors:errors];
+        [self addRegistrationErrorCode:RTAccountRegistrationErrorInvalidPassword toErrors:errors];
     }
     
     if ([confirmationPassword length] == 0) {
-        [self addRegistrationErrorCode:AccountRegistrationMissingConfirmationPassword toErrors:errors];
+        [self addRegistrationErrorCode:RTAccountRegistrationErrorMissingConfirmationPassword toErrors:errors];
     }
     else if ([password length] >= PASSWORD_MINIMUM_LENGTH && ![confirmationPassword isEqualToString:password]) {
-        [self addRegistrationErrorCode:AccountRegistrationConfirmationPasswordDoesNotMatch toErrors:errors];
+        [self addRegistrationErrorCode:RTAccountRegistrationErrorConfirmationPasswordDoesNotMatch toErrors:errors];
     }
 }
 
 - (void)validateEmail:(NSString *)email
                errors:(NSMutableArray *)errors {
     if ([email length] == 0) {
-        [self addRegistrationErrorCode:AccountRegistrationMissingEmail toErrors:errors];
+        [self addRegistrationErrorCode:RTAccountRegistrationErrorMissingEmail toErrors:errors];
     }
     else {
         [self validateParameter:email
                     withPattern:EMAIL_REGEX
-               invalidErrorCode:AccountRegistrationInvalidEmail
+               invalidErrorCode:RTAccountRegistrationErrorInvalidEmail
                          errors:errors];
     }
 }
@@ -89,12 +89,12 @@ NSString *const DISPLAY_NAME_REGEX = @"^\\w{1}[\\w ]{0,18}?\\w{1}$";
 - (void)validateDisplayName:(NSString *)displayName
                      errors:(NSMutableArray *)errors {
     if ([displayName length] == 0) {
-        [self addRegistrationErrorCode:AccountRegistrationMissingDisplayName toErrors:errors];
+        [self addRegistrationErrorCode:RTAccountRegistrationErrorMissingDisplayName toErrors:errors];
     }
     else {
         [self validateParameter:displayName
                     withPattern:DISPLAY_NAME_REGEX
-               invalidErrorCode:AccountRegistrationInvalidDisplayName
+               invalidErrorCode:RTAccountRegistrationErrorInvalidDisplayName
                          errors:errors];
     }
 }
@@ -102,7 +102,7 @@ NSString *const DISPLAY_NAME_REGEX = @"^\\w{1}[\\w ]{0,18}?\\w{1}$";
 - (void)validateClientName:(NSString *)clientName
                     errors:(NSMutableArray *)errors {
     if ([clientName length] == 0) {
-        [self addRegistrationErrorCode:AccountRegistrationMissingClientName toErrors:errors];
+        [self addRegistrationErrorCode:RTAccountRegistrationErrorMissingClientName toErrors:errors];
     }
 }
 
@@ -118,7 +118,7 @@ NSString *const DISPLAY_NAME_REGEX = @"^\\w{1}[\\w ]{0,18}?\\w{1}$";
     }
 }
 
-- (void)addRegistrationErrorCode:(RTAccountRegistrationErrors)code
+- (void)addRegistrationErrorCode:(RTAccountRegistrationError)code
                         toErrors:(NSMutableArray *)errors {
     NSError *error = [RTErrorFactory accountRegistrationErrorWithCode:code];
     [errors addObject:error];
