@@ -12,10 +12,10 @@ typedef NS_ENUM(NSInteger, RTActivityType) {
 
 @interface RTActivity : NSObject
 
-@property (nonatomic, assign) RTActivityType type;
+@property (nonatomic, copy) NSNumber *type;
 
-@property (nonatomic, copy) RTUser *user;
-@property (nonatomic, copy) RTReel *reel;
-@property (nonatomic, copy) RTVideo *video;
+@property (nonatomic) RTUser *user;
+@property (nonatomic) RTReel *reel;
+@property (nonatomic) RTVideo *video;
 
 @end

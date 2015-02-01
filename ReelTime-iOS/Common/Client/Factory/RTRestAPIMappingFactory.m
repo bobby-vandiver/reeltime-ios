@@ -85,8 +85,60 @@
 }
 
 + (RKMapping *)activityMapping {
-    RKObjectMapping *mapping = [RKObjectMapping mappingForClass:[RTActivity class]];
-    return mapping;
+    RKDynamicMapping *dynamicMapping = [[RKDynamicMapping alloc] init];
+    
+    [dynamicMapping setObjectMappingForRepresentationBlock:^RKObjectMapping *(id representation) {
+        RKAttributeMapping *typeMapping = [RKAttributeMapping attributeMappingFromKeyPath:@"type" toKeyPath:@"type"];
+        typeMapping.valueTransformer = [self activityTypeTransformer];
+        
+        RKRelationshipMapping *userMapping = [RKRelationshipMapping relationshipMappingFromKeyPath:@"user"
+                                                                                         toKeyPath:@"user"
+                                                                                       withMapping:[self userMapping]];
+        
+        RKRelationshipMapping *reelMapping = [RKRelationshipMapping relationshipMappingFromKeyPath:@"reel"
+                                                                                         toKeyPath:@"reel"
+                                                                                       withMapping:[self reelMapping]];
+
+        NSMutableArray *propertyMappings = [[NSMutableArray alloc] init];
+        [propertyMappings addObjectsFromArray:@[typeMapping, userMapping, reelMapping]];
+        
+        if ([representation objectForKey:@"video"]) {
+            RKRelationshipMapping *videoMapping = [RKRelationshipMapping relationshipMappingFromKeyPath:@"video"
+                                                                                              toKeyPath:@"video"
+                                                                                            withMapping:[self videoMapping]];
+            [propertyMappings addObject:videoMapping];
+        }
+
+        RKObjectMapping *mapping = [RKObjectMapping mappingForClass:[RTActivity class]];
+        [mapping addPropertyMappingsFromArray:propertyMappings];
+        return mapping;
+    }];
+    
+    return dynamicMapping;
+}
+
++ (RKValueTransformer *)activityTypeTransformer {
+    id validation = ^BOOL(__unsafe_unretained Class sourceClass, __unsafe_unretained Class destinationClass) {
+        return [sourceClass isSubclassOfClass:[NSString class]] && [destinationClass isSubclassOfClass:[NSNumber class]];
+    };
+    
+    id transformation = ^BOOL(id inputValue, __autoreleasing id *outputValue, __unsafe_unretained Class outputValueClass,
+                              NSError *__autoreleasing *error) {
+        RKValueTransformerTestInputValueIsKindOfClass(inputValue, [NSString class], error);
+        RKValueTransformerTestOutputValueClassIsSubclassOfClass(outputValueClass, [NSNumber class], error);
+
+        NSDictionary *typeLookupTable = @{
+                                          @"create-reel":           @(RTActivityTypeCreateReel),
+                                          @"join-reel-audience":    @(RTActivityTypeJoinReelAudience),
+                                          @"add-video-to-reel":     @(RTActivityTypeAddVideoToReel)
+                                          };
+        
+        *outputValue = [typeLookupTable objectForKey:(NSString *)inputValue];
+        return *outputValue != nil;
+    };
+    
+    return [RKBlockValueTransformer valueTransformerWithValidationBlock:validation
+                                                    transformationBlock:transformation];
 }
 
 + (RKMapping *)newsfeedMapping {
