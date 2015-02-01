@@ -3,12 +3,12 @@
 
 @implementation RTErrorFactory
 
-+ (NSError *)loginErrorWithCode:(RTLoginErrors)code {
++ (NSError *)loginErrorWithCode:(RTLoginError)code {
     return [self loginErrorWithCode:code
                       originalError:nil];
 }
 
-+ (NSError *)loginErrorWithCode:(RTLoginErrors)code
++ (NSError *)loginErrorWithCode:(RTLoginError)code
                   originalError:(NSError *)error {
     return [NSError errorWithDomain:RTLoginErrorDomain
                                code:code

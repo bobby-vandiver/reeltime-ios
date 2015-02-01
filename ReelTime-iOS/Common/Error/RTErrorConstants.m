@@ -1,4 +1,4 @@
-#import "RTLoginErrors.h"
+#import "RTLoginError.h"
 #import "RTAccountRegistrationErrors.h"
 #import "RTKeyChainErrors.h"
 

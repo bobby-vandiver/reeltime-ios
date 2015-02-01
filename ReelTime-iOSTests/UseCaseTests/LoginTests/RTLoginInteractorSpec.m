@@ -4,7 +4,7 @@
 #import "RTLoginInteractorDelegate.h"
 
 #import "RTLoginDataManager.h"
-#import "RTLoginErrors.h"
+#import "RTLoginError.h"
 
 #import "RTClientCredentials.h"
 #import "RTUserCredentials.h"
@@ -36,7 +36,7 @@ describe(@"login interactor", ^{
         }
     };
     
-    void (^expectLoginFailureError)(RTLoginErrors) = ^(RTLoginErrors expectedErrorCode) {
+    void (^expectLoginFailureError)(RTLoginError) = ^(RTLoginError expectedErrorCode) {
         expectLoginFailureErrors(@[@(expectedErrorCode)]);
     };
 

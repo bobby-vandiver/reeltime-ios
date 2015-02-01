@@ -7,7 +7,7 @@
 #import "RTAccountRegistration.h"
 
 #import "RTAccountRegistrationErrors.h"
-#import "RTLoginErrors.h"
+#import "RTLoginError.h"
 
 @interface RTAccountRegistrationPresenter ()
 

@@ -4,7 +4,7 @@
 #import "RTLoginDataManager.h"
 #import "RTUserCredentials.h"
 
-#import "RTLoginErrors.h"
+#import "RTLoginError.h"
 #import "RTErrorFactory.h"
 
 @interface RTLoginInteractor ()
@@ -84,7 +84,7 @@
     [self.delegate loginFailedWithErrors:@[error]];
 }
 
-- (void)loginFailedWithErrorCode:(RTLoginErrors)code {
+- (void)loginFailedWithErrorCode:(RTLoginError)code {
     NSError *loginError = [RTErrorFactory loginErrorWithCode:code];
     [self.delegate loginFailedWithErrors:@[loginError]];
 }

@@ -2,7 +2,7 @@
 
 extern NSString *const RTLoginErrorDomain;
 
-typedef NS_ENUM(NSInteger, RTLoginErrors) {
+typedef NS_ENUM(NSInteger, RTLoginError) {
     LoginMissingUsername,
     LoginMissingPassword,
     LoginUnknownClient,

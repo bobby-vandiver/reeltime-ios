@@ -57,7 +57,7 @@
     };
     
     id failure = ^(RTOAuth2TokenError *tokenError) {
-        RTLoginErrors loginErrorCode;
+        RTLoginError loginErrorCode;
         NSString *errorCode = tokenError.errorCode;
         	
         if ([errorCode isEqualToString:@"invalid_client"]) {
