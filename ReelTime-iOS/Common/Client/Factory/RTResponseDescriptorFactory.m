@@ -27,7 +27,7 @@
 + (RKResponseDescriptor *)accountRegistrationDescriptor {
     NSIndexSet *statusCodes = [NSIndexSet indexSetWithIndex:201];
 
-    return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory accountRegistrationMapping]
+    return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory clientCredentialsMapping]
                                                         method:RKRequestMethodPOST
                                                    pathPattern:API_ACCOUNT_REGISTRATION_ENDPOINT
                                                        keyPath:nil

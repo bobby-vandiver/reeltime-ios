@@ -8,8 +8,7 @@
 
 + (RKMapping *)serverErrorsMapping;
 
-// TODO: Rename to clientCredentialsMapping
-+ (RKMapping *)accountRegistrationMapping;
++ (RKMapping *)clientCredentialsMapping;
 
 + (RKMapping *)userMapping;
 

@@ -44,7 +44,7 @@
     return mapping;
 }
 
-+ (RKMapping *)accountRegistrationMapping {
++ (RKMapping *)clientCredentialsMapping {
     RKObjectMapping *mapping = [RKObjectMapping mappingForClass:[RTClientCredentials class]];
     [mapping addAttributeMappingsFromDictionary:@{
                                                   @"client_id":         @"clientId",

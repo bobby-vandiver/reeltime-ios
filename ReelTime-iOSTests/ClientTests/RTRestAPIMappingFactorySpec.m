@@ -122,8 +122,8 @@ describe(@"API Mapping", ^{
         [mappingTest verify];
     });
     
-    it(@"account registration", ^{
-        RKMapping *mapping = [RTRestAPIMappingFactory accountRegistrationMapping];
+    it(@"client credentials", ^{
+        RKMapping *mapping = [RTRestAPIMappingFactory clientCredentialsMapping];
         NSDictionary *response = @{
                                    @"client_id": @"5bdee758-cf71-4cd5-9bd9-aded45ce9964",
                                    @"client_secret": @"g70mC9ZbpKa6p6R1tJPVWTm55BWHnSkmCv27F=oSI6"
