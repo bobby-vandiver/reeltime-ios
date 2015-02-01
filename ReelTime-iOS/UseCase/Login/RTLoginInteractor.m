@@ -5,8 +5,6 @@
 #import "RTUserCredentials.h"
 
 #import "RTLoginErrors.h"
-#import "RTClientErrors.h"
-
 #import "RTErrorFactory.h"
 
 @interface RTLoginInteractor ()

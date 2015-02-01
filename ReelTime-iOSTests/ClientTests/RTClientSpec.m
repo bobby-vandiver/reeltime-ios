@@ -1,7 +1,6 @@
 #import "RTTestCommon.h"
 
 #import "RTClient.h"
-#import "RTClientErrors.h"
 #import "RTClientAssembly.h"
 
 #import "RTClientCredentials.h"

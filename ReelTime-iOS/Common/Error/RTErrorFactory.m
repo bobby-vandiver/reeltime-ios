@@ -30,10 +30,4 @@
                       originalError:error];
 }
 
-+ (NSError *)clientTokenErrorWithCode:(RTClientTokenErrors)code {
-    return [NSError errorWithDomain:RTClientTokenErrorDomain
-                               code:code
-                           userInfo:nil];
-}
-
 @end

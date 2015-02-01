@@ -2,7 +2,6 @@
 
 #import "RTLoginErrors.h"
 #import "RTKeyChainErrors.h"
-#import "RTClientErrors.h"
 
 @interface NSError (RTError)
 

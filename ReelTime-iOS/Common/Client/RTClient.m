@@ -1,6 +1,4 @@
 #import "RTClient.h"
-#import "RTClientErrors.h"
-
 #import "RTRestAPI.h"
 
 #import "RTClientCredentials.h"

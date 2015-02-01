@@ -11,6 +11,11 @@
 #import "RTUserCredentials.h"
 #import "RTClientCredentials.h"
 
+#import "RTUserCredentials.h"
+
+#import "RTOAuth2Token.h"
+#import "RTOAuth2TokenError.h"
+
 SpecBegin(RTLoginDataManager)
 
 describe(@"login data manager", ^{

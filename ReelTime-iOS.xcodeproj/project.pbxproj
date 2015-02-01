@@ -142,7 +142,6 @@
 		713D7A471A509ACC00754A06 /* RTClientCredentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTClientCredentials.m; path = "ReelTime-iOS/Common/Model/RTClientCredentials.m"; sourceTree = SOURCE_ROOT; };
 		713D7A4A1A50A33300754A06 /* RTClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTClient.h; sourceTree = "<group>"; };
 		713D7A4B1A50A33300754A06 /* RTClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTClient.m; sourceTree = "<group>"; };
-		713D7A571A50E9D500754A06 /* RTClientErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTClientErrors.h; sourceTree = "<group>"; };
 		713DCAA51A6C850C0032B252 /* successful-registration.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "successful-registration.txt"; sourceTree = "<group>"; };
 		713DCAA71A6C8B330032B252 /* RTServerErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTServerErrors.h; path = "ReelTime-iOS/Common/Model/RTServerErrors.h"; sourceTree = SOURCE_ROOT; };
 		713DCAA81A6C8B330032B252 /* RTServerErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTServerErrors.m; path = "ReelTime-iOS/Common/Model/RTServerErrors.m"; sourceTree = SOURCE_ROOT; };
@@ -369,7 +368,6 @@
 				717A4B751A534E7B004C2BC1 /* Factory */,
 				713D7A4A1A50A33300754A06 /* RTClient.h */,
 				713D7A4B1A50A33300754A06 /* RTClient.m */,
-				713D7A571A50E9D500754A06 /* RTClientErrors.h */,
 				719B35DC1A51086600FFD543 /* RTRestAPI.h */,
 				719B35DD1A51140900FFD543 /* RTRestAPI.m */,
 			);
