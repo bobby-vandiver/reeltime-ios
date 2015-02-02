@@ -26,6 +26,13 @@ describe(@"key chain wrapper", ^{
     });
     
     describe(@"loading item from keychain", ^{
+        it(@"should return nil when key is nil", ^{
+            id<NSSecureCoding> object = [wrapper objectForKey:nil error:&error];
+            
+            expect(object).to.beNil();
+            expect(error).to.beError(RTKeyChainWrapperErrorDomain, MissingKey);
+        });
+        
         it(@"should return nil when item is not found", ^{
             id<NSSecureCoding> object = [wrapper objectForKey:@"unknown" error:&error];
             
@@ -97,6 +104,13 @@ describe(@"key chain wrapper", ^{
             wrapper = [[RTKeyChainWrapper alloc] initWithKeyChainStore:keyChainStore];
         });
         
+        it(@"should return NO when storing object with nil key", ^{
+            BOOL success = [wrapper setObject:@"something" forKey:nil error:&error];
+
+            expect(success).to.beFalsy();
+            expect(error).to.beError(RTKeyChainWrapperErrorDomain, MissingKey);
+        });
+        
         it(@"should return NO when storing object fails", ^{
             [[given([keyChainStore setData:anything() forKey:@"store" error:nil])
               withMatcher:anything() forArgument:2]
@@ -106,6 +120,13 @@ describe(@"key chain wrapper", ^{
             expect(success).to.beFalsy();
             
             [[verify(keyChainStore) withMatcher:anything() forArgument:2] setData:anything() forKey:@"store" error:nil];
+        });
+        
+        it(@"should return NO when removing object with nil key", ^{
+            BOOL success = [wrapper removeObjectForKey:nil error:&error];
+            
+            expect(success).to.beFalsy();
+            expect(error).to.beError(RTKeyChainWrapperErrorDomain, MissingKey);
         });
         
         it(@"should return NO when removing object fails", ^{

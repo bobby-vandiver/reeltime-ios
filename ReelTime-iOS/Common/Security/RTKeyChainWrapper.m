@@ -19,6 +19,10 @@
 
 - (id<NSSecureCoding>)objectForKey:(NSString *)key
                              error:(NSError *__autoreleasing *)error {
+    if (![self validateKey:key error:error]) {
+        return nil;
+    }
+    
     NSError *loadError;
     NSData *data = [self.keyChainStore dataForKey:key error:&loadError];
     
@@ -38,6 +42,10 @@
 - (BOOL)setObject:(id<NSSecureCoding>)object
            forKey:(NSString *)key
             error:(NSError *__autoreleasing *)error {
+    if (![self validateKey:key error:error]) {
+        return NO;
+    }
+    
     NSError *storeError;
     BOOL success = [self.keyChainStore setData:[NSKeyedArchiver archivedDataWithRootObject:object]
                                         forKey:key
@@ -52,6 +60,10 @@
 
 - (BOOL)removeObjectForKey:(NSString *)key
                      error:(NSError *__autoreleasing *)error {
+    if (![self validateKey:key error:error]) {
+        return NO;
+    }
+    
     NSError *removeError;
     BOOL success = [self.keyChainStore removeItemForKey:key error:&removeError];
     
@@ -60,6 +72,21 @@
     }
     
     return success;
+}
+
+- (BOOL)validateKey:(NSString *)key
+              error:(NSError *__autoreleasing *)error {
+    BOOL valid = YES;
+    
+    if (!key) {
+        valid = NO;
+
+        if (error) {
+            *error = [RTErrorFactory keyChainErrorWithCode:MissingKey originalError:nil];
+        }
+    }
+    
+    return valid;
 }
 
 - (void)mapKeyChainStoreError:(NSError *)error
