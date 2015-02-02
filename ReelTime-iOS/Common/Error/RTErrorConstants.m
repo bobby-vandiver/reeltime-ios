@@ -1,6 +1,6 @@
 #import "RTLoginError.h"
 #import "RTAccountRegistrationError.h"
-#import "RTKeyChainErrors.h"
+#import "RTKeyChainError.h"
 
 NSString *const RTLoginErrorDomain = @"in.reeltime.Login";
 

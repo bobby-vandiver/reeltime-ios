@@ -28,7 +28,7 @@
     
     if (!data) {
         if (!loadError && error) {
-            *error = [RTErrorFactory keyChainErrorWithCode:ItemNotFound originalError:nil];
+            *error = [RTErrorFactory keyChainErrorWithCode:RTKeyChainErrorItemNotFound originalError:nil];
         }
         else {
             [self mapKeyChainStoreError:loadError toApplicationError:error];
@@ -82,7 +82,7 @@
         valid = NO;
 
         if (error) {
-            *error = [RTErrorFactory keyChainErrorWithCode:MissingKey originalError:nil];
+            *error = [RTErrorFactory keyChainErrorWithCode:RTKeyChainErrorMissingKey originalError:nil];
         }
     }
     
@@ -92,14 +92,14 @@
 - (void)mapKeyChainStoreError:(NSError *)error
            toApplicationError:(NSError *__autoreleasing *)appError {
     if (appError) {
-        NSInteger code = Unknown;
+        NSInteger code = RTKeyChainErrorUnknown;
         
         if (error && [error.domain isEqualToString:UICKeyChainStoreErrorDomain]) {
             if (error.code == errSecItemNotFound) {
-                code = ItemNotFound;
+                code = RTKeyChainErrorItemNotFound;
             }
             else if (error.code == errSecDuplicateItem) {
-                code = DuplicateItem;
+                code = RTKeyChainErrorDuplicateItem;
             }
         }
         

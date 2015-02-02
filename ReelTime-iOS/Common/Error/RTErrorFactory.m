@@ -22,7 +22,7 @@
                            userInfo:nil];
 }
 
-+ (NSError *)keyChainErrorWithCode:(RTKeyChainErrors)code
++ (NSError *)keyChainErrorWithCode:(RTKeyChainError)code
                      originalError:(NSError *)error {
     return [NSError errorWithDomain:RTKeyChainWrapperErrorDomain
                                code:code

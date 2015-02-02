@@ -1,7 +1,7 @@
 #import <Foundation/Foundation.h>
 
 #import "RTLoginError.h"
-#import "RTKeyChainErrors.h"
+#import "RTKeyChainError.h"
 
 @interface NSError (RTError)
 

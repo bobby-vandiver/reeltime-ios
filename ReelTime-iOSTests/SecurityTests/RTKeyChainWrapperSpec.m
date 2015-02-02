@@ -1,7 +1,7 @@
 #import "RTTestCommon.h"
 
 #import "RTKeyChainWrapper.h"
-#import "RTKeyChainErrors.h"
+#import "RTKeyChainError.h"
 
 @interface RTKeyChainWrapper ()
 
@@ -30,14 +30,14 @@ describe(@"key chain wrapper", ^{
             id<NSSecureCoding> object = [wrapper objectForKey:nil error:&error];
             
             expect(object).to.beNil();
-            expect(error).to.beError(RTKeyChainWrapperErrorDomain, MissingKey);
+            expect(error).to.beError(RTKeyChainWrapperErrorDomain, RTKeyChainErrorMissingKey);
         });
         
         it(@"should return nil when item is not found", ^{
-            id<NSSecureCoding> object = [wrapper objectForKey:@"unknown" error:&error];
+            id<NSSecureCoding> object = [wrapper objectForKey:@"RTKeyChainErrorUnknown" error:&error];
             
             expect(object).to.beNil();
-            expect(error).to.beError(RTKeyChainWrapperErrorDomain, ItemNotFound);
+            expect(error).to.beError(RTKeyChainWrapperErrorDomain, RTKeyChainErrorItemNotFound);
         });
         
         it(@"should return object when item is found", ^{
@@ -74,7 +74,7 @@ describe(@"key chain wrapper", ^{
     
     describe(@"removing item from keychain", ^{
         it(@"should return YES when removing item that doesn't exist", ^{
-            BOOL success = [wrapper removeObjectForKey:@"unknown" error:&error];
+            BOOL success = [wrapper removeObjectForKey:@"RTKeyChainErrorUnknown" error:&error];
             
             expect(success).to.beTruthy();
             expect(error).to.beNil();
@@ -108,7 +108,7 @@ describe(@"key chain wrapper", ^{
             BOOL success = [wrapper setObject:@"something" forKey:nil error:&error];
 
             expect(success).to.beFalsy();
-            expect(error).to.beError(RTKeyChainWrapperErrorDomain, MissingKey);
+            expect(error).to.beError(RTKeyChainWrapperErrorDomain, RTKeyChainErrorMissingKey);
         });
         
         it(@"should return NO when storing object fails", ^{
@@ -126,7 +126,7 @@ describe(@"key chain wrapper", ^{
             BOOL success = [wrapper removeObjectForKey:nil error:&error];
             
             expect(success).to.beFalsy();
-            expect(error).to.beError(RTKeyChainWrapperErrorDomain, MissingKey);
+            expect(error).to.beError(RTKeyChainWrapperErrorDomain, RTKeyChainErrorMissingKey);
         });
         
         it(@"should return NO when removing object fails", ^{
@@ -148,20 +148,20 @@ describe(@"key chain wrapper", ^{
         };
         
         static struct ErrorCodeMapping expectedMapping[] = {
-            { errSecUnimplemented, Unknown },
-            { errSecIO, Unknown },
-            { errSecOpWr, Unknown },
-            { errSecParam, Unknown },
-            { errSecAllocate, Unknown },
-            { errSecUserCanceled, Unknown },
-            { errSecBadReq, Unknown },
-            { errSecInternalComponent, Unknown },
-            { errSecNotAvailable, Unknown },
-            { errSecDuplicateItem, DuplicateItem },
-            { errSecItemNotFound, ItemNotFound },
-            { errSecInteractionNotAllowed, Unknown },
-            { errSecDecode, Unknown },
-            { errSecAuthFailed, Unknown },
+            { errSecUnimplemented, RTKeyChainErrorUnknown },
+            { errSecIO, RTKeyChainErrorUnknown },
+            { errSecOpWr, RTKeyChainErrorUnknown },
+            { errSecParam, RTKeyChainErrorUnknown },
+            { errSecAllocate, RTKeyChainErrorUnknown },
+            { errSecUserCanceled, RTKeyChainErrorUnknown },
+            { errSecBadReq, RTKeyChainErrorUnknown },
+            { errSecInternalComponent, RTKeyChainErrorUnknown },
+            { errSecNotAvailable, RTKeyChainErrorUnknown },
+            { errSecDuplicateItem, RTKeyChainErrorDuplicateItem },
+            { errSecItemNotFound, RTKeyChainErrorItemNotFound },
+            { errSecInteractionNotAllowed, RTKeyChainErrorUnknown },
+            { errSecDecode, RTKeyChainErrorUnknown },
+            { errSecAuthFailed, RTKeyChainErrorUnknown },
             { 0, 0 }
         };
         
