@@ -7,10 +7,12 @@
 #import "RTServerErrors.h"
 #import "RTClientCredentials.h"
 
-#import "RTActivity.h"
 #import "RTUser.h"
 #import "RTReel.h"
 #import "RTVideo.h"
+
+#import "RTActivity.h"
+#import "RTNewsfeed.h"
 
 #import <RestKit/Testing.h>
 
@@ -342,6 +344,120 @@ describe(@"API Mapping", ^{
             
             [mappingTest performMapping];
             [mappingTest verify];
+        });
+
+    });
+    
+    describe(@"newsfeed", ^{
+        it(@"no activities in newsfeed", ^{
+            RKMapping *mapping = [RTRestAPIMappingFactory newsfeedMapping];
+            NSDictionary *response = @{
+                                       @"activities": @[]
+                                       };
+            
+            RTNewsfeed *newsfeed = [[RTNewsfeed alloc] init];
+            RKMappingTest *mappingTest = [RKMappingTest testForMapping:mapping
+                                                          sourceObject:response
+                                                     destinationObject:newsfeed];
+            
+            [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:@"activities"
+                                                                                    destinationKeyPath:@"activities"
+                                                                                                 value:@[]]];
+            
+            [mappingTest performMapping];
+            [mappingTest verify];
+        });
+        
+        it(@"activity in newsfeed", ^{
+            RKMapping *mapping = [RTRestAPIMappingFactory newsfeedMapping];
+            NSMutableDictionary *activity = [[NSMutableDictionary alloc] init];
+
+            [activity setObject:@"create-reel" forKey:@"type"];
+            [activity setObject:userResponse forKey:@"user"];
+            [activity setObject:reelResponse forKey:@"reel"];
+
+            NSMutableDictionary *response = [[NSMutableDictionary alloc] init];
+            [response setObject:@[activity] forKey:@"activities"];
+            
+            RTNewsfeed *newsfeed = [[RTNewsfeed alloc] init];
+            RKMappingTest *mappingTest = [RKMappingTest testForMapping:mapping
+                                                          sourceObject:response
+                                                     destinationObject:newsfeed];
+            
+            [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:@"activities"
+                                                                                    destinationKeyPath:@"activities"]];
+            
+            [mappingTest performMapping];
+            [mappingTest verify];
+            
+            expect([newsfeed.activities count]).to.equal(1);
+
+            RTActivity *first = [newsfeed.activities objectAtIndex:0];
+            expect(first.type).to.equal(@(RTActivityTypeCreateReel));
+            
+            expect([first.user class]).to.equal([RTUser class]);
+            expect(first.user.username).to.equal([userResponse objectForKey:@"username"]);
+
+            expect([first.reel class]).to.equal([RTReel class]);
+            expect(first.reel.name).to.equal([reelResponse objectForKey:@"name"]);
+
+            expect(first.video).to.beNil();
+        });
+        
+        it(@"multiple activites in newsfeed", ^{
+            RKMapping *mapping = [RTRestAPIMappingFactory newsfeedMapping];
+
+            NSMutableDictionary *firstActivity = [[NSMutableDictionary alloc] init];
+
+            [firstActivity setObject:@"create-reel" forKey:@"type"];
+            [firstActivity setObject:userResponse forKey:@"user"];
+            [firstActivity setObject:reelResponse forKey:@"reel"];
+            
+            NSMutableDictionary *secondActivity = [[NSMutableDictionary alloc] init];
+            
+            [secondActivity setObject:@"add-video-to-reel" forKey:@"type"];
+            [secondActivity setObject:userResponse forKey:@"user"];
+            [secondActivity setObject:reelResponse forKey:@"reel"];
+            [secondActivity setObject:videoResponse forKey:@"video"];
+            
+            NSMutableDictionary *response = [[NSMutableDictionary alloc] init];
+            [response setObject:@[firstActivity, secondActivity] forKey:@"activities"];
+            
+            RTNewsfeed *newsfeed = [[RTNewsfeed alloc] init];
+            RKMappingTest *mappingTest = [RKMappingTest testForMapping:mapping
+                                                          sourceObject:response
+                                                     destinationObject:newsfeed];
+            
+            [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:@"activities"
+                                                                                    destinationKeyPath:@"activities"]];
+            
+            [mappingTest performMapping];
+            [mappingTest verify];
+            
+            expect([newsfeed.activities count]).to.equal(2);
+            
+            RTActivity *first = [newsfeed.activities objectAtIndex:0];
+            expect(first.type).to.equal(@(RTActivityTypeCreateReel));
+            
+            expect([first.user class]).to.equal([RTUser class]);
+            expect(first.user.username).to.equal([userResponse objectForKey:@"username"]);
+            
+            expect([first.reel class]).to.equal([RTReel class]);
+            expect(first.reel.name).to.equal([reelResponse objectForKey:@"name"]);
+            
+            expect(first.video).to.beNil();
+            
+            RTActivity *second = [newsfeed.activities objectAtIndex:1];
+            expect(second.type).to.equal(@(RTActivityTypeAddVideoToReel));
+            
+            expect([second.user class]).to.equal([RTUser class]);
+            expect(second.user.username).to.equal([userResponse objectForKey:@"username"]);
+            
+            expect([second.reel class]).to.equal([RTReel class]);
+            expect(second.reel.name).to.equal([reelResponse objectForKey:@"name"]);
+            
+            expect([second.video class]).to.equal([RTVideo class]);
+            expect(second.video.title).to.equal([videoResponse objectForKey:@"title"]);
         });
     });
 });

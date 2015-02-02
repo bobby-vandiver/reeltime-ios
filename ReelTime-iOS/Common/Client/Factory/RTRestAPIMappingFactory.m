@@ -143,6 +143,7 @@
 
 + (RKMapping *)newsfeedMapping {
     RKObjectMapping *mapping = [RKObjectMapping mappingForClass:[RTNewsfeed class]];
+    [mapping addRelationshipMappingWithSourceKeyPath:@"activities" mapping:[self activityMapping]];
     return mapping;
 }
 
