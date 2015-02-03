@@ -1,6 +1,7 @@
 #import "RTTestCommon.h"
 
 #import "RTClient.h"
+#import "RTClientDelegate.h"
 #import "RTClientAssembly.h"
 
 #import "RTClientCredentials.h"
@@ -10,13 +11,18 @@
 #import "RTOAuth2TokenError.h"
 
 #import "RTServerErrors.h"
+
 #import "RTAccountRegistration.h"
+#import "RTNewsfeed.h"
 
 #import "RTRestAPI.h"
 
 #import <Typhoon/Typhoon.h>
+#import <Typhoon/TyphoonPatcher.h>
+
 #import <Nocilla/Nocilla.h>
 
+static NSString *const GET = @"GET";
 static NSString *const POST = @"POST";
 
 SpecBegin(RTClient)
@@ -24,6 +30,10 @@ SpecBegin(RTClient)
 describe(@"ReelTime Client", ^{
     
     __block RTClient *client;
+    __block RTClientDelegate *delegate;
+    
+    __block NSString *const ACCESS_TOKEN = @"access-token";
+    __block NSString *const BEARER_TOKEN_AUTHORIZATION_HEADER = @"Bearer: access-token";
     
     beforeAll(^{
         [[LSNocilla sharedInstance] start];
@@ -34,8 +44,18 @@ describe(@"ReelTime Client", ^{
     });
     
     beforeEach(^{
-        RTClientAssembly *assembly = [TyphoonBlockComponentFactory factoryWithAssembly:[RTClientAssembly assembly]];
-        client = [assembly reelTimeClient];
+        RTClientAssembly *assembly = [RTClientAssembly assembly];
+        
+        TyphoonComponentFactory *factory = [TyphoonBlockComponentFactory factoryWithAssembly:assembly];
+        TyphoonPatcher *patcher = [[TyphoonPatcher alloc] init];
+
+        [patcher patchDefinitionWithSelector:@selector(reelTimeClientDelegate) withObject:^id{
+            delegate = mock([RTClientDelegate class]);
+            return delegate;
+        }];
+        
+        [factory attachPostProcessor:patcher];
+        client = [(RTClientAssembly *)factory reelTimeClient];
     });
     
     afterEach(^{
@@ -193,6 +213,36 @@ describe(@"ReelTime Client", ^{
                                     expect(errors.errors).to.contain(@"Unable to register. Please try again.");
                                     done();
                                 }];
+            });
+        });
+    });
+    
+    describe(@"newsfeed", ^{
+        __block NSRegularExpression *newsfeedUrlRegex = createUrlRegexForEndpoint(API_NEWSFEED_ENDPOINT);
+
+        beforeEach(^{
+            [given([delegate accessTokenForCurrentUser]) willReturn:ACCESS_TOKEN];
+        });
+        
+        afterEach(^{
+            [verify(delegate) accessTokenForCurrentUser];
+        });
+        
+        it(@"should pass newsfeed with no activities to callback", ^{
+            stubRequest(GET, newsfeedUrlRegex).
+            withHeader(@"Authorization", BEARER_TOKEN_AUTHORIZATION_HEADER).
+            andReturnRawResponse(rawResponseFromFile(@"no-activities"));
+            
+            waitUntil(^(DoneCallback done) {
+                [client newsfeedPage:1
+                             success:^(RTNewsfeed *newsfeed) {
+                                 expect(newsfeed.activities.count).to.equal(0);
+                                 done();
+                             }
+                             failure:^(RTServerErrors *errors) {
+                                 fail();
+                                 done();
+                             }];
             });
         });
     });

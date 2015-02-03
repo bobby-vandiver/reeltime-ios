@@ -1,4 +1,6 @@
 #import "RTClient.h"
+#import "RTClientDelegate.h"
+
 #import "RTRestAPI.h"
 
 #import "RTClientCredentials.h"
@@ -10,19 +12,24 @@
 #import "RTServerErrors.h"
 #import "RTAccountRegistration.h"
 
+#import <RestKit/RestKit.h>
+
 static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read reels-write users-read users-write videos-read videos-write";
 
 @interface RTClient ()
 
+@property RTClientDelegate *delegate;
 @property RKObjectManager *objectManager;
 
 @end
 
 @implementation RTClient
 
-- (instancetype)initWithRestKitObjectManager:(RKObjectManager *)objectManager {
+- (instancetype)initWithDelegate:(RTClientDelegate *)delegate
+            RestKitObjectManager:(RKObjectManager *)objectManager {
     self = [super init];
     if (self) {
+        self.delegate = delegate;
         self.objectManager = objectManager;
     }
     return self;
@@ -81,6 +88,36 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
                         parameters:parameters
                            success:successCallback
                            failure:failureCallback];
+}
+
+- (void)newsfeedPage:(NSUInteger)page
+             success:(void (^)(RTNewsfeed *))success
+             failure:(void (^)(RTServerErrors *))failure {
+    NSDictionary *parameters = @{
+                                 @"page":@(page)
+                                 };
+    
+    NSMutableURLRequest *request = [self.objectManager requestWithObject:nil
+                                                                  method:RKRequestMethodGET
+                                                                    path:API_NEWSFEED_ENDPOINT
+                                                              parameters:parameters];
+
+    NSString *accessToken = [self.delegate accessTokenForCurrentUser];
+    NSString *authorizationHeader = [NSString stringWithFormat:@"Bearer: %@", accessToken];
+    [request setValue:authorizationHeader forHTTPHeaderField:@"Authorization"];
+
+    id successCallback = ^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        RTNewsfeed *newsfeed = [mappingResult firstObject];
+        success(newsfeed);
+    };
+    
+    id failureCallback = [self serverFailureHandlerWithCallback:failure];
+    
+    RKObjectRequestOperation *operation = [self.objectManager objectRequestOperationWithRequest:request
+                                                                                        success:successCallback
+                                                                                        failure:failureCallback];
+    
+    [self.objectManager enqueueObjectRequestOperation:operation];
 }
 
 - (void (^)(RKObjectRequestOperation *, NSError *))serverFailureHandlerWithCallback:(void (^)(RTServerErrors *))callback {

@@ -1,0 +1,59 @@
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+Content-Type: application/json;charset=UTF-8
+Transfer-Encoding: chunked
+Date: Sun, 11 Jan 2015 15:05:38 GMT
+
+{
+    "activities":[
+        {
+            "type":"create-reel",
+            "user":{
+                "username":"someone",
+                "display_name":"some display",
+                "follower_count":1,
+                "followee_count":2
+            },
+            "reel":{
+                "reel_id":34,
+                "name":"some reel",
+                "audience_size":901,
+                "video_count":23
+            }
+        },
+        {
+            "type":"join-reel-audience",
+            "user":{
+                "username":"anyone",
+                "display_name":"any display",
+                "follower_count":6,
+                "followee_count":8
+            },
+            "reel":{
+                "reel_id":34,
+                "name":"some reel",
+                "audience_size":901,
+                "video_count":23
+            }
+        },
+        {
+            "type":"add-video-to-reel",
+            "user":{
+                "username":"someone",
+                "display_name":"some display",
+                "follower_count":1,
+                "followee_count":2
+            },
+            "reel":{
+                "reel_id":34,
+                "name":"some reel",
+                "audience_size":901,
+                "video_count":23
+            },
+            "video":{
+                "video_id":5,
+                "title":"some video"
+            }
+        }
+    ]
+}

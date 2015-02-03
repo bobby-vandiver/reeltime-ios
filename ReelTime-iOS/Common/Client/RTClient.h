@@ -1,5 +1,7 @@
 #import <Foundation/Foundation.h>
-#import <RestKit/RestKit.h>
+
+@class RTClientDelegate;
+@class RKObjectManager;
 
 @class RTClientCredentials;
 @class RTUserCredentials;
@@ -8,11 +10,14 @@
 @class RTOAuth2TokenError;
 
 @class RTServerErrors;
+
 @class RTAccountRegistration;
+@class RTNewsfeed;
 
 @interface RTClient : NSObject
 
-- (instancetype)initWithRestKitObjectManager:(RKObjectManager *)objectManager;
+- (instancetype)initWithDelegate:(RTClientDelegate *)delegate
+            RestKitObjectManager:(RKObjectManager *)objectManager;
 
 - (void)tokenWithClientCredentials:(RTClientCredentials *)clientCredentials
                    userCredentials:(RTUserCredentials *)userCredentials
@@ -22,5 +27,9 @@
 - (void)registerAccount:(RTAccountRegistration *)registration
                 success:(void (^)(RTClientCredentials *clientCredentials))success
                 failure:(void (^)(RTServerErrors *errors))failure;
+
+- (void)newsfeedPage:(NSUInteger)page
+             success:(void (^)(RTNewsfeed *newsfeed))success
+             failure:(void (^)(RTServerErrors *errors))failure;
 
 @end

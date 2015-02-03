@@ -1,8 +1,10 @@
 #import "RTClientAssembly.h"
+#import "RTSecureStoreAssembly.h"
 
 #import "RTClient.h"
-#import "RTResponseDescriptorFactory.h"
+#import "RTClientDelegate.h"
 
+#import "RTResponseDescriptorFactory.h"
 #import "RTServerErrorsConverter.h"
 
 #import <RestKit/RestKit.h>
@@ -11,9 +13,20 @@
 
 - (RTClient *)reelTimeClient {
     return [TyphoonDefinition withClass:[RTClient class] configuration:^(TyphoonDefinition *definition) {
-        [definition useInitializer:@selector(initWithRestKitObjectManager:)
+        [definition useInitializer:@selector(initWithDelegate:RestKitObjectManager:)
                         parameters:^(TyphoonMethod *initializer) {
-            [initializer injectParameterWith:[self restKitObjectManager]];
+                            [initializer injectParameterWith:[self reelTimeClientDelegate]];
+                            [initializer injectParameterWith:[self restKitObjectManager]];
+        }];
+    }];
+}
+
+- (RTClientDelegate *)reelTimeClientDelegate {
+    return [TyphoonDefinition withClass:[RTClientDelegate class] configuration:^(TyphoonDefinition *definition) {
+        [definition useInitializer:@selector(initWithCurrentUserStore:tokenStore:)
+                        parameters:^(TyphoonMethod *initializer) {
+                            [initializer injectParameterWith:[self.secureStoreAssembly currentUserStore]];
+                            [initializer injectParameterWith:[self.secureStoreAssembly tokenStore]];
         }];
     }];
 }
@@ -30,7 +43,8 @@
                                           [RTResponseDescriptorFactory tokenDescriptor],
                                           [RTResponseDescriptorFactory tokenErrorDescriptor],
                                           [RTResponseDescriptorFactory accountRegistrationDescriptor],
-                                          [RTResponseDescriptorFactory accountRegistrationErrorDescriptor]
+                                          [RTResponseDescriptorFactory accountRegistrationErrorDescriptor],
+                                          [RTResponseDescriptorFactory newsfeedDescriptor]
                                           ]];
         }];
     }];

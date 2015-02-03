@@ -46,4 +46,14 @@
                                                    statusCodes:statusCodes];
 }
 
++ (RKResponseDescriptor *)newsfeedDescriptor {
+    NSIndexSet *statusCodes = [NSIndexSet indexSetWithIndex:200];
+    
+    return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory newsfeedMapping]
+                                                        method:RKRequestMethodGET
+                                                   pathPattern:API_NEWSFEED_ENDPOINT
+                                                       keyPath:nil
+                                                   statusCodes:statusCodes];
+}
+
 @end
