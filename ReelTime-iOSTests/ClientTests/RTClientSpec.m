@@ -268,10 +268,7 @@ describe(@"ReelTime Client", ^{
                                  expect(activity.type).to.equal(RTActivityTypeCreateReel);
                                  
                                  RTUser *user = activity.user;
-                                 expect(user.username).to.equal(@"someone");
-                                 expect(user.displayName).to.equal(@"some display");
-                                 expect(user.numberOfFollowers).to.equal(1);
-                                 expect(user.numberOfFollowees).to.equal(2);
+                                 expect(user).to.beUser(@"someone", @"some display", @(1), @(2));
                                  
                                  RTReel *reel = activity.reel;
                                  expect(reel.reelId).to.equal(34);

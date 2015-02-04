@@ -11,6 +11,8 @@
 #import "EXPMatchers+beError.h"
 #import "NSError+RTError.h"
 
+#import "EXPMatchers+beUser.h"
+
 // Neither Specta nor Expecta provide a way to unconditionally fail a test
 #define fail() expect(0).to.equal(1)
 
