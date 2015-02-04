@@ -1,4 +1,5 @@
 #import "EXPMatchers+beError.h"
+#import "EXPMatchers+ErrorMessages.h"
 
 EXPMatcherImplementationBegin(beError, (NSString *expectedDomain, NSInteger expectedCode)) {
     
@@ -35,45 +36,36 @@ EXPMatcherImplementationBegin(beError, (NSString *expectedDomain, NSInteger expe
     
     failureMessageForTo(^NSString * {
         if (actualIsNil) {
-            return @"the actual value is nil/null";
+            return actualValueIsNil();
         }
         if (expectedDomainIsNil) {
-            return @"the expected domain is nil/null";
+            return expectedValueIsNil(@"domain");
         }
         if (!actualIsError) {
-            return [NSString stringWithFormat:@"expected: a kind of %@,"
-                    "got: an instance of %@, which is not a kind of %@",
-                    [NSError class], [actual class], [NSError class]];
+            return actualIsNotClass([actual class], [NSError class]);
         }
         if (!sameDomain) {
-            return [NSString stringWithFormat:@"expected: error domain %@, got: error domain %@",
-                    expectedDomain, actualDomain];
+            return actualIsNotExpected(@"error domain", actualDomain, expectedDomain);
         }
         
-        return [NSString stringWithFormat:@"expected: error code %ld, got: error code %ld",
-                (long)expectedCode, (long)actualCode];
+        return actualIsNotExpected(@"error code", @(actualCode), @(expectedCode));
     });
     
     failureMessageForNotTo(^NSString * {
         if (actualIsNil) {
-            return @"the actual value is nil/null";
+            return actualValueIsNil();
         }
         if (expectedDomainIsNil) {
-            return @"the expected domain is nil/null";
+            return expectedValueIsNil(@"domain");
         }
         if (actualIsError) {
-            return [NSString stringWithFormat:@"expected: not a kind of %@,"
-                    "got: an instance of %@, which is a kind of %@",
-                    [NSError class], [actual class], [NSError class]];
+            return actualIsClass([actual class], [NSError class]);
         }
         if (sameDomain) {
-            return [NSString stringWithFormat:@"expected: not error domain %@, got: error domain %@",
-                    expectedDomain, actualDomain];
+            return actualIsExpected(@"error domain", actualDomain, expectedDomain);
         }
         
-        return [NSString stringWithFormat:@"expected: not error code %ld, got: error code %ld",
-                (long)expectedCode, (long)actualCode];
-        
+        return actualIsExpected(@"error code", @(actualCode), @(expectedCode));
     });
 }
 EXPMatcherImplementationEnd
