@@ -101,16 +101,16 @@ EXPMatcherImplementationBegin(beReel, (NSNumber *expectedReelId, NSString *expec
         if (expectedNumberOfVideosIsNil) {
             return expectedValueIsNil(@"number of videos");
         }
-        if (!actualIsReel) {
+        if (actualIsReel) {
             return actualIsClass([actual class], [RTReel class]);
         }
-        if (!sameReelId) {
+        if (sameReelId) {
             return actualIsExpected(@"reel id", actualReelId, expectedReelId);
         }
-        if (!sameName) {
+        if (sameName) {
             return actualIsExpected(@"name", actualName, expectedName);
         }
-        if (!sameAudienceSize) {
+        if (sameAudienceSize) {
             return actualIsExpected(@"audience size", actualAudienceSize, expectedAudienceSize);
         }
         return actualIsExpected(@"number of videos", actualNumberOfVideos, expectedNumberOfVideos);

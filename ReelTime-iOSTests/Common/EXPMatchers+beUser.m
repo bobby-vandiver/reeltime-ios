@@ -101,16 +101,16 @@ EXPMatcherImplementationBegin(beUser, (NSString *expectedUsername, NSString *exp
         if (expectedNumberOfFolloweesIsNil) {
             return expectedValueIsNil(@"number of followees");
         }
-        if (!actualIsUser) {
+        if (actualIsUser) {
             return actualIsClass([actual class], [RTUser class]);
         }
-        if (!sameUsername) {
+        if (sameUsername) {
             return actualIsExpected(@"username", actualUsername, expectedUsername);
         }
-        if (!sameDisplayName) {
+        if (sameDisplayName) {
             return actualIsExpected(@"display name", actualDisplayName, expectedDisplayName);
         }
-        if (!sameNumberOfFollowers) {
+        if (sameNumberOfFollowers) {
             return actualIsExpected(@"number of followers", actualNumberOfFollowers, expectedNumberOfFollowers);
         }
         return actualIsExpected(@"number of followees", actualNumberOfFollowees, expectedNumberOfFollowees);
