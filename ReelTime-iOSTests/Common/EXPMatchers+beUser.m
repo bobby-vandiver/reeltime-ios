@@ -5,7 +5,6 @@
 
 EXPMatcherImplementationBegin(beUser, (NSString *expectedUsername, NSString *expectedDisplayName,
                                        NSNumber *expectedNumberOfFollowers, NSNumber *expectedNumberOfFollowees)) {
-    
     BOOL actualIsNil = (actual == nil);
     BOOL actualIsUser = [actual isKindOfClass:[RTUser class]];
     
