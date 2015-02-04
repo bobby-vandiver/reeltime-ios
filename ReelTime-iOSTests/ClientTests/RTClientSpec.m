@@ -13,7 +13,13 @@
 #import "RTServerErrors.h"
 
 #import "RTAccountRegistration.h"
+
 #import "RTNewsfeed.h"
+#import "RTActivity.h"
+
+#import "RTUser.h"
+#import "RTReel.h"
+#import "RTVideo.h"
 
 #import "RTRestAPI.h"
 
@@ -25,15 +31,17 @@
 static NSString *const GET = @"GET";
 static NSString *const POST = @"POST";
 
+static NSString *const AUTHORIZATION = @"Authorization";
+
+static NSString *const ACCESS_TOKEN = @"access-token";
+static NSString *const BEARER_TOKEN_AUTHORIZATION_HEADER = @"Bearer: access-token";
+
 SpecBegin(RTClient)
 
 describe(@"ReelTime Client", ^{
     
     __block RTClient *client;
     __block RTClientDelegate *delegate;
-    
-    __block NSString *const ACCESS_TOKEN = @"access-token";
-    __block NSString *const BEARER_TOKEN_AUTHORIZATION_HEADER = @"Bearer: access-token";
     
     beforeAll(^{
         [[LSNocilla sharedInstance] start];
@@ -230,13 +238,47 @@ describe(@"ReelTime Client", ^{
         
         it(@"should pass newsfeed with no activities to callback", ^{
             stubRequest(GET, newsfeedUrlRegex).
-            withHeader(@"Authorization", BEARER_TOKEN_AUTHORIZATION_HEADER).
+            withHeader(AUTHORIZATION, BEARER_TOKEN_AUTHORIZATION_HEADER).
             andReturnRawResponse(rawResponseFromFile(@"no-activities"));
             
             waitUntil(^(DoneCallback done) {
                 [client newsfeedPage:1
                              success:^(RTNewsfeed *newsfeed) {
                                  expect(newsfeed.activities.count).to.equal(0);
+                                 done();
+                             }
+                             failure:^(RTServerErrors *errors) {
+                                 fail();
+                                 done();
+                             }];
+            });
+        });
+        
+        it(@"should pass newsfeed with one activity to callback", ^{
+            stubRequest(GET, newsfeedUrlRegex).
+            withHeader(AUTHORIZATION, BEARER_TOKEN_AUTHORIZATION_HEADER).
+            andReturnRawResponse(rawResponseFromFile(@"one-activity"));
+            
+            waitUntil(^(DoneCallback done) {
+                [client newsfeedPage:1
+                             success:^(RTNewsfeed *newsfeed) {
+                                 expect(newsfeed.activities.count).to.equal(1);
+                                 
+                                 RTActivity *activity = [newsfeed.activities objectAtIndex:0];
+                                 expect(activity.type).to.equal(RTActivityTypeCreateReel);
+                                 
+                                 RTUser *user = activity.user;
+                                 expect(user.username).to.equal(@"someone");
+                                 expect(user.displayName).to.equal(@"some display");
+                                 expect(user.numberOfFollowers).to.equal(1);
+                                 expect(user.numberOfFollowees).to.equal(2);
+                                 
+                                 RTReel *reel = activity.reel;
+                                 expect(reel.reelId).to.equal(34);
+                                 expect(reel.name).to.equal(@"some reel");
+                                 expect(reel.audienceSize).to.equal(901);
+                                 expect(reel.numberOfVideos).to.equal(23);
+                                 
                                  done();
                              }
                              failure:^(RTServerErrors *errors) {
