@@ -20,6 +20,7 @@
 		711690A21A6B00210031578E /* RTApplicationAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 711690A11A6B00210031578E /* RTApplicationAssembly.m */; };
 		71194C1D1A81AEFC00904A06 /* EXPMatchers+beUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 71194C1C1A81AEFC00904A06 /* EXPMatchers+beUser.m */; };
 		71194C201A81B5D300904A06 /* EXPMatchers+ErrorMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = 71194C1F1A81B5D300904A06 /* EXPMatchers+ErrorMessages.m */; };
+		71194C231A81C37900904A06 /* EXPMatchers+beReel.m in Sources */ = {isa = PBXBuildFile; fileRef = 71194C221A81C37900904A06 /* EXPMatchers+beReel.m */; };
 		712BE2FC1A75D74300478277 /* RTClientCredentialsStoreSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 712BE2FB1A75D74300478277 /* RTClientCredentialsStoreSpec.m */; };
 		712BE3021A75D74C00478277 /* EXPMatchers+beError.m in Sources */ = {isa = PBXBuildFile; fileRef = 712BE2FF1A75D74C00478277 /* EXPMatchers+beError.m */; };
 		712BE3031A75D74C00478277 /* RTTestCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 712BE3011A75D74C00478277 /* RTTestCommon.m */; };
@@ -132,6 +133,8 @@
 		71194C1C1A81AEFC00904A06 /* EXPMatchers+beUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EXPMatchers+beUser.m"; sourceTree = "<group>"; };
 		71194C1E1A81B48000904A06 /* EXPMatchers+ErrorMessages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+ErrorMessages.h"; sourceTree = "<group>"; };
 		71194C1F1A81B5D300904A06 /* EXPMatchers+ErrorMessages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EXPMatchers+ErrorMessages.m"; sourceTree = "<group>"; };
+		71194C211A81C30900904A06 /* EXPMatchers+beReel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+beReel.h"; sourceTree = "<group>"; };
+		71194C221A81C37900904A06 /* EXPMatchers+beReel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EXPMatchers+beReel.m"; sourceTree = "<group>"; };
 		7119C8A91A5E1F6700C5EA16 /* RTLoginDataManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLoginDataManagerDelegate.h; sourceTree = "<group>"; };
 		712BE2FB1A75D74300478277 /* RTClientCredentialsStoreSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTClientCredentialsStoreSpec.m; sourceTree = "<group>"; };
 		712BE2FE1A75D74C00478277 /* EXPMatchers+beError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+beError.h"; sourceTree = "<group>"; };
@@ -359,12 +362,14 @@
 			children = (
 				712BE2FE1A75D74C00478277 /* EXPMatchers+beError.h */,
 				712BE2FF1A75D74C00478277 /* EXPMatchers+beError.m */,
+				71194C211A81C30900904A06 /* EXPMatchers+beReel.h */,
+				71194C221A81C37900904A06 /* EXPMatchers+beReel.m */,
 				71194C1B1A81AED300904A06 /* EXPMatchers+beUser.h */,
 				71194C1C1A81AEFC00904A06 /* EXPMatchers+beUser.m */,
-				712BE3001A75D74C00478277 /* RTTestCommon.h */,
-				712BE3011A75D74C00478277 /* RTTestCommon.m */,
 				71194C1E1A81B48000904A06 /* EXPMatchers+ErrorMessages.h */,
 				71194C1F1A81B5D300904A06 /* EXPMatchers+ErrorMessages.m */,
+				712BE3001A75D74C00478277 /* RTTestCommon.h */,
+				712BE3011A75D74C00478277 /* RTTestCommon.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -960,6 +965,7 @@
 				7190DABA1A5CC55D00BDCE4C /* RTCurrentUserStoreSpec.m in Sources */,
 				71C8D91F1A73485A00673F1A /* RTAccountRegistrationDataManagerSpec.m in Sources */,
 				71647BE81A7F185500F44996 /* RTClientDelegateSpec.m in Sources */,
+				71194C231A81C37900904A06 /* EXPMatchers+beReel.m in Sources */,
 				71194C1D1A81AEFC00904A06 /* EXPMatchers+beUser.m in Sources */,
 				712BE2FC1A75D74300478277 /* RTClientCredentialsStoreSpec.m in Sources */,
 			);

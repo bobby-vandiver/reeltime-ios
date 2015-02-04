@@ -271,10 +271,7 @@ describe(@"ReelTime Client", ^{
                                  expect(user).to.beUser(@"someone", @"some display", @(1), @(2));
                                  
                                  RTReel *reel = activity.reel;
-                                 expect(reel.reelId).to.equal(34);
-                                 expect(reel.name).to.equal(@"some reel");
-                                 expect(reel.audienceSize).to.equal(901);
-                                 expect(reel.numberOfVideos).to.equal(23);
+                                 expect(reel).to.beReel(@(34), @"some reel", @(901), @(23));
                                  
                                  done();
                              }
