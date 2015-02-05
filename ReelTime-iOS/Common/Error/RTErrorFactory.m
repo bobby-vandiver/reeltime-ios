@@ -3,6 +3,14 @@
 
 @implementation RTErrorFactory
 
++ (NSError *)keyChainErrorWithCode:(RTKeyChainError)code
+                     originalError:(NSError *)error {
+    return [NSError errorWithDomain:RTKeyChainWrapperErrorDomain
+                               code:code
+                           userInfo:nil
+                      originalError:error];
+}
+
 + (NSError *)loginErrorWithCode:(RTLoginError)code {
     return [self loginErrorWithCode:code
                       originalError:nil];
@@ -22,12 +30,10 @@
                            userInfo:nil];
 }
 
-+ (NSError *)keyChainErrorWithCode:(RTKeyChainError)code
-                     originalError:(NSError *)error {
-    return [NSError errorWithDomain:RTKeyChainWrapperErrorDomain
++ (NSError *)newsfeedErrorWithCode:(RTNewsfeedError)code {
+    return [NSError errorWithDomain:RTNewsfeedErrorDomain
                                code:code
-                           userInfo:nil
-                      originalError:error];
+                           userInfo:nil];
 }
 
 @end

@@ -1,10 +1,14 @@
 #import <Foundation/Foundation.h>
 
+#import "RTKeyChainError.h"
 #import "RTLoginError.h"
 #import "RTAccountRegistrationError.h"
-#import "RTKeyChainError.h"
+#import "RTNewsfeedError.h"
 
 @interface RTErrorFactory : NSObject
+
++ (NSError *)keyChainErrorWithCode:(RTKeyChainError)code
+                     originalError:(NSError *)error;
 
 + (NSError *)loginErrorWithCode:(RTLoginError)code;
 
@@ -13,7 +17,6 @@
 
 + (NSError *)accountRegistrationErrorWithCode:(RTAccountRegistrationError)code;
 
-+ (NSError *)keyChainErrorWithCode:(RTKeyChainError)code
-                     originalError:(NSError *)error;
++ (NSError *)newsfeedErrorWithCode:(RTNewsfeedError)code;
 
 @end
