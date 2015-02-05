@@ -13,8 +13,11 @@
 #import "RTAccountRegistration.h"
 
 #import <RestKit/RestKit.h>
+#import "RKObjectManager+IncludeHeaders.h"
 
 static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read reels-write users-read users-write videos-read videos-write";
+
+static NSString *const AUTHORIZATION_HEADER = @"Authorization";
 
 @interface RTClient ()
 
@@ -93,18 +96,8 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
 - (void)newsfeedPage:(NSUInteger)page
              success:(void (^)(RTNewsfeed *))success
              failure:(void (^)(RTServerErrors *))failure {
-    NSDictionary *parameters = @{
-                                 @"page":@(page)
-                                 };
-    
-    NSMutableURLRequest *request = [self.objectManager requestWithObject:nil
-                                                                  method:RKRequestMethodGET
-                                                                    path:API_NEWSFEED_ENDPOINT
-                                                              parameters:parameters];
-
-    NSString *accessToken = [self.delegate accessTokenForCurrentUser];
-    NSString *authorizationHeader = [NSString stringWithFormat:@"Bearer: %@", accessToken];
-    [request setValue:authorizationHeader forHTTPHeaderField:@"Authorization"];
+    NSDictionary *parameters = @{@"page":@(page)};
+    NSDictionary *headers = @{AUTHORIZATION_HEADER:[self formatAccessTokenForAuthorizationHeader]};
 
     id successCallback = ^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         RTNewsfeed *newsfeed = [mappingResult firstObject];
@@ -113,11 +106,17 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
     
     id failureCallback = [self serverFailureHandlerWithCallback:failure];
     
-    RKObjectRequestOperation *operation = [self.objectManager objectRequestOperationWithRequest:request
-                                                                                        success:successCallback
-                                                                                        failure:failureCallback];
-    
-    [self.objectManager enqueueObjectRequestOperation:operation];
+    [self.objectManager getObject:nil
+                             path:API_NEWSFEED_ENDPOINT
+                       parameters:parameters
+                          headers:headers
+                          success:successCallback
+                          failure:failureCallback];
+}
+
+- (NSString *)formatAccessTokenForAuthorizationHeader {
+    NSString *token = [self.delegate accessTokenForCurrentUser];
+    return [NSString stringWithFormat:@"Bearer: %@", token];
 }
 
 - (void (^)(RKObjectRequestOperation *, NSError *))serverFailureHandlerWithCallback:(void (^)(RTServerErrors *))callback {
