@@ -281,6 +281,55 @@ describe(@"ReelTime Client", ^{
                              }];
             });
         });
+        
+        it(@"should pass newsfeed with multiple activities to callback", ^{
+            stubRequest(GET, newsfeedUrlRegex).
+            withHeader(AUTHORIZATION, BEARER_TOKEN_AUTHORIZATION_HEADER).
+            andReturnRawResponse(rawResponseFromFile(@"multiple-activities"));
+            
+            waitUntil(^(DoneCallback done) {
+                [client newsfeedPage:1
+                             success:^(RTNewsfeed *newsfeed) {
+                                 expect(newsfeed.activities.count).to.equal(3);
+                                 
+                                 RTActivity *activity = [newsfeed.activities objectAtIndex:0];
+                                 expect(activity.type).to.equal(RTActivityTypeCreateReel);
+                                 
+                                 RTUser *user = activity.user;
+                                 expect(user).to.beUser(@"someone", @"some display", @(1), @(2));
+                                 
+                                 RTReel *reel = activity.reel;
+                                 expect(reel).to.beReel(@(34), @"some reel", @(901), @(23));
+
+                                 activity = [newsfeed.activities objectAtIndex:1];
+                                 expect(activity.type).to.equal(RTActivityTypeJoinReelAudience);
+                                 
+                                 user = activity.user;
+                                 expect(user).to.beUser(@"anyone", @"any display", @(6), @(8));
+                                 
+                                 reel = activity.reel;
+                                 expect(reel).to.beReel(@(34), @"some reel", @(901), @(23));
+                                 
+                                 activity = [newsfeed.activities objectAtIndex:2];
+                                 expect(activity.type).to.equal(RTActivityTypeAddVideoToReel);
+
+                                 user = activity.user;
+                                 expect(user).to.beUser(@"someone", @"some display", @(1), @(2));
+                                 
+                                 reel = activity.reel;
+                                 expect(reel).to.beReel(@(34), @"some reel", @(901), @(23));
+                                 
+                                 RTVideo *video = activity.video;
+                                 expect(video).to.beVideo(@(5), @"some video");
+                                 
+                                 done();
+                             }
+                             failure:^(RTServerErrors *errors) {
+                                 fail();
+                                 done();
+                             }];
+            });
+        });
     });
 });
 
