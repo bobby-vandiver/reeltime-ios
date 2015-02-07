@@ -3,6 +3,9 @@
 #import "RTLoginInteractor.h"
 #import "RTLoginWireframe.h"
 
+#import "RTLoginPresentationModel.h"
+#import "RTConditionalMessage.h"
+
 #import "RTErrorFactory.h"
 
 @interface RTLoginPresenter ()
@@ -41,26 +44,33 @@
 }
 
 - (void)loginFailedWithErrors:(NSArray *)errors {
-    NSString *message = @"An unknown error occurred";
+    RTLoginPresentationModel *presentationModel = [[RTLoginPresentationModel alloc] init];
 
     for (NSError *error in errors) {
         if ([error.domain isEqualToString:RTLoginErrorDomain]) {
             if (error.code == RTLoginErrorMissingUsername) {
-                message = @"Username is required";
+                presentationModel.validUsername = [RTConditionalMessage falseWithMessage:@"Username is required"];
             }
             else if (error.code == RTLoginErrorMissingPassword) {
-                message = @"Password is required";
+                presentationModel.validPassword = [RTConditionalMessage falseWithMessage:@"Password is required"];
             }
             else if (error.code == RTLoginErrorInvalidCredentials) {
-                message = @"Invalid username or password";
+                presentationModel.validCredentials = [RTConditionalMessage falseWithMessage:@"Invalid username or password"];
             }
             else if (error.code == RTLoginErrorUnknownClient) {
                 [self.wireframe presentDeviceRegistrationInterface];
-                break;
+                return;
+            }
+            else {
+                presentationModel.unknownErrorOccurred = [RTConditionalMessage trueWithMessage:@"An unknown error occurred"];
             }
         }
-        [self.view showErrorMessage:message];
+        else {
+            presentationModel.unknownErrorOccurred = [RTConditionalMessage trueWithMessage:@"An unknown error occurred"];
+        }
     }
+
+    [self.view updateWithPresentationModel:presentationModel];
 }
 
 @end

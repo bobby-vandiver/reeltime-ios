@@ -69,6 +69,8 @@
 		717215D31A865C8E0002ECC7 /* token-bad-client-credentials.txt in Resources */ = {isa = PBXBuildFile; fileRef = 717215CA1A865C8E0002ECC7 /* token-bad-client-credentials.txt */; };
 		717215D41A865C8E0002ECC7 /* token-bad-user-credentials.txt in Resources */ = {isa = PBXBuildFile; fileRef = 717215CB1A865C8E0002ECC7 /* token-bad-user-credentials.txt */; };
 		717215D51A865C8E0002ECC7 /* token-successful.txt in Resources */ = {isa = PBXBuildFile; fileRef = 717215CC1A865C8E0002ECC7 /* token-successful.txt */; };
+		717215D91A8695540002ECC7 /* RTLoginPresentationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 717215D81A8695540002ECC7 /* RTLoginPresentationModel.m */; };
+		717215DD1A8698580002ECC7 /* RTConditionalMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 717215DC1A8698580002ECC7 /* RTConditionalMessage.m */; };
 		717A4B781A534EBD004C2BC1 /* RTResponseDescriptorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 717A4B771A534EBD004C2BC1 /* RTResponseDescriptorFactory.m */; };
 		717A4B7B1A534EF8004C2BC1 /* RTRestAPIMappingFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 717A4B7A1A534EF8004C2BC1 /* RTRestAPIMappingFactory.m */; };
 		717A4B7E1A53503B004C2BC1 /* RTRestAPIMappingFactorySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 717A4B7D1A53503B004C2BC1 /* RTRestAPIMappingFactorySpec.m */; };
@@ -225,6 +227,10 @@
 		717215CA1A865C8E0002ECC7 /* token-bad-client-credentials.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "token-bad-client-credentials.txt"; sourceTree = "<group>"; };
 		717215CB1A865C8E0002ECC7 /* token-bad-user-credentials.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "token-bad-user-credentials.txt"; sourceTree = "<group>"; };
 		717215CC1A865C8E0002ECC7 /* token-successful.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "token-successful.txt"; sourceTree = "<group>"; };
+		717215D71A8695540002ECC7 /* RTLoginPresentationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLoginPresentationModel.h; sourceTree = "<group>"; };
+		717215D81A8695540002ECC7 /* RTLoginPresentationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLoginPresentationModel.m; sourceTree = "<group>"; };
+		717215DB1A8698580002ECC7 /* RTConditionalMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTConditionalMessage.h; sourceTree = "<group>"; };
+		717215DC1A8698580002ECC7 /* RTConditionalMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTConditionalMessage.m; sourceTree = "<group>"; };
 		717A4B761A534EBD004C2BC1 /* RTResponseDescriptorFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTResponseDescriptorFactory.h; sourceTree = "<group>"; };
 		717A4B771A534EBD004C2BC1 /* RTResponseDescriptorFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTResponseDescriptorFactory.m; sourceTree = "<group>"; };
 		717A4B791A534EF8004C2BC1 /* RTRestAPIMappingFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTRestAPIMappingFactory.h; sourceTree = "<group>"; };
@@ -444,6 +450,8 @@
 		717215781A86565F0002ECC7 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				717215D71A8695540002ECC7 /* RTLoginPresentationModel.h */,
+				717215D81A8695540002ECC7 /* RTLoginPresentationModel.m */,
 				7172158B1A8657770002ECC7 /* RTLoginPresenter.h */,
 				7172158C1A8657770002ECC7 /* RTLoginPresenter.m */,
 				7172158D1A8657770002ECC7 /* RTLoginView.h */,
@@ -619,6 +627,15 @@
 			path = Token;
 			sourceTree = "<group>";
 		};
+		717215DA1A8697B30002ECC7 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				717215DB1A8698580002ECC7 /* RTConditionalMessage.h */,
+				717215DC1A8698580002ECC7 /* RTConditionalMessage.m */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
 		717A4B751A534E7B004C2BC1 /* Factory */ = {
 			isa = PBXGroup;
 			children = (
@@ -755,6 +772,7 @@
 				713D7A491A50A24E00754A06 /* Client */,
 				719B35E11A51150000FFD543 /* Error */,
 				71D9477F1A4FB39C00401963 /* Model */,
+				717215DA1A8697B30002ECC7 /* Presentation */,
 				7102A7B21A57AAEF00DEDA83 /* Security */,
 				71D947831A4FB7BC00401963 /* Store */,
 				711690991A6AEBA80031578E /* Storyboard */,
@@ -1064,6 +1082,7 @@
 				7172159B1A8659050002ECC7 /* RTAccountRegistrationAssembly.m in Sources */,
 				71C5C0B21A55EB3900CAAFAC /* RTOAuth2TokenStore.m in Sources */,
 				718CFFCA1A6C007C00B418F9 /* RTAccountRegistration.m in Sources */,
+				717215D91A8695540002ECC7 /* RTLoginPresentationModel.m in Sources */,
 				7172157E1A8657540002ECC7 /* RTLoginAssembly.m in Sources */,
 				717D92761A5B925700EAB6BF /* RTCurrentUserStore.m in Sources */,
 				71C7D4151A7406A6006B84AC /* RTServerErrorsConverter.m in Sources */,
@@ -1110,6 +1129,7 @@
 				71647BDE1A7E817000F44996 /* RTActivity.m in Sources */,
 				71647BDB1A7E802200F44996 /* RTReel.m in Sources */,
 				718A0BE21A4DA87900137C49 /* main.m in Sources */,
+				717215DD1A8698580002ECC7 /* RTConditionalMessage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,7 +1,9 @@
 #import <Foundation/Foundation.h>
 
+@class RTLoginPresentationModel;
+
 @protocol RTLoginView <NSObject>
 
-- (void)showErrorMessage:(NSString *)message;
+- (void)updateWithPresentationModel:(RTLoginPresentationModel *)model;
 
 @end
