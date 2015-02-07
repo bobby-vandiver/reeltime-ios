@@ -97,7 +97,7 @@ describe(@"ReelTime Client", ^{
         
         it(@"should fail for bad client credentials", ^{
             stubRequest(POST, tokenUrlRegex).
-            andReturnRawResponse(rawResponseFromFile(@"bad-client-credentials"));
+            andReturnRawResponse(rawResponseFromFile(@"token-bad-client-credentials"));
             
             waitUntil(^(DoneCallback done) {
                 [client tokenWithClientCredentials:clientCredentials
@@ -116,7 +116,7 @@ describe(@"ReelTime Client", ^{
         
         it(@"should fail for bad user credentials", ^{
             stubRequest(POST, tokenUrlRegex).
-            andReturnRawResponse(rawResponseFromFile(@"bad-user-credentials"));
+            andReturnRawResponse(rawResponseFromFile(@"token-bad-user-credentials"));
 
             waitUntil(^(DoneCallback done) {
                 [client tokenWithClientCredentials:clientCredentials
@@ -135,7 +135,7 @@ describe(@"ReelTime Client", ^{
         
         it(@"should pass token to callback when successful", ^{
             stubRequest(POST, tokenUrlRegex).
-            andReturnRawResponse(rawResponseFromFile(@"successful-token-request"));
+            andReturnRawResponse(rawResponseFromFile(@"token-successful"));
 
             waitUntil(^(DoneCallback done) {
                 [client tokenWithClientCredentials:clientCredentials
@@ -168,7 +168,7 @@ describe(@"ReelTime Client", ^{
         
         it(@"should pass client credentials to callback when successful", ^{
             stubRequest(POST, accountRegistrationUrlRegex).
-            andReturnRawResponse(rawResponseFromFile(@"successful-registration"));
+            andReturnRawResponse(rawResponseFromFile(@"account-registration-successful"));
             
             waitUntil(^(DoneCallback done) {
                 [client registerAccount:registration
@@ -186,7 +186,7 @@ describe(@"ReelTime Client", ^{
         
         it(@"should pass server errors to failure callback", ^{
             stubRequest(POST, accountRegistrationUrlRegex).
-            andReturnRawResponse(rawResponseFromFile(@"missing-all-registration-params"));
+            andReturnRawResponse(rawResponseFromFile(@"account-registration-missing-all-params"));
             
             waitUntil(^(DoneCallback done) {
                 [client registerAccount:registration
@@ -208,7 +208,7 @@ describe(@"ReelTime Client", ^{
         
         it(@"should pass registration unavailable error to failure callback", ^{
             stubRequest(POST, accountRegistrationUrlRegex).
-            andReturnRawResponse(rawResponseFromFile(@"registration-temporarily-unavailable"));
+            andReturnRawResponse(rawResponseFromFile(@"account-registration-temporarily-unavailable"));
             
             waitUntil(^(DoneCallback done) {
                 [client registerAccount:registration
@@ -239,7 +239,7 @@ describe(@"ReelTime Client", ^{
         it(@"should pass newsfeed with no activities to callback", ^{
             stubRequest(GET, newsfeedUrlRegex).
             withHeader(AUTHORIZATION, BEARER_TOKEN_AUTHORIZATION_HEADER).
-            andReturnRawResponse(rawResponseFromFile(@"no-activities"));
+            andReturnRawResponse(rawResponseFromFile(@"newsfeed-no-activities"));
             
             waitUntil(^(DoneCallback done) {
                 [client newsfeedPage:1
@@ -257,7 +257,7 @@ describe(@"ReelTime Client", ^{
         it(@"should pass newsfeed with one activity to callback", ^{
             stubRequest(GET, newsfeedUrlRegex).
             withHeader(AUTHORIZATION, BEARER_TOKEN_AUTHORIZATION_HEADER).
-            andReturnRawResponse(rawResponseFromFile(@"one-activity"));
+            andReturnRawResponse(rawResponseFromFile(@"newsfeed-one-activity"));
             
             waitUntil(^(DoneCallback done) {
                 [client newsfeedPage:1
@@ -285,7 +285,7 @@ describe(@"ReelTime Client", ^{
         it(@"should pass newsfeed with multiple activities to callback", ^{
             stubRequest(GET, newsfeedUrlRegex).
             withHeader(AUTHORIZATION, BEARER_TOKEN_AUTHORIZATION_HEADER).
-            andReturnRawResponse(rawResponseFromFile(@"multiple-activities"));
+            andReturnRawResponse(rawResponseFromFile(@"newsfeed-multiple-activities"));
             
             waitUntil(^(DoneCallback done) {
                 [client newsfeedPage:1
