@@ -1,9 +1,15 @@
 #import <Foundation/Foundation.h>
 
-@class RTLoginPresentationModel;
+typedef NS_ENUM(NSInteger, RTLoginViewField) {
+    RTLoginViewFieldUsername,
+    RTLoginViewFieldPassword
+};
 
 @protocol RTLoginView <NSObject>
 
-- (void)updateWithPresentationModel:(RTLoginPresentationModel *)model;
+- (void)showValidationErrorMessage:(NSString *)message
+                          forField:(RTLoginViewField)field;
+
+- (void)showErrorMessage:(NSString *)message;
 
 @end

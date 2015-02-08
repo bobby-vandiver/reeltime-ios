@@ -2,7 +2,6 @@
 #import "RTLoginPresenter.h"
 
 #import "RTStoryboardViewControllerFactory.h"
-#import "RTLoginPresentationModel.h"
 
 @interface RTLoginViewController ()
 
@@ -38,21 +37,9 @@
     [self.presenter requestedAccountRegistration];
 }
 
-- (void)updateWithPresentationModel:(RTLoginPresentationModel *)model {
-    if (model.unknownErrorOccurred.condition) {
-        [self showErrorMessage:model.unknownErrorOccurred.message];
-    }
-    else if (!model.validCredentials.condition) {
-        [self showErrorMessage:model.validCredentials.message];
-    }
-    else {
-        if (!model.validUsername.condition) {
-            [self showErrorMessage:model.validUsername.message];
-        }
-        if (!model.validPassword.condition) {
-            [self showErrorMessage:model.validPassword.message];
-        }
-    }
+- (void)showValidationErrorMessage:(NSString *)message
+                          forField:(RTLoginViewField)field {
+    [self showErrorMessage:message];
 }
 
 - (void)showErrorMessage:(NSString *)message {

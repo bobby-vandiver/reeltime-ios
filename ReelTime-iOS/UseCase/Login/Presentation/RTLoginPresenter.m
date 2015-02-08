@@ -3,9 +3,6 @@
 #import "RTLoginInteractor.h"
 #import "RTLoginWireframe.h"
 
-#import "RTLoginPresentationModel.h"
-#import "RTConditionalMessage.h"
-
 #import "RTErrorFactory.h"
 
 @interface RTLoginPresenter ()
@@ -44,33 +41,46 @@
 }
 
 - (void)loginFailedWithErrors:(NSArray *)errors {
-    RTLoginPresentationModel *presentationModel = [[RTLoginPresentationModel alloc] init];
+    [errors enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [self presentError:obj stop:stop];
+    }];
+}
 
-    for (NSError *error in errors) {
-        if ([error.domain isEqualToString:RTLoginErrorDomain]) {
-            if (error.code == RTLoginErrorMissingUsername) {
-                presentationModel.validUsername = [RTConditionalMessage falseWithMessage:@"Username is required"];
-            }
-            else if (error.code == RTLoginErrorMissingPassword) {
-                presentationModel.validPassword = [RTConditionalMessage falseWithMessage:@"Password is required"];
-            }
-            else if (error.code == RTLoginErrorInvalidCredentials) {
-                presentationModel.validCredentials = [RTConditionalMessage falseWithMessage:@"Invalid username or password"];
-            }
-            else if (error.code == RTLoginErrorUnknownClient) {
-                [self.wireframe presentDeviceRegistrationInterface];
-                return;
-            }
-            else {
-                presentationModel.unknownErrorOccurred = [RTConditionalMessage trueWithMessage:@"An unknown error occurred"];
-            }
-        }
-        else {
-            presentationModel.unknownErrorOccurred = [RTConditionalMessage trueWithMessage:@"An unknown error occurred"];
-        }
+- (void)presentError:(NSError *)error
+                stop:(BOOL *)stop {
+    if ([self unexpectedError:error]) {
+        [self.view showErrorMessage:@"An unknown error occurred"];
+        return;
     }
+    
+    if (error.code == RTLoginErrorMissingUsername) {
+        [self.view showValidationErrorMessage:@"Username is required" forField:RTLoginViewFieldUsername];
+    }
+    else if (error.code == RTLoginErrorMissingPassword) {
+        [self.view showValidationErrorMessage:@"Password is required" forField:RTLoginViewFieldPassword];
+    }
+    else if (error.code == RTLoginErrorInvalidCredentials) {
+        [self.view showErrorMessage:@"Invalid username or password"];
+    }
+    else if (error.code == RTLoginErrorUnknownClient) {
+        [self.wireframe presentDeviceRegistrationInterface];
+        *stop = YES;
+    }
+}
 
-    [self.view updateWithPresentationModel:presentationModel];
+- (BOOL)unexpectedError:(NSError *)error {
+    BOOL unexpected = NO;
+    
+    if ([error.domain isEqualToString:RTLoginErrorDomain]) {
+        NSInteger code = error.code;
+        unexpected = !(code == RTLoginErrorMissingUsername || code == RTLoginErrorMissingPassword ||
+                       code == RTLoginErrorInvalidCredentials || code == RTLoginErrorUnknownClient);
+    }
+    else {
+        unexpected = YES;
+    }
+    
+    return unexpected;
 }
 
 @end
