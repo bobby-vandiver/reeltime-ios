@@ -41,6 +41,11 @@
                                                   clientName:self.clientNameField.text];
 }
 
+- (void)showValidationErrorMessage:(NSString *)message
+                          forField:(RTAccountRegistrationViewField)field {
+    [self showErrorMessage:message];
+}
+
 - (void)showErrorMessage:(NSString *)message {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
                                                         message:message

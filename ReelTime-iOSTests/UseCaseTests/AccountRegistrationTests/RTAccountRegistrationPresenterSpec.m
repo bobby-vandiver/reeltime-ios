@@ -88,76 +88,94 @@ describe(@"account registration presenter", ^{
     });
     
     describe(@"registration failure message", ^{
+
+        #define verifyValidationErrorMessageIsShown(msg, code, field) do {              \
+            NSError *error = [RTErrorFactory accountRegistrationErrorWithCode:code];    \
+                                                                                        \
+            [presenter registrationFailedWithErrors:@[error]];                          \
+            [verify(view) showValidationErrorMessage:msg forField:field];               \
+        } while(0)
         
         #define verifyErrorMessageIsShown(msg, code) do {                               \
             NSError *error = [RTErrorFactory accountRegistrationErrorWithCode:code];    \
                                                                                         \
             [presenter registrationFailedWithErrors:@[error]];                          \
-            [verify(view) showErrorMessage:@msg];                                       \
+            [verify(view) showErrorMessage:msg];                                        \
         } while(0)
         
         it(@"missing username", ^{
-            verifyErrorMessageIsShown("Username is required",
-                                      RTAccountRegistrationErrorMissingUsername);
+            verifyValidationErrorMessageIsShown(@"Username is required",
+                                                RTAccountRegistrationErrorMissingUsername,
+                                                RTAccountRegistrationViewFieldUsername);
         });
         
         it(@"invalid username", ^{
-            verifyErrorMessageIsShown("Username must be 2-15 alphanumeric characters",
-                                      RTAccountRegistrationErrorInvalidUsername);
+            verifyValidationErrorMessageIsShown(@"Username must be 2-15 alphanumeric characters",
+                                                RTAccountRegistrationErrorInvalidUsername,
+                                                RTAccountRegistrationViewFieldUsername);
         });
         
         it(@"username is not available", ^{
-            verifyErrorMessageIsShown("Username is unavailable",
-                                      RTAccountRegistrationErrorUsernameIsUnavailable);
+            verifyValidationErrorMessageIsShown(@"Username is unavailable",
+                                                RTAccountRegistrationErrorUsernameIsUnavailable,
+                                                RTAccountRegistrationViewFieldUsername);
         });
         
         it(@"missing password", ^{
-            verifyErrorMessageIsShown("Password is required",
-                                      RTAccountRegistrationErrorMissingPassword);
+            verifyValidationErrorMessageIsShown(@"Password is required",
+                                                RTAccountRegistrationErrorMissingPassword,
+                                                RTAccountRegistrationViewFieldPassword);
         });
         
         it(@"invalid password", ^{
-            verifyErrorMessageIsShown("Password must be at least 6 characters",
-                                      RTAccountRegistrationErrorInvalidPassword);
+            verifyValidationErrorMessageIsShown(@"Password must be at least 6 characters",
+                                                RTAccountRegistrationErrorInvalidPassword,
+                                                RTAccountRegistrationViewFieldPassword);
         });
         
         it(@"missing confirmation password", ^{
-            verifyErrorMessageIsShown("Confirmation password is required",
-                                      RTAccountRegistrationErrorMissingConfirmationPassword);
+            verifyValidationErrorMessageIsShown(@"Confirmation password is required",
+                                                RTAccountRegistrationErrorMissingConfirmationPassword,
+                                                RTAccountRegistrationViewFieldConfirmationPassword);
         });
         
         it(@"password and confirmation password do not match", ^{
-            verifyErrorMessageIsShown("Password and confirmation password must match",
+            verifyErrorMessageIsShown(@"Password and confirmation password must match",
                                       RTAccountRegistrationErrorConfirmationPasswordDoesNotMatch);
         });
         
         it(@"missing email", ^{
-            verifyErrorMessageIsShown("Email is required",
-                                      RTAccountRegistrationErrorMissingEmail);
+            verifyValidationErrorMessageIsShown(@"Email is required",
+                                                RTAccountRegistrationErrorMissingEmail,
+                                                RTAccountRegistrationViewFieldEmail);
         });
         
         it(@"invalid email", ^{
-            verifyErrorMessageIsShown("Email is not a valid email address",
-                                      RTAccountRegistrationErrorInvalidEmail);
+            verifyValidationErrorMessageIsShown(@"Email is not a valid email address",
+                                                RTAccountRegistrationErrorInvalidEmail,
+                                                RTAccountRegistrationViewFieldEmail);
         });
         
         it(@"missing display name", ^{
-            verifyErrorMessageIsShown("Display name is required",
-                                      RTAccountRegistrationErrorMissingDisplayName);
+            verifyValidationErrorMessageIsShown(@"Display name is required",
+                                                RTAccountRegistrationErrorMissingDisplayName,
+                                                RTAccountRegistrationViewFieldDisplayName);
         });
         
         it(@"invalid display name", ^{
-            verifyErrorMessageIsShown("Display name must be 2-20 alphanumeric or space characters",
-                                      RTAccountRegistrationErrorInvalidDisplayName);
+            verifyValidationErrorMessageIsShown(@"Display name must be 2-20 alphanumeric or space characters",
+                                                RTAccountRegistrationErrorInvalidDisplayName,
+                                                RTAccountRegistrationViewFieldDisplayName);
         });
         
         it(@"missing client name", ^{
-            verifyErrorMessageIsShown("Client name is required",
-                                      RTAccountRegistrationErrorMissingClientName);
+            verifyValidationErrorMessageIsShown(@"Client name is required",
+                                                RTAccountRegistrationErrorMissingClientName,
+                                                RTAccountRegistrationViewFieldClientName);
         });
         
         it(@"registration service is unavailable", ^{
-            verifyErrorMessageIsShown("Unable to register at this time. Please try again.",
+            verifyErrorMessageIsShown(@"Unable to register at this time. Please try again.",
                                       RTAccountRegistrationErrorRegistrationServiceUnavailable);
         });
     });

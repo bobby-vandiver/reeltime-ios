@@ -92,19 +92,62 @@
 }
 
 - (void)registrationFailedWithErrors:(NSArray *)errors {
+    NSDictionary *messages = [RTAccountRegistrationPresenter registrationErrorCodeToErrorMessageMap];
+
     for (NSError *error in errors) {
         if ([error.domain isEqual:RTAccountRegistrationErrorDomain]) {
-            [self showErrorMessageForRegistrationErrorCode:error.code];
+            
+            NSInteger code = error.code;
+            NSString *message = messages[@(code)];
+
+            if (message) {
+                [self presentErrorMessage:message forCode:code];
+            }
         }
     }
 }
 
-- (void)showErrorMessageForRegistrationErrorCode:(RTAccountRegistrationError)code {
-    NSDictionary *messages = [RTAccountRegistrationPresenter registrationErrorCodeToErrorMessageMap];
-    NSString *message = messages[@(code)];
-    if (message) {
-        [self.view showErrorMessage:message];
+- (void)presentErrorMessage:(NSString *)message
+                    forCode:(RTAccountRegistrationError)code {
+    switch (code) {
+        case RTAccountRegistrationErrorMissingUsername:
+        case RTAccountRegistrationErrorInvalidUsername:
+        case RTAccountRegistrationErrorUsernameIsUnavailable:
+            [self.view showValidationErrorMessage:message forField:RTAccountRegistrationViewFieldUsername];
+            break;
+            
+        case RTAccountRegistrationErrorMissingPassword:
+        case RTAccountRegistrationErrorInvalidPassword:
+            [self.view showValidationErrorMessage:message forField:RTAccountRegistrationViewFieldPassword];
+            break;
+            
+        case RTAccountRegistrationErrorMissingConfirmationPassword:
+            [self.view showValidationErrorMessage:message forField:RTAccountRegistrationViewFieldConfirmationPassword];
+            break;
+            
+        case RTAccountRegistrationErrorMissingEmail:
+        case RTAccountRegistrationErrorInvalidEmail:
+            [self.view showValidationErrorMessage:message forField:RTAccountRegistrationViewFieldEmail];
+            break;
+            
+        case RTAccountRegistrationErrorMissingClientName:
+            [self.view showValidationErrorMessage:message forField:RTAccountRegistrationViewFieldClientName];
+            break;
+            
+        case RTAccountRegistrationErrorMissingDisplayName:
+        case RTAccountRegistrationErrorInvalidDisplayName:
+            [self.view showValidationErrorMessage:message forField:RTAccountRegistrationViewFieldDisplayName];
+            break;
+
+        case RTAccountRegistrationErrorConfirmationPasswordDoesNotMatch:
+        case RTAccountRegistrationErrorRegistrationServiceUnavailable:
+            [self.view showErrorMessage:message];
+            break;
+            
+        default:
+            break;
     }
+    
 }
 
 - (void)loginSucceeded {
