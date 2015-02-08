@@ -147,7 +147,6 @@
         default:
             break;
     }
-    
 }
 
 - (void)loginSucceeded {
