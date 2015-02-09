@@ -1,9 +1,8 @@
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import "RTArrayDataSource.h"
 
 @class RTActivity;
 
-@interface RTNewsfeedTableViewDataSource : NSObject <UITableViewDataSource>
+@interface RTNewsfeedTableViewDataSource : RTArrayDataSource
 
 - (void)addActivity:(RTActivity *)activity;
 
