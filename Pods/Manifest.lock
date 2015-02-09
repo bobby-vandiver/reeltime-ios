@@ -40,6 +40,7 @@ PODS:
   - SOCKit (1.1)
   - Specta (0.3.0.beta1)
   - TransitionKit (2.1.0)
+  - TTTAttributedLabel (1.13.1)
   - Typhoon (2.3.3):
     - Typhoon/no-arc (= 2.3.3)
   - Typhoon/no-arc (2.3.3)
@@ -54,6 +55,7 @@ DEPENDENCIES:
   - RestKit (~> 0.24.0)
   - RestKit/Testing (~> 0.24.0)
   - Specta (from `https://github.com/specta/specta.git`, tag `v0.3.0.beta1`)
+  - TTTAttributedLabel (~> 1.13)
   - Typhoon (~> 2.3)
   - UICKeyChainStore (~> 2.0.1)
 
@@ -80,6 +82,7 @@ SPEC CHECKSUMS:
   SOCKit: d8d0dd3688ae1026c12367570da8fa8e1a6980fb
   Specta: 63e8ac8e07db6675c7096d37f77a266a1be4c02d
   TransitionKit: 6a6f3ddda38ae758778aa889dcb930e4f8d64edc
+  TTTAttributedLabel: 71843ac4178e1ebd6b0950b54325146726a124ae
   Typhoon: 4a4069a559bc0a033fba95611382a69ab194bec6
   UICKeyChainStore: 779de9c089920a79d8755e7ba887e51c745819a8
 
