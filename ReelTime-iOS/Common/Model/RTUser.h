@@ -8,4 +8,9 @@
 @property (nonatomic, copy) NSNumber *numberOfFollowers;
 @property (nonatomic, copy) NSNumber *numberOfFollowees;
 
+- (instancetype)initWithUsername:(NSString *)username
+                     displayName:(NSString *)displayName
+               numberOfFollowers:(NSNumber *)numberOfFollowers
+               numberOfFollowees:(NSNumber *)numberOfFollowees;
+
 @end

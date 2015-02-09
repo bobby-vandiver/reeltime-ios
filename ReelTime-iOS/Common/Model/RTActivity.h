@@ -18,4 +18,14 @@ typedef NS_ENUM(NSInteger, RTActivityType) {
 @property (nonatomic) RTReel *reel;
 @property (nonatomic) RTVideo *video;
 
++ (RTActivity *)createReelActivityWithUser:(RTUser *)user
+                                      reel:(RTReel *)reel;
+
++ (RTActivity *)joinReelActivityWithUser:(RTUser *)user
+                                    reel:(RTReel *)reel;
+
++ (RTActivity *)addVideoToReelActivityWithUser:(RTUser *)user
+                                          reel:(RTReel *)reel
+                                         video:(RTVideo *)video;
+
 @end

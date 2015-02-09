@@ -5,4 +5,7 @@
 @property (nonatomic, copy) NSNumber *videoId;
 @property (nonatomic, copy) NSString *title;
 
+- (instancetype)initWithVideoId:(NSNumber *)videoId
+                          title:(NSString *)title;
+
 @end
