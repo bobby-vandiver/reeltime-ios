@@ -34,91 +34,67 @@ describe(@"video", ^{
             videoHash = [video hash];
         });
         
-        it(@"same instance", ^{
-            BOOL equal = [video isEqual:video];
-            expect(equal).to.beTruthy();
-        });
-        
-        it(@"same videoId and title", ^{
-            RTVideo *other = [[RTVideo alloc] initWithVideoId:[videoId copy] title:[title copy]];
+        describe(@"videos are equal", ^{
+            it(@"same instance", ^{
+                BOOL equal = [video isEqual:video];
+                expect(equal).to.beTruthy();
+            });
             
-            BOOL equal = [video isEqual:other];
-            expect(equal).to.beTruthy();
+            it(@"same videoId and title", ^{
+                RTVideo *other = [[RTVideo alloc] initWithVideoId:[videoId copy] title:[title copy]];
+                
+                BOOL equal = [video isEqual:other];
+                expect(equal).to.beTruthy();
+                
+                NSUInteger otherHash = [other hash];
+                expect(otherHash).to.equal(videoHash);
+            });
+        });
 
-            NSUInteger otherHash = [other hash];
-            expect(otherHash).to.equal(videoHash);
-        });
-        
-        it(@"same videoId and different title", ^{
-            NSString *differentTitle = [NSString stringWithFormat:@"%@a", title];
-            RTVideo *other = [[RTVideo alloc] initWithVideoId:[videoId copy] title:differentTitle];
+        describe(@"videos are not equal", ^{
+            void (^expectNotEqual)(NSNumber *, NSString *) = ^(NSNumber *otherVideoId, NSString *otherTitle) {
+                RTVideo *other = [[RTVideo alloc] initWithVideoId:otherVideoId title:otherTitle];
+                
+                BOOL equal = [video isEqual:other];
+                expect(equal).to.beFalsy();
+                
+                NSUInteger otherHash = [other hash];
+                expect(otherHash).toNot.equal(videoHash);
+            };
             
-            BOOL equal = [video isEqual:other];
-            expect(equal).to.beFalsy();
+            it(@"same videoId and different title", ^{
+                expectNotEqual([videoId copy], [NSString stringWithFormat:@"%@a", title]);
+            });
             
-            NSUInteger otherHash = [other hash];
-            expect(otherHash).toNot.equal(videoHash);
-        });
-        
-        it(@"different videoId and same title", ^{
-            NSNumber *differentVideoId = @([videoId intValue] + 1);
-            RTVideo *other = [[RTVideo alloc] initWithVideoId:differentVideoId title:[title copy]];
+            it(@"different videoId and same title", ^{
+                expectNotEqual(@([videoId intValue] + 1), [title copy]);
+            });
             
-            BOOL equal = [video isEqual:other];
-            expect(equal).to.beFalsy();
+            it(@"nil videoId and same title", ^{
+                expectNotEqual(nil, [title copy]);
+            });
             
-            NSUInteger otherHash = [other hash];
-            expect(otherHash).toNot.equal(videoHash);
-        });
-        
-        it(@"nil videoId and same title", ^{
-            RTVideo *other = [[RTVideo alloc] initWithVideoId:nil title:[title copy]];
+            it(@"same videoId and nil title", ^{
+                expectNotEqual([videoId copy], nil);
+            });
             
-            BOOL equal = [video isEqual:other];
-            expect(equal).to.beFalsy();
+            it(@"both have nil videoId", ^{
+                video.videoId = nil;
+                expectNotEqual(nil, [title copy]);
+            });
             
-            NSUInteger otherHash = [other hash];
-            expect(otherHash).toNot.equal(videoHash);
-        });
-        
-        it(@"same videoId and nil title", ^{
-            RTVideo *other = [[RTVideo alloc] initWithVideoId:[videoId copy] title:nil];
+            it(@"both have nil title", ^{
+                video.title = nil;
+                expectNotEqual([videoId copy], nil);
+            });
             
-            BOOL equal = [video isEqual:other];
-            expect(equal).to.beFalsy();
-            
-            NSUInteger otherHash = [other hash];
-            expect(otherHash).toNot.equal(videoHash);
-        });
-        
-        it(@"both have nil videoId", ^{
-            RTVideo *other = [[RTVideo alloc] initWithVideoId:nil title:[title copy]];
-            video.videoId = nil;
-            
-            BOOL equal = [video isEqual:other];
-            expect(equal).to.beFalsy();
-            
-            NSUInteger otherHash = [other hash];
-            expect(otherHash).toNot.equal(videoHash);
-        });
-        
-        it(@"both have nil title", ^{
-            RTVideo *other = [[RTVideo alloc] initWithVideoId:[videoId copy] title:nil];
-            video.title = nil;
-            
-            BOOL equal = [video isEqual:other];
-            expect(equal).to.beFalsy();
-            
-            NSUInteger otherHash = [other hash];
-            expect(otherHash).toNot.equal(videoHash);
-        });
-        
-        it(@"both have nil videoId and nil title", ^{
-            RTVideo *left = [[RTVideo alloc] initWithVideoId:nil title:nil];
-            RTVideo *right = [[RTVideo alloc] initWithVideoId:nil title:nil];
-            
-            BOOL equal = [left isEqual:right];
-            expect(equal).to.beFalsy();
+            it(@"both have nil videoId and nil title", ^{
+                RTVideo *left = [[RTVideo alloc] initWithVideoId:nil title:nil];
+                RTVideo *right = [[RTVideo alloc] initWithVideoId:nil title:nil];
+                
+                BOOL equal = [left isEqual:right];
+                expect(equal).to.beFalsy();
+            });
         });
     });
 });
