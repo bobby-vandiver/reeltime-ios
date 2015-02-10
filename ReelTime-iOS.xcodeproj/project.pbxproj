@@ -16,6 +16,7 @@
 		711690921A6AB5510031578E /* RTSecureStoreAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 711690911A6AB5510031578E /* RTSecureStoreAssembly.m */; };
 		7116909C1A6AEBDA0031578E /* RTStoryboardViewControllerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7116909B1A6AEBDA0031578E /* RTStoryboardViewControllerFactory.m */; };
 		711690A21A6B00210031578E /* RTApplicationAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 711690A11A6B00210031578E /* RTApplicationAssembly.m */; };
+		7117C0801A8998DF00EC0152 /* RTVideoSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7117C07F1A8998DF00EC0152 /* RTVideoSpec.m */; };
 		71194C1D1A81AEFC00904A06 /* EXPMatchers+beUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 71194C1C1A81AEFC00904A06 /* EXPMatchers+beUser.m */; };
 		71194C201A81B5D300904A06 /* EXPMatchers+ErrorMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = 71194C1F1A81B5D300904A06 /* EXPMatchers+ErrorMessages.m */; };
 		71194C231A81C37900904A06 /* EXPMatchers+beReel.m in Sources */ = {isa = PBXBuildFile; fileRef = 71194C221A81C37900904A06 /* EXPMatchers+beReel.m */; };
@@ -136,6 +137,7 @@
 		7116909B1A6AEBDA0031578E /* RTStoryboardViewControllerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTStoryboardViewControllerFactory.m; sourceTree = "<group>"; };
 		711690A01A6B00210031578E /* RTApplicationAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTApplicationAssembly.h; sourceTree = "<group>"; };
 		711690A11A6B00210031578E /* RTApplicationAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTApplicationAssembly.m; sourceTree = "<group>"; };
+		7117C07F1A8998DF00EC0152 /* RTVideoSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTVideoSpec.m; sourceTree = "<group>"; };
 		71194C1B1A81AED300904A06 /* EXPMatchers+beUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+beUser.h"; sourceTree = "<group>"; };
 		71194C1C1A81AEFC00904A06 /* EXPMatchers+beUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EXPMatchers+beUser.m"; sourceTree = "<group>"; };
 		71194C1E1A81B48000904A06 /* EXPMatchers+ErrorMessages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+ErrorMessages.h"; sourceTree = "<group>"; };
@@ -386,6 +388,14 @@
 				7188580B1A782A3300B9C0DC /* RTStoryboardViewController.h */,
 			);
 			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		7117C07E1A8998A100EC0152 /* ModelTests */ = {
+			isa = PBXGroup;
+			children = (
+				7117C07F1A8998DF00EC0152 /* RTVideoSpec.m */,
+			);
+			path = ModelTests;
 			sourceTree = "<group>";
 		};
 		711F336B1A6234AE00D8D843 /* Resources */ = {
@@ -742,9 +752,10 @@
 		718A0BF81A4DA87900137C49 /* ReelTime-iOSTests */ = {
 			isa = PBXGroup;
 			children = (
-				712BE2FD1A75D74C00478277 /* Common */,
 				717A4B7C1A53503B004C2BC1 /* ClientTests */,
+				712BE2FD1A75D74C00478277 /* Common */,
 				71921C031A54E1490003A42F /* FakeObjects */,
+				7117C07E1A8998A100EC0152 /* ModelTests */,
 				711F336B1A6234AE00D8D843 /* Resources */,
 				7170C86B1A59A95000C460BB /* SecurityTests */,
 				71D947891A4FBC7100401963 /* StoreTests */,
@@ -1183,6 +1194,7 @@
 				71C5C09D1A55B29700CAAFAC /* RTLoginPresenterSpec.m in Sources */,
 				717A4B7E1A53503B004C2BC1 /* RTRestAPIMappingFactorySpec.m in Sources */,
 				7169F1761A5F6CDD00E161C4 /* RTLoginDataManagerSpec.m in Sources */,
+				7117C0801A8998DF00EC0152 /* RTVideoSpec.m in Sources */,
 				713DCAAB1A6C9D1C0032B252 /* RTAccountRegistrationInteractorSpec.m in Sources */,
 				713BCE071A5909DA000F2D96 /* RTFakeKeyChainWrapper.m in Sources */,
 				711B9E4E1A8421DA0049FD2B /* RTNewsfeedInteractorSpec.m in Sources */,

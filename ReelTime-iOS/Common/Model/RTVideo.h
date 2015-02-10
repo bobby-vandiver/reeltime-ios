@@ -8,4 +8,6 @@
 - (instancetype)initWithVideoId:(NSNumber *)videoId
                           title:(NSString *)title;
 
+- (BOOL)isEqualToVideo:(RTVideo *)video;
+
 @end
