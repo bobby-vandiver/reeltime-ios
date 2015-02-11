@@ -13,4 +13,6 @@
                   audienceSize:(NSNumber *)audienceSize
                 numberOfVideos:(NSNumber *)numberOfVideos;
 
+- (BOOL)isEqualToReel:(RTReel *)reel;
+
 @end
