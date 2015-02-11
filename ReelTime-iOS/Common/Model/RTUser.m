@@ -16,4 +16,35 @@
     return self;
 }
 
+- (BOOL)isEqualToUser:(RTUser *)user {
+    BOOL sameUsername = [self.username isEqual:user.username];
+    BOOL sameDisplayName = [self.displayName isEqual:user.displayName];
+    
+    BOOL sameNumberOfFollowers = [self.numberOfFollowers isEqual:user.numberOfFollowers];
+    BOOL sameNumberOfFollowees = [self.numberOfFollowees isEqual:user.numberOfFollowees];
+    
+    return sameUsername && sameDisplayName && sameNumberOfFollowers && sameNumberOfFollowees;
+}
+
+- (BOOL)isEqual:(id)object {
+    if (self == object) {
+        return YES;
+    }
+    
+    if (![object isKindOfClass:[RTUser class]]) {
+        return NO;
+    }
+    
+    return [self isEqualToUser:(RTUser *)object];
+}
+
+- (NSUInteger)hash {
+    NSUInteger usernameHash = [self.username hash] << 16;
+    NSUInteger displayNameHash = [self.displayName hash] << 12;
+    NSUInteger numberOfFollowersHash = [self.numberOfFollowers hash] << 8;
+    NSUInteger numberOfFolloweeshash = [self.numberOfFollowees hash] << 4;
+    
+    return usernameHash ^ displayNameHash ^ numberOfFollowersHash ^ numberOfFolloweeshash;
+}
+
 @end
