@@ -13,4 +13,6 @@
                numberOfFollowers:(NSNumber *)numberOfFollowers
                numberOfFollowees:(NSNumber *)numberOfFollowees;
 
+- (BOOL)isEqualToUser:(RTUser *)user;
+
 @end
