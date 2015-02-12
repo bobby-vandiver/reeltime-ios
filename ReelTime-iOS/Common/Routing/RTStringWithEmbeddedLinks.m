@@ -1,14 +1,14 @@
-#import "RTStringWithEmbeddedURLs.h"
+#import "RTStringWithEmbeddedLinks.h"
 #import "RTEmbeddedURL.h"
 
-@interface RTStringWithEmbeddedURLs ()
+@interface RTStringWithEmbeddedLinks ()
 
 @property (readwrite, copy) NSString *string;
 @property (readwrite) NSMutableArray *embeddedURLsList;
 
 @end
 
-@implementation RTStringWithEmbeddedURLs
+@implementation RTStringWithEmbeddedLinks
 
 - (instancetype)initWithString:(NSString *)string {
     self = [super init];

@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 
-@interface RTStringWithEmbeddedURLs : NSObject 
+@interface RTStringWithEmbeddedLinks : NSObject 
 
 @property (readonly, copy) NSString *string;
 @property (readonly) NSArray *embeddedURLs;

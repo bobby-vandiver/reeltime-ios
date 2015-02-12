@@ -1,19 +1,19 @@
 #import "RTTestCommon.h"
 
-#import "RTStringWithEmbeddedURLs.h"
+#import "RTStringWithEmbeddedLinks.h"
 #import "RTEmbeddedURL.h"
 
-SpecBegin(RTStringWithEmbeddedURLs)
+SpecBegin(RTStringWithEmbeddedLinks)
 
-describe(@"string with embedded urls", ^{
+describe(@"string with embedded links", ^{
     
-    __block RTStringWithEmbeddedURLs *string;
+    __block RTStringWithEmbeddedLinks *string;
     
     __block NSURL *url1;
     __block NSURL *url2;
     
     beforeEach(^{
-        string = [[RTStringWithEmbeddedURLs alloc] initWithString:@"this is a terrific test string"];
+        string = [[RTStringWithEmbeddedLinks alloc] initWithString:@"this is a terrific test string"];
         
         url1 = [NSURL URLWithString:@"http://localhost:8080/somewhere"];
         url2 = [NSURL URLWithString:@"http://localhost:8080/anywhere"];

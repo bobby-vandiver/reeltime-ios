@@ -22,7 +22,7 @@
 		71194C231A81C37900904A06 /* EXPMatchers+beReel.m in Sources */ = {isa = PBXBuildFile; fileRef = 71194C221A81C37900904A06 /* EXPMatchers+beReel.m */; };
 		711B9E4E1A8421DA0049FD2B /* RTNewsfeedInteractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 711B9E4D1A8421DA0049FD2B /* RTNewsfeedInteractorSpec.m */; };
 		711C5DE01A8D5B4F007652FC /* RTEmbeddedURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 711C5DDD1A8D5B4F007652FC /* RTEmbeddedURL.m */; };
-		711C5DE11A8D5B4F007652FC /* RTStringWithEmbeddedURLs.m in Sources */ = {isa = PBXBuildFile; fileRef = 711C5DDF1A8D5B4F007652FC /* RTStringWithEmbeddedURLs.m */; };
+		711C5DE11A8D5B4F007652FC /* RTStringWithEmbeddedLinks.m in Sources */ = {isa = PBXBuildFile; fileRef = 711C5DDF1A8D5B4F007652FC /* RTStringWithEmbeddedLinks.m */; };
 		711C5DE41A8D5BA9007652FC /* RTStringWithEmbeddedURLsSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 711C5DE31A8D5BA9007652FC /* RTStringWithEmbeddedURLsSpec.m */; };
 		712BE2FC1A75D74300478277 /* RTClientCredentialsStoreSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 712BE2FB1A75D74300478277 /* RTClientCredentialsStoreSpec.m */; };
 		712BE3021A75D74C00478277 /* EXPMatchers+beError.m in Sources */ = {isa = PBXBuildFile; fileRef = 712BE2FF1A75D74C00478277 /* EXPMatchers+beError.m */; };
@@ -153,8 +153,8 @@
 		711B9E4D1A8421DA0049FD2B /* RTNewsfeedInteractorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTNewsfeedInteractorSpec.m; sourceTree = "<group>"; };
 		711C5DDC1A8D5B4F007652FC /* RTEmbeddedURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTEmbeddedURL.h; sourceTree = "<group>"; };
 		711C5DDD1A8D5B4F007652FC /* RTEmbeddedURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTEmbeddedURL.m; sourceTree = "<group>"; };
-		711C5DDE1A8D5B4F007652FC /* RTStringWithEmbeddedURLs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTStringWithEmbeddedURLs.h; sourceTree = "<group>"; };
-		711C5DDF1A8D5B4F007652FC /* RTStringWithEmbeddedURLs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTStringWithEmbeddedURLs.m; sourceTree = "<group>"; };
+		711C5DDE1A8D5B4F007652FC /* RTStringWithEmbeddedLinks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTStringWithEmbeddedLinks.h; sourceTree = "<group>"; };
+		711C5DDF1A8D5B4F007652FC /* RTStringWithEmbeddedLinks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTStringWithEmbeddedLinks.m; sourceTree = "<group>"; };
 		711C5DE31A8D5BA9007652FC /* RTStringWithEmbeddedURLsSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTStringWithEmbeddedURLsSpec.m; sourceTree = "<group>"; };
 		712BE2FB1A75D74300478277 /* RTClientCredentialsStoreSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTClientCredentialsStoreSpec.m; sourceTree = "<group>"; };
 		712BE2FE1A75D74C00478277 /* EXPMatchers+beError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+beError.h"; sourceTree = "<group>"; };
@@ -420,8 +420,8 @@
 			children = (
 				711C5DDC1A8D5B4F007652FC /* RTEmbeddedURL.h */,
 				711C5DDD1A8D5B4F007652FC /* RTEmbeddedURL.m */,
-				711C5DDE1A8D5B4F007652FC /* RTStringWithEmbeddedURLs.h */,
-				711C5DDF1A8D5B4F007652FC /* RTStringWithEmbeddedURLs.m */,
+				711C5DDE1A8D5B4F007652FC /* RTStringWithEmbeddedLinks.h */,
+				711C5DDF1A8D5B4F007652FC /* RTStringWithEmbeddedLinks.m */,
 			);
 			path = Routing;
 			sourceTree = "<group>";
@@ -1169,7 +1169,7 @@
 				715370FA1A88680700D3355B /* RTArrayDataSource.m in Sources */,
 				718CFFCA1A6C007C00B418F9 /* RTAccountRegistration.m in Sources */,
 				7172157E1A8657540002ECC7 /* RTLoginAssembly.m in Sources */,
-				711C5DE11A8D5B4F007652FC /* RTStringWithEmbeddedURLs.m in Sources */,
+				711C5DE11A8D5B4F007652FC /* RTStringWithEmbeddedLinks.m in Sources */,
 				711C5DE01A8D5B4F007652FC /* RTEmbeddedURL.m in Sources */,
 				715370F61A8864DF00D3355B /* NSMutableArray+AddUniqueObject.m in Sources */,
 				717D92761A5B925700EAB6BF /* RTCurrentUserStore.m in Sources */,
