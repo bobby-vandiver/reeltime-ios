@@ -38,6 +38,8 @@
 		713DCAA91A6C8B330032B252 /* RTServerErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 713DCAA81A6C8B330032B252 /* RTServerErrors.m */; };
 		713DCAAB1A6C9D1C0032B252 /* RTAccountRegistrationInteractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 713DCAAA1A6C9D1C0032B252 /* RTAccountRegistrationInteractorSpec.m */; };
 		71427E1F1A8C100200E2C53F /* RTActivitySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71427E1E1A8C100200E2C53F /* RTActivitySpec.m */; };
+		71427E231A8C4EA100E2C53F /* RTEmbeddedURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 71427E221A8C4EA100E2C53F /* RTEmbeddedURL.m */; };
+		71427E261A8C53DA00E2C53F /* RTStringWithEmbeddedURLs.m in Sources */ = {isa = PBXBuildFile; fileRef = 71427E251A8C53DA00E2C53F /* RTStringWithEmbeddedURLs.m */; };
 		7145C6211A8AE645006A77DE /* RTUserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7145C6201A8AE645006A77DE /* RTUserSpec.m */; };
 		7145C6231A8AF07F006A77DE /* RTReelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7145C6221A8AF07F006A77DE /* RTReelSpec.m */; };
 		715370E91A88442700D3355B /* RTActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 715370E81A88442700D3355B /* RTActivityCell.m */; };
@@ -175,6 +177,10 @@
 		713DCAA81A6C8B330032B252 /* RTServerErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTServerErrors.m; path = "ReelTime-iOS/Common/Model/RTServerErrors.m"; sourceTree = SOURCE_ROOT; };
 		713DCAAA1A6C9D1C0032B252 /* RTAccountRegistrationInteractorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAccountRegistrationInteractorSpec.m; sourceTree = "<group>"; };
 		71427E1E1A8C100200E2C53F /* RTActivitySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTActivitySpec.m; sourceTree = "<group>"; };
+		71427E211A8C4EA100E2C53F /* RTEmbeddedURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTEmbeddedURL.h; sourceTree = "<group>"; };
+		71427E221A8C4EA100E2C53F /* RTEmbeddedURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTEmbeddedURL.m; sourceTree = "<group>"; };
+		71427E241A8C52C900E2C53F /* RTStringWithEmbeddedURLs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTStringWithEmbeddedURLs.h; sourceTree = "<group>"; };
+		71427E251A8C53DA00E2C53F /* RTStringWithEmbeddedURLs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTStringWithEmbeddedURLs.m; sourceTree = "<group>"; };
 		7145C6201A8AE645006A77DE /* RTUserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTUserSpec.m; sourceTree = "<group>"; };
 		7145C6221A8AF07F006A77DE /* RTReelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTReelSpec.m; sourceTree = "<group>"; };
 		715370E71A88442700D3355B /* RTActivityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTActivityCell.h; sourceTree = "<group>"; };
@@ -466,6 +472,17 @@
 				71073CF51A83060700BE6E19 /* RKObjectManager+IncludeHeaders.m */,
 			);
 			path = Client;
+			sourceTree = "<group>";
+		};
+		71427E201A8C4E8B00E2C53F /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				71427E211A8C4EA100E2C53F /* RTEmbeddedURL.h */,
+				71427E221A8C4EA100E2C53F /* RTEmbeddedURL.m */,
+				71427E241A8C52C900E2C53F /* RTStringWithEmbeddedURLs.h */,
+				71427E251A8C53DA00E2C53F /* RTStringWithEmbeddedURLs.m */,
+			);
+			path = Presentation;
 			sourceTree = "<group>";
 		};
 		715370F31A8864DF00D3355B /* Categories */ = {
@@ -828,6 +845,7 @@
 				713D7A491A50A24E00754A06 /* Client */,
 				719B35E11A51150000FFD543 /* Error */,
 				71D9477F1A4FB39C00401963 /* Model */,
+				71427E201A8C4E8B00E2C53F /* Presentation */,
 				7102A7B21A57AAEF00DEDA83 /* Security */,
 				71D947831A4FB7BC00401963 /* Store */,
 				711690991A6AEBA80031578E /* Storyboard */,
@@ -1135,11 +1153,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71427E261A8C53DA00E2C53F /* RTStringWithEmbeddedURLs.m in Sources */,
 				7172159B1A8659050002ECC7 /* RTAccountRegistrationAssembly.m in Sources */,
 				71C5C0B21A55EB3900CAAFAC /* RTOAuth2TokenStore.m in Sources */,
 				715370FA1A88680700D3355B /* RTArrayDataSource.m in Sources */,
 				718CFFCA1A6C007C00B418F9 /* RTAccountRegistration.m in Sources */,
 				7172157E1A8657540002ECC7 /* RTLoginAssembly.m in Sources */,
+				71427E231A8C4EA100E2C53F /* RTEmbeddedURL.m in Sources */,
 				715370F61A8864DF00D3355B /* NSMutableArray+AddUniqueObject.m in Sources */,
 				717D92761A5B925700EAB6BF /* RTCurrentUserStore.m in Sources */,
 				71C7D4151A7406A6006B84AC /* RTServerErrorsConverter.m in Sources */,
