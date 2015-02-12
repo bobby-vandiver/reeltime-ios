@@ -1,14 +1,9 @@
 #import <Foundation/Foundation.h>
+#import "RTActivityType.h"
 
 @class RTUser;
 @class RTReel;
 @class RTVideo;
-
-typedef NS_ENUM(NSInteger, RTActivityType) {
-    RTActivityTypeCreateReel,
-    RTActivityTypeJoinReelAudience,
-    RTActivityTypeAddVideoToReel
-};
 
 @interface RTActivity : NSObject
 
