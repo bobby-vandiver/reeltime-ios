@@ -32,8 +32,8 @@
 }
 
 - (NSUInteger)hash {
-    NSUInteger videoIdHash = [self.videoId hash] << 20;
-    NSUInteger titleHash = [self.title hash] << 5;
+    NSUInteger videoIdHash = [self.videoId hash] << 16;
+    NSUInteger titleHash = [self.title hash];
     
     return videoIdHash ^ titleHash;
 }

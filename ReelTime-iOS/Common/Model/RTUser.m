@@ -39,10 +39,10 @@
 }
 
 - (NSUInteger)hash {
-    NSUInteger usernameHash = [self.username hash] << 16;
-    NSUInteger displayNameHash = [self.displayName hash] << 12;
+    NSUInteger usernameHash = [self.username hash] << 24;
+    NSUInteger displayNameHash = [self.displayName hash] << 16;
     NSUInteger numberOfFollowersHash = [self.numberOfFollowers hash] << 8;
-    NSUInteger numberOfFolloweeshash = [self.numberOfFollowees hash] << 4;
+    NSUInteger numberOfFolloweeshash = [self.numberOfFollowees hash];
     
     return usernameHash ^ displayNameHash ^ numberOfFollowersHash ^ numberOfFolloweeshash;
 }

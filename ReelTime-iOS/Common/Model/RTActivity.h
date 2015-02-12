@@ -28,4 +28,6 @@ typedef NS_ENUM(NSInteger, RTActivityType) {
                                           reel:(RTReel *)reel
                                          video:(RTVideo *)video;
 
+- (BOOL)isEqualToActivity:(RTActivity *)activity;
+
 @end
