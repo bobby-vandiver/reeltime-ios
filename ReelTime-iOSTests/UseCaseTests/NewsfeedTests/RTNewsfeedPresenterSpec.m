@@ -30,12 +30,40 @@ describe(@"newsfeed presenter", ^{
     });
     
     describe(@"newsfeed page requested", ^{
-        it(@"should pass request on to the interactor", ^{
-            [presenter requestedNewsfeedPage:23];
-            [verify(interactor) newsfeedPage:23];
+        it(@"should always get the next requested page", ^{
+            [presenter requestedNextNewsfeedPage];
+            [verify(interactor) newsfeedPage:1];
+            
+            [presenter requestedNextNewsfeedPage];
+            [verify(interactor) newsfeedPage:2];
+            
+            [presenter requestedNextNewsfeedPage];
+            [verify(interactor) newsfeedPage:3];
         });
     });
     
+    describe(@"newsfeed reset", ^{
+        it(@"should reset page counter so the first page is retrieved next", ^{
+            [presenter requestedNextNewsfeedPage];
+            [verify(interactor) newsfeedPage:1];
+            
+            [presenter requestedNextNewsfeedPage];
+            [verify(interactor) newsfeedPage:2];
+
+            [presenter requestedNewsfeedReset];
+            [verify(interactor) reset];
+            
+            [presenter requestedNextNewsfeedPage];
+            [verify(interactor) newsfeedPage:1];
+        });
+        
+        it(@"should notify view that currently displayed messages should be removed", ^{
+            [presenter requestedNewsfeedReset];
+            [verify(view) clearMessages];
+        });
+    });
+    
+    // TODO: Add tests for showing activities
     describe(@"show newsfeed page activities", ^{
         __block RTNewsfeed *newsfeed;
         
@@ -46,28 +74,7 @@ describe(@"newsfeed presenter", ^{
         it(@"no activities to show", ^{
             newsfeed.activities = @[];
             [presenter retrievedNewsfeed:newsfeed];
-            [verifyCount(view, never()) showActivity:anything()];
-        });
-        
-        it(@"one activity to show", ^{
-            RTActivity *activity = [[RTActivity alloc] init];
-            newsfeed.activities = @[activity];
-            
-            [presenter retrievedNewsfeed:newsfeed];
-            [verify(view) showActivity:activity];
-        });
-        
-        it(@"multiple activities to show", ^{
-            RTActivity *activity1 = [[RTActivity alloc] init];
-            RTActivity *activity2 = [[RTActivity alloc] init];
-            RTActivity *activity3 = [[RTActivity alloc] init];
-            
-            newsfeed.activities = @[activity1, activity2, activity3];
-            [presenter retrievedNewsfeed:newsfeed];
-            
-            [verify(view) showActivity:activity1];
-            [verify(view) showActivity:activity2];
-            [verify(view) showActivity:activity3];
+            [verifyCount(view, never()) showMessage:anything() forActivityType:0];
         });
     });
 });

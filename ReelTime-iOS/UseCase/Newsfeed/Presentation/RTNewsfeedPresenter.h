@@ -11,6 +11,8 @@
                   interactor:(RTNewsfeedInteractor *)interactor
                    wireframe:(RTNewsfeedWireframe *)wireframe;
 
-- (void)requestedNewsfeedPage:(NSUInteger)page;
+- (void)requestedNextNewsfeedPage;
+
+- (void)requestedNewsfeedReset;
 
 @end

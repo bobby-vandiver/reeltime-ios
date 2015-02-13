@@ -7,11 +7,15 @@
 #import "RTNewsfeed.h"
 #import "RTActivity.h"
 
+static const NSUInteger INITIAL_PAGE_NUMBER = 1;
+
 @interface RTNewsfeedPresenter ()
 
 @property id<RTNewsfeedView> view;
 @property RTNewsfeedInteractor *interactor;
 @property (weak) RTNewsfeedWireframe *wireframe;
+
+@property NSUInteger nextPage;
 
 @end
 
@@ -25,17 +29,24 @@
         self.view = view;
         self.interactor = interactor;
         self.wireframe = wireframe;
+        self.nextPage = INITIAL_PAGE_NUMBER;
     }
     return self;
 }
 
-- (void)requestedNewsfeedPage:(NSUInteger)page {
-    [self.interactor newsfeedPage:page];
+- (void)requestedNextNewsfeedPage {
+    [self.interactor newsfeedPage:self.nextPage++];
+}
+
+- (void)requestedNewsfeedReset {
+    self.nextPage = INITIAL_PAGE_NUMBER;
+    [self.view clearMessages];
 }
 
 - (void)retrievedNewsfeed:(RTNewsfeed *)newsfeed {
     for (RTActivity *activity in newsfeed.activities) {
-        [self.view showActivity:activity];
+        // TODO: Generate description with links for each activity
+        (void)activity;
     }
 }
 

@@ -1,9 +1,13 @@
 #import <Foundation/Foundation.h>
+#import "RTActivityType.h"
 
-@class RTActivity;
+@class RTStringWithEmbeddedLinks;
 
 @protocol RTNewsfeedView <NSObject>
 
-- (void)showActivity:(RTActivity *)activity;
+- (void)showMessage:(RTStringWithEmbeddedLinks *)message
+    forActivityType:(RTActivityType)type;
+
+- (void)clearMessages;
 
 @end
