@@ -8,12 +8,12 @@ PODS:
     - CocoaLumberjack/Core
   - CocoaLumberjack/Extensions (2.0.0-rc):
     - CocoaLumberjack/Default
-  - Expecta (0.3.1)
+  - Expecta (0.3.2)
   - ISO8601DateFormatterValueTransformer (0.6.0):
     - RKValueTransformers (~> 1.1.0)
   - Nocilla (0.9.0)
   - OCHamcrest (4.1.1)
-  - OCMockito (1.3.1):
+  - OCMockito (1.4.0):
     - OCHamcrest (~> 4.0)
   - RestKit (0.24.0):
     - RestKit/Core (= 0.24.0)
@@ -38,52 +38,42 @@ PODS:
     - RestKit/Network
   - RKValueTransformers (1.1.1)
   - SOCKit (1.1)
-  - Specta (0.3.0.beta1)
+  - Specta (0.3.2)
   - TransitionKit (2.1.0)
   - TTTAttributedLabel (1.13.1)
-  - Typhoon (2.3.3):
-    - Typhoon/no-arc (= 2.3.3)
-  - Typhoon/no-arc (2.3.3)
-  - UICKeyChainStore (2.0.1)
+  - Typhoon (2.3.4):
+    - Typhoon/no-arc (= 2.3.4)
+  - Typhoon/no-arc (2.3.4)
+  - UICKeyChainStore (2.0.3)
 
 DEPENDENCIES:
   - CocoaLumberjack (~> 2.0.0-rc)
-  - Expecta (~> 0.3.1)
+  - Expecta (~> 0.3)
   - ISO8601DateFormatterValueTransformer (~> 0.6.0)
-  - Nocilla (~> 0.9.0)
-  - OCMockito (~> 1.3.1)
+  - Nocilla (~> 0.9)
+  - OCMockito (~> 1.4)
   - RestKit (~> 0.24.0)
   - RestKit/Testing (~> 0.24.0)
-  - Specta (from `https://github.com/specta/specta.git`, tag `v0.3.0.beta1`)
+  - Specta (~> 0.3)
   - TTTAttributedLabel (~> 1.13)
   - Typhoon (~> 2.3)
-  - UICKeyChainStore (~> 2.0.1)
-
-EXTERNAL SOURCES:
-  Specta:
-    :git: https://github.com/specta/specta.git
-    :tag: v0.3.0.beta1
-
-CHECKOUT OPTIONS:
-  Specta:
-    :git: https://github.com/specta/specta.git
-    :tag: v0.3.0.beta1
+  - UICKeyChainStore (~> 2.0)
 
 SPEC CHECKSUMS:
   AFNetworking: 80c4e0652b08eb34e25b9c0ff3c82556fe5967b4
   CocoaLumberjack: 6186e27827fc574b50b16c10102fcc591437f06c
-  Expecta: 03aabd0a89d8dea843baecb19a7fd7466a69a31d
+  Expecta: ee641011fe10aa1855d487b40e4976dac50ec342
   ISO8601DateFormatterValueTransformer: a705384ea6531255258e25b6480ba1180db703a0
   Nocilla: 4d713c56e7357fd0cac0363854d4a58021ad3f41
   OCHamcrest: af1c7c5ea345de69ea6c9c2958f65f3044e5c420
-  OCMockito: 57b8c4bb54ff3a4a14eb2174f9e57faf9f56efb6
+  OCMockito: 991936bb775cc4c27f063d38f5e17b9161fbd21c
   RestKit: 8e301e50e1d25ce427215539f4fd72463f4a2a58
   RKValueTransformers: 67b4ea3eb6a1c1a0b8c3c37eb4e4c05e4febeba2
   SOCKit: d8d0dd3688ae1026c12367570da8fa8e1a6980fb
-  Specta: 63e8ac8e07db6675c7096d37f77a266a1be4c02d
+  Specta: 698a58ffa5ec948327d3b92eab50ca58d7f4fbe8
   TransitionKit: 6a6f3ddda38ae758778aa889dcb930e4f8d64edc
   TTTAttributedLabel: 71843ac4178e1ebd6b0950b54325146726a124ae
-  Typhoon: 4a4069a559bc0a033fba95611382a69ab194bec6
-  UICKeyChainStore: 779de9c089920a79d8755e7ba887e51c745819a8
+  Typhoon: 57aae183beb36a386017a2cc69b18e29d7a21730
+  UICKeyChainStore: 9b6ce74b89fc24e1879257eb51c002f7cc4a5b9b
 
 COCOAPODS: 0.35.0

@@ -5,7 +5,7 @@ target 'ReelTime-iOS', :exclusive => true do
     # See: https://github.com/appsquickly/Typhoon/issues/242
     pod 'Typhoon', '~> 2.3'
 
-    pod 'UICKeyChainStore', '~> 2.0.1'
+    pod 'UICKeyChainStore', '~> 2.0'
     pod 'CocoaLumberjack', '~> 2.0.0-rc'
     pod 'TTTAttributedLabel', '~> 1.13'
     
@@ -21,10 +21,10 @@ target 'ReelTime-iOS', :exclusive => true do
 end
 
 target 'ReelTime-iOSTests' do
-    pod 'Specta', :git => 'https://github.com/specta/specta.git', :tag => 'v0.3.0.beta1'
-    pod 'Expecta', '~> 0.3.1'
-    pod 'OCMockito', '~> 1.3.1'
+    pod 'Specta', '~> 0.3'
+    pod 'Expecta', '~> 0.3'
+    pod 'OCMockito', '~> 1.4'
 
     # Nocilla has a few conversion warnings
-    pod 'Nocilla', '~> 0.9.0', :inhibit_warnings => true
+    pod 'Nocilla', '~> 0.9', :inhibit_warnings => true
 end
