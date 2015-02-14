@@ -53,33 +53,74 @@ static const NSUInteger INITIAL_PAGE_NUMBER = 1;
 - (void)retrievedNewsfeed:(RTNewsfeed *)newsfeed {
     for (RTActivity *activity in newsfeed.activities) {
         RTStringWithEmbeddedLinks *message = [self createMessageForActivity:activity];
-        [self.view showMessage:message forActivityType:RTActivityTypeCreateReel];
+        RTActivityType type = [activity.type integerValue];
+        [self.view showMessage:message forActivityType:type];
     }
 }
 
-- (RTStringWithEmbeddedLinks *)createMessageForActivity:(RTActivity *)activity {
++ (NSString *)messageFormatForActivityType:(NSNumber *)type {
     NSDictionary *messageFormatsForActivites = @{
-        @(RTActivityTypeCreateReel): @"%@ created the %@ reel"
+        @(RTActivityTypeCreateReel): @"%@ created the %@ reel",
+        @(RTActivityTypeJoinReelAudience): @"%@ joined the audience of the %@ reel",
+        @(RTActivityTypeAddVideoToReel): @"%@ added the video %@ to the %@ reel"
     };
-    
-    NSString *username = activity.user.username;
-    NSString *reelName = activity.reel.name;
 
-    NSString *format = messageFormatsForActivites[activity.type];
-    NSString *text = [NSString stringWithFormat:format, username, reelName];
-    
+    return messageFormatsForActivites[type];
+}
+
+- (RTStringWithEmbeddedLinks *)createMessageForActivity:(RTActivity *)activity {
+    RTUser *user = activity.user;
+    RTReel *reel = activity.reel;
+    RTVideo *video = activity.video;
+
+    NSString *text = [self textForActivity:activity];
     RTStringWithEmbeddedLinks *message = [[RTStringWithEmbeddedLinks alloc] initWithString:text];
     
-    NSString *userUrl = [NSString stringWithFormat:@"reeltime://users/%@", username];
+    NSURL *userURL = [self URLforUser:user];
+    [message addLinkToURL:userURL forString:user.username];
+   
+    NSURL *reelURL = [self URLforReel:reel];
+    [message addLinkToURL:reelURL forString:reel.name];
 
-    [message addLinkToURL:[NSURL URLWithString:userUrl] forString:username];
-
-    NSNumber *reelId = activity.reel.reelId;
-    NSString *reelUrl = [NSString stringWithFormat:@"reeltime://reels/%@", reelId];
-    
-    [message addLinkToURL:[NSURL URLWithString:reelUrl] forString:reelName];
+    if ([activity.type isEqual:@(RTActivityTypeAddVideoToReel)]) {
+        NSURL *videoURL = [self URLforVideo:video];
+        [message addLinkToURL:videoURL forString:video.title];
+    }
     
     return message;
+}
+
+- (NSString *)textForActivity:(RTActivity *)activity {
+    NSString *username = activity.user.username;
+    NSString *reelName = activity.reel.name;
+    NSString *videoTitle = activity.video.title;
+    
+    NSString *format = [RTNewsfeedPresenter messageFormatForActivityType:activity.type];
+    NSString *text;
+    
+    if ([activity.type isEqual:@(RTActivityTypeAddVideoToReel)]) {
+        text = [NSString stringWithFormat:format, username, videoTitle, reelName];
+    }
+    else {
+        text = [NSString stringWithFormat:format, username, reelName];
+    }
+
+    return text;
+}
+
+- (NSURL *)URLforUser:(RTUser *)user {
+    NSString *url = [NSString stringWithFormat:@"reeltime://users/%@", user.username];
+    return [NSURL URLWithString:url];
+}
+
+- (NSURL *)URLforReel:(RTReel *)reel {
+    NSString *url = [NSString stringWithFormat:@"reeltime://reels/%@", reel.reelId];
+    return [NSURL URLWithString:url];
+}
+
+- (NSURL *)URLforVideo:(RTVideo *)video {
+    NSString *url = [NSString stringWithFormat:@"reeltime://videos/%@", video.videoId];
+    return [NSURL URLWithString:url];
 }
 
 - (void)failedToRetrieveNewsfeedWithError:(NSError *)error {

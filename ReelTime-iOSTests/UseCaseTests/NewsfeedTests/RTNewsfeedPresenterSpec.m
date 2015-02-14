@@ -70,14 +70,23 @@ describe(@"newsfeed presenter", ^{
         });
     });
     
-    // TODO: Add tests for showing activities
     describe(@"show newsfeed page activities", ^{
         __block RTNewsfeed *newsfeed;
         __block MKTArgumentCaptor *captor;
+
+        __block RTActivity *activity;
+        __block RTStringWithEmbeddedLinks *message;
+
+        __block RTEmbeddedURL *link;
+        __block NSString *linkText;
         
         __block RTUser *user;
         __block RTReel *reel;
         __block RTVideo *video;
+        
+        __block NSURL *userURL;
+        __block NSURL *reelURL;
+        __block NSURL *videoURL;
         
         beforeEach(^{
             newsfeed = [[RTNewsfeed alloc] init];
@@ -89,6 +98,10 @@ describe(@"newsfeed presenter", ^{
             reel = [[RTReel alloc] initWithReelId:@(1) name:@"reel" audienceSize:@(2) numberOfVideos:@(3)];
 
             video = [[RTVideo alloc] initWithVideoId:@(1) title:@"title"];
+            
+            userURL = [NSURL URLWithString:[NSString stringWithFormat:@"reeltime://users/%@", user.username]];
+            reelURL = [NSURL URLWithString:[NSString stringWithFormat:@"reeltime://reels/%@", reel.reelId]];
+            videoURL = [NSURL URLWithString:[NSString stringWithFormat:@"reeltime://videos/%@", video.videoId]];
         });
         
         it(@"no activities to show", ^{
@@ -98,29 +111,91 @@ describe(@"newsfeed presenter", ^{
         });
         
         it(@"show create reel activity", ^{
-            RTActivity *activity = [RTActivity createReelActivityWithUser:user reel:reel];
+            activity = [RTActivity createReelActivityWithUser:user reel:reel];
             newsfeed.activities = @[activity];
             
             [presenter retrievedNewsfeed:newsfeed];
             [verify(view) showMessage:[captor capture] forActivityType:RTActivityTypeCreateReel];
             
-            NSString *expected = [NSString stringWithFormat:@"%@ created the %@ reel", user.username, reel.name];
+            NSString *expected = [NSString stringWithFormat:@"%@ created the %@ reel",
+                                  user.username, reel.name];
 
-            RTStringWithEmbeddedLinks *message = [captor value];
+            message = [captor value];
             expect(message.string).to.equal(expected);
-            
             expect(message.links.count).to.equal(2);
             
-            NSString *userUrl = [NSString stringWithFormat:@"reeltime://users/%@", user.username];
-            NSString *reelUrl = [NSString stringWithFormat:@"reeltime://reels/%@", reel.reelId];
+            link = [message.links objectAtIndex:0];
+            expect(link.url).to.equal(userURL);
+
+            linkText = [message.string substringWithRange:link.range];
+            expect(linkText).to.equal(user.username);
             
-            RTEmbeddedURL *url = [message.links objectAtIndex:0];
-            expect(url.url).to.equal([NSURL URLWithString:userUrl]);
+            link = [message.links objectAtIndex:1];
+            expect(link.url).to.equal(reelURL);
             
-            url = [message.links objectAtIndex:1];
-            expect(url.url).to.equal([NSURL URLWithString:reelUrl]);
+            linkText = [message.string substringWithRange:link.range];
+            expect(linkText).to.equal(reel.name);
         });
 
+        it(@"show join reel activity", ^{
+            activity = [RTActivity joinReelActivityWithUser:user reel:reel];
+            newsfeed.activities= @[activity];
+            
+            [presenter retrievedNewsfeed:newsfeed];
+            [verify(view) showMessage:[captor capture] forActivityType:RTActivityTypeJoinReelAudience];
+            
+            NSString *expected = [NSString stringWithFormat:@"%@ joined the audience of the %@ reel",
+                                  user.username, reel.name];
+            
+            message = [captor value];
+            expect(message.string).to.equal(expected);
+            expect(message.links.count).to.equal(2);
+            
+            link = [message.links objectAtIndex:0];
+            expect(link.url).to.equal(userURL);
+            
+            linkText = [message.string substringWithRange:link.range];
+            expect(linkText).to.equal(user.username);
+            
+            link = [message.links objectAtIndex:1];
+            expect(link.url).to.equal(reelURL);
+            
+            linkText = [message.string substringWithRange:link.range];
+            expect(linkText).to.equal(reel.name);
+        });
+        
+        it(@"show add video to reel activity", ^{
+            activity = [RTActivity addVideoToReelActivityWithUser:user reel:reel video:video];
+            newsfeed.activities = @[activity];
+            
+            [presenter retrievedNewsfeed:newsfeed];
+            [verify(view) showMessage:[captor capture] forActivityType:RTActivityTypeAddVideoToReel];
+            
+            NSString *expected = [NSString stringWithFormat:@"%@ added the video %@ to the %@ reel",
+                                  user.username, video.title, reel.name];
+
+            message = [captor value];
+            expect(message.string).to.equal(expected);
+            expect(message.links.count).to.equal(3);
+            
+            link = [message.links objectAtIndex:0];
+            expect(link.url).to.equal(userURL);
+            
+            linkText = [message.string substringWithRange:link.range];
+            expect(linkText).to.equal(user.username);
+            
+            link = [message.links objectAtIndex:1];
+            expect(link.url).to.equal(reelURL);
+            
+            linkText = [message.string substringWithRange:link.range];
+            expect(linkText).to.equal(reel.name);
+
+            link = [message.links objectAtIndex:2];
+            expect(link.url).to.equal(videoURL);
+            
+            linkText = [message.string substringWithRange:link.range];
+            expect(linkText).to.equal(video.title);
+        });
     });
 });
 
