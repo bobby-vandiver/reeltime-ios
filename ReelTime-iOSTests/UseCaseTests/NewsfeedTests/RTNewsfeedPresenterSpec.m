@@ -9,6 +9,13 @@
 #import "RTNewsfeed.h"
 #import "RTActivity.h"
 
+#import "RTUser.h"
+#import "RTReel.h"
+#import "RTVideo.h"
+
+#import "RTStringWithEmbeddedLinks.h"
+#import "RTEmbeddedURL.h"
+
 SpecBegin(RTNewsfeedPresenter)
 
 describe(@"newsfeed presenter", ^{
@@ -66,15 +73,52 @@ describe(@"newsfeed presenter", ^{
     // TODO: Add tests for showing activities
     describe(@"show newsfeed page activities", ^{
         __block RTNewsfeed *newsfeed;
+        __block MKTArgumentCaptor *captor;
+        
+        __block RTUser *user;
+        __block RTReel *reel;
+        __block RTVideo *video;
         
         beforeEach(^{
             newsfeed = [[RTNewsfeed alloc] init];
+            captor = [[MKTArgumentCaptor alloc] init];
+            
+            user = [[RTUser alloc] initWithUsername:username displayName:displayName
+                                  numberOfFollowers:@(1) numberOfFollowees:@(2)];
+
+            reel = [[RTReel alloc] initWithReelId:@(1) name:@"reel" audienceSize:@(2) numberOfVideos:@(3)];
+
+            video = [[RTVideo alloc] initWithVideoId:@(1) title:@"title"];
         });
         
         it(@"no activities to show", ^{
             newsfeed.activities = @[];
             [presenter retrievedNewsfeed:newsfeed];
             [verifyCount(view, never()) showMessage:anything() forActivityType:0];
+        });
+        
+        it(@"show create reel activity", ^{
+            RTActivity *activity = [RTActivity createReelActivityWithUser:user reel:reel];
+            newsfeed.activities = @[activity];
+            
+            [presenter retrievedNewsfeed:newsfeed];
+            [verify(view) showMessage:[captor capture] forActivityType:RTActivityTypeCreateReel];
+            
+            NSString *expected = [NSString stringWithFormat:@"%@ created the %@ reel", user.username, reel.name];
+
+            RTStringWithEmbeddedLinks *message = [captor value];
+            expect(message.string).to.equal(expected);
+            
+            expect(message.embeddedURLs.count).to.equal(2);
+            
+            NSString *userUrl = [NSString stringWithFormat:@"reeltime://users/%@", user.username];
+            NSString *reelUrl = [NSString stringWithFormat:@"reeltime://reels/%@", reel.reelId];
+            
+            RTEmbeddedURL *url = [message.embeddedURLs objectAtIndex:0];
+            expect(url.url).to.equal([NSURL URLWithString:userUrl]);
+            
+            url = [message.embeddedURLs objectAtIndex:1];
+            expect(url.url).to.equal([NSURL URLWithString:reelUrl]);
         });
     });
 });

@@ -7,6 +7,13 @@
 #import "RTNewsfeed.h"
 #import "RTActivity.h"
 
+#import "RTUser.h"
+#import "RTReel.h"
+#import "RTVideo.h"
+
+#import "RTStringWithEmbeddedLinks.h"
+#import "RTEmbeddedURL.h"
+
 static const NSUInteger INITIAL_PAGE_NUMBER = 1;
 
 @interface RTNewsfeedPresenter ()
@@ -45,9 +52,34 @@ static const NSUInteger INITIAL_PAGE_NUMBER = 1;
 
 - (void)retrievedNewsfeed:(RTNewsfeed *)newsfeed {
     for (RTActivity *activity in newsfeed.activities) {
-        // TODO: Generate description with links for each activity
-        (void)activity;
+        RTStringWithEmbeddedLinks *message = [self createMessageForActivity:activity];
+        [self.view showMessage:message forActivityType:RTActivityTypeCreateReel];
     }
+}
+
+- (RTStringWithEmbeddedLinks *)createMessageForActivity:(RTActivity *)activity {
+    NSDictionary *messageFormatsForActivites = @{
+        @(RTActivityTypeCreateReel): @"%@ created the %@ reel"
+    };
+    
+    NSString *username = activity.user.username;
+    NSString *reelName = activity.reel.name;
+
+    NSString *format = messageFormatsForActivites[activity.type];
+    NSString *text = [NSString stringWithFormat:format, username, reelName];
+    
+    RTStringWithEmbeddedLinks *message = [[RTStringWithEmbeddedLinks alloc] initWithString:text];
+    
+    NSString *userUrl = [NSString stringWithFormat:@"reeltime://users/%@", username];
+
+    [message addLinkToURL:[NSURL URLWithString:userUrl] forString:username];
+
+    NSNumber *reelId = activity.reel.reelId;
+    NSString *reelUrl = [NSString stringWithFormat:@"reeltime://reels/%@", reelId];
+    
+    [message addLinkToURL:[NSURL URLWithString:reelUrl] forString:reelName];
+    
+    return message;
 }
 
 - (void)failedToRetrieveNewsfeedWithError:(NSError *)error {
