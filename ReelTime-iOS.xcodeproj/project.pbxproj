@@ -30,6 +30,8 @@
 		7130FD8C1A67593D00AE2ACD /* boxxy.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7130FD891A67593D00AE2ACD /* boxxy.jpg */; };
 		7130FD8D1A67593D00AE2ACD /* maddox.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7130FD8A1A67593D00AE2ACD /* maddox.jpg */; };
 		7130FD8E1A67593D00AE2ACD /* boogie2988-rage.png in Resources */ = {isa = PBXBuildFile; fileRef = 7130FD8B1A67593D00AE2ACD /* boogie2988-rage.png */; };
+		713229DB1A8FBBDC00DE900A /* RTURLFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 713229DA1A8FBBDC00DE900A /* RTURLFactory.m */; };
+		713229DE1A8FBD9600DE900A /* RTNewsfeedMessageSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 713229DD1A8FBD9600DE900A /* RTNewsfeedMessageSource.m */; };
 		71331A2D1A880A6F00912B5F /* RTNewsfeedPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 71331A2C1A880A6F00912B5F /* RTNewsfeedPresenter.m */; };
 		71331A301A880B0100912B5F /* RTNewsfeedWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 71331A2F1A880B0100912B5F /* RTNewsfeedWireframe.m */; };
 		71331A321A880D7300912B5F /* RTNewsfeedPresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71331A311A880D7300912B5F /* RTNewsfeedPresenterSpec.m */; };
@@ -163,6 +165,10 @@
 		7130FD891A67593D00AE2ACD /* boxxy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = boxxy.jpg; sourceTree = "<group>"; };
 		7130FD8A1A67593D00AE2ACD /* maddox.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = maddox.jpg; sourceTree = "<group>"; };
 		7130FD8B1A67593D00AE2ACD /* boogie2988-rage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boogie2988-rage.png"; sourceTree = "<group>"; };
+		713229D91A8FBBDC00DE900A /* RTURLFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTURLFactory.h; sourceTree = "<group>"; };
+		713229DA1A8FBBDC00DE900A /* RTURLFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTURLFactory.m; sourceTree = "<group>"; };
+		713229DC1A8FBD9600DE900A /* RTNewsfeedMessageSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTNewsfeedMessageSource.h; sourceTree = "<group>"; };
+		713229DD1A8FBD9600DE900A /* RTNewsfeedMessageSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTNewsfeedMessageSource.m; sourceTree = "<group>"; };
 		71331A2A1A880A4400912B5F /* RTNewsfeedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTNewsfeedView.h; sourceTree = "<group>"; };
 		71331A2B1A880A6F00912B5F /* RTNewsfeedPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTNewsfeedPresenter.h; sourceTree = "<group>"; };
 		71331A2C1A880A6F00912B5F /* RTNewsfeedPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTNewsfeedPresenter.m; sourceTree = "<group>"; };
@@ -417,6 +423,8 @@
 				711C5DDD1A8D5B4F007652FC /* RTEmbeddedURL.m */,
 				711C5DDE1A8D5B4F007652FC /* RTStringWithEmbeddedLinks.h */,
 				711C5DDF1A8D5B4F007652FC /* RTStringWithEmbeddedLinks.m */,
+				713229D91A8FBBDC00DE900A /* RTURLFactory.h */,
+				713229DA1A8FBBDC00DE900A /* RTURLFactory.m */,
 			);
 			path = Routing;
 			sourceTree = "<group>";
@@ -661,11 +669,13 @@
 		717215B71A865B3B0002ECC7 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				71331A2A1A880A4400912B5F /* RTNewsfeedView.h */,
-				71331A2B1A880A6F00912B5F /* RTNewsfeedPresenter.h */,
-				71331A2C1A880A6F00912B5F /* RTNewsfeedPresenter.m */,
 				715370E71A88442700D3355B /* RTActivityCell.h */,
 				715370E81A88442700D3355B /* RTActivityCell.m */,
+				713229DC1A8FBD9600DE900A /* RTNewsfeedMessageSource.h */,
+				713229DD1A8FBD9600DE900A /* RTNewsfeedMessageSource.m */,
+				71331A2B1A880A6F00912B5F /* RTNewsfeedPresenter.h */,
+				71331A2C1A880A6F00912B5F /* RTNewsfeedPresenter.m */,
+				71331A2A1A880A4400912B5F /* RTNewsfeedView.h */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -1162,6 +1172,7 @@
 				71C5C0B21A55EB3900CAAFAC /* RTOAuth2TokenStore.m in Sources */,
 				715370FA1A88680700D3355B /* RTArrayDataSource.m in Sources */,
 				718CFFCA1A6C007C00B418F9 /* RTAccountRegistration.m in Sources */,
+				713229DB1A8FBBDC00DE900A /* RTURLFactory.m in Sources */,
 				7172157E1A8657540002ECC7 /* RTLoginAssembly.m in Sources */,
 				711C5DE11A8D5B4F007652FC /* RTStringWithEmbeddedLinks.m in Sources */,
 				711C5DE01A8D5B4F007652FC /* RTEmbeddedURL.m in Sources */,
@@ -1194,6 +1205,7 @@
 				717215861A8657660002ECC7 /* RTLoginWireframe.m in Sources */,
 				71647BD51A7E7EEA00F44996 /* RTVideo.m in Sources */,
 				718A0BE81A4DA87900137C49 /* RTViewController.m in Sources */,
+				713229DE1A8FBD9600DE900A /* RTNewsfeedMessageSource.m in Sources */,
 				71647BD81A7E7F9D00F44996 /* RTUser.m in Sources */,
 				71647BE61A7F17CD00F44996 /* RTClientDelegate.m in Sources */,
 				71331A301A880B0100912B5F /* RTNewsfeedWireframe.m in Sources */,

@@ -5,6 +5,7 @@
 #import "RTNewsfeedView.h"
 #import "RTNewsfeedInteractor.h"
 #import "RTNewsfeedWireframe.h"
+#import "RTNewsfeedMessageSource.h"
 
 #import "RTNewsfeed.h"
 #import "RTActivity.h"
@@ -31,9 +32,12 @@ describe(@"newsfeed presenter", ^{
         interactor = mock([RTNewsfeedInteractor class]);
         wireframe = mock([RTNewsfeedWireframe class]);
         
+        RTNewsfeedMessageSource *messageSource = [[RTNewsfeedMessageSource alloc] init];
+        
         presenter = [[RTNewsfeedPresenter alloc] initWithView:view
                                                    interactor:interactor
-                                                    wireframe:wireframe];
+                                                    wireframe:wireframe
+                                                messageSource:messageSource];
     });
     
     describe(@"newsfeed page requested", ^{
