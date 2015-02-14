@@ -109,17 +109,18 @@ describe(@"newsfeed presenter", ^{
             RTStringWithEmbeddedLinks *message = [captor value];
             expect(message.string).to.equal(expected);
             
-            expect(message.embeddedURLs.count).to.equal(2);
+            expect(message.links.count).to.equal(2);
             
             NSString *userUrl = [NSString stringWithFormat:@"reeltime://users/%@", user.username];
             NSString *reelUrl = [NSString stringWithFormat:@"reeltime://reels/%@", reel.reelId];
             
-            RTEmbeddedURL *url = [message.embeddedURLs objectAtIndex:0];
+            RTEmbeddedURL *url = [message.links objectAtIndex:0];
             expect(url.url).to.equal([NSURL URLWithString:userUrl]);
             
-            url = [message.embeddedURLs objectAtIndex:1];
+            url = [message.links objectAtIndex:1];
             expect(url.url).to.equal([NSURL URLWithString:reelUrl]);
         });
+
     });
 });
 

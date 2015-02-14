@@ -3,7 +3,7 @@
 @interface RTStringWithEmbeddedLinks : NSObject 
 
 @property (readonly, copy) NSString *string;
-@property (readonly) NSArray *embeddedURLs;
+@property (readonly) NSArray *links;
 
 - (instancetype)initWithString:(NSString *)string;
 

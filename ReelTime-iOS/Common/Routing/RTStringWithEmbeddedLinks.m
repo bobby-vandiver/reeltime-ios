@@ -4,7 +4,7 @@
 @interface RTStringWithEmbeddedLinks ()
 
 @property (readwrite, copy) NSString *string;
-@property (readwrite) NSMutableArray *embeddedURLsList;
+@property (readwrite) NSMutableArray *embeddedURLs;
 
 @end
 
@@ -14,7 +14,7 @@
     self = [super init];
     if (self) {
         self.string = string;
-        self.embeddedURLsList = [NSMutableArray array];
+        self.embeddedURLs = [NSMutableArray array];
     }
     return self;
 }
@@ -25,12 +25,12 @@
 
     if (range.location != NSNotFound) {
         RTEmbeddedURL *embeddedUrl = [[RTEmbeddedURL alloc] initWithURL:url range:range];
-        [self.embeddedURLsList addObject:embeddedUrl];
+        [self.embeddedURLs addObject:embeddedUrl];
     }
 }
 
-- (NSArray *)embeddedURLs {   
-    return self.embeddedURLsList;
+- (NSArray *)links {   
+    return self.embeddedURLs;
 }
 
 @end
