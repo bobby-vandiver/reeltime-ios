@@ -33,6 +33,7 @@
 		713188A21A9125FF006155E6 /* NSURL+RTURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 713188A11A9125FF006155E6 /* NSURL+RTURL.m */; };
 		713188A41A912734006155E6 /* NSURL+RTURLSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 713188A31A912734006155E6 /* NSURL+RTURLSpec.m */; };
 		713188A91A912E4D006155E6 /* RTRegexPattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 713188A81A912E4D006155E6 /* RTRegexPattern.m */; };
+		713188AC1A91454F006155E6 /* RTNewsfeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 713188AB1A91454F006155E6 /* RTNewsfeedViewController.m */; };
 		713229DB1A8FBBDC00DE900A /* RTURLFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 713229DA1A8FBBDC00DE900A /* RTURLFactory.m */; };
 		713229DE1A8FBD9600DE900A /* RTNewsfeedMessageSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 713229DD1A8FBD9600DE900A /* RTNewsfeedMessageSource.m */; };
 		713229E01A8FC45400DE900A /* RTNewsfeedMessageSourceSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 713229DF1A8FC45400DE900A /* RTNewsfeedMessageSourceSpec.m */; };
@@ -174,6 +175,8 @@
 		713188A31A912734006155E6 /* NSURL+RTURLSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+RTURLSpec.m"; sourceTree = "<group>"; };
 		713188A71A912E16006155E6 /* RTRegexPattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTRegexPattern.h; sourceTree = "<group>"; };
 		713188A81A912E4D006155E6 /* RTRegexPattern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTRegexPattern.m; sourceTree = "<group>"; };
+		713188AA1A91454F006155E6 /* RTNewsfeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTNewsfeedViewController.h; sourceTree = "<group>"; };
+		713188AB1A91454F006155E6 /* RTNewsfeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTNewsfeedViewController.m; sourceTree = "<group>"; };
 		713229D91A8FBBDC00DE900A /* RTURLFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTURLFactory.h; sourceTree = "<group>"; };
 		713229DA1A8FBBDC00DE900A /* RTURLFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTURLFactory.m; sourceTree = "<group>"; };
 		713229DC1A8FBD9600DE900A /* RTNewsfeedMessageSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTNewsfeedMessageSource.h; sourceTree = "<group>"; };
@@ -690,6 +693,8 @@
 				71331A2B1A880A6F00912B5F /* RTNewsfeedPresenter.h */,
 				71331A2C1A880A6F00912B5F /* RTNewsfeedPresenter.m */,
 				71331A2A1A880A4400912B5F /* RTNewsfeedView.h */,
+				713188AA1A91454F006155E6 /* RTNewsfeedViewController.h */,
+				713188AB1A91454F006155E6 /* RTNewsfeedViewController.m */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -1193,6 +1198,7 @@
 				711C5DE01A8D5B4F007652FC /* RTEmbeddedURL.m in Sources */,
 				717D92761A5B925700EAB6BF /* RTCurrentUserStore.m in Sources */,
 				71C7D4151A7406A6006B84AC /* RTServerErrorsConverter.m in Sources */,
+				713188AC1A91454F006155E6 /* RTNewsfeedViewController.m in Sources */,
 				7172158A1A86576E0002ECC7 /* RTLoginDataManager.m in Sources */,
 				7172159C1A8659050002ECC7 /* RTAccountRegistrationAutoLoginAssembly.m in Sources */,
 				717D926D1A5B722300EAB6BF /* NSError+RTError.m in Sources */,
