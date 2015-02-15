@@ -44,7 +44,6 @@ static NSString *const CELL_IDENTIFIER = @"ActivityCell";
 
 - (void)initTableViewDataSource {
     self.dataSource = [[RTArrayDataSource alloc] initWithItems:self.messages cellIdentifier:CELL_IDENTIFIER configureCellBlock:^(RTActivityCell *cell, RTActivityMessage *message) {
-        return;
     }];
 }
 

@@ -1,6 +1,10 @@
 #import <Foundation/Foundation.h>
 
+@class RTNewsfeedViewController;
+
 @interface RTNewsfeedWireframe : NSObject
+
+- (instancetype)initWithViewController:(RTNewsfeedViewController *)viewController;
 
 - (void)presentUserForUsername:(NSString *)username;
 

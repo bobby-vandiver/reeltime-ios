@@ -4,6 +4,6 @@
 @interface RTActivityCell : UITableViewCell
 
 @property UIImage *icon;
-@property TTTAttributedLabel *activityDescription;
+@property TTTAttributedLabel *text;
 
 @end
