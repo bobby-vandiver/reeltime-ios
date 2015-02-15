@@ -1,20 +1,16 @@
 #import "RTNewsfeedWireframe.h"
 
-#import "RTUser.h"
-#import "RTReel.h"
-#import "RTVideo.h"
-
 @implementation RTNewsfeedWireframe
 
-- (void)presentUser:(RTUser *)user {
+- (void)presentUserForUsername:(NSString *)username {
     
 }
 
-- (void)presentReel:(RTReel *)reel {
+- (void)presentReelForReelId:(NSNumber *)reelId {
     
 }
 
-- (void)presentVideo:(RTVideo *)video {
+- (void)presentVideoForVideoId:(NSNumber *)videoId {
     
 }
 

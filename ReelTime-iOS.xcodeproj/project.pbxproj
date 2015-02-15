@@ -48,7 +48,6 @@
 		7145C6211A8AE645006A77DE /* RTUserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7145C6201A8AE645006A77DE /* RTUserSpec.m */; };
 		7145C6231A8AF07F006A77DE /* RTReelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7145C6221A8AF07F006A77DE /* RTReelSpec.m */; };
 		715370E91A88442700D3355B /* RTActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 715370E81A88442700D3355B /* RTActivityCell.m */; };
-		715370F61A8864DF00D3355B /* NSMutableArray+AddUniqueObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 715370F51A8864DF00D3355B /* NSMutableArray+AddUniqueObject.m */; };
 		715370FA1A88680700D3355B /* RTArrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 715370F91A88680700D3355B /* RTArrayDataSource.m */; };
 		7160C2BF1A6F48A60045ADDA /* RTAccountRegistrationValidatorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7160C2BE1A6F48A60045ADDA /* RTAccountRegistrationValidatorSpec.m */; };
 		71647BD51A7E7EEA00F44996 /* RTVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 71647BD41A7E7EEA00F44996 /* RTVideo.m */; };
@@ -196,8 +195,6 @@
 		7145C6221A8AF07F006A77DE /* RTReelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTReelSpec.m; sourceTree = "<group>"; };
 		715370E71A88442700D3355B /* RTActivityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTActivityCell.h; sourceTree = "<group>"; };
 		715370E81A88442700D3355B /* RTActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTActivityCell.m; sourceTree = "<group>"; };
-		715370F41A8864DF00D3355B /* NSMutableArray+AddUniqueObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+AddUniqueObject.h"; sourceTree = "<group>"; };
-		715370F51A8864DF00D3355B /* NSMutableArray+AddUniqueObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+AddUniqueObject.m"; sourceTree = "<group>"; };
 		715370F81A88680700D3355B /* RTArrayDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTArrayDataSource.h; sourceTree = "<group>"; };
 		715370F91A88680700D3355B /* RTArrayDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTArrayDataSource.m; sourceTree = "<group>"; };
 		7160C2BE1A6F48A60045ADDA /* RTAccountRegistrationValidatorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAccountRegistrationValidatorSpec.m; sourceTree = "<group>"; };
@@ -502,15 +499,6 @@
 				71073CF51A83060700BE6E19 /* RKObjectManager+IncludeHeaders.m */,
 			);
 			path = Client;
-			sourceTree = "<group>";
-		};
-		715370F31A8864DF00D3355B /* Categories */ = {
-			isa = PBXGroup;
-			children = (
-				715370F41A8864DF00D3355B /* NSMutableArray+AddUniqueObject.h */,
-				715370F51A8864DF00D3355B /* NSMutableArray+AddUniqueObject.m */,
-			);
-			path = Categories;
 			sourceTree = "<group>";
 		};
 		715370F71A8867EA00D3355B /* UI */ = {
@@ -861,7 +849,6 @@
 			isa = PBXGroup;
 			children = (
 				719B35D81A51012E00FFD543 /* Assembly */,
-				715370F31A8864DF00D3355B /* Categories */,
 				713D7A491A50A24E00754A06 /* Client */,
 				719B35E11A51150000FFD543 /* Error */,
 				71D9477F1A4FB39C00401963 /* Model */,
@@ -1182,7 +1169,6 @@
 				7172157E1A8657540002ECC7 /* RTLoginAssembly.m in Sources */,
 				711C5DE11A8D5B4F007652FC /* RTStringWithEmbeddedLinks.m in Sources */,
 				711C5DE01A8D5B4F007652FC /* RTEmbeddedURL.m in Sources */,
-				715370F61A8864DF00D3355B /* NSMutableArray+AddUniqueObject.m in Sources */,
 				717D92761A5B925700EAB6BF /* RTCurrentUserStore.m in Sources */,
 				71C7D4151A7406A6006B84AC /* RTServerErrorsConverter.m in Sources */,
 				7172158A1A86576E0002ECC7 /* RTLoginDataManager.m in Sources */,

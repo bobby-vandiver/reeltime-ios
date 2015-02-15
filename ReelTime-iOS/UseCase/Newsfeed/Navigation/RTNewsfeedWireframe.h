@@ -1,15 +1,11 @@
 #import <Foundation/Foundation.h>
 
-@class RTUser;
-@class RTReel;
-@class RTVideo;
-
 @interface RTNewsfeedWireframe : NSObject
 
-- (void)presentUser:(RTUser *)user;
+- (void)presentUserForUsername:(NSString *)username;
 
-- (void)presentReel:(RTReel *)reel;
+- (void)presentReelForReelId:(NSNumber *)reelId;
 
-- (void)presentVideo:(RTVideo *)video;
+- (void)presentVideoForVideoId:(NSNumber *)videoId;
 
 @end
