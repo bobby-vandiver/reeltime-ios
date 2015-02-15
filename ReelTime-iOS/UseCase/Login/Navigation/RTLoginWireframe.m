@@ -3,8 +3,6 @@
 #import "RTLoginViewController.h"
 #import "RTAccountRegistrationWireframe.h"
 
-#import "RTStoryboardViewControllerFactory.h"
-
 @interface RTLoginWireframe ()
 
 @property RTLoginViewController *viewController;
