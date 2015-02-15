@@ -20,6 +20,7 @@ static const NSUInteger INITIAL_PAGE_NUMBER = 1;
 @property RTNewsfeedMessageSource *messageSource;
 
 @property NSUInteger nextPage;
+@property NSMutableArray *activities;
 
 @end
 
@@ -35,9 +36,15 @@ static const NSUInteger INITIAL_PAGE_NUMBER = 1;
         self.interactor = interactor;
         self.wireframe = wireframe;
         self.messageSource = messageSource;
-        self.nextPage = INITIAL_PAGE_NUMBER;
+
+        [self resetActivites];
     }
     return self;
+}
+
+- (void)resetActivites {
+    self.nextPage = INITIAL_PAGE_NUMBER;
+    self.activities = [NSMutableArray array];
 }
 
 - (void)requestedNextNewsfeedPage {
@@ -45,16 +52,24 @@ static const NSUInteger INITIAL_PAGE_NUMBER = 1;
 }
 
 - (void)requestedNewsfeedReset {
-    self.nextPage = INITIAL_PAGE_NUMBER;
+    [self resetActivites];
     [self.view clearMessages];
 }
 
 - (void)retrievedNewsfeed:(RTNewsfeed *)newsfeed {
     for (RTActivity *activity in newsfeed.activities) {
-        RTStringWithEmbeddedLinks *message = [self.messageSource messageForActivity:activity];
-        RTActivityType type = [activity.type integerValue];
-        [self.view showMessage:message forActivityType:type];
+        if (![self.activities containsObject:activity]) {
+            [self showActivity:activity];
+            [self.activities addObject:activity];
+        }
     }
+}
+
+- (void)showActivity:(RTActivity *)activity {
+    RTStringWithEmbeddedLinks *message = [self.messageSource messageForActivity:activity];
+    RTActivityType type = [activity.type integerValue];
+    
+    [self.view showMessage:message forActivityType:type];
 }
 
 - (void)failedToRetrieveNewsfeedWithError:(NSError *)error {

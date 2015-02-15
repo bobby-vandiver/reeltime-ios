@@ -146,6 +146,39 @@ describe(@"newsfeed presenter", ^{
             [verify(view) showMessage:createReelMessage forActivityType:RTActivityTypeCreateReel];
             [verify(view) showMessage:addVideoToReelMessage forActivityType:RTActivityTypeAddVideoToReel];
         });
+        
+        it(@"show message for each activity once", ^{
+            RTActivity *activity = [RTActivity createReelActivityWithUser:user reel:reel];
+            newsfeed.activities = @[activity];
+            
+            RTStringWithEmbeddedLinks *message = [[RTStringWithEmbeddedLinks alloc] init];
+            [given([messageSource messageForActivity:activity]) willReturn:message];
+            
+            [presenter retrievedNewsfeed:newsfeed];
+            [verify(view) showMessage:message forActivityType:RTActivityTypeCreateReel];
+            
+            [verify(view) reset];
+            
+            [presenter retrievedNewsfeed:newsfeed];
+            [verifyCount(view, never()) showMessage:message forActivityType:RTActivityTypeCreateReel];
+        });
+        
+        it(@"show message for activity after newsfeed reset", ^{
+            RTActivity *activity = [RTActivity createReelActivityWithUser:user reel:reel];
+            newsfeed.activities = @[activity];
+            
+            RTStringWithEmbeddedLinks *message = [[RTStringWithEmbeddedLinks alloc] init];
+            [given([messageSource messageForActivity:activity]) willReturn:message];
+            
+            [presenter retrievedNewsfeed:newsfeed];
+            [verify(view) showMessage:message forActivityType:RTActivityTypeCreateReel];
+            
+            [verify(view) reset];
+            [presenter requestedNewsfeedReset];
+            
+            [presenter retrievedNewsfeed:newsfeed];
+            [verify(view) showMessage:message forActivityType:RTActivityTypeCreateReel];
+        });
     });
 });
 
