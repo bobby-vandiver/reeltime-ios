@@ -43,13 +43,12 @@ static NSString *const CELL_IDENTIFIER = @"ActivityCell";
 }
 
 - (void)initTableViewDataSource {
-    self.dataSource = [[RTArrayDataSource alloc] initWithItems:self.messages cellIdentifier:CELL_IDENTIFIER configureCellBlock:^(id cell, id object) {
+    self.dataSource = [[RTArrayDataSource alloc] initWithItems:self.messages cellIdentifier:CELL_IDENTIFIER configureCellBlock:^(RTActivityCell *cell, RTActivityMessage *message) {
         return;
     }];
 }
 
-- (void)showMessage:(RTStringWithEmbeddedLinks *)message
-    forActivityType:(RTActivityType)type {
+- (void)showMessage:(RTActivityMessage *)message {
     
 }
 

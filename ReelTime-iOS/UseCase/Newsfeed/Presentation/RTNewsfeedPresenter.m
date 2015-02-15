@@ -8,7 +8,7 @@
 #import "RTNewsfeed.h"
 #import "RTActivity.h"
 
-#import "RTStringWithEmbeddedLinks.h"
+#import "RTActivityMessage.h"
 #import "NSURL+RTURL.h"
 
 static const NSUInteger INITIAL_PAGE_NUMBER = 1;
@@ -67,10 +67,8 @@ static const NSUInteger INITIAL_PAGE_NUMBER = 1;
 }
 
 - (void)showActivity:(RTActivity *)activity {
-    RTStringWithEmbeddedLinks *message = [self.messageSource messageForActivity:activity];
-    RTActivityType type = [activity.type integerValue];
-    
-    [self.view showMessage:message forActivityType:type];
+    RTActivityMessage *message = [self.messageSource messageForActivity:activity];
+    [self.view showMessage:message];
 }
 
 - (void)failedToRetrieveNewsfeedWithError:(NSError *)error {

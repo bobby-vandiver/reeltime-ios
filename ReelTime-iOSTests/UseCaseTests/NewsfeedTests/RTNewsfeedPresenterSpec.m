@@ -14,9 +14,7 @@
 #import "RTReel.h"
 #import "RTVideo.h"
 
-#import "RTStringWithEmbeddedLinks.h"
-#import "RTEmbeddedURL.h"
-
+#import "RTActivityMessage.h"
 #import "RTURLFactory.h"
 
 SpecBegin(RTNewsfeedPresenter)
@@ -97,40 +95,40 @@ describe(@"newsfeed presenter", ^{
         it(@"no activities to show", ^{
             newsfeed.activities = @[];
             [presenter retrievedNewsfeed:newsfeed];
-            [verifyCount(view, never()) showMessage:anything() forActivityType:0];
+            [verifyCount(view, never()) showMessage:anything()];
         });
        
         it(@"show create reel activity", ^{
             RTActivity *activity = [RTActivity createReelActivityWithUser:user reel:reel];
             newsfeed.activities = @[activity];
             
-            RTStringWithEmbeddedLinks *message = [[RTStringWithEmbeddedLinks alloc] init];
+            RTActivityMessage *message = [[RTActivityMessage alloc] init];
             [given([messageSource messageForActivity:activity]) willReturn:message];
             
             [presenter retrievedNewsfeed:newsfeed];
-            [verify(view) showMessage:message forActivityType:RTActivityTypeCreateReel];
+            [verify(view) showMessage:message];
         });
         
         it(@"show join reel activity", ^{
             RTActivity *activity = [RTActivity joinReelActivityWithUser:user reel:reel];
             newsfeed.activities= @[activity];
 
-            RTStringWithEmbeddedLinks *message = [[RTStringWithEmbeddedLinks alloc] init];
+            RTActivityMessage *message = [[RTActivityMessage alloc] init];
             [given([messageSource messageForActivity:activity]) willReturn:message];
 
             [presenter retrievedNewsfeed:newsfeed];
-            [verify(view) showMessage:message forActivityType:RTActivityTypeJoinReelAudience];
+            [verify(view) showMessage:message];
         });
         
         it(@"show add video to reel activity", ^{
             RTActivity *activity = [RTActivity addVideoToReelActivityWithUser:user reel:reel video:video];
             newsfeed.activities = @[activity];
 
-            RTStringWithEmbeddedLinks *message = [[RTStringWithEmbeddedLinks alloc] init];
+            RTActivityMessage *message = [[RTActivityMessage alloc] init];
             [given([messageSource messageForActivity:activity]) willReturn:message];
             
             [presenter retrievedNewsfeed:newsfeed];
-            [verify(view) showMessage:message forActivityType:RTActivityTypeAddVideoToReel];
+            [verify(view) showMessage:message];
         });
         
         it(@"show multiple activities", ^{
@@ -139,48 +137,48 @@ describe(@"newsfeed presenter", ^{
             
             newsfeed.activities = @[createReelActivity, addVideoToReelActivity];
             
-            RTStringWithEmbeddedLinks *createReelMessage = [[RTStringWithEmbeddedLinks alloc] init];
+            RTActivityMessage *createReelMessage = [[RTActivityMessage alloc] init];
             [given([messageSource messageForActivity:createReelActivity]) willReturn:createReelMessage];
             
-            RTStringWithEmbeddedLinks *addVideoToReelMessage = [[RTStringWithEmbeddedLinks alloc] init];
+            RTActivityMessage *addVideoToReelMessage = [[RTActivityMessage alloc] init];
             [given([messageSource messageForActivity:addVideoToReelActivity]) willReturn:addVideoToReelMessage];
             
             [presenter retrievedNewsfeed:newsfeed];
-            [verify(view) showMessage:createReelMessage forActivityType:RTActivityTypeCreateReel];
-            [verify(view) showMessage:addVideoToReelMessage forActivityType:RTActivityTypeAddVideoToReel];
+            [verify(view) showMessage:createReelMessage];
+            [verify(view) showMessage:addVideoToReelMessage];
         });
         
         it(@"show message for each activity once", ^{
             RTActivity *activity = [RTActivity createReelActivityWithUser:user reel:reel];
             newsfeed.activities = @[activity];
             
-            RTStringWithEmbeddedLinks *message = [[RTStringWithEmbeddedLinks alloc] init];
+            RTActivityMessage *message = [[RTActivityMessage alloc] init];
             [given([messageSource messageForActivity:activity]) willReturn:message];
             
             [presenter retrievedNewsfeed:newsfeed];
-            [verify(view) showMessage:message forActivityType:RTActivityTypeCreateReel];
+            [verify(view) showMessage:message];
             
             [verify(view) reset];
             
             [presenter retrievedNewsfeed:newsfeed];
-            [verifyCount(view, never()) showMessage:message forActivityType:RTActivityTypeCreateReel];
+            [verifyCount(view, never()) showMessage:message];
         });
         
         it(@"show message for activity after newsfeed reset", ^{
             RTActivity *activity = [RTActivity createReelActivityWithUser:user reel:reel];
             newsfeed.activities = @[activity];
             
-            RTStringWithEmbeddedLinks *message = [[RTStringWithEmbeddedLinks alloc] init];
+            RTActivityMessage *message = [[RTActivityMessage alloc] init];
             [given([messageSource messageForActivity:activity]) willReturn:message];
             
             [presenter retrievedNewsfeed:newsfeed];
-            [verify(view) showMessage:message forActivityType:RTActivityTypeCreateReel];
+            [verify(view) showMessage:message];
             
             [verify(view) reset];
             [presenter requestedNewsfeedReset];
             
             [presenter retrievedNewsfeed:newsfeed];
-            [verify(view) showMessage:message forActivityType:RTActivityTypeCreateReel];
+            [verify(view) showMessage:message];
         });
     });
     

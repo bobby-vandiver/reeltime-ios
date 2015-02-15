@@ -1,4 +1,5 @@
 #import "RTNewsfeedMessageSource.h"
+#import "RTActivityMessage.h"
 
 #import "RTStringWithEmbeddedLinks.h"
 #import "RTEmbeddedURL.h"
@@ -23,7 +24,7 @@
     return messageFormatsForActivites[type];
 }
 
-- (RTStringWithEmbeddedLinks *)messageForActivity:(RTActivity *)activity {
+- (RTActivityMessage *)messageForActivity:(RTActivity *)activity {
     RTUser *user = activity.user;
     RTReel *reel = activity.reel;
     RTVideo *video = activity.video;
@@ -42,7 +43,8 @@
         [message addLinkToURL:videoURL forString:video.title];
     }
     
-    return message;
+    RTActivityType type = [activity.type integerValue];
+    return [RTActivityMessage activityMessage:message withType:type];
 }
 
 - (NSString *)textForActivity:(RTActivity *)activity {

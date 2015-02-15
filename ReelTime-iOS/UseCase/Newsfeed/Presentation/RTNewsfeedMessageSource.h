@@ -1,10 +1,10 @@
 #import <Foundation/Foundation.h>
 
-@class RTStringWithEmbeddedLinks;
+@class RTActivityMessage;
 @class RTActivity;
 
 @interface RTNewsfeedMessageSource : NSObject
 
-- (RTStringWithEmbeddedLinks *)messageForActivity:(RTActivity *)activity;
+- (RTActivityMessage *)messageForActivity:(RTActivity *)activity;
 
 @end

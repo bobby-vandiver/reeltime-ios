@@ -1,6 +1,8 @@
 #import "RTTestCommon.h"
 
 #import "RTNewsfeedMessageSource.h"
+#import "RTActivityMessage.h"
+
 #import "RTActivity.h"
 
 #import "RTUser.h"
@@ -46,7 +48,10 @@ describe(@"newsfeed message source", ^{
             NSString *expected = [NSString stringWithFormat:@"%@ created the %@ reel",
                                   user.username, reel.name];
             
-            RTStringWithEmbeddedLinks *message = [messageSource messageForActivity:activity];
+            RTActivityMessage *activityMessage = [messageSource messageForActivity:activity];
+            expect(activityMessage.type).to.equal(RTActivityTypeCreateReel);
+
+            RTStringWithEmbeddedLinks *message = activityMessage.message;
             expect(message.string).to.equal(expected);
             expect(message.links.count).to.equal(2);
             
@@ -69,7 +74,10 @@ describe(@"newsfeed message source", ^{
             NSString *expected = [NSString stringWithFormat:@"%@ joined the audience of the %@ reel",
                                   user.username, reel.name];
             
-            RTStringWithEmbeddedLinks *message = [messageSource messageForActivity:activity];
+            RTActivityMessage *activityMessage = [messageSource messageForActivity:activity];
+            expect(activityMessage.type).to.equal(RTActivityTypeJoinReelAudience);
+            
+            RTStringWithEmbeddedLinks *message = activityMessage.message;
             expect(message.string).to.equal(expected);
             expect(message.links.count).to.equal(2);
             
@@ -92,7 +100,10 @@ describe(@"newsfeed message source", ^{
             NSString *expected = [NSString stringWithFormat:@"%@ added the video %@ to the %@ reel",
                                   user.username, video.title, reel.name];
             
-            RTStringWithEmbeddedLinks *message = [messageSource messageForActivity:activity];
+            RTActivityMessage *activityMessage = [messageSource messageForActivity:activity];
+            expect(activityMessage.type).to.equal(RTActivityTypeAddVideoToReel);
+            
+            RTStringWithEmbeddedLinks *message = activityMessage.message;
             expect(message.string).to.equal(expected);
             expect(message.links.count).to.equal(3);
             
