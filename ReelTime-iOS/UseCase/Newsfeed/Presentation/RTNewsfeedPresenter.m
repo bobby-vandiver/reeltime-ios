@@ -9,6 +9,7 @@
 #import "RTActivity.h"
 
 #import "RTStringWithEmbeddedLinks.h"
+#import "NSURL+RTURL.h"
 
 static const NSUInteger INITIAL_PAGE_NUMBER = 1;
 
@@ -74,6 +75,22 @@ static const NSUInteger INITIAL_PAGE_NUMBER = 1;
 
 - (void)failedToRetrieveNewsfeedWithError:(NSError *)error {
     // TODO: Log error or inform user if appropriate
+}
+
+- (void)attributedLabel:(TTTAttributedLabel *)label
+   didSelectLinkWithURL:(NSURL *)url {
+    if (url.isUserURL) {
+        [self.wireframe presentUserForUsername:url.username];
+    }
+    else if (url.isReelURL) {
+        [self.wireframe presentReelForReelId:url.reelId];
+    }
+    else if (url.isVideoURL) {
+        [self.wireframe presentVideoForVideoId:url.videoId];
+    }
+    else {
+        // TODO: Log unknown URL
+    }
 }
 
 @end
