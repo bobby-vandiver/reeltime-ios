@@ -1,9 +1,9 @@
 #import "RTAccountRegistrationValidator.h"
 #import "RTAccountRegistration.h"
 
+#import "RTRegexPattern.h"
 #import "RTErrorFactory.h"
 
-NSString *const USERNAME_REGEX = @"^\\w{2,15}$";
 const NSInteger PASSWORD_MINIMUM_LENGTH = 6;
 
 NSString *const EMAIL_REGEX = @"(?:[a-z0-9!#$%\\&'*+/=?\\^_`{|}~-]+(?:\\.[a-z0-9!#$%\\&'*+/=?\\^_`{|}"
@@ -48,8 +48,10 @@ NSString *const DISPLAY_NAME_REGEX = @"^\\w{1}[\\w ]{0,18}?\\w{1}$";
         [self addRegistrationErrorCode:RTAccountRegistrationErrorMissingUsername toErrors:errors];
     }
     else {
+        NSString *pattern = [NSString stringWithFormat:@"^%@$", USERNAME_PATTERN];
+
         [self validateParameter:username
-                    withPattern:USERNAME_REGEX
+                    withPattern:pattern
                invalidErrorCode:RTAccountRegistrationErrorInvalidUsername
                          errors:errors];
     }
