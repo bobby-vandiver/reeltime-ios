@@ -26,13 +26,14 @@ describe(@"newsfeed presenter", ^{
     __block id<RTNewsfeedView> view;
     __block RTNewsfeedInteractor *interactor;
     __block RTNewsfeedWireframe *wireframe;
+    __block RTNewsfeedMessageSource *messageSource;
 
     beforeEach(^{
         view = mockProtocol(@protocol(RTNewsfeedView));
         interactor = mock([RTNewsfeedInteractor class]);
         wireframe = mock([RTNewsfeedWireframe class]);
         
-        RTNewsfeedMessageSource *messageSource = [[RTNewsfeedMessageSource alloc] init];
+        messageSource = [[RTNewsfeedMessageSource alloc] init];
         
         presenter = [[RTNewsfeedPresenter alloc] initWithView:view
                                                    interactor:interactor
