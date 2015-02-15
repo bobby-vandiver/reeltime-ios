@@ -8,7 +8,7 @@
     return [self isValidURLForPattern:pattern];
 }
 
-- (NSString *)usernameFromUserURL {
+- (NSString *)username {
     NSString *username;
     
     if ([self isUserURL]) {
@@ -23,7 +23,7 @@
     return [self isValidURLForPattern:pattern];
 }
 
-- (NSNumber *)reelIdFromReelURL {
+- (NSNumber *)reelId {
     NSNumber *reelId;
 
     if ([self isReelURL]) {
@@ -39,7 +39,7 @@
     return [self isValidURLForPattern:pattern];
 }
 
-- (NSNumber *)videoIdFromVideoURL {
+- (NSNumber *)videoId {
     NSNumber *videoId;
     
     if ([self isVideoURL]) {

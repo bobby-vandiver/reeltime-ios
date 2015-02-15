@@ -10,61 +10,66 @@ describe(@"NSURL category for reeltime protocol", ^{
         it(@"is not a valid reeltime url", ^{
             NSURL *url = [NSURL URLWithString:@"http://something.com"];
 
-            expect([url isUserURL]).to.beFalsy();
-            expect([url isReelURL]).to.beFalsy();
-            expect([url isVideoURL]).to.beFalsy();
+            expect(url.isUserURL).to.beFalsy();
+            expect(url.username).to.beNil();
+            
+            expect(url.isReelURL).to.beFalsy();
+            expect(url.reelId).to.beNil();
+            
+            expect(url.isVideoURL).to.beFalsy();
+            expect(url.reelId).to.beNil();
         });
     });
     
     describe(@"user url support", ^{
         it(@"is not a user url", ^{
             NSURL *url = [NSURL URLWithString:@"reeltime://foo"];
-            expect([url isUserURL]).to.beFalsy();
-            expect([url usernameFromUserURL]).to.beNil();
+            expect(url.isUserURL).to.beFalsy();
+            expect(url.username).to.beNil();
         });
         
         it(@"is a malformed user url -- username omitted", ^{
             NSURL *url = [NSURL URLWithString:@"reeltime://users/"];
-            expect([url isUserURL]).to.beFalsy();
-            expect([url usernameFromUserURL]).to.beNil();
+            expect(url.isUserURL).to.beFalsy();
+            expect(url.username).to.beNil();
         });
         
         it(@"is a malformed user url -- complex path", ^{
             NSURL *url = [NSURL URLWithString:@"reeltime://users/foo/bar/joe"];
-            expect([url isUserURL]).to.beFalsy();
-            expect([url usernameFromUserURL]).to.beNil();
+            expect(url.isUserURL).to.beFalsy();
+            expect(url.username).to.beNil();
         });
         
         it(@"is a valid user url", ^{
             NSURL *url = [NSURL URLWithString:@"reeltime://users/joe"];
-            expect([url isUserURL]).to.beTruthy();
-            expect([url usernameFromUserURL]).to.equal(@"joe");
+            expect(url.isUserURL).to.beTruthy();
+            expect(url.username).to.equal(@"joe");
         });
     });
     
     describe(@"reel url support", ^{
         it(@"is not a reel url", ^{
             NSURL *url = [NSURL URLWithString:@"reeltime://foo"];
-            expect([url isReelURL]).to.beFalsy();
-            expect([url reelIdFromReelURL]).to.beNil();
+            expect(url.isReelURL).to.beFalsy();
+            expect(url.reelId).to.beNil();
         });
         
         it(@"is a malformed reel url -- reel id omitted", ^{
             NSURL *url = [NSURL URLWithString:@"reeltime://reels/"];
-            expect([url isReelURL]).to.beFalsy();
-            expect([url reelIdFromReelURL]).to.beFalsy();
+            expect(url.isReelURL).to.beFalsy();
+            expect(url.reelId).to.beFalsy();
         });
         
         it(@"is a malformed reel url -- complex path", ^{
             NSURL *url = [NSURL URLWithString:@"reeltime://reels/foo/bar/derp/1"];
-            expect([url isReelURL]).to.beFalsy();
-            expect([url reelIdFromReelURL]).to.beNil();
+            expect(url.isReelURL).to.beFalsy();
+            expect(url.reelId).to.beNil();
         });
         
         it(@"contains invalid reel id", ^{
             NSURL *url = [NSURL URLWithString:@"reeltime://reels/foo"];
-            expect([url isReelURL]).to.beFalsy();
-            expect([url reelIdFromReelURL]).to.beNil();
+            expect(url.isReelURL).to.beFalsy();
+            expect(url.reelId).to.beNil();
         });
         
         it(@"is a valid reel url", ^{
@@ -81,8 +86,8 @@ describe(@"NSURL category for reeltime protocol", ^{
                 NSURL *url = scenario[URL_KEY];
                 NSNumber *reelId = scenario[REEL_ID_KEY];
                 
-                expect([url isReelURL]).to.beTruthy();
-                expect([url reelIdFromReelURL]).to.equal(reelId);
+                expect(url.isReelURL).to.beTruthy();
+                expect(url.reelId).to.equal(reelId);
             }
         });
     });
@@ -90,26 +95,26 @@ describe(@"NSURL category for reeltime protocol", ^{
     describe(@"video url support", ^{
         it(@"is not a video url", ^{
             NSURL *url = [NSURL URLWithString:@"reeltime://foo"];
-            expect([url isVideoURL]).to.beFalsy();
-            expect([url videoIdFromVideoURL]).to.beNil();
+            expect(url.isVideoURL).to.beFalsy();
+            expect(url.videoId).to.beNil();
         });
         
         it(@"is a malformed video url -- video id omitted", ^{
             NSURL *url = [NSURL URLWithString:@"reeltime://videos/"];
-            expect([url isVideoURL]).to.beFalsy();
-            expect([url videoIdFromVideoURL]).to.beNil();
+            expect(url.isVideoURL).to.beFalsy();
+            expect(url.videoId).to.beNil();
         });
 
         it(@"is a malformed video url -- complex path", ^{
             NSURL *url = [NSURL URLWithString:@"reeltime://videos/foo/bar/13"];
-            expect([url isVideoURL]).to.beFalsy();
-            expect([url videoIdFromVideoURL]).to.beNil();
+            expect(url.isVideoURL).to.beFalsy();
+            expect(url.videoId).to.beNil();
         });
         
         it(@"contains invalid video id", ^{
             NSURL *url = [NSURL URLWithString:@"reeltime://videos/foo"];
-            expect([url isVideoURL]).to.beFalsy();
-            expect([url videoIdFromVideoURL]).to.beNil();
+            expect(url.isVideoURL).to.beFalsy();
+            expect(url.videoId).to.beNil();
         });
         
         it(@"is a valid video url", ^{
@@ -126,8 +131,8 @@ describe(@"NSURL category for reeltime protocol", ^{
                 NSURL *url = scenario[URL_KEY];
                 NSNumber *videoId = scenario[VIDEO_ID_KEY];
                 
-                expect([url isVideoURL]).to.beTruthy();
-                expect([url videoIdFromVideoURL]).to.equal(videoId);
+                expect(url.isVideoURL).to.beTruthy();
+                expect(url.videoId).to.equal(videoId);
             }
         });
     });

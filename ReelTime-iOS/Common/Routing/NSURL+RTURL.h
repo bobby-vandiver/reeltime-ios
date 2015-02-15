@@ -2,16 +2,13 @@
 
 @interface NSURL (RTURL)
 
-- (BOOL)isUserURL;
+@property (readonly) BOOL isUserURL;
+@property (readonly) NSString *username;
 
-- (NSString *)usernameFromUserURL;
+@property (readonly) BOOL isReelURL;
+@property (readonly) NSNumber *reelId;
 
-- (BOOL)isReelURL;
-
-- (NSNumber *)reelIdFromReelURL;
-
-- (BOOL)isVideoURL;
-
-- (NSNumber *)videoIdFromVideoURL;
+@property (readonly) BOOL isVideoURL;
+@property (readonly) NSNumber *videoId;
 
 @end
