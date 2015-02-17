@@ -54,6 +54,8 @@
 		7145C6231A8AF07F006A77DE /* RTReelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7145C6221A8AF07F006A77DE /* RTReelSpec.m */; };
 		715370E91A88442700D3355B /* RTActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 715370E81A88442700D3355B /* RTActivityCell.m */; };
 		715370FA1A88680700D3355B /* RTArrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 715370F91A88680700D3355B /* RTArrayDataSource.m */; };
+		715FAD571A92CA4400368119 /* follow-user-successful.txt in Resources */ = {isa = PBXBuildFile; fileRef = 715FAD561A92CA4400368119 /* follow-user-successful.txt */; };
+		715FAD591A92CA7200368119 /* audience-join-successful.txt in Resources */ = {isa = PBXBuildFile; fileRef = 715FAD581A92CA7200368119 /* audience-join-successful.txt */; };
 		7160C2BF1A6F48A60045ADDA /* RTAccountRegistrationValidatorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7160C2BE1A6F48A60045ADDA /* RTAccountRegistrationValidatorSpec.m */; };
 		71647BD51A7E7EEA00F44996 /* RTVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 71647BD41A7E7EEA00F44996 /* RTVideo.m */; };
 		71647BD81A7E7F9D00F44996 /* RTUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 71647BD71A7E7F9D00F44996 /* RTUser.m */; };
@@ -211,6 +213,8 @@
 		715370E81A88442700D3355B /* RTActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTActivityCell.m; sourceTree = "<group>"; };
 		715370F81A88680700D3355B /* RTArrayDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTArrayDataSource.h; sourceTree = "<group>"; };
 		715370F91A88680700D3355B /* RTArrayDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTArrayDataSource.m; sourceTree = "<group>"; };
+		715FAD561A92CA4400368119 /* follow-user-successful.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "follow-user-successful.txt"; sourceTree = "<group>"; };
+		715FAD581A92CA7200368119 /* audience-join-successful.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "audience-join-successful.txt"; sourceTree = "<group>"; };
 		7160C2BE1A6F48A60045ADDA /* RTAccountRegistrationValidatorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAccountRegistrationValidatorSpec.m; sourceTree = "<group>"; };
 		71647BD31A7E7EEA00F44996 /* RTVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTVideo.h; path = "ReelTime-iOS/Common/Model/RTVideo.h"; sourceTree = SOURCE_ROOT; };
 		71647BD41A7E7EEA00F44996 /* RTVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTVideo.m; path = "ReelTime-iOS/Common/Model/RTVideo.m"; sourceTree = SOURCE_ROOT; };
@@ -536,6 +540,22 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		715FAD521A92C8DC00368119 /* UserFollowing */ = {
+			isa = PBXGroup;
+			children = (
+				715FAD561A92CA4400368119 /* follow-user-successful.txt */,
+			);
+			path = UserFollowing;
+			sourceTree = "<group>";
+		};
+		715FAD531A92C8E300368119 /* Audience */ = {
+			isa = PBXGroup;
+			children = (
+				715FAD581A92CA7200368119 /* audience-join-successful.txt */,
+			);
+			path = Audience;
+			sourceTree = "<group>";
+		};
 		7170C86B1A59A95000C460BB /* SecurityTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -708,8 +728,10 @@
 			isa = PBXGroup;
 			children = (
 				717215C11A865C8E0002ECC7 /* Account */,
+				715FAD531A92C8E300368119 /* Audience */,
 				717215C51A865C8E0002ECC7 /* Newsfeed */,
 				717215C91A865C8E0002ECC7 /* Token */,
+				715FAD521A92C8DC00368119 /* UserFollowing */,
 			);
 			path = ServerJSONResponses;
 			sourceTree = "<group>";
@@ -1117,8 +1139,10 @@
 				717215CD1A865C8E0002ECC7 /* account-registration-missing-all-params.txt in Resources */,
 				717215D51A865C8E0002ECC7 /* token-successful.txt in Resources */,
 				717215D21A865C8E0002ECC7 /* newsfeed-one-activity.txt in Resources */,
+				715FAD571A92CA4400368119 /* follow-user-successful.txt in Resources */,
 				717215CF1A865C8E0002ECC7 /* account-registration-temporarily-unavailable.txt in Resources */,
 				717215CE1A865C8E0002ECC7 /* account-registration-successful.txt in Resources */,
+				715FAD591A92CA7200368119 /* audience-join-successful.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
