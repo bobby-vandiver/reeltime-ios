@@ -116,7 +116,7 @@ static NSString *const AUTHORIZATION_HEADER = @"Authorization";
 
 - (NSString *)formatAccessTokenForAuthorizationHeader {
     NSString *token = [self.delegate accessTokenForCurrentUser];
-    return [NSString stringWithFormat:@"Bearer: %@", token];
+    return [NSString stringWithFormat:@"Bearer %@", token];
 }
 
 - (void (^)(RKObjectRequestOperation *, NSError *))serverFailureHandlerWithCallback:(void (^)(RTServerErrors *))callback {

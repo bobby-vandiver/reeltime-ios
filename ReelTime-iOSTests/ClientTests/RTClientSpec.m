@@ -34,7 +34,7 @@ static NSString *const POST = @"POST";
 static NSString *const AUTHORIZATION = @"Authorization";
 
 static NSString *const ACCESS_TOKEN = @"access-token";
-static NSString *const BEARER_TOKEN_AUTHORIZATION_HEADER = @"Bearer: access-token";
+static NSString *const BEARER_TOKEN_AUTHORIZATION_HEADER = @"Bearer access-token";
 
 SpecBegin(RTClient)
 
