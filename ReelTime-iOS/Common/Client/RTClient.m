@@ -114,6 +114,38 @@ static NSString *const AUTHORIZATION_HEADER = @"Authorization";
                           failure:failureCallback];
 }
 
+- (void)joinAudienceForReelId:(NSUInteger)reelId
+                      success:(void (^)())success
+                      failure:(void (^)(RTServerErrors *))failure {
+    NSDictionary *headers = @{AUTHORIZATION_HEADER:[self formatAccessTokenForAuthorizationHeader]};
+    
+    id successCallback = ^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        success();
+    };
+    
+    id failureCallback = [self serverFailureHandlerWithCallback:failure];
+    
+    NSString *endpoint = [self formatPath:API_JOIN_REEL_AUDIENCE_ENDPOINT withParameters:@{@":reel_id": @(reelId)}];
+    [self.objectManager postObject:nil
+                              path:endpoint
+                        parameters:nil
+                           headers:headers
+                           success:successCallback
+                           failure:failureCallback];
+}
+
+- (NSString *)formatPath:(NSString *)path
+          withParameters:(NSDictionary *)parameters {
+    NSString *formattedPath = [path copy];
+    
+    for (NSString *key in [parameters allKeys]) {
+        NSString *value = [NSString stringWithFormat:@"%@", parameters[key]];
+        formattedPath = [formattedPath stringByReplacingOccurrencesOfString:key withString:value];
+    }
+    
+    return formattedPath;
+}
+
 - (NSString *)formatAccessTokenForAuthorizationHeader {
     NSString *token = [self.delegate accessTokenForCurrentUser];
     return [NSString stringWithFormat:@"Bearer %@", token];

@@ -70,8 +70,20 @@ describe(@"ReelTime Client", ^{
         [[LSNocilla sharedInstance] clearStubs];
     });
 
-    NSRegularExpression *(^createUrlRegexForEndpoint)(NSString *) = ^(NSString *endpoint) {
+    NSRegularExpression *(^createUrlRegexForEndpoint)(NSString *) = ^NSRegularExpression *(NSString *endpoint) {
         return [NSString stringWithFormat:@"http://(.*?)/%@", endpoint].regex;
+    };
+    
+    NSRegularExpression *(^createUrlRegexForParameterizedEndpoint)(NSString *, NSDictionary *) = ^NSRegularExpression *(NSString *endpoint,
+                                                                                                   NSDictionary *params) {
+        NSString *populatedEndpoint = [endpoint copy];
+        
+        for(NSString *key in [params allKeys]) {
+            NSString *value = params[key];
+            populatedEndpoint = [populatedEndpoint stringByReplacingOccurrencesOfString:key withString:value];
+        }
+        
+        return createUrlRegexForEndpoint(populatedEndpoint);
     };
     
     NSData *(^rawResponseFromFile)(NSString *) = ^(NSString *filename) {
@@ -225,9 +237,7 @@ describe(@"ReelTime Client", ^{
         });
     });
     
-    describe(@"newsfeed", ^{
-        __block NSRegularExpression *newsfeedUrlRegex = createUrlRegexForEndpoint(API_NEWSFEED_ENDPOINT);
-
+    context(@"access token is required and valid", ^{
         beforeEach(^{
             [given([delegate accessTokenForCurrentUser]) willReturn:ACCESS_TOKEN];
         });
@@ -236,98 +246,126 @@ describe(@"ReelTime Client", ^{
             [verify(delegate) accessTokenForCurrentUser];
         });
         
-        it(@"should pass newsfeed with no activities to callback", ^{
-            stubRequest(GET, newsfeedUrlRegex).
-            withHeader(AUTHORIZATION, BEARER_TOKEN_AUTHORIZATION_HEADER).
-            andReturnRawResponse(rawResponseFromFile(@"newsfeed-no-activities"));
+        describe(@"newsfeed", ^{
+            __block NSRegularExpression *newsfeedUrlRegex = createUrlRegexForEndpoint(API_NEWSFEED_ENDPOINT);
+
+            it(@"should pass newsfeed with no activities to callback", ^{
+                stubRequest(GET, newsfeedUrlRegex).
+                withHeader(AUTHORIZATION, BEARER_TOKEN_AUTHORIZATION_HEADER).
+                andReturnRawResponse(rawResponseFromFile(@"newsfeed-no-activities"));
+                
+                waitUntil(^(DoneCallback done) {
+                    [client newsfeedPage:1
+                                 success:^(RTNewsfeed *newsfeed) {
+                                     expect(newsfeed.activities.count).to.equal(0);
+                                     done();
+                                 }
+                                 failure:^(RTServerErrors *errors) {
+                                     fail();
+                                     done();
+                                 }];
+                });
+            });
             
-            waitUntil(^(DoneCallback done) {
-                [client newsfeedPage:1
-                             success:^(RTNewsfeed *newsfeed) {
-                                 expect(newsfeed.activities.count).to.equal(0);
-                                 done();
-                             }
-                             failure:^(RTServerErrors *errors) {
-                                 fail();
-                                 done();
-                             }];
+            it(@"should pass newsfeed with one activity to callback", ^{
+                stubRequest(GET, newsfeedUrlRegex).
+                withHeader(AUTHORIZATION, BEARER_TOKEN_AUTHORIZATION_HEADER).
+                andReturnRawResponse(rawResponseFromFile(@"newsfeed-one-activity"));
+                
+                waitUntil(^(DoneCallback done) {
+                    [client newsfeedPage:1
+                                 success:^(RTNewsfeed *newsfeed) {
+                                     expect(newsfeed.activities.count).to.equal(1);
+                                     
+                                     RTActivity *activity = [newsfeed.activities objectAtIndex:0];
+                                     expect(activity.type).to.equal(RTActivityTypeCreateReel);
+                                     
+                                     RTUser *user = activity.user;
+                                     expect(user).to.beUser(@"someone", @"some display", @(1), @(2));
+                                     
+                                     RTReel *reel = activity.reel;
+                                     expect(reel).to.beReel(@(34), @"some reel", @(901), @(23));
+                                     
+                                     done();
+                                 }
+                                 failure:^(RTServerErrors *errors) {
+                                     fail();
+                                     done();
+                                 }];
+                });
+            });
+            
+            it(@"should pass newsfeed with multiple activities to callback", ^{
+                stubRequest(GET, newsfeedUrlRegex).
+                withHeader(AUTHORIZATION, BEARER_TOKEN_AUTHORIZATION_HEADER).
+                andReturnRawResponse(rawResponseFromFile(@"newsfeed-multiple-activities"));
+                
+                waitUntil(^(DoneCallback done) {
+                    [client newsfeedPage:1
+                                 success:^(RTNewsfeed *newsfeed) {
+                                     expect(newsfeed.activities.count).to.equal(3);
+                                     
+                                     RTActivity *activity = [newsfeed.activities objectAtIndex:0];
+                                     expect(activity.type).to.equal(RTActivityTypeCreateReel);
+                                     
+                                     RTUser *user = activity.user;
+                                     expect(user).to.beUser(@"someone", @"some display", @(1), @(2));
+                                     
+                                     RTReel *reel = activity.reel;
+                                     expect(reel).to.beReel(@(34), @"some reel", @(901), @(23));
+                                     
+                                     activity = [newsfeed.activities objectAtIndex:1];
+                                     expect(activity.type).to.equal(RTActivityTypeJoinReelAudience);
+                                     
+                                     user = activity.user;
+                                     expect(user).to.beUser(@"anyone", @"any display", @(6), @(8));
+                                     
+                                     reel = activity.reel;
+                                     expect(reel).to.beReel(@(34), @"some reel", @(901), @(23));
+                                     
+                                     activity = [newsfeed.activities objectAtIndex:2];
+                                     expect(activity.type).to.equal(RTActivityTypeAddVideoToReel);
+                                     
+                                     user = activity.user;
+                                     expect(user).to.beUser(@"someone", @"some display", @(1), @(2));
+                                     
+                                     reel = activity.reel;
+                                     expect(reel).to.beReel(@(34), @"some reel", @(901), @(23));
+                                     
+                                     RTVideo *video = activity.video;
+                                     expect(video).to.beVideo(@(5), @"some video");
+                                     
+                                     done();
+                                 }
+                                 failure:^(RTServerErrors *errors) {
+                                     fail();
+                                     done();
+                                 }];
+                });
             });
         });
         
-        it(@"should pass newsfeed with one activity to callback", ^{
-            stubRequest(GET, newsfeedUrlRegex).
-            withHeader(AUTHORIZATION, BEARER_TOKEN_AUTHORIZATION_HEADER).
-            andReturnRawResponse(rawResponseFromFile(@"newsfeed-one-activity"));
+        describe(@"join audience", ^{
+            __block NSDictionary *pathParams = @{ @":reel_id": @"1" };
+            __block NSRegularExpression *joinAudienceUrlRegex = createUrlRegexForParameterizedEndpoint(API_JOIN_REEL_AUDIENCE_ENDPOINT,
+                                                                                                       pathParams);
             
-            waitUntil(^(DoneCallback done) {
-                [client newsfeedPage:1
-                             success:^(RTNewsfeed *newsfeed) {
-                                 expect(newsfeed.activities.count).to.equal(1);
-                                 
-                                 RTActivity *activity = [newsfeed.activities objectAtIndex:0];
-                                 expect(activity.type).to.equal(RTActivityTypeCreateReel);
-                                 
-                                 RTUser *user = activity.user;
-                                 expect(user).to.beUser(@"someone", @"some display", @(1), @(2));
-                                 
-                                 RTReel *reel = activity.reel;
-                                 expect(reel).to.beReel(@(34), @"some reel", @(901), @(23));
-                                 
-                                 done();
-                             }
-                             failure:^(RTServerErrors *errors) {
-                                 fail();
-                                 done();
-                             }];
-            });
-        });
-        
-        it(@"should pass newsfeed with multiple activities to callback", ^{
-            stubRequest(GET, newsfeedUrlRegex).
-            withHeader(AUTHORIZATION, BEARER_TOKEN_AUTHORIZATION_HEADER).
-            andReturnRawResponse(rawResponseFromFile(@"newsfeed-multiple-activities"));
-            
-            waitUntil(^(DoneCallback done) {
-                [client newsfeedPage:1
-                             success:^(RTNewsfeed *newsfeed) {
-                                 expect(newsfeed.activities.count).to.equal(3);
-                                 
-                                 RTActivity *activity = [newsfeed.activities objectAtIndex:0];
-                                 expect(activity.type).to.equal(RTActivityTypeCreateReel);
-                                 
-                                 RTUser *user = activity.user;
-                                 expect(user).to.beUser(@"someone", @"some display", @(1), @(2));
-                                 
-                                 RTReel *reel = activity.reel;
-                                 expect(reel).to.beReel(@(34), @"some reel", @(901), @(23));
-
-                                 activity = [newsfeed.activities objectAtIndex:1];
-                                 expect(activity.type).to.equal(RTActivityTypeJoinReelAudience);
-                                 
-                                 user = activity.user;
-                                 expect(user).to.beUser(@"anyone", @"any display", @(6), @(8));
-                                 
-                                 reel = activity.reel;
-                                 expect(reel).to.beReel(@(34), @"some reel", @(901), @(23));
-                                 
-                                 activity = [newsfeed.activities objectAtIndex:2];
-                                 expect(activity.type).to.equal(RTActivityTypeAddVideoToReel);
-
-                                 user = activity.user;
-                                 expect(user).to.beUser(@"someone", @"some display", @(1), @(2));
-                                 
-                                 reel = activity.reel;
-                                 expect(reel).to.beReel(@(34), @"some reel", @(901), @(23));
-                                 
-                                 RTVideo *video = activity.video;
-                                 expect(video).to.beVideo(@(5), @"some video");
-                                 
-                                 done();
-                             }
-                             failure:^(RTServerErrors *errors) {
-                                 fail();
-                                 done();
-                             }];
+            it(@"should execute success callback when audience is joined", ^{
+                stubRequest(POST, joinAudienceUrlRegex).
+                withHeader(AUTHORIZATION, BEARER_TOKEN_AUTHORIZATION_HEADER).
+                andReturnRawResponse(rawResponseFromFile(@"audience-join-successful"));
+                
+                waitUntil(^(DoneCallback done) {
+                    [client joinAudienceForReelId:1
+                                          success:^{
+                                              pass();
+                                              done();
+                                          }
+                                          failure:^(RTServerErrors *errors) {
+                                              fail();
+                                              done();
+                                          }];
+                });
             });
         });
     });

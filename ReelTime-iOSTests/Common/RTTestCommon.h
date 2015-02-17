@@ -15,6 +15,9 @@
 #import "EXPMatchers+beReel.h"
 #import "EXPMatchers+beVideo.h"
 
+// Placeholder for empty callbacks
+#define pass() expect(1).to.equal(1)
+
 // Neither Specta nor Expecta provide a way to unconditionally fail a test
 #define fail() expect(0).to.equal(1)
 

@@ -32,4 +32,8 @@
              success:(void (^)(RTNewsfeed *newsfeed))success
              failure:(void (^)(RTServerErrors *errors))failure;
 
+- (void)joinAudienceForReelId:(NSUInteger)reelId
+                      success:(void (^)())success
+                      failure:(void (^)(RTServerErrors *errors))failure;
+
 @end
