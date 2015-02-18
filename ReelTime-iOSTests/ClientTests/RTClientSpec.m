@@ -355,10 +355,12 @@ describe(@"ReelTime Client", ^{
                 withHeader(AUTHORIZATION, BEARER_TOKEN_AUTHORIZATION_HEADER).
                 andReturnRawResponse(rawResponseFromFile(@"audience-join-successful"));
                 
+                __block BOOL successCalled = NO;
+                
                 waitUntil(^(DoneCallback done) {
                     [client joinAudienceForReelId:1
                                           success:^{
-                                              pass();
+                                              successCalled = true;
                                               done();
                                           }
                                           failure:^(RTServerErrors *errors) {
@@ -366,6 +368,8 @@ describe(@"ReelTime Client", ^{
                                               done();
                                           }];
                 });
+                
+                expect(successCalled).to.beTruthy();
             });
         });
     });
