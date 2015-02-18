@@ -7,6 +7,13 @@
 
 @interface RTLoginViewController : UIViewController <RTLoginView, RTStoryboardViewController>
 
+@property (weak, nonatomic) IBOutlet UITextField *usernameField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordField;
+
 + (RTLoginViewController *)viewControllerWithPresenter:(RTLoginPresenter *)presenter;
+
+- (IBAction)pressedLoginButton;
+
+- (IBAction)pressedRegisterButton;
 
 @end

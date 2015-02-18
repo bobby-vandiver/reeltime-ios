@@ -41,6 +41,7 @@
 		71331A2D1A880A6F00912B5F /* RTNewsfeedPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 71331A2C1A880A6F00912B5F /* RTNewsfeedPresenter.m */; };
 		71331A301A880B0100912B5F /* RTNewsfeedWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 71331A2F1A880B0100912B5F /* RTNewsfeedWireframe.m */; };
 		71331A321A880D7300912B5F /* RTNewsfeedPresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71331A311A880D7300912B5F /* RTNewsfeedPresenterSpec.m */; };
+		7134C62F1A95322E0048CFCF /* RTLoginViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7134C62E1A95322E0048CFCF /* RTLoginViewControllerSpec.m */; };
 		713BCE041A5908E4000F2D96 /* RTOAuth2TokenStoreSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 713BCE031A5908E4000F2D96 /* RTOAuth2TokenStoreSpec.m */; };
 		713BCE071A5909DA000F2D96 /* RTFakeKeyChainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 713BCE061A5909DA000F2D96 /* RTFakeKeyChainWrapper.m */; };
 		713D7A451A509AC000754A06 /* RTClientCredentialsStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 713D7A441A509AC000754A06 /* RTClientCredentialsStore.m */; };
@@ -193,6 +194,7 @@
 		71331A2E1A880B0100912B5F /* RTNewsfeedWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTNewsfeedWireframe.h; sourceTree = "<group>"; };
 		71331A2F1A880B0100912B5F /* RTNewsfeedWireframe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTNewsfeedWireframe.m; sourceTree = "<group>"; };
 		71331A311A880D7300912B5F /* RTNewsfeedPresenterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTNewsfeedPresenterSpec.m; sourceTree = "<group>"; };
+		7134C62E1A95322E0048CFCF /* RTLoginViewControllerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLoginViewControllerSpec.m; sourceTree = "<group>"; };
 		713BCE031A5908E4000F2D96 /* RTOAuth2TokenStoreSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTOAuth2TokenStoreSpec.m; sourceTree = "<group>"; };
 		713BCE051A5909DA000F2D96 /* RTFakeKeyChainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTFakeKeyChainWrapper.h; sourceTree = "<group>"; };
 		713BCE061A5909DA000F2D96 /* RTFakeKeyChainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTFakeKeyChainWrapper.m; sourceTree = "<group>"; };
@@ -1007,6 +1009,7 @@
 				71D947971A4FCB5600401963 /* RTLoginInteractorSpec.m */,
 				71C5C09C1A55B29700CAAFAC /* RTLoginPresenterSpec.m */,
 				7169F1751A5F6CDD00E161C4 /* RTLoginDataManagerSpec.m */,
+				7134C62E1A95322E0048CFCF /* RTLoginViewControllerSpec.m */,
 			);
 			path = LoginTests;
 			sourceTree = "<group>";
@@ -1316,6 +1319,7 @@
 				71194C231A81C37900904A06 /* EXPMatchers+beReel.m in Sources */,
 				71194C1D1A81AEFC00904A06 /* EXPMatchers+beUser.m in Sources */,
 				712BE2FC1A75D74300478277 /* RTClientCredentialsStoreSpec.m in Sources */,
+				7134C62F1A95322E0048CFCF /* RTLoginViewControllerSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
