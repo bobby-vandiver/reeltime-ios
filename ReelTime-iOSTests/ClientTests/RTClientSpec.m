@@ -360,7 +360,35 @@ describe(@"ReelTime Client", ^{
                 waitUntil(^(DoneCallback done) {
                     [client joinAudienceForReelId:1
                                           success:^{
-                                              successCalled = true;
+                                              successCalled = YES;
+                                              done();
+                                          }
+                                          failure:^(RTServerErrors *errors) {
+                                              fail();
+                                              done();
+                                          }];
+                });
+                
+                expect(successCalled).to.beTruthy();
+            });
+        });
+        
+        describe(@"follower user", ^{
+            __block NSDictionary *pathParams = @{ @":username": username };
+            __block NSRegularExpression *followUserUrlRegex = createUrlRegexForParameterizedEndpoint(API_FOLLOW_USER_ENDPOINT,
+                                                                                                     pathParams);
+            
+            it(@"should execute success call back when user is followed", ^{
+                stubRequest(POST, followUserUrlRegex).
+                withHeader(AUTHORIZATION, BEARER_TOKEN_AUTHORIZATION_HEADER).
+                andReturnRawResponse(rawResponseFromFile(@"follow-user-successful"));
+                
+                __block BOOL successCalled = NO;
+                
+                waitUntil(^(DoneCallback done) {
+                    [client followUserForUsername:username
+                                          success:^{
+                                              successCalled = YES;
                                               done();
                                           }
                                           failure:^(RTServerErrors *errors) {

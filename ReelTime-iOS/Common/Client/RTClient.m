@@ -134,6 +134,27 @@ static NSString *const AUTHORIZATION_HEADER = @"Authorization";
                            failure:failureCallback];
 }
 
+- (void)followUserForUsername:(NSString *)username
+                      success:(void (^)())success
+                      failure:(void (^)(RTServerErrors *))failure {
+    NSDictionary *headers = @{AUTHORIZATION_HEADER:[self formatAccessTokenForAuthorizationHeader]};
+
+    id successCallback = ^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        success();
+    };
+    
+    id failureCallback = [self serverFailureHandlerWithCallback:failure];
+    
+    NSString *endpoint = [self formatPath:API_FOLLOW_USER_ENDPOINT withParameters:@{@":username": username}];
+    [self.objectManager postObject:nil
+                              path:endpoint
+                        parameters:nil
+                           headers:headers
+                           success:successCallback
+                           failure:failureCallback];
+    
+}
+
 - (NSString *)formatPath:(NSString *)path
           withParameters:(NSDictionary *)parameters {
     NSString *formattedPath = [path copy];

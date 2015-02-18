@@ -36,4 +36,8 @@
                       success:(void (^)())success
                       failure:(void (^)(RTServerErrors *errors))failure;
 
+- (void)followUserForUsername:(NSString *)username
+                      success:(void (^)())success
+                      failure:(void (^)(RTServerErrors *errors))failure;
+
 @end
