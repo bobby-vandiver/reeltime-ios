@@ -7,7 +7,9 @@
 #import "RTActivityType.h"
 
 #import "RTArrayDataSource.h"
+
 #import "RTActivityCell.h"
+#import "RTActivityCell+ConfigureForRTActivityMessage.h"
 
 #import <TTTAttributedLabel/TTTAttributedLabel.h>
 
@@ -17,8 +19,8 @@ static NSString *const CELL_IDENTIFIER = @"ActivityCell";
 
 @property RTNewsfeedPresenter *presenter;
 
-@property RTArrayDataSource *dataSource;
 @property NSMutableArray *messages;
+@property (readwrite) RTArrayDataSource *dataSource;
 
 @end
 
@@ -30,8 +32,18 @@ static NSString *const CELL_IDENTIFIER = @"ActivityCell";
     
     if (controller) {
         controller.presenter = presenter;
+        controller.messages = [NSMutableArray array];
+        controller.dataSource = [self createDataSourceWithMessages:controller.messages];
     }
     return controller;
+}
+
++ (RTArrayDataSource *)createDataSourceWithMessages:(NSMutableArray *)messages {
+    return [[RTArrayDataSource alloc] initWithItems:messages
+                                     cellIdentifier:CELL_IDENTIFIER
+                                 configureCellBlock:^(RTActivityCell *cell, RTActivityMessage *message) {
+                                     [cell configureForActivityMessage:message];
+                                 }];
 }
 
 + (NSString *)storyboardIdentifier {
@@ -40,19 +52,19 @@ static NSString *const CELL_IDENTIFIER = @"ActivityCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-}
-
-- (void)initTableViewDataSource {
-    self.dataSource = [[RTArrayDataSource alloc] initWithItems:self.messages cellIdentifier:CELL_IDENTIFIER configureCellBlock:^(RTActivityCell *cell, RTActivityMessage *message) {
-    }];
+    
+    [self.tableView setDataSource:self.dataSource];
+    [self.presenter requestedNextNewsfeedPage];
 }
 
 - (void)showMessage:(RTActivityMessage *)message {
-    
+    [self.messages addObject:message];
+    [self.tableView reloadData];
 }
 
 - (void)clearMessages {
-    
+    [self.messages removeAllObjects];
+    [self.tableView reloadData];
 }
 
 @end

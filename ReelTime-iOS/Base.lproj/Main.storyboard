@@ -441,6 +441,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Rz0-9T-ZPt"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Q1K-RH-3vb">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="cls-uH-58H">
@@ -471,6 +472,9 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="cls-uH-58H" id="Tep-xb-FGJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ib5-uu-Jbv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
