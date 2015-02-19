@@ -3,7 +3,7 @@
 
 @interface RTActivityCell : UITableViewCell
 
-@property UIImage *icon;
+@property UIImageView *icon;
 @property TTTAttributedLabel *label;
 
 @end

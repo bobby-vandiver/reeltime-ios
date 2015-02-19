@@ -67,7 +67,7 @@ describe(@"newsfeed view controller", ^{
                 RTActivityCell *cell = mock([RTActivityCell class]);
                
                 viewController.dataSource.configureCellBlock(cell, message);
-                [verify(cell) configureForActivityMessage:message];
+                [verify(cell) configureForActivityMessage:message withLabelDelegate:presenter];
             });
         });
     

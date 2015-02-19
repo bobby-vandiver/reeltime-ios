@@ -33,16 +33,18 @@ static NSString *const CELL_IDENTIFIER = @"ActivityCell";
     if (controller) {
         controller.presenter = presenter;
         controller.messages = [NSMutableArray array];
-        controller.dataSource = [self createDataSourceWithMessages:controller.messages];
+        controller.dataSource = [self createDataSourceWithMessages:controller.messages
+                                                         presenter:controller.presenter];
     }
     return controller;
 }
 
-+ (RTArrayDataSource *)createDataSourceWithMessages:(NSMutableArray *)messages {
++ (RTArrayDataSource *)createDataSourceWithMessages:(NSMutableArray *)messages
+                                          presenter:(RTNewsfeedPresenter *)presenter {
     return [[RTArrayDataSource alloc] initWithItems:messages
                                      cellIdentifier:CELL_IDENTIFIER
                                  configureCellBlock:^(RTActivityCell *cell, RTActivityMessage *message) {
-                                     [cell configureForActivityMessage:message];
+                                     [cell configureForActivityMessage:message withLabelDelegate:presenter];
                                  }];
 }
 
