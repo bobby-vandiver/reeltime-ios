@@ -55,7 +55,9 @@ static NSString *const CELL_IDENTIFIER = @"ActivityCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.tableView registerClass:[RTActivityCell class] forCellReuseIdentifier:CELL_IDENTIFIER];
     [self.tableView setDataSource:self.dataSource];
+    
     [self.presenter requestedNextNewsfeedPage];
 }
 

@@ -43,6 +43,10 @@ describe(@"newsfeed view controller", ^{
             [viewController viewDidLoad];
         });
         
+        it(@"should register custom activity cell class", ^{
+            [verify(tableView) registerClass:[RTActivityCell class] forCellReuseIdentifier:@"ActivityCell"];
+        });
+        
         it(@"should provide set up table view data source", ^{
             [verify(tableView) setDataSource:viewController.dataSource];
         });
