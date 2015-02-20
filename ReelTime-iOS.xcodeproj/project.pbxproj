@@ -25,6 +25,7 @@
 		711C5DE11A8D5B4F007652FC /* RTStringWithEmbeddedLinks.m in Sources */ = {isa = PBXBuildFile; fileRef = 711C5DDF1A8D5B4F007652FC /* RTStringWithEmbeddedLinks.m */; };
 		711C5DE41A8D5BA9007652FC /* RTStringWithEmbeddedLinksSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 711C5DE31A8D5BA9007652FC /* RTStringWithEmbeddedLinksSpec.m */; };
 		71201F831A9689C6003F2831 /* RTActivityCell+ConfigureForRTActivityMessageSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71201F821A9689C6003F2831 /* RTActivityCell+ConfigureForRTActivityMessageSpec.m */; };
+		71201F8C1A96B7CD003F2831 /* RTNewsfeedAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 71201F8B1A96B7CD003F2831 /* RTNewsfeedAssembly.m */; };
 		712BE2FC1A75D74300478277 /* RTClientCredentialsStoreSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 712BE2FB1A75D74300478277 /* RTClientCredentialsStoreSpec.m */; };
 		712BE3021A75D74C00478277 /* EXPMatchers+beError.m in Sources */ = {isa = PBXBuildFile; fileRef = 712BE2FF1A75D74C00478277 /* EXPMatchers+beError.m */; };
 		712BE3031A75D74C00478277 /* RTTestCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 712BE3011A75D74C00478277 /* RTTestCommon.m */; };
@@ -174,6 +175,8 @@
 		711C5DE31A8D5BA9007652FC /* RTStringWithEmbeddedLinksSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTStringWithEmbeddedLinksSpec.m; sourceTree = "<group>"; };
 		711C5DE51A8D657F007652FC /* RTActivityType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTActivityType.h; sourceTree = SOURCE_ROOT; };
 		71201F821A9689C6003F2831 /* RTActivityCell+ConfigureForRTActivityMessageSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RTActivityCell+ConfigureForRTActivityMessageSpec.m"; sourceTree = "<group>"; };
+		71201F8A1A96B7CD003F2831 /* RTNewsfeedAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTNewsfeedAssembly.h; sourceTree = "<group>"; };
+		71201F8B1A96B7CD003F2831 /* RTNewsfeedAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTNewsfeedAssembly.m; sourceTree = "<group>"; };
 		712BE2FB1A75D74300478277 /* RTClientCredentialsStoreSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTClientCredentialsStoreSpec.m; sourceTree = "<group>"; };
 		712BE2FE1A75D74C00478277 /* EXPMatchers+beError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+beError.h"; sourceTree = "<group>"; };
 		712BE2FF1A75D74C00478277 /* EXPMatchers+beError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EXPMatchers+beError.m"; sourceTree = "<group>"; };
@@ -704,6 +707,8 @@
 		717215B31A865B3B0002ECC7 /* Assembly */ = {
 			isa = PBXGroup;
 			children = (
+				71201F8A1A96B7CD003F2831 /* RTNewsfeedAssembly.h */,
+				71201F8B1A96B7CD003F2831 /* RTNewsfeedAssembly.m */,
 			);
 			path = Assembly;
 			sourceTree = "<group>";
@@ -1292,6 +1297,7 @@
 				71647BD51A7E7EEA00F44996 /* RTVideo.m in Sources */,
 				718A0BE81A4DA87900137C49 /* RTViewController.m in Sources */,
 				713229DE1A8FBD9600DE900A /* RTNewsfeedMessageSource.m in Sources */,
+				71201F8C1A96B7CD003F2831 /* RTNewsfeedAssembly.m in Sources */,
 				71647BD81A7E7F9D00F44996 /* RTUser.m in Sources */,
 				71647BE61A7F17CD00F44996 /* RTClientDelegate.m in Sources */,
 				71331A301A880B0100912B5F /* RTNewsfeedWireframe.m in Sources */,
