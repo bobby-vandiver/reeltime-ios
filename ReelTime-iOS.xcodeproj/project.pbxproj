@@ -109,7 +109,6 @@
 		717D92761A5B925700EAB6BF /* RTCurrentUserStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 717D92751A5B925700EAB6BF /* RTCurrentUserStore.m */; };
 		718A0BE21A4DA87900137C49 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 718A0BE11A4DA87900137C49 /* main.m */; };
 		718A0BE51A4DA87900137C49 /* RTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 718A0BE41A4DA87900137C49 /* RTAppDelegate.m */; };
-		718A0BE81A4DA87900137C49 /* RTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 718A0BE71A4DA87900137C49 /* RTViewController.m */; };
 		718A0BEB1A4DA87900137C49 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 718A0BE91A4DA87900137C49 /* Main.storyboard */; };
 		718A0BED1A4DA87900137C49 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 718A0BEC1A4DA87900137C49 /* Images.xcassets */; };
 		718A0BF01A4DA87900137C49 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 718A0BEE1A4DA87900137C49 /* LaunchScreen.xib */; };
@@ -321,8 +320,6 @@
 		718A0BE11A4DA87900137C49 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		718A0BE31A4DA87900137C49 /* RTAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RTAppDelegate.h; sourceTree = "<group>"; };
 		718A0BE41A4DA87900137C49 /* RTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RTAppDelegate.m; sourceTree = "<group>"; };
-		718A0BE61A4DA87900137C49 /* RTViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RTViewController.h; sourceTree = "<group>"; };
-		718A0BE71A4DA87900137C49 /* RTViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RTViewController.m; sourceTree = "<group>"; };
 		718A0BEA1A4DA87900137C49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		718A0BEC1A4DA87900137C49 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		718A0BEF1A4DA87900137C49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -853,8 +850,6 @@
 				71D9477E1A4FB37E00401963 /* Common */,
 				718A0BE31A4DA87900137C49 /* RTAppDelegate.h */,
 				718A0BE41A4DA87900137C49 /* RTAppDelegate.m */,
-				718A0BE61A4DA87900137C49 /* RTViewController.h */,
-				718A0BE71A4DA87900137C49 /* RTViewController.m */,
 				718A0BE91A4DA87900137C49 /* Main.storyboard */,
 				718A0BEC1A4DA87900137C49 /* Images.xcassets */,
 				718A0BEE1A4DA87900137C49 /* LaunchScreen.xib */,
@@ -1295,7 +1290,6 @@
 				719B35DB1A51012E00FFD543 /* RTClientAssembly.m in Sources */,
 				717215861A8657660002ECC7 /* RTLoginWireframe.m in Sources */,
 				71647BD51A7E7EEA00F44996 /* RTVideo.m in Sources */,
-				718A0BE81A4DA87900137C49 /* RTViewController.m in Sources */,
 				713229DE1A8FBD9600DE900A /* RTNewsfeedMessageSource.m in Sources */,
 				71201F8C1A96B7CD003F2831 /* RTNewsfeedAssembly.m in Sources */,
 				71647BD81A7E7F9D00F44996 /* RTUser.m in Sources */,
