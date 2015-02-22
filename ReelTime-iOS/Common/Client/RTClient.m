@@ -66,7 +66,7 @@ static NSString *const AUTHORIZATION_HEADER = @"Authorization";
     };
     
     [self.objectManager postObject:nil
-                              path:API_TOKEN_ENDPOINT
+                              path:API_TOKEN
                         parameters:parameters
                            success:successCallback
                            failure:failureCallback];
@@ -91,7 +91,7 @@ static NSString *const AUTHORIZATION_HEADER = @"Authorization";
     id failureCallback = [self serverFailureHandlerWithCallback:failure];
     
     [self.objectManager postObject:nil
-                              path:API_ACCOUNT_REGISTRATION_ENDPOINT
+                              path:API_REGISTER_ACCOUNT
                         parameters:parameters
                            success:successCallback
                            failure:failureCallback];
@@ -108,7 +108,7 @@ static NSString *const AUTHORIZATION_HEADER = @"Authorization";
     id failureCallback = [self serverFailureHandlerWithCallback:failure];
 
     NSDictionary *parameters = @{@"page":@(page)};
-    [self authenticatedGetForEndpoint:API_NEWSFEED_ENDPOINT withParameters:parameters success:successCallback failure:failureCallback];
+    [self authenticatedGetForEndpoint:API_NEWSFEED withParameters:parameters success:successCallback failure:failureCallback];
 }
 
 - (void)joinAudienceForReelId:(NSUInteger)reelId
@@ -120,7 +120,7 @@ static NSString *const AUTHORIZATION_HEADER = @"Authorization";
     
     id failureCallback = [self serverFailureHandlerWithCallback:failure];
     
-    NSString *endpoint = [self.pathFormatter formatPath:API_JOIN_REEL_AUDIENCE_ENDPOINT withParameters:@{@":reel_id": @(reelId)}];
+    NSString *endpoint = [self.pathFormatter formatPath:API_ADD_AUDIENCE_MEMBER withParameters:@{@":reel_id": @(reelId)}];
     [self authenticatedPostForEndpoint:endpoint withParameters:nil success:successCallback failure:failureCallback];
 }
 
@@ -132,7 +132,7 @@ static NSString *const AUTHORIZATION_HEADER = @"Authorization";
     };
     id failureCallback = [self serverFailureHandlerWithCallback:failure];
     
-    NSString *endpoint = [self.pathFormatter formatPath:API_FOLLOW_USER_ENDPOINT withParameters:@{@":username": username}];
+    NSString *endpoint = [self.pathFormatter formatPath:API_FOLLOW_USER withParameters:@{@":username": username}];
     [self authenticatedPostForEndpoint:endpoint withParameters:nil success:successCallback failure:failureCallback];
 }
 

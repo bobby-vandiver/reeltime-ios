@@ -93,7 +93,7 @@ describe(@"ReelTime Client", ^{
     };
     
     describe(@"requesting a token", ^{
-        __block NSRegularExpression *tokenUrlRegex = createUrlRegexForEndpoint(API_TOKEN_ENDPOINT);
+        __block NSRegularExpression *tokenUrlRegex = createUrlRegexForEndpoint(API_TOKEN);
         
         __block RTClientCredentials *clientCredentials;
         __block RTUserCredentials *userCredentials;
@@ -165,7 +165,7 @@ describe(@"ReelTime Client", ^{
     });
     
     describe(@"requesting account registration", ^{
-        __block NSRegularExpression *accountRegistrationUrlRegex = createUrlRegexForEndpoint(API_ACCOUNT_REGISTRATION_ENDPOINT);
+        __block NSRegularExpression *accountRegistrationUrlRegex = createUrlRegexForEndpoint(API_REGISTER_ACCOUNT);
 
         __block RTAccountRegistration *registration;
         
@@ -247,7 +247,7 @@ describe(@"ReelTime Client", ^{
         });
         
         describe(@"newsfeed", ^{
-            __block NSRegularExpression *newsfeedUrlRegex = createUrlRegexForEndpoint(API_NEWSFEED_ENDPOINT);
+            __block NSRegularExpression *newsfeedUrlRegex = createUrlRegexForEndpoint(API_NEWSFEED);
 
             it(@"should pass newsfeed with no activities to callback", ^{
                 stubRequest(GET, newsfeedUrlRegex).
@@ -347,9 +347,8 @@ describe(@"ReelTime Client", ^{
         
         describe(@"join audience", ^{
             __block NSDictionary *pathParams = @{ @":reel_id": @"1" };
-            __block NSRegularExpression *joinAudienceUrlRegex = createUrlRegexForParameterizedEndpoint(API_JOIN_REEL_AUDIENCE_ENDPOINT,
+            __block NSRegularExpression *joinAudienceUrlRegex = createUrlRegexForParameterizedEndpoint(API_ADD_AUDIENCE_MEMBER,
                                                                                                        pathParams);
-            
             it(@"should execute success callback when audience is joined", ^{
                 stubRequest(POST, joinAudienceUrlRegex).
                 withHeader(AUTHORIZATION, BEARER_TOKEN_AUTHORIZATION_HEADER).
@@ -375,9 +374,8 @@ describe(@"ReelTime Client", ^{
         
         describe(@"follower user", ^{
             __block NSDictionary *pathParams = @{ @":username": username };
-            __block NSRegularExpression *followUserUrlRegex = createUrlRegexForParameterizedEndpoint(API_FOLLOW_USER_ENDPOINT,
+            __block NSRegularExpression *followUserUrlRegex = createUrlRegexForParameterizedEndpoint(API_FOLLOW_USER,
                                                                                                      pathParams);
-            
             it(@"should execute success call back when user is followed", ^{
                 stubRequest(POST, followUserUrlRegex).
                 withHeader(AUTHORIZATION, BEARER_TOKEN_AUTHORIZATION_HEADER).

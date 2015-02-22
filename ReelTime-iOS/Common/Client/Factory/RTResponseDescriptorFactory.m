@@ -9,7 +9,7 @@
     
     return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory tokenMapping]
                                                         method:RKRequestMethodPOST
-                                                   pathPattern:API_TOKEN_ENDPOINT
+                                                   pathPattern:API_TOKEN
                                                        keyPath:nil
                                                    statusCodes:statusCodes];
 }
@@ -19,7 +19,7 @@
     
     return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory tokenErrorMapping]
                                                         method:RKRequestMethodPOST
-                                                   pathPattern:API_TOKEN_ENDPOINT
+                                                   pathPattern:API_TOKEN
                                                        keyPath:nil
                                                    statusCodes:statusCodes];
 }
@@ -29,7 +29,7 @@
 
     return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory clientCredentialsMapping]
                                                         method:RKRequestMethodPOST
-                                                   pathPattern:API_ACCOUNT_REGISTRATION_ENDPOINT
+                                                   pathPattern:API_REGISTER_ACCOUNT
                                                        keyPath:nil
                                                    statusCodes:statusCodes];
 }
@@ -41,7 +41,7 @@
     
     return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory serverErrorsMapping]
                                                         method:RKRequestMethodPOST
-                                                   pathPattern:API_ACCOUNT_REGISTRATION_ENDPOINT
+                                                   pathPattern:API_REGISTER_ACCOUNT
                                                        keyPath:nil
                                                    statusCodes:statusCodes];
 }
@@ -51,7 +51,7 @@
     
     return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory newsfeedMapping]
                                                         method:RKRequestMethodGET
-                                                   pathPattern:API_NEWSFEED_ENDPOINT
+                                                   pathPattern:API_NEWSFEED
                                                        keyPath:nil
                                                    statusCodes:statusCodes];
 }
