@@ -4,6 +4,8 @@
 #import "RTClient.h"
 #import "RTClientDelegate.h"
 
+#import "RTEndpointPathFormatter.h"
+
 #import "RTResponseDescriptorFactory.h"
 #import "RTServerErrorsConverter.h"
 
@@ -13,9 +15,10 @@
 
 - (RTClient *)reelTimeClient {
     return [TyphoonDefinition withClass:[RTClient class] configuration:^(TyphoonDefinition *definition) {
-        [definition useInitializer:@selector(initWithDelegate:RestKitObjectManager:)
+        [definition useInitializer:@selector(initWithDelegate:pathFormatter:restKitObjectManager:)
                         parameters:^(TyphoonMethod *initializer) {
                             [initializer injectParameterWith:[self reelTimeClientDelegate]];
+                            [initializer injectParameterWith:[self endpointPathFormatter]];
                             [initializer injectParameterWith:[self restKitObjectManager]];
         }];
     }];
@@ -29,6 +32,10 @@
                             [initializer injectParameterWith:[self.secureStoreAssembly tokenStore]];
         }];
     }];
+}
+
+- (RTEndpointPathFormatter *)endpointPathFormatter {
+    return [TyphoonDefinition withClass:[RTEndpointPathFormatter class]];
 }
 
 - (RKObjectManager *)restKitObjectManager {

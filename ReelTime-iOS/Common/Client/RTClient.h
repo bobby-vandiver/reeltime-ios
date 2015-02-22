@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
 
 @class RTClientDelegate;
+@class RTEndpointPathFormatter;
 @class RKObjectManager;
 
 @class RTClientCredentials;
@@ -17,7 +18,8 @@
 @interface RTClient : NSObject
 
 - (instancetype)initWithDelegate:(RTClientDelegate *)delegate
-            RestKitObjectManager:(RKObjectManager *)objectManager;
+                   pathFormatter:(RTEndpointPathFormatter *)pathFormatter
+            restKitObjectManager:(RKObjectManager *)objectManager;
 
 - (void)tokenWithClientCredentials:(RTClientCredentials *)clientCredentials
                    userCredentials:(RTUserCredentials *)userCredentials

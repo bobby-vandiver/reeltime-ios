@@ -1,6 +1,7 @@
 #import "RTClient.h"
 #import "RTClientDelegate.h"
 
+#import "RTEndpointPathFormatter.h"
 #import "RTRestAPI.h"
 
 #import "RTClientCredentials.h"
@@ -22,6 +23,7 @@ static NSString *const AUTHORIZATION_HEADER = @"Authorization";
 @interface RTClient ()
 
 @property RTClientDelegate *delegate;
+@property RTEndpointPathFormatter *pathFormatter;
 @property RKObjectManager *objectManager;
 
 @end
@@ -29,10 +31,12 @@ static NSString *const AUTHORIZATION_HEADER = @"Authorization";
 @implementation RTClient
 
 - (instancetype)initWithDelegate:(RTClientDelegate *)delegate
-            RestKitObjectManager:(RKObjectManager *)objectManager {
+                   pathFormatter:(RTEndpointPathFormatter *)pathFormatter
+            restKitObjectManager:(RKObjectManager *)objectManager {
     self = [super init];
     if (self) {
         self.delegate = delegate;
+        self.pathFormatter = pathFormatter;
         self.objectManager = objectManager;
     }
     return self;
@@ -96,75 +100,68 @@ static NSString *const AUTHORIZATION_HEADER = @"Authorization";
 - (void)newsfeedPage:(NSUInteger)page
              success:(void (^)(RTNewsfeed *))success
              failure:(void (^)(RTServerErrors *))failure {
-    NSDictionary *parameters = @{@"page":@(page)};
-    NSDictionary *headers = @{AUTHORIZATION_HEADER:[self formatAccessTokenForAuthorizationHeader]};
-
     id successCallback = ^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         RTNewsfeed *newsfeed = [mappingResult firstObject];
         success(newsfeed);
     };
     
     id failureCallback = [self serverFailureHandlerWithCallback:failure];
-    
-    [self.objectManager getObject:nil
-                             path:API_NEWSFEED_ENDPOINT
-                       parameters:parameters
-                          headers:headers
-                          success:successCallback
-                          failure:failureCallback];
+
+    NSDictionary *parameters = @{@"page":@(page)};
+    [self authenticatedGetForEndpoint:API_NEWSFEED_ENDPOINT withParameters:parameters success:successCallback failure:failureCallback];
 }
 
 - (void)joinAudienceForReelId:(NSUInteger)reelId
                       success:(void (^)())success
                       failure:(void (^)(RTServerErrors *))failure {
-    NSDictionary *headers = @{AUTHORIZATION_HEADER:[self formatAccessTokenForAuthorizationHeader]};
-    
     id successCallback = ^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         success();
     };
     
     id failureCallback = [self serverFailureHandlerWithCallback:failure];
     
-    NSString *endpoint = [self formatPath:API_JOIN_REEL_AUDIENCE_ENDPOINT withParameters:@{@":reel_id": @(reelId)}];
-    [self.objectManager postObject:nil
-                              path:endpoint
-                        parameters:nil
-                           headers:headers
-                           success:successCallback
-                           failure:failureCallback];
+    NSString *endpoint = [self.pathFormatter formatPath:API_JOIN_REEL_AUDIENCE_ENDPOINT withParameters:@{@":reel_id": @(reelId)}];
+    [self authenticatedPostForEndpoint:endpoint withParameters:nil success:successCallback failure:failureCallback];
 }
 
 - (void)followUserForUsername:(NSString *)username
                       success:(void (^)())success
                       failure:(void (^)(RTServerErrors *))failure {
-    NSDictionary *headers = @{AUTHORIZATION_HEADER:[self formatAccessTokenForAuthorizationHeader]};
-
     id successCallback = ^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         success();
     };
-    
     id failureCallback = [self serverFailureHandlerWithCallback:failure];
     
-    NSString *endpoint = [self formatPath:API_FOLLOW_USER_ENDPOINT withParameters:@{@":username": username}];
-    [self.objectManager postObject:nil
-                              path:endpoint
-                        parameters:nil
-                           headers:headers
-                           success:successCallback
-                           failure:failureCallback];
-    
+    NSString *endpoint = [self.pathFormatter formatPath:API_FOLLOW_USER_ENDPOINT withParameters:@{@":username": username}];
+    [self authenticatedPostForEndpoint:endpoint withParameters:nil success:successCallback failure:failureCallback];
 }
 
-- (NSString *)formatPath:(NSString *)path
-          withParameters:(NSDictionary *)parameters {
-    NSString *formattedPath = [path copy];
-    
-    for (NSString *key in [parameters allKeys]) {
-        NSString *value = [NSString stringWithFormat:@"%@", parameters[key]];
-        formattedPath = [formattedPath stringByReplacingOccurrencesOfString:key withString:value];
-    }
-    
-    return formattedPath;
+- (void)authenticatedGetForEndpoint:(NSString *)endpoint
+                     withParameters:(NSDictionary *)parameters
+                            success:(void (^)(RKObjectRequestOperation *, RKMappingResult *))succcess
+                            failure:(void (^)(RKObjectRequestOperation *, NSError *))failure {
+
+    NSDictionary *headers = @{AUTHORIZATION_HEADER:[self formatAccessTokenForAuthorizationHeader]};
+    [self.objectManager getObject:nil
+                             path:endpoint
+                       parameters:parameters
+                          headers:headers
+                          success:succcess
+                          failure:failure];
+}
+
+- (void)authenticatedPostForEndpoint:(NSString *)endpoint
+                      withParameters:(NSDictionary *)parameters
+                             success:(void (^)(RKObjectRequestOperation *, RKMappingResult *))succcess
+                             failure:(void (^)(RKObjectRequestOperation *, NSError *))failure {
+
+    NSDictionary *headers = @{AUTHORIZATION_HEADER:[self formatAccessTokenForAuthorizationHeader]};
+    [self.objectManager postObject:nil
+                              path:endpoint
+                        parameters:parameters
+                           headers:headers
+                           success:succcess
+                           failure:failure];
 }
 
 - (NSString *)formatAccessTokenForAuthorizationHeader {

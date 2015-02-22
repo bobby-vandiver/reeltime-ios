@@ -66,6 +66,7 @@
 		71565A261A98ED5900AE1C43 /* RTApplicationWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 71565A251A98ED5900AE1C43 /* RTApplicationWireframe.m */; };
 		71565A291A98EDE900AE1C43 /* RTApplicationWireframeSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71565A281A98EDE900AE1C43 /* RTApplicationWireframeSpec.m */; };
 		7157589C1A9A2D6C002859DE /* RTApplicationTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7157589B1A9A2D6C002859DE /* RTApplicationTabBarController.m */; };
+		7157589F1A9A3B93002859DE /* RTEndpointPathFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7157589E1A9A3B93002859DE /* RTEndpointPathFormatter.m */; };
 		715FAD571A92CA4400368119 /* follow-user-successful.txt in Resources */ = {isa = PBXBuildFile; fileRef = 715FAD561A92CA4400368119 /* follow-user-successful.txt */; };
 		715FAD591A92CA7200368119 /* audience-join-successful.txt in Resources */ = {isa = PBXBuildFile; fileRef = 715FAD581A92CA7200368119 /* audience-join-successful.txt */; };
 		7160C2BF1A6F48A60045ADDA /* RTAccountRegistrationValidatorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7160C2BE1A6F48A60045ADDA /* RTAccountRegistrationValidatorSpec.m */; };
@@ -240,6 +241,8 @@
 		71565A281A98EDE900AE1C43 /* RTApplicationWireframeSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTApplicationWireframeSpec.m; sourceTree = "<group>"; };
 		7157589A1A9A2D6C002859DE /* RTApplicationTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTApplicationTabBarController.h; sourceTree = "<group>"; };
 		7157589B1A9A2D6C002859DE /* RTApplicationTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTApplicationTabBarController.m; sourceTree = "<group>"; };
+		7157589D1A9A3B93002859DE /* RTEndpointPathFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTEndpointPathFormatter.h; sourceTree = "<group>"; };
+		7157589E1A9A3B93002859DE /* RTEndpointPathFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTEndpointPathFormatter.m; sourceTree = "<group>"; };
 		715FAD561A92CA4400368119 /* follow-user-successful.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "follow-user-successful.txt"; sourceTree = "<group>"; };
 		715FAD581A92CA7200368119 /* audience-join-successful.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "audience-join-successful.txt"; sourceTree = "<group>"; };
 		7160C2BE1A6F48A60045ADDA /* RTAccountRegistrationValidatorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAccountRegistrationValidatorSpec.m; sourceTree = "<group>"; };
@@ -558,14 +561,16 @@
 			isa = PBXGroup;
 			children = (
 				717A4B751A534E7B004C2BC1 /* Factory */,
-				713D7A4A1A50A33300754A06 /* RTClient.h */,
-				713D7A4B1A50A33300754A06 /* RTClient.m */,
-				719B35DC1A51086600FFD543 /* RTRestAPI.h */,
-				719B35DD1A51140900FFD543 /* RTRestAPI.m */,
-				71647BE41A7F17CC00F44996 /* RTClientDelegate.h */,
-				71647BE51A7F17CD00F44996 /* RTClientDelegate.m */,
 				71073CF41A83060700BE6E19 /* RKObjectManager+IncludeHeaders.h */,
 				71073CF51A83060700BE6E19 /* RKObjectManager+IncludeHeaders.m */,
+				713D7A4A1A50A33300754A06 /* RTClient.h */,
+				713D7A4B1A50A33300754A06 /* RTClient.m */,
+				71647BE41A7F17CC00F44996 /* RTClientDelegate.h */,
+				71647BE51A7F17CD00F44996 /* RTClientDelegate.m */,
+				7157589D1A9A3B93002859DE /* RTEndpointPathFormatter.h */,
+				7157589E1A9A3B93002859DE /* RTEndpointPathFormatter.m */,
+				719B35DC1A51086600FFD543 /* RTRestAPI.h */,
+				719B35DD1A51140900FFD543 /* RTRestAPI.m */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -1338,6 +1343,7 @@
 				713188AF1A914B1E006155E6 /* RTActivityMessage.m in Sources */,
 				717215A31A86590D0002ECC7 /* RTAccountRegistrationInteractor.m in Sources */,
 				7102A7B51A57AB0A00DEDA83 /* RTKeyChainWrapper.m in Sources */,
+				7157589F1A9A3B93002859DE /* RTEndpointPathFormatter.m in Sources */,
 				713188A21A9125FF006155E6 /* NSURL+RTURL.m in Sources */,
 				711690921A6AB5510031578E /* RTSecureStoreAssembly.m in Sources */,
 				7116909C1A6AEBDA0031578E /* RTStoryboardViewControllerFactory.m in Sources */,

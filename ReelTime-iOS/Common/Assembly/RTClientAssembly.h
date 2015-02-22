@@ -4,6 +4,7 @@
 
 @class RTClient;
 @class RTClientDelegate;
+@class RTEndpointPathFormatter;
 @class RTServerErrorsConverter;
 
 @interface RTClientAssembly : TyphoonAssembly
@@ -13,6 +14,8 @@
 - (RTClient *)reelTimeClient;
 
 - (RTClientDelegate *)reelTimeClientDelegate;
+
+- (RTEndpointPathFormatter *)endpointPathFormatter;
 
 - (RTServerErrorsConverter *)serverErrorsConverter;
 
