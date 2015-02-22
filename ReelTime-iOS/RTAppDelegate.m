@@ -11,7 +11,7 @@
     [[DDTTYLogger sharedInstance] setColorsEnabled:YES];
     
     [self.window makeKeyAndVisible];
-    [self.applicationWireframe presentInitialScreenFromWindow:self.window];
+    [self.applicationWireframe presentInitialScreen];
     
     return YES;
 }

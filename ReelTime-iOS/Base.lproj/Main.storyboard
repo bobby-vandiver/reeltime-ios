@@ -435,7 +435,7 @@
         <!--Newsfeed View Controller-->
         <scene sceneID="Svq-o6-pjH">
             <objects>
-                <viewController storyboardIdentifier="Newsfeed View Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bkw-Ev-sDD" customClass="RTNewsfeedViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Newsfeed View Controller" title="Newsfeed View Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bkw-Ev-sDD" customClass="RTNewsfeedViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vbt-Y5-mlP"/>
                         <viewControllerLayoutGuide type="bottom" id="Rz0-9T-ZPt"/>

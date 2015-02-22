@@ -1,12 +1,17 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+@class RTApplicationTabBarController;
 @class RTLoginWireframe;
 
 @interface RTApplicationWireframe : NSObject
 
-- (instancetype)initWithLoginWireframe:(RTLoginWireframe *)loginWireframe;
+- (instancetype)initWithWindow:(UIWindow *)window
+              tabBarController:(RTApplicationTabBarController *)tabBarController
+                loginWireframe:(RTLoginWireframe *)loginWireframe;
 
-- (void)presentInitialScreenFromWindow:(UIWindow *)window;
+- (void)presentInitialScreen;
+
+- (void)presentTabBarManagedScreen;
 
 @end
