@@ -2,6 +2,7 @@
 
 extern NSString *const GET;
 extern NSString *const POST;
+extern NSString *const DELETE;
 
 extern NSString *const ACCESS_TOKEN;
 extern NSString *const BEARER_TOKEN_AUTHORIZATION_HEADER;

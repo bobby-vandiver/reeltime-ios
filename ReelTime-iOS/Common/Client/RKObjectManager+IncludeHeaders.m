@@ -32,6 +32,21 @@
     [self enqueueRequest:request success:success failure:failure];
 }
 
+- (void)deleteObject:(id)object
+                path:(NSString *)path
+          parameters:(NSDictionary *)parameters
+             headers:(NSDictionary *)headers
+             success:(void (^)(RKObjectRequestOperation *, RKMappingResult *))success
+             failure:(void (^)(RKObjectRequestOperation *, NSError *))failure {
+    
+    NSMutableURLRequest *request = [self requestWithObject:object
+                                                    method:RKRequestMethodDELETE
+                                                      path:path
+                                                parameters:parameters];
+    [self addHeaders:headers toRequest:request];
+    [self enqueueRequest:request success:success failure:failure];
+}
+
 - (void)addHeaders:(NSDictionary *)headers
          toRequest:(NSMutableURLRequest *)request {
     for (NSString *header in [headers allKeys]) {

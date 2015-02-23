@@ -30,6 +30,9 @@
                 success:(void (^)(RTClientCredentials *clientCredentials))success
                 failure:(void (^)(RTServerErrors *errors))failure;
 
+- (void)removeAccountWithSuccess:(void (^)())success
+                         failure:(void (^)(RTServerErrors *errors))failure;
+
 - (void)newsfeedPage:(NSUInteger)page
              success:(void (^)(RTNewsfeed *newsfeed))success
              failure:(void (^)(RTServerErrors *errors))failure;

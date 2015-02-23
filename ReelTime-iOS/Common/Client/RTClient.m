@@ -97,6 +97,16 @@ static NSString *const AUTHORIZATION_HEADER = @"Authorization";
                            failure:failureCallback];
 }
 
+- (void)removeAccountWithSuccess:(void (^)())success
+                         failure:(void (^)(RTServerErrors *))failure {
+    id successCallback = ^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        success();
+    };
+    id failureCallback = [self serverFailureHandlerWithCallback:failure];
+    
+    [self authenticatedDeleteForEndpoint:API_REMOVE_ACCOUNT withParameters:nil success:successCallback failure:failureCallback];
+}
+
 - (void)newsfeedPage:(NSUInteger)page
              success:(void (^)(RTNewsfeed *))success
              failure:(void (^)(RTServerErrors *))failure {
@@ -162,6 +172,20 @@ static NSString *const AUTHORIZATION_HEADER = @"Authorization";
                            headers:headers
                            success:succcess
                            failure:failure];
+}
+
+- (void)authenticatedDeleteForEndpoint:(NSString *)endpoint
+                        withParameters:(NSDictionary *)parameters
+                               success:(void (^)(RKObjectRequestOperation *, RKMappingResult *))succcess
+                               failure:(void (^)(RKObjectRequestOperation *, NSError *))failure {
+
+    NSDictionary *headers = @{AUTHORIZATION_HEADER:[self formatAccessTokenForAuthorizationHeader]};
+    [self.objectManager deleteObject:nil
+                                path:endpoint
+                          parameters:parameters
+                             headers:headers
+                             success:succcess
+                             failure:failure];
 }
 
 - (NSString *)formatAccessTokenForAuthorizationHeader {

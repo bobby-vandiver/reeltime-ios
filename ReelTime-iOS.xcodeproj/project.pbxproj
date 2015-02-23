@@ -44,6 +44,7 @@
 		71331A301A880B0100912B5F /* RTNewsfeedWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 71331A2F1A880B0100912B5F /* RTNewsfeedWireframe.m */; };
 		71331A321A880D7300912B5F /* RTNewsfeedPresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71331A311A880D7300912B5F /* RTNewsfeedPresenterSpec.m */; };
 		713470BD1A9ABFAB000CFCA3 /* RTClientSpecHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 713470BC1A9ABFAB000CFCA3 /* RTClientSpecHelper.m */; };
+		713470BF1A9AD48A000CFCA3 /* account-removal-successful.txt in Resources */ = {isa = PBXBuildFile; fileRef = 713470BE1A9AD48A000CFCA3 /* account-removal-successful.txt */; };
 		7134C62F1A95322E0048CFCF /* RTLoginViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7134C62E1A95322E0048CFCF /* RTLoginViewControllerSpec.m */; };
 		7134C6311A9537720048CFCF /* RTAccountRegistrationViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7134C6301A9537720048CFCF /* RTAccountRegistrationViewControllerSpec.m */; };
 		7134C6331A9580FF0048CFCF /* RTNewsfeedViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7134C6321A9580FF0048CFCF /* RTNewsfeedViewControllerSpec.m */; };
@@ -211,6 +212,7 @@
 		71331A311A880D7300912B5F /* RTNewsfeedPresenterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTNewsfeedPresenterSpec.m; sourceTree = "<group>"; };
 		713470BB1A9ABFAB000CFCA3 /* RTClientSpecHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTClientSpecHelper.h; sourceTree = "<group>"; };
 		713470BC1A9ABFAB000CFCA3 /* RTClientSpecHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTClientSpecHelper.m; sourceTree = "<group>"; };
+		713470BE1A9AD48A000CFCA3 /* account-removal-successful.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "account-removal-successful.txt"; sourceTree = "<group>"; };
 		7134C62E1A95322E0048CFCF /* RTLoginViewControllerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLoginViewControllerSpec.m; sourceTree = "<group>"; };
 		7134C6301A9537720048CFCF /* RTAccountRegistrationViewControllerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAccountRegistrationViewControllerSpec.m; sourceTree = "<group>"; };
 		7134C6321A9580FF0048CFCF /* RTNewsfeedViewControllerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTNewsfeedViewControllerSpec.m; sourceTree = "<group>"; };
@@ -812,6 +814,7 @@
 				717215C21A865C8E0002ECC7 /* account-registration-missing-all-params.txt */,
 				717215C31A865C8E0002ECC7 /* account-registration-successful.txt */,
 				717215C41A865C8E0002ECC7 /* account-registration-temporarily-unavailable.txt */,
+				713470BE1A9AD48A000CFCA3 /* account-removal-successful.txt */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -1209,6 +1212,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				717215D41A865C8E0002ECC7 /* token-bad-user-credentials.txt in Resources */,
+				713470BF1A9AD48A000CFCA3 /* account-removal-successful.txt in Resources */,
 				717215D01A865C8E0002ECC7 /* newsfeed-multiple-activities.txt in Resources */,
 				717215D31A865C8E0002ECC7 /* token-bad-client-credentials.txt in Resources */,
 				717215D11A865C8E0002ECC7 /* newsfeed-no-activities.txt in Resources */,

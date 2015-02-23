@@ -3,6 +3,7 @@
 
 NSString *const GET = @"GET";
 NSString *const POST = @"POST";
+NSString *const DELETE = @"DELETE";
 
 NSString *const AUTHORIZATION = @"Authorization";
 

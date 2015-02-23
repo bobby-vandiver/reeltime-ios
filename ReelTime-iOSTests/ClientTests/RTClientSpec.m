@@ -68,7 +68,28 @@ describe(@"ReelTime Client", ^{
     afterEach(^{
         [[LSNocilla sharedInstance] clearStubs];
     });
+    
+    typedef void (^NoArgsSuccessCallback)();
+    typedef void (^ServerErrorsFailureCallback)(RTServerErrors *);
 
+    void (^shouldNotExecute)(DoneCallback) = ^(DoneCallback done) {
+        fail();
+        done();
+    };
+
+    NoArgsSuccessCallback (^shouldExecuteNoArgsSuccessCallback)(DoneCallback) = ^NoArgsSuccessCallback(DoneCallback done) {
+        return ^{
+            callbackExecuted = YES;
+            done();
+        };
+    };
+    
+    ServerErrorsFailureCallback (^shouldNotExecuteServerErrorsFailureCallback)(DoneCallback) = ^ServerErrorsFailureCallback(DoneCallback done) {
+        return ^(RTServerErrors *errors) {
+            shouldNotExecute(done);
+        };
+    };
+    
     describe(@"requesting a token", ^{
         __block NSRegularExpression *tokenUrlRegex;
         
@@ -94,8 +115,7 @@ describe(@"ReelTime Client", ^{
                 [client tokenWithClientCredentials:clientCredentials
                                    userCredentials:userCredentials
                                            success:^(RTOAuth2Token *token) {
-                                               fail();
-                                               done();
+                                               shouldNotExecute(done);
                                            }
                                            failure:^(RTOAuth2TokenError *error) {
                                                expect(error.errorCode).to.equal(@"invalid_client");
@@ -114,8 +134,7 @@ describe(@"ReelTime Client", ^{
                 [client tokenWithClientCredentials:clientCredentials
                                    userCredentials:userCredentials
                                            success:^(RTOAuth2Token *token) {
-                                               fail();
-                                               done();
+                                               shouldNotExecute(done);
                                            }
                                            failure:^(RTOAuth2TokenError *error) {
                                                expect(error.errorCode).to.equal(@"invalid_grant");
@@ -138,14 +157,13 @@ describe(@"ReelTime Client", ^{
                                                done();
                                            }
                                            failure:^(RTOAuth2TokenError *error) {
-                                               fail();
-                                               done();
+                                               shouldNotExecute(done);
                                            }];
             });
         });
     });
 
-    describe(@"requesting account registration", ^{
+    describe(@"account registration", ^{
         __block NSRegularExpression *accountRegistrationUrlRegex;
 
         __block RTAccountRegistration *registration;
@@ -173,10 +191,7 @@ describe(@"ReelTime Client", ^{
                                     expect(clientCredentials.clientSecret).to.equal(@"g70mC9ZbpKa6p6R1tJPVWTm55BWHnSkmCv27F=oSI6");
                                     done();
                                 }
-                                failure:^(RTServerErrors *errors) {
-                                    fail();
-                                    done();
-                                }];
+                                failure:shouldNotExecuteServerErrorsFailureCallback(done)];
             });
         });
         
@@ -188,8 +203,7 @@ describe(@"ReelTime Client", ^{
             waitUntil(^(DoneCallback done) {
                 [client registerAccount:registration
                                 success:^(RTClientCredentials *clientCredentials) {
-                                    fail();
-                                    done();
+                                    shouldNotExecute(done);
                                 }
                                 failure:^(RTServerErrors *errors) {
                                     expect(errors.errors.count).to.equal(5);
@@ -211,8 +225,7 @@ describe(@"ReelTime Client", ^{
             waitUntil(^(DoneCallback done) {
                 [client registerAccount:registration
                                 success:^(RTClientCredentials *clientCredentials) {
-                                    fail();
-                                    done();
+                                    shouldNotExecute(done);
                                 }
                                 failure:^(RTServerErrors *errors) {
                                     expect(errors.errors.count).to.equal(1);
@@ -230,6 +243,28 @@ describe(@"ReelTime Client", ^{
         
         afterEach(^{
             [verify(delegate) accessTokenForCurrentUser];
+        });
+
+        describe(@"account removal", ^{
+            __block NSRegularExpression *accountRemovalUrlRegex;
+            
+            beforeEach(^{
+                accountRemovalUrlRegex = [helper createUrlRegexForEndpoint:API_REMOVE_ACCOUNT];
+            });
+            
+            // TODO: Fix implementation
+            xit(@"should execute success callback when account is removed", ^{
+                [helper stubAuthenticatedRequestWithMethod:DELETE
+                                                  urlRegex:accountRemovalUrlRegex
+                                       rawResponseFilename:@"account-removal-successful"];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client removeAccountWithSuccess:shouldExecuteNoArgsSuccessCallback(done)
+                                             failure:shouldNotExecuteServerErrorsFailureCallback(done)];
+                });
+                
+                expect(callbackExecuted).to.beTruthy();
+            });
         });
         
         describe(@"newsfeed", ^{
@@ -250,10 +285,7 @@ describe(@"ReelTime Client", ^{
                                      expect(newsfeed.activities.count).to.equal(0);
                                      done();
                                  }
-                                 failure:^(RTServerErrors *errors) {
-                                     fail();
-                                     done();
-                                 }];
+                                 failure:shouldNotExecuteServerErrorsFailureCallback(done)];
                 });
             });
             
@@ -278,10 +310,7 @@ describe(@"ReelTime Client", ^{
                                      
                                      done();
                                  }
-                                 failure:^(RTServerErrors *errors) {
-                                     fail();
-                                     done();
-                                 }];
+                                 failure:shouldNotExecuteServerErrorsFailureCallback(done)];
                 });
             });
             
@@ -327,10 +356,7 @@ describe(@"ReelTime Client", ^{
                                      
                                      done();
                                  }
-                                 failure:^(RTServerErrors *errors) {
-                                     fail();
-                                     done();
-                                 }];
+                                 failure:shouldNotExecuteServerErrorsFailureCallback(done)];
                 });
             });
         });
@@ -351,14 +377,8 @@ describe(@"ReelTime Client", ^{
                 
                 waitUntil(^(DoneCallback done) {
                     [client joinAudienceForReelId:1
-                                          success:^{
-                                              callbackExecuted = YES;
-                                              done();
-                                          }
-                                          failure:^(RTServerErrors *errors) {
-                                              fail();
-                                              done();
-                                          }];
+                                          success:shouldExecuteNoArgsSuccessCallback(done)
+                                          failure:shouldNotExecuteServerErrorsFailureCallback(done)];
                 });
                 
                 expect(callbackExecuted).to.beTruthy();
@@ -381,14 +401,8 @@ describe(@"ReelTime Client", ^{
                 
                 waitUntil(^(DoneCallback done) {
                     [client followUserForUsername:username
-                                          success:^{
-                                              callbackExecuted = YES;
-                                              done();
-                                          }
-                                          failure:^(RTServerErrors *errors) {
-                                              fail();
-                                              done();
-                                          }];
+                                          success:shouldExecuteNoArgsSuccessCallback(done)
+                                          failure:shouldNotExecuteServerErrorsFailureCallback(done)];
                 });
                 
                 expect(callbackExecuted).to.beTruthy();
