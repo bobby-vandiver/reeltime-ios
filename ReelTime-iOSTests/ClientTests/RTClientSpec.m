@@ -1,4 +1,5 @@
 #import "RTTestCommon.h"
+#import "RTClientSpecHelper.h"
 
 #import "RTClient.h"
 #import "RTClientDelegate.h"
@@ -28,20 +29,15 @@
 
 #import <Nocilla/Nocilla.h>
 
-static NSString *const GET = @"GET";
-static NSString *const POST = @"POST";
-
-static NSString *const AUTHORIZATION = @"Authorization";
-
-static NSString *const ACCESS_TOKEN = @"access-token";
-static NSString *const BEARER_TOKEN_AUTHORIZATION_HEADER = @"Bearer access-token";
-
 SpecBegin(RTClient)
 
 describe(@"ReelTime Client", ^{
     
     __block RTClient *client;
     __block RTClientDelegate *delegate;
+    
+    __block RTClientSpecHelper *helper;
+    __block BOOL callbackExecuted;
     
     beforeAll(^{
         [[LSNocilla sharedInstance] start];
@@ -52,6 +48,9 @@ describe(@"ReelTime Client", ^{
     });
     
     beforeEach(^{
+        helper = [[RTClientSpecHelper alloc] init];
+        callbackExecuted = NO;
+        
         RTClientAssembly *assembly = [RTClientAssembly assembly];
         
         TyphoonComponentFactory *factory = [TyphoonBlockComponentFactory factoryWithAssembly:assembly];
@@ -70,36 +69,15 @@ describe(@"ReelTime Client", ^{
         [[LSNocilla sharedInstance] clearStubs];
     });
 
-    NSRegularExpression *(^createUrlRegexForEndpoint)(NSString *) = ^NSRegularExpression *(NSString *endpoint) {
-        return [NSString stringWithFormat:@"http://(.*?)/%@", endpoint].regex;
-    };
-    
-    NSRegularExpression *(^createUrlRegexForParameterizedEndpoint)(NSString *, NSDictionary *) = ^NSRegularExpression *(NSString *endpoint,
-                                                                                                   NSDictionary *params) {
-        NSString *populatedEndpoint = [endpoint copy];
-        
-        for(NSString *key in [params allKeys]) {
-            NSString *value = params[key];
-            populatedEndpoint = [populatedEndpoint stringByReplacingOccurrencesOfString:key withString:value];
-        }
-        
-        return createUrlRegexForEndpoint(populatedEndpoint);
-    };
-    
-    NSData *(^rawResponseFromFile)(NSString *) = ^(NSString *filename) {
-        NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-        NSString *path = [bundle pathForResource:filename ofType:@"txt"];
-        return [NSData dataWithContentsOfFile:path];
-    };
-    
     describe(@"requesting a token", ^{
-        __block NSRegularExpression *tokenUrlRegex = createUrlRegexForEndpoint(API_TOKEN);
+        __block NSRegularExpression *tokenUrlRegex;
         
         __block RTClientCredentials *clientCredentials;
         __block RTUserCredentials *userCredentials;
         
-        
         beforeEach(^{
+            tokenUrlRegex = [helper createUrlRegexForEndpoint:API_TOKEN];
+
             clientCredentials = [[RTClientCredentials alloc] initWithClientId:clientId
                                                                  clientSecret:clientSecret];
             
@@ -108,8 +86,9 @@ describe(@"ReelTime Client", ^{
         });
         
         it(@"should fail for bad client credentials", ^{
-            stubRequest(POST, tokenUrlRegex).
-            andReturnRawResponse(rawResponseFromFile(@"token-bad-client-credentials"));
+            [helper stubUnauthenticatedRequestWithMethod:POST
+                                                urlRegex:tokenUrlRegex
+                                     rawResponseFilename:@"token-bad-client-credentials"];
             
             waitUntil(^(DoneCallback done) {
                 [client tokenWithClientCredentials:clientCredentials
@@ -127,8 +106,9 @@ describe(@"ReelTime Client", ^{
         });
         
         it(@"should fail for bad user credentials", ^{
-            stubRequest(POST, tokenUrlRegex).
-            andReturnRawResponse(rawResponseFromFile(@"token-bad-user-credentials"));
+            [helper stubUnauthenticatedRequestWithMethod:POST
+                                                urlRegex:tokenUrlRegex
+                                     rawResponseFilename:@"token-bad-user-credentials"];
 
             waitUntil(^(DoneCallback done) {
                 [client tokenWithClientCredentials:clientCredentials
@@ -146,8 +126,9 @@ describe(@"ReelTime Client", ^{
         });
         
         it(@"should pass token to callback when successful", ^{
-            stubRequest(POST, tokenUrlRegex).
-            andReturnRawResponse(rawResponseFromFile(@"token-successful"));
+            [helper stubUnauthenticatedRequestWithMethod:POST
+                                                urlRegex:tokenUrlRegex
+                                     rawResponseFilename:@"token-successful"];
 
             waitUntil(^(DoneCallback done) {
                 [client tokenWithClientCredentials:clientCredentials
@@ -163,13 +144,15 @@ describe(@"ReelTime Client", ^{
             });
         });
     });
-    
+
     describe(@"requesting account registration", ^{
-        __block NSRegularExpression *accountRegistrationUrlRegex = createUrlRegexForEndpoint(API_REGISTER_ACCOUNT);
+        __block NSRegularExpression *accountRegistrationUrlRegex;
 
         __block RTAccountRegistration *registration;
         
         beforeEach(^{
+            accountRegistrationUrlRegex = [helper createUrlRegexForEndpoint:API_REGISTER_ACCOUNT];
+            
             registration = [[RTAccountRegistration alloc] initWithUsername:username
                                                                   password:password
                                                       confirmationPassword:password
@@ -179,8 +162,9 @@ describe(@"ReelTime Client", ^{
         });
         
         it(@"should pass client credentials to callback when successful", ^{
-            stubRequest(POST, accountRegistrationUrlRegex).
-            andReturnRawResponse(rawResponseFromFile(@"account-registration-successful"));
+            [helper stubUnauthenticatedRequestWithMethod:POST
+                                                urlRegex:accountRegistrationUrlRegex
+                                     rawResponseFilename:@"account-registration-successful"];
             
             waitUntil(^(DoneCallback done) {
                 [client registerAccount:registration
@@ -197,8 +181,9 @@ describe(@"ReelTime Client", ^{
         });
         
         it(@"should pass server errors to failure callback", ^{
-            stubRequest(POST, accountRegistrationUrlRegex).
-            andReturnRawResponse(rawResponseFromFile(@"account-registration-missing-all-params"));
+            [helper stubUnauthenticatedRequestWithMethod:POST
+                                                urlRegex:accountRegistrationUrlRegex
+                                     rawResponseFilename:@"account-registration-missing-all-params"];
             
             waitUntil(^(DoneCallback done) {
                 [client registerAccount:registration
@@ -219,8 +204,9 @@ describe(@"ReelTime Client", ^{
         });
         
         it(@"should pass registration unavailable error to failure callback", ^{
-            stubRequest(POST, accountRegistrationUrlRegex).
-            andReturnRawResponse(rawResponseFromFile(@"account-registration-temporarily-unavailable"));
+            [helper stubUnauthenticatedRequestWithMethod:POST
+                                                urlRegex:accountRegistrationUrlRegex
+                                     rawResponseFilename:@"account-registration-temporarily-unavailable"];
             
             waitUntil(^(DoneCallback done) {
                 [client registerAccount:registration
@@ -247,12 +233,16 @@ describe(@"ReelTime Client", ^{
         });
         
         describe(@"newsfeed", ^{
-            __block NSRegularExpression *newsfeedUrlRegex = createUrlRegexForEndpoint(API_NEWSFEED);
-
+            __block NSRegularExpression *newsfeedUrlRegex;
+            
+            beforeEach(^{
+                newsfeedUrlRegex = [helper createUrlRegexForEndpoint:API_NEWSFEED];
+            });
+            
             it(@"should pass newsfeed with no activities to callback", ^{
-                stubRequest(GET, newsfeedUrlRegex).
-                withHeader(AUTHORIZATION, BEARER_TOKEN_AUTHORIZATION_HEADER).
-                andReturnRawResponse(rawResponseFromFile(@"newsfeed-no-activities"));
+                [helper stubAuthenticatedRequestWithMethod:GET
+                                                  urlRegex:newsfeedUrlRegex
+                                       rawResponseFilename:@"newsfeed-no-activities"];
                 
                 waitUntil(^(DoneCallback done) {
                     [client newsfeedPage:1
@@ -268,9 +258,9 @@ describe(@"ReelTime Client", ^{
             });
             
             it(@"should pass newsfeed with one activity to callback", ^{
-                stubRequest(GET, newsfeedUrlRegex).
-                withHeader(AUTHORIZATION, BEARER_TOKEN_AUTHORIZATION_HEADER).
-                andReturnRawResponse(rawResponseFromFile(@"newsfeed-one-activity"));
+                [helper stubAuthenticatedRequestWithMethod:GET
+                                                  urlRegex:newsfeedUrlRegex
+                                       rawResponseFilename:@"newsfeed-one-activity"];
                 
                 waitUntil(^(DoneCallback done) {
                     [client newsfeedPage:1
@@ -296,9 +286,9 @@ describe(@"ReelTime Client", ^{
             });
             
             it(@"should pass newsfeed with multiple activities to callback", ^{
-                stubRequest(GET, newsfeedUrlRegex).
-                withHeader(AUTHORIZATION, BEARER_TOKEN_AUTHORIZATION_HEADER).
-                andReturnRawResponse(rawResponseFromFile(@"newsfeed-multiple-activities"));
+                [helper stubAuthenticatedRequestWithMethod:GET
+                                                  urlRegex:newsfeedUrlRegex
+                                       rawResponseFilename:@"newsfeed-multiple-activities"];
                 
                 waitUntil(^(DoneCallback done) {
                     [client newsfeedPage:1
@@ -346,20 +336,23 @@ describe(@"ReelTime Client", ^{
         });
         
         describe(@"join audience", ^{
-            __block NSDictionary *pathParams = @{ @":reel_id": @"1" };
-            __block NSRegularExpression *joinAudienceUrlRegex = createUrlRegexForParameterizedEndpoint(API_ADD_AUDIENCE_MEMBER,
-                                                                                                       pathParams);
+            __block NSRegularExpression *joinAudienceUrlRegex;
+            
+            beforeEach(^{
+                NSDictionary *pathParams = @{ @":reel_id": @"1" };
+                joinAudienceUrlRegex = [helper createUrlRegexForEndpoint:API_ADD_AUDIENCE_MEMBER
+                                                          withParameters:pathParams];
+            });
+            
             it(@"should execute success callback when audience is joined", ^{
-                stubRequest(POST, joinAudienceUrlRegex).
-                withHeader(AUTHORIZATION, BEARER_TOKEN_AUTHORIZATION_HEADER).
-                andReturnRawResponse(rawResponseFromFile(@"audience-join-successful"));
-                
-                __block BOOL successCalled = NO;
+                [helper stubAuthenticatedRequestWithMethod:POST
+                                                  urlRegex:joinAudienceUrlRegex
+                                       rawResponseFilename:@"audience-join-successful"];
                 
                 waitUntil(^(DoneCallback done) {
                     [client joinAudienceForReelId:1
                                           success:^{
-                                              successCalled = YES;
+                                              callbackExecuted = YES;
                                               done();
                                           }
                                           failure:^(RTServerErrors *errors) {
@@ -368,25 +361,28 @@ describe(@"ReelTime Client", ^{
                                           }];
                 });
                 
-                expect(successCalled).to.beTruthy();
+                expect(callbackExecuted).to.beTruthy();
             });
         });
         
         describe(@"follower user", ^{
-            __block NSDictionary *pathParams = @{ @":username": username };
-            __block NSRegularExpression *followUserUrlRegex = createUrlRegexForParameterizedEndpoint(API_FOLLOW_USER,
-                                                                                                     pathParams);
+            __block NSRegularExpression *followUserUrlRegex;
+            
+            beforeEach(^{
+                NSDictionary *pathParams = @{ @":username": username };
+                followUserUrlRegex = [helper createUrlRegexForEndpoint:API_FOLLOW_USER
+                                                        withParameters:pathParams];
+            });
+            
             it(@"should execute success call back when user is followed", ^{
-                stubRequest(POST, followUserUrlRegex).
-                withHeader(AUTHORIZATION, BEARER_TOKEN_AUTHORIZATION_HEADER).
-                andReturnRawResponse(rawResponseFromFile(@"follow-user-successful"));
-                
-                __block BOOL successCalled = NO;
+                [helper stubAuthenticatedRequestWithMethod:POST
+                                                  urlRegex:followUserUrlRegex
+                                       rawResponseFilename:@"follow-user-successful"];
                 
                 waitUntil(^(DoneCallback done) {
                     [client followUserForUsername:username
                                           success:^{
-                                              successCalled = YES;
+                                              callbackExecuted = YES;
                                               done();
                                           }
                                           failure:^(RTServerErrors *errors) {
@@ -395,7 +391,7 @@ describe(@"ReelTime Client", ^{
                                           }];
                 });
                 
-                expect(successCalled).to.beTruthy();
+                expect(callbackExecuted).to.beTruthy();
             });
         });
     });
