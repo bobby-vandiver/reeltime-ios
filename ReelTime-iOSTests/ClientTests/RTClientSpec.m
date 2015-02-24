@@ -252,8 +252,7 @@ describe(@"ReelTime Client", ^{
                 accountRemovalUrlRegex = [helper createUrlRegexForEndpoint:API_REMOVE_ACCOUNT];
             });
             
-            // TODO: Fix implementation
-            xit(@"should execute success callback when account is removed", ^{
+            it(@"should execute success callback when account is removed", ^{
                 [helper stubAuthenticatedRequestWithMethod:DELETE
                                                   urlRegex:accountRemovalUrlRegex
                                        rawResponseFilename:@"account-removal-successful"];

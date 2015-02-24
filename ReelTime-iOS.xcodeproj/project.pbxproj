@@ -29,6 +29,7 @@
 		712BE2FC1A75D74300478277 /* RTClientCredentialsStoreSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 712BE2FB1A75D74300478277 /* RTClientCredentialsStoreSpec.m */; };
 		712BE3021A75D74C00478277 /* EXPMatchers+beError.m in Sources */ = {isa = PBXBuildFile; fileRef = 712BE2FF1A75D74C00478277 /* EXPMatchers+beError.m */; };
 		712BE3031A75D74C00478277 /* RTTestCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 712BE3011A75D74C00478277 /* RTTestCommon.m */; };
+		712EA2C51A9C1B4600AFCA15 /* RTClientAdditionalConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 712EA2C41A9C1B4600AFCA15 /* RTClientAdditionalConfiguration.m */; };
 		7130FD8C1A67593D00AE2ACD /* boxxy.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7130FD891A67593D00AE2ACD /* boxxy.jpg */; };
 		7130FD8D1A67593D00AE2ACD /* maddox.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7130FD8A1A67593D00AE2ACD /* maddox.jpg */; };
 		7130FD8E1A67593D00AE2ACD /* boogie2988-rage.png in Resources */ = {isa = PBXBuildFile; fileRef = 7130FD8B1A67593D00AE2ACD /* boogie2988-rage.png */; };
@@ -187,6 +188,8 @@
 		712BE2FF1A75D74C00478277 /* EXPMatchers+beError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EXPMatchers+beError.m"; sourceTree = "<group>"; };
 		712BE3001A75D74C00478277 /* RTTestCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTTestCommon.h; sourceTree = "<group>"; };
 		712BE3011A75D74C00478277 /* RTTestCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTTestCommon.m; sourceTree = "<group>"; };
+		712EA2C31A9C1B4600AFCA15 /* RTClientAdditionalConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTClientAdditionalConfiguration.h; sourceTree = "<group>"; };
+		712EA2C41A9C1B4600AFCA15 /* RTClientAdditionalConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTClientAdditionalConfiguration.m; sourceTree = "<group>"; };
 		7130FD891A67593D00AE2ACD /* boxxy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = boxxy.jpg; sourceTree = "<group>"; };
 		7130FD8A1A67593D00AE2ACD /* maddox.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = maddox.jpg; sourceTree = "<group>"; };
 		7130FD8B1A67593D00AE2ACD /* boogie2988-rage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boogie2988-rage.png"; sourceTree = "<group>"; };
@@ -570,6 +573,8 @@
 				71073CF51A83060700BE6E19 /* RKObjectManager+IncludeHeaders.m */,
 				713D7A4A1A50A33300754A06 /* RTClient.h */,
 				713D7A4B1A50A33300754A06 /* RTClient.m */,
+				712EA2C31A9C1B4600AFCA15 /* RTClientAdditionalConfiguration.h */,
+				712EA2C41A9C1B4600AFCA15 /* RTClientAdditionalConfiguration.m */,
 				71647BE41A7F17CC00F44996 /* RTClientDelegate.h */,
 				71647BE51A7F17CD00F44996 /* RTClientDelegate.m */,
 				7157589D1A9A3B93002859DE /* RTEndpointPathFormatter.h */,
@@ -1326,6 +1331,7 @@
 				717215AB1A86591D0002ECC7 /* RTAccountRegistrationDataManager.m in Sources */,
 				713DCAA91A6C8B330032B252 /* RTServerErrors.m in Sources */,
 				715370E91A88442700D3355B /* RTActivityCell.m in Sources */,
+				712EA2C51A9C1B4600AFCA15 /* RTClientAdditionalConfiguration.m in Sources */,
 				717A4B7B1A534EF8004C2BC1 /* RTRestAPIMappingFactory.m in Sources */,
 				717215A71A8659150002ECC7 /* RTAccountRegistrationWireframe.m in Sources */,
 				711690A21A6B00210031578E /* RTApplicationAssembly.m in Sources */,

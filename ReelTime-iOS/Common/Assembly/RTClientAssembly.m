@@ -3,6 +3,7 @@
 
 #import "RTClient.h"
 #import "RTClientDelegate.h"
+#import "RTClientAdditionalConfiguration.h"
 
 #import "RTEndpointPathFormatter.h"
 
@@ -40,6 +41,7 @@
 
 - (RKObjectManager *)restKitObjectManager {
     return [TyphoonDefinition withClass:[RKObjectManager class] configuration:^(TyphoonDefinition *definition) {
+        [RTClientAdditionalConfiguration registerEmptyResponseSupport];
         
         [definition useInitializer:@selector(managerWithBaseURL:) parameters:^(TyphoonMethod *method) {
             [method injectParameterWith:[self baseUrl]];
