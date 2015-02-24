@@ -123,7 +123,7 @@ describe(@"ReelTime Client", ^{
                                                                  password:password];
         });
         
-        it(@"should fail for bad client credentials", ^{
+        it(@"fails due to bad client credentials", ^{
             [helper stubUnauthenticatedRequestWithMethod:POST
                                                 urlRegex:tokenUrlRegex
                                      rawResponseFilename:@"token-bad-client-credentials"];
@@ -142,7 +142,7 @@ describe(@"ReelTime Client", ^{
             });
         });
         
-        it(@"should fail for bad user credentials", ^{
+        it(@"fails due to bad user credentials", ^{
             [helper stubUnauthenticatedRequestWithMethod:POST
                                                 urlRegex:tokenUrlRegex
                                      rawResponseFilename:@"token-bad-user-credentials"];
@@ -161,7 +161,7 @@ describe(@"ReelTime Client", ^{
             });
         });
         
-        it(@"should pass token to callback when successful", ^{
+        it(@"is successful and receives the token", ^{
             [helper stubUnauthenticatedRequestWithMethod:POST
                                                 urlRegex:tokenUrlRegex
                                      rawResponseFilename:@"token-successful"];
@@ -196,7 +196,7 @@ describe(@"ReelTime Client", ^{
                                                                 clientName:clientName];
         });
         
-        it(@"should pass client credentials to callback when successful", ^{
+        it(@"is successful and receives client credentials", ^{
             [helper stubUnauthenticatedRequestWithMethod:POST
                                                 urlRegex:accountRegistrationUrlRegex
                                      rawResponseFilename:@"account-registration-successful"];
@@ -212,7 +212,7 @@ describe(@"ReelTime Client", ^{
             });
         });
         
-        it(@"should pass server errors to failure callback", ^{
+        it(@"fails with errors", ^{
             [helper stubUnauthenticatedRequestWithMethod:POST
                                                 urlRegex:accountRegistrationUrlRegex
                                      rawResponseFilename:@"account-registration-missing-all-params"];
@@ -234,7 +234,7 @@ describe(@"ReelTime Client", ^{
             });
         });
         
-        it(@"should pass registration unavailable error to failure callback", ^{
+        it(@"fails due to registration being unavailable", ^{
             [helper stubUnauthenticatedRequestWithMethod:POST
                                                 urlRegex:accountRegistrationUrlRegex
                                      rawResponseFilename:@"account-registration-temporarily-unavailable"];
@@ -303,7 +303,7 @@ describe(@"ReelTime Client", ^{
                 newsfeedUrlRegex = [helper createUrlRegexForEndpoint:API_NEWSFEED];
             });
             
-            it(@"should pass newsfeed with no activities to callback", ^{
+            it(@"is successful and has no activities", ^{
                 [helper stubAuthenticatedRequestWithMethod:GET
                                                   urlRegex:newsfeedUrlRegex
                                        rawResponseFilename:@"newsfeed-no-activities"];
@@ -318,7 +318,7 @@ describe(@"ReelTime Client", ^{
                 });
             });
             
-            it(@"should pass newsfeed with one activity to callback", ^{
+            it(@"is successful and has one activity", ^{
                 [helper stubAuthenticatedRequestWithMethod:GET
                                                   urlRegex:newsfeedUrlRegex
                                        rawResponseFilename:@"newsfeed-one-activity"];
@@ -343,7 +343,7 @@ describe(@"ReelTime Client", ^{
                 });
             });
             
-            it(@"should pass newsfeed with multiple activities to callback", ^{
+            it(@"is successful and has multiple activities", ^{
                 [helper stubAuthenticatedRequestWithMethod:GET
                                                   urlRegex:newsfeedUrlRegex
                                        rawResponseFilename:@"newsfeed-multiple-activities"];
@@ -399,7 +399,7 @@ describe(@"ReelTime Client", ^{
                                                           withParameters:pathParams];
             });
             
-            it(@"should execute success callback when audience is joined", ^{
+            it(@"is successful", ^{
                 [helper stubAuthenticatedRequestWithMethod:POST
                                                   urlRegex:joinAudienceUrlRegex
                                        rawResponseFilename:@"audience-join-successful"];
@@ -423,7 +423,7 @@ describe(@"ReelTime Client", ^{
                                                         withParameters:pathParams];
             });
             
-            it(@"should execute success call back when user is followed", ^{
+            it(@"is successful", ^{
                 [helper stubAuthenticatedRequestWithMethod:POST
                                                   urlRegex:followUserUrlRegex
                                        rawResponseFilename:@"follow-user-successful"];
