@@ -30,6 +30,7 @@
 		712BE3021A75D74C00478277 /* EXPMatchers+beError.m in Sources */ = {isa = PBXBuildFile; fileRef = 712BE2FF1A75D74C00478277 /* EXPMatchers+beError.m */; };
 		712BE3031A75D74C00478277 /* RTTestCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 712BE3011A75D74C00478277 /* RTTestCommon.m */; };
 		712EA2C51A9C1B4600AFCA15 /* RTClientAdditionalConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 712EA2C41A9C1B4600AFCA15 /* RTClientAdditionalConfiguration.m */; };
+		712EA2C91A9C289E00AFCA15 /* server-internal-error.txt in Resources */ = {isa = PBXBuildFile; fileRef = 712EA2C81A9C289E00AFCA15 /* server-internal-error.txt */; };
 		7130FD8C1A67593D00AE2ACD /* boxxy.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7130FD891A67593D00AE2ACD /* boxxy.jpg */; };
 		7130FD8D1A67593D00AE2ACD /* maddox.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7130FD8A1A67593D00AE2ACD /* maddox.jpg */; };
 		7130FD8E1A67593D00AE2ACD /* boogie2988-rage.png in Resources */ = {isa = PBXBuildFile; fileRef = 7130FD8B1A67593D00AE2ACD /* boogie2988-rage.png */; };
@@ -190,6 +191,7 @@
 		712BE3011A75D74C00478277 /* RTTestCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTTestCommon.m; sourceTree = "<group>"; };
 		712EA2C31A9C1B4600AFCA15 /* RTClientAdditionalConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTClientAdditionalConfiguration.h; sourceTree = "<group>"; };
 		712EA2C41A9C1B4600AFCA15 /* RTClientAdditionalConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTClientAdditionalConfiguration.m; sourceTree = "<group>"; };
+		712EA2C81A9C289E00AFCA15 /* server-internal-error.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "server-internal-error.txt"; sourceTree = "<group>"; };
 		7130FD891A67593D00AE2ACD /* boxxy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = boxxy.jpg; sourceTree = "<group>"; };
 		7130FD8A1A67593D00AE2ACD /* maddox.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = maddox.jpg; sourceTree = "<group>"; };
 		7130FD8B1A67593D00AE2ACD /* boogie2988-rage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boogie2988-rage.png"; sourceTree = "<group>"; };
@@ -527,6 +529,14 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		712EA2C71A9C286C00AFCA15 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				712EA2C81A9C289E00AFCA15 /* server-internal-error.txt */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
 		7130FD871A67591200AE2ACD /* Assets */ = {
 			isa = PBXGroup;
 			children = (
@@ -806,6 +816,7 @@
 			children = (
 				717215C11A865C8E0002ECC7 /* Account */,
 				715FAD531A92C8E300368119 /* Audience */,
+				712EA2C71A9C286C00AFCA15 /* Error */,
 				717215C51A865C8E0002ECC7 /* Newsfeed */,
 				717215C91A865C8E0002ECC7 /* Token */,
 				715FAD521A92C8DC00368119 /* UserFollowing */,
@@ -1227,6 +1238,7 @@
 				715FAD571A92CA4400368119 /* follow-user-successful.txt in Resources */,
 				717215CF1A865C8E0002ECC7 /* account-registration-temporarily-unavailable.txt in Resources */,
 				717215CE1A865C8E0002ECC7 /* account-registration-successful.txt in Resources */,
+				712EA2C91A9C289E00AFCA15 /* server-internal-error.txt in Resources */,
 				715FAD591A92CA7200368119 /* audience-join-successful.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

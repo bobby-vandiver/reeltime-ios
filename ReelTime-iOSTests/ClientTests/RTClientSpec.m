@@ -37,7 +37,9 @@ describe(@"ReelTime Client", ^{
     __block RTClientDelegate *delegate;
     
     __block RTClientSpecHelper *helper;
+
     __block BOOL callbackExecuted;
+    __block RTServerErrors *serverErrors;
     
     beforeAll(^{
         [[LSNocilla sharedInstance] start];
@@ -49,7 +51,9 @@ describe(@"ReelTime Client", ^{
     
     beforeEach(^{
         helper = [[RTClientSpecHelper alloc] init];
+
         callbackExecuted = NO;
+        serverErrors = nil;
         
         RTClientAssembly *assembly = [RTClientAssembly assembly];
         
@@ -80,6 +84,19 @@ describe(@"ReelTime Client", ^{
     NoArgsSuccessCallback (^shouldExecuteNoArgsSuccessCallback)(DoneCallback) = ^NoArgsSuccessCallback(DoneCallback done) {
         return ^{
             callbackExecuted = YES;
+            done();
+        };
+    };
+    
+    NoArgsSuccessCallback (^shouldNotExecuteNoArgsSuccessCallback)(DoneCallback) = ^NoArgsSuccessCallback(DoneCallback done) {
+        return ^{
+            shouldNotExecute(done);
+        };
+    };
+    
+    ServerErrorsFailureCallback (^shouldExecuteServerErrorsFailureCallback)(DoneCallback) = ^ServerErrorsFailureCallback(DoneCallback done) {
+        return ^(RTServerErrors *errors) {
+            serverErrors = errors;
             done();
         };
     };
@@ -252,7 +269,7 @@ describe(@"ReelTime Client", ^{
                 accountRemovalUrlRegex = [helper createUrlRegexForEndpoint:API_REMOVE_ACCOUNT];
             });
             
-            it(@"should execute success callback when account is removed", ^{
+            it(@"is successful", ^{
                 [helper stubAuthenticatedRequestWithMethod:DELETE
                                                   urlRegex:accountRemovalUrlRegex
                                        rawResponseFilename:@"account-removal-successful"];
@@ -263,6 +280,19 @@ describe(@"ReelTime Client", ^{
                 });
                 
                 expect(callbackExecuted).to.beTruthy();
+            });
+            
+            it(@"fails due to server internal error", ^{
+                [helper stubAuthenticatedRequestWithMethod:DELETE
+                                                  urlRegex:accountRemovalUrlRegex
+                                       rawResponseFilename:@"server-internal-error"];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client removeAccountWithSuccess:shouldNotExecuteNoArgsSuccessCallback(done)
+                                             failure:shouldExecuteServerErrorsFailureCallback(done)];
+                });
+                
+                expect(serverErrors.errors.count).to.equal(0);
             });
         });
         
