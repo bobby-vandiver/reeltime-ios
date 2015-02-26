@@ -281,19 +281,6 @@ describe(@"ReelTime Client", ^{
                 
                 expect(callbackExecuted).to.beTruthy();
             });
-            
-            it(@"fails due to server internal error", ^{
-                [helper stubAuthenticatedRequestWithMethod:DELETE
-                                                  urlRegex:accountRemovalUrlRegex
-                                       rawResponseFilename:@"server-internal-error"];
-                
-                waitUntil(^(DoneCallback done) {
-                    [client removeAccountWithSuccess:shouldNotExecuteNoArgsSuccessCallback(done)
-                                             failure:shouldExecuteServerErrorsFailureCallback(done)];
-                });
-                
-                expect(serverErrors.errors.count).to.equal(0);
-            });
         });
         
         describe(@"newsfeed", ^{
