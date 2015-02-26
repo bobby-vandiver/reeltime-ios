@@ -3,7 +3,6 @@
 @class RTClientDelegate;
 @class RTEndpointPathFormatter;
 @class RTAuthenticationAwareHTTPClient;
-//@class RKObjectManager;
 
 @class RTClientCredentials;
 @class RTUserCredentials;
