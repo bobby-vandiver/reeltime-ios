@@ -46,6 +46,16 @@
                                                    statusCodes:statusCodes];
 }
 
++ (RKResponseDescriptor *)clientRegistrationDescriptor {
+    NSIndexSet *statusCodes = [NSIndexSet indexSetWithIndex:201];
+
+    return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory clientCredentialsMapping]
+                                                        method:RKRequestMethodPOST
+                                                   pathPattern:API_REGISTER_CLIENT
+                                                       keyPath:nil
+                                                   statusCodes:statusCodes];
+}
+
 + (RKResponseDescriptor *)newsfeedDescriptor {
     NSIndexSet *statusCodes = [NSIndexSet indexSetWithIndex:200];
     

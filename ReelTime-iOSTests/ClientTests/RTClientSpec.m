@@ -41,6 +41,8 @@ describe(@"ReelTime Client", ^{
     __block BOOL callbackExecuted;
     __block RTServerErrors *serverErrors;
     
+    __block RTUserCredentials *userCredentials;
+
     beforeAll(^{
         [[LSNocilla sharedInstance] start];
     });
@@ -54,6 +56,9 @@ describe(@"ReelTime Client", ^{
 
         callbackExecuted = NO;
         serverErrors = nil;
+        
+        userCredentials = [[RTUserCredentials alloc] initWithUsername:username
+                                                             password:password];
         
         RTClientAssembly *assembly = [RTClientAssembly assembly];
         
@@ -88,19 +93,6 @@ describe(@"ReelTime Client", ^{
         };
     };
     
-    NoArgsSuccessCallback (^shouldNotExecuteNoArgsSuccessCallback)(DoneCallback) = ^NoArgsSuccessCallback(DoneCallback done) {
-        return ^{
-            shouldNotExecute(done);
-        };
-    };
-    
-    ServerErrorsFailureCallback (^shouldExecuteServerErrorsFailureCallback)(DoneCallback) = ^ServerErrorsFailureCallback(DoneCallback done) {
-        return ^(RTServerErrors *errors) {
-            serverErrors = errors;
-            done();
-        };
-    };
-    
     ServerErrorsFailureCallback (^shouldNotExecuteServerErrorsFailureCallback)(DoneCallback) = ^ServerErrorsFailureCallback(DoneCallback done) {
         return ^(RTServerErrors *errors) {
             shouldNotExecute(done);
@@ -111,16 +103,12 @@ describe(@"ReelTime Client", ^{
         __block NSRegularExpression *tokenUrlRegex;
         
         __block RTClientCredentials *clientCredentials;
-        __block RTUserCredentials *userCredentials;
         
         beforeEach(^{
             tokenUrlRegex = [helper createUrlRegexForEndpoint:API_TOKEN];
 
             clientCredentials = [[RTClientCredentials alloc] initWithClientId:clientId
                                                                  clientSecret:clientSecret];
-            
-            userCredentials = [[RTUserCredentials alloc] initWithUsername:username
-                                                                 password:password];
         });
         
         it(@"fails due to bad client credentials", ^{
@@ -249,6 +237,31 @@ describe(@"ReelTime Client", ^{
                                     expect(errors.errors).to.contain(@"Unable to register. Please try again.");
                                     done();
                                 }];
+            });
+        });
+    });
+    
+    describe(@"client registration", ^{
+        __block NSRegularExpression *clientRegistrationUrlRegex;
+        
+        beforeEach(^{
+            clientRegistrationUrlRegex = [helper createUrlRegexForEndpoint:API_REGISTER_CLIENT];
+        });
+        
+        it(@"is successful", ^{
+            [helper stubUnauthenticatedRequestWithMethod:POST
+                                                urlRegex:clientRegistrationUrlRegex
+                                     rawResponseFilename:@"client-registration-successful"];
+            
+            waitUntil(^(DoneCallback done) {
+                [client registerClientWithClientName:clientName
+                                     userCredentials:userCredentials
+                                             success:^(RTClientCredentials *clientCredentials) {
+                                                 expect(clientCredentials.clientId).to.equal(@"5bdee758-cf71-4cd5-9bd9-aded45ce9964");
+                                                 expect(clientCredentials.clientSecret).to.equal(@"g70mC9ZbpKa6p6R1tJPVWTm55BWHnSkmCv27F=oSI6");
+                                                 done();
+                                             }
+                                             failure:shouldNotExecuteServerErrorsFailureCallback(done)];
             });
         });
     });

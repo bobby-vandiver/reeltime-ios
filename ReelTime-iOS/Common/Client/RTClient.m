@@ -107,6 +107,30 @@ static NSString *const AUTHORIZATION_HEADER = @"Authorization";
     [self authenticatedDeleteForEndpoint:API_REMOVE_ACCOUNT withParameters:nil success:successCallback failure:failureCallback];
 }
 
+- (void)registerClientWithClientName:(NSString *)clientName
+                     userCredentials:(RTUserCredentials *)userCredentials
+                             success:(void (^)(RTClientCredentials *))success
+                             failure:(void (^)(RTServerErrors *))failure {
+    NSDictionary *parameters = @{
+                                 @"username":   userCredentials.username,
+                                 @"password":   userCredentials.password,
+                                 @"client_id":  clientName
+                                 };
+    
+    id successCallback = ^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        RTClientCredentials *clientCredentials = [mappingResult firstObject];
+        success(clientCredentials);
+    };
+    
+    id failureCallback = [self serverFailureHandlerWithCallback:failure];
+    
+    [self.objectManager postObject:nil
+                              path:API_REGISTER_CLIENT
+                        parameters:parameters
+                           success:successCallback
+                           failure:failureCallback];
+}
+
 - (void)newsfeedPage:(NSUInteger)page
              success:(void (^)(RTNewsfeed *))success
              failure:(void (^)(RTServerErrors *))failure {

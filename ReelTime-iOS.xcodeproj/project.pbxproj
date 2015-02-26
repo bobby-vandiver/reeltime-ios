@@ -67,6 +67,8 @@
 		7145C6231A8AF07F006A77DE /* RTReelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7145C6221A8AF07F006A77DE /* RTReelSpec.m */; };
 		715370E91A88442700D3355B /* RTActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 715370E81A88442700D3355B /* RTActivityCell.m */; };
 		715370FA1A88680700D3355B /* RTArrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 715370F91A88680700D3355B /* RTArrayDataSource.m */; };
+		715555A31A9EC05E0091F432 /* client-registration-missing-params.txt in Resources */ = {isa = PBXBuildFile; fileRef = 715555A01A9EC05E0091F432 /* client-registration-missing-params.txt */; };
+		715555A41A9EC05E0091F432 /* client-registration-successful.txt in Resources */ = {isa = PBXBuildFile; fileRef = 715555A11A9EC05E0091F432 /* client-registration-successful.txt */; };
 		71565A261A98ED5900AE1C43 /* RTApplicationWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 71565A251A98ED5900AE1C43 /* RTApplicationWireframe.m */; };
 		71565A291A98EDE900AE1C43 /* RTApplicationWireframeSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71565A281A98EDE900AE1C43 /* RTApplicationWireframeSpec.m */; };
 		7157589C1A9A2D6C002859DE /* RTApplicationTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7157589B1A9A2D6C002859DE /* RTApplicationTabBarController.m */; };
@@ -246,6 +248,8 @@
 		715370E81A88442700D3355B /* RTActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTActivityCell.m; sourceTree = "<group>"; };
 		715370F81A88680700D3355B /* RTArrayDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTArrayDataSource.h; sourceTree = "<group>"; };
 		715370F91A88680700D3355B /* RTArrayDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTArrayDataSource.m; sourceTree = "<group>"; };
+		715555A01A9EC05E0091F432 /* client-registration-missing-params.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "client-registration-missing-params.txt"; sourceTree = "<group>"; };
+		715555A11A9EC05E0091F432 /* client-registration-successful.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "client-registration-successful.txt"; sourceTree = "<group>"; };
 		71565A241A98ED5900AE1C43 /* RTApplicationWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTApplicationWireframe.h; sourceTree = "<group>"; };
 		71565A251A98ED5900AE1C43 /* RTApplicationWireframe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTApplicationWireframe.m; sourceTree = "<group>"; };
 		71565A281A98EDE900AE1C43 /* RTApplicationWireframeSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTApplicationWireframeSpec.m; sourceTree = "<group>"; };
@@ -604,6 +608,15 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		7155559E1A9EBE8B0091F432 /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				715555A01A9EC05E0091F432 /* client-registration-missing-params.txt */,
+				715555A11A9EC05E0091F432 /* client-registration-successful.txt */,
+			);
+			path = Client;
+			sourceTree = "<group>";
+		};
 		71565A231A98ED3400AE1C43 /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -816,6 +829,7 @@
 			children = (
 				717215C11A865C8E0002ECC7 /* Account */,
 				715FAD531A92C8E300368119 /* Audience */,
+				7155559E1A9EBE8B0091F432 /* Client */,
 				712EA2C71A9C286C00AFCA15 /* Error */,
 				717215C51A865C8E0002ECC7 /* Newsfeed */,
 				717215C91A865C8E0002ECC7 /* Token */,
@@ -1230,8 +1244,10 @@
 				717215D41A865C8E0002ECC7 /* token-bad-user-credentials.txt in Resources */,
 				713470BF1A9AD48A000CFCA3 /* account-removal-successful.txt in Resources */,
 				717215D01A865C8E0002ECC7 /* newsfeed-multiple-activities.txt in Resources */,
+				715555A41A9EC05E0091F432 /* client-registration-successful.txt in Resources */,
 				717215D31A865C8E0002ECC7 /* token-bad-client-credentials.txt in Resources */,
 				717215D11A865C8E0002ECC7 /* newsfeed-no-activities.txt in Resources */,
+				715555A31A9EC05E0091F432 /* client-registration-missing-params.txt in Resources */,
 				717215CD1A865C8E0002ECC7 /* account-registration-missing-all-params.txt in Resources */,
 				717215D51A865C8E0002ECC7 /* token-successful.txt in Resources */,
 				717215D21A865C8E0002ECC7 /* newsfeed-one-activity.txt in Resources */,

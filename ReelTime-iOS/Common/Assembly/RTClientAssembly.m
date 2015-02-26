@@ -53,6 +53,7 @@
                                           [RTResponseDescriptorFactory tokenErrorDescriptor],
                                           [RTResponseDescriptorFactory accountRegistrationDescriptor],
                                           [RTResponseDescriptorFactory accountRegistrationErrorDescriptor],
+                                          [RTResponseDescriptorFactory clientRegistrationDescriptor],
                                           [RTResponseDescriptorFactory newsfeedDescriptor]
                                           ]];
         }];
