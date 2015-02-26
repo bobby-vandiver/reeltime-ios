@@ -3,6 +3,7 @@
 @class RTCurrentUserStore;
 @class RTOAuth2TokenStore;
 
+// TODO: Rename to something more appropriate
 @interface RTClientDelegate : NSObject
 
 - (instancetype)initWithCurrentUserStore:(RTCurrentUserStore *)currentUserStore

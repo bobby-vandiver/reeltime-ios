@@ -4,6 +4,7 @@
 #import "RTClient.h"
 #import "RTClientDelegate.h"
 #import "RTClientAdditionalConfiguration.h"
+#import "RTAuthenticationAwareHTTPClient.h"
 
 #import "RTEndpointPathFormatter.h"
 
@@ -16,11 +17,11 @@
 
 - (RTClient *)reelTimeClient {
     return [TyphoonDefinition withClass:[RTClient class] configuration:^(TyphoonDefinition *definition) {
-        [definition useInitializer:@selector(initWithDelegate:pathFormatter:restKitObjectManager:)
+        [definition useInitializer:@selector(initWithDelegate:pathFormatter:httpClient:)
                         parameters:^(TyphoonMethod *initializer) {
                             [initializer injectParameterWith:[self reelTimeClientDelegate]];
                             [initializer injectParameterWith:[self endpointPathFormatter]];
-                            [initializer injectParameterWith:[self restKitObjectManager]];
+                            [initializer injectParameterWith:[self authenticationAwareHTTPClient]];
         }];
     }];
 }
@@ -37,6 +38,16 @@
 
 - (RTEndpointPathFormatter *)endpointPathFormatter {
     return [TyphoonDefinition withClass:[RTEndpointPathFormatter class]];
+}
+
+- (RTAuthenticationAwareHTTPClient *)authenticationAwareHTTPClient {
+    return [TyphoonDefinition withClass:[RTAuthenticationAwareHTTPClient class] configuration:^(TyphoonDefinition *definition) {
+        [definition useInitializer:@selector(initWithDelegate:restKitObjectManager:)
+                        parameters:^(TyphoonMethod *initializer) {
+                            [initializer injectParameterWith:[self reelTimeClientDelegate]];
+                            [initializer injectParameterWith:[self restKitObjectManager]];
+                        }];
+    }];
 }
 
 - (RKObjectManager *)restKitObjectManager {

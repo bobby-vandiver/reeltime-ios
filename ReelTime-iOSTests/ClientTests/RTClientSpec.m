@@ -5,6 +5,8 @@
 #import "RTClientDelegate.h"
 #import "RTClientAssembly.h"
 
+#import "RTAuthenticationAwareHTTPClient.h"
+
 #import "RTClientCredentials.h"
 #import "RTUserCredentials.h"
 

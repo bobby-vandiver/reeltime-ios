@@ -6,6 +6,7 @@
 @class RTClientDelegate;
 @class RTEndpointPathFormatter;
 @class RTServerErrorsConverter;
+@class RTAuthenticationAwareHTTPClient;
 
 @interface RTClientAssembly : TyphoonAssembly
 
@@ -14,6 +15,8 @@
 - (RTClient *)reelTimeClient;
 
 - (RTClientDelegate *)reelTimeClientDelegate;
+
+- (RTAuthenticationAwareHTTPClient *)authenticationAwareHTTPClient;
 
 - (RTEndpointPathFormatter *)endpointPathFormatter;
 

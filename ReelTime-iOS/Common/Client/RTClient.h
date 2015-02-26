@@ -2,7 +2,8 @@
 
 @class RTClientDelegate;
 @class RTEndpointPathFormatter;
-@class RKObjectManager;
+@class RTAuthenticationAwareHTTPClient;
+//@class RKObjectManager;
 
 @class RTClientCredentials;
 @class RTUserCredentials;
@@ -17,9 +18,10 @@
 
 @interface RTClient : NSObject
 
+
 - (instancetype)initWithDelegate:(RTClientDelegate *)delegate
                    pathFormatter:(RTEndpointPathFormatter *)pathFormatter
-            restKitObjectManager:(RKObjectManager *)objectManager;
+                      httpClient:(RTAuthenticationAwareHTTPClient *)httpClient;
 
 - (void)tokenWithClientCredentials:(RTClientCredentials *)clientCredentials
                    userCredentials:(RTUserCredentials *)userCredentials
