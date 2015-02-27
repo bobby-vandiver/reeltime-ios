@@ -82,9 +82,6 @@ describe(@"ReelTime Client", ^{
         [[LSNocilla sharedInstance] clearStubs];
     });
     
-    typedef void (^SuccessCallback)(id);
-    typedef void (^FailureCallback)(id);
-
     void (^shouldNotExecute)(DoneCallback) = ^(DoneCallback done) {
         fail();
         done();

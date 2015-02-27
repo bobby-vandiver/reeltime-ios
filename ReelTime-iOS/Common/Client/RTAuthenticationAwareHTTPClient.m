@@ -28,38 +28,38 @@ static NSString *const AUTHORIZATION_HEADER = @"Authorization";
 
 - (void)authenticatedGetForPath:(NSString *)path
                  withParameters:(NSDictionary *)parameters
-                        success:(void (^)(id result))success
-                        failure:(void (^)(id error))failure {
+                        success:(SuccessCallback)success
+                        failure:(FailureCallback)failure {
     NSDictionary *headers = @{AUTHORIZATION_HEADER:[self formatAccessTokenForAuthorizationHeader]};
     [self getForPath:path withParameters:parameters headers:headers success:success failure:failure];
 }
 
 - (void)unauthenticatedGetForPath:(NSString *)path
                    withParameters:(NSDictionary *)parameters
-                          success:(void (^)(id result))success
-                          failure:(void (^)(id error))failure {
+                          success:(SuccessCallback)success
+                          failure:(FailureCallback)failure {
     [self getForPath:path withParameters:parameters headers:nil success:success failure:failure];
 }
 
 - (void)authenticatedPostForPath:(NSString *)path
                   withParameters:(NSDictionary *)parameters
-                         success:(void (^)(id result))success
-                         failure:(void (^)(id error))failure {
+                         success:(SuccessCallback)success
+                         failure:(FailureCallback)failure {
     NSDictionary *headers = @{AUTHORIZATION_HEADER:[self formatAccessTokenForAuthorizationHeader]};
     [self postForPath:path withParameters:parameters headers:headers success:success failure:failure];
 }
 
 - (void)unauthenticatedPostForPath:(NSString *)path
                     withParameters:(NSDictionary *)parameters
-                           success:(void (^)(id result))success
-                           failure:(void (^)(id error))failure {
+                           success:(SuccessCallback)success
+                           failure:(FailureCallback)failure {
     [self postForPath:path withParameters:parameters headers:nil success:success failure:failure];
 }
 
 - (void)authenticatedDeleteForPath:(NSString *)path
                     withParameters:(NSDictionary *)parameters
-                           success:(void (^)(id result))success
-                           failure:(void (^)(id error))failure {
+                           success:(SuccessCallback)success
+                           failure:(FailureCallback)failure {
     NSDictionary *headers = @{AUTHORIZATION_HEADER:[self formatAccessTokenForAuthorizationHeader]};
     [self deleteForPath:path withParameters:parameters headers:headers success:success failure:failure];
 }
@@ -67,8 +67,8 @@ static NSString *const AUTHORIZATION_HEADER = @"Authorization";
 - (void)getForPath:(NSString *)path
     withParameters:(NSDictionary *)parameters
            headers:(NSDictionary *)headers
-           success:(void (^)(id result))success
-           failure:(void (^)(id error))failure {
+           success:(SuccessCallback)success
+           failure:(FailureCallback)failure {
     
     id successCallback = [self successHandlerWithCallback:success];
     id failureCallback = [self serverFailureHandlerWithCallback:failure];
@@ -93,8 +93,8 @@ static NSString *const AUTHORIZATION_HEADER = @"Authorization";
 - (void)postForPath:(NSString *)path
      withParameters:(NSDictionary *)parameters
             headers:(NSDictionary *)headers
-            success:(void (^)(id result))success
-            failure:(void (^)(id error))failure {
+            success:(SuccessCallback)success
+            failure:(FailureCallback)failure {
     
     id successCallback = [self successHandlerWithCallback:success];
     id failureCallback = [self serverFailureHandlerWithCallback:failure];
@@ -119,8 +119,8 @@ static NSString *const AUTHORIZATION_HEADER = @"Authorization";
 - (void)deleteForPath:(NSString *)path
        withParameters:(NSDictionary *)parameters
               headers:(NSDictionary *)headers
-              success:(void (^)(id result))success
-              failure:(void (^)(id error))failure {
+              success:(SuccessCallback)success
+              failure:(FailureCallback)failure {
     
     id successCallback = [self successHandlerWithCallback:success];
     id failureCallback = [self serverFailureHandlerWithCallback:failure];

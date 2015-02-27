@@ -4,6 +4,9 @@
 @class RKObjectManager;
 @class RTServerErrors;
 
+typedef void (^SuccessCallback)(id result);
+typedef void (^FailureCallback)(id error);
+
 @interface RTAuthenticationAwareHTTPClient : NSObject
 
 - (instancetype)initWithDelegate:(RTAuthenticationAwareHTTPClientDelegate *)delegate
@@ -11,27 +14,27 @@
 
 - (void)authenticatedGetForPath:(NSString *)path
                  withParameters:(NSDictionary *)parameters
-                        success:(void (^)(id result))success
-                        failure:(void (^)(id error))failure;
+                        success:(SuccessCallback)success
+                        failure:(FailureCallback)failure;
 
 - (void)unauthenticatedGetForPath:(NSString *)path
                    withParameters:(NSDictionary *)parameters
-                          success:(void (^)(id result))success
-                          failure:(void (^)(id error))failure;
+                          success:(SuccessCallback)success
+                          failure:(FailureCallback)failure;
 
 - (void)authenticatedPostForPath:(NSString *)path
                   withParameters:(NSDictionary *)parameters
-                         success:(void (^)(id result))success
-                         failure:(void (^)(id error))failure;
+                         success:(SuccessCallback)success
+                         failure:(FailureCallback)failure;
 
 - (void)unauthenticatedPostForPath:(NSString *)path
                     withParameters:(NSDictionary *)parameters
-                           success:(void (^)(id result))success
-                           failure:(void (^)(id error))failure;
+                           success:(SuccessCallback)success
+                           failure:(FailureCallback)failure;
 
 - (void)authenticatedDeleteForPath:(NSString *)path
                     withParameters:(NSDictionary *)parameters
-                           success:(void (^)(id result))success
-                           failure:(void (^)(id error))failure;
+                           success:(SuccessCallback)success
+                           failure:(FailureCallback)failure;
 
 @end
