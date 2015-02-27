@@ -8,6 +8,7 @@
 
 - (instancetype)initWithDelegate:(RTAuthenticationAwareHTTPClientDelegate *)delegate
             restKitObjectManager:(RKObjectManager *)objectManager;
+
 - (void)authenticatedGetForPath:(NSString *)path
                  withParameters:(NSDictionary *)parameters
                         success:(void (^)(id result))success
