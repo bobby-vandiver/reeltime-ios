@@ -1,5 +1,5 @@
 #import "RTClient.h"
-#import "RTClientDelegate.h"
+#import "RTAuthenticationAwareHTTPClientDelegate.h"
 
 #import "RTEndpointPathFormatter.h"
 #import "RTRestAPI.h"
@@ -19,7 +19,7 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
 
 @interface RTClient ()
 
-@property RTClientDelegate *delegate;
+@property RTAuthenticationAwareHTTPClientDelegate *delegate;
 @property RTEndpointPathFormatter *pathFormatter;
 @property RTAuthenticationAwareHTTPClient *httpClient;
 
@@ -27,7 +27,7 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
 
 @implementation RTClient
 
-- (instancetype)initWithDelegate:(RTClientDelegate *)delegate
+- (instancetype)initWithDelegate:(RTAuthenticationAwareHTTPClientDelegate *)delegate
                    pathFormatter:(RTEndpointPathFormatter *)pathFormatter
                       httpClient:(RTAuthenticationAwareHTTPClient *)httpClient {
     self = [super init];

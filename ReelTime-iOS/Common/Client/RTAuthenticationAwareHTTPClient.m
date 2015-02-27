@@ -1,6 +1,6 @@
 #import "RTAuthenticationAwareHTTPClient.h"
 
-#import "RTClientDelegate.h"
+#import "RTAuthenticationAwareHTTPClientDelegate.h"
 
 #import <RestKit/RestKit.h>
 #import "RKObjectManager+IncludeHeaders.h"
@@ -9,14 +9,14 @@ static NSString *const AUTHORIZATION_HEADER = @"Authorization";
 
 @interface RTAuthenticationAwareHTTPClient ()
 
-@property RTClientDelegate *delegate;
+@property RTAuthenticationAwareHTTPClientDelegate *delegate;
 @property RKObjectManager *objectManager;
 
 @end
 
 @implementation RTAuthenticationAwareHTTPClient
 
-- (instancetype)initWithDelegate:(RTClientDelegate *)delegate
+- (instancetype)initWithDelegate:(RTAuthenticationAwareHTTPClientDelegate *)delegate
             restKitObjectManager:(RKObjectManager *)objectManager {
     self = [super init];
     if (self) {

@@ -2,7 +2,7 @@
 #import "RTSecureStoreAssembly.h"
 
 #import "RTClient.h"
-#import "RTClientDelegate.h"
+#import "RTAuthenticationAwareHTTPClientDelegate.h"
 #import "RTClientAdditionalConfiguration.h"
 #import "RTAuthenticationAwareHTTPClient.h"
 
@@ -19,19 +19,9 @@
     return [TyphoonDefinition withClass:[RTClient class] configuration:^(TyphoonDefinition *definition) {
         [definition useInitializer:@selector(initWithDelegate:pathFormatter:httpClient:)
                         parameters:^(TyphoonMethod *initializer) {
-                            [initializer injectParameterWith:[self reelTimeClientDelegate]];
+                            [initializer injectParameterWith:[self authenticationAwareHTTPClientDelegate]];
                             [initializer injectParameterWith:[self endpointPathFormatter]];
                             [initializer injectParameterWith:[self authenticationAwareHTTPClient]];
-        }];
-    }];
-}
-
-- (RTClientDelegate *)reelTimeClientDelegate {
-    return [TyphoonDefinition withClass:[RTClientDelegate class] configuration:^(TyphoonDefinition *definition) {
-        [definition useInitializer:@selector(initWithCurrentUserStore:tokenStore:)
-                        parameters:^(TyphoonMethod *initializer) {
-                            [initializer injectParameterWith:[self.secureStoreAssembly currentUserStore]];
-                            [initializer injectParameterWith:[self.secureStoreAssembly tokenStore]];
         }];
     }];
 }
@@ -44,8 +34,18 @@
     return [TyphoonDefinition withClass:[RTAuthenticationAwareHTTPClient class] configuration:^(TyphoonDefinition *definition) {
         [definition useInitializer:@selector(initWithDelegate:restKitObjectManager:)
                         parameters:^(TyphoonMethod *initializer) {
-                            [initializer injectParameterWith:[self reelTimeClientDelegate]];
+                            [initializer injectParameterWith:[self authenticationAwareHTTPClientDelegate]];
                             [initializer injectParameterWith:[self restKitObjectManager]];
+                        }];
+    }];
+}
+
+- (RTAuthenticationAwareHTTPClientDelegate *)authenticationAwareHTTPClientDelegate {
+    return [TyphoonDefinition withClass:[RTAuthenticationAwareHTTPClientDelegate class] configuration:^(TyphoonDefinition *definition) {
+        [definition useInitializer:@selector(initWithCurrentUserStore:tokenStore:)
+                        parameters:^(TyphoonMethod *initializer) {
+                            [initializer injectParameterWith:[self.secureStoreAssembly currentUserStore]];
+                            [initializer injectParameterWith:[self.secureStoreAssembly tokenStore]];
                         }];
     }];
 }

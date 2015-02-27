@@ -1,12 +1,12 @@
 #import <Foundation/Foundation.h>
 
-@class RTClientDelegate;
+@class RTAuthenticationAwareHTTPClientDelegate;
 @class RKObjectManager;
 @class RTServerErrors;
 
 @interface RTAuthenticationAwareHTTPClient : NSObject
 
-- (instancetype)initWithDelegate:(RTClientDelegate *)delegate
+- (instancetype)initWithDelegate:(RTAuthenticationAwareHTTPClientDelegate *)delegate
             restKitObjectManager:(RKObjectManager *)objectManager;
 - (void)authenticatedGetForPath:(NSString *)path
                  withParameters:(NSDictionary *)parameters

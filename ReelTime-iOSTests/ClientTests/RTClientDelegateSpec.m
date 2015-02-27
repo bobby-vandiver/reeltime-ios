@@ -1,5 +1,5 @@
 #import "RTTestCommon.h"
-#import "RTClientDelegate.h"
+#import "RTAuthenticationAwareHTTPClientDelegate.h"
 
 #import "RTCurrentUserStore.h"
 #import "RTOAuth2TokenStore.h"
@@ -9,7 +9,7 @@
 SpecBegin(RTClientDelegate)
 
 describe(@"client delegate", ^{
-    __block RTClientDelegate *delegate;
+    __block RTAuthenticationAwareHTTPClientDelegate *delegate;
     
     __block RTCurrentUserStore *currentUserStore;
     __block RTOAuth2TokenStore *tokenStore;
@@ -18,7 +18,7 @@ describe(@"client delegate", ^{
         currentUserStore = mock([RTCurrentUserStore class]);
         tokenStore = mock([RTOAuth2TokenStore class]);
         
-        delegate = [[RTClientDelegate alloc] initWithCurrentUserStore:currentUserStore
+        delegate = [[RTAuthenticationAwareHTTPClientDelegate alloc] initWithCurrentUserStore:currentUserStore
                                                            tokenStore:tokenStore];
     });
     

@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 
-@class RTClientDelegate;
+@class RTAuthenticationAwareHTTPClientDelegate;
 @class RTEndpointPathFormatter;
 @class RTAuthenticationAwareHTTPClient;
 
@@ -18,7 +18,7 @@
 @interface RTClient : NSObject
 
 
-- (instancetype)initWithDelegate:(RTClientDelegate *)delegate
+- (instancetype)initWithDelegate:(RTAuthenticationAwareHTTPClientDelegate *)delegate
                    pathFormatter:(RTEndpointPathFormatter *)pathFormatter
                       httpClient:(RTAuthenticationAwareHTTPClient *)httpClient;
 

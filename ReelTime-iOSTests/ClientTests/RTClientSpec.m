@@ -2,7 +2,7 @@
 #import "RTClientSpecHelper.h"
 
 #import "RTClient.h"
-#import "RTClientDelegate.h"
+#import "RTAuthenticationAwareHTTPClientDelegate.h"
 #import "RTClientAssembly.h"
 
 #import "RTAuthenticationAwareHTTPClient.h"
@@ -36,7 +36,7 @@ SpecBegin(RTClient)
 describe(@"ReelTime Client", ^{
     
     __block RTClient *client;
-    __block RTClientDelegate *delegate;
+    __block RTAuthenticationAwareHTTPClientDelegate *delegate;
     
     __block RTClientSpecHelper *helper;
 
@@ -67,8 +67,8 @@ describe(@"ReelTime Client", ^{
         TyphoonComponentFactory *factory = [TyphoonBlockComponentFactory factoryWithAssembly:assembly];
         TyphoonPatcher *patcher = [[TyphoonPatcher alloc] init];
 
-        [patcher patchDefinitionWithSelector:@selector(reelTimeClientDelegate) withObject:^id{
-            delegate = mock([RTClientDelegate class]);
+        [patcher patchDefinitionWithSelector:@selector(authenticationAwareHTTPClientDelegate) withObject:^id{
+            delegate = mock([RTAuthenticationAwareHTTPClientDelegate class]);
             return delegate;
         }];
         

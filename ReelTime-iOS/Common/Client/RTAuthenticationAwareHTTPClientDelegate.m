@@ -1,18 +1,18 @@
-#import "RTClientDelegate.h"
+#import "RTAuthenticationAwareHTTPClientDelegate.h"
 
 #import "RTCurrentUserStore.h"
 #import "RTOAuth2TokenStore.h"
 
 #import "RTOAuth2Token.h"
 
-@interface RTClientDelegate ()
+@interface RTAuthenticationAwareHTTPClientDelegate ()
 
 @property RTCurrentUserStore *currentUserStore;
 @property RTOAuth2TokenStore *tokenStore;
 
 @end
 
-@implementation RTClientDelegate
+@implementation RTAuthenticationAwareHTTPClientDelegate
 
 - (instancetype)initWithCurrentUserStore:(RTCurrentUserStore *)currentUserStore
                               tokenStore:(RTOAuth2TokenStore *)tokenStore {

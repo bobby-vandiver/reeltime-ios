@@ -3,10 +3,10 @@
 @class RTSecureStoreAssembly;
 
 @class RTClient;
-@class RTClientDelegate;
+@class RTAuthenticationAwareHTTPClient;
+@class RTAuthenticationAwareHTTPClientDelegate;
 @class RTEndpointPathFormatter;
 @class RTServerErrorsConverter;
-@class RTAuthenticationAwareHTTPClient;
 
 @interface RTClientAssembly : TyphoonAssembly
 
@@ -14,9 +14,9 @@
 
 - (RTClient *)reelTimeClient;
 
-- (RTClientDelegate *)reelTimeClientDelegate;
-
 - (RTAuthenticationAwareHTTPClient *)authenticationAwareHTTPClient;
+
+- (RTAuthenticationAwareHTTPClientDelegate *)authenticationAwareHTTPClientDelegate;
 
 - (RTEndpointPathFormatter *)endpointPathFormatter;
 
