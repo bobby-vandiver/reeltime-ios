@@ -16,7 +16,6 @@
 
 @interface RTClient : NSObject
 
-
 - (instancetype)initWithHttpClient:(RTAuthenticationAwareHTTPClient *)httpClient
                      pathFormatter:(RTEndpointPathFormatter *)pathFormatter;
 
