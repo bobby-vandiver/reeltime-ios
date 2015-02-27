@@ -17,11 +17,10 @@
 
 - (RTClient *)reelTimeClient {
     return [TyphoonDefinition withClass:[RTClient class] configuration:^(TyphoonDefinition *definition) {
-        [definition useInitializer:@selector(initWithDelegate:pathFormatter:httpClient:)
+        [definition useInitializer:@selector(initWithHttpClient:pathFormatter:)
                         parameters:^(TyphoonMethod *initializer) {
-                            [initializer injectParameterWith:[self authenticationAwareHTTPClientDelegate]];
-                            [initializer injectParameterWith:[self endpointPathFormatter]];
                             [initializer injectParameterWith:[self authenticationAwareHTTPClient]];
+                            [initializer injectParameterWith:[self endpointPathFormatter]];
         }];
     }];
 }
