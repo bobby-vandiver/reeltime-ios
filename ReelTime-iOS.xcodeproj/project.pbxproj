@@ -87,6 +87,7 @@
 		7169F1761A5F6CDD00E161C4 /* RTLoginDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7169F1751A5F6CDD00E161C4 /* RTLoginDataManagerSpec.m */; };
 		7170C8691A59926E00C460BB /* RTErrorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7170C8681A59926E00C460BB /* RTErrorFactory.m */; };
 		7170C86D1A59A98600C460BB /* RTKeyChainWrapperSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7170C86C1A59A98600C460BB /* RTKeyChainWrapperSpec.m */; };
+		7170F6161AA017A1003381E4 /* bad-request-with-errors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7170F6151AA017A1003381E4 /* bad-request-with-errors.txt */; };
 		7172157E1A8657540002ECC7 /* RTLoginAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 7172157D1A8657540002ECC7 /* RTLoginAssembly.m */; };
 		717215831A86575D0002ECC7 /* RTLoginInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 717215811A86575D0002ECC7 /* RTLoginInteractor.m */; };
 		717215861A8657660002ECC7 /* RTLoginWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 717215851A8657660002ECC7 /* RTLoginWireframe.m */; };
@@ -281,6 +282,7 @@
 		7170C8671A59926E00C460BB /* RTErrorFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTErrorFactory.h; sourceTree = "<group>"; };
 		7170C8681A59926E00C460BB /* RTErrorFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTErrorFactory.m; sourceTree = "<group>"; };
 		7170C86C1A59A98600C460BB /* RTKeyChainWrapperSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTKeyChainWrapperSpec.m; sourceTree = "<group>"; };
+		7170F6151AA017A1003381E4 /* bad-request-with-errors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "bad-request-with-errors.txt"; sourceTree = "<group>"; };
 		7172157C1A8657540002ECC7 /* RTLoginAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLoginAssembly.h; sourceTree = "<group>"; };
 		7172157D1A8657540002ECC7 /* RTLoginAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLoginAssembly.m; sourceTree = "<group>"; };
 		7172157F1A86575D0002ECC7 /* RTLoginError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLoginError.h; sourceTree = "<group>"; };
@@ -539,6 +541,7 @@
 		712EA2C71A9C286C00AFCA15 /* Error */ = {
 			isa = PBXGroup;
 			children = (
+				7170F6151AA017A1003381E4 /* bad-request-with-errors.txt */,
 				712EA2C81A9C289E00AFCA15 /* server-internal-error.txt */,
 			);
 			path = Error;
@@ -1255,6 +1258,7 @@
 				715555A31A9EC05E0091F432 /* client-registration-missing-params.txt in Resources */,
 				717215CD1A865C8E0002ECC7 /* account-registration-missing-all-params.txt in Resources */,
 				717215D51A865C8E0002ECC7 /* token-successful.txt in Resources */,
+				7170F6161AA017A1003381E4 /* bad-request-with-errors.txt in Resources */,
 				717215D21A865C8E0002ECC7 /* newsfeed-one-activity.txt in Resources */,
 				715FAD571A92CA4400368119 /* follow-user-successful.txt in Resources */,
 				717215CF1A865C8E0002ECC7 /* account-registration-temporarily-unavailable.txt in Resources */,
