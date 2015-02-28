@@ -402,6 +402,36 @@ describe(@"ReelTime Client", ^{
             });
         });
         
+        describe(@"send account confirmation email", ^{
+            __block NSRegularExpression *accountConfirmationEmailUrlRegex;
+            
+            beforeEach(^{
+                accountConfirmationEmailUrlRegex = [helper createUrlRegexForEndpoint:API_CONFIRM_ACCOUNT_SEND_EMAIL];
+            });
+            
+            it(@"is successful", ^{
+                [helper stubAuthenticatedRequestWithMethod:POST
+                                                  urlRegex:accountConfirmationEmailUrlRegex
+                                       rawResponseFilename:SUCCESSFUL_OK_WITH_NO_BODY_FILENAME];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client sendAccountConfirmationEmailWithSuccess:shouldExecuteSuccessCallback(done)
+                                                            failure:shouldNotExecuteFailureCallback(done)];
+                });
+            });
+            
+            it(@"fails due to service being unavailable", ^{
+                [helper stubAuthenticatedRequestWithMethod:POST
+                                                  urlRegex:accountConfirmationEmailUrlRegex
+                                       rawResponseFilename:SERVICE_UNAVAILABLE_WITH_ERRORS_FILENAME];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client sendAccountConfirmationEmailWithSuccess:shouldNotExecuteSuccessCallback(done)
+                                                            failure:shouldExecuteFailureCallbackWithMessage(SERVICE_UNAVAILABLE_ERROR_MESSAGE, done)];
+                });
+            });
+        });
+        
         describe(@"newsfeed", ^{
             __block NSRegularExpression *newsfeedUrlRegex;
             

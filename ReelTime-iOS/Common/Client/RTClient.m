@@ -115,6 +115,14 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
                                       failure:failure];
 }
 
+- (void)sendAccountConfirmationEmailWithSuccess:(void (^)())success
+                                        failure:(void (^)())failure {
+    [self.httpClient authenticatedPostForPath:API_CONFIRM_ACCOUNT_SEND_EMAIL
+                               withParameters:nil
+                                      success:success
+                                      failure:failure];
+}
+
 - (void)newsfeedPage:(NSUInteger)page
              success:(void (^)(RTNewsfeed *))success
              failure:(void (^)())failure {

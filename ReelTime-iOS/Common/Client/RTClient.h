@@ -44,6 +44,9 @@
                        success:(void (^)())success
                        failure:(void (^)())failure;
 
+- (void)sendAccountConfirmationEmailWithSuccess:(void (^)())success
+                                        failure:(void (^)())failure;
+
 - (void)newsfeedPage:(NSUInteger)page
              success:(void (^)(RTNewsfeed *newsfeed))success
              failure:(void (^)())failure;

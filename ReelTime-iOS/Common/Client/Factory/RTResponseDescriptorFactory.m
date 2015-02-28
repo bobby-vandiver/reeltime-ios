@@ -88,6 +88,20 @@
                                         statusCode:403];
 }
 
++ (RKResponseDescriptor *)accountConfirmationSendEmailDescriptor {
+    return [self noResponseBodyDescriptorForMethod:RKRequestMethodPOST
+                                              path:API_CONFIRM_ACCOUNT_SEND_EMAIL
+                                        statusCode:200];
+}
+
++ (RKResponseDescriptor *)accountConfirmationSendEmailErrorDescriptor {
+    NSIndexSet *statusCodes = [NSIndexSet indexSetWithIndex:503];
+    
+    return [self serverErrorsDescriptorForMethod:RKRequestMethodPOST
+                                            path:API_CONFIRM_ACCOUNT_SEND_EMAIL
+                                     statusCodes:statusCodes];
+}
+
 + (RKResponseDescriptor *)newsfeedDescriptor {
     NSIndexSet *statusCodes = [NSIndexSet indexSetWithIndex:200];
     

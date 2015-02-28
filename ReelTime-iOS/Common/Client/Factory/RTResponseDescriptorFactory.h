@@ -19,6 +19,9 @@
 + (RKResponseDescriptor *)accountConfirmationDescriptor;
 + (RKResponseDescriptor *)accountConfirmationErrorDescriptor;
 
++ (RKResponseDescriptor *)accountConfirmationSendEmailDescriptor;
++ (RKResponseDescriptor *)accountConfirmationSendEmailErrorDescriptor;
+
 + (RKResponseDescriptor *)newsfeedDescriptor;
 
 @end

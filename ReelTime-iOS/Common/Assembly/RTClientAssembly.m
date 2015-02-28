@@ -67,6 +67,8 @@
                                           [RTResponseDescriptorFactory clientRegistrationErrorDescriptor],
                                           [RTResponseDescriptorFactory accountConfirmationDescriptor],
                                           [RTResponseDescriptorFactory accountConfirmationErrorDescriptor],
+                                          [RTResponseDescriptorFactory accountConfirmationSendEmailDescriptor],
+                                          [RTResponseDescriptorFactory accountConfirmationSendEmailErrorDescriptor],
                                           [RTResponseDescriptorFactory newsfeedDescriptor]
                                           ]];
         }];
