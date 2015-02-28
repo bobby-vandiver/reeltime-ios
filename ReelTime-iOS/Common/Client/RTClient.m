@@ -71,7 +71,7 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
 }
 
 - (void)removeAccountWithSuccess:(void (^)())success
-                         failure:(void (^)(RTServerErrors *))failure {
+                         failure:(void (^)())failure {
     [self.httpClient authenticatedDeleteForPath:API_REMOVE_ACCOUNT
                                  withParameters:nil
                                         success:success
@@ -95,7 +95,7 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
 
 - (void)removeClientWithClientId:(NSString *)clientId
                          success:(void (^)())success
-                         failure:(void (^)(RTServerErrors *))failure {
+                         failure:(void (^)())failure {
     NSString *path = [self.pathFormatter formatPath:API_REMOVE_CLIENT
                                      withParameters:@{@":client_id": clientId}];
 
@@ -107,7 +107,7 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
 
 - (void)confirmAccountWithCode:(NSString *)code
                        success:(void (^)())success
-                       failure:(void (^)(RTServerErrors *))failure {
+                       failure:(void (^)())failure {
     NSDictionary *parameters = @{@"code": code};
     [self.httpClient authenticatedPostForPath:API_CONFIRM_ACCOUNT
                                withParameters:parameters
@@ -117,7 +117,7 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
 
 - (void)newsfeedPage:(NSUInteger)page
              success:(void (^)(RTNewsfeed *))success
-             failure:(void (^)(RTServerErrors *))failure {
+             failure:(void (^)())failure {
     NSDictionary *parameters = @{@"page":@(page)};
     [self.httpClient authenticatedGetForPath:API_NEWSFEED
                               withParameters:parameters
@@ -127,7 +127,7 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
 
 - (void)joinAudienceForReelId:(NSUInteger)reelId
                       success:(void (^)())success
-                      failure:(void (^)(RTServerErrors *))failure {
+                      failure:(void (^)())failure {
     NSString *path = [self.pathFormatter formatPath:API_ADD_AUDIENCE_MEMBER withParameters:@{@":reel_id": @(reelId)}];
     [self.httpClient authenticatedPostForPath:path
                                withParameters:nil
@@ -137,7 +137,7 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
 
 - (void)followUserForUsername:(NSString *)username
                       success:(void (^)())success
-                      failure:(void (^)(RTServerErrors *))failure {
+                      failure:(void (^)())failure {
     NSString *path = [self.pathFormatter formatPath:API_FOLLOW_USER withParameters:@{@":username": username}];
     [self.httpClient authenticatedPostForPath:path
                                withParameters:nil

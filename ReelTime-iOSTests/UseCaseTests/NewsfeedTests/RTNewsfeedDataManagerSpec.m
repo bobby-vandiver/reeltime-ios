@@ -59,8 +59,8 @@ describe(@"newsfeed data manager", ^{
             
             expect(callbackExecuted).to.beFalsy();
             
-            void (^failureHandler)(RTServerErrors *) = [failureCaptor value];
-            failureHandler(nil);
+            void (^failureHandler)() = [failureCaptor value];
+            failureHandler();
             
             expect(callbackExecuted).to.beTruthy();
             

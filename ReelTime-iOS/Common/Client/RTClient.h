@@ -29,7 +29,7 @@
                 failure:(void (^)(RTServerErrors *errors))failure;
 
 - (void)removeAccountWithSuccess:(void (^)())success
-                         failure:(void (^)(RTServerErrors *errors))failure;
+                         failure:(void (^)())failure;
 
 - (void)registerClientWithClientName:(NSString *)clientName
                      userCredentials:(RTUserCredentials *)userCredentials
@@ -38,22 +38,22 @@
 
 - (void)removeClientWithClientId:(NSString *)clientId
                          success:(void (^)())success
-                         failure:(void (^)(RTServerErrors *errors))failure;
+                         failure:(void (^)())failure;
 
 - (void)confirmAccountWithCode:(NSString *)code
                        success:(void (^)())success
-                       failure:(void (^)(RTServerErrors *errors))failure;
+                       failure:(void (^)())failure;
 
 - (void)newsfeedPage:(NSUInteger)page
              success:(void (^)(RTNewsfeed *newsfeed))success
-             failure:(void (^)(RTServerErrors *errors))failure;
+             failure:(void (^)())failure;
 
 - (void)joinAudienceForReelId:(NSUInteger)reelId
                       success:(void (^)())success
-                      failure:(void (^)(RTServerErrors *errors))failure;
+                      failure:(void (^)())failure;
 
 - (void)followUserForUsername:(NSString *)username
                       success:(void (^)())success
-                      failure:(void (^)(RTServerErrors *errors))failure;
+                      failure:(void (^)())failure;
 
 @end

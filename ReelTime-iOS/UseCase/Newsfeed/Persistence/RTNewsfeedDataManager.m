@@ -28,7 +28,7 @@
         callback(newsfeed);
     };
     
-    id failureCallback = ^(RTServerErrors *serverErrors) {
+    id failureCallback = ^{
         // TODO: Log errors
         RTNewsfeed *newsfeed = [[RTNewsfeed alloc] init];
         newsfeed.activities = [NSArray array];
