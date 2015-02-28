@@ -6,6 +6,7 @@
 #import "RTClientAssembly.h"
 
 #import "RTAuthenticationAwareHTTPClient.h"
+#import "RTAuthenticationAwareHTTPClientSpy.h"
 
 #import "RTClientCredentials.h"
 #import "RTUserCredentials.h"
@@ -51,6 +52,7 @@ describe(@"ReelTime Client", ^{
     __block RTClient *client;
     __block RTAuthenticationAwareHTTPClientDelegate *delegate;
     
+    __block RTAuthenticationAwareHTTPClientSpy *httpClient;
     __block RTClientSpecHelper *helper;
 
     __block BOOL callbackExecuted;
@@ -80,9 +82,13 @@ describe(@"ReelTime Client", ^{
         TyphoonComponentFactory *factory = [TyphoonBlockComponentFactory factoryWithAssembly:assembly];
         TyphoonPatcher *patcher = [[TyphoonPatcher alloc] init];
 
-        [patcher patchDefinitionWithSelector:@selector(authenticationAwareHTTPClientDelegate) withObject:^id{
+        [patcher patchDefinitionWithSelector:@selector(authenticationAwareHTTPClient) withObject:^id{
+            RKObjectManager *objectManager = [(RTClientAssembly *)factory restKitObjectManager];
+            
             delegate = mock([RTAuthenticationAwareHTTPClientDelegate class]);
-            return delegate;
+            httpClient = [[RTAuthenticationAwareHTTPClientSpy alloc] initWithDelegate:delegate
+                                                                 restKitObjectManager:objectManager];
+            return httpClient;
         }];
         
         [factory attachPostProcessor:patcher];
@@ -130,8 +136,8 @@ describe(@"ReelTime Client", ^{
             expect(obj).to.beKindOf([RTServerErrors class]);
             
             RTServerErrors *serverErrors = (RTServerErrors *)obj;
-            expect(serverErrors.errors.count).to.equal(1);
-            expect([serverErrors.errors objectAtIndex:0]).to.equal(expectedError);
+            expect(serverErrors.errors).to.haveCountOf(1);
+            expect(serverErrors.errors).to.contain(expectedError);
             
             done();
         };
@@ -159,6 +165,16 @@ describe(@"ReelTime Client", ^{
 
             clientCredentials = [[RTClientCredentials alloc] initWithClientId:clientId
                                                                  clientSecret:clientSecret];
+        });
+        
+        afterEach(^{
+            expect(httpClient.lastParameters.allKeys).to.haveCountOf(6);
+            expect(httpClient.lastParameters[@"grant_type"]).to.equal(@"password");
+            expect(httpClient.lastParameters[@"username"]).to.equal(username);
+            expect(httpClient.lastParameters[@"password"]).to.equal(password);
+            expect(httpClient.lastParameters[@"client_id"]).to.equal(clientId);
+            expect(httpClient.lastParameters[@"client_secret"]).to.equal(clientSecret);
+            expect(httpClient.lastParameters[@"scope"]).to.equal(@"audiences-read audiences-write reels-read reels-write users-read users-write videos-read videos-write");
         });
         
         it(@"fails due to bad client credentials", ^{
@@ -234,6 +250,15 @@ describe(@"ReelTime Client", ^{
                                                                 clientName:clientName];
         });
         
+        afterEach(^{
+            expect(httpClient.lastParameters.allKeys).to.haveCountOf(5);
+            expect(httpClient.lastParameters[@"username"]).to.equal(username);
+            expect(httpClient.lastParameters[@"password"]).to.equal(password);
+            expect(httpClient.lastParameters[@"email"]).to.equal(email);
+            expect(httpClient.lastParameters[@"display_name"]).to.equal(displayName);
+            expect(httpClient.lastParameters[@"client_name"]).to.equal(clientName);
+        });
+        
         it(@"is successful and receives client credentials", ^{
             [helper stubUnauthenticatedRequestWithMethod:POST
                                                 urlRegex:accountRegistrationUrlRegex
@@ -276,6 +301,13 @@ describe(@"ReelTime Client", ^{
         
         beforeEach(^{
             clientRegistrationUrlRegex = [helper createUrlRegexForEndpoint:API_REGISTER_CLIENT];
+        });
+        
+        afterEach(^{
+            expect(httpClient.lastParameters.allKeys).to.haveCountOf(3);
+            expect(httpClient.lastParameters[@"username"]).to.equal(username);
+            expect(httpClient.lastParameters[@"password"]).to.equal(password);
+            expect(httpClient.lastParameters[@"client_name"]).to.equal(clientName);
         });
         
         it(@"is successful", ^{
@@ -367,6 +399,9 @@ describe(@"ReelTime Client", ^{
                                              success:shouldExecuteSuccessCallback(done)
                                              failure:shouldNotExecuteFailureCallback(done)];
                 });
+                
+                expect(httpClient.lastPath).to.endWith(@"clientUUID");
+                expect(httpClient.lastParameters).to.beNil();
             });
         });
         
@@ -377,13 +412,18 @@ describe(@"ReelTime Client", ^{
                 accountConfirmationUrlRegex = [helper createUrlRegexForEndpoint:API_CONFIRM_ACCOUNT];
             });
             
+            afterEach(^{
+                expect(httpClient.lastParameters.allKeys).to.haveCountOf(1);
+                expect(httpClient.lastParameters[@"code"]).to.equal(@"confirmation");
+            });
+            
             it(@"is successful", ^{
                 [helper stubAuthenticatedRequestWithMethod:POST
                                                   urlRegex:accountConfirmationUrlRegex
                                        rawResponseFilename:SUCCESSFUL_OK_WITH_NO_BODY_FILENAME];
                 
                 waitUntil(^(DoneCallback done) {
-                    [client confirmAccountWithCode:@"code"
+                    [client confirmAccountWithCode:@"confirmation"
                                            success:shouldExecuteSuccessCallback(done)
                                            failure:shouldNotExecuteFailureCallback(done)];
                 });
@@ -395,7 +435,7 @@ describe(@"ReelTime Client", ^{
                                        rawResponseFilename:FORBIDDEN_WITH_NO_BODY_FILENAME];
                 
                 waitUntil(^(DoneCallback done) {
-                    [client confirmAccountWithCode:@"code"
+                    [client confirmAccountWithCode:@"confirmation"
                                            success:shouldNotExecuteSuccessCallback(done)
                                            failure:shouldExecuteFailureCallbackWithoutMessage(done)];
                 });
@@ -434,9 +474,15 @@ describe(@"ReelTime Client", ^{
         
         describe(@"newsfeed", ^{
             __block NSRegularExpression *newsfeedUrlRegex;
+            __block NSUInteger pageNumber = 13;
             
             beforeEach(^{
                 newsfeedUrlRegex = [helper createUrlRegexForEndpoint:API_NEWSFEED];
+            });
+            
+            afterEach(^{
+                expect(httpClient.lastParameters.allKeys).to.haveCountOf(1);
+                expect(httpClient.lastParameters[@"page"]).to.equal(pageNumber);
             });
             
             it(@"is successful and has no activities", ^{
@@ -445,7 +491,7 @@ describe(@"ReelTime Client", ^{
                                        rawResponseFilename:@"newsfeed-no-activities"];
                 
                 waitUntil(^(DoneCallback done) {
-                    [client newsfeedPage:1
+                    [client newsfeedPage:pageNumber
                                  success:^(RTNewsfeed *newsfeed) {
                                      expect(newsfeed.activities.count).to.equal(0);
                                      done();
@@ -460,7 +506,7 @@ describe(@"ReelTime Client", ^{
                                        rawResponseFilename:@"newsfeed-one-activity"];
                 
                 waitUntil(^(DoneCallback done) {
-                    [client newsfeedPage:1
+                    [client newsfeedPage:pageNumber
                                  success:^(RTNewsfeed *newsfeed) {
                                      expect(newsfeed.activities.count).to.equal(1);
                                      
@@ -485,7 +531,7 @@ describe(@"ReelTime Client", ^{
                                        rawResponseFilename:@"newsfeed-multiple-activities"];
                 
                 waitUntil(^(DoneCallback done) {
-                    [client newsfeedPage:1
+                    [client newsfeedPage:pageNumber
                                  success:^(RTNewsfeed *newsfeed) {
                                      expect(newsfeed.activities.count).to.equal(3);
                                      
@@ -530,7 +576,7 @@ describe(@"ReelTime Client", ^{
             __block NSRegularExpression *joinAudienceUrlRegex;
             
             beforeEach(^{
-                NSDictionary *pathParams = @{ @":reel_id": @"1" };
+                NSDictionary *pathParams = @{ @":reel_id": @"42" };
                 joinAudienceUrlRegex = [helper createUrlRegexForEndpoint:API_ADD_AUDIENCE_MEMBER
                                                           withParameters:pathParams];
             });
@@ -541,12 +587,13 @@ describe(@"ReelTime Client", ^{
                                        rawResponseFilename:SUCCESSFUL_CREATED_WITH_NO_BODY_FILENAME];
                 
                 waitUntil(^(DoneCallback done) {
-                    [client joinAudienceForReelId:1
+                    [client joinAudienceForReelId:42
                                           success:shouldExecuteSuccessCallback(done)
                                           failure:shouldNotExecuteFailureCallback(done)];
                 });
                 
                 expect(callbackExecuted).to.beTruthy();
+                expect(httpClient.lastPath).to.contain(@"42");
             });
         });
         
@@ -571,6 +618,7 @@ describe(@"ReelTime Client", ^{
                 });
                 
                 expect(callbackExecuted).to.beTruthy();
+                expect(httpClient.lastPath).to.contain(username);
             });
         });
     });

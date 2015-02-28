@@ -83,9 +83,9 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
                              success:(void (^)(RTClientCredentials *))success
                              failure:(void (^)(RTServerErrors *))failure {
     NSDictionary *parameters = @{
-                                 @"username":   userCredentials.username,
-                                 @"password":   userCredentials.password,
-                                 @"client_id":  clientName
+                                 @"username":       userCredentials.username,
+                                 @"password":       userCredentials.password,
+                                 @"client_name":    clientName
                                  };
     [self.httpClient unauthenticatedPostForPath:API_REGISTER_CLIENT
                                  withParameters:parameters

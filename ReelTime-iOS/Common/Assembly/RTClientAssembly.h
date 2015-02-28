@@ -5,6 +5,7 @@
 @class RTClient;
 @class RTAuthenticationAwareHTTPClient;
 @class RTAuthenticationAwareHTTPClientDelegate;
+@class RKObjectManager;
 @class RTEndpointPathFormatter;
 @class RTServerErrorsConverter;
 
@@ -17,6 +18,8 @@
 - (RTAuthenticationAwareHTTPClient *)authenticationAwareHTTPClient;
 
 - (RTAuthenticationAwareHTTPClientDelegate *)authenticationAwareHTTPClientDelegate;
+
+- (RKObjectManager *)restKitObjectManager;
 
 - (RTEndpointPathFormatter *)endpointPathFormatter;
 
