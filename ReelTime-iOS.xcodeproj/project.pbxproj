@@ -30,6 +30,7 @@
 		711FF4BD1AA20CEC00E11BDE /* successful-ok-with-no-body.txt in Resources */ = {isa = PBXBuildFile; fileRef = 711FF4B91AA20CEC00E11BDE /* successful-ok-with-no-body.txt */; };
 		711FF4BF1AA20D2600E11BDE /* successful-created-with-no-body.txt in Resources */ = {isa = PBXBuildFile; fileRef = 711FF4BE1AA20D2600E11BDE /* successful-created-with-no-body.txt */; };
 		711FF4C11AA20FAA00E11BDE /* successful-created-client-credentials.txt in Resources */ = {isa = PBXBuildFile; fileRef = 711FF4C01AA20FAA00E11BDE /* successful-created-client-credentials.txt */; };
+		711FF4C31AA2191A00E11BDE /* forbidden-with-no-body.txt in Resources */ = {isa = PBXBuildFile; fileRef = 711FF4C21AA2191A00E11BDE /* forbidden-with-no-body.txt */; };
 		71201F831A9689C6003F2831 /* RTActivityCell+ConfigureForRTActivityMessageSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71201F821A9689C6003F2831 /* RTActivityCell+ConfigureForRTActivityMessageSpec.m */; };
 		71201F8C1A96B7CD003F2831 /* RTNewsfeedAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 71201F8B1A96B7CD003F2831 /* RTNewsfeedAssembly.m */; };
 		712BE2FC1A75D74300478277 /* RTClientCredentialsStoreSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 712BE2FB1A75D74300478277 /* RTClientCredentialsStoreSpec.m */; };
@@ -187,6 +188,7 @@
 		711FF4B91AA20CEC00E11BDE /* successful-ok-with-no-body.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "successful-ok-with-no-body.txt"; sourceTree = "<group>"; };
 		711FF4BE1AA20D2600E11BDE /* successful-created-with-no-body.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "successful-created-with-no-body.txt"; sourceTree = "<group>"; };
 		711FF4C01AA20FAA00E11BDE /* successful-created-client-credentials.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "successful-created-client-credentials.txt"; sourceTree = "<group>"; };
+		711FF4C21AA2191A00E11BDE /* forbidden-with-no-body.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "forbidden-with-no-body.txt"; sourceTree = "<group>"; };
 		71201F821A9689C6003F2831 /* RTActivityCell+ConfigureForRTActivityMessageSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RTActivityCell+ConfigureForRTActivityMessageSpec.m"; sourceTree = "<group>"; };
 		71201F8A1A96B7CD003F2831 /* RTNewsfeedAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTNewsfeedAssembly.h; sourceTree = "<group>"; };
 		71201F8B1A96B7CD003F2831 /* RTNewsfeedAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTNewsfeedAssembly.m; sourceTree = "<group>"; };
@@ -515,6 +517,7 @@
 			isa = PBXGroup;
 			children = (
 				711FF4B61AA20CEC00E11BDE /* bad-request-with-errors.txt */,
+				711FF4C21AA2191A00E11BDE /* forbidden-with-no-body.txt */,
 				711FF4B71AA20CEC00E11BDE /* server-internal-error.txt */,
 				711FF4B81AA20CEC00E11BDE /* service-unavailable-with-errors.txt */,
 				711FF4C01AA20FAA00E11BDE /* successful-created-client-credentials.txt */,
@@ -1206,6 +1209,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				711FF4C11AA20FAA00E11BDE /* successful-created-client-credentials.txt in Resources */,
+				711FF4C31AA2191A00E11BDE /* forbidden-with-no-body.txt in Resources */,
 				717215D41A865C8E0002ECC7 /* token-bad-user-credentials.txt in Resources */,
 				711FF4BC1AA20CEC00E11BDE /* service-unavailable-with-errors.txt in Resources */,
 				717215D01A865C8E0002ECC7 /* newsfeed-multiple-activities.txt in Resources */,

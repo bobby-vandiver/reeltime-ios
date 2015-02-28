@@ -105,6 +105,16 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
                                         failure:failure];
 }
 
+- (void)confirmAccountWithCode:(NSString *)code
+                       success:(void (^)())success
+                       failure:(void (^)(RTServerErrors *))failure {
+    NSDictionary *parameters = @{@"code": code};
+    [self.httpClient authenticatedPostForPath:API_CONFIRM_ACCOUNT
+                               withParameters:parameters
+                                      success:success
+                                      failure:failure];
+}
+
 - (void)newsfeedPage:(NSUInteger)page
              success:(void (^)(RTNewsfeed *))success
              failure:(void (^)(RTServerErrors *))failure {

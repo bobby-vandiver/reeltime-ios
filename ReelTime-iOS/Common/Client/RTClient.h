@@ -38,7 +38,11 @@
 
 - (void)removeClientWithClientId:(NSString *)clientId
                          success:(void (^)())success
-                        failure:(void (^)(RTServerErrors *errors))failure;
+                         failure:(void (^)(RTServerErrors *errors))failure;
+
+- (void)confirmAccountWithCode:(NSString *)code
+                       success:(void (^)())success
+                       failure:(void (^)(RTServerErrors *errors))failure;
 
 - (void)newsfeedPage:(NSUInteger)page
              success:(void (^)(RTNewsfeed *newsfeed))success

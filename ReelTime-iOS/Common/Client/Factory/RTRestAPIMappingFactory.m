@@ -147,4 +147,8 @@
     return mapping;
 }
 
++ (RKMapping *)emptyMapping {
+    return[RKObjectMapping mappingForClass:[NSNull class]];
+}
+
 @end

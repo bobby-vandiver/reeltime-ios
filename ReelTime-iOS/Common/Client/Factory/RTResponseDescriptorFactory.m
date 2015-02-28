@@ -64,6 +64,24 @@
                                      statusCodes:statusCodes];
 }
 
++ (RKResponseDescriptor *)accountConfirmationDescriptor {
+    NSIndexSet *statusCodes = [NSIndexSet indexSetWithIndex:200];
+    
+    return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory emptyMapping]
+                                                        method:RKRequestMethodPOST
+                                                   pathPattern:API_CONFIRM_ACCOUNT
+                                                       keyPath:nil
+                                                   statusCodes:statusCodes];
+}
+
++ (RKResponseDescriptor *)accountConfirmationErrorDescriptor {
+    NSIndexSet *statusCodes = [NSIndexSet indexSetWithIndex:403];
+    
+    return [self serverErrorsDescriptorForMethod:RKRequestMethodPOST
+                                            path:API_CONFIRM_ACCOUNT
+                                     statusCodes:statusCodes];
+}
+
 + (RKResponseDescriptor *)newsfeedDescriptor {
     NSIndexSet *statusCodes = [NSIndexSet indexSetWithIndex:200];
     

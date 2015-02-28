@@ -20,4 +20,6 @@
 
 + (RKMapping *)newsfeedMapping;
 
++ (RKMapping *)emptyMapping;
+
 @end

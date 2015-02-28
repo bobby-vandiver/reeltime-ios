@@ -37,6 +37,7 @@ static NSString *const BAD_REQUEST_ERROR_MESSAGE = @"Bad Request";
 static NSString *const SERVICE_UNAVAILABLE_ERROR_MESSAGE = @"Service Unavailable";
 
 static NSString *const BAD_REQUEST_WITH_ERRORS_FILENAME = @"bad-request-with-errors";
+static NSString *const FORBIDDEN_WITH_NO_BODY_FILENAME = @"forbidden-with-no-body";
 
 static NSString *const SERVER_INTERNAL_ERROR_FILENAME __attribute__((unused)) = @"server-internal-error";
 static NSString *const SERVICE_UNAVAILABLE_WITH_ERRORS_FILENAME = @"service-unavailable-with-errors";
@@ -114,6 +115,13 @@ describe(@"ReelTime Client", ^{
         return ^(id obj) {
             expect(obj).to.beKindOf([RTServerErrors class]);
             shouldNotExecute(done);
+        };
+    };
+    
+    FailureCallback (^shouldExecuteFailureCallbackWithoutMessage)(DoneCallback) = ^FailureCallback(DoneCallback done) {
+        return ^(id obj) {
+            expect(obj).to.beNil();
+            done();
         };
     };
     
@@ -358,6 +366,38 @@ describe(@"ReelTime Client", ^{
                     [client removeClientWithClientId:@"clientUUID"
                                              success:shouldExecuteSuccessCallback(done)
                                              failure:shouldNotExecuteFailureCallback(done)];
+                });
+            });
+        });
+        
+        describe(@"account confirmation", ^{
+            __block NSRegularExpression *accountConfirmationUrlRegex;
+            
+            beforeEach(^{
+                accountConfirmationUrlRegex = [helper createUrlRegexForEndpoint:API_CONFIRM_ACCOUNT];
+            });
+            
+            it(@"is successful", ^{
+                [helper stubAuthenticatedRequestWithMethod:POST
+                                                  urlRegex:accountConfirmationUrlRegex
+                                       rawResponseFilename:SUCCESSFUL_OK_WITH_NO_BODY_FILENAME];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client confirmAccountWithCode:@"code"
+                                           success:shouldExecuteSuccessCallback(done)
+                                           failure:shouldNotExecuteFailureCallback(done)];
+                });
+            });
+            
+            it(@"fails due to forbidden request", ^{
+                [helper stubAuthenticatedRequestWithMethod:POST
+                                                  urlRegex:accountConfirmationUrlRegex
+                                       rawResponseFilename:FORBIDDEN_WITH_NO_BODY_FILENAME];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client confirmAccountWithCode:@"code"
+                                           success:shouldNotExecuteSuccessCallback(done)
+                                           failure:shouldExecuteFailureCallbackWithoutMessage(done)];
                 });
             });
         });
