@@ -36,6 +36,15 @@ SpecBegin(RTClient)
 static NSString *const BAD_REQUEST_ERROR_MESSAGE = @"Bad Request";
 static NSString *const SERVICE_UNAVAILABLE_ERROR_MESSAGE = @"Service Unavailable";
 
+static NSString *const BAD_REQUEST_WITH_ERRORS_FILENAME = @"bad-request-with-errors";
+
+static NSString *const SERVER_INTERNAL_ERROR_FILENAME __attribute__((unused)) = @"server-internal-error";
+static NSString *const SERVICE_UNAVAILABLE_WITH_ERRORS_FILENAME = @"service-unavailable-with-errors";
+
+static NSString *const SUCCESSFUL_CREATED_CLIENT_CREDENTIALS_FILENAME = @"successful-created-client-credentials";
+static NSString *const SUCCESSFUL_CREATED_WITH_NO_BODY_FILENAME = @"successful-created-with-no-body";
+static NSString *const SUCCESSFUL_OK_WITH_NO_BODY_FILENAME = @"successful-ok-with-no-body";
+
 describe(@"ReelTime Client", ^{
     
     __block RTClient *client;
@@ -116,6 +125,18 @@ describe(@"ReelTime Client", ^{
             expect(serverErrors.errors.count).to.equal(1);
             expect([serverErrors.errors objectAtIndex:0]).to.equal(expectedError);
             
+            done();
+        };
+    };
+    
+    SuccessCallback (^shouldReceiveClientCredentialsInSuccessfulResponse)(DoneCallback) = ^SuccessCallback(DoneCallback done) {
+        return ^(id obj) {
+            expect(obj).to.beKindOf([RTClientCredentials class]);
+            
+            RTClientCredentials *clientCredentials = (RTClientCredentials *)obj;
+            expect(clientCredentials.clientId).to.equal(@"5bdee758-cf71-4cd5-9bd9-aded45ce9964");
+            expect(clientCredentials.clientSecret).to.equal(@"g70mC9ZbpKa6p6R1tJPVWTm55BWHnSkmCv27F=oSI6");
+
             done();
         };
     };
@@ -208,15 +229,11 @@ describe(@"ReelTime Client", ^{
         it(@"is successful and receives client credentials", ^{
             [helper stubUnauthenticatedRequestWithMethod:POST
                                                 urlRegex:accountRegistrationUrlRegex
-                                     rawResponseFilename:@"account-registration-successful"];
+                                     rawResponseFilename:SUCCESSFUL_CREATED_CLIENT_CREDENTIALS_FILENAME];
             
             waitUntil(^(DoneCallback done) {
                 [client registerAccount:registration
-                                success:^(RTClientCredentials *clientCredentials) {
-                                    expect(clientCredentials.clientId).to.equal(@"5bdee758-cf71-4cd5-9bd9-aded45ce9964");
-                                    expect(clientCredentials.clientSecret).to.equal(@"g70mC9ZbpKa6p6R1tJPVWTm55BWHnSkmCv27F=oSI6");
-                                    done();
-                                }
+                                success:shouldReceiveClientCredentialsInSuccessfulResponse(done)
                                 failure:shouldNotExecuteFailureCallback(done)];
             });
         });
@@ -224,40 +241,24 @@ describe(@"ReelTime Client", ^{
         it(@"fails with errors", ^{
             [helper stubUnauthenticatedRequestWithMethod:POST
                                                 urlRegex:accountRegistrationUrlRegex
-                                     rawResponseFilename:@"account-registration-missing-all-params"];
+                                     rawResponseFilename:BAD_REQUEST_WITH_ERRORS_FILENAME];
             
             waitUntil(^(DoneCallback done) {
                 [client registerAccount:registration
-                                success:^(RTClientCredentials *clientCredentials) {
-                                    shouldNotExecute(done);
-                                }
-                                failure:^(RTServerErrors *errors) {
-                                    expect(errors.errors.count).to.equal(5);
-                                    expect(errors.errors).to.contain(@"[email] is required");
-                                    expect(errors.errors).to.contain(@"[password] is required");
-                                    expect(errors.errors).to.contain(@"[username] is required");
-                                    expect(errors.errors).to.contain(@"[display_name] is required");
-                                    expect(errors.errors).to.contain(@"[client_name] is required");
-                                    done();
-                                }];
+                                success:shouldNotExecuteSuccessCallback(done)
+                                failure:shouldExecuteFailureCallbackWithMessage(BAD_REQUEST_ERROR_MESSAGE, done)];
             });
         });
         
         it(@"fails due to registration being unavailable", ^{
             [helper stubUnauthenticatedRequestWithMethod:POST
                                                 urlRegex:accountRegistrationUrlRegex
-                                     rawResponseFilename:@"account-registration-temporarily-unavailable"];
+                                     rawResponseFilename:SERVICE_UNAVAILABLE_WITH_ERRORS_FILENAME];
             
             waitUntil(^(DoneCallback done) {
                 [client registerAccount:registration
-                                success:^(RTClientCredentials *clientCredentials) {
-                                    shouldNotExecute(done);
-                                }
-                                failure:^(RTServerErrors *errors) {
-                                    expect(errors.errors.count).to.equal(1);
-                                    expect(errors.errors).to.contain(@"Unable to register. Please try again.");
-                                    done();
-                                }];
+                                success:shouldNotExecuteSuccessCallback(done)
+                                failure:shouldExecuteFailureCallbackWithMessage(SERVICE_UNAVAILABLE_ERROR_MESSAGE, done)];
             });
         });
     });
@@ -272,16 +273,12 @@ describe(@"ReelTime Client", ^{
         it(@"is successful", ^{
             [helper stubUnauthenticatedRequestWithMethod:POST
                                                 urlRegex:clientRegistrationUrlRegex
-                                     rawResponseFilename:@"client-registration-successful"];
+                                     rawResponseFilename:SUCCESSFUL_CREATED_CLIENT_CREDENTIALS_FILENAME];
             
             waitUntil(^(DoneCallback done) {
                 [client registerClientWithClientName:clientName
                                      userCredentials:userCredentials
-                                             success:^(RTClientCredentials *clientCredentials) {
-                                                 expect(clientCredentials.clientId).to.equal(@"5bdee758-cf71-4cd5-9bd9-aded45ce9964");
-                                                 expect(clientCredentials.clientSecret).to.equal(@"g70mC9ZbpKa6p6R1tJPVWTm55BWHnSkmCv27F=oSI6");
-                                                 done();
-                                             }
+                                             success:shouldReceiveClientCredentialsInSuccessfulResponse(done)
                                              failure:shouldNotExecuteFailureCallback(done)];
             });
         });
@@ -289,7 +286,7 @@ describe(@"ReelTime Client", ^{
         it(@"fails with bad request errors", ^{
             [helper stubUnauthenticatedRequestWithMethod:POST
                                                 urlRegex:clientRegistrationUrlRegex
-                                     rawResponseFilename:@"bad-request-with-errors"];
+                                     rawResponseFilename:BAD_REQUEST_WITH_ERRORS_FILENAME];
             
             waitUntil(^(DoneCallback done) {
                 [client registerClientWithClientName:clientName
@@ -302,7 +299,7 @@ describe(@"ReelTime Client", ^{
         it(@"fails due to registration service being unavailable", ^{
             [helper stubUnauthenticatedRequestWithMethod:POST
                                                 urlRegex:clientRegistrationUrlRegex
-                                     rawResponseFilename:@"service-unavailable-with-errors"];
+                                     rawResponseFilename:SERVICE_UNAVAILABLE_WITH_ERRORS_FILENAME];
             
             waitUntil(^(DoneCallback done) {
                 [client registerClientWithClientName:clientName
@@ -332,7 +329,7 @@ describe(@"ReelTime Client", ^{
             it(@"is successful", ^{
                 [helper stubAuthenticatedRequestWithMethod:DELETE
                                                   urlRegex:accountRemovalUrlRegex
-                                       rawResponseFilename:@"account-removal-successful"];
+                                       rawResponseFilename:SUCCESSFUL_OK_WITH_NO_BODY_FILENAME];
                 
                 waitUntil(^(DoneCallback done) {
                     [client removeAccountWithSuccess:shouldExecuteSuccessCallback(done)
@@ -449,7 +446,7 @@ describe(@"ReelTime Client", ^{
             it(@"is successful", ^{
                 [helper stubAuthenticatedRequestWithMethod:POST
                                                   urlRegex:joinAudienceUrlRegex
-                                       rawResponseFilename:@"audience-join-successful"];
+                                       rawResponseFilename:SUCCESSFUL_CREATED_WITH_NO_BODY_FILENAME];
                 
                 waitUntil(^(DoneCallback done) {
                     [client joinAudienceForReelId:1
@@ -473,7 +470,7 @@ describe(@"ReelTime Client", ^{
             it(@"is successful", ^{
                 [helper stubAuthenticatedRequestWithMethod:POST
                                                   urlRegex:followUserUrlRegex
-                                       rawResponseFilename:@"follow-user-successful"];
+                                       rawResponseFilename:SUCCESSFUL_CREATED_WITH_NO_BODY_FILENAME];
                 
                 waitUntil(^(DoneCallback done) {
                     [client followUserForUsername:username
