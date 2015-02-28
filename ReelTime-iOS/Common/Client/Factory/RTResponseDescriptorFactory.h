@@ -25,6 +25,9 @@
 + (RKResponseDescriptor *)changeDisplayNameDescriptor;
 + (RKResponseDescriptor *)changeDisplayNameErrorDescriptor;
 
++ (RKResponseDescriptor *)changePasswordDescriptor;
++ (RKResponseDescriptor *)changePasswordErrorDescriptor;
+
 + (RKResponseDescriptor *)newsfeedDescriptor;
 
 + (RKResponseDescriptor *)joinAudienceDescriptor;

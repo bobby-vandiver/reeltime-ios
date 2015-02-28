@@ -51,6 +51,10 @@
                   success:(void (^)())success
                   failure:(void (^)(RTServerErrors *errors))failure;
 
+- (void)changePassword:(NSString *)password
+               success:(void (^)())success
+               failure:(void (^)(RTServerErrors *errors))failure;
+
 - (void)newsfeedPage:(NSUInteger)page
              success:(void (^)(RTNewsfeed *newsfeed))success
              failure:(void (^)())failure;

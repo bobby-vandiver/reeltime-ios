@@ -509,6 +509,43 @@ describe(@"ReelTime Client", ^{
             });
         });
         
+        describe(@"change password", ^{
+            __block NSRegularExpression *changePasswordUrlRegex;
+            
+            beforeEach(^{
+                changePasswordUrlRegex = [helper createUrlRegexForEndpoint:API_CHANGE_PASSWORD];
+            });
+            
+            afterEach(^{
+                expect(httpClient.lastParameters.allKeys).to.haveCountOf(1);
+                expect(httpClient.lastParameters[@"new_password"]).to.equal(password);
+            });
+            
+            it(@"is successful", ^{
+                [helper stubAuthenticatedRequestWithMethod:POST
+                                                  urlRegex:changePasswordUrlRegex
+                                       rawResponseFilename:SUCCESSFUL_OK_WITH_NO_BODY_FILENAME];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client changePassword:password
+                                   success:shouldExecuteSuccessCallback(done)
+                                   failure:shouldNotExecuteFailureCallback(done)];
+                });
+            });
+            
+            it(@"fails due to bad request", ^{
+                [helper stubAuthenticatedRequestWithMethod:POST
+                                                  urlRegex:changePasswordUrlRegex
+                                       rawResponseFilename:BAD_REQUEST_WITH_ERRORS_FILENAME];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client changePassword:password
+                                   success:shouldNotExecuteSuccessCallback(done)
+                                   failure:shouldExecuteFailureCallbackWithMessage(BAD_REQUEST_ERROR_MESSAGE, done)];
+                });
+            });
+        });
+        
         describe(@"newsfeed", ^{
             __block NSRegularExpression *newsfeedUrlRegex;
             __block NSUInteger pageNumber = 13;

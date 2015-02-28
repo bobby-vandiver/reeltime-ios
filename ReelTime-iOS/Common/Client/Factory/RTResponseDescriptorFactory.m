@@ -114,6 +114,18 @@
                                       statusCode:400];
 }
 
++ (RKResponseDescriptor *)changePasswordDescriptor {
+    return [self noResponseBodyDescriptorForMethod:RKRequestMethodPOST
+                                              path:API_CHANGE_PASSWORD
+                                        statusCode:200];
+}
+
++ (RKResponseDescriptor *)changePasswordErrorDescriptor {
+    return [self serverErrorsDescriptorForMethod:RKRequestMethodPOST
+                                            path:API_CHANGE_PASSWORD
+                                      statusCode:400];
+}
+
 + (RKResponseDescriptor *)newsfeedDescriptor {
     NSIndexSet *statusCodes = [NSIndexSet indexSetWithIndex:200];
     

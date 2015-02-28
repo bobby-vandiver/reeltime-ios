@@ -133,6 +133,16 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
                                       failure:failure];
 }
 
+- (void)changePassword:(NSString *)password
+               success:(void (^)())success
+               failure:(void (^)(RTServerErrors *))failure {
+    NSDictionary *parameters = @{@"new_password": password};
+    [self.httpClient authenticatedPostForPath:API_CHANGE_PASSWORD
+                               withParameters:parameters
+                                      success:success
+                                      failure:failure];
+}
+
 - (void)newsfeedPage:(NSUInteger)page
              success:(void (^)(RTNewsfeed *))success
              failure:(void (^)())failure {
