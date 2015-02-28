@@ -9,8 +9,12 @@
 + (RKResponseDescriptor *)accountRegistrationDescriptor;
 + (RKResponseDescriptor *)accountRegistrationErrorDescriptor;
 
++ (RKResponseDescriptor *)accountRemovalDescriptor;
+
 + (RKResponseDescriptor *)clientRegistrationDescriptor;
 + (RKResponseDescriptor *)clientRegistrationErrorDescriptor;
+
++ (RKResponseDescriptor *)clientRemovalDescriptor;
 
 + (RKResponseDescriptor *)accountConfirmationDescriptor;
 + (RKResponseDescriptor *)accountConfirmationErrorDescriptor;

@@ -44,6 +44,12 @@
                                      statusCodes:statusCodes];
 }
 
++ (RKResponseDescriptor *)accountRemovalDescriptor {
+    return [self noResponseBodyDescriptorForMethod:RKRequestMethodDELETE
+                                              path:API_REMOVE_ACCOUNT
+                                        statusCode:200];
+}
+
 + (RKResponseDescriptor *)clientRegistrationDescriptor {
     NSIndexSet *statusCodes = [NSIndexSet indexSetWithIndex:201];
 
@@ -64,22 +70,22 @@
                                      statusCodes:statusCodes];
 }
 
++ (RKResponseDescriptor *)clientRemovalDescriptor {
+    return [self noResponseBodyDescriptorForMethod:RKRequestMethodDELETE
+                                              path:API_REMOVE_CLIENT
+                                        statusCode:200];
+}
+
 + (RKResponseDescriptor *)accountConfirmationDescriptor {
-    NSIndexSet *statusCodes = [NSIndexSet indexSetWithIndex:200];
-    
-    return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory emptyMapping]
-                                                        method:RKRequestMethodPOST
-                                                   pathPattern:API_CONFIRM_ACCOUNT
-                                                       keyPath:nil
-                                                   statusCodes:statusCodes];
+    return [self noResponseBodyDescriptorForMethod:RKRequestMethodPOST
+                                              path:API_CONFIRM_ACCOUNT
+                                        statusCode:200];
 }
 
 + (RKResponseDescriptor *)accountConfirmationErrorDescriptor {
-    NSIndexSet *statusCodes = [NSIndexSet indexSetWithIndex:403];
-    
-    return [self serverErrorsDescriptorForMethod:RKRequestMethodPOST
-                                            path:API_CONFIRM_ACCOUNT
-                                     statusCodes:statusCodes];
+    return [self noResponseBodyDescriptorForMethod:RKRequestMethodPOST
+                                              path:API_CONFIRM_ACCOUNT
+                                        statusCode:403];
 }
 
 + (RKResponseDescriptor *)newsfeedDescriptor {
@@ -96,6 +102,25 @@
                                                      path:(NSString *)path
                                               statusCodes:(NSIndexSet *)statusCodes {
     return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory serverErrorsMapping]
+                                                        method:method
+                                                   pathPattern:path
+                                                       keyPath:nil
+                                                   statusCodes:statusCodes];
+}
+
++ (RKResponseDescriptor *)noResponseBodyDescriptorForMethod:(RKRequestMethod)method
+                                                       path:(NSString *)path
+                                                 statusCode:(NSUInteger)statusCode {
+    NSIndexSet *statusCodes = [NSIndexSet indexSetWithIndex:statusCode];
+    return [self noResponseBodyDescriptorForMethod:method
+                                              path:path
+                                       statusCodes:statusCodes];
+}
+
++ (RKResponseDescriptor *)noResponseBodyDescriptorForMethod:(RKRequestMethod)method
+                                                       path:(NSString *)path
+                                                statusCodes:(NSIndexSet *)statusCodes {
+    return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory emptyMapping]
                                                         method:method
                                                    pathPattern:path
                                                        keyPath:nil
