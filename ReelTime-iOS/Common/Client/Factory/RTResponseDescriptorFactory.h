@@ -24,4 +24,8 @@
 
 + (RKResponseDescriptor *)newsfeedDescriptor;
 
++ (RKResponseDescriptor *)joinAudienceDescriptor;
+
++ (RKResponseDescriptor *)followUserDescriptor;
+
 @end

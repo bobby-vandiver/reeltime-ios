@@ -112,6 +112,18 @@
                                                    statusCodes:statusCodes];
 }
 
++ (RKResponseDescriptor *)joinAudienceDescriptor {
+    return [self noResponseBodyDescriptorForMethod:RKRequestMethodPOST
+                                              path:API_ADD_AUDIENCE_MEMBER
+                                        statusCode:200];
+}
+
++ (RKResponseDescriptor *)followUserDescriptor {
+    return [self noResponseBodyDescriptorForMethod:RKRequestMethodPOST
+                                              path:API_FOLLOW_USER
+                                        statusCode:200];
+}
+
 + (RKResponseDescriptor *)serverErrorsDescriptorForMethod:(RKRequestMethod)method
                                                      path:(NSString *)path
                                               statusCodes:(NSIndexSet *)statusCodes {

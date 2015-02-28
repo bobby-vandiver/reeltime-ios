@@ -69,7 +69,9 @@
                                           [RTResponseDescriptorFactory accountConfirmationErrorDescriptor],
                                           [RTResponseDescriptorFactory accountConfirmationSendEmailDescriptor],
                                           [RTResponseDescriptorFactory accountConfirmationSendEmailErrorDescriptor],
-                                          [RTResponseDescriptorFactory newsfeedDescriptor]
+                                          [RTResponseDescriptorFactory newsfeedDescriptor],
+                                          [RTResponseDescriptorFactory joinAudienceDescriptor],
+                                          [RTResponseDescriptorFactory followUserDescriptor]
                                           ]];
         }];
     }];
