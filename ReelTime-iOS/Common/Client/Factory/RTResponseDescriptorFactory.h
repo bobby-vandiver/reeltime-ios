@@ -22,6 +22,9 @@
 + (RKResponseDescriptor *)accountConfirmationSendEmailDescriptor;
 + (RKResponseDescriptor *)accountConfirmationSendEmailErrorDescriptor;
 
++ (RKResponseDescriptor *)changeDisplayNameDescriptor;
++ (RKResponseDescriptor *)changeDisplayNameErrorDescriptor;
+
 + (RKResponseDescriptor *)newsfeedDescriptor;
 
 + (RKResponseDescriptor *)joinAudienceDescriptor;

@@ -69,6 +69,8 @@
                                           [RTResponseDescriptorFactory accountConfirmationErrorDescriptor],
                                           [RTResponseDescriptorFactory accountConfirmationSendEmailDescriptor],
                                           [RTResponseDescriptorFactory accountConfirmationSendEmailErrorDescriptor],
+                                          [RTResponseDescriptorFactory changeDisplayNameDescriptor],
+                                          [RTResponseDescriptorFactory changeDisplayNameErrorDescriptor],
                                           [RTResponseDescriptorFactory newsfeedDescriptor],
                                           [RTResponseDescriptorFactory joinAudienceDescriptor],
                                           [RTResponseDescriptorFactory followUserDescriptor]

@@ -102,6 +102,18 @@
                                      statusCodes:statusCodes];
 }
 
++ (RKResponseDescriptor *)changeDisplayNameDescriptor {
+    return [self noResponseBodyDescriptorForMethod:RKRequestMethodPOST
+                                              path:API_CHANGE_DISPLAY_NAME
+                                        statusCode:200];
+}
+
++ (RKResponseDescriptor *)changeDisplayNameErrorDescriptor {
+    return [self serverErrorsDescriptorForMethod:RKRequestMethodPOST
+                                            path:API_CHANGE_DISPLAY_NAME
+                                      statusCode:400];
+}
+
 + (RKResponseDescriptor *)newsfeedDescriptor {
     NSIndexSet *statusCodes = [NSIndexSet indexSetWithIndex:200];
     
@@ -122,6 +134,15 @@
     return [self noResponseBodyDescriptorForMethod:RKRequestMethodPOST
                                               path:API_FOLLOW_USER
                                         statusCode:200];
+}
+
++ (RKResponseDescriptor *)serverErrorsDescriptorForMethod:(RKRequestMethod)method
+                                                     path:(NSString *)path
+                                               statusCode:(NSUInteger)statusCode {
+    NSIndexSet *statusCodes = [NSIndexSet indexSetWithIndex:statusCode];
+    return [self serverErrorsDescriptorForMethod:method
+                                            path:path
+                                     statusCodes:statusCodes];
 }
 
 + (RKResponseDescriptor *)serverErrorsDescriptorForMethod:(RKRequestMethod)method

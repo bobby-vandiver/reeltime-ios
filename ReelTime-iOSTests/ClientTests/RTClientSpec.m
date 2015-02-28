@@ -472,6 +472,43 @@ describe(@"ReelTime Client", ^{
             });
         });
         
+        describe(@"change display name", ^{
+            __block NSRegularExpression *changeDisplayNameUrlRegex;
+            
+            beforeEach(^{
+                changeDisplayNameUrlRegex = [helper createUrlRegexForEndpoint:API_CHANGE_DISPLAY_NAME];
+            });
+            
+            afterEach(^{
+                expect(httpClient.lastParameters.allKeys).to.haveCountOf(1);
+                expect(httpClient.lastParameters[@"new_display_name"]).to.equal(displayName);
+            });
+            
+            it(@"is successful", ^{
+                [helper stubAuthenticatedRequestWithMethod:POST
+                                                  urlRegex:changeDisplayNameUrlRegex
+                                       rawResponseFilename:SUCCESSFUL_OK_WITH_NO_BODY_FILENAME];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client changeDisplayName:displayName
+                                      success:shouldExecuteSuccessCallback(done)
+                                      failure:shouldNotExecuteFailureCallback(done)];
+                });
+            });
+            
+            it(@"fails due to bad request", ^{
+                [helper stubAuthenticatedRequestWithMethod:POST
+                                                  urlRegex:changeDisplayNameUrlRegex
+                                       rawResponseFilename:BAD_REQUEST_WITH_ERRORS_FILENAME];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client changeDisplayName:displayName
+                                      success:shouldNotExecuteSuccessCallback(done)
+                                      failure:shouldExecuteFailureCallbackWithMessage(BAD_REQUEST_ERROR_MESSAGE, done)];
+                });
+            });
+        });
+        
         describe(@"newsfeed", ^{
             __block NSRegularExpression *newsfeedUrlRegex;
             __block NSUInteger pageNumber = 13;
