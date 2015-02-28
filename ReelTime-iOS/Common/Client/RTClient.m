@@ -93,6 +93,18 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
                                         failure:failure];
 }
 
+- (void)removeClientWithClientId:(NSString *)clientId
+                         success:(void (^)())success
+                         failure:(void (^)(RTServerErrors *))failure {
+    NSString *path = [self.pathFormatter formatPath:API_REMOVE_CLIENT
+                                     withParameters:@{@":client_id": clientId}];
+
+    [self.httpClient authenticatedDeleteForPath:path
+                                 withParameters:nil
+                                        success:success
+                                        failure:failure];
+}
+
 - (void)newsfeedPage:(NSUInteger)page
              success:(void (^)(RTNewsfeed *))success
              failure:(void (^)(RTServerErrors *))failure {

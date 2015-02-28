@@ -340,6 +340,28 @@ describe(@"ReelTime Client", ^{
             });
         });
         
+        describe(@"client removal", ^{
+            __block NSRegularExpression *clientRemovalUrlRegex;
+            
+            beforeEach(^{
+                NSDictionary *parameters = @{ @":client_id": @"clientUUID" };
+                clientRemovalUrlRegex = [helper createUrlRegexForEndpoint:API_REMOVE_CLIENT
+                                                           withParameters:parameters];
+            });
+            
+            it(@"is successful", ^{
+                [helper stubAuthenticatedRequestWithMethod:DELETE
+                                                  urlRegex:clientRemovalUrlRegex
+                                       rawResponseFilename:SUCCESSFUL_OK_WITH_NO_BODY_FILENAME];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client removeClientWithClientId:@"clientUUID"
+                                             success:shouldExecuteSuccessCallback(done)
+                                             failure:shouldNotExecuteFailureCallback(done)];
+                });
+            });
+        });
+        
         describe(@"newsfeed", ^{
             __block NSRegularExpression *newsfeedUrlRegex;
             
