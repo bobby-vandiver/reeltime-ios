@@ -1,6 +1,7 @@
 #import "RTResponseDescriptorFactory.h"
 #import "RTRestAPIMappingFactory.h"
 #import "RTRestAPI.h"
+#import "RKResponseDescriptor+SingleStatusCode.h"
 
 @implementation RTResponseDescriptorFactory
 
@@ -10,7 +11,6 @@
     return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory tokenMapping]
                                                         method:RKRequestMethodPOST
                                                    pathPattern:API_TOKEN
-                                                       keyPath:nil
                                                    statusCodes:statusCodes];
 }
 
@@ -20,24 +20,18 @@
     return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory tokenErrorMapping]
                                                         method:RKRequestMethodPOST
                                                    pathPattern:API_TOKEN
-                                                       keyPath:nil
                                                    statusCodes:statusCodes];
 }
 
 + (RKResponseDescriptor *)accountRegistrationDescriptor {
-    NSIndexSet *statusCodes = [NSIndexSet indexSetWithIndex:201];
-
     return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory clientCredentialsMapping]
                                                         method:RKRequestMethodPOST
                                                    pathPattern:API_REGISTER_ACCOUNT
-                                                       keyPath:nil
-                                                   statusCodes:statusCodes];
+                                                    statusCode:201];
 }
 
 + (RKResponseDescriptor *)accountRegistrationErrorDescriptor {
-    NSMutableIndexSet *statusCodes = [[NSMutableIndexSet alloc] init];
-    [statusCodes addIndex:400];
-    [statusCodes addIndex:503];
+    NSIndexSet *statusCodes = [self badRequestAndServiceUnavailableStatusCodes];
     
     return [self serverErrorsDescriptorForMethod:RKRequestMethodPOST
                                             path:API_REGISTER_ACCOUNT
@@ -51,19 +45,14 @@
 }
 
 + (RKResponseDescriptor *)clientRegistrationDescriptor {
-    NSIndexSet *statusCodes = [NSIndexSet indexSetWithIndex:201];
-
     return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory clientCredentialsMapping]
                                                         method:RKRequestMethodPOST
                                                    pathPattern:API_REGISTER_CLIENT
-                                                       keyPath:nil
-                                                   statusCodes:statusCodes];
+                                                    statusCode:201];
 }
 
 + (RKResponseDescriptor *)clientRegistrationErrorDescriptor {
-    NSMutableIndexSet *statusCodes = [[NSMutableIndexSet alloc] init];
-    [statusCodes addIndex:400];
-    [statusCodes addIndex:503];
+    NSIndexSet *statusCodes = [self badRequestAndServiceUnavailableStatusCodes];
     
     return [self serverErrorsDescriptorForMethod:RKRequestMethodPOST
                                             path:API_REGISTER_CLIENT
@@ -133,19 +122,14 @@
 }
 
 + (RKResponseDescriptor *)resetPasswordForNewClientDescriptor {
-    NSIndexSet *statusCodes = [NSIndexSet indexSetWithIndex:201];
-    
     return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory clientCredentialsMapping]
                                                         method:RKRequestMethodPOST
                                                    pathPattern:API_RESET_PASSWORD
-                                                       keyPath:nil
-                                                   statusCodes:statusCodes];
+                                                    statusCode:201];
 }
 
 + (RKResponseDescriptor *)resetPasswordErrorDescriptor {
-    NSMutableIndexSet *statusCodes = [[NSMutableIndexSet alloc] init];
-    [statusCodes addIndex:400];
-    [statusCodes addIndex:503];
+    NSIndexSet *statusCodes = [self badRequestAndServiceUnavailableStatusCodes];
     
     return [self serverErrorsDescriptorForMethod:RKRequestMethodPOST
                                             path:API_RESET_PASSWORD
@@ -153,13 +137,10 @@
 }
 
 + (RKResponseDescriptor *)newsfeedDescriptor {
-    NSIndexSet *statusCodes = [NSIndexSet indexSetWithIndex:200];
-    
     return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory newsfeedMapping]
                                                         method:RKRequestMethodGET
                                                    pathPattern:API_NEWSFEED
-                                                       keyPath:nil
-                                                   statusCodes:statusCodes];
+                                                    statusCode:200];
 }
 
 + (RKResponseDescriptor *)joinAudienceDescriptor {
@@ -172,6 +153,15 @@
     return [self noResponseBodyDescriptorForMethod:RKRequestMethodPOST
                                               path:API_FOLLOW_USER
                                         statusCode:200];
+}
+
++ (NSIndexSet *)badRequestAndServiceUnavailableStatusCodes {
+    NSMutableIndexSet *statusCodes = [[NSMutableIndexSet alloc] init];
+    
+    [statusCodes addIndex:400];
+    [statusCodes addIndex:503];
+
+    return statusCodes;
 }
 
 + (RKResponseDescriptor *)serverErrorsDescriptorForMethod:(RKRequestMethod)method
@@ -189,7 +179,6 @@
     return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory serverErrorsMapping]
                                                         method:method
                                                    pathPattern:path
-                                                       keyPath:nil
                                                    statusCodes:statusCodes];
 }
 
@@ -208,7 +197,6 @@
     return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory emptyMapping]
                                                         method:method
                                                    pathPattern:path
-                                                       keyPath:nil
                                                    statusCodes:statusCodes];
 }
 
