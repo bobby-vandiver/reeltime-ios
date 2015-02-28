@@ -143,6 +143,45 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
                                       failure:failure];
 }
 
+- (void)resetPasswordWithCode:(NSString *)code
+              userCredentials:(RTUserCredentials *)userCredentials
+            clientCredentials:(RTClientCredentials *)clientCredentials
+                      success:(void (^)())success
+                      failure:(void (^)(RTServerErrors *))failure {
+    NSDictionary *parameters = @{
+                                 @"username":               userCredentials.username,
+                                 @"new_password":           userCredentials.password,
+                                 @"code":                   code,
+                                 @"client_is_registered":   @(YES),
+                                 @"client_id":              clientCredentials.clientId,
+                                 @"client_secret":          clientCredentials.clientSecret
+                                 };
+
+    [self.httpClient unauthenticatedPostForPath:API_RESET_PASSWORD
+                                 withParameters:parameters
+                                        success:success
+                                        failure:failure];
+}
+
+- (void)resetPasswordWithCode:(NSString *)code
+              userCredentials:(RTUserCredentials *)userCredentials
+                   clientName:(NSString *)clientName
+                      success:(void (^)(RTClientCredentials *clientCredentials))success
+                      failure:(void (^)(RTServerErrors *))failure {
+    NSDictionary *parameters = @{
+                                 @"username":               userCredentials.username,
+                                 @"new_password":           userCredentials.password,
+                                 @"code":                   code,
+                                 @"client_is_registered":   @(NO),
+                                 @"client_name":            clientName
+                                 };
+    
+    [self.httpClient unauthenticatedPostForPath:API_RESET_PASSWORD
+                                 withParameters:parameters
+                                        success:success
+                                        failure:failure];
+}
+
 - (void)newsfeedPage:(NSUInteger)page
              success:(void (^)(RTNewsfeed *))success
              failure:(void (^)())failure {

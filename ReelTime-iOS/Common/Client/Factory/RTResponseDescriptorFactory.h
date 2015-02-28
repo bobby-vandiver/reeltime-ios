@@ -28,6 +28,10 @@
 + (RKResponseDescriptor *)changePasswordDescriptor;
 + (RKResponseDescriptor *)changePasswordErrorDescriptor;
 
++ (RKResponseDescriptor *)resetPasswordForExistingClientDescriptor;
++ (RKResponseDescriptor *)resetPasswordForNewClientDescriptor;
++ (RKResponseDescriptor *)resetPasswordErrorDescriptor;
+
 + (RKResponseDescriptor *)newsfeedDescriptor;
 
 + (RKResponseDescriptor *)joinAudienceDescriptor;

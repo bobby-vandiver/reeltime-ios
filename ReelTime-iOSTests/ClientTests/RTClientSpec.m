@@ -59,7 +59,8 @@ describe(@"ReelTime Client", ^{
     __block RTServerErrors *serverErrors;
     
     __block RTUserCredentials *userCredentials;
-
+    __block RTClientCredentials *clientCredentials;
+    
     beforeAll(^{
         [[LSNocilla sharedInstance] start];
     });
@@ -77,6 +78,9 @@ describe(@"ReelTime Client", ^{
         userCredentials = [[RTUserCredentials alloc] initWithUsername:username
                                                              password:password];
         
+        clientCredentials = [[RTClientCredentials alloc] initWithClientId:clientId
+                                                             clientSecret:clientSecret];
+
         RTClientAssembly *assembly = [RTClientAssembly assembly];
         
         TyphoonComponentFactory *factory = [TyphoonBlockComponentFactory factoryWithAssembly:assembly];
@@ -158,13 +162,8 @@ describe(@"ReelTime Client", ^{
     describe(@"requesting a token", ^{
         __block NSRegularExpression *tokenUrlRegex;
         
-        __block RTClientCredentials *clientCredentials;
-        
         beforeEach(^{
             tokenUrlRegex = [helper createUrlRegexForEndpoint:API_TOKEN];
-
-            clientCredentials = [[RTClientCredentials alloc] initWithClientId:clientId
-                                                                 clientSecret:clientSecret];
         });
         
         afterEach(^{
@@ -346,6 +345,108 @@ describe(@"ReelTime Client", ^{
                                      userCredentials:userCredentials
                                              success:shouldNotExecuteSuccessCallback(done)
                                              failure:shouldExecuteFailureCallbackWithMessage(SERVICE_UNAVAILABLE_ERROR_MESSAGE, done)];
+            });
+        });
+    });
+    
+    describe(@"reset password", ^{
+        __block NSRegularExpression *resetPasswordUrlRegex;
+        __block NSString *resetCode = @"reset";
+        
+        beforeEach(^{
+            resetPasswordUrlRegex = [helper createUrlRegexForEndpoint:API_RESET_PASSWORD];
+        });
+        
+        context(@"known client", ^{
+            afterEach(^{
+                expect(httpClient.lastParameters.allKeys).to.haveCountOf(6);
+                expect(httpClient.lastParameters[@"username"]).to.equal(username);
+                expect(httpClient.lastParameters[@"new_password"]).to.equal(password);
+                expect(httpClient.lastParameters[@"code"]).to.equal(resetCode);
+                expect(httpClient.lastParameters[@"client_is_registered"]).to.beTruthy();
+                expect(httpClient.lastParameters[@"client_id"]).to.equal(clientId);
+                expect(httpClient.lastParameters[@"client_secret"]).to.equal(clientSecret);
+            });
+            
+            it(@"is successful", ^{
+                [helper stubUnauthenticatedRequestWithMethod:POST
+                                                    urlRegex:resetPasswordUrlRegex
+                                         rawResponseFilename:SUCCESSFUL_OK_WITH_NO_BODY_FILENAME];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client resetPasswordWithCode:resetCode
+                                  userCredentials:userCredentials
+                                clientCredentials:clientCredentials
+                                          success:shouldExecuteSuccessCallback(done)
+                                          failure:shouldNotExecuteFailureCallback(done)];
+                });
+            });
+            
+            it(@"fails due to bad request", ^{
+                [helper stubUnauthenticatedRequestWithMethod:POST
+                                                    urlRegex:resetPasswordUrlRegex
+                                         rawResponseFilename:BAD_REQUEST_WITH_ERRORS_FILENAME];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client resetPasswordWithCode:resetCode
+                                  userCredentials:userCredentials
+                                clientCredentials:clientCredentials
+                                          success:shouldNotExecuteSuccessCallback(done)
+                                          failure:shouldExecuteFailureCallbackWithMessage(BAD_REQUEST_ERROR_MESSAGE, done)];
+                });
+            });
+        });
+        
+        context(@"unknown client", ^{
+            afterEach(^{
+                expect(httpClient.lastParameters.allKeys).to.haveCountOf(5);
+                expect(httpClient.lastParameters[@"username"]).to.equal(username);
+                expect(httpClient.lastParameters[@"new_password"]).to.equal(password);
+                expect(httpClient.lastParameters[@"code"]).to.equal(resetCode);
+                expect(httpClient.lastParameters[@"client_is_registered"]).to.beFalsy();
+                expect(httpClient.lastParameters[@"client_name"]).to.equal(clientName);
+            });
+            
+            it(@"is successful", ^{
+                [helper stubUnauthenticatedRequestWithMethod:POST
+                                                    urlRegex:resetPasswordUrlRegex
+                                         rawResponseFilename:SUCCESSFUL_CREATED_CLIENT_CREDENTIALS_FILENAME];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client resetPasswordWithCode:resetCode
+                                  userCredentials:userCredentials
+                                       clientName:clientName
+                                          success:shouldReceiveClientCredentialsInSuccessfulResponse(done)
+                                          failure:shouldNotExecuteFailureCallback(done)];
+                });
+            });
+            
+            it(@"fails due to bad request", ^{
+                [helper stubUnauthenticatedRequestWithMethod:POST
+                                                    urlRegex:resetPasswordUrlRegex
+                                         rawResponseFilename:BAD_REQUEST_WITH_ERRORS_FILENAME];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client resetPasswordWithCode:resetCode
+                                  userCredentials:userCredentials
+                                       clientName:clientName
+                                          success:shouldNotExecuteSuccessCallback(done)
+                                          failure:shouldExecuteFailureCallbackWithMessage(BAD_REQUEST_ERROR_MESSAGE, done)];
+                });
+            });
+            
+            it(@"fails due to service being unavailable", ^{
+                [helper stubUnauthenticatedRequestWithMethod:POST
+                                                    urlRegex:resetPasswordUrlRegex
+                                         rawResponseFilename:SERVICE_UNAVAILABLE_WITH_ERRORS_FILENAME];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client resetPasswordWithCode:resetCode
+                                  userCredentials:userCredentials
+                                       clientName:clientName
+                                          success:shouldNotExecuteSuccessCallback(done)
+                                          failure:shouldExecuteFailureCallbackWithMessage(SERVICE_UNAVAILABLE_ERROR_MESSAGE, done)];
+                });
             });
         });
     });

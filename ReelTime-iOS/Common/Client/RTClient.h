@@ -55,6 +55,18 @@
                success:(void (^)())success
                failure:(void (^)(RTServerErrors *errors))failure;
 
+- (void)resetPasswordWithCode:(NSString *)code
+              userCredentials:(RTUserCredentials *)userCredentials
+            clientCredentials:(RTClientCredentials *)clientCredentials
+                      success:(void (^)())success
+                      failure:(void (^)(RTServerErrors *errors))failure;
+
+- (void)resetPasswordWithCode:(NSString *)code
+              userCredentials:(RTUserCredentials *)userCredentials
+                   clientName:(NSString *)clientName
+                      success:(void (^)(RTClientCredentials *clientCredentials))success
+                      failure:(void (^)(RTServerErrors *errors))failure;
+
 - (void)newsfeedPage:(NSUInteger)page
              success:(void (^)(RTNewsfeed *newsfeed))success
              failure:(void (^)())failure;

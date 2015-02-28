@@ -126,6 +126,32 @@
                                       statusCode:400];
 }
 
++ (RKResponseDescriptor *)resetPasswordForExistingClientDescriptor {
+    return [self noResponseBodyDescriptorForMethod:RKRequestMethodPOST
+                                              path:API_RESET_PASSWORD
+                                        statusCode:200];
+}
+
++ (RKResponseDescriptor *)resetPasswordForNewClientDescriptor {
+    NSIndexSet *statusCodes = [NSIndexSet indexSetWithIndex:201];
+    
+    return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory clientCredentialsMapping]
+                                                        method:RKRequestMethodPOST
+                                                   pathPattern:API_RESET_PASSWORD
+                                                       keyPath:nil
+                                                   statusCodes:statusCodes];
+}
+
++ (RKResponseDescriptor *)resetPasswordErrorDescriptor {
+    NSMutableIndexSet *statusCodes = [[NSMutableIndexSet alloc] init];
+    [statusCodes addIndex:400];
+    [statusCodes addIndex:503];
+    
+    return [self serverErrorsDescriptorForMethod:RKRequestMethodPOST
+                                            path:API_RESET_PASSWORD
+                                      statusCodes:statusCodes];
+}
+
 + (RKResponseDescriptor *)newsfeedDescriptor {
     NSIndexSet *statusCodes = [NSIndexSet indexSetWithIndex:200];
     
