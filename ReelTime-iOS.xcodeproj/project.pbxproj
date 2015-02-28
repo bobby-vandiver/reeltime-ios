@@ -24,13 +24,17 @@
 		711C5DE01A8D5B4F007652FC /* RTEmbeddedURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 711C5DDD1A8D5B4F007652FC /* RTEmbeddedURL.m */; };
 		711C5DE11A8D5B4F007652FC /* RTStringWithEmbeddedLinks.m in Sources */ = {isa = PBXBuildFile; fileRef = 711C5DDF1A8D5B4F007652FC /* RTStringWithEmbeddedLinks.m */; };
 		711C5DE41A8D5BA9007652FC /* RTStringWithEmbeddedLinksSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 711C5DE31A8D5BA9007652FC /* RTStringWithEmbeddedLinksSpec.m */; };
+		711FF4BA1AA20CEC00E11BDE /* bad-request-with-errors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 711FF4B61AA20CEC00E11BDE /* bad-request-with-errors.txt */; };
+		711FF4BB1AA20CEC00E11BDE /* server-internal-error.txt in Resources */ = {isa = PBXBuildFile; fileRef = 711FF4B71AA20CEC00E11BDE /* server-internal-error.txt */; };
+		711FF4BC1AA20CEC00E11BDE /* service-unavailable-with-errors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 711FF4B81AA20CEC00E11BDE /* service-unavailable-with-errors.txt */; };
+		711FF4BD1AA20CEC00E11BDE /* successful-ok-with-no-body.txt in Resources */ = {isa = PBXBuildFile; fileRef = 711FF4B91AA20CEC00E11BDE /* successful-ok-with-no-body.txt */; };
+		711FF4BF1AA20D2600E11BDE /* successful-created-with-no-body.txt in Resources */ = {isa = PBXBuildFile; fileRef = 711FF4BE1AA20D2600E11BDE /* successful-created-with-no-body.txt */; };
 		71201F831A9689C6003F2831 /* RTActivityCell+ConfigureForRTActivityMessageSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71201F821A9689C6003F2831 /* RTActivityCell+ConfigureForRTActivityMessageSpec.m */; };
 		71201F8C1A96B7CD003F2831 /* RTNewsfeedAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 71201F8B1A96B7CD003F2831 /* RTNewsfeedAssembly.m */; };
 		712BE2FC1A75D74300478277 /* RTClientCredentialsStoreSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 712BE2FB1A75D74300478277 /* RTClientCredentialsStoreSpec.m */; };
 		712BE3021A75D74C00478277 /* EXPMatchers+beError.m in Sources */ = {isa = PBXBuildFile; fileRef = 712BE2FF1A75D74C00478277 /* EXPMatchers+beError.m */; };
 		712BE3031A75D74C00478277 /* RTTestCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 712BE3011A75D74C00478277 /* RTTestCommon.m */; };
 		712EA2C51A9C1B4600AFCA15 /* RTClientAdditionalConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 712EA2C41A9C1B4600AFCA15 /* RTClientAdditionalConfiguration.m */; };
-		712EA2C91A9C289E00AFCA15 /* server-internal-error.txt in Resources */ = {isa = PBXBuildFile; fileRef = 712EA2C81A9C289E00AFCA15 /* server-internal-error.txt */; };
 		7130FD8C1A67593D00AE2ACD /* boxxy.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7130FD891A67593D00AE2ACD /* boxxy.jpg */; };
 		7130FD8D1A67593D00AE2ACD /* maddox.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7130FD8A1A67593D00AE2ACD /* maddox.jpg */; };
 		7130FD8E1A67593D00AE2ACD /* boogie2988-rage.png in Resources */ = {isa = PBXBuildFile; fileRef = 7130FD8B1A67593D00AE2ACD /* boogie2988-rage.png */; };
@@ -61,7 +65,6 @@
 		713D7A4C1A50A33300754A06 /* RTClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 713D7A4B1A50A33300754A06 /* RTClient.m */; };
 		713DCAA91A6C8B330032B252 /* RTServerErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 713DCAA81A6C8B330032B252 /* RTServerErrors.m */; };
 		713DCAAB1A6C9D1C0032B252 /* RTAccountRegistrationInteractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 713DCAAA1A6C9D1C0032B252 /* RTAccountRegistrationInteractorSpec.m */; };
-		713F9F381AA17094006A8D8B /* service-unavailable-with-errors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 713F9F371AA17094006A8D8B /* service-unavailable-with-errors.txt */; };
 		714205CB1A90F55200F65D4F /* RTURLFactorySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 714205CA1A90F55200F65D4F /* RTURLFactorySpec.m */; };
 		71427E1F1A8C100200E2C53F /* RTActivitySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71427E1E1A8C100200E2C53F /* RTActivitySpec.m */; };
 		7145C6211A8AE645006A77DE /* RTUserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7145C6201A8AE645006A77DE /* RTUserSpec.m */; };
@@ -88,7 +91,6 @@
 		7169F1761A5F6CDD00E161C4 /* RTLoginDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7169F1751A5F6CDD00E161C4 /* RTLoginDataManagerSpec.m */; };
 		7170C8691A59926E00C460BB /* RTErrorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7170C8681A59926E00C460BB /* RTErrorFactory.m */; };
 		7170C86D1A59A98600C460BB /* RTKeyChainWrapperSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7170C86C1A59A98600C460BB /* RTKeyChainWrapperSpec.m */; };
-		7170F6161AA017A1003381E4 /* bad-request-with-errors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7170F6151AA017A1003381E4 /* bad-request-with-errors.txt */; };
 		7172157E1A8657540002ECC7 /* RTLoginAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 7172157D1A8657540002ECC7 /* RTLoginAssembly.m */; };
 		717215831A86575D0002ECC7 /* RTLoginInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 717215811A86575D0002ECC7 /* RTLoginInteractor.m */; };
 		717215861A8657660002ECC7 /* RTLoginWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 717215851A8657660002ECC7 /* RTLoginWireframe.m */; };
@@ -186,6 +188,11 @@
 		711C5DDF1A8D5B4F007652FC /* RTStringWithEmbeddedLinks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTStringWithEmbeddedLinks.m; sourceTree = "<group>"; };
 		711C5DE31A8D5BA9007652FC /* RTStringWithEmbeddedLinksSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTStringWithEmbeddedLinksSpec.m; sourceTree = "<group>"; };
 		711C5DE51A8D657F007652FC /* RTActivityType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTActivityType.h; sourceTree = SOURCE_ROOT; };
+		711FF4B61AA20CEC00E11BDE /* bad-request-with-errors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "bad-request-with-errors.txt"; sourceTree = "<group>"; };
+		711FF4B71AA20CEC00E11BDE /* server-internal-error.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "server-internal-error.txt"; sourceTree = "<group>"; };
+		711FF4B81AA20CEC00E11BDE /* service-unavailable-with-errors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "service-unavailable-with-errors.txt"; sourceTree = "<group>"; };
+		711FF4B91AA20CEC00E11BDE /* successful-ok-with-no-body.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "successful-ok-with-no-body.txt"; sourceTree = "<group>"; };
+		711FF4BE1AA20D2600E11BDE /* successful-created-with-no-body.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "successful-created-with-no-body.txt"; sourceTree = "<group>"; };
 		71201F821A9689C6003F2831 /* RTActivityCell+ConfigureForRTActivityMessageSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RTActivityCell+ConfigureForRTActivityMessageSpec.m"; sourceTree = "<group>"; };
 		71201F8A1A96B7CD003F2831 /* RTNewsfeedAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTNewsfeedAssembly.h; sourceTree = "<group>"; };
 		71201F8B1A96B7CD003F2831 /* RTNewsfeedAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTNewsfeedAssembly.m; sourceTree = "<group>"; };
@@ -196,7 +203,6 @@
 		712BE3011A75D74C00478277 /* RTTestCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTTestCommon.m; sourceTree = "<group>"; };
 		712EA2C31A9C1B4600AFCA15 /* RTClientAdditionalConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTClientAdditionalConfiguration.h; sourceTree = "<group>"; };
 		712EA2C41A9C1B4600AFCA15 /* RTClientAdditionalConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTClientAdditionalConfiguration.m; sourceTree = "<group>"; };
-		712EA2C81A9C289E00AFCA15 /* server-internal-error.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "server-internal-error.txt"; sourceTree = "<group>"; };
 		7130FD891A67593D00AE2ACD /* boxxy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = boxxy.jpg; sourceTree = "<group>"; };
 		7130FD8A1A67593D00AE2ACD /* maddox.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = maddox.jpg; sourceTree = "<group>"; };
 		7130FD8B1A67593D00AE2ACD /* boogie2988-rage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boogie2988-rage.png"; sourceTree = "<group>"; };
@@ -243,7 +249,6 @@
 		713DCAA71A6C8B330032B252 /* RTServerErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTServerErrors.h; path = "ReelTime-iOS/Common/Model/RTServerErrors.h"; sourceTree = SOURCE_ROOT; };
 		713DCAA81A6C8B330032B252 /* RTServerErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTServerErrors.m; path = "ReelTime-iOS/Common/Model/RTServerErrors.m"; sourceTree = SOURCE_ROOT; };
 		713DCAAA1A6C9D1C0032B252 /* RTAccountRegistrationInteractorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAccountRegistrationInteractorSpec.m; sourceTree = "<group>"; };
-		713F9F371AA17094006A8D8B /* service-unavailable-with-errors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "service-unavailable-with-errors.txt"; sourceTree = "<group>"; };
 		714205CA1A90F55200F65D4F /* RTURLFactorySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTURLFactorySpec.m; sourceTree = "<group>"; };
 		71427E1E1A8C100200E2C53F /* RTActivitySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTActivitySpec.m; sourceTree = "<group>"; };
 		7145C6201A8AE645006A77DE /* RTUserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTUserSpec.m; sourceTree = "<group>"; };
@@ -284,7 +289,6 @@
 		7170C8671A59926E00C460BB /* RTErrorFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTErrorFactory.h; sourceTree = "<group>"; };
 		7170C8681A59926E00C460BB /* RTErrorFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTErrorFactory.m; sourceTree = "<group>"; };
 		7170C86C1A59A98600C460BB /* RTKeyChainWrapperSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTKeyChainWrapperSpec.m; sourceTree = "<group>"; };
-		7170F6151AA017A1003381E4 /* bad-request-with-errors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "bad-request-with-errors.txt"; sourceTree = "<group>"; };
 		7172157C1A8657540002ECC7 /* RTLoginAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLoginAssembly.h; sourceTree = "<group>"; };
 		7172157D1A8657540002ECC7 /* RTLoginAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLoginAssembly.m; sourceTree = "<group>"; };
 		7172157F1A86575D0002ECC7 /* RTLoginError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLoginError.h; sourceTree = "<group>"; };
@@ -521,6 +525,18 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		711FF4B51AA20CEC00E11BDE /* CommonResponses */ = {
+			isa = PBXGroup;
+			children = (
+				711FF4B61AA20CEC00E11BDE /* bad-request-with-errors.txt */,
+				711FF4B71AA20CEC00E11BDE /* server-internal-error.txt */,
+				711FF4B81AA20CEC00E11BDE /* service-unavailable-with-errors.txt */,
+				711FF4BE1AA20D2600E11BDE /* successful-created-with-no-body.txt */,
+				711FF4B91AA20CEC00E11BDE /* successful-ok-with-no-body.txt */,
+			);
+			path = CommonResponses;
+			sourceTree = "<group>";
+		};
 		712BE2FD1A75D74C00478277 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -538,16 +554,6 @@
 				712BE3011A75D74C00478277 /* RTTestCommon.m */,
 			);
 			path = Common;
-			sourceTree = "<group>";
-		};
-		712EA2C71A9C286C00AFCA15 /* Error */ = {
-			isa = PBXGroup;
-			children = (
-				713F9F371AA17094006A8D8B /* service-unavailable-with-errors.txt */,
-				7170F6151AA017A1003381E4 /* bad-request-with-errors.txt */,
-				712EA2C81A9C289E00AFCA15 /* server-internal-error.txt */,
-			);
-			path = Error;
 			sourceTree = "<group>";
 		};
 		7130FD871A67591200AE2ACD /* Assets */ = {
@@ -841,7 +847,7 @@
 				717215C11A865C8E0002ECC7 /* Account */,
 				715FAD531A92C8E300368119 /* Audience */,
 				7155559E1A9EBE8B0091F432 /* Client */,
-				712EA2C71A9C286C00AFCA15 /* Error */,
+				711FF4B51AA20CEC00E11BDE /* CommonResponses */,
 				717215C51A865C8E0002ECC7 /* Newsfeed */,
 				717215C91A865C8E0002ECC7 /* Token */,
 				715FAD521A92C8DC00368119 /* UserFollowing */,
@@ -1254,21 +1260,23 @@
 			files = (
 				717215D41A865C8E0002ECC7 /* token-bad-user-credentials.txt in Resources */,
 				713470BF1A9AD48A000CFCA3 /* account-removal-successful.txt in Resources */,
-				713F9F381AA17094006A8D8B /* service-unavailable-with-errors.txt in Resources */,
+				711FF4BC1AA20CEC00E11BDE /* service-unavailable-with-errors.txt in Resources */,
 				717215D01A865C8E0002ECC7 /* newsfeed-multiple-activities.txt in Resources */,
+				711FF4BA1AA20CEC00E11BDE /* bad-request-with-errors.txt in Resources */,
 				715555A41A9EC05E0091F432 /* client-registration-successful.txt in Resources */,
 				717215D31A865C8E0002ECC7 /* token-bad-client-credentials.txt in Resources */,
+				711FF4BD1AA20CEC00E11BDE /* successful-ok-with-no-body.txt in Resources */,
 				717215D11A865C8E0002ECC7 /* newsfeed-no-activities.txt in Resources */,
 				715555A31A9EC05E0091F432 /* client-registration-missing-params.txt in Resources */,
 				717215CD1A865C8E0002ECC7 /* account-registration-missing-all-params.txt in Resources */,
 				717215D51A865C8E0002ECC7 /* token-successful.txt in Resources */,
-				7170F6161AA017A1003381E4 /* bad-request-with-errors.txt in Resources */,
 				717215D21A865C8E0002ECC7 /* newsfeed-one-activity.txt in Resources */,
 				715FAD571A92CA4400368119 /* follow-user-successful.txt in Resources */,
 				717215CF1A865C8E0002ECC7 /* account-registration-temporarily-unavailable.txt in Resources */,
 				717215CE1A865C8E0002ECC7 /* account-registration-successful.txt in Resources */,
-				712EA2C91A9C289E00AFCA15 /* server-internal-error.txt in Resources */,
 				715FAD591A92CA7200368119 /* audience-join-successful.txt in Resources */,
+				711FF4BF1AA20D2600E11BDE /* successful-created-with-no-body.txt in Resources */,
+				711FF4BB1AA20CEC00E11BDE /* server-internal-error.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
