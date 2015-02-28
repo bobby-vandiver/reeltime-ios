@@ -61,6 +61,7 @@
 		713D7A4C1A50A33300754A06 /* RTClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 713D7A4B1A50A33300754A06 /* RTClient.m */; };
 		713DCAA91A6C8B330032B252 /* RTServerErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 713DCAA81A6C8B330032B252 /* RTServerErrors.m */; };
 		713DCAAB1A6C9D1C0032B252 /* RTAccountRegistrationInteractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 713DCAAA1A6C9D1C0032B252 /* RTAccountRegistrationInteractorSpec.m */; };
+		713F9F381AA17094006A8D8B /* service-unavailable-with-errors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 713F9F371AA17094006A8D8B /* service-unavailable-with-errors.txt */; };
 		714205CB1A90F55200F65D4F /* RTURLFactorySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 714205CA1A90F55200F65D4F /* RTURLFactorySpec.m */; };
 		71427E1F1A8C100200E2C53F /* RTActivitySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71427E1E1A8C100200E2C53F /* RTActivitySpec.m */; };
 		7145C6211A8AE645006A77DE /* RTUserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7145C6201A8AE645006A77DE /* RTUserSpec.m */; };
@@ -242,6 +243,7 @@
 		713DCAA71A6C8B330032B252 /* RTServerErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTServerErrors.h; path = "ReelTime-iOS/Common/Model/RTServerErrors.h"; sourceTree = SOURCE_ROOT; };
 		713DCAA81A6C8B330032B252 /* RTServerErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTServerErrors.m; path = "ReelTime-iOS/Common/Model/RTServerErrors.m"; sourceTree = SOURCE_ROOT; };
 		713DCAAA1A6C9D1C0032B252 /* RTAccountRegistrationInteractorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAccountRegistrationInteractorSpec.m; sourceTree = "<group>"; };
+		713F9F371AA17094006A8D8B /* service-unavailable-with-errors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "service-unavailable-with-errors.txt"; sourceTree = "<group>"; };
 		714205CA1A90F55200F65D4F /* RTURLFactorySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTURLFactorySpec.m; sourceTree = "<group>"; };
 		71427E1E1A8C100200E2C53F /* RTActivitySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTActivitySpec.m; sourceTree = "<group>"; };
 		7145C6201A8AE645006A77DE /* RTUserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTUserSpec.m; sourceTree = "<group>"; };
@@ -541,6 +543,7 @@
 		712EA2C71A9C286C00AFCA15 /* Error */ = {
 			isa = PBXGroup;
 			children = (
+				713F9F371AA17094006A8D8B /* service-unavailable-with-errors.txt */,
 				7170F6151AA017A1003381E4 /* bad-request-with-errors.txt */,
 				712EA2C81A9C289E00AFCA15 /* server-internal-error.txt */,
 			);
@@ -1251,6 +1254,7 @@
 			files = (
 				717215D41A865C8E0002ECC7 /* token-bad-user-credentials.txt in Resources */,
 				713470BF1A9AD48A000CFCA3 /* account-removal-successful.txt in Resources */,
+				713F9F381AA17094006A8D8B /* service-unavailable-with-errors.txt in Resources */,
 				717215D01A865C8E0002ECC7 /* newsfeed-multiple-activities.txt in Resources */,
 				715555A41A9EC05E0091F432 /* client-registration-successful.txt in Resources */,
 				717215D31A865C8E0002ECC7 /* token-bad-client-credentials.txt in Resources */,

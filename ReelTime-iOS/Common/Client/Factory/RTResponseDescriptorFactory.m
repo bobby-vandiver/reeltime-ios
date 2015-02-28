@@ -39,11 +39,9 @@
     [statusCodes addIndex:400];
     [statusCodes addIndex:503];
     
-    return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory serverErrorsMapping]
-                                                        method:RKRequestMethodPOST
-                                                   pathPattern:API_REGISTER_ACCOUNT
-                                                       keyPath:nil
-                                                   statusCodes:statusCodes];
+    return [self serverErrorsDescriptorForMethod:RKRequestMethodPOST
+                                            path:API_REGISTER_ACCOUNT
+                                     statusCodes:statusCodes];
 }
 
 + (RKResponseDescriptor *)clientRegistrationDescriptor {
@@ -56,12 +54,32 @@
                                                    statusCodes:statusCodes];
 }
 
++ (RKResponseDescriptor *)clientRegistrationErrorDescriptor {
+    NSMutableIndexSet *statusCodes = [[NSMutableIndexSet alloc] init];
+    [statusCodes addIndex:400];
+    [statusCodes addIndex:503];
+    
+    return [self serverErrorsDescriptorForMethod:RKRequestMethodPOST
+                                            path:API_REGISTER_CLIENT
+                                     statusCodes:statusCodes];
+}
+
 + (RKResponseDescriptor *)newsfeedDescriptor {
     NSIndexSet *statusCodes = [NSIndexSet indexSetWithIndex:200];
     
     return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory newsfeedMapping]
                                                         method:RKRequestMethodGET
                                                    pathPattern:API_NEWSFEED
+                                                       keyPath:nil
+                                                   statusCodes:statusCodes];
+}
+
++ (RKResponseDescriptor *)serverErrorsDescriptorForMethod:(RKRequestMethod)method
+                                                     path:(NSString *)path
+                                              statusCodes:(NSIndexSet *)statusCodes {
+    return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory serverErrorsMapping]
+                                                        method:method
+                                                   pathPattern:path
                                                        keyPath:nil
                                                    statusCodes:statusCodes];
 }

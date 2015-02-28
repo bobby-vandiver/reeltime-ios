@@ -5,4 +5,4 @@ Transfer-Encoding: chunked
 Date: Sat, 24 Jan 2015 02:05:23 GMT
 Connection: close
 
-{"errors":["this is a test"]}
+{"errors":["Bad Request"]}

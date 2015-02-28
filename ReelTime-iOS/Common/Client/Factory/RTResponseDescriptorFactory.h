@@ -10,6 +10,7 @@
 + (RKResponseDescriptor *)accountRegistrationErrorDescriptor;
 
 + (RKResponseDescriptor *)clientRegistrationDescriptor;
++ (RKResponseDescriptor *)clientRegistrationErrorDescriptor;
 
 + (RKResponseDescriptor *)newsfeedDescriptor;
 

@@ -33,7 +33,8 @@
 
 SpecBegin(RTClient)
 
-static NSString *const TEST_ERROR_MESSAGE = @"this is a test";
+static NSString *const BAD_REQUEST_ERROR_MESSAGE = @"Bad Request";
+static NSString *const SERVICE_UNAVAILABLE_ERROR_MESSAGE = @"Service Unavailable";
 
 describe(@"ReelTime Client", ^{
     
@@ -114,6 +115,8 @@ describe(@"ReelTime Client", ^{
             RTServerErrors *serverErrors = (RTServerErrors *)obj;
             expect(serverErrors.errors.count).to.equal(1);
             expect([serverErrors.errors objectAtIndex:0]).to.equal(expectedError);
+            
+            done();
         };
     };
     
@@ -283,7 +286,7 @@ describe(@"ReelTime Client", ^{
             });
         });
         
-        xit(@"fails with errors", ^{
+        it(@"fails with bad request errors", ^{
             [helper stubUnauthenticatedRequestWithMethod:POST
                                                 urlRegex:clientRegistrationUrlRegex
                                      rawResponseFilename:@"bad-request-with-errors"];
@@ -292,7 +295,20 @@ describe(@"ReelTime Client", ^{
                 [client registerClientWithClientName:clientName
                                      userCredentials:userCredentials
                                              success:shouldNotExecuteSuccessCallback(done)
-                                             failure:shouldExecuteFailureCallbackWithMessage(TEST_ERROR_MESSAGE, done)];
+                                             failure:shouldExecuteFailureCallbackWithMessage(BAD_REQUEST_ERROR_MESSAGE, done)];
+            });
+        });
+        
+        it(@"fails due to registration service being unavailable", ^{
+            [helper stubUnauthenticatedRequestWithMethod:POST
+                                                urlRegex:clientRegistrationUrlRegex
+                                     rawResponseFilename:@"service-unavailable-with-errors"];
+            
+            waitUntil(^(DoneCallback done) {
+                [client registerClientWithClientName:clientName
+                                     userCredentials:userCredentials
+                                             success:shouldNotExecuteSuccessCallback(done)
+                                             failure:shouldExecuteFailureCallbackWithMessage(SERVICE_UNAVAILABLE_ERROR_MESSAGE, done)];
             });
         });
     });
