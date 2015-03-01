@@ -36,8 +36,8 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
 
 - (void)tokenWithClientCredentials:(RTClientCredentials *)clientCredentials
                    userCredentials:(RTUserCredentials *)userCredentials
-                           success:(void (^)(RTOAuth2Token *))success
-                           failure:(void (^)(RTOAuth2TokenError *))failure {
+                           success:(TokenCallback)success
+                           failure:(TokenErrorCallback)failure {
     NSDictionary *parameters = @{
                                  @"grant_type":      @"password",
                                  @"username":        userCredentials.username,
@@ -54,8 +54,8 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
 }
 
 - (void)registerAccount:(RTAccountRegistration *)registration
-                success:(void (^)(RTClientCredentials *))success
-                failure:(void (^)(RTServerErrors *))failure {
+                success:(ClientCredentialsCallback)success
+                failure:(ServerErrorsCallback)failure {
     NSDictionary *parameters = @{
                                  @"username":       registration.username,
                                  @"password":       registration.password,
@@ -70,8 +70,8 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
                                         failure:failure];
 }
 
-- (void)removeAccountWithSuccess:(void (^)())success
-                         failure:(void (^)())failure {
+- (void)removeAccountWithSuccess:(NoArgsCallback)success
+                         failure:(NoArgsCallback)failure {
     [self.httpClient authenticatedDeleteForPath:API_REMOVE_ACCOUNT
                                  withParameters:nil
                                         success:success
@@ -80,8 +80,8 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
 
 - (void)registerClientWithClientName:(NSString *)clientName
                      userCredentials:(RTUserCredentials *)userCredentials
-                             success:(void (^)(RTClientCredentials *))success
-                             failure:(void (^)(RTServerErrors *))failure {
+                             success:(ClientCredentialsCallback)success
+                             failure:(ServerErrorsCallback)failure {
     NSDictionary *parameters = @{
                                  @"username":       userCredentials.username,
                                  @"password":       userCredentials.password,
@@ -94,8 +94,8 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
 }
 
 - (void)removeClientWithClientId:(NSString *)clientId
-                         success:(void (^)())success
-                         failure:(void (^)())failure {
+                         success:(NoArgsCallback)success
+                         failure:(NoArgsCallback)failure {
     NSString *path = [self.pathFormatter formatPath:API_REMOVE_CLIENT
                                      withParameters:@{@":client_id": clientId}];
 
@@ -106,8 +106,8 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
 }
 
 - (void)confirmAccountWithCode:(NSString *)code
-                       success:(void (^)())success
-                       failure:(void (^)())failure {
+                       success:(NoArgsCallback)success
+                       failure:(NoArgsCallback)failure {
     NSDictionary *parameters = @{@"code": code};
     [self.httpClient authenticatedPostForPath:API_CONFIRM_ACCOUNT
                                withParameters:parameters
@@ -115,8 +115,8 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
                                       failure:failure];
 }
 
-- (void)sendAccountConfirmationEmailWithSuccess:(void (^)())success
-                                        failure:(void (^)())failure {
+- (void)sendAccountConfirmationEmailWithSuccess:(NoArgsCallback)success
+                                        failure:(NoArgsCallback)failure {
     [self.httpClient authenticatedPostForPath:API_CONFIRM_ACCOUNT_SEND_EMAIL
                                withParameters:nil
                                       success:success
@@ -124,8 +124,8 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
 }
 
 - (void)changeDisplayName:(NSString *)displayName
-                  success:(void (^)())success
-                  failure:(void (^)(RTServerErrors *))failure {
+                  success:(NoArgsCallback)success
+                  failure:(ServerErrorsCallback)failure {
     NSDictionary *parameters = @{@"new_display_name": displayName};
     [self.httpClient authenticatedPostForPath:API_CHANGE_DISPLAY_NAME
                                withParameters:parameters
@@ -134,8 +134,8 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
 }
 
 - (void)changePassword:(NSString *)password
-               success:(void (^)())success
-               failure:(void (^)(RTServerErrors *))failure {
+               success:(NoArgsCallback)success
+               failure:(ServerErrorsCallback)failure {
     NSDictionary *parameters = @{@"new_password": password};
     [self.httpClient authenticatedPostForPath:API_CHANGE_PASSWORD
                                withParameters:parameters
@@ -146,8 +146,8 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
 - (void)resetPasswordWithCode:(NSString *)code
               userCredentials:(RTUserCredentials *)userCredentials
             clientCredentials:(RTClientCredentials *)clientCredentials
-                      success:(void (^)())success
-                      failure:(void (^)(RTServerErrors *))failure {
+                      success:(NoArgsCallback)success
+                      failure:(ServerErrorsCallback)failure {
     NSDictionary *parameters = @{
                                  @"username":               userCredentials.username,
                                  @"new_password":           userCredentials.password,
@@ -166,8 +166,8 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
 - (void)resetPasswordWithCode:(NSString *)code
               userCredentials:(RTUserCredentials *)userCredentials
                    clientName:(NSString *)clientName
-                      success:(void (^)(RTClientCredentials *clientCredentials))success
-                      failure:(void (^)(RTServerErrors *))failure {
+                      success:(ClientCredentialsCallback)success
+                      failure:(ServerErrorsCallback)failure {
     NSDictionary *parameters = @{
                                  @"username":               userCredentials.username,
                                  @"new_password":           userCredentials.password,
@@ -182,8 +182,8 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
                                         failure:failure];
 }
 
-- (void)sendResetPasswordEmailWithSuccess:(void (^)())success
-                                  failure:(void (^)())failure {
+- (void)sendResetPasswordEmailWithSuccess:(NoArgsCallback)success
+                                  failure:(NoArgsCallback)failure {
     [self.httpClient unauthenticatedPostForPath:API_RESET_PASSWORD_SEND_EMAIL
                                  withParameters:nil
                                         success:success
@@ -191,8 +191,8 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
 }
 
 - (void)newsfeedPage:(NSUInteger)page
-             success:(void (^)(RTNewsfeed *))success
-             failure:(void (^)())failure {
+             success:(NewsfeedCallback)success
+             failure:(NoArgsCallback)failure {
     NSDictionary *parameters = @{@"page":@(page)};
     [self.httpClient authenticatedGetForPath:API_NEWSFEED
                               withParameters:parameters
@@ -201,8 +201,8 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
 }
 
 - (void)joinAudienceForReelId:(NSUInteger)reelId
-                      success:(void (^)())success
-                      failure:(void (^)())failure {
+                      success:(NoArgsCallback)success
+                      failure:(NoArgsCallback)failure {
     NSString *path = [self.pathFormatter formatPath:API_ADD_AUDIENCE_MEMBER withParameters:@{@":reel_id": @(reelId)}];
     [self.httpClient authenticatedPostForPath:path
                                withParameters:nil
@@ -211,7 +211,7 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
 }
 
 - (void)followUserForUsername:(NSString *)username
-                      success:(void (^)())success
+                      success:(NoArgsCallback)success
                       failure:(void (^)(RTServerErrors *errors))failure {
     NSString *path = [self.pathFormatter formatPath:API_FOLLOW_USER withParameters:@{@":username": username}];
     [self.httpClient authenticatedPostForPath:path
@@ -221,8 +221,8 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
 }
 
 - (void)unfollowUserForUsername:(NSString *)username
-                        success:(void (^)())success
-                        failure:(void (^)(RTServerErrors *))failure {
+                        success:(NoArgsCallback)success
+                        failure:(ServerErrorsCallback)failure {
     NSString *path = [self.pathFormatter formatPath:API_UNFOLLOW_USER withParameters:@{@":username": username}];
     [self.httpClient authenticatedDeleteForPath:path
                                  withParameters:nil

@@ -14,6 +14,15 @@
 @class RTAccountRegistration;
 @class RTNewsfeed;
 
+typedef void (^NoArgsCallback)();
+typedef void (^ServerErrorsCallback)(RTServerErrors *);
+
+typedef void (^TokenCallback)(RTOAuth2Token *);
+typedef void (^TokenErrorCallback)(RTOAuth2TokenError *);
+
+typedef void (^ClientCredentialsCallback)(RTClientCredentials *);
+typedef void (^NewsfeedCallback)(RTNewsfeed *);
+
 @interface RTClient : NSObject
 
 - (instancetype)initWithHttpClient:(RTAuthenticationAwareHTTPClient *)httpClient
@@ -21,69 +30,69 @@
 
 - (void)tokenWithClientCredentials:(RTClientCredentials *)clientCredentials
                    userCredentials:(RTUserCredentials *)userCredentials
-                           success:(void (^)(RTOAuth2Token *token))success
-                           failure:(void (^)(RTOAuth2TokenError *error))failure;
+                           success:(TokenCallback)success
+                           failure:(TokenErrorCallback)failure;
 
 - (void)registerAccount:(RTAccountRegistration *)registration
-                success:(void (^)(RTClientCredentials *clientCredentials))success
-                failure:(void (^)(RTServerErrors *errors))failure;
+                success:(ClientCredentialsCallback)success
+                failure:(ServerErrorsCallback)failure;
 
-- (void)removeAccountWithSuccess:(void (^)())success
-                         failure:(void (^)())failure;
+- (void)removeAccountWithSuccess:(NoArgsCallback)success
+                         failure:(NoArgsCallback)failure;
 
 - (void)registerClientWithClientName:(NSString *)clientName
                      userCredentials:(RTUserCredentials *)userCredentials
-                             success:(void (^)(RTClientCredentials *clientCredentials))success
-                             failure:(void (^)(RTServerErrors *errors))failure;
+                             success:(ClientCredentialsCallback)success
+                             failure:(ServerErrorsCallback)failure;
 
 - (void)removeClientWithClientId:(NSString *)clientId
-                         success:(void (^)())success
-                         failure:(void (^)())failure;
+                         success:(NoArgsCallback)success
+                         failure:(NoArgsCallback)failure;
 
 - (void)confirmAccountWithCode:(NSString *)code
-                       success:(void (^)())success
-                       failure:(void (^)())failure;
+                       success:(NoArgsCallback)success
+                       failure:(NoArgsCallback)failure;
 
-- (void)sendAccountConfirmationEmailWithSuccess:(void (^)())success
-                                        failure:(void (^)())failure;
+- (void)sendAccountConfirmationEmailWithSuccess:(NoArgsCallback)success
+                                        failure:(NoArgsCallback)failure;
 
 - (void)changeDisplayName:(NSString *)displayName
-                  success:(void (^)())success
-                  failure:(void (^)(RTServerErrors *errors))failure;
+                  success:(NoArgsCallback)success
+                  failure:(ServerErrorsCallback)failure;
 
 - (void)changePassword:(NSString *)password
-               success:(void (^)())success
-               failure:(void (^)(RTServerErrors *errors))failure;
+               success:(NoArgsCallback)success
+               failure:(ServerErrorsCallback)failure;
 
 - (void)resetPasswordWithCode:(NSString *)code
               userCredentials:(RTUserCredentials *)userCredentials
             clientCredentials:(RTClientCredentials *)clientCredentials
-                      success:(void (^)())success
-                      failure:(void (^)(RTServerErrors *errors))failure;
+                      success:(NoArgsCallback)success
+                      failure:(ServerErrorsCallback)failure;
 
 - (void)resetPasswordWithCode:(NSString *)code
               userCredentials:(RTUserCredentials *)userCredentials
                    clientName:(NSString *)clientName
-                      success:(void (^)(RTClientCredentials *clientCredentials))success
-                      failure:(void (^)(RTServerErrors *errors))failure;
+                      success:(ClientCredentialsCallback)success
+                      failure:(ServerErrorsCallback)failure;
 
-- (void)sendResetPasswordEmailWithSuccess:(void (^)())success
-                                  failure:(void (^)())failure;
+- (void)sendResetPasswordEmailWithSuccess:(NoArgsCallback)success
+                                  failure:(NoArgsCallback)failure;
 
 - (void)newsfeedPage:(NSUInteger)page
-             success:(void (^)(RTNewsfeed *newsfeed))success
-             failure:(void (^)())failure;
+             success:(NewsfeedCallback)success
+             failure:(NoArgsCallback)failure;
 
 - (void)joinAudienceForReelId:(NSUInteger)reelId
-                      success:(void (^)())success
-                      failure:(void (^)())failure;
+                      success:(NoArgsCallback)success
+                      failure:(NoArgsCallback)failure;
 
 - (void)followUserForUsername:(NSString *)username
-                      success:(void (^)())success
-                      failure:(void (^)(RTServerErrors *errors))failure;
+                      success:(NoArgsCallback)success
+                      failure:(ServerErrorsCallback)failure;
 
 - (void)unfollowUserForUsername:(NSString *)username
-                        success:(void (^)())success
-                        failure:(void (^)(RTServerErrors *errors))failure;
+                        success:(NoArgsCallback)success
+                        failure:(ServerErrorsCallback)failure;
 
 @end
