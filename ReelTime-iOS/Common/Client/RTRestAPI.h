@@ -14,8 +14,8 @@ extern NSString *const API_CONFIRM_ACCOUNT_SEND_EMAIL;
 extern NSString *const API_CHANGE_DISPLAY_NAME;
 extern NSString *const API_CHANGE_PASSWORD;
 
-extern NSString *const API_RESET_PASSWORD_SEND_EMAIL;
 extern NSString *const API_RESET_PASSWORD;
+extern NSString *const API_RESET_PASSWORD_SEND_EMAIL;
 
 extern NSString *const API_NEWSFEED;
 

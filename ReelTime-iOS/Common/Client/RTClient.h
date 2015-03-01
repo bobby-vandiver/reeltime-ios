@@ -67,6 +67,9 @@
                       success:(void (^)(RTClientCredentials *clientCredentials))success
                       failure:(void (^)(RTServerErrors *errors))failure;
 
+- (void)sendResetPasswordEmailWithSuccess:(void (^)())success
+                                  failure:(void (^)())failure;
+
 - (void)newsfeedPage:(NSUInteger)page
              success:(void (^)(RTNewsfeed *newsfeed))success
              failure:(void (^)())failure;

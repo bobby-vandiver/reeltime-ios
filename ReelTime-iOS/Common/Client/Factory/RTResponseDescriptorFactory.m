@@ -136,6 +136,18 @@
                                       statusCodes:statusCodes];
 }
 
++ (RKResponseDescriptor *)resetPasswordSendEmailDescriptor {
+    return [self noResponseBodyDescriptorForMethod:RKRequestMethodPOST
+                                              path:API_RESET_PASSWORD_SEND_EMAIL
+                                        statusCode:200];
+}
+
++ (RKResponseDescriptor *)resetPasswordSendEmailErrorDescriptor {
+    return [self serverErrorsDescriptorForMethod:RKRequestMethodPOST
+                                            path:API_RESET_PASSWORD_SEND_EMAIL
+                                      statusCode:503];
+}
+
 + (RKResponseDescriptor *)newsfeedDescriptor {
     return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory newsfeedMapping]
                                                         method:RKRequestMethodGET

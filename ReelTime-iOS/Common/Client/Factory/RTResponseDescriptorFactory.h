@@ -32,6 +32,9 @@
 + (RKResponseDescriptor *)resetPasswordForNewClientDescriptor;
 + (RKResponseDescriptor *)resetPasswordErrorDescriptor;
 
++ (RKResponseDescriptor *)resetPasswordSendEmailDescriptor;
++ (RKResponseDescriptor *)resetPasswordSendEmailErrorDescriptor;
+
 + (RKResponseDescriptor *)newsfeedDescriptor;
 
 + (RKResponseDescriptor *)joinAudienceDescriptor;

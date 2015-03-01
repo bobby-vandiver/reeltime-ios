@@ -451,6 +451,36 @@ describe(@"ReelTime Client", ^{
         });
     });
     
+    describe(@"send reset password email", ^{
+        __block NSRegularExpression *sendResetPasswordEmailUrlRegex;
+        
+        beforeEach(^{
+            sendResetPasswordEmailUrlRegex = [helper createUrlRegexForEndpoint:API_RESET_PASSWORD_SEND_EMAIL];
+        });
+        
+        it(@"is successful", ^{
+            [helper stubUnauthenticatedRequestWithMethod:POST
+                                                urlRegex:sendResetPasswordEmailUrlRegex
+                                     rawResponseFilename:SUCCESSFUL_OK_WITH_NO_BODY_FILENAME];
+            
+            waitUntil(^(DoneCallback done) {
+                [client sendResetPasswordEmailWithSuccess:shouldExecuteSuccessCallback(done)
+                                                  failure:shouldNotExecuteFailureCallback(done)];
+            });
+        });
+        
+        it(@"fails due to service being unavailable", ^{
+            [helper stubUnauthenticatedRequestWithMethod:POST
+                                                urlRegex:sendResetPasswordEmailUrlRegex
+                                     rawResponseFilename:SERVICE_UNAVAILABLE_WITH_ERRORS_FILENAME];
+            
+            waitUntil(^(DoneCallback done) {
+                [client sendResetPasswordEmailWithSuccess:shouldNotExecuteSuccessCallback(done)
+                                                  failure:shouldExecuteFailureCallbackWithMessage(SERVICE_UNAVAILABLE_ERROR_MESSAGE, done)];
+            });
+        });
+    });
+    
     context(@"access token is required and valid", ^{
         beforeEach(^{
             [given([delegate accessTokenForCurrentUser]) willReturn:ACCESS_TOKEN];

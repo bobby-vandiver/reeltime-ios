@@ -182,6 +182,14 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
                                         failure:failure];
 }
 
+- (void)sendResetPasswordEmailWithSuccess:(void (^)())success
+                                  failure:(void (^)())failure {
+    [self.httpClient unauthenticatedPostForPath:API_RESET_PASSWORD_SEND_EMAIL
+                                 withParameters:nil
+                                        success:success
+                                        failure:failure];
+}
+
 - (void)newsfeedPage:(NSUInteger)page
              success:(void (^)(RTNewsfeed *))success
              failure:(void (^)())failure {

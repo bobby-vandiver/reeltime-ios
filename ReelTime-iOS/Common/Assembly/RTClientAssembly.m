@@ -76,6 +76,8 @@
                                           [RTResponseDescriptorFactory resetPasswordForExistingClientDescriptor],
                                           [RTResponseDescriptorFactory resetPasswordForNewClientDescriptor],
                                           [RTResponseDescriptorFactory resetPasswordErrorDescriptor],
+                                          [RTResponseDescriptorFactory resetPasswordSendEmailDescriptor],
+                                          [RTResponseDescriptorFactory resetPasswordSendEmailErrorDescriptor],
                                           [RTResponseDescriptorFactory newsfeedDescriptor],
                                           [RTResponseDescriptorFactory joinAudienceDescriptor],
                                           [RTResponseDescriptorFactory followUserDescriptor]
