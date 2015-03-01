@@ -80,6 +80,6 @@
 
 - (void)followUserForUsername:(NSString *)username
                       success:(void (^)())success
-                      failure:(void (^)())failure;
+                      failure:(void (^)(RTServerErrors *errors))failure;
 
 @end

@@ -40,5 +40,6 @@
 + (RKResponseDescriptor *)joinAudienceDescriptor;
 
 + (RKResponseDescriptor *)followUserDescriptor;
++ (RKResponseDescriptor *)followUserErrorDescriptor;
 
 @end

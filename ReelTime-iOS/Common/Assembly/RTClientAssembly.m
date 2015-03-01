@@ -80,7 +80,8 @@
                                           [RTResponseDescriptorFactory resetPasswordSendEmailErrorDescriptor],
                                           [RTResponseDescriptorFactory newsfeedDescriptor],
                                           [RTResponseDescriptorFactory joinAudienceDescriptor],
-                                          [RTResponseDescriptorFactory followUserDescriptor]
+                                          [RTResponseDescriptorFactory followUserDescriptor],
+                                          [RTResponseDescriptorFactory followUserErrorDescriptor]
                                           ]];
         }];
     }];

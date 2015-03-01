@@ -212,7 +212,7 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
 
 - (void)followUserForUsername:(NSString *)username
                       success:(void (^)())success
-                      failure:(void (^)())failure {
+                      failure:(void (^)(RTServerErrors *errors))failure {
     NSString *path = [self.pathFormatter formatPath:API_FOLLOW_USER withParameters:@{@":username": username}];
     [self.httpClient authenticatedPostForPath:path
                                withParameters:nil

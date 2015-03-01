@@ -811,6 +811,10 @@ describe(@"ReelTime Client", ^{
                                                         withParameters:pathParams];
             });
             
+            afterEach(^{
+                expect(httpClient.lastPath).to.contain(username);
+            });
+            
             it(@"is successful", ^{
                 [helper stubAuthenticatedRequestWithMethod:POST
                                                   urlRegex:followUserUrlRegex
@@ -824,6 +828,18 @@ describe(@"ReelTime Client", ^{
                 
                 expect(callbackExecuted).to.beTruthy();
                 expect(httpClient.lastPath).to.contain(username);
+            });
+            
+            it(@"fails due to bad request", ^{
+                [helper stubAuthenticatedRequestWithMethod:POST
+                                                  urlRegex:followUserUrlRegex
+                                       rawResponseFilename:BAD_REQUEST_WITH_ERRORS_FILENAME];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client followUserForUsername:username
+                                          success:shouldNotExecuteSuccessCallback(done)
+                                          failure:shouldExecuteFailureCallbackWithMessage(BAD_REQUEST_ERROR_MESSAGE, done)];
+                });
             });
         });
     });

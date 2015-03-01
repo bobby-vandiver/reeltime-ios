@@ -167,6 +167,12 @@
                                         statusCode:200];
 }
 
++ (RKResponseDescriptor *)followUserErrorDescriptor {
+    return [self serverErrorsDescriptorForMethod:RKRequestMethodPOST
+                                            path:API_FOLLOW_USER
+                                      statusCode:400];
+}
+
 + (NSIndexSet *)badRequestAndServiceUnavailableStatusCodes {
     NSMutableIndexSet *statusCodes = [[NSMutableIndexSet alloc] init];
     
