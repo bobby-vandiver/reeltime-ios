@@ -8,6 +8,8 @@
 #import "RTClientCredentials.h"
 
 #import "RTUser.h"
+#import "RTUserList.h"
+
 #import "RTReel.h"
 #import "RTVideo.h"
 
@@ -20,21 +22,28 @@ SpecBegin(RTRestAPIMappingFactory)
 
 describe(@"API Mapping", ^{
 
-    __block NSDictionary *userResponse = @{
+    __block NSDictionary *userResponse1 = @{
                                            @"username": @"someone",
                                            @"display_name": @"some display",
                                            @"follower_count": @(42),
                                            @"followee_count": @(87)
                                            };
     
-    __block NSDictionary *reelResponse = @{
+    __block NSDictionary *userResponse2 = @{
+                                            @"username": @"anyone",
+                                            @"display_name": @"any display",
+                                            @"follower_count": @(51),
+                                            @"followee_count": @(98)
+                                            };
+    
+    __block NSDictionary *reelResponse1 = @{
                                            @"reel_id": @(12),
                                            @"name": @"some reel",
                                            @"audience_size": @(2),
                                            @"video_count": @(20)
                                            };
 
-    __block NSDictionary *videoResponse = @{
+    __block NSDictionary *videoResponse1 = @{
                                             @"video_id": @(72),
                                             @"title": @"some video"
                                             };
@@ -172,7 +181,7 @@ describe(@"API Mapping", ^{
         
         RTUser *user = [[RTUser alloc] init];
         RKMappingTest *mappingTest = [RKMappingTest testForMapping:mapping
-                                                      sourceObject:userResponse
+                                                      sourceObject:userResponse1
                                                  destinationObject:user];
         
         [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:@"username"
@@ -195,12 +204,78 @@ describe(@"API Mapping", ^{
         [mappingTest verify];
     });
     
+    describe(@"user list", ^{
+        it(@"no users in list", ^{
+            RKMapping *mapping = [RTRestAPIMappingFactory userListMapping];
+            NSArray *response = @[];
+            
+            RTUserList *userList = [[RTUserList alloc] init];
+            RKMappingTest *mappingTest = [RKMappingTest testForMapping:mapping
+                                                          sourceObject:response
+                                                     destinationObject:userList];
+            
+            [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:nil
+                                                                                    destinationKeyPath:@"users"
+                                                                                                 value:@[]]];
+            [mappingTest performMapping];
+            [mappingTest verify];
+        });
+        
+        it(@"has one user in list", ^{
+            RKMapping *mapping = [RTRestAPIMappingFactory userListMapping];
+            NSArray *response = @[userResponse1];
+            
+            RTUserList *userList = [[RTUserList alloc] init];
+            RKMappingTest *mappingTest = [RKMappingTest testForMapping:mapping
+                                                          sourceObject:response
+                                                     destinationObject:userList];
+            
+            [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:nil
+                                                                                    destinationKeyPath:@"users"]];
+            
+            [mappingTest performMapping];
+            [mappingTest verify];
+            
+            expect(userList.users).to.haveCountOf(1);
+            
+            RTUser *first = [userList.users objectAtIndex:0];
+            expect(first).to.beUser(userResponse1[@"username"], userResponse1[@"display_name"],
+                                    userResponse1[@"follower_count"], userResponse1[@"followee_count"]);
+        });
+        
+        it(@"has multiple users in list", ^{
+            RKMapping *mapping = [RTRestAPIMappingFactory userListMapping];
+            NSArray *response = @[userResponse1, userResponse2];
+            
+            RTUserList *userList = [[RTUserList alloc] init];
+            RKMappingTest *mappingTest = [RKMappingTest testForMapping:mapping
+                                                          sourceObject:response
+                                                     destinationObject:userList];
+            
+            [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:nil
+                                                                                    destinationKeyPath:@"users"]];
+            
+            [mappingTest performMapping];
+            [mappingTest verify];
+            
+            expect(userList.users).to.haveCountOf(2);
+            
+            RTUser *first = [userList.users objectAtIndex:0];
+            expect(first).to.beUser(userResponse1[@"username"], userResponse1[@"display_name"],
+                                    userResponse1[@"follower_count"], userResponse1[@"followee_count"]);
+
+            RTUser *second = [userList.users objectAtIndex:1];
+            expect(second).to.beUser(userResponse2[@"username"], userResponse2[@"display_name"],
+                                     userResponse2[@"follower_count"], userResponse2[@"followee_count"]);
+        });
+    });
+    
     it(@"reel", ^{
         RKMapping *mapping = [RTRestAPIMappingFactory reelMapping];
         
         RTReel *reel = [[RTReel alloc] init];
         RKMappingTest *mappingTest = [RKMappingTest testForMapping:mapping
-                                                      sourceObject:reelResponse
+                                                      sourceObject:reelResponse1
                                                  destinationObject:reel];
         
         [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:@"reel_id"
@@ -228,7 +303,7 @@ describe(@"API Mapping", ^{
 
         RTVideo *video = [[RTVideo alloc] init];
         RKMappingTest *mappingTest = [RKMappingTest testForMapping:mapping
-                                                      sourceObject:videoResponse
+                                                      sourceObject:videoResponse1
                                                  destinationObject:video];
         
         [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:@"video_id"
@@ -250,8 +325,8 @@ describe(@"API Mapping", ^{
         beforeEach(^{
             response = [[NSMutableDictionary alloc] init];
             
-            [response setObject:userResponse forKey:@"user"];
-            [response setObject:reelResponse forKey:@"reel"];
+            [response setObject:userResponse1 forKey:@"user"];
+            [response setObject:reelResponse1 forKey:@"reel"];
 
             activity = [[RTActivity alloc] init];
 
@@ -317,7 +392,7 @@ describe(@"API Mapping", ^{
             RKMapping *mapping = [RTRestAPIMappingFactory activityMapping];
 
             [response setObject:@"add-video-to-reel" forKey:@"type"];
-            [response setObject:videoResponse forKey:@"video"];
+            [response setObject:videoResponse1 forKey:@"video"];
             
             RKMappingTest *mappingTest = [RKMappingTest testForMapping:mapping
                                                           sourceObject:response
@@ -373,8 +448,8 @@ describe(@"API Mapping", ^{
             NSMutableDictionary *activity = [[NSMutableDictionary alloc] init];
 
             [activity setObject:@"create-reel" forKey:@"type"];
-            [activity setObject:userResponse forKey:@"user"];
-            [activity setObject:reelResponse forKey:@"reel"];
+            [activity setObject:userResponse1 forKey:@"user"];
+            [activity setObject:reelResponse1 forKey:@"reel"];
 
             NSMutableDictionary *response = [[NSMutableDictionary alloc] init];
             [response setObject:@[activity] forKey:@"activities"];
@@ -396,10 +471,10 @@ describe(@"API Mapping", ^{
             expect(first.type).to.equal(@(RTActivityTypeCreateReel));
             
             expect([first.user class]).to.equal([RTUser class]);
-            expect(first.user.username).to.equal([userResponse objectForKey:@"username"]);
+            expect(first.user.username).to.equal([userResponse1 objectForKey:@"username"]);
 
             expect([first.reel class]).to.equal([RTReel class]);
-            expect(first.reel.name).to.equal([reelResponse objectForKey:@"name"]);
+            expect(first.reel.name).to.equal([reelResponse1 objectForKey:@"name"]);
 
             expect(first.video).to.beNil();
         });
@@ -410,15 +485,15 @@ describe(@"API Mapping", ^{
             NSMutableDictionary *firstActivity = [[NSMutableDictionary alloc] init];
 
             [firstActivity setObject:@"create-reel" forKey:@"type"];
-            [firstActivity setObject:userResponse forKey:@"user"];
-            [firstActivity setObject:reelResponse forKey:@"reel"];
+            [firstActivity setObject:userResponse1 forKey:@"user"];
+            [firstActivity setObject:reelResponse1 forKey:@"reel"];
             
             NSMutableDictionary *secondActivity = [[NSMutableDictionary alloc] init];
             
             [secondActivity setObject:@"add-video-to-reel" forKey:@"type"];
-            [secondActivity setObject:userResponse forKey:@"user"];
-            [secondActivity setObject:reelResponse forKey:@"reel"];
-            [secondActivity setObject:videoResponse forKey:@"video"];
+            [secondActivity setObject:userResponse1 forKey:@"user"];
+            [secondActivity setObject:reelResponse1 forKey:@"reel"];
+            [secondActivity setObject:videoResponse1 forKey:@"video"];
             
             NSMutableDictionary *response = [[NSMutableDictionary alloc] init];
             [response setObject:@[firstActivity, secondActivity] forKey:@"activities"];
@@ -440,10 +515,10 @@ describe(@"API Mapping", ^{
             expect(first.type).to.equal(@(RTActivityTypeCreateReel));
             
             expect([first.user class]).to.equal([RTUser class]);
-            expect(first.user.username).to.equal([userResponse objectForKey:@"username"]);
+            expect(first.user.username).to.equal([userResponse1 objectForKey:@"username"]);
             
             expect([first.reel class]).to.equal([RTReel class]);
-            expect(first.reel.name).to.equal([reelResponse objectForKey:@"name"]);
+            expect(first.reel.name).to.equal([reelResponse1 objectForKey:@"name"]);
             
             expect(first.video).to.beNil();
             
@@ -451,13 +526,13 @@ describe(@"API Mapping", ^{
             expect(second.type).to.equal(@(RTActivityTypeAddVideoToReel));
             
             expect([second.user class]).to.equal([RTUser class]);
-            expect(second.user.username).to.equal([userResponse objectForKey:@"username"]);
+            expect(second.user.username).to.equal([userResponse1 objectForKey:@"username"]);
             
             expect([second.reel class]).to.equal([RTReel class]);
-            expect(second.reel.name).to.equal([reelResponse objectForKey:@"name"]);
+            expect(second.reel.name).to.equal([reelResponse1 objectForKey:@"name"]);
             
             expect([second.video class]).to.equal([RTVideo class]);
-            expect(second.video.title).to.equal([videoResponse objectForKey:@"title"]);
+            expect(second.video.title).to.equal([videoResponse1 objectForKey:@"title"]);
         });
     });
 });

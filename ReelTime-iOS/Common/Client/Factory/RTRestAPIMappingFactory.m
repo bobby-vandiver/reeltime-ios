@@ -7,6 +7,8 @@
 #import "RTClientCredentials.h"
 
 #import "RTUser.h"
+#import "RTUserList.h"
+
 #import "RTReel.h"
 #import "RTVideo.h"
 
@@ -61,6 +63,15 @@
                                                   @"follower_count":    @"numberOfFollowers",
                                                   @"followee_count":    @"numberOfFollowees"
                                                   }];
+    return mapping;
+}
+
++ (RKMapping *)userListMapping {
+    RKObjectMapping *mapping = [RKObjectMapping mappingForClass:[RTUserList class]];
+    RKRelationshipMapping *userMapping = [RKRelationshipMapping relationshipMappingFromKeyPath:nil
+                                                                                     toKeyPath:@"users"
+                                                                                   withMapping:[self userMapping]];
+    [mapping addPropertyMapping:userMapping];
     return mapping;
 }
 

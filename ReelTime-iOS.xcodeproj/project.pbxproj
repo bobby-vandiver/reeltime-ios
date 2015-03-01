@@ -61,6 +61,7 @@
 		7134C6391A9588D50048CFCF /* CreateReelIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7134C6361A9588D50048CFCF /* CreateReelIcon.png */; };
 		7134C63A1A9588D50048CFCF /* JoinReelAudienceIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7134C6371A9588D50048CFCF /* JoinReelAudienceIcon.png */; };
 		7134C63D1A958D7D0048CFCF /* RTActivityCell+ConfigureForRTActivityMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7134C63C1A958D7D0048CFCF /* RTActivityCell+ConfigureForRTActivityMessage.m */; };
+		7136A53F1AA3652C0059DF43 /* RTUserList.m in Sources */ = {isa = PBXBuildFile; fileRef = 7136A53E1AA3652B0059DF43 /* RTUserList.m */; };
 		713BCE041A5908E4000F2D96 /* RTOAuth2TokenStoreSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 713BCE031A5908E4000F2D96 /* RTOAuth2TokenStoreSpec.m */; };
 		713BCE071A5909DA000F2D96 /* RTFakeKeyChainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 713BCE061A5909DA000F2D96 /* RTFakeKeyChainWrapper.m */; };
 		713D7A451A509AC000754A06 /* RTClientCredentialsStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 713D7A441A509AC000754A06 /* RTClientCredentialsStore.m */; };
@@ -238,6 +239,8 @@
 		7134C6371A9588D50048CFCF /* JoinReelAudienceIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JoinReelAudienceIcon.png; sourceTree = "<group>"; };
 		7134C63B1A958D610048CFCF /* RTActivityCell+ConfigureForRTActivityMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RTActivityCell+ConfigureForRTActivityMessage.h"; sourceTree = "<group>"; };
 		7134C63C1A958D7D0048CFCF /* RTActivityCell+ConfigureForRTActivityMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RTActivityCell+ConfigureForRTActivityMessage.m"; sourceTree = "<group>"; };
+		7136A53D1AA3652B0059DF43 /* RTUserList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTUserList.h; path = "ReelTime-iOS/Common/Model/RTUserList.h"; sourceTree = SOURCE_ROOT; };
+		7136A53E1AA3652B0059DF43 /* RTUserList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTUserList.m; path = "ReelTime-iOS/Common/Model/RTUserList.m"; sourceTree = SOURCE_ROOT; };
 		713BCE031A5908E4000F2D96 /* RTOAuth2TokenStoreSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTOAuth2TokenStoreSpec.m; sourceTree = "<group>"; };
 		713BCE051A5909DA000F2D96 /* RTFakeKeyChainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTFakeKeyChainWrapper.h; sourceTree = "<group>"; };
 		713BCE061A5909DA000F2D96 /* RTFakeKeyChainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTFakeKeyChainWrapper.m; sourceTree = "<group>"; };
@@ -1022,6 +1025,8 @@
 				71C5C0AB1A55EAE700CAAFAC /* RTUserCredentials.m */,
 				71647BD31A7E7EEA00F44996 /* RTVideo.h */,
 				71647BD41A7E7EEA00F44996 /* RTVideo.m */,
+				7136A53D1AA3652B0059DF43 /* RTUserList.h */,
+				7136A53E1AA3652B0059DF43 /* RTUserList.m */,
 			);
 			name = Model;
 			path = Models;
@@ -1305,6 +1310,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7172159B1A8659050002ECC7 /* RTAccountRegistrationAssembly.m in Sources */,
+				7136A53F1AA3652C0059DF43 /* RTUserList.m in Sources */,
 				71C5C0B21A55EB3900CAAFAC /* RTOAuth2TokenStore.m in Sources */,
 				71565A261A98ED5900AE1C43 /* RTApplicationWireframe.m in Sources */,
 				715370FA1A88680700D3355B /* RTArrayDataSource.m in Sources */,
