@@ -173,6 +173,18 @@
                                       statusCode:400];
 }
 
++ (RKResponseDescriptor *)unfollowUserDescriptor {
+    return [self noResponseBodyDescriptorForMethod:RKRequestMethodDELETE
+                                              path:API_UNFOLLOW_USER
+                                        statusCode:200];
+}
+
++ (RKResponseDescriptor *)unfollowUserErrorDescriptor {
+    return [self serverErrorsDescriptorForMethod:RKRequestMethodDELETE
+                                            path:API_UNFOLLOW_USER
+                                      statusCode:400];
+}
+
 + (NSIndexSet *)badRequestAndServiceUnavailableStatusCodes {
     NSMutableIndexSet *statusCodes = [[NSMutableIndexSet alloc] init];
     

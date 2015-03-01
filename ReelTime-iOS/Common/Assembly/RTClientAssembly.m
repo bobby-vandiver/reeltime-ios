@@ -81,7 +81,9 @@
                                           [RTResponseDescriptorFactory newsfeedDescriptor],
                                           [RTResponseDescriptorFactory joinAudienceDescriptor],
                                           [RTResponseDescriptorFactory followUserDescriptor],
-                                          [RTResponseDescriptorFactory followUserErrorDescriptor]
+                                          [RTResponseDescriptorFactory followUserErrorDescriptor],
+                                          [RTResponseDescriptorFactory unfollowUserDescriptor],
+                                          [RTResponseDescriptorFactory unfollowUserErrorDescriptor]
                                           ]];
         }];
     }];

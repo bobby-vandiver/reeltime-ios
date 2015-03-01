@@ -842,6 +842,44 @@ describe(@"ReelTime Client", ^{
                 });
             });
         });
+        
+        describe(@"unfollow user", ^{
+            __block NSRegularExpression *unfollowUserUrlRegex;
+            
+            beforeEach(^{
+                NSDictionary *pathParams = @{ @":username": username };
+                unfollowUserUrlRegex = [helper createUrlRegexForEndpoint:API_UNFOLLOW_USER
+                                                          withParameters:pathParams];
+            });
+            
+            afterEach(^{
+                expect(httpClient.lastPath).to.contain(username);
+            });
+            
+            it(@"is successful", ^{
+                [helper stubAuthenticatedRequestWithMethod:DELETE
+                                                  urlRegex:unfollowUserUrlRegex
+                                       rawResponseFilename:SUCCESSFUL_OK_WITH_NO_BODY_FILENAME];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client unfollowUserForUsername:username
+                                            success:shouldExecuteSuccessCallback(done)
+                                            failure:shouldNotExecuteFailureCallback(done)];
+                });
+            });
+            
+            it(@"fails due to bad request", ^{
+                [helper stubAuthenticatedRequestWithMethod:DELETE
+                                                  urlRegex:unfollowUserUrlRegex
+                                       rawResponseFilename:BAD_REQUEST_WITH_ERRORS_FILENAME];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client unfollowUserForUsername:username
+                                            success:shouldNotExecuteSuccessCallback(done)
+                                            failure:shouldExecuteFailureCallbackWithMessage(BAD_REQUEST_ERROR_MESSAGE, done)];
+                });
+            });
+        });
     });
 });
 

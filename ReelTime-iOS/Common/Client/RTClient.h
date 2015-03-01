@@ -82,4 +82,8 @@
                       success:(void (^)())success
                       failure:(void (^)(RTServerErrors *errors))failure;
 
+- (void)unfollowUserForUsername:(NSString *)username
+                        success:(void (^)())success
+                        failure:(void (^)(RTServerErrors *errors))failure;
+
 @end

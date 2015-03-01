@@ -220,5 +220,15 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
                                       failure:failure];
 }
 
+- (void)unfollowUserForUsername:(NSString *)username
+                        success:(void (^)())success
+                        failure:(void (^)(RTServerErrors *))failure {
+    NSString *path = [self.pathFormatter formatPath:API_UNFOLLOW_USER withParameters:@{@":username": username}];
+    [self.httpClient authenticatedDeleteForPath:path
+                                 withParameters:nil
+                                        success:success
+                                        failure:failure];
+}
+
 @end
 

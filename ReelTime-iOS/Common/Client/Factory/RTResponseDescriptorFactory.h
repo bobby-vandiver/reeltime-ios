@@ -42,4 +42,7 @@
 + (RKResponseDescriptor *)followUserDescriptor;
 + (RKResponseDescriptor *)followUserErrorDescriptor;
 
++ (RKResponseDescriptor *)unfollowUserDescriptor;
++ (RKResponseDescriptor *)unfollowUserErrorDescriptor;
+
 @end
