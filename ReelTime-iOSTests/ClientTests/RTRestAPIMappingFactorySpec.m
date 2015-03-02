@@ -253,7 +253,7 @@ describe(@"API Mapping", ^{
             
             expect(userList.users).to.haveCountOf(1);
             
-            RTUser *first = [userList.users objectAtIndex:0];
+            RTUser *first = userList.users[0];
             expect(first).to.beUser(userResponse1[@"username"], userResponse1[@"display_name"],
                                     userResponse1[@"follower_count"], userResponse1[@"followee_count"]);
         });
@@ -275,11 +275,11 @@ describe(@"API Mapping", ^{
             
             expect(userList.users).to.haveCountOf(2);
             
-            RTUser *first = [userList.users objectAtIndex:0];
+            RTUser *first = userList.users[0];
             expect(first).to.beUser(userResponse1[@"username"], userResponse1[@"display_name"],
                                     userResponse1[@"follower_count"], userResponse1[@"followee_count"]);
 
-            RTUser *second = [userList.users objectAtIndex:1];
+            RTUser *second = userList.users[1];
             expect(second).to.beUser(userResponse2[@"username"], userResponse2[@"display_name"],
                                      userResponse2[@"follower_count"], userResponse2[@"followee_count"]);
         });
@@ -347,7 +347,7 @@ describe(@"API Mapping", ^{
             
             expect(reelList.reels).to.haveCountOf(1);
             
-            RTReel *first = [reelList.reels objectAtIndex:0];
+            RTReel *first = reelList.reels[0];
             expect(first).to.beReel(reelResponse1[@"reel_id"], reelResponse1[@"name"],
                                     reelResponse1[@"audience_size"], reelResponse1[@"video_count"]);
         });
@@ -369,11 +369,11 @@ describe(@"API Mapping", ^{
             
             expect(reelList.reels).to.haveCountOf(2);
             
-            RTReel *first = [reelList.reels objectAtIndex:0];
+            RTReel *first = reelList.reels[0];
             expect(first).to.beReel(reelResponse1[@"reel_id"], reelResponse1[@"name"],
                                     reelResponse1[@"audience_size"], reelResponse1[@"video_count"]);
             
-            RTReel *second = [reelList.reels objectAtIndex:1];
+            RTReel *second = reelList.reels[1];
             expect(second).to.beReel(reelResponse2[@"reel_id"], reelResponse2[@"name"],
                                     reelResponse2[@"audience_size"], reelResponse2[@"video_count"]);
         });
@@ -433,7 +433,7 @@ describe(@"API Mapping", ^{
             
             expect(videoList.videos).to.haveCountOf(1);
             
-            RTVideo *first = [videoList.videos objectAtIndex:0];
+            RTVideo *first = videoList.videos[0];
             expect(first).to.beVideo(videoResponse1[@"video_id"], videoResponse1[@"title"]);
         });
 
@@ -454,10 +454,10 @@ describe(@"API Mapping", ^{
             
             expect(videoList.videos).to.haveCountOf(2);
             
-            RTVideo *first = [videoList.videos objectAtIndex:0];
+            RTVideo *first = videoList.videos[0];
             expect(first).to.beVideo(videoResponse1[@"video_id"], videoResponse1[@"title"]);
             
-            RTVideo *second = [videoList.videos objectAtIndex:1];
+            RTVideo *second = videoList.videos[1];
             expect(second).to.beVideo(videoResponse2[@"video_id"], videoResponse2[@"title"]);
         });
     });
