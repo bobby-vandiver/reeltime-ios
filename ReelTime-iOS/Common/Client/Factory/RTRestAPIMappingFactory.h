@@ -17,6 +17,8 @@
 
 + (RKMapping *)reelMapping;
 
++ (RKMapping *)reelListMapping;
+
 + (RKMapping *)videoMapping;
 
 + (RKMapping *)activityMapping;

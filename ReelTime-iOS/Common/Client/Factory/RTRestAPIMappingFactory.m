@@ -10,7 +10,10 @@
 #import "RTUserList.h"
 
 #import "RTReel.h"
+#import "RTReelList.h"
+
 #import "RTVideo.h"
+#import "RTVideoList.h"
 
 #import "RTActivity.h"
 #import "RTNewsfeed.h"
@@ -83,6 +86,15 @@
                                                   @"audience_size":     @"audienceSize",
                                                   @"video_count":       @"numberOfVideos"
                                                   }];
+    return mapping;
+}
+
++ (RKMapping *)reelListMapping {
+    RKObjectMapping *mapping = [RKObjectMapping mappingForClass:[RTReelList class]];
+    RKRelationshipMapping *reelMapping = [RKRelationshipMapping relationshipMappingFromKeyPath:nil
+                                                                                     toKeyPath:@"reels"
+                                                                                   withMapping:[self reelMapping]];
+    [mapping addPropertyMapping:reelMapping];
     return mapping;
 }
 

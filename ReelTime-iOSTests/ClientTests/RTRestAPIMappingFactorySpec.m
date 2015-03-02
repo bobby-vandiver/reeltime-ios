@@ -11,7 +11,10 @@
 #import "RTUserList.h"
 
 #import "RTReel.h"
+#import "RTReelList.h"
+
 #import "RTVideo.h"
+#import "RTVideoList.h"
 
 #import "RTActivity.h"
 #import "RTNewsfeed.h"
@@ -43,10 +46,22 @@ describe(@"API Mapping", ^{
                                            @"video_count": @(20)
                                            };
 
+    __block NSDictionary *reelResponse2 = @{
+                                            @"reel_id": @(94),
+                                            @"name": @"any reel",
+                                            @"audience_size": @(3),
+                                            @"video_count": @(81)
+                                            };
+
     __block NSDictionary *videoResponse1 = @{
                                             @"video_id": @(72),
                                             @"title": @"some video"
                                             };
+
+    __block NSDictionary *videoResponse2 = @{
+                                             @"video_id": @(31),
+                                             @"title": @"any video"
+                                             };
    
     it(@"token", ^{
         RKMapping *mapping = [RTRestAPIMappingFactory tokenMapping];
@@ -298,6 +313,72 @@ describe(@"API Mapping", ^{
         [mappingTest verify];
     });
     
+    describe(@"reel list", ^{
+        it(@"no reels in list", ^{
+            RKMapping *mapping = [RTRestAPIMappingFactory reelListMapping];
+            NSArray *response = @[];
+            
+            RTReelList *reelList = [[RTReelList alloc] init];
+            RKMappingTest *mappingTest = [RKMappingTest testForMapping:mapping
+                                                          sourceObject:response
+                                                     destinationObject:reelList];
+            
+            [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:nil
+                                                                                    destinationKeyPath:@"reels"
+                                                                                                 value:@[]]];
+            [mappingTest performMapping];
+            [mappingTest verify];
+        });
+        
+        it(@"has one reel in list", ^{
+            RKMapping *mapping = [RTRestAPIMappingFactory reelListMapping];
+            NSArray *response = @[reelResponse1];
+            
+            RTReelList *reelList = [[RTReelList alloc] init];
+            RKMappingTest *mappingTest = [RKMappingTest testForMapping:mapping
+                                                          sourceObject:response
+                                                     destinationObject:reelList];
+            
+            [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:nil
+                                                                                    destinationKeyPath:@"reels"]];
+            
+            [mappingTest performMapping];
+            [mappingTest verify];
+            
+            expect(reelList.reels).to.haveCountOf(1);
+            
+            RTReel *first = [reelList.reels objectAtIndex:0];
+            expect(first).to.beReel(reelResponse1[@"reel_id"], reelResponse1[@"name"],
+                                    reelResponse1[@"audience_size"], reelResponse1[@"video_count"]);
+        });
+        
+        it(@"has multiple reels in list", ^{
+            RKMapping *mapping = [RTRestAPIMappingFactory reelListMapping];
+            NSArray *response = @[reelResponse1, reelResponse2];
+            
+            RTReelList *reelList = [[RTReelList alloc] init];
+            RKMappingTest *mappingTest = [RKMappingTest testForMapping:mapping
+                                                          sourceObject:response
+                                                     destinationObject:reelList];
+            
+            [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:nil
+                                                                                    destinationKeyPath:@"reels"]];
+            
+            [mappingTest performMapping];
+            [mappingTest verify];
+            
+            expect(reelList.reels).to.haveCountOf(2);
+            
+            RTReel *first = [reelList.reels objectAtIndex:0];
+            expect(first).to.beReel(reelResponse1[@"reel_id"], reelResponse1[@"name"],
+                                    reelResponse1[@"audience_size"], reelResponse1[@"video_count"]);
+            
+            RTReel *second = [reelList.reels objectAtIndex:1];
+            expect(second).to.beReel(reelResponse2[@"reel_id"], reelResponse2[@"name"],
+                                    reelResponse2[@"audience_size"], reelResponse2[@"video_count"]);
+        });
+    });
+
     it(@"video", ^{
         RKMapping *mapping = [RTRestAPIMappingFactory videoMapping];
 
