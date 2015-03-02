@@ -37,6 +37,8 @@
 
 + (RKResponseDescriptor *)newsfeedDescriptor;
 
++ (RKResponseDescriptor *)listReelsDescriptor;
+
 + (RKResponseDescriptor *)joinAudienceDescriptor;
 
 + (RKResponseDescriptor *)followUserDescriptor;

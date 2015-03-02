@@ -193,8 +193,18 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
 - (void)newsfeedPage:(NSUInteger)page
              success:(NewsfeedCallback)success
              failure:(NoArgsCallback)failure {
-    NSDictionary *parameters = @{@"page":@(page)};
+    NSDictionary *parameters = @{@"page": @(page)};
     [self.httpClient authenticatedGetForPath:API_NEWSFEED
+                              withParameters:parameters
+                                     success:success
+                                     failure:failure];
+}
+
+- (void)listReelsPage:(NSUInteger)page
+              success:(ReelListCallback)success
+              failure:(ServerErrorsCallback)failure {
+    NSDictionary *parameters = @{@"page": @(page)};
+    [self.httpClient authenticatedGetForPath:API_LIST_REELS
                               withParameters:parameters
                                      success:success
                                      failure:failure];

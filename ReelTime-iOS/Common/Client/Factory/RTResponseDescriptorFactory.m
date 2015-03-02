@@ -155,6 +155,13 @@
                                                     statusCode:200];
 }
 
++ (RKResponseDescriptor *)listReelsDescriptor {
+    return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory reelListMapping]
+                                                        method:RKRequestMethodGET
+                                                   pathPattern:API_LIST_REELS
+                                                    statusCode:200];
+}
+
 + (RKResponseDescriptor *)joinAudienceDescriptor {
     return [self noResponseBodyDescriptorForMethod:RKRequestMethodPOST
                                               path:API_ADD_AUDIENCE_MEMBER

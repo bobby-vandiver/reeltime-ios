@@ -79,6 +79,7 @@
                                           [RTResponseDescriptorFactory resetPasswordSendEmailDescriptor],
                                           [RTResponseDescriptorFactory resetPasswordSendEmailErrorDescriptor],
                                           [RTResponseDescriptorFactory newsfeedDescriptor],
+                                          [RTResponseDescriptorFactory listReelsDescriptor],
                                           [RTResponseDescriptorFactory joinAudienceDescriptor],
                                           [RTResponseDescriptorFactory followUserDescriptor],
                                           [RTResponseDescriptorFactory followUserErrorDescriptor],

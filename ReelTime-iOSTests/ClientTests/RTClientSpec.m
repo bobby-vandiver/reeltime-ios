@@ -22,8 +22,13 @@
 #import "RTActivity.h"
 
 #import "RTUser.h"
+#import "RTUserList.h"
+
 #import "RTReel.h"
+#import "RTReelList.h"
+
 #import "RTVideo.h"
+#import "RTVideoList.h"
 
 #import "RTRestAPI.h"
 
@@ -46,6 +51,10 @@ static NSString *const SERVICE_UNAVAILABLE_WITH_ERRORS_FILENAME = @"service-unav
 static NSString *const SUCCESSFUL_CREATED_CLIENT_CREDENTIALS_FILENAME = @"successful-created-client-credentials";
 static NSString *const SUCCESSFUL_CREATED_WITH_NO_BODY_FILENAME = @"successful-created-with-no-body";
 static NSString *const SUCCESSFUL_OK_WITH_NO_BODY_FILENAME = @"successful-ok-with-no-body";
+
+static NSString *const SUCCESSFUL_OK_WITH_REELS_LIST_EMPTY = @"reel-list-no-reels";
+static NSString *const SUCCESSFUL_OK_WITH_REELS_LIST_ONE_REEL = @"reel-list-one-reel";
+static NSString *const SUCCESSFUL_OK_WITH_REELS_LIST_MULTIPLE_REELS = @"reel-list-multiple-reels";
 
 describe(@"ReelTime Client", ^{
     
@@ -155,6 +164,48 @@ describe(@"ReelTime Client", ^{
             expect(clientCredentials.clientId).to.equal(@"5bdee758-cf71-4cd5-9bd9-aded45ce9964");
             expect(clientCredentials.clientSecret).to.equal(@"g70mC9ZbpKa6p6R1tJPVWTm55BWHnSkmCv27F=oSI6");
 
+            done();
+        };
+    };
+    
+    SuccessCallback (^shouldReceiveEmptyReelListInSuccessfulResponse)(DoneCallback) = ^SuccessCallback(DoneCallback done) {
+        return ^(id obj) {
+            expect(obj).to.beKindOf([RTReelList class]);
+            
+            RTReelList *reelList = (RTReelList *)obj;
+            expect(reelList.reels).to.haveCountOf(0);
+            
+            done();
+        };
+    };
+    
+    SuccessCallback (^shouldReceiveReelListWithOneReelInSuccessfulResponse)(DoneCallback) = ^SuccessCallback(DoneCallback done) {
+        return ^(id obj) {
+            expect(obj).to.beKindOf([RTReelList class]);
+            
+            RTReelList *reelList = (RTReelList *)obj;
+            expect(reelList.reels).to.haveCountOf(1);
+            
+            RTReel *first = reelList.reels[0];
+            expect(first).to.beReel(@(759), @"some reel", @(0), @(1));
+            
+            done();
+        };
+    };
+    
+    SuccessCallback (^shouldReceiveReelListWithMultipleReelsInSuccessfulResponse)(DoneCallback) = ^SuccessCallback(DoneCallback done) {
+        return ^(id obj) {
+            expect(obj).to.beKindOf([RTReelList class]);
+            
+            RTReelList *reelList = (RTReelList *)obj;
+            expect(reelList.reels).to.haveCountOf(2);
+            
+            RTReel *first = reelList.reels[0];
+            expect(first).to.beReel(@(759), @"some reel", @(0), @(1));
+            
+            RTReel *second = reelList.reels[1];
+            expect(second).to.beReel(@(759), @"any reel", @(41), @(30));
+            
             done();
         };
     };
@@ -773,6 +824,57 @@ describe(@"ReelTime Client", ^{
                                      done();
                                  }
                                  failure:shouldNotExecuteFailureCallback(done)];
+                });
+            });
+        });
+        
+        // TODO: Figure out problem with RestKit mapping for RTReelList
+        xdescribe(@"list reels", ^{
+            __block NSRegularExpression *listReelsUrlRegex;
+            __block NSUInteger pageNumber = 34;
+            
+            beforeEach(^{
+                listReelsUrlRegex = [helper createUrlRegexForEndpoint:API_LIST_REELS];
+            });
+            
+            afterEach(^{
+                expect(httpClient.lastParameters.allKeys).to.haveCountOf(1);
+                expect(httpClient.lastParameters[@"page"]).to.equal(pageNumber);
+            });
+        
+            it(@"is successful and has no reels", ^{
+                [helper stubAuthenticatedRequestWithMethod:GET
+                                                  urlRegex:listReelsUrlRegex
+                                       rawResponseFilename:SUCCESSFUL_OK_WITH_REELS_LIST_EMPTY];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client listReelsPage:pageNumber
+                                  success:shouldReceiveEmptyReelListInSuccessfulResponse(done)
+                                  failure:shouldNotExecuteFailureCallback(done)];
+                });
+            });
+            
+            it(@"is successful and has one reel", ^{
+                [helper stubAuthenticatedRequestWithMethod:GET
+                                                  urlRegex:listReelsUrlRegex
+                                       rawResponseFilename:SUCCESSFUL_OK_WITH_REELS_LIST_ONE_REEL];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client listReelsPage:pageNumber
+                                  success:shouldReceiveReelListWithOneReelInSuccessfulResponse(done)
+                                  failure:shouldNotExecuteFailureCallback(done)];
+                });
+            });
+            
+            it(@"is successful and has multiple reels", ^{
+                [helper stubAuthenticatedRequestWithMethod:GET
+                                                  urlRegex:listReelsUrlRegex
+                                       rawResponseFilename:SUCCESSFUL_OK_WITH_REELS_LIST_MULTIPLE_REELS];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client listReelsPage:pageNumber
+                                  success:shouldReceiveReelListWithMultipleReelsInSuccessfulResponse(done)
+                                  failure:shouldNotExecuteFailureCallback(done)];
                 });
             });
         });
