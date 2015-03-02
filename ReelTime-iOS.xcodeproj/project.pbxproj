@@ -37,6 +37,10 @@
 		71201F8C1A96B7CD003F2831 /* RTNewsfeedAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 71201F8B1A96B7CD003F2831 /* RTNewsfeedAssembly.m */; };
 		7126980F1AA3CC8000E7066B /* RTReelList.m in Sources */ = {isa = PBXBuildFile; fileRef = 7126980E1AA3CC8000E7066B /* RTReelList.m */; };
 		712698121AA3CCB600E7066B /* RTVideoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 712698111AA3CCB600E7066B /* RTVideoList.m */; };
+		712698151AA3EC3800E7066B /* reel-list-multiple-reels.txt in Resources */ = {isa = PBXBuildFile; fileRef = 712698141AA3EC3800E7066B /* reel-list-multiple-reels.txt */; };
+		712698171AA3EC4400E7066B /* single-reel.txt in Resources */ = {isa = PBXBuildFile; fileRef = 712698161AA3EC4400E7066B /* single-reel.txt */; };
+		712698191AA3ECEB00E7066B /* reel-list-no-reels.txt in Resources */ = {isa = PBXBuildFile; fileRef = 712698181AA3ECEB00E7066B /* reel-list-no-reels.txt */; };
+		7126981B1AA3ED2200E7066B /* reel-list-one-reel.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7126981A1AA3ED2200E7066B /* reel-list-one-reel.txt */; };
 		712BE2FC1A75D74300478277 /* RTClientCredentialsStoreSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 712BE2FB1A75D74300478277 /* RTClientCredentialsStoreSpec.m */; };
 		712BE3021A75D74C00478277 /* EXPMatchers+beError.m in Sources */ = {isa = PBXBuildFile; fileRef = 712BE2FF1A75D74C00478277 /* EXPMatchers+beError.m */; };
 		712BE3031A75D74C00478277 /* RTTestCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 712BE3011A75D74C00478277 /* RTTestCommon.m */; };
@@ -205,6 +209,10 @@
 		7126980E1AA3CC8000E7066B /* RTReelList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTReelList.m; path = "ReelTime-iOS/Common/Model/RTReelList.m"; sourceTree = SOURCE_ROOT; };
 		712698101AA3CCB600E7066B /* RTVideoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTVideoList.h; path = "ReelTime-iOS/Common/Model/RTVideoList.h"; sourceTree = SOURCE_ROOT; };
 		712698111AA3CCB600E7066B /* RTVideoList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTVideoList.m; path = "ReelTime-iOS/Common/Model/RTVideoList.m"; sourceTree = SOURCE_ROOT; };
+		712698141AA3EC3800E7066B /* reel-list-multiple-reels.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "reel-list-multiple-reels.txt"; sourceTree = "<group>"; };
+		712698161AA3EC4400E7066B /* single-reel.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "single-reel.txt"; sourceTree = "<group>"; };
+		712698181AA3ECEB00E7066B /* reel-list-no-reels.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "reel-list-no-reels.txt"; sourceTree = "<group>"; };
+		7126981A1AA3ED2200E7066B /* reel-list-one-reel.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "reel-list-one-reel.txt"; sourceTree = "<group>"; };
 		712BE2FB1A75D74300478277 /* RTClientCredentialsStoreSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTClientCredentialsStoreSpec.m; sourceTree = "<group>"; };
 		712BE2FE1A75D74C00478277 /* EXPMatchers+beError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+beError.h"; sourceTree = "<group>"; };
 		712BE2FF1A75D74C00478277 /* EXPMatchers+beError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EXPMatchers+beError.m"; sourceTree = "<group>"; };
@@ -542,6 +550,17 @@
 			path = CommonResponses;
 			sourceTree = "<group>";
 		};
+		712698131AA3EC0900E7066B /* Reel */ = {
+			isa = PBXGroup;
+			children = (
+				712698141AA3EC3800E7066B /* reel-list-multiple-reels.txt */,
+				712698181AA3ECEB00E7066B /* reel-list-no-reels.txt */,
+				7126981A1AA3ED2200E7066B /* reel-list-one-reel.txt */,
+				712698161AA3EC4400E7066B /* single-reel.txt */,
+			);
+			path = Reel;
+			sourceTree = "<group>";
+		};
 		712BE2FD1A75D74C00478277 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -826,6 +845,7 @@
 			children = (
 				711FF4B51AA20CEC00E11BDE /* CommonResponses */,
 				717215C51A865C8E0002ECC7 /* Newsfeed */,
+				712698131AA3EC0900E7066B /* Reel */,
 				717215C91A865C8E0002ECC7 /* Token */,
 			);
 			path = ServerJSONResponses;
@@ -1233,12 +1253,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				712698151AA3EC3800E7066B /* reel-list-multiple-reels.txt in Resources */,
 				711FF4C11AA20FAA00E11BDE /* successful-created-client-credentials.txt in Resources */,
+				7126981B1AA3ED2200E7066B /* reel-list-one-reel.txt in Resources */,
 				711FF4C31AA2191A00E11BDE /* forbidden-with-no-body.txt in Resources */,
 				717215D41A865C8E0002ECC7 /* token-bad-user-credentials.txt in Resources */,
 				711FF4BC1AA20CEC00E11BDE /* service-unavailable-with-errors.txt in Resources */,
 				717215D01A865C8E0002ECC7 /* newsfeed-multiple-activities.txt in Resources */,
 				711FF4BA1AA20CEC00E11BDE /* bad-request-with-errors.txt in Resources */,
+				712698191AA3ECEB00E7066B /* reel-list-no-reels.txt in Resources */,
 				717215D31A865C8E0002ECC7 /* token-bad-client-credentials.txt in Resources */,
 				711FF4BD1AA20CEC00E11BDE /* successful-ok-with-no-body.txt in Resources */,
 				717215D11A865C8E0002ECC7 /* newsfeed-no-activities.txt in Resources */,
@@ -1246,6 +1269,7 @@
 				717215D21A865C8E0002ECC7 /* newsfeed-one-activity.txt in Resources */,
 				711FF4BF1AA20D2600E11BDE /* successful-created-with-no-body.txt in Resources */,
 				711FF4BB1AA20CEC00E11BDE /* server-internal-error.txt in Resources */,
+				712698171AA3EC4400E7066B /* single-reel.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
