@@ -107,6 +107,15 @@
     return mapping;
 }
 
++ (RKMapping *)videoListMapping {
+    RKObjectMapping *mapping = [RKObjectMapping mappingForClass:[RTVideoList class]];
+    RKRelationshipMapping *videoMapping = [RKRelationshipMapping relationshipMappingFromKeyPath:nil
+                                                                                      toKeyPath:@"videos"
+                                                                                    withMapping:[self videoMapping]];
+    [mapping addPropertyMapping:videoMapping];
+    return mapping;
+}
+
 + (RKMapping *)activityMapping {
     RKDynamicMapping *dynamicMapping = [[RKDynamicMapping alloc] init];
     

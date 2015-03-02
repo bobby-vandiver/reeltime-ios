@@ -398,6 +398,69 @@ describe(@"API Mapping", ^{
         [mappingTest performMapping];
         [mappingTest verify];
     });
+    
+    describe(@"video list", ^{
+        it(@"no videos in list", ^{
+            RKMapping *mapping = [RTRestAPIMappingFactory videoListMapping];
+            NSArray *response = @[];
+            
+            RTVideoList *videoList = [[RTVideoList alloc] init];
+            RKMappingTest *mappingTest = [RKMappingTest testForMapping:mapping
+                                                          sourceObject:response
+                                                     destinationObject:videoList];
+            
+            [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:nil
+                                                                                    destinationKeyPath:@"videos"
+                                                                                                 value:@[]]];
+            [mappingTest performMapping];
+            [mappingTest verify];
+        });
+        
+        it(@"has one video in list", ^{
+            RKMapping *mapping = [RTRestAPIMappingFactory videoListMapping];
+            NSArray *response = @[videoResponse1];
+            
+            RTVideoList *videoList = [[RTVideoList alloc] init];
+            RKMappingTest *mappingTest = [RKMappingTest testForMapping:mapping
+                                                          sourceObject:response
+                                                     destinationObject:videoList];
+            
+            [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:nil
+                                                                                    destinationKeyPath:@"videos"]];
+            
+            [mappingTest performMapping];
+            [mappingTest verify];
+            
+            expect(videoList.videos).to.haveCountOf(1);
+            
+            RTVideo *first = [videoList.videos objectAtIndex:0];
+            expect(first).to.beVideo(videoResponse1[@"video_id"], videoResponse1[@"title"]);
+        });
+
+        it(@"has multiple videos in list", ^{
+            RKMapping *mapping = [RTRestAPIMappingFactory videoListMapping];
+            NSArray *response = @[videoResponse1, videoResponse2];
+            
+            RTVideoList *videoList = [[RTVideoList alloc] init];
+            RKMappingTest *mappingTest = [RKMappingTest testForMapping:mapping
+                                                          sourceObject:response
+                                                     destinationObject:videoList];
+            
+            [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:nil
+                                                                                    destinationKeyPath:@"videos"]];
+            
+            [mappingTest performMapping];
+            [mappingTest verify];
+            
+            expect(videoList.videos).to.haveCountOf(2);
+            
+            RTVideo *first = [videoList.videos objectAtIndex:0];
+            expect(first).to.beVideo(videoResponse1[@"video_id"], videoResponse1[@"title"]);
+            
+            RTVideo *second = [videoList.videos objectAtIndex:1];
+            expect(second).to.beVideo(videoResponse2[@"video_id"], videoResponse2[@"title"]);
+        });
+    });
 
     describe(@"newsfeed activities", ^{
         __block NSMutableDictionary *response;

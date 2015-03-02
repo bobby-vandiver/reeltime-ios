@@ -21,6 +21,8 @@
 
 + (RKMapping *)videoMapping;
 
++ (RKMapping *)videoListMapping;
+
 + (RKMapping *)activityMapping;
 
 + (RKMapping *)newsfeedMapping;
