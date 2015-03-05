@@ -84,6 +84,8 @@
                                           [RTResponseDescriptorFactory listReelsErrorDescriptor],
                                           [RTResponseDescriptorFactory addReelDescriptor],
                                           [RTResponseDescriptorFactory addReelErrorDescriptor],
+                                          [RTResponseDescriptorFactory getReelDescriptor],
+                                          [RTResponseDescriptorFactory getReelErrorDescriptor],
                                           [RTResponseDescriptorFactory joinAudienceDescriptor],
                                           [RTResponseDescriptorFactory followUserDescriptor],
                                           [RTResponseDescriptorFactory followUserErrorDescriptor],

@@ -187,6 +187,19 @@
                                       statusCode:400];
 }
 
++ (RKResponseDescriptor *)getReelDescriptor {
+    return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory reelMapping]
+                                                        method:RKRequestMethodGET
+                                                   pathPattern:API_GET_REEL
+                                                    statusCode:200];
+}
+
++ (RKResponseDescriptor *)getReelErrorDescriptor {
+    return [self serverErrorsDescriptorForMethod:RKRequestMethodGET
+                                            path:API_GET_REEL
+                                      statusCode:404];
+}
+
 + (RKResponseDescriptor *)joinAudienceDescriptor {
     return [self noResponseBodyDescriptorForMethod:RKRequestMethodPOST
                                               path:API_ADD_AUDIENCE_MEMBER

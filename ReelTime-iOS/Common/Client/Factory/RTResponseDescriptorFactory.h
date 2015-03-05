@@ -44,6 +44,9 @@
 + (RKResponseDescriptor *)addReelDescriptor;
 + (RKResponseDescriptor *)addReelErrorDescriptor;
 
++ (RKResponseDescriptor *)getReelDescriptor;
++ (RKResponseDescriptor *)getReelErrorDescriptor;
+
 + (RKResponseDescriptor *)joinAudienceDescriptor;
 
 + (RKResponseDescriptor *)followUserDescriptor;

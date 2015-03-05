@@ -40,9 +40,11 @@
 SpecBegin(RTClient)
 
 static NSString *const BAD_REQUEST_ERROR_MESSAGE = @"Bad Request";
+static NSString *const NOT_FOUND_ERROR_MESSAGE = @"Not Found";
 static NSString *const SERVICE_UNAVAILABLE_ERROR_MESSAGE = @"Service Unavailable";
 
 static NSString *const BAD_REQUEST_WITH_ERRORS_FILENAME = @"bad-request-with-errors";
+static NSString *const NOT_FOUND_WITH_ERRORS_FILENAME = @"not-found-with-errors";
 static NSString *const FORBIDDEN_WITH_NO_BODY_FILENAME = @"forbidden-with-no-body";
 
 static NSString *const SERVER_INTERNAL_ERROR_FILENAME __attribute__((unused)) = @"server-internal-error";
@@ -923,7 +925,7 @@ describe(@"ReelTime Client", ^{
                 waitUntil(^(DoneCallback done) {
                     [client addReelWithName:reelName
                                     success:^(RTReel *reel) {
-                                        expect(reel).to.beReel(@(738), @"single reel", @(41), @(123));
+                                        expect(reel).to.beReel(@(749), @"created reel", @(12), @(56));
                                         done();
                                     }
                                     failure:shouldNotExecuteFailureCallback(done)];
@@ -939,6 +941,44 @@ describe(@"ReelTime Client", ^{
                     [client addReelWithName:reelName
                                     success:shouldNotExecuteSuccessCallback(done)
                                     failure:shouldExecuteFailureCallbackWithMessage(BAD_REQUEST_ERROR_MESSAGE, done)];
+                });
+            });
+        });
+        
+        describe(@"get reel", ^{
+            __block NSRegularExpression *getReelUrlRegex;
+            __block NSUInteger reelId = 431;
+           
+            beforeEach(^{
+                NSDictionary *pathParams = @{ @":reel_id": [NSString stringWithFormat:@"%lu", (unsigned long)reelId] };
+                getReelUrlRegex = [helper createUrlRegexForEndpoint:API_GET_REEL
+                                                     withParameters:pathParams];
+            });
+            
+            it(@"is successful", ^{
+                [helper stubAuthenticatedRequestWithMethod:GET
+                                                  urlRegex:getReelUrlRegex
+                                       rawResponseFilename:@"single-reel"];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client reelForReelId:reelId
+                                  success:^(RTReel *reel) {
+                                      expect(reel).to.beReel(@(738), @"single reel", @(41), @(123));
+                                      done();
+                                  }
+                                  failure:shouldNotExecuteFailureCallback(done)];
+                });
+            });
+            
+            it(@"fails due to not found", ^{
+                [helper stubAuthenticatedRequestWithMethod:GET
+                                                  urlRegex:getReelUrlRegex
+                                       rawResponseFilename:NOT_FOUND_WITH_ERRORS_FILENAME];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client reelForReelId:reelId
+                                  success:shouldNotExecuteSuccessCallback(done)
+                                  failure:shouldExecuteFailureCallbackWithMessage(NOT_FOUND_ERROR_MESSAGE, done)];
                 });
             });
         });
