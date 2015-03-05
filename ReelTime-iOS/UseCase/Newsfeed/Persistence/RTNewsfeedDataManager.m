@@ -24,11 +24,11 @@
 - (void)retrieveNewsfeedPage:(NSUInteger)page
                     callback:(void (^)(RTNewsfeed *))callback {
 
-    id successCallback = ^(RTNewsfeed *newsfeed) {
+    NewsfeedCallback successCallback = ^(RTNewsfeed *newsfeed) {
         callback(newsfeed);
     };
     
-    id failureCallback = ^{
+    ServerErrorsCallback failureCallback = ^(RTServerErrors *errors) {
         // TODO: Log errors
         RTNewsfeed *newsfeed = [[RTNewsfeed alloc] init];
         newsfeed.activities = [NSArray array];

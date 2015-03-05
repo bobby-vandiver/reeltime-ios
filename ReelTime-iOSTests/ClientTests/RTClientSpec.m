@@ -826,6 +826,18 @@ describe(@"ReelTime Client", ^{
                                  failure:shouldNotExecuteFailureCallback(done)];
                 });
             });
+            
+            it(@"fails due to bad request", ^{
+                [helper stubAuthenticatedRequestWithMethod:GET
+                                                  urlRegex:newsfeedUrlRegex
+                                       rawResponseFilename:BAD_REQUEST_WITH_ERRORS_FILENAME];
+
+                waitUntil(^(DoneCallback done) {
+                    [client newsfeedPage:pageNumber
+                                 success:shouldNotExecuteSuccessCallback(done)
+                                 failure:shouldExecuteFailureCallbackWithMessage(BAD_REQUEST_ERROR_MESSAGE, done)];
+                });
+            });
         });
         
         describe(@"list reels", ^{

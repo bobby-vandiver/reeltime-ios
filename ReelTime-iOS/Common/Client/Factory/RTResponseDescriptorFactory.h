@@ -36,6 +36,7 @@
 + (RKResponseDescriptor *)resetPasswordSendEmailErrorDescriptor;
 
 + (RKResponseDescriptor *)newsfeedDescriptor;
++ (RKResponseDescriptor *)newsfeedErrorDescriptor;
 
 + (RKResponseDescriptor *)listReelsDescriptor;
 + (RKResponseDescriptor *)listReelsErrorDescriptor;

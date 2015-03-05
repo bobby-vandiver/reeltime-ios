@@ -192,7 +192,7 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
 
 - (void)newsfeedPage:(NSUInteger)page
              success:(NewsfeedCallback)success
-             failure:(NoArgsCallback)failure {
+             failure:(ServerErrorsCallback)failure {
     NSDictionary *parameters = @{@"page": @(page)};
     [self.httpClient authenticatedGetForPath:API_NEWSFEED
                               withParameters:parameters

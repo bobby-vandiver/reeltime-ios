@@ -85,7 +85,7 @@ typedef void (^ReelListCallback)(RTReelList *);
 
 - (void)newsfeedPage:(NSUInteger)page
              success:(NewsfeedCallback)success
-             failure:(NoArgsCallback)failure;
+             failure:(ServerErrorsCallback)failure;
 
 - (void)listReelsPage:(NSUInteger)page
               success:(ReelListCallback)success

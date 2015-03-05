@@ -155,6 +155,12 @@
                                                     statusCode:200];
 }
 
++ (RKResponseDescriptor *)newsfeedErrorDescriptor {
+    return [self serverErrorsDescriptorForMethod:RKRequestMethodGET
+                                            path:API_NEWSFEED
+                                      statusCode:400];
+}
+
 + (RKResponseDescriptor *)listReelsDescriptor {
     return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory reelListMapping]
                                                         method:RKRequestMethodGET
