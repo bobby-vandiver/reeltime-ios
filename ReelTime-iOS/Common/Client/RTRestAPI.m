@@ -17,7 +17,7 @@ API_VERSION_1_0(API_CHANGE_DISPLAY_NAME,            "account/display_name");
 API_VERSION_1_0(API_CHANGE_PASSWORD,                "account/password");
 
 API_VERSION_1_0(API_RESET_PASSWORD,                 "account/password/reset");
-API_VERSION_1_0(API_RESET_PASSWORD_SEND_EMAIL,      "account/password/email");
+API_VERSION_1_0(API_RESET_PASSWORD_SEND_EMAIL,      "account/password/reset/email");
 
 API_VERSION_1_0(API_NEWSFEED,                       "newsfeed");
 
