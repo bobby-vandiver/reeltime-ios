@@ -210,6 +210,17 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
                                      failure:failure];
 }
 
+- (void)addReelWithName:(NSString *)name
+                success:(ReelCallback)success
+                failure:(ServerErrorsCallback)failure {
+    NSDictionary *parameters = @{@"name": name};
+    [self.httpClient authenticatedPostForPath:API_ADD_REEL
+                               withParameters:parameters
+                                      success:success
+                                      failure:failure];
+    
+}
+
 - (void)joinAudienceForReelId:(NSUInteger)reelId
                       success:(NoArgsCallback)success
                       failure:(NoArgsCallback)failure {

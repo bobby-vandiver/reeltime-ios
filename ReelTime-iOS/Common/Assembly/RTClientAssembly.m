@@ -82,6 +82,8 @@
                                           [RTResponseDescriptorFactory newsfeedErrorDescriptor],
                                           [RTResponseDescriptorFactory listReelsDescriptor],
                                           [RTResponseDescriptorFactory listReelsErrorDescriptor],
+                                          [RTResponseDescriptorFactory addReelDescriptor],
+                                          [RTResponseDescriptorFactory addReelErrorDescriptor],
                                           [RTResponseDescriptorFactory joinAudienceDescriptor],
                                           [RTResponseDescriptorFactory followUserDescriptor],
                                           [RTResponseDescriptorFactory followUserErrorDescriptor],

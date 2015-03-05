@@ -902,6 +902,47 @@ describe(@"ReelTime Client", ^{
             });
         });
         
+        describe(@"add reel", ^{
+            __block NSRegularExpression *addReelUrlRegex;
+            __block NSString *reelName = @"something";
+            
+            beforeEach(^{
+                addReelUrlRegex = [helper createUrlRegexForEndpoint:API_ADD_REEL];
+            });
+            
+            afterEach(^{
+                expect(httpClient.lastParameters.allKeys).to.haveCountOf(1);
+                expect(httpClient.lastParameters[@"name"]).to.equal(reelName);
+            });
+            
+            it(@"is successful", ^{
+                [helper stubAuthenticatedRequestWithMethod:POST
+                                                  urlRegex:addReelUrlRegex
+                                       rawResponseFilename:@"reel-created"];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client addReelWithName:reelName
+                                    success:^(RTReel *reel) {
+                                        expect(reel).to.beReel(@(738), @"single reel", @(41), @(123));
+                                        done();
+                                    }
+                                    failure:shouldNotExecuteFailureCallback(done)];
+                });
+            });
+            
+            it(@"fails due to bad request", ^{
+                [helper stubAuthenticatedRequestWithMethod:POST
+                                                  urlRegex:addReelUrlRegex
+                                       rawResponseFilename:BAD_REQUEST_WITH_ERRORS_FILENAME];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client addReelWithName:reelName
+                                    success:shouldNotExecuteSuccessCallback(done)
+                                    failure:shouldExecuteFailureCallbackWithMessage(BAD_REQUEST_ERROR_MESSAGE, done)];
+                });
+            });
+        });
+        
         describe(@"join audience", ^{
             __block NSRegularExpression *joinAudienceUrlRegex;
             

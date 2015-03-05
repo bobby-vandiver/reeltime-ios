@@ -14,6 +14,7 @@
 @class RTAccountRegistration;
 @class RTNewsfeed;
 
+@class RTReel;
 @class RTReelList;
 
 typedef void (^NoArgsCallback)();
@@ -25,6 +26,7 @@ typedef void (^TokenErrorCallback)(RTOAuth2TokenError *);
 typedef void (^ClientCredentialsCallback)(RTClientCredentials *);
 typedef void (^NewsfeedCallback)(RTNewsfeed *);
 
+typedef void (^ReelCallback)(RTReel *);
 typedef void (^ReelListCallback)(RTReelList *);
 
 @interface RTClient : NSObject
@@ -90,6 +92,10 @@ typedef void (^ReelListCallback)(RTReelList *);
 - (void)listReelsPage:(NSUInteger)page
               success:(ReelListCallback)success
               failure:(ServerErrorsCallback)failure;
+
+- (void)addReelWithName:(NSString *)name
+                success:(ReelCallback)success
+                failure:(ServerErrorsCallback)failure;
 
 - (void)joinAudienceForReelId:(NSUInteger)reelId
                       success:(NoArgsCallback)success
