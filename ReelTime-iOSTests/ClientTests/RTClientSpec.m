@@ -562,15 +562,32 @@ describe(@"ReelTime Client", ^{
                 
                 expect(callbackExecuted).to.beTruthy();
             });
+            
+            it(@"fails due to forbidden", ^{
+                [helper stubAuthenticatedRequestWithMethod:DELETE
+                                                  urlRegex:accountRemovalUrlRegex
+                                       rawResponseFilename:FORBIDDEN_WITH_NO_BODY_FILENAME];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client removeAccountWithSuccess:shouldNotExecuteSuccessCallback(done)
+                                             failure:shouldExecuteFailureCallbackWithoutMessage(done)];
+                });
+            });
         });
         
         describe(@"client removal", ^{
             __block NSRegularExpression *clientRemovalUrlRegex;
+            __block NSString *clientId = @"clientUUID";
             
             beforeEach(^{
-                NSDictionary *parameters = @{ @":client_id": @"clientUUID" };
+                NSDictionary *parameters = @{ @":client_id": clientId };
                 clientRemovalUrlRegex = [helper createUrlRegexForEndpoint:API_REMOVE_CLIENT
                                                            withParameters:parameters];
+            });
+            
+            afterEach(^{
+                expect(httpClient.lastPath).to.endWith(clientId);
+                expect(httpClient.lastParameters).to.beNil();
             });
             
             it(@"is successful", ^{
@@ -579,13 +596,22 @@ describe(@"ReelTime Client", ^{
                                        rawResponseFilename:SUCCESSFUL_OK_WITH_NO_BODY_FILENAME];
                 
                 waitUntil(^(DoneCallback done) {
-                    [client removeClientWithClientId:@"clientUUID"
+                    [client removeClientWithClientId:clientId
                                              success:shouldExecuteSuccessCallback(done)
                                              failure:shouldNotExecuteFailureCallback(done)];
                 });
+            });
+            
+            it(@"fails due to forbidden", ^{
+                [helper stubAuthenticatedRequestWithMethod:DELETE
+                                                  urlRegex:clientRemovalUrlRegex
+                                       rawResponseFilename:FORBIDDEN_WITH_NO_BODY_FILENAME];
                 
-                expect(httpClient.lastPath).to.endWith(@"clientUUID");
-                expect(httpClient.lastParameters).to.beNil();
+                waitUntil(^(DoneCallback done) {
+                    [client removeClientWithClientId:clientId
+                                             success:shouldNotExecuteSuccessCallback(done)
+                                             failure:shouldExecuteFailureCallbackWithoutMessage(done)];
+                });
             });
         });
         

@@ -44,6 +44,12 @@
                                         statusCode:200];
 }
 
++ (RKResponseDescriptor *)accountRemovalErrorDescriptor {
+    return [self noResponseBodyDescriptorForMethod:RKRequestMethodDELETE
+                                              path:API_REMOVE_ACCOUNT
+                                        statusCode:403];
+}
+
 + (RKResponseDescriptor *)clientRegistrationDescriptor {
     return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory clientCredentialsMapping]
                                                         method:RKRequestMethodPOST
@@ -63,6 +69,12 @@
     return [self noResponseBodyDescriptorForMethod:RKRequestMethodDELETE
                                               path:API_REMOVE_CLIENT
                                         statusCode:200];
+}
+
++ (RKResponseDescriptor *)clientRemovalErrorDescriptor {
+    return [self noResponseBodyDescriptorForMethod:RKRequestMethodDELETE
+                                              path:API_REMOVE_CLIENT
+                                        statusCode:403];
 }
 
 + (RKResponseDescriptor *)accountConfirmationDescriptor {
