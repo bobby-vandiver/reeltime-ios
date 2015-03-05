@@ -101,6 +101,10 @@ typedef void (^ReelListCallback)(RTReelList *);
               success:(ReelCallback)success
               failure:(ServerErrorsCallback)failure;
 
+- (void)deleteReelForReelId:(NSUInteger)reelId
+                    success:(NoArgsCallback)success
+                    failure:(NoArgsCallback)failure;
+
 - (void)joinAudienceForReelId:(NSUInteger)reelId
                       success:(NoArgsCallback)success
                       failure:(NoArgsCallback)failure;

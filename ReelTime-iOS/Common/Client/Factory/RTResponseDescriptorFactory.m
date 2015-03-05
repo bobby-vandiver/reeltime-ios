@@ -200,6 +200,18 @@
                                       statusCode:404];
 }
 
++ (RKResponseDescriptor *)deleteReelDescriptor {
+    return [self noResponseBodyDescriptorForMethod:RKRequestMethodDELETE
+                                              path:API_DELETE_REEL
+                                        statusCode:200];
+}
+
++ (RKResponseDescriptor *)deleteReelErrorDescriptor {
+    return [self noResponseBodyDescriptorForMethod:RKRequestMethodDELETE
+                                              path:API_DELETE_REEL
+                                        statusCode:403];
+}
+
 + (RKResponseDescriptor *)joinAudienceDescriptor {
     return [self noResponseBodyDescriptorForMethod:RKRequestMethodPOST
                                               path:API_ADD_AUDIENCE_MEMBER

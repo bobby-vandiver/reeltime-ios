@@ -231,6 +231,16 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
                                      failure:failure];
 }
 
+- (void)deleteReelForReelId:(NSUInteger)reelId
+                    success:(NoArgsCallback)success
+                    failure:(NoArgsCallback)failure {
+    NSString *path = [self.pathFormatter formatPath:API_DELETE_REEL withParameters:@{@":reel_id": @(reelId)}];
+    [self.httpClient authenticatedDeleteForPath:path
+                                 withParameters:nil
+                                        success:success
+                                        failure:failure];                            
+}
+
 - (void)joinAudienceForReelId:(NSUInteger)reelId
                       success:(NoArgsCallback)success
                       failure:(NoArgsCallback)failure {

@@ -983,6 +983,41 @@ describe(@"ReelTime Client", ^{
             });
         });
         
+        describe(@"delete reel", ^{
+            __block NSRegularExpression *deleteReelUrlRegex;
+            __block NSUInteger reelId = 9481;
+            
+            beforeEach(^{
+                NSDictionary *pathParams = @{ @":reel_id": [NSString stringWithFormat:@"%lu", (unsigned long)reelId] };
+                deleteReelUrlRegex = [helper createUrlRegexForEndpoint:API_DELETE_REEL
+                                                        withParameters:pathParams];
+            });
+            
+            it(@"is successful", ^{
+                [helper stubAuthenticatedRequestWithMethod:DELETE
+                                                  urlRegex:deleteReelUrlRegex
+                                       rawResponseFilename:SUCCESSFUL_OK_WITH_NO_BODY_FILENAME];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client deleteReelForReelId:reelId
+                                        success:shouldExecuteSuccessCallback(done)
+                                        failure:shouldNotExecuteFailureCallback(done)];
+                });
+            });
+            
+            it(@"fails due to forbidden", ^{
+                [helper stubAuthenticatedRequestWithMethod:DELETE
+                                                  urlRegex:deleteReelUrlRegex
+                                       rawResponseFilename:FORBIDDEN_WITH_NO_BODY_FILENAME];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client deleteReelForReelId:reelId
+                                        success:shouldNotExecuteSuccessCallback(done)
+                                        failure:shouldExecuteFailureCallbackWithoutMessage(done)];
+                });
+            });
+        });
+        
         describe(@"join audience", ^{
             __block NSRegularExpression *joinAudienceUrlRegex;
             
