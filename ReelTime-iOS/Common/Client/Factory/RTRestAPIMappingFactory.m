@@ -71,7 +71,7 @@
 
 + (RKMapping *)userListMapping {
     RKObjectMapping *mapping = [RKObjectMapping mappingForClass:[RTUserList class]];
-    RKRelationshipMapping *userMapping = [RKRelationshipMapping relationshipMappingFromKeyPath:nil
+    RKRelationshipMapping *userMapping = [RKRelationshipMapping relationshipMappingFromKeyPath:@"users"
                                                                                      toKeyPath:@"users"
                                                                                    withMapping:[self userMapping]];
     [mapping addPropertyMapping:userMapping];
@@ -91,7 +91,7 @@
 
 + (RKMapping *)reelListMapping {
     RKObjectMapping *mapping = [RKObjectMapping mappingForClass:[RTReelList class]];
-    RKRelationshipMapping *reelMapping = [RKRelationshipMapping relationshipMappingFromKeyPath:nil
+    RKRelationshipMapping *reelMapping = [RKRelationshipMapping relationshipMappingFromKeyPath:@"reels"
                                                                                      toKeyPath:@"reels"
                                                                                    withMapping:[self reelMapping]];
     [mapping addPropertyMapping:reelMapping];
@@ -109,7 +109,7 @@
 
 + (RKMapping *)videoListMapping {
     RKObjectMapping *mapping = [RKObjectMapping mappingForClass:[RTVideoList class]];
-    RKRelationshipMapping *videoMapping = [RKRelationshipMapping relationshipMappingFromKeyPath:nil
+    RKRelationshipMapping *videoMapping = [RKRelationshipMapping relationshipMappingFromKeyPath:@"videos"
                                                                                       toKeyPath:@"videos"
                                                                                     withMapping:[self videoMapping]];
     [mapping addPropertyMapping:videoMapping];

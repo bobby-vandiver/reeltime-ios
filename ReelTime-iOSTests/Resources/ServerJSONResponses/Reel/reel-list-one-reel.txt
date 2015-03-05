@@ -4,11 +4,13 @@ Content-Type: application/json;charset=UTF-8
 Transfer-Encoding: chunked
 Date: Sun, 22 Feb 2015 17:55:58 GMT
 
-[
-    {
-        "reel_id": 759,
-        "name": "some reel",
-        "audience_size": 0,
-        "video_count": 1
-    }
-]
+{
+    "reels":[
+        {
+            "reel_id": 759,
+            "name": "some reel",
+            "audience_size": 0,
+            "video_count": 1
+        }
+    ]
+}

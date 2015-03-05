@@ -222,14 +222,14 @@ describe(@"API Mapping", ^{
     describe(@"user list", ^{
         it(@"no users in list", ^{
             RKMapping *mapping = [RTRestAPIMappingFactory userListMapping];
-            NSArray *response = @[];
+            NSDictionary *response = @{@"users": @[]};
             
             RTUserList *userList = [[RTUserList alloc] init];
             RKMappingTest *mappingTest = [RKMappingTest testForMapping:mapping
                                                           sourceObject:response
                                                      destinationObject:userList];
             
-            [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:nil
+            [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:@"users"
                                                                                     destinationKeyPath:@"users"
                                                                                                  value:@[]]];
             [mappingTest performMapping];
@@ -238,14 +238,14 @@ describe(@"API Mapping", ^{
         
         it(@"has one user in list", ^{
             RKMapping *mapping = [RTRestAPIMappingFactory userListMapping];
-            NSArray *response = @[userResponse1];
+            NSDictionary *response = @{@"users": @[userResponse1]};
             
             RTUserList *userList = [[RTUserList alloc] init];
             RKMappingTest *mappingTest = [RKMappingTest testForMapping:mapping
                                                           sourceObject:response
                                                      destinationObject:userList];
             
-            [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:nil
+            [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:@"users"
                                                                                     destinationKeyPath:@"users"]];
             
             [mappingTest performMapping];
@@ -260,14 +260,14 @@ describe(@"API Mapping", ^{
         
         it(@"has multiple users in list", ^{
             RKMapping *mapping = [RTRestAPIMappingFactory userListMapping];
-            NSArray *response = @[userResponse1, userResponse2];
+            NSDictionary *response = @{@"users": @[userResponse1, userResponse2]};
             
             RTUserList *userList = [[RTUserList alloc] init];
             RKMappingTest *mappingTest = [RKMappingTest testForMapping:mapping
                                                           sourceObject:response
                                                      destinationObject:userList];
             
-            [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:nil
+            [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:@"users"
                                                                                     destinationKeyPath:@"users"]];
             
             [mappingTest performMapping];
@@ -316,14 +316,14 @@ describe(@"API Mapping", ^{
     describe(@"reel list", ^{
         it(@"no reels in list", ^{
             RKMapping *mapping = [RTRestAPIMappingFactory reelListMapping];
-            NSArray *response = @[];
+            NSDictionary *response = @{@"reels": @[]};
             
             RTReelList *reelList = [[RTReelList alloc] init];
             RKMappingTest *mappingTest = [RKMappingTest testForMapping:mapping
                                                           sourceObject:response
                                                      destinationObject:reelList];
             
-            [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:nil
+            [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:@"reels"
                                                                                     destinationKeyPath:@"reels"
                                                                                                  value:@[]]];
             [mappingTest performMapping];
@@ -332,14 +332,14 @@ describe(@"API Mapping", ^{
         
         it(@"has one reel in list", ^{
             RKMapping *mapping = [RTRestAPIMappingFactory reelListMapping];
-            NSArray *response = @[reelResponse1];
+            NSDictionary *response = @{@"reels": @[reelResponse1]};
             
             RTReelList *reelList = [[RTReelList alloc] init];
             RKMappingTest *mappingTest = [RKMappingTest testForMapping:mapping
                                                           sourceObject:response
                                                      destinationObject:reelList];
             
-            [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:nil
+            [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:@"reels"
                                                                                     destinationKeyPath:@"reels"]];
             
             [mappingTest performMapping];
@@ -354,14 +354,14 @@ describe(@"API Mapping", ^{
         
         it(@"has multiple reels in list", ^{
             RKMapping *mapping = [RTRestAPIMappingFactory reelListMapping];
-            NSArray *response = @[reelResponse1, reelResponse2];
+            NSDictionary *response = @{@"reels": @[reelResponse1, reelResponse2]};
             
             RTReelList *reelList = [[RTReelList alloc] init];
             RKMappingTest *mappingTest = [RKMappingTest testForMapping:mapping
                                                           sourceObject:response
                                                      destinationObject:reelList];
             
-            [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:nil
+            [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:@"reels"
                                                                                     destinationKeyPath:@"reels"]];
             
             [mappingTest performMapping];
@@ -402,14 +402,14 @@ describe(@"API Mapping", ^{
     describe(@"video list", ^{
         it(@"no videos in list", ^{
             RKMapping *mapping = [RTRestAPIMappingFactory videoListMapping];
-            NSArray *response = @[];
+            NSDictionary *response = @{@"videos": @[]};
             
             RTVideoList *videoList = [[RTVideoList alloc] init];
             RKMappingTest *mappingTest = [RKMappingTest testForMapping:mapping
                                                           sourceObject:response
                                                      destinationObject:videoList];
             
-            [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:nil
+            [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:@"videos"
                                                                                     destinationKeyPath:@"videos"
                                                                                                  value:@[]]];
             [mappingTest performMapping];
@@ -418,14 +418,14 @@ describe(@"API Mapping", ^{
         
         it(@"has one video in list", ^{
             RKMapping *mapping = [RTRestAPIMappingFactory videoListMapping];
-            NSArray *response = @[videoResponse1];
+            NSDictionary *response = @{@"videos": @[videoResponse1]};
             
             RTVideoList *videoList = [[RTVideoList alloc] init];
             RKMappingTest *mappingTest = [RKMappingTest testForMapping:mapping
                                                           sourceObject:response
                                                      destinationObject:videoList];
             
-            [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:nil
+            [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:@"videos"
                                                                                     destinationKeyPath:@"videos"]];
             
             [mappingTest performMapping];
@@ -439,14 +439,14 @@ describe(@"API Mapping", ^{
 
         it(@"has multiple videos in list", ^{
             RKMapping *mapping = [RTRestAPIMappingFactory videoListMapping];
-            NSArray *response = @[videoResponse1, videoResponse2];
+            NSDictionary *response = @{@"videos": @[videoResponse1, videoResponse2]};
             
             RTVideoList *videoList = [[RTVideoList alloc] init];
             RKMappingTest *mappingTest = [RKMappingTest testForMapping:mapping
                                                           sourceObject:response
                                                      destinationObject:videoList];
             
-            [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:nil
+            [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:@"videos"
                                                                                     destinationKeyPath:@"videos"]];
             
             [mappingTest performMapping];
