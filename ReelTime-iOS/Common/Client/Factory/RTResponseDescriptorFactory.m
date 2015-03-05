@@ -162,6 +162,12 @@
                                                     statusCode:200];
 }
 
++ (RKResponseDescriptor *)listReelsErrorDescriptor {
+    return [self serverErrorsDescriptorForMethod:RKRequestMethodGET
+                                            path:API_LIST_REELS
+                                      statusCode:400];
+}
+
 + (RKResponseDescriptor *)joinAudienceDescriptor {
     return [self noResponseBodyDescriptorForMethod:RKRequestMethodPOST
                                               path:API_ADD_AUDIENCE_MEMBER

@@ -38,6 +38,7 @@
 + (RKResponseDescriptor *)newsfeedDescriptor;
 
 + (RKResponseDescriptor *)listReelsDescriptor;
++ (RKResponseDescriptor *)listReelsErrorDescriptor;
 
 + (RKResponseDescriptor *)joinAudienceDescriptor;
 

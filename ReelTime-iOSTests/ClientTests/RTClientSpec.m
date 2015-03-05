@@ -204,7 +204,7 @@ describe(@"ReelTime Client", ^{
             expect(first).to.beReel(@(759), @"some reel", @(0), @(1));
             
             RTReel *second = reelList.reels[1];
-            expect(second).to.beReel(@(759), @"any reel", @(41), @(30));
+            expect(second).to.beReel(@(758), @"any reel", @(41), @(30));
             
             done();
         };
@@ -828,8 +828,7 @@ describe(@"ReelTime Client", ^{
             });
         });
         
-        // TODO: Figure out problem with RestKit mapping for RTReelList
-        xdescribe(@"list reels", ^{
+        describe(@"list reels", ^{
             __block NSRegularExpression *listReelsUrlRegex;
             __block NSUInteger pageNumber = 34;
             
@@ -875,6 +874,18 @@ describe(@"ReelTime Client", ^{
                     [client listReelsPage:pageNumber
                                   success:shouldReceiveReelListWithMultipleReelsInSuccessfulResponse(done)
                                   failure:shouldNotExecuteFailureCallback(done)];
+                });
+            });
+            
+            it(@"fails due to bad request", ^{
+                [helper stubAuthenticatedRequestWithMethod:GET
+                                                  urlRegex:listReelsUrlRegex
+                                       rawResponseFilename:BAD_REQUEST_WITH_ERRORS_FILENAME];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client listReelsPage:pageNumber
+                                  success:shouldNotExecuteSuccessCallback(done)
+                                  failure:shouldExecuteFailureCallbackWithMessage(BAD_REQUEST_ERROR_MESSAGE, done)];
                 });
             });
         });
