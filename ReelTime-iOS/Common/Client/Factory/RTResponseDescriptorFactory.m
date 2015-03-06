@@ -224,6 +224,20 @@
                                       statusCode:404];
 }
 
++ (RKResponseDescriptor *)listReelVideosDescriptor {
+    return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory videoListMapping]
+                                                        method:RKRequestMethodGET
+                                                   pathPattern:API_LIST_REEL_VIDEOS
+                                                    statusCode:200];
+}
+
++ (RKResponseDescriptor *)listReelVideosErrorDescriptor {
+    NSIndexSet *statusCodes = [self badRequestAndNotFoundStatusCodes];
+    return [self serverErrorsDescriptorForMethod:RKRequestMethodGET
+                                            path:API_LIST_REEL_VIDEOS
+                                     statusCodes:statusCodes];
+}
+
 + (RKResponseDescriptor *)listAudienceMembersDescriptor {
     return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory userListMapping]
                                                         method:RKRequestMethodGET
@@ -232,10 +246,7 @@
 }
 
 + (RKResponseDescriptor *)listAudienceMembersErrorDescriptor {
-    NSMutableIndexSet *statusCodes = [NSMutableIndexSet indexSet];
-    [statusCodes addIndex:400];
-    [statusCodes addIndex:404];
-    
+    NSIndexSet *statusCodes = [self badRequestAndNotFoundStatusCodes];
     return [self serverErrorsDescriptorForMethod:RKRequestMethodGET
                                             path:API_LIST_AUDIENCE_MEMBERS
                                      statusCodes:statusCodes];
@@ -289,8 +300,17 @@
                                       statusCode:400];
 }
 
++ (NSIndexSet *)badRequestAndNotFoundStatusCodes {
+    NSMutableIndexSet *statusCodes = [NSMutableIndexSet indexSet];
+
+    [statusCodes addIndex:400];
+    [statusCodes addIndex:404];
+    
+    return statusCodes;
+}
+
 + (NSIndexSet *)badRequestAndServiceUnavailableStatusCodes {
-    NSMutableIndexSet *statusCodes = [[NSMutableIndexSet alloc] init];
+    NSMutableIndexSet *statusCodes = [NSMutableIndexSet indexSet];
     
     [statusCodes addIndex:400];
     [statusCodes addIndex:503];

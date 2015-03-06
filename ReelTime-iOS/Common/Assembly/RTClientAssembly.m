@@ -98,6 +98,8 @@
                                           [RTResponseDescriptorFactory joinAudienceErrorDescriptor],
                                           [RTResponseDescriptorFactory leaveAudienceDescriptor],
                                           [RTResponseDescriptorFactory leaveAudienceErrorDescriptor],
+                                          [RTResponseDescriptorFactory listReelVideosDescriptor],
+                                          [RTResponseDescriptorFactory listReelVideosErrorDescriptor],
                                           [RTResponseDescriptorFactory followUserDescriptor],
                                           [RTResponseDescriptorFactory followUserErrorDescriptor],
                                           [RTResponseDescriptorFactory unfollowUserDescriptor],

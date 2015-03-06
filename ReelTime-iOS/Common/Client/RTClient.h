@@ -20,6 +20,9 @@
 @class RTUser;
 @class RTUserList;
 
+@class RTVideo;
+@class RTVideoList;
+
 typedef void (^NoArgsCallback)();
 typedef void (^ServerErrorsCallback)(RTServerErrors *);
 
@@ -34,6 +37,9 @@ typedef void (^ReelListCallback)(RTReelList *);
 
 typedef void (^UserCallback)(RTUser *);
 typedef void (^UserListCallback)(RTUserList *);
+
+typedef void (^VideoCallback)(RTVideo *);
+typedef void (^VideoListCallback)(RTVideoList *);
 
 @interface RTClient : NSObject
 
@@ -110,6 +116,11 @@ typedef void (^UserListCallback)(RTUserList *);
 - (void)deleteReelForReelId:(NSUInteger)reelId
                     success:(NoArgsCallback)success
                     failure:(NoArgsCallback)failure;
+
+- (void)listVideosPage:(NSUInteger)page
+             forReelId:(NSUInteger)reelId
+               success:(VideoListCallback)success
+               failure:(ServerErrorsCallback)failure;
 
 - (void)listAudienceMembersPage:(NSUInteger)page
                       forReelId:(NSUInteger)reelId

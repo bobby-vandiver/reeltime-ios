@@ -16,6 +16,10 @@
 		7112EF4B1AA915CC00BC7731 /* user-list-no-users.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7112EF4A1AA915CC00BC7731 /* user-list-no-users.txt */; };
 		7112EF4D1AA915EF00BC7731 /* user-list-one-user.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7112EF4C1AA915EF00BC7731 /* user-list-one-user.txt */; };
 		7112EF4F1AA9160500BC7731 /* single-user.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7112EF4E1AA9160500BC7731 /* single-user.txt */; };
+		7112EF551AA9395300BC7731 /* single-video.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7112EF511AA9395300BC7731 /* single-video.txt */; };
+		7112EF561AA9395300BC7731 /* video-list-multiple-videos.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7112EF521AA9395300BC7731 /* video-list-multiple-videos.txt */; };
+		7112EF571AA9395300BC7731 /* video-list-no-videos.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7112EF531AA9395300BC7731 /* video-list-no-videos.txt */; };
+		7112EF581AA9395300BC7731 /* video-list-one-video.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7112EF541AA9395300BC7731 /* video-list-one-video.txt */; };
 		7116908F1A6AB3970031578E /* RTSecurityAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 7116908E1A6AB3970031578E /* RTSecurityAssembly.m */; };
 		711690921A6AB5510031578E /* RTSecureStoreAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 711690911A6AB5510031578E /* RTSecureStoreAssembly.m */; };
 		7116909C1A6AEBDA0031578E /* RTStoryboardViewControllerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7116909B1A6AEBDA0031578E /* RTStoryboardViewControllerFactory.m */; };
@@ -179,6 +183,10 @@
 		7112EF4A1AA915CC00BC7731 /* user-list-no-users.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "user-list-no-users.txt"; sourceTree = "<group>"; };
 		7112EF4C1AA915EF00BC7731 /* user-list-one-user.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "user-list-one-user.txt"; sourceTree = "<group>"; };
 		7112EF4E1AA9160500BC7731 /* single-user.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "single-user.txt"; sourceTree = "<group>"; };
+		7112EF511AA9395300BC7731 /* single-video.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "single-video.txt"; sourceTree = "<group>"; };
+		7112EF521AA9395300BC7731 /* video-list-multiple-videos.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "video-list-multiple-videos.txt"; sourceTree = "<group>"; };
+		7112EF531AA9395300BC7731 /* video-list-no-videos.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "video-list-no-videos.txt"; sourceTree = "<group>"; };
+		7112EF541AA9395300BC7731 /* video-list-one-video.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "video-list-one-video.txt"; sourceTree = "<group>"; };
 		7116908D1A6AB3970031578E /* RTSecurityAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTSecurityAssembly.h; sourceTree = "<group>"; };
 		7116908E1A6AB3970031578E /* RTSecurityAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTSecurityAssembly.m; sourceTree = "<group>"; };
 		711690901A6AB5510031578E /* RTSecureStoreAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTSecureStoreAssembly.h; sourceTree = "<group>"; };
@@ -479,6 +487,17 @@
 				7112EF4C1AA915EF00BC7731 /* user-list-one-user.txt */,
 			);
 			path = User;
+			sourceTree = "<group>";
+		};
+		7112EF501AA9386300BC7731 /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				7112EF511AA9395300BC7731 /* single-video.txt */,
+				7112EF521AA9395300BC7731 /* video-list-multiple-videos.txt */,
+				7112EF531AA9395300BC7731 /* video-list-no-videos.txt */,
+				7112EF541AA9395300BC7731 /* video-list-one-video.txt */,
+			);
+			path = Video;
 			sourceTree = "<group>";
 		};
 		71166E101A6C2F3900EAE5BA /* AccountRegistrationTests */ = {
@@ -873,6 +892,7 @@
 				712698131AA3EC0900E7066B /* Reel */,
 				717215C91A865C8E0002ECC7 /* Token */,
 				7112EF471AA9157800BC7731 /* User */,
+				7112EF501AA9386300BC7731 /* Video */,
 			);
 			path = ServerJSONResponses;
 			sourceTree = "<group>";
@@ -1283,9 +1303,12 @@
 				711FF4C11AA20FAA00E11BDE /* successful-created-client-credentials.txt in Resources */,
 				7126981B1AA3ED2200E7066B /* reel-list-one-reel.txt in Resources */,
 				711FF4C31AA2191A00E11BDE /* forbidden-with-no-body.txt in Resources */,
+				7112EF551AA9395300BC7731 /* single-video.txt in Resources */,
+				7112EF561AA9395300BC7731 /* video-list-multiple-videos.txt in Resources */,
 				7112EF4B1AA915CC00BC7731 /* user-list-no-users.txt in Resources */,
 				717215D41A865C8E0002ECC7 /* token-bad-user-credentials.txt in Resources */,
 				712D5A201AA7F4690041DD24 /* reel-created.txt in Resources */,
+				7112EF581AA9395300BC7731 /* video-list-one-video.txt in Resources */,
 				7112EF4D1AA915EF00BC7731 /* user-list-one-user.txt in Resources */,
 				711FF4BC1AA20CEC00E11BDE /* service-unavailable-with-errors.txt in Resources */,
 				717215D01A865C8E0002ECC7 /* newsfeed-multiple-activities.txt in Resources */,
@@ -1298,6 +1321,7 @@
 				711FF4BD1AA20CEC00E11BDE /* successful-ok-with-no-body.txt in Resources */,
 				717215D11A865C8E0002ECC7 /* newsfeed-no-activities.txt in Resources */,
 				717215D51A865C8E0002ECC7 /* token-successful.txt in Resources */,
+				7112EF571AA9395300BC7731 /* video-list-no-videos.txt in Resources */,
 				717215D21A865C8E0002ECC7 /* newsfeed-one-activity.txt in Resources */,
 				711FF4BF1AA20D2600E11BDE /* successful-created-with-no-body.txt in Resources */,
 				711FF4BB1AA20CEC00E11BDE /* server-internal-error.txt in Resources */,

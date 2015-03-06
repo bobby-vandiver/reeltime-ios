@@ -62,6 +62,10 @@ static NSString *const SUCCESSFUL_OK_WITH_USERS_LIST_EMPTY = @"user-list-no-user
 static NSString *const SUCCESSFUL_OK_WITH_USERS_LIST_ONE_USER = @"user-list-one-user";
 static NSString *const SUCCESSFUL_OK_WITH_USERS_LIST_MULTIPLE_USERS = @"user-list-multiple-users";
 
+static NSString *const SUCCESSFUL_OK_WITH_VIDEOS_LIST_EMPTY = @"video-list-no-videos";
+static NSString *const SUCCESSFUL_OK_WITH_VIDEOS_LIST_ONE_VIDEO = @"video-list-one-video";
+static NSString *const SUCCESSFUL_OK_WITH_VIDEOS_LIST_MULTIPLE_VIDEOS = @"video-list-multiple-videos";
+
 describe(@"ReelTime Client", ^{
     
     __block RTClient *client;
@@ -253,6 +257,48 @@ describe(@"ReelTime Client", ^{
             
             RTUser *second = userList.users[1];
             expect(second).to.beUser(@"second", @"the second", @(74), @(4019));
+            
+            done();
+        };
+    };
+    
+    SuccessCallback (^shouldReceiveEmptyVideoListInSuccessfulResponse)(DoneCallback) = ^SuccessCallback(DoneCallback done) {
+        return ^(id obj) {
+            expect(obj).to.beKindOf([RTVideoList class]);
+            
+            RTVideoList *videoList = (RTVideoList *)obj;
+            expect(videoList.videos).to.haveCountOf(0);
+            
+            done();
+        };
+    };
+    
+    SuccessCallback (^shouldReceiveVideoListWithOneVideoInSuccessfulResponse)(DoneCallback) = ^SuccessCallback(DoneCallback done) {
+        return ^(id obj) {
+            expect(obj).to.beKindOf([RTVideoList class]);
+            
+            RTVideoList *videoList = (RTVideoList *)obj;
+            expect(videoList.videos).to.haveCountOf(1);
+            
+            RTVideo *first = videoList.videos[0];
+            expect(first).to.beVideo(@(591), @"first video");
+            
+            done();
+        };
+    };
+
+    SuccessCallback (^shouldReceiveVideoListWithMultipleVideosInSuccessfulResponse)(DoneCallback) = ^SuccessCallback(DoneCallback done) {
+        return ^(id obj) {
+            expect(obj).to.beKindOf([RTVideoList class]);
+            
+            RTVideoList *videoList = (RTVideoList *)obj;
+            expect(videoList.videos).to.haveCountOf(2);
+            
+            RTVideo *first = videoList.videos[0];
+            expect(first).to.beVideo(@(591), @"first video");
+
+            RTVideo *second = videoList.videos[1];
+            expect(second).to.beVideo(@(8174), @"second video");
             
             done();
         };
@@ -1107,6 +1153,90 @@ describe(@"ReelTime Client", ^{
                     [client deleteReelForReelId:reelId
                                         success:shouldNotExecuteSuccessCallback(done)
                                         failure:shouldExecuteFailureCallbackWithoutMessage(done)];
+                });
+            });
+        });
+        
+        describe(@"list videos in reel", ^{
+            __block NSRegularExpression *listReelVideosUrlRegex;
+            
+            __block NSUInteger reelId = 89481;
+            __block NSUInteger pageNumber = 129;
+            
+            beforeEach(^{
+                NSDictionary *pathParams = @{ @":reel_id": [helper stringForUnsignedInteger:reelId] };
+                listReelVideosUrlRegex = [helper createUrlRegexForEndpoint:API_LIST_REEL_VIDEOS
+                                                            withParameters:pathParams];
+            });
+            
+            afterEach(^{
+                expect(httpClient.lastPath).to.contain(reelId);
+                expect(httpClient.lastParameters.allKeys).to.haveCountOf(1);
+                expect(httpClient.lastParameters[@"page"]).to.equal(pageNumber);
+            });
+            
+            it(@"is successful and has no videos", ^{
+                [helper stubAuthenticatedRequestWithMethod:GET
+                                                  urlRegex:listReelVideosUrlRegex
+                                       rawResponseFilename:SUCCESSFUL_OK_WITH_VIDEOS_LIST_EMPTY];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client listVideosPage:pageNumber
+                                 forReelId:reelId
+                                   success:shouldReceiveEmptyVideoListInSuccessfulResponse(done)
+                                   failure:shouldNotExecuteFailureCallback(done)];
+                });
+            });
+            
+            it(@"is successful and has one video", ^{
+                [helper stubAuthenticatedRequestWithMethod:GET
+                                                  urlRegex:listReelVideosUrlRegex
+                                       rawResponseFilename:SUCCESSFUL_OK_WITH_VIDEOS_LIST_ONE_VIDEO];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client listVideosPage:pageNumber
+                                 forReelId:reelId
+                                   success:shouldReceiveVideoListWithOneVideoInSuccessfulResponse(done)
+                                   failure:shouldNotExecuteFailureCallback(done)];
+                });
+            });
+            
+            it(@"is successful and has multiple videos", ^{
+                [helper stubAuthenticatedRequestWithMethod:GET
+                                                  urlRegex:listReelVideosUrlRegex
+                                       rawResponseFilename:SUCCESSFUL_OK_WITH_VIDEOS_LIST_MULTIPLE_VIDEOS];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client listVideosPage:pageNumber
+                                 forReelId:reelId
+                                   success:shouldReceiveVideoListWithMultipleVideosInSuccessfulResponse(done)
+                                   failure:shouldNotExecuteFailureCallback(done)];
+                });
+            });
+            
+            it(@"fails due to bad request", ^{
+                [helper stubAuthenticatedRequestWithMethod:GET
+                                                  urlRegex:listReelVideosUrlRegex
+                                       rawResponseFilename:BAD_REQUEST_WITH_ERRORS_FILENAME];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client listVideosPage:pageNumber
+                                 forReelId:reelId
+                                   success:shouldNotExecuteSuccessCallback(done)
+                                   failure:shouldExecuteFailureCallbackWithMessage(BAD_REQUEST_ERROR_MESSAGE, done)];
+                });
+            });
+            
+            it(@"fails due to not found", ^{
+                [helper stubAuthenticatedRequestWithMethod:GET
+                                                  urlRegex:listReelVideosUrlRegex
+                                       rawResponseFilename:NOT_FOUND_WITH_ERRORS_FILENAME];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client listVideosPage:pageNumber
+                                 forReelId:reelId
+                                   success:shouldNotExecuteSuccessCallback(done)
+                                   failure:shouldExecuteFailureCallbackWithMessage(NOT_FOUND_ERROR_MESSAGE, done)];
                 });
             });
         });

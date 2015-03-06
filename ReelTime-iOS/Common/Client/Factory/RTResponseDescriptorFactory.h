@@ -52,6 +52,9 @@
 + (RKResponseDescriptor *)deleteReelDescriptor;
 + (RKResponseDescriptor *)deleteReelErrorDescriptor;
 
++ (RKResponseDescriptor *)listReelVideosDescriptor;
++ (RKResponseDescriptor *)listReelVideosErrorDescriptor;
+
 + (RKResponseDescriptor *)listAudienceMembersDescriptor;
 + (RKResponseDescriptor *)listAudienceMembersErrorDescriptor;
 

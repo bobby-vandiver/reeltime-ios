@@ -239,6 +239,19 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
                                         failure:failure];                            
 }
 
+- (void)listVideosPage:(NSUInteger)page
+             forReelId:(NSUInteger)reelId
+               success:(VideoListCallback)success
+               failure:(ServerErrorsCallback)failure {
+    NSDictionary *parameters = @{@"page": @(page)};
+    NSString *path = [self.pathFormatter formatPath:API_LIST_REEL_VIDEOS withReelId:reelId];
+    
+    [self.httpClient authenticatedGetForPath:path
+                              withParameters:parameters
+                                     success:success
+                                     failure:failure];
+}
+
 - (void)listAudienceMembersPage:(NSUInteger)page
                       forReelId:(NSUInteger)reelId
                         success:(UserListCallback)success
