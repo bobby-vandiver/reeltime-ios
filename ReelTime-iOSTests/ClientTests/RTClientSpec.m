@@ -1054,466 +1054,449 @@ describe(@"ReelTime Client", ^{
             });
         });
         
-        describe(@"get reel", ^{
-            __block NSRegularExpression *getReelUrlRegex;
-           
+        context(@"reel_id required in path", ^{
+            __block NSMutableDictionary *pathParams;
+            
             beforeEach(^{
-                NSDictionary *pathParams = @{ @":reel_id": [helper stringForUnsignedInteger:reelId] };
-                getReelUrlRegex = [helper createUrlRegexForEndpoint:API_GET_REEL
-                                                     withParameters:pathParams];
+                pathParams = [NSMutableDictionary dictionary];
+                pathParams[@":reel_id"] = [helper stringForUnsignedInteger:reelId];
             });
             
             afterEach(^{
                 expect(httpClient.lastPath).to.contain(reelId);
             });
             
-            it(@"is successful", ^{
-                [helper stubAuthenticatedRequestWithMethod:GET
-                                                  urlRegex:getReelUrlRegex
-                                       rawResponseFilename:@"single-reel"];
+            describe(@"get reel", ^{
+                __block NSRegularExpression *getReelUrlRegex;
                 
-                waitUntil(^(DoneCallback done) {
-                    [client reelForReelId:reelId
-                                  success:^(RTReel *reel) {
-                                      expect(reel).to.beReel(@(738), @"single reel", @(41), @(123));
-                                      done();
-                                  }
-                                  failure:shouldNotExecuteFailureCallback(done)];
+                beforeEach(^{
+                    getReelUrlRegex = [helper createUrlRegexForEndpoint:API_GET_REEL
+                                                         withParameters:pathParams];
+                });
+                
+                it(@"is successful", ^{
+                    [helper stubAuthenticatedRequestWithMethod:GET
+                                                      urlRegex:getReelUrlRegex
+                                           rawResponseFilename:@"single-reel"];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client reelForReelId:reelId
+                                      success:^(RTReel *reel) {
+                                          expect(reel).to.beReel(@(738), @"single reel", @(41), @(123));
+                                          done();
+                                      }
+                                      failure:shouldNotExecuteFailureCallback(done)];
+                    });
+                });
+                
+                it(@"fails due to not found", ^{
+                    [helper stubAuthenticatedRequestWithMethod:GET
+                                                      urlRegex:getReelUrlRegex
+                                           rawResponseFilename:NOT_FOUND_WITH_ERRORS_FILENAME];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client reelForReelId:reelId
+                                      success:shouldNotExecuteSuccessCallback(done)
+                                      failure:shouldExecuteFailureCallbackWithMessage(NOT_FOUND_ERROR_MESSAGE, done)];
+                    });
                 });
             });
             
-            it(@"fails due to not found", ^{
-                [helper stubAuthenticatedRequestWithMethod:GET
-                                                  urlRegex:getReelUrlRegex
-                                       rawResponseFilename:NOT_FOUND_WITH_ERRORS_FILENAME];
+            describe(@"delete reel", ^{
+                __block NSRegularExpression *deleteReelUrlRegex;
                 
-                waitUntil(^(DoneCallback done) {
-                    [client reelForReelId:reelId
-                                  success:shouldNotExecuteSuccessCallback(done)
-                                  failure:shouldExecuteFailureCallbackWithMessage(NOT_FOUND_ERROR_MESSAGE, done)];
-                });
-            });
-        });
-        
-        describe(@"delete reel", ^{
-            __block NSRegularExpression *deleteReelUrlRegex;
-            
-            beforeEach(^{
-                NSDictionary *pathParams = @{ @":reel_id": [helper stringForUnsignedInteger:reelId] };
-                deleteReelUrlRegex = [helper createUrlRegexForEndpoint:API_DELETE_REEL
-                                                        withParameters:pathParams];
-            });
-            
-            afterEach(^{
-                expect(httpClient.lastPath).to.contain(reelId);
-            });
-            
-            it(@"is successful", ^{
-                [helper stubAuthenticatedRequestWithMethod:DELETE
-                                                  urlRegex:deleteReelUrlRegex
-                                       rawResponseFilename:SUCCESSFUL_OK_WITH_NO_BODY_FILENAME];
-                
-                waitUntil(^(DoneCallback done) {
-                    [client deleteReelForReelId:reelId
-                                        success:shouldExecuteSuccessCallback(done)
-                                        failure:shouldNotExecuteFailureCallback(done)];
-                });
-            });
-            
-            it(@"fails due to not found", ^{
-                [helper stubAuthenticatedRequestWithMethod:DELETE
-                                                  urlRegex:deleteReelUrlRegex
-                                       rawResponseFilename:NOT_FOUND_WITH_ERRORS_FILENAME];
-                
-                waitUntil(^(DoneCallback done) {
-                    [client deleteReelForReelId:reelId
-                                        success:shouldNotExecuteSuccessCallback(done)
-                                        failure:shouldExecuteFailureCallbackWithMessage(NOT_FOUND_ERROR_MESSAGE, done)];
-                });
-            });
-            
-            it(@"fails due to forbidden", ^{
-                [helper stubAuthenticatedRequestWithMethod:DELETE
-                                                  urlRegex:deleteReelUrlRegex
-                                       rawResponseFilename:FORBIDDEN_WITH_ERRORS_FILENAME];
-                
-                waitUntil(^(DoneCallback done) {
-                    [client deleteReelForReelId:reelId
-                                        success:shouldNotExecuteSuccessCallback(done)
-                                        failure:shouldExecuteFailureCallbackWithMessage(FORBIDDEN_ERROR_MESSAGE, done)];
-                });
-            });
-        });
-        
-        describe(@"list videos in reel", ^{
-            __block NSRegularExpression *listReelVideosUrlRegex;
-            
-            beforeEach(^{
-                NSDictionary *pathParams = @{ @":reel_id": [helper stringForUnsignedInteger:reelId] };
-                listReelVideosUrlRegex = [helper createUrlRegexForEndpoint:API_LIST_REEL_VIDEOS
+                beforeEach(^{
+                    deleteReelUrlRegex = [helper createUrlRegexForEndpoint:API_DELETE_REEL
                                                             withParameters:pathParams];
-            });
-            
-            afterEach(^{
-                expect(httpClient.lastPath).to.contain(reelId);
-                expect(httpClient.lastParameters.allKeys).to.haveCountOf(1);
-                expect(httpClient.lastParameters[@"page"]).to.equal(pageNumber);
-            });
-            
-            it(@"is successful and has no videos", ^{
-                [helper stubAuthenticatedRequestWithMethod:GET
-                                                  urlRegex:listReelVideosUrlRegex
-                                       rawResponseFilename:SUCCESSFUL_OK_WITH_VIDEOS_LIST_EMPTY];
-                
-                waitUntil(^(DoneCallback done) {
-                    [client listVideosPage:pageNumber
-                         forReelWithReelId:reelId
-                                   success:shouldReceiveEmptyVideoListInSuccessfulResponse(done)
-                                   failure:shouldNotExecuteFailureCallback(done)];
                 });
-            });
-            
-            it(@"is successful and has one video", ^{
-                [helper stubAuthenticatedRequestWithMethod:GET
-                                                  urlRegex:listReelVideosUrlRegex
-                                       rawResponseFilename:SUCCESSFUL_OK_WITH_VIDEOS_LIST_ONE_VIDEO];
-                
-                waitUntil(^(DoneCallback done) {
-                    [client listVideosPage:pageNumber
-                         forReelWithReelId:reelId
-                                   success:shouldReceiveVideoListWithOneVideoInSuccessfulResponse(done)
-                                   failure:shouldNotExecuteFailureCallback(done)];
-                });
-            });
-            
-            it(@"is successful and has multiple videos", ^{
-                [helper stubAuthenticatedRequestWithMethod:GET
-                                                  urlRegex:listReelVideosUrlRegex
-                                       rawResponseFilename:SUCCESSFUL_OK_WITH_VIDEOS_LIST_MULTIPLE_VIDEOS];
-                
-                waitUntil(^(DoneCallback done) {
-                    [client listVideosPage:pageNumber
-                         forReelWithReelId:reelId
-                                   success:shouldReceiveVideoListWithMultipleVideosInSuccessfulResponse(done)
-                                   failure:shouldNotExecuteFailureCallback(done)];
-                });
-            });
-            
-            it(@"fails due to bad request", ^{
-                [helper stubAuthenticatedRequestWithMethod:GET
-                                                  urlRegex:listReelVideosUrlRegex
-                                       rawResponseFilename:BAD_REQUEST_WITH_ERRORS_FILENAME];
-                
-                waitUntil(^(DoneCallback done) {
-                    [client listVideosPage:pageNumber
-                         forReelWithReelId:reelId
-                                   success:shouldNotExecuteSuccessCallback(done)
-                                   failure:shouldExecuteFailureCallbackWithMessage(BAD_REQUEST_ERROR_MESSAGE, done)];
-                });
-            });
-            
-            it(@"fails due to not found", ^{
-                [helper stubAuthenticatedRequestWithMethod:GET
-                                                  urlRegex:listReelVideosUrlRegex
-                                       rawResponseFilename:NOT_FOUND_WITH_ERRORS_FILENAME];
-                
-                waitUntil(^(DoneCallback done) {
-                    [client listVideosPage:pageNumber
-                         forReelWithReelId:reelId
-                                   success:shouldNotExecuteSuccessCallback(done)
-                                   failure:shouldExecuteFailureCallbackWithMessage(NOT_FOUND_ERROR_MESSAGE, done)];
-                });
-            });
-        });
-        
-        describe(@"add video to reel", ^{
-            __block NSRegularExpression *addVideoToReelUrlRegex;
-            
-            beforeEach(^{
-                NSDictionary *pathParams = @{ @":reel_id": [helper stringForUnsignedInteger:reelId] };
-                addVideoToReelUrlRegex = [helper createUrlRegexForEndpoint:API_ADD_REEL_VIDEO
-                                                            withParameters:pathParams];
-            });
-            
-            afterEach(^{
-                expect(httpClient.lastPath).to.contain(reelId);
-                expect(httpClient.lastParameters.allKeys).to.haveCountOf(1);
-                expect(httpClient.lastParameters[@"video_id"]).to.equal(videoId);
-            });
-            
-            it(@"is successful", ^{
-                [helper stubAuthenticatedRequestWithMethod:POST
-                                                  urlRegex:addVideoToReelUrlRegex
-                                       rawResponseFilename:SUCCESSFUL_CREATED_WITH_NO_BODY_FILENAME];
-               
-                waitUntil(^(DoneCallback done) {
-                    [client addVideoWithVideoId:videoId
-                               toReelWithReelId:reelId
-                                        success:shouldExecuteSuccessCallback(done)
-                                        failure:shouldNotExecuteFailureCallback(done)];
-                });
-            });
-            
-            it(@"fails due to forbidden", ^{
-                [helper stubAuthenticatedRequestWithMethod:POST
-                                                  urlRegex:addVideoToReelUrlRegex
-                                       rawResponseFilename:FORBIDDEN_WITH_ERRORS_FILENAME];
-                
-                waitUntil(^(DoneCallback done) {
-                    [client addVideoWithVideoId:videoId
-                               toReelWithReelId:reelId
-                                        success:shouldNotExecuteSuccessCallback(done)
-                                        failure:shouldExecuteFailureCallbackWithMessage(FORBIDDEN_ERROR_MESSAGE, done)];
-                });
-            });
-            
-            it(@"fails due to not found", ^{
-                [helper stubAuthenticatedRequestWithMethod:POST
-                                                  urlRegex:addVideoToReelUrlRegex
-                                       rawResponseFilename:NOT_FOUND_WITH_ERRORS_FILENAME];
-                
-                waitUntil(^(DoneCallback done) {
-                    [client addVideoWithVideoId:videoId
-                               toReelWithReelId:reelId
-                                        success:shouldNotExecuteSuccessCallback(done)
-                                        failure:shouldExecuteFailureCallbackWithMessage(NOT_FOUND_ERROR_MESSAGE, done)];
-                });
-            });
-        });
-        
-        describe(@"remove video from reel", ^{
-            __block NSRegularExpression *removeVideoFromReelUrlRegex;
-            
-            beforeEach(^{
-                NSDictionary *pathParams = @{
-                                             @":reel_id": [helper stringForUnsignedInteger:reelId],
-                                             @":video_id": [helper stringForUnsignedInteger:videoId]
-                                             };
-                removeVideoFromReelUrlRegex = [helper createUrlRegexForEndpoint:API_REMOVE_REEL_VIDEO
-                                                                 withParameters:pathParams];
-            });
-            
-            afterEach(^{
-                expect(httpClient.lastPath).to.contain(reelId);
-                expect(httpClient.lastPath).to.contain(videoId);
-            });
-            
-            it(@"is successful", ^{
-                [helper stubAuthenticatedRequestWithMethod:DELETE
-                                                  urlRegex:removeVideoFromReelUrlRegex
-                                       rawResponseFilename:SUCCESSFUL_OK_WITH_NO_BODY_FILENAME];
-                
-                waitUntil(^(DoneCallback done) {
-                    [client removeVideoWithVideoId:videoId
-                                fromReelWithReelId:reelId
-                                           success:shouldExecuteSuccessCallback(done)
-                                           failure:shouldNotExecuteFailureCallback(done)];
-                });
-            });
-            
-            it(@"fails due to forbidden", ^{
-                [helper stubAuthenticatedRequestWithMethod:DELETE
-                                                  urlRegex:removeVideoFromReelUrlRegex
-                                       rawResponseFilename:FORBIDDEN_WITH_ERRORS_FILENAME];
-                
-                waitUntil(^(DoneCallback done) {
-                    [client removeVideoWithVideoId:videoId
-                                fromReelWithReelId:reelId
-                                           success:shouldNotExecuteSuccessCallback(done)
-                                           failure:shouldExecuteFailureCallbackWithMessage(FORBIDDEN_ERROR_MESSAGE, done)];
-                });
-            });
-            
-            it(@"fails due to not found", ^{
-                [helper stubAuthenticatedRequestWithMethod:DELETE
-                                                  urlRegex:removeVideoFromReelUrlRegex
-                                       rawResponseFilename:NOT_FOUND_WITH_ERRORS_FILENAME];
-                
-                waitUntil(^(DoneCallback done) {
-                    [client removeVideoWithVideoId:videoId
-                                fromReelWithReelId:reelId
-                                           success:shouldNotExecuteSuccessCallback(done)
-                                           failure:shouldExecuteFailureCallbackWithMessage(NOT_FOUND_ERROR_MESSAGE, done)];
-                });
-            });
-        });
-        
-        describe(@"list audience members", ^{
-            __block NSRegularExpression *listAudienceUrlRegex;
-            
-            beforeEach(^{
-                NSDictionary *pathParams = @{ @":reel_id": [helper stringForUnsignedInteger:reelId] };
-                listAudienceUrlRegex = [helper createUrlRegexForEndpoint:API_LIST_AUDIENCE_MEMBERS
-                                                          withParameters:pathParams];
-            });
-            afterEach(^{
-                expect(httpClient.lastPath).to.contain(reelId);
-                expect(httpClient.lastParameters.allKeys).to.haveCountOf(1);
-                expect(httpClient.lastParameters[@"page"]).to.equal(pageNumber);
-            });
-            
-            it(@"is successful and has no members", ^{
-                [helper stubAuthenticatedRequestWithMethod:GET
-                                                  urlRegex:listAudienceUrlRegex
-                                       rawResponseFilename:SUCCESSFUL_OK_WITH_USERS_LIST_EMPTY];
-                
-                waitUntil(^(DoneCallback done) {
-                    [client listAudienceMembersPage:pageNumber
-                                  forReelWithReelId:reelId
-                                            success:shouldReceiveEmptyUserListInSuccessfulResponse(done)
+
+                it(@"is successful", ^{
+                    [helper stubAuthenticatedRequestWithMethod:DELETE
+                                                      urlRegex:deleteReelUrlRegex
+                                           rawResponseFilename:SUCCESSFUL_OK_WITH_NO_BODY_FILENAME];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client deleteReelForReelId:reelId
+                                            success:shouldExecuteSuccessCallback(done)
                                             failure:shouldNotExecuteFailureCallback(done)];
+                    });
                 });
-            });
-            
-            it(@"is successful and has one member", ^{
-                [helper stubAuthenticatedRequestWithMethod:GET
-                                                  urlRegex:listAudienceUrlRegex
-                                       rawResponseFilename:SUCCESSFUL_OK_WITH_USERS_LIST_ONE_USER];
                 
-                waitUntil(^(DoneCallback done) {
-                    [client listAudienceMembersPage:pageNumber
-                                  forReelWithReelId:reelId
-                                            success:shouldReceiveUserListWithOneUserInSuccessfulResponse(done)
-                                            failure:shouldNotExecuteFailureCallback(done)];
-                });
-            });
-            
-            it(@"is successful and has multiple members", ^{
-                [helper stubAuthenticatedRequestWithMethod:GET
-                                                  urlRegex:listAudienceUrlRegex
-                                       rawResponseFilename:SUCCESSFUL_OK_WITH_USERS_LIST_MULTIPLE_USERS];
-                
-                waitUntil(^(DoneCallback done) {
-                    [client listAudienceMembersPage:pageNumber
-                                  forReelWithReelId:reelId
-                                            success:shouldReceiveUserListWithMultipleUsersInSuccessfulResponse(done)
-                                            failure:shouldNotExecuteFailureCallback(done)];
-                });
-            });
-            
-            it(@"fails due to bad request", ^{
-                [helper stubAuthenticatedRequestWithMethod:GET
-                                                  urlRegex:listAudienceUrlRegex
-                                       rawResponseFilename:BAD_REQUEST_WITH_ERRORS_FILENAME];
-                
-                waitUntil(^(DoneCallback done) {
-                    [client listAudienceMembersPage:pageNumber
-                                  forReelWithReelId:reelId
-                                            success:shouldNotExecuteSuccessCallback(done)
-                                            failure:shouldExecuteFailureCallbackWithMessage(BAD_REQUEST_ERROR_MESSAGE, done)];
-                });
-            });
-            
-            it(@"fails due to not found", ^{
-                [helper stubAuthenticatedRequestWithMethod:GET
-                                                  urlRegex:listAudienceUrlRegex
-                                       rawResponseFilename:NOT_FOUND_WITH_ERRORS_FILENAME];
-                
-                waitUntil(^(DoneCallback done) {
-                    [client listAudienceMembersPage:pageNumber
-                                  forReelWithReelId:reelId
+                it(@"fails due to not found", ^{
+                    [helper stubAuthenticatedRequestWithMethod:DELETE
+                                                      urlRegex:deleteReelUrlRegex
+                                           rawResponseFilename:NOT_FOUND_WITH_ERRORS_FILENAME];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client deleteReelForReelId:reelId
                                             success:shouldNotExecuteSuccessCallback(done)
                                             failure:shouldExecuteFailureCallbackWithMessage(NOT_FOUND_ERROR_MESSAGE, done)];
+                    });
                 });
-            });
-        });
-        
-        describe(@"join audience", ^{
-            __block NSRegularExpression *joinAudienceUrlRegex;
-            
-            beforeEach(^{
-                NSDictionary *pathParams = @{ @":reel_id": [helper stringForUnsignedInteger:reelId] };
-                joinAudienceUrlRegex = [helper createUrlRegexForEndpoint:API_ADD_AUDIENCE_MEMBER
-                                                          withParameters:pathParams];
-            });
-            
-            afterEach(^{
-                expect(httpClient.lastPath).to.contain(reelId);
-            });
-            
-            it(@"is successful", ^{
-                [helper stubAuthenticatedRequestWithMethod:POST
-                                                  urlRegex:joinAudienceUrlRegex
-                                       rawResponseFilename:SUCCESSFUL_CREATED_WITH_NO_BODY_FILENAME];
                 
-                waitUntil(^(DoneCallback done) {
-                    [client joinAudienceForReelWithReelId:reelId
-                                                  success:shouldExecuteSuccessCallback(done)
-                                                  failure:shouldNotExecuteFailureCallback(done)];
+                it(@"fails due to forbidden", ^{
+                    [helper stubAuthenticatedRequestWithMethod:DELETE
+                                                      urlRegex:deleteReelUrlRegex
+                                           rawResponseFilename:FORBIDDEN_WITH_ERRORS_FILENAME];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client deleteReelForReelId:reelId
+                                            success:shouldNotExecuteSuccessCallback(done)
+                                            failure:shouldExecuteFailureCallbackWithMessage(FORBIDDEN_ERROR_MESSAGE, done)];
+                    });
                 });
             });
             
-            it(@"fails due to forbidden", ^{
-                [helper stubAuthenticatedRequestWithMethod:POST
-                                                  urlRegex:joinAudienceUrlRegex
-                                       rawResponseFilename:FORBIDDEN_WITH_ERRORS_FILENAME];
+            describe(@"list videos in reel", ^{
+                __block NSRegularExpression *listReelVideosUrlRegex;
                 
-                waitUntil(^(DoneCallback done) {
-                    [client joinAudienceForReelWithReelId:reelId
-                                                  success:shouldNotExecuteSuccessCallback(done)
-                                                  failure:shouldExecuteFailureCallbackWithMessage(FORBIDDEN_ERROR_MESSAGE, done)];
+                beforeEach(^{
+                    listReelVideosUrlRegex = [helper createUrlRegexForEndpoint:API_LIST_REEL_VIDEOS
+                                                                withParameters:pathParams];
+                });
+                
+                afterEach(^{
+                    expect(httpClient.lastParameters.allKeys).to.haveCountOf(1);
+                    expect(httpClient.lastParameters[@"page"]).to.equal(pageNumber);
+                });
+                
+                it(@"is successful and has no videos", ^{
+                    [helper stubAuthenticatedRequestWithMethod:GET
+                                                      urlRegex:listReelVideosUrlRegex
+                                           rawResponseFilename:SUCCESSFUL_OK_WITH_VIDEOS_LIST_EMPTY];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client listVideosPage:pageNumber
+                             forReelWithReelId:reelId
+                                       success:shouldReceiveEmptyVideoListInSuccessfulResponse(done)
+                                       failure:shouldNotExecuteFailureCallback(done)];
+                    });
+                });
+                
+                it(@"is successful and has one video", ^{
+                    [helper stubAuthenticatedRequestWithMethod:GET
+                                                      urlRegex:listReelVideosUrlRegex
+                                           rawResponseFilename:SUCCESSFUL_OK_WITH_VIDEOS_LIST_ONE_VIDEO];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client listVideosPage:pageNumber
+                             forReelWithReelId:reelId
+                                       success:shouldReceiveVideoListWithOneVideoInSuccessfulResponse(done)
+                                       failure:shouldNotExecuteFailureCallback(done)];
+                    });
+                });
+                
+                it(@"is successful and has multiple videos", ^{
+                    [helper stubAuthenticatedRequestWithMethod:GET
+                                                      urlRegex:listReelVideosUrlRegex
+                                           rawResponseFilename:SUCCESSFUL_OK_WITH_VIDEOS_LIST_MULTIPLE_VIDEOS];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client listVideosPage:pageNumber
+                             forReelWithReelId:reelId
+                                       success:shouldReceiveVideoListWithMultipleVideosInSuccessfulResponse(done)
+                                       failure:shouldNotExecuteFailureCallback(done)];
+                    });
+                });
+                
+                it(@"fails due to bad request", ^{
+                    [helper stubAuthenticatedRequestWithMethod:GET
+                                                      urlRegex:listReelVideosUrlRegex
+                                           rawResponseFilename:BAD_REQUEST_WITH_ERRORS_FILENAME];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client listVideosPage:pageNumber
+                             forReelWithReelId:reelId
+                                       success:shouldNotExecuteSuccessCallback(done)
+                                       failure:shouldExecuteFailureCallbackWithMessage(BAD_REQUEST_ERROR_MESSAGE, done)];
+                    });
+                });
+                
+                it(@"fails due to not found", ^{
+                    [helper stubAuthenticatedRequestWithMethod:GET
+                                                      urlRegex:listReelVideosUrlRegex
+                                           rawResponseFilename:NOT_FOUND_WITH_ERRORS_FILENAME];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client listVideosPage:pageNumber
+                             forReelWithReelId:reelId
+                                       success:shouldNotExecuteSuccessCallback(done)
+                                       failure:shouldExecuteFailureCallbackWithMessage(NOT_FOUND_ERROR_MESSAGE, done)];
+                    });
                 });
             });
             
-            it(@"fails due to not found", ^{
-                [helper stubAuthenticatedRequestWithMethod:POST
-                                                  urlRegex:joinAudienceUrlRegex
-                                       rawResponseFilename:NOT_FOUND_WITH_ERRORS_FILENAME];
+            describe(@"add video to reel", ^{
+                __block NSRegularExpression *addVideoToReelUrlRegex;
                 
-                waitUntil(^(DoneCallback done) {
-                    [client joinAudienceForReelWithReelId:reelId
-                                                  success:shouldNotExecuteSuccessCallback(done)
-                                                  failure:shouldExecuteFailureCallbackWithMessage(NOT_FOUND_ERROR_MESSAGE, done)];
+                beforeEach(^{
+                    addVideoToReelUrlRegex = [helper createUrlRegexForEndpoint:API_ADD_REEL_VIDEO
+                                                                withParameters:pathParams];
+                });
+                
+                afterEach(^{
+                    expect(httpClient.lastParameters.allKeys).to.haveCountOf(1);
+                    expect(httpClient.lastParameters[@"video_id"]).to.equal(videoId);
+                });
+                
+                it(@"is successful", ^{
+                    [helper stubAuthenticatedRequestWithMethod:POST
+                                                      urlRegex:addVideoToReelUrlRegex
+                                           rawResponseFilename:SUCCESSFUL_CREATED_WITH_NO_BODY_FILENAME];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client addVideoWithVideoId:videoId
+                                   toReelWithReelId:reelId
+                                            success:shouldExecuteSuccessCallback(done)
+                                            failure:shouldNotExecuteFailureCallback(done)];
+                    });
+                });
+                
+                it(@"fails due to forbidden", ^{
+                    [helper stubAuthenticatedRequestWithMethod:POST
+                                                      urlRegex:addVideoToReelUrlRegex
+                                           rawResponseFilename:FORBIDDEN_WITH_ERRORS_FILENAME];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client addVideoWithVideoId:videoId
+                                   toReelWithReelId:reelId
+                                            success:shouldNotExecuteSuccessCallback(done)
+                                            failure:shouldExecuteFailureCallbackWithMessage(FORBIDDEN_ERROR_MESSAGE, done)];
+                    });
+                });
+                
+                it(@"fails due to not found", ^{
+                    [helper stubAuthenticatedRequestWithMethod:POST
+                                                      urlRegex:addVideoToReelUrlRegex
+                                           rawResponseFilename:NOT_FOUND_WITH_ERRORS_FILENAME];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client addVideoWithVideoId:videoId
+                                   toReelWithReelId:reelId
+                                            success:shouldNotExecuteSuccessCallback(done)
+                                            failure:shouldExecuteFailureCallbackWithMessage(NOT_FOUND_ERROR_MESSAGE, done)];
+                    });
                 });
             });
-        });
-        
-        describe(@"leaving audience", ^{
-            __block NSRegularExpression *leaveAudienceUrlRegex;
-        
-            beforeEach(^{
-                NSDictionary *pathParams = @{ @":reel_id": [helper stringForUnsignedInteger:reelId] };
-                leaveAudienceUrlRegex = [helper createUrlRegexForEndpoint:API_REMOVE_AUDIENCE_MEMBER
-                                                           withParameters:pathParams];
-            });
             
-            afterEach(^{
-                expect(httpClient.lastPath).to.contain(reelId);
-            });
-            
-            it(@"is successful", ^{
-                [helper stubAuthenticatedRequestWithMethod:DELETE
-                                                  urlRegex:leaveAudienceUrlRegex
-                                       rawResponseFilename:SUCCESSFUL_OK_WITH_NO_BODY_FILENAME];
+            describe(@"remove video from reel", ^{
+                __block NSRegularExpression *removeVideoFromReelUrlRegex;
                 
-                waitUntil(^(DoneCallback done) {
-                    [client leaveAudienceForReelWithReelId:reelId
-                                                   success:shouldExecuteSuccessCallback(done)
-                                                   failure:shouldNotExecuteFailureCallback(done)];
+                beforeEach(^{
+                    pathParams[@":video_id"] = [helper stringForUnsignedInteger:videoId];
+                    removeVideoFromReelUrlRegex = [helper createUrlRegexForEndpoint:API_REMOVE_REEL_VIDEO
+                                                                     withParameters:pathParams];
+                });
+                
+                afterEach(^{
+                    expect(httpClient.lastPath).to.contain(videoId);
+                });
+                
+                it(@"is successful", ^{
+                    [helper stubAuthenticatedRequestWithMethod:DELETE
+                                                      urlRegex:removeVideoFromReelUrlRegex
+                                           rawResponseFilename:SUCCESSFUL_OK_WITH_NO_BODY_FILENAME];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client removeVideoWithVideoId:videoId
+                                    fromReelWithReelId:reelId
+                                               success:shouldExecuteSuccessCallback(done)
+                                               failure:shouldNotExecuteFailureCallback(done)];
+                    });
+                });
+                
+                it(@"fails due to forbidden", ^{
+                    [helper stubAuthenticatedRequestWithMethod:DELETE
+                                                      urlRegex:removeVideoFromReelUrlRegex
+                                           rawResponseFilename:FORBIDDEN_WITH_ERRORS_FILENAME];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client removeVideoWithVideoId:videoId
+                                    fromReelWithReelId:reelId
+                                               success:shouldNotExecuteSuccessCallback(done)
+                                               failure:shouldExecuteFailureCallbackWithMessage(FORBIDDEN_ERROR_MESSAGE, done)];
+                    });
+                });
+                
+                it(@"fails due to not found", ^{
+                    [helper stubAuthenticatedRequestWithMethod:DELETE
+                                                      urlRegex:removeVideoFromReelUrlRegex
+                                           rawResponseFilename:NOT_FOUND_WITH_ERRORS_FILENAME];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client removeVideoWithVideoId:videoId
+                                    fromReelWithReelId:reelId
+                                               success:shouldNotExecuteSuccessCallback(done)
+                                               failure:shouldExecuteFailureCallbackWithMessage(NOT_FOUND_ERROR_MESSAGE, done)];
+                    });
                 });
             });
             
-            it(@"fails due to not found", ^{
-                [helper stubAuthenticatedRequestWithMethod:DELETE
-                                                  urlRegex:leaveAudienceUrlRegex
-                                       rawResponseFilename:NOT_FOUND_WITH_ERRORS_FILENAME];
+            describe(@"list audience members", ^{
+                __block NSRegularExpression *listAudienceUrlRegex;
                 
-                waitUntil(^(DoneCallback done) {
-                    [client leaveAudienceForReelWithReelId:reelId
-                                                   success:shouldNotExecuteSuccessCallback(done)
-                                                   failure:shouldExecuteFailureCallbackWithMessage(NOT_FOUND_ERROR_MESSAGE, done)];
+                beforeEach(^{
+                    listAudienceUrlRegex = [helper createUrlRegexForEndpoint:API_LIST_AUDIENCE_MEMBERS
+                                                              withParameters:pathParams];
+                });
+                afterEach(^{
+                    expect(httpClient.lastParameters.allKeys).to.haveCountOf(1);
+                    expect(httpClient.lastParameters[@"page"]).to.equal(pageNumber);
+                });
+                
+                it(@"is successful and has no members", ^{
+                    [helper stubAuthenticatedRequestWithMethod:GET
+                                                      urlRegex:listAudienceUrlRegex
+                                           rawResponseFilename:SUCCESSFUL_OK_WITH_USERS_LIST_EMPTY];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client listAudienceMembersPage:pageNumber
+                                      forReelWithReelId:reelId
+                                                success:shouldReceiveEmptyUserListInSuccessfulResponse(done)
+                                                failure:shouldNotExecuteFailureCallback(done)];
+                    });
+                });
+                
+                it(@"is successful and has one member", ^{
+                    [helper stubAuthenticatedRequestWithMethod:GET
+                                                      urlRegex:listAudienceUrlRegex
+                                           rawResponseFilename:SUCCESSFUL_OK_WITH_USERS_LIST_ONE_USER];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client listAudienceMembersPage:pageNumber
+                                      forReelWithReelId:reelId
+                                                success:shouldReceiveUserListWithOneUserInSuccessfulResponse(done)
+                                                failure:shouldNotExecuteFailureCallback(done)];
+                    });
+                });
+                
+                it(@"is successful and has multiple members", ^{
+                    [helper stubAuthenticatedRequestWithMethod:GET
+                                                      urlRegex:listAudienceUrlRegex
+                                           rawResponseFilename:SUCCESSFUL_OK_WITH_USERS_LIST_MULTIPLE_USERS];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client listAudienceMembersPage:pageNumber
+                                      forReelWithReelId:reelId
+                                                success:shouldReceiveUserListWithMultipleUsersInSuccessfulResponse(done)
+                                                failure:shouldNotExecuteFailureCallback(done)];
+                    });
+                });
+                
+                it(@"fails due to bad request", ^{
+                    [helper stubAuthenticatedRequestWithMethod:GET
+                                                      urlRegex:listAudienceUrlRegex
+                                           rawResponseFilename:BAD_REQUEST_WITH_ERRORS_FILENAME];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client listAudienceMembersPage:pageNumber
+                                      forReelWithReelId:reelId
+                                                success:shouldNotExecuteSuccessCallback(done)
+                                                failure:shouldExecuteFailureCallbackWithMessage(BAD_REQUEST_ERROR_MESSAGE, done)];
+                    });
+                });
+                
+                it(@"fails due to not found", ^{
+                    [helper stubAuthenticatedRequestWithMethod:GET
+                                                      urlRegex:listAudienceUrlRegex
+                                           rawResponseFilename:NOT_FOUND_WITH_ERRORS_FILENAME];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client listAudienceMembersPage:pageNumber
+                                      forReelWithReelId:reelId
+                                                success:shouldNotExecuteSuccessCallback(done)
+                                                failure:shouldExecuteFailureCallbackWithMessage(NOT_FOUND_ERROR_MESSAGE, done)];
+                    });
                 });
             });
             
-            it(@"fails due to forbidden", ^{
-                [helper stubAuthenticatedRequestWithMethod:DELETE
-                                                  urlRegex:leaveAudienceUrlRegex
-                                       rawResponseFilename:FORBIDDEN_WITH_ERRORS_FILENAME];
+            describe(@"join audience", ^{
+                __block NSRegularExpression *joinAudienceUrlRegex;
                 
-                waitUntil(^(DoneCallback done) {
-                    [client leaveAudienceForReelWithReelId:reelId
-                                                   success:shouldNotExecuteSuccessCallback(done)
-                                                   failure:shouldExecuteFailureCallbackWithMessage(FORBIDDEN_ERROR_MESSAGE, done)];
+                beforeEach(^{
+                    joinAudienceUrlRegex = [helper createUrlRegexForEndpoint:API_ADD_AUDIENCE_MEMBER
+                                                              withParameters:pathParams];
+                });
+                
+                it(@"is successful", ^{
+                    [helper stubAuthenticatedRequestWithMethod:POST
+                                                      urlRegex:joinAudienceUrlRegex
+                                           rawResponseFilename:SUCCESSFUL_CREATED_WITH_NO_BODY_FILENAME];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client joinAudienceForReelWithReelId:reelId
+                                                      success:shouldExecuteSuccessCallback(done)
+                                                      failure:shouldNotExecuteFailureCallback(done)];
+                    });
+                });
+                
+                it(@"fails due to forbidden", ^{
+                    [helper stubAuthenticatedRequestWithMethod:POST
+                                                      urlRegex:joinAudienceUrlRegex
+                                           rawResponseFilename:FORBIDDEN_WITH_ERRORS_FILENAME];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client joinAudienceForReelWithReelId:reelId
+                                                      success:shouldNotExecuteSuccessCallback(done)
+                                                      failure:shouldExecuteFailureCallbackWithMessage(FORBIDDEN_ERROR_MESSAGE, done)];
+                    });
+                });
+                
+                it(@"fails due to not found", ^{
+                    [helper stubAuthenticatedRequestWithMethod:POST
+                                                      urlRegex:joinAudienceUrlRegex
+                                           rawResponseFilename:NOT_FOUND_WITH_ERRORS_FILENAME];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client joinAudienceForReelWithReelId:reelId
+                                                      success:shouldNotExecuteSuccessCallback(done)
+                                                      failure:shouldExecuteFailureCallbackWithMessage(NOT_FOUND_ERROR_MESSAGE, done)];
+                    });
+                });
+            });
+            
+            describe(@"leaving audience", ^{
+                __block NSRegularExpression *leaveAudienceUrlRegex;
+                
+                beforeEach(^{
+                    leaveAudienceUrlRegex = [helper createUrlRegexForEndpoint:API_REMOVE_AUDIENCE_MEMBER
+                                                               withParameters:pathParams];
+                });
+                
+                it(@"is successful", ^{
+                    [helper stubAuthenticatedRequestWithMethod:DELETE
+                                                      urlRegex:leaveAudienceUrlRegex
+                                           rawResponseFilename:SUCCESSFUL_OK_WITH_NO_BODY_FILENAME];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client leaveAudienceForReelWithReelId:reelId
+                                                       success:shouldExecuteSuccessCallback(done)
+                                                       failure:shouldNotExecuteFailureCallback(done)];
+                    });
+                });
+                
+                it(@"fails due to not found", ^{
+                    [helper stubAuthenticatedRequestWithMethod:DELETE
+                                                      urlRegex:leaveAudienceUrlRegex
+                                           rawResponseFilename:NOT_FOUND_WITH_ERRORS_FILENAME];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client leaveAudienceForReelWithReelId:reelId
+                                                       success:shouldNotExecuteSuccessCallback(done)
+                                                       failure:shouldExecuteFailureCallbackWithMessage(NOT_FOUND_ERROR_MESSAGE, done)];
+                    });
+                });
+                
+                it(@"fails due to forbidden", ^{
+                    [helper stubAuthenticatedRequestWithMethod:DELETE
+                                                      urlRegex:leaveAudienceUrlRegex
+                                           rawResponseFilename:FORBIDDEN_WITH_ERRORS_FILENAME];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client leaveAudienceForReelWithReelId:reelId
+                                                       success:shouldNotExecuteSuccessCallback(done)
+                                                       failure:shouldExecuteFailureCallbackWithMessage(FORBIDDEN_ERROR_MESSAGE, done)];
+                    });
                 });
             });
         });
