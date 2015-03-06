@@ -1241,6 +1241,64 @@ describe(@"ReelTime Client", ^{
             });
         });
         
+        describe(@"add video to reel", ^{
+            __block NSRegularExpression *addVideoToReelUrlRegex;
+            
+            __block NSUInteger reelId = 49132;
+            __block NSUInteger videoId = 841;
+            
+            beforeEach(^{
+                NSDictionary *pathParams = @{ @":reel_id": [helper stringForUnsignedInteger:reelId] };
+                addVideoToReelUrlRegex = [helper createUrlRegexForEndpoint:API_ADD_REEL_VIDEO
+                                                            withParameters:pathParams];
+            });
+            
+            afterEach(^{
+                expect(httpClient.lastPath).to.contain(reelId);
+                expect(httpClient.lastParameters.allKeys).to.haveCountOf(1);
+                expect(httpClient.lastParameters[@"video_id"]).to.equal(videoId);
+            });
+            
+            it(@"is successful", ^{
+                [helper stubAuthenticatedRequestWithMethod:POST
+                                                  urlRegex:addVideoToReelUrlRegex
+                                       rawResponseFilename:SUCCESSFUL_OK_WITH_NO_BODY_FILENAME];
+               
+                waitUntil(^(DoneCallback done) {
+                    [client addVideoWithVideoId:videoId
+                               toReelWithReelId:reelId
+                                        success:shouldExecuteSuccessCallback(done)
+                                        failure:shouldNotExecuteFailureCallback(done)];
+                });
+            });
+            
+            it(@"fails due to forbidden", ^{
+                [helper stubAuthenticatedRequestWithMethod:POST
+                                                  urlRegex:addVideoToReelUrlRegex
+                                       rawResponseFilename:FORBIDDEN_WITH_ERRORS_FILENAME];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client addVideoWithVideoId:videoId
+                               toReelWithReelId:reelId
+                                        success:shouldNotExecuteSuccessCallback(done)
+                                        failure:shouldExecuteFailureCallbackWithMessage(FORBIDDEN_ERROR_MESSAGE, done)];
+                });
+            });
+            
+            it(@"fails due to not found", ^{
+                [helper stubAuthenticatedRequestWithMethod:POST
+                                                  urlRegex:addVideoToReelUrlRegex
+                                       rawResponseFilename:NOT_FOUND_WITH_ERRORS_FILENAME];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client addVideoWithVideoId:videoId
+                               toReelWithReelId:reelId
+                                        success:shouldNotExecuteSuccessCallback(done)
+                                        failure:shouldExecuteFailureCallbackWithMessage(NOT_FOUND_ERROR_MESSAGE, done)];
+                });
+            });
+        });
+        
         describe(@"list audience members", ^{
             __block NSRegularExpression *listAudienceUrlRegex;
             

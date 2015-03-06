@@ -58,6 +58,9 @@
 + (RKResponseDescriptor *)listAudienceMembersDescriptor;
 + (RKResponseDescriptor *)listAudienceMembersErrorDescriptor;
 
++ (RKResponseDescriptor *)addVideoToReelDescriptor;
++ (RKResponseDescriptor *)addVideoToReelErrorDescriptor;
+
 + (RKResponseDescriptor *)joinAudienceDescriptor;
 + (RKResponseDescriptor *)joinAudienceErrorDescriptor;
 

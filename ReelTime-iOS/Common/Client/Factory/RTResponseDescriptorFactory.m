@@ -253,6 +253,19 @@
                                      statusCodes:statusCodes];
 }
 
++ (RKResponseDescriptor *)addVideoToReelDescriptor {
+    return [self noResponseBodyDescriptorForMethod:RKRequestMethodPOST
+                                              path:API_ADD_REEL_VIDEO
+                                        statusCode:200];
+}
+
++ (RKResponseDescriptor *)addVideoToReelErrorDescriptor {
+    NSIndexSet *statusCodes = [self forbiddenAndNotFoundStatusCodes];
+    return [self serverErrorsDescriptorForMethod:RKRequestMethodPOST
+                                            path:API_ADD_REEL_VIDEO
+                                     statusCodes:statusCodes];
+}
+
 + (RKResponseDescriptor *)joinAudienceDescriptor {
     return [self noResponseBodyDescriptorForMethod:RKRequestMethodPOST
                                               path:API_ADD_AUDIENCE_MEMBER
