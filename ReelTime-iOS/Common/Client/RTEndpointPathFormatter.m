@@ -8,8 +8,18 @@
 }
 
 - (NSString *)formatPath:(NSString *)path
+            withUsername:(NSString *)username {
+    return [self formatPath:path withParameters:@{@":username": username}];
+}
+
+- (NSString *)formatPath:(NSString *)path
               withReelId:(NSUInteger)reelId {
     return [self formatPath:path withParameters:@{@":reel_id": @(reelId)}];
+}
+
+- (NSString *)formatPath:(NSString *)path
+             withVideoId:(NSUInteger)videoId {
+    return [self formatPath:path withParameters:@{@":video_id": @(videoId)}];
 }
 
 - (NSString *)formatPath:(NSString *)path
@@ -17,11 +27,6 @@
                  videoId:(NSUInteger)videoId {
     NSDictionary *parameters = @{@":reel_id": @(reelId), @":video_id": @(videoId)};
     return [self formatPath:path withParameters:parameters];
-}
-
-- (NSString *)formatPath:(NSString *)path
-            withUsername:(NSString *)username {
-    return [self formatPath:path withParameters:@{@":username": username}];
 }
 
 - (NSString *)formatPath:(NSString *)path

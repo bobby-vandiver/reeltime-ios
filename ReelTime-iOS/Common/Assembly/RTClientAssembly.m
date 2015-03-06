@@ -119,7 +119,9 @@
                                           [RTResponseDescriptorFactory listFolloweesDescriptor],
                                           [RTResponseDescriptorFactory listFolloweesErrorDescriptor],
                                           [RTResponseDescriptorFactory listVideosDescriptor],
-                                          [RTResponseDescriptorFactory listVideosErrorDescriptor]
+                                          [RTResponseDescriptorFactory listVideosErrorDescriptor],
+                                          [RTResponseDescriptorFactory getVideoDescriptor],
+                                          [RTResponseDescriptorFactory getVideoErrorDescriptor]
                                           ]];
         }];
     }];

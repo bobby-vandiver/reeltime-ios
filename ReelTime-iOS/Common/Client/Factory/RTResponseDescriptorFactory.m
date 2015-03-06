@@ -365,6 +365,7 @@
 
 + (RKResponseDescriptor *)unfollowUserErrorDescriptor {
     NSMutableIndexSet *statusCodes = [NSMutableIndexSet indexSet];
+    
     [statusCodes addIndex:400];
     [statusCodes addIndex:403];
     
@@ -410,6 +411,24 @@
     return [self serverErrorsDescriptorForMethod:RKRequestMethodGET
                                             path:API_LIST_VIDEOS
                                      statusCode:400];
+}
+
++ (RKResponseDescriptor *)getVideoDescriptor {
+    NSMutableIndexSet *statusCodes = [NSMutableIndexSet indexSet];
+    
+    [statusCodes addIndex:200];
+    [statusCodes addIndex:202];
+    
+    return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory videoMapping]
+                                                        method:RKRequestMethodGET
+                                                   pathPattern:API_GET_VIDEO
+                                                   statusCodes:statusCodes];
+}
+
++ (RKResponseDescriptor *)getVideoErrorDescriptor {
+    return [self serverErrorsDescriptorForMethod:RKRequestMethodGET
+                                            path:API_GET_VIDEO
+                                      statusCode:404];
 }
 
 + (NSIndexSet *)forbiddenAndNotFoundStatusCodes {

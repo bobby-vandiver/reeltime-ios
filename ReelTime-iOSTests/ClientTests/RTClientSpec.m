@@ -1929,6 +1929,70 @@ describe(@"ReelTime Client", ^{
                 });
             });
         });
+       
+        context(@"video_id required in path", ^{
+            __block NSMutableDictionary *pathParams;
+            
+            beforeEach(^{
+                pathParams = [NSMutableDictionary dictionary];
+                pathParams[@":video_id"] = [helper stringForUnsignedInteger:videoId];
+            });
+            
+            afterEach(^{
+                expect(httpClient.lastPath).to.contain(videoId);
+            });
+
+            describe(@"get video", ^{
+                __block NSRegularExpression *getVideoUrlRegex;
+                
+                beforeEach(^{
+                    getVideoUrlRegex = [helper createUrlRegexForEndpoint:API_GET_VIDEO
+                                                          withParameters:pathParams];
+                });
+                
+                it(@"is successful and ready for streaming", ^{
+                    [helper stubAuthenticatedRequestWithMethod:GET
+                                                      urlRegex:getVideoUrlRegex
+                                           rawResponseFilename:@"single-video"];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client videoForVideoId:videoId
+                                        success:^(RTVideo *video) {
+                                            expect(video).to.beVideo(@(123), @"single video");
+                                            done();
+                                        }
+                                        failure:shouldNotExecuteFailureCallback(done)];
+                    });
+                });
+                
+                it(@"is successful but not ready for streaming", ^{
+                    [helper stubAuthenticatedRequestWithMethod:GET
+                                                      urlRegex:getVideoUrlRegex
+                                           rawResponseFilename:@"accepted-video"];
+
+                    waitUntil(^(DoneCallback done) {
+                        [client videoForVideoId:videoId
+                                        success:^(RTVideo *video) {
+                                            expect(video).to.beVideo(@(9413), @"accepted video");
+                                            done();
+                                        }
+                                        failure:shouldNotExecuteFailureCallback(done)];
+                    });
+                });
+                
+                it(@"fails due to not found", ^{
+                    [helper stubAuthenticatedRequestWithMethod:GET
+                                                      urlRegex:getVideoUrlRegex
+                                           rawResponseFilename:NOT_FOUND_WITH_ERRORS_FILENAME];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client videoForVideoId:videoId
+                                        success:shouldNotExecuteSuccessCallback(done)
+                                        failure:shouldExecuteFailureCallbackWithMessage(NOT_FOUND_ERROR_MESSAGE, done)];
+                    });
+                });
+            });
+        });
     });
 });
 

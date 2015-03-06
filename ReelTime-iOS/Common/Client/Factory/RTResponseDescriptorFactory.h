@@ -94,4 +94,7 @@
 + (RKResponseDescriptor *)listVideosDescriptor;
 + (RKResponseDescriptor *)listVideosErrorDescriptor;
 
++ (RKResponseDescriptor *)getVideoDescriptor;
++ (RKResponseDescriptor *)getVideoErrorDescriptor;
+
 @end

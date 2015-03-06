@@ -400,6 +400,16 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
                                      failure:failure];
 }
 
+- (void)videoForVideoId:(NSUInteger)videoId
+                success:(VideoCallback)success
+                failure:(ServerErrorsCallback)failure {
+    NSString *path = [self.pathFormatter formatPath:API_GET_VIDEO withVideoId:videoId];
+    [self.httpClient authenticatedGetForPath:path
+                              withParameters:nil
+                                     success:success
+                                     failure:failure];
+}
+
 - (NSDictionary *)parametersWithPage:(NSUInteger)page {
     return @{@"page": @(page)};
 }

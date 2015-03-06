@@ -180,4 +180,8 @@ typedef void (^VideoListCallback)(RTVideoList *videoList);
                success:(VideoListCallback)success
                failure:(ServerErrorsCallback)failure;
 
+- (void)videoForVideoId:(NSUInteger)videoId
+                success:(VideoCallback)success
+                failure:(ServerErrorsCallback)failure;
+
 @end

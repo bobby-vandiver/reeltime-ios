@@ -6,13 +6,16 @@
             withClientId:(NSString *)clientId;
 
 - (NSString *)formatPath:(NSString *)path
+            withUsername:(NSString *)username;
+
+- (NSString *)formatPath:(NSString *)path
               withReelId:(NSUInteger)reelId;
+
+- (NSString *)formatPath:(NSString *)path
+             withVideoId:(NSUInteger)videoId;
 
 - (NSString *)formatPath:(NSString *)path
               withReelId:(NSUInteger)reelId
                  videoId:(NSUInteger)videoId;
-
-- (NSString *)formatPath:(NSString *)path
-            withUsername:(NSString *)username;
 
 @end

@@ -96,6 +96,7 @@
 		71565A291A98EDE900AE1C43 /* RTApplicationWireframeSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71565A281A98EDE900AE1C43 /* RTApplicationWireframeSpec.m */; };
 		7157589C1A9A2D6C002859DE /* RTApplicationTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7157589B1A9A2D6C002859DE /* RTApplicationTabBarController.m */; };
 		7157589F1A9A3B93002859DE /* RTEndpointPathFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7157589E1A9A3B93002859DE /* RTEndpointPathFormatter.m */; };
+		715A32A11AAA64800008F9CF /* accepted-video.txt in Resources */ = {isa = PBXBuildFile; fileRef = 715A32A01AAA64800008F9CF /* accepted-video.txt */; };
 		7160C2BF1A6F48A60045ADDA /* RTAccountRegistrationValidatorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7160C2BE1A6F48A60045ADDA /* RTAccountRegistrationValidatorSpec.m */; };
 		71647BD51A7E7EEA00F44996 /* RTVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 71647BD41A7E7EEA00F44996 /* RTVideo.m */; };
 		71647BD81A7E7F9D00F44996 /* RTUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 71647BD71A7E7F9D00F44996 /* RTUser.m */; };
@@ -304,6 +305,7 @@
 		7157589B1A9A2D6C002859DE /* RTApplicationTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTApplicationTabBarController.m; sourceTree = "<group>"; };
 		7157589D1A9A3B93002859DE /* RTEndpointPathFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTEndpointPathFormatter.h; sourceTree = "<group>"; };
 		7157589E1A9A3B93002859DE /* RTEndpointPathFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTEndpointPathFormatter.m; sourceTree = "<group>"; };
+		715A32A01AAA64800008F9CF /* accepted-video.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "accepted-video.txt"; sourceTree = "<group>"; };
 		7160C2BE1A6F48A60045ADDA /* RTAccountRegistrationValidatorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAccountRegistrationValidatorSpec.m; sourceTree = "<group>"; };
 		71647BD31A7E7EEA00F44996 /* RTVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTVideo.h; path = "ReelTime-iOS/Common/Model/RTVideo.h"; sourceTree = SOURCE_ROOT; };
 		71647BD41A7E7EEA00F44996 /* RTVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTVideo.m; path = "ReelTime-iOS/Common/Model/RTVideo.m"; sourceTree = SOURCE_ROOT; };
@@ -492,6 +494,7 @@
 		7112EF501AA9386300BC7731 /* Video */ = {
 			isa = PBXGroup;
 			children = (
+				715A32A01AAA64800008F9CF /* accepted-video.txt */,
 				7112EF511AA9395300BC7731 /* single-video.txt */,
 				7112EF521AA9395300BC7731 /* video-list-multiple-videos.txt */,
 				7112EF531AA9395300BC7731 /* video-list-no-videos.txt */,
@@ -1308,6 +1311,7 @@
 				717215D41A865C8E0002ECC7 /* token-bad-user-credentials.txt in Resources */,
 				712D5A201AA7F4690041DD24 /* reel-created.txt in Resources */,
 				7112EF581AA9395300BC7731 /* video-list-one-video.txt in Resources */,
+				715A32A11AAA64800008F9CF /* accepted-video.txt in Resources */,
 				7112EF4D1AA915EF00BC7731 /* user-list-one-user.txt in Resources */,
 				7112EF5A1AA943A900BC7731 /* forbidden-with-errors.txt in Resources */,
 				711FF4BC1AA20CEC00E11BDE /* service-unavailable-with-errors.txt in Resources */,
