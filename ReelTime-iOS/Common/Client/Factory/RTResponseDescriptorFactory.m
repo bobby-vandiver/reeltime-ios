@@ -286,9 +286,10 @@
 }
 
 + (RKResponseDescriptor *)joinAudienceErrorDescriptor {
+    NSIndexSet *statusCodes = [self forbiddenAndNotFoundStatusCodes];
     return [self serverErrorsDescriptorForMethod:RKRequestMethodPOST
                                             path:API_ADD_AUDIENCE_MEMBER
-                                      statusCode:404];
+                                     statusCodes:statusCodes];
 }
 
 + (RKResponseDescriptor *)leaveAudienceDescriptor {

@@ -293,7 +293,7 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
 
 - (void)joinAudienceForReelWithReelId:(NSUInteger)reelId
                               success:(NoArgsCallback)success
-                              failure:(NoArgsCallback)failure {
+                              failure:(ServerErrorsCallback)failure {
     NSString *path = [self.pathFormatter formatPath:API_ADD_AUDIENCE_MEMBER withReelId:reelId];
     [self.httpClient authenticatedPostForPath:path
                                withParameters:nil

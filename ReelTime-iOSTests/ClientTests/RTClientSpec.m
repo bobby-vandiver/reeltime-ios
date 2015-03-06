@@ -1443,6 +1443,18 @@ describe(@"ReelTime Client", ^{
                 });
             });
             
+            it(@"fails due to forbidden", ^{
+                [helper stubAuthenticatedRequestWithMethod:POST
+                                                  urlRegex:joinAudienceUrlRegex
+                                       rawResponseFilename:FORBIDDEN_WITH_ERRORS_FILENAME];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client joinAudienceForReelWithReelId:reelId
+                                                  success:shouldNotExecuteSuccessCallback(done)
+                                                  failure:shouldExecuteFailureCallbackWithMessage(FORBIDDEN_ERROR_MESSAGE, done)];
+                });
+            });
+            
             it(@"fails due to not found", ^{
                 [helper stubAuthenticatedRequestWithMethod:POST
                                                   urlRegex:joinAudienceUrlRegex

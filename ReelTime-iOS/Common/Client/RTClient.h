@@ -139,7 +139,7 @@ typedef void (^VideoListCallback)(RTVideoList *);
 
 - (void)joinAudienceForReelWithReelId:(NSUInteger)reelId
                               success:(NoArgsCallback)success
-                              failure:(NoArgsCallback)failure;
+                              failure:(ServerErrorsCallback)failure;
 
 - (void)leaveAudienceForReelWithReelId:(NSUInteger)reelId
                                success:(NoArgsCallback)success
