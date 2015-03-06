@@ -191,7 +191,7 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
 - (void)newsfeedPage:(NSUInteger)page
              success:(NewsfeedCallback)success
              failure:(ServerErrorsCallback)failure {
-    NSDictionary *parameters = @{@"page": @(page)};
+    NSDictionary *parameters = [self parametersWithPage:page];
     [self.httpClient authenticatedGetForPath:API_NEWSFEED
                               withParameters:parameters
                                      success:success
@@ -201,7 +201,7 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
 - (void)listReelsPage:(NSUInteger)page
               success:(ReelListCallback)success
               failure:(ServerErrorsCallback)failure {
-    NSDictionary *parameters = @{@"page": @(page)};
+    NSDictionary *parameters = [self parametersWithPage:page];
     [self.httpClient authenticatedGetForPath:API_LIST_REELS
                               withParameters:parameters
                                      success:success
@@ -243,7 +243,7 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
      forReelWithReelId:(NSUInteger)reelId
                success:(VideoListCallback)success
                failure:(ServerErrorsCallback)failure {
-    NSDictionary *parameters = @{@"page": @(page)};
+    NSDictionary *parameters = [self parametersWithPage:page];
     NSString *path = [self.pathFormatter formatPath:API_LIST_REEL_VIDEOS withReelId:reelId];
     
     [self.httpClient authenticatedGetForPath:path
@@ -282,7 +282,7 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
               forReelWithReelId:(NSUInteger)reelId
                         success:(UserListCallback)success
                         failure:(ServerErrorsCallback)failure {
-    NSDictionary *parameters = @{@"page": @(page)};
+    NSDictionary *parameters = [self parametersWithPage:page];
     NSString *path = [self.pathFormatter formatPath:API_LIST_AUDIENCE_MEMBERS withReelId:reelId];
 
     [self.httpClient authenticatedGetForPath:path
@@ -314,7 +314,7 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
 - (void)listUsersPage:(NSUInteger)page
               success:(UserListCallback)success
               failure:(ServerErrorsCallback)failure {
-    NSDictionary *parameters = @{@"page": @(page)};
+    NSDictionary *parameters = [self parametersWithPage:page];
     [self.httpClient authenticatedGetForPath:API_LIST_USERS
                               withParameters:parameters
                                      success:success
@@ -335,7 +335,7 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
   forUserWithUsername:(NSString *)username
               success:(ReelListCallback)success
               failure:(ServerErrorsCallback)failure {
-    NSDictionary *parameters = @{@"page": @(page)};
+    NSDictionary *parameters = [self parametersWithPage:page];
     NSString *path = [self.pathFormatter formatPath:API_LIST_USER_REELS withUsername:username];
     
     [self.httpClient authenticatedGetForPath:path
@@ -368,7 +368,7 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
       forUserWithUsername:(NSString *)username
                   success:(UserListCallback)success
                   failure:(ServerErrorsCallback)failure {
-    NSDictionary *parameters = @{@"page": @(page)};
+    NSDictionary *parameters = [self parametersWithPage:page];
     NSString *path = [self.pathFormatter formatPath:API_LIST_FOLLOWERS withUsername:username];
     
     [self.httpClient authenticatedGetForPath:path
@@ -381,13 +381,17 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
       forUserWithUsername:(NSString *)username
                   success:(UserListCallback)success
                   failure:(ServerErrorsCallback)failure {
-    NSDictionary *parameters = @{@"page": @(page)};
+    NSDictionary *parameters = [self parametersWithPage:page];
     NSString *path = [self.pathFormatter formatPath:API_LIST_FOLLOWEES withUsername:username];
     
     [self.httpClient authenticatedGetForPath:path
                               withParameters:parameters
                                      success:success
                                      failure:failure];
+}
+
+- (NSDictionary *)parametersWithPage:(NSUInteger)page {
+    return @{@"page": @(page)};
 }
 
 @end
