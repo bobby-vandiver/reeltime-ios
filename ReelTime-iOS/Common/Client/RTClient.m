@@ -390,6 +390,16 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
                                      failure:failure];
 }
 
+- (void)listVideosPage:(NSUInteger)page
+               success:(VideoListCallback)success
+               failure:(ServerErrorsCallback)failure {
+    NSDictionary *parameters = [self parametersWithPage:page];
+    [self.httpClient authenticatedGetForPath:API_LIST_VIDEOS
+                              withParameters:parameters
+                                     success:success
+                                     failure:failure];
+}
+
 - (NSDictionary *)parametersWithPage:(NSUInteger)page {
     return @{@"page": @(page)};
 }

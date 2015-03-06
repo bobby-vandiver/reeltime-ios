@@ -91,4 +91,7 @@
 + (RKResponseDescriptor *)listFolloweesDescriptor;
 + (RKResponseDescriptor *)listFolloweesErrorDescriptor;
 
++ (RKResponseDescriptor *)listVideosDescriptor;
++ (RKResponseDescriptor *)listVideosErrorDescriptor;
+
 @end

@@ -1868,6 +1868,67 @@ describe(@"ReelTime Client", ^{
                 });
             });
         });
+        
+        describe(@"list videos", ^{
+            __block NSRegularExpression *listVideosUrlRegex;
+            
+            beforeEach(^{
+                listVideosUrlRegex = [helper createUrlRegexForEndpoint:API_LIST_VIDEOS];
+            });
+            
+            afterEach(^{
+                expect(httpClient.lastParameters.allKeys).to.haveCountOf(1);
+                expect(httpClient.lastParameters[@"page"]).to.equal(pageNumber);
+            });
+            
+            it(@"is successful and has no videos", ^{
+                [helper stubAuthenticatedRequestWithMethod:GET
+                                                  urlRegex:listVideosUrlRegex
+                                       rawResponseFilename:SUCCESSFUL_OK_WITH_VIDEOS_LIST_EMPTY];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client listVideosPage:pageNumber
+                                   success:shouldReceiveEmptyVideoListInSuccessfulResponse(done)
+                                   failure:shouldNotExecuteFailureCallback(done)];
+                });
+            });
+            
+            it(@"is successful and has one video", ^{
+                [helper stubAuthenticatedRequestWithMethod:GET
+                                                  urlRegex:listVideosUrlRegex
+                                       rawResponseFilename:SUCCESSFUL_OK_WITH_VIDEOS_LIST_ONE_VIDEO];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client listVideosPage:pageNumber
+                                   success:shouldReceiveVideoListWithOneVideoInSuccessfulResponse(done)
+                                   failure:shouldNotExecuteFailureCallback(done)];
+                });
+            });
+            
+            it(@"is successful and has multiple videos", ^{
+                [helper stubAuthenticatedRequestWithMethod:GET
+                                                  urlRegex:listVideosUrlRegex
+                                       rawResponseFilename:SUCCESSFUL_OK_WITH_VIDEOS_LIST_MULTIPLE_VIDEOS];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client listVideosPage:pageNumber
+                                   success:shouldReceiveVideoListWithMultipleVideosInSuccessfulResponse(done)
+                                   failure:shouldNotExecuteFailureCallback(done)];
+                });
+            });
+            
+            it(@"fails due to bad request", ^{
+                [helper stubAuthenticatedRequestWithMethod:GET
+                                                  urlRegex:listVideosUrlRegex
+                                       rawResponseFilename:BAD_REQUEST_WITH_ERRORS_FILENAME];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client listVideosPage:pageNumber
+                                   success:shouldNotExecuteSuccessCallback(done)
+                                   failure:shouldExecuteFailureCallbackWithMessage(BAD_REQUEST_ERROR_MESSAGE, done)];
+                });
+            });
+        });
     });
 });
 

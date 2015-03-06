@@ -117,7 +117,9 @@
                                           [RTResponseDescriptorFactory listFollowersDescriptor],
                                           [RTResponseDescriptorFactory listFollowersErrorDescriptor],
                                           [RTResponseDescriptorFactory listFolloweesDescriptor],
-                                          [RTResponseDescriptorFactory listFolloweesErrorDescriptor]
+                                          [RTResponseDescriptorFactory listFolloweesErrorDescriptor],
+                                          [RTResponseDescriptorFactory listVideosDescriptor],
+                                          [RTResponseDescriptorFactory listVideosErrorDescriptor]
                                           ]];
         }];
     }];

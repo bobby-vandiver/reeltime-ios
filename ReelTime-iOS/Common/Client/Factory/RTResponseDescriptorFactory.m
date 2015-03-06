@@ -399,6 +399,19 @@
                                       statusCode:400];
 }
 
++ (RKResponseDescriptor *)listVideosDescriptor {
+    return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory videoListMapping]
+                                                        method:RKRequestMethodGET
+                                                   pathPattern:API_LIST_VIDEOS
+                                                    statusCode:200];
+}
+
++ (RKResponseDescriptor *)listVideosErrorDescriptor {
+    return [self serverErrorsDescriptorForMethod:RKRequestMethodGET
+                                            path:API_LIST_VIDEOS
+                                     statusCode:400];
+}
+
 + (NSIndexSet *)forbiddenAndNotFoundStatusCodes {
     NSMutableIndexSet *statusCodes = [NSMutableIndexSet indexSet];
 

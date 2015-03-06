@@ -176,4 +176,8 @@ typedef void (^VideoListCallback)(RTVideoList *videoList);
                   success:(UserListCallback)success
                   failure:(ServerErrorsCallback)failure;
 
+- (void)listVideosPage:(NSUInteger)page
+               success:(VideoListCallback)success
+               failure:(ServerErrorsCallback)failure;
+
 @end
