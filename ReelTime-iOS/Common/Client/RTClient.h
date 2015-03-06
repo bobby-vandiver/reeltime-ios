@@ -24,22 +24,22 @@
 @class RTVideoList;
 
 typedef void (^NoArgsCallback)();
-typedef void (^ServerErrorsCallback)(RTServerErrors *);
+typedef void (^ServerErrorsCallback)(RTServerErrors *serverErrors);
 
-typedef void (^TokenCallback)(RTOAuth2Token *);
-typedef void (^TokenErrorCallback)(RTOAuth2TokenError *);
+typedef void (^TokenCallback)(RTOAuth2Token *token);
+typedef void (^TokenErrorCallback)(RTOAuth2TokenError *tokenError);
 
-typedef void (^ClientCredentialsCallback)(RTClientCredentials *);
-typedef void (^NewsfeedCallback)(RTNewsfeed *);
+typedef void (^ClientCredentialsCallback)(RTClientCredentials *clientCredentials);
+typedef void (^NewsfeedCallback)(RTNewsfeed *newsfeed);
 
-typedef void (^ReelCallback)(RTReel *);
-typedef void (^ReelListCallback)(RTReelList *);
+typedef void (^ReelCallback)(RTReel *reel);
+typedef void (^ReelListCallback)(RTReelList *reelList);
 
-typedef void (^UserCallback)(RTUser *);
-typedef void (^UserListCallback)(RTUserList *);
+typedef void (^UserCallback)(RTUser *user);
+typedef void (^UserListCallback)(RTUserList *userList);
 
-typedef void (^VideoCallback)(RTVideo *);
-typedef void (^VideoListCallback)(RTVideoList *);
+typedef void (^VideoCallback)(RTVideo *video);
+typedef void (^VideoListCallback)(RTVideoList *videoList);
 
 @interface RTClient : NSObject
 
@@ -148,6 +148,10 @@ typedef void (^VideoListCallback)(RTVideoList *);
 - (void)listUsersPage:(NSUInteger)page
               success:(UserListCallback)success
               failure:(ServerErrorsCallback)failure;
+
+- (void)userForUsername:(NSString *)username
+                success:(UserCallback)success
+                failure:(ServerErrorsCallback)failure;
 
 - (void)followUserForUsername:(NSString *)username
                       success:(NoArgsCallback)success

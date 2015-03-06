@@ -321,6 +321,16 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
                                      failure:failure];
 }
 
+- (void)userForUsername:(NSString *)username
+                success:(UserCallback)success
+                failure:(ServerErrorsCallback)failure {
+    NSString *path = [self.pathFormatter formatPath:API_GET_USER withUsername:username];
+    [self.httpClient authenticatedGetForPath:path
+                              withParameters:nil
+                                     success:success
+                                     failure:failure];
+}
+
 - (void)followUserForUsername:(NSString *)username
                       success:(NoArgsCallback)success
                       failure:(void (^)(RTServerErrors *errors))failure {

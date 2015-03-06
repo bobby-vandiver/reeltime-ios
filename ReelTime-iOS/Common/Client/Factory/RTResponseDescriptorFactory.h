@@ -73,6 +73,9 @@
 + (RKResponseDescriptor *)listUsersDescriptor;
 + (RKResponseDescriptor *)listUsersErrorDescriptor;
 
++ (RKResponseDescriptor *)getUserDescriptor;
++ (RKResponseDescriptor *)getUserErrorDescriptor;
+
 + (RKResponseDescriptor *)followUserDescriptor;
 + (RKResponseDescriptor *)followUserErrorDescriptor;
 
