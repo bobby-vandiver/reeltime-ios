@@ -95,6 +95,7 @@
                                           [RTResponseDescriptorFactory listAudienceMembersDescriptor],
                                           [RTResponseDescriptorFactory listAudienceMembersErrorDescriptor],
                                           [RTResponseDescriptorFactory joinAudienceDescriptor],
+                                          [RTResponseDescriptorFactory joinAudienceErrorDescriptor],
                                           [RTResponseDescriptorFactory followUserDescriptor],
                                           [RTResponseDescriptorFactory followUserErrorDescriptor],
                                           [RTResponseDescriptorFactory unfollowUserDescriptor],

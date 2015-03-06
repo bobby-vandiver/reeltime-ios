@@ -247,6 +247,12 @@
                                         statusCode:200];
 }
 
++ (RKResponseDescriptor *)joinAudienceErrorDescriptor {
+    return [self serverErrorsDescriptorForMethod:RKRequestMethodPOST
+                                            path:API_ADD_AUDIENCE_MEMBER
+                                      statusCode:404];
+}
+
 + (RKResponseDescriptor *)followUserDescriptor {
     return [self noResponseBodyDescriptorForMethod:RKRequestMethodPOST
                                               path:API_FOLLOW_USER

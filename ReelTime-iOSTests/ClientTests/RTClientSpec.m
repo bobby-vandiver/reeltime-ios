@@ -1184,11 +1184,16 @@ describe(@"ReelTime Client", ^{
         
         describe(@"join audience", ^{
             __block NSRegularExpression *joinAudienceUrlRegex;
+            __block NSUInteger reelId = 42;
             
             beforeEach(^{
-                NSDictionary *pathParams = @{ @":reel_id": @"42" };
+                NSDictionary *pathParams = @{ @":reel_id": [helper stringForUnsignedInteger:reelId] };
                 joinAudienceUrlRegex = [helper createUrlRegexForEndpoint:API_ADD_AUDIENCE_MEMBER
                                                           withParameters:pathParams];
+            });
+            
+            afterEach(^{
+                expect(httpClient.lastPath).to.contain(reelId);
             });
             
             it(@"is successful", ^{
@@ -1197,13 +1202,22 @@ describe(@"ReelTime Client", ^{
                                        rawResponseFilename:SUCCESSFUL_CREATED_WITH_NO_BODY_FILENAME];
                 
                 waitUntil(^(DoneCallback done) {
-                    [client joinAudienceForReelId:42
+                    [client joinAudienceForReelId:reelId
                                           success:shouldExecuteSuccessCallback(done)
                                           failure:shouldNotExecuteFailureCallback(done)];
                 });
+            });
+            
+            it(@"fails due to not found", ^{
+                [helper stubAuthenticatedRequestWithMethod:POST
+                                                  urlRegex:joinAudienceUrlRegex
+                                       rawResponseFilename:NOT_FOUND_WITH_ERRORS_FILENAME];
                 
-                expect(callbackExecuted).to.beTruthy();
-                expect(httpClient.lastPath).to.contain(@"42");
+                waitUntil(^(DoneCallback done) {
+                    [client joinAudienceForReelId:reelId
+                                          success:shouldNotExecuteSuccessCallback(done)
+                                          failure:shouldExecuteFailureCallbackWithMessage(NOT_FOUND_ERROR_MESSAGE, done)];
+                });
             });
         });
         
