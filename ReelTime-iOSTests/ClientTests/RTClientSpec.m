@@ -1085,7 +1085,20 @@ describe(@"ReelTime Client", ^{
                 });
             });
             
-            it(@"fails due to forbidden", ^{
+            it(@"fails due to not found", ^{
+                [helper stubAuthenticatedRequestWithMethod:DELETE
+                                                  urlRegex:deleteReelUrlRegex
+                                       rawResponseFilename:NOT_FOUND_WITH_ERRORS_FILENAME];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client deleteReelForReelId:reelId
+                                        success:shouldNotExecuteSuccessCallback(done)
+                                        failure:shouldExecuteFailureCallbackWithMessage(NOT_FOUND_ERROR_MESSAGE, done)];
+                });
+            });
+            
+            // TODO: Enable once server includes error message in response
+            xit(@"fails due to forbidden", ^{
                 [helper stubAuthenticatedRequestWithMethod:DELETE
                                                   urlRegex:deleteReelUrlRegex
                                        rawResponseFilename:FORBIDDEN_WITH_NO_BODY_FILENAME];

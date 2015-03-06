@@ -219,9 +219,9 @@
 }
 
 + (RKResponseDescriptor *)deleteReelErrorDescriptor {
-    return [self noResponseBodyDescriptorForMethod:RKRequestMethodDELETE
-                                              path:API_DELETE_REEL
-                                        statusCode:403];
+    return [self serverErrorsDescriptorForMethod:RKRequestMethodDELETE
+                                            path:API_DELETE_REEL
+                                      statusCode:404];
 }
 
 + (RKResponseDescriptor *)listAudienceMembersDescriptor {
