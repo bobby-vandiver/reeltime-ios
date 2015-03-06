@@ -240,7 +240,7 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
 }
 
 - (void)listVideosPage:(NSUInteger)page
-             forReelId:(NSUInteger)reelId
+     forReelWithReelId:(NSUInteger)reelId
                success:(VideoListCallback)success
                failure:(ServerErrorsCallback)failure {
     NSDictionary *parameters = @{@"page": @(page)};
@@ -279,7 +279,7 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
 }
 
 - (void)listAudienceMembersPage:(NSUInteger)page
-                      forReelId:(NSUInteger)reelId
+              forReelWithReelId:(NSUInteger)reelId
                         success:(UserListCallback)success
                         failure:(ServerErrorsCallback)failure {
     NSDictionary *parameters = @{@"page": @(page)};
@@ -291,9 +291,9 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
                                      failure:failure];
 }
 
-- (void)joinAudienceForReelId:(NSUInteger)reelId
-                      success:(NoArgsCallback)success
-                      failure:(NoArgsCallback)failure {
+- (void)joinAudienceForReelWithReelId:(NSUInteger)reelId
+                              success:(NoArgsCallback)success
+                              failure:(NoArgsCallback)failure {
     NSString *path = [self.pathFormatter formatPath:API_ADD_AUDIENCE_MEMBER withReelId:reelId];
     [self.httpClient authenticatedPostForPath:path
                                withParameters:nil
@@ -301,9 +301,9 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
                                       failure:failure];
 }
 
-- (void)leaveAudienceForReelId:(NSUInteger)reelId
-                       success:(NoArgsCallback)success
-                       failure:(ServerErrorsCallback)failure {
+- (void)leaveAudienceForReelWithReelId:(NSUInteger)reelId
+                               success:(NoArgsCallback)success
+                               failure:(ServerErrorsCallback)failure {
     NSString *path = [self.pathFormatter formatPath:API_REMOVE_AUDIENCE_MEMBER withReelId:reelId];
     [self.httpClient authenticatedDeleteForPath:path
                                  withParameters:nil

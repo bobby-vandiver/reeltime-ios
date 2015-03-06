@@ -118,7 +118,7 @@ typedef void (^VideoListCallback)(RTVideoList *);
                     failure:(NoArgsCallback)failure;
 
 - (void)listVideosPage:(NSUInteger)page
-             forReelId:(NSUInteger)reelId
+     forReelWithReelId:(NSUInteger)reelId
                success:(VideoListCallback)success
                failure:(ServerErrorsCallback)failure;
 
@@ -133,17 +133,17 @@ typedef void (^VideoListCallback)(RTVideoList *);
                        failure:(ServerErrorsCallback)failure;
 
 - (void)listAudienceMembersPage:(NSUInteger)page
-                      forReelId:(NSUInteger)reelId
+              forReelWithReelId:(NSUInteger)reelId
                         success:(UserListCallback)success
                         failure:(ServerErrorsCallback)failure;
 
-- (void)joinAudienceForReelId:(NSUInteger)reelId
-                      success:(NoArgsCallback)success
-                      failure:(NoArgsCallback)failure;
+- (void)joinAudienceForReelWithReelId:(NSUInteger)reelId
+                              success:(NoArgsCallback)success
+                              failure:(NoArgsCallback)failure;
 
-- (void)leaveAudienceForReelId:(NSUInteger)reelId
-                       success:(NoArgsCallback)success
-                       failure:(ServerErrorsCallback)failure;
+- (void)leaveAudienceForReelWithReelId:(NSUInteger)reelId
+                               success:(NoArgsCallback)success
+                               failure:(ServerErrorsCallback)failure;
 
 - (void)followUserForUsername:(NSString *)username
                       success:(NoArgsCallback)success

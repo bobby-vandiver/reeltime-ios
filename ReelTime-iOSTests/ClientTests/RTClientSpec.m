@@ -1167,7 +1167,7 @@ describe(@"ReelTime Client", ^{
                 
                 waitUntil(^(DoneCallback done) {
                     [client listVideosPage:pageNumber
-                                 forReelId:reelId
+                         forReelWithReelId:reelId
                                    success:shouldReceiveEmptyVideoListInSuccessfulResponse(done)
                                    failure:shouldNotExecuteFailureCallback(done)];
                 });
@@ -1180,7 +1180,7 @@ describe(@"ReelTime Client", ^{
                 
                 waitUntil(^(DoneCallback done) {
                     [client listVideosPage:pageNumber
-                                 forReelId:reelId
+                         forReelWithReelId:reelId
                                    success:shouldReceiveVideoListWithOneVideoInSuccessfulResponse(done)
                                    failure:shouldNotExecuteFailureCallback(done)];
                 });
@@ -1193,7 +1193,7 @@ describe(@"ReelTime Client", ^{
                 
                 waitUntil(^(DoneCallback done) {
                     [client listVideosPage:pageNumber
-                                 forReelId:reelId
+                         forReelWithReelId:reelId
                                    success:shouldReceiveVideoListWithMultipleVideosInSuccessfulResponse(done)
                                    failure:shouldNotExecuteFailureCallback(done)];
                 });
@@ -1206,7 +1206,7 @@ describe(@"ReelTime Client", ^{
                 
                 waitUntil(^(DoneCallback done) {
                     [client listVideosPage:pageNumber
-                                 forReelId:reelId
+                         forReelWithReelId:reelId
                                    success:shouldNotExecuteSuccessCallback(done)
                                    failure:shouldExecuteFailureCallbackWithMessage(BAD_REQUEST_ERROR_MESSAGE, done)];
                 });
@@ -1219,7 +1219,7 @@ describe(@"ReelTime Client", ^{
                 
                 waitUntil(^(DoneCallback done) {
                     [client listVideosPage:pageNumber
-                                 forReelId:reelId
+                         forReelWithReelId:reelId
                                    success:shouldNotExecuteSuccessCallback(done)
                                    failure:shouldExecuteFailureCallbackWithMessage(NOT_FOUND_ERROR_MESSAGE, done)];
                 });
@@ -1359,7 +1359,7 @@ describe(@"ReelTime Client", ^{
                 
                 waitUntil(^(DoneCallback done) {
                     [client listAudienceMembersPage:pageNumber
-                                          forReelId:reelId
+                                  forReelWithReelId:reelId
                                             success:shouldReceiveEmptyUserListInSuccessfulResponse(done)
                                             failure:shouldNotExecuteFailureCallback(done)];
                 });
@@ -1372,7 +1372,7 @@ describe(@"ReelTime Client", ^{
                 
                 waitUntil(^(DoneCallback done) {
                     [client listAudienceMembersPage:pageNumber
-                                          forReelId:reelId
+                                  forReelWithReelId:reelId
                                             success:shouldReceiveUserListWithOneUserInSuccessfulResponse(done)
                                             failure:shouldNotExecuteFailureCallback(done)];
                 });
@@ -1385,7 +1385,7 @@ describe(@"ReelTime Client", ^{
                 
                 waitUntil(^(DoneCallback done) {
                     [client listAudienceMembersPage:pageNumber
-                                          forReelId:reelId
+                                  forReelWithReelId:reelId
                                             success:shouldReceiveUserListWithMultipleUsersInSuccessfulResponse(done)
                                             failure:shouldNotExecuteFailureCallback(done)];
                 });
@@ -1398,7 +1398,7 @@ describe(@"ReelTime Client", ^{
                 
                 waitUntil(^(DoneCallback done) {
                     [client listAudienceMembersPage:pageNumber
-                                          forReelId:reelId
+                                  forReelWithReelId:reelId
                                             success:shouldNotExecuteSuccessCallback(done)
                                             failure:shouldExecuteFailureCallbackWithMessage(BAD_REQUEST_ERROR_MESSAGE, done)];
                 });
@@ -1411,7 +1411,7 @@ describe(@"ReelTime Client", ^{
                 
                 waitUntil(^(DoneCallback done) {
                     [client listAudienceMembersPage:pageNumber
-                                          forReelId:reelId
+                                  forReelWithReelId:reelId
                                             success:shouldNotExecuteSuccessCallback(done)
                                             failure:shouldExecuteFailureCallbackWithMessage(NOT_FOUND_ERROR_MESSAGE, done)];
                 });
@@ -1437,9 +1437,9 @@ describe(@"ReelTime Client", ^{
                                        rawResponseFilename:SUCCESSFUL_CREATED_WITH_NO_BODY_FILENAME];
                 
                 waitUntil(^(DoneCallback done) {
-                    [client joinAudienceForReelId:reelId
-                                          success:shouldExecuteSuccessCallback(done)
-                                          failure:shouldNotExecuteFailureCallback(done)];
+                    [client joinAudienceForReelWithReelId:reelId
+                                                  success:shouldExecuteSuccessCallback(done)
+                                                  failure:shouldNotExecuteFailureCallback(done)];
                 });
             });
             
@@ -1449,9 +1449,9 @@ describe(@"ReelTime Client", ^{
                                        rawResponseFilename:NOT_FOUND_WITH_ERRORS_FILENAME];
                 
                 waitUntil(^(DoneCallback done) {
-                    [client joinAudienceForReelId:reelId
-                                          success:shouldNotExecuteSuccessCallback(done)
-                                          failure:shouldExecuteFailureCallbackWithMessage(NOT_FOUND_ERROR_MESSAGE, done)];
+                    [client joinAudienceForReelWithReelId:reelId
+                                                  success:shouldNotExecuteSuccessCallback(done)
+                                                  failure:shouldExecuteFailureCallbackWithMessage(NOT_FOUND_ERROR_MESSAGE, done)];
                 });
             });
         });
@@ -1475,9 +1475,9 @@ describe(@"ReelTime Client", ^{
                                        rawResponseFilename:SUCCESSFUL_OK_WITH_NO_BODY_FILENAME];
                 
                 waitUntil(^(DoneCallback done) {
-                    [client leaveAudienceForReelId:reelId
-                                           success:shouldExecuteSuccessCallback(done)
-                                           failure:shouldNotExecuteFailureCallback(done)];
+                    [client leaveAudienceForReelWithReelId:reelId
+                                                   success:shouldExecuteSuccessCallback(done)
+                                                   failure:shouldNotExecuteFailureCallback(done)];
                 });
             });
             
@@ -1487,9 +1487,9 @@ describe(@"ReelTime Client", ^{
                                        rawResponseFilename:NOT_FOUND_WITH_ERRORS_FILENAME];
                 
                 waitUntil(^(DoneCallback done) {
-                    [client leaveAudienceForReelId:reelId
-                                           success:shouldNotExecuteSuccessCallback(done)
-                                           failure:shouldExecuteFailureCallbackWithMessage(NOT_FOUND_ERROR_MESSAGE, done)];
+                    [client leaveAudienceForReelWithReelId:reelId
+                                                   success:shouldNotExecuteSuccessCallback(done)
+                                                   failure:shouldExecuteFailureCallbackWithMessage(NOT_FOUND_ERROR_MESSAGE, done)];
                 });
             });
             
@@ -1499,9 +1499,9 @@ describe(@"ReelTime Client", ^{
                                        rawResponseFilename:FORBIDDEN_WITH_ERRORS_FILENAME];
                 
                 waitUntil(^(DoneCallback done) {
-                    [client leaveAudienceForReelId:reelId
-                                           success:shouldNotExecuteSuccessCallback(done)
-                                           failure:shouldExecuteFailureCallbackWithMessage(FORBIDDEN_ERROR_MESSAGE, done)];
+                    [client leaveAudienceForReelWithReelId:reelId
+                                                   success:shouldNotExecuteSuccessCallback(done)
+                                                   failure:shouldExecuteFailureCallbackWithMessage(FORBIDDEN_ERROR_MESSAGE, done)];
                 });
             });
         });
