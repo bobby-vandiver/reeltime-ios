@@ -85,4 +85,10 @@
 + (RKResponseDescriptor *)unfollowUserDescriptor;
 + (RKResponseDescriptor *)unfollowUserErrorDescriptor;
 
++ (RKResponseDescriptor *)listFollowersDescriptor;
++ (RKResponseDescriptor *)listFollowersErrorDescriptor;
+
++ (RKResponseDescriptor *)listFolloweesDescriptor;
++ (RKResponseDescriptor *)listFolloweesErrorDescriptor;
+
 @end

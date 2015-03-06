@@ -346,7 +346,7 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
 
 - (void)followUserForUsername:(NSString *)username
                       success:(NoArgsCallback)success
-                      failure:(void (^)(RTServerErrors *errors))failure {
+                      failure:(ServerErrorsCallback)failure {
     NSString *path = [self.pathFormatter formatPath:API_FOLLOW_USER withUsername:username];
     [self.httpClient authenticatedPostForPath:path
                                withParameters:nil
@@ -362,6 +362,32 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
                                  withParameters:nil
                                         success:success
                                         failure:failure];
+}
+
+- (void)listFollowersPage:(NSUInteger)page
+      forUserWithUsername:(NSString *)username
+                  success:(UserListCallback)success
+                  failure:(ServerErrorsCallback)failure {
+    NSDictionary *parameters = @{@"page": @(page)};
+    NSString *path = [self.pathFormatter formatPath:API_LIST_FOLLOWERS withUsername:username];
+    
+    [self.httpClient authenticatedGetForPath:path
+                              withParameters:parameters
+                                     success:success
+                                     failure:failure];
+}
+
+- (void)listFolloweesPage:(NSUInteger)page
+      forUserWithUsername:(NSString *)username
+                  success:(UserListCallback)success
+                  failure:(ServerErrorsCallback)failure {
+    NSDictionary *parameters = @{@"page": @(page)};
+    NSString *path = [self.pathFormatter formatPath:API_LIST_FOLLOWEES withUsername:username];
+    
+    [self.httpClient authenticatedGetForPath:path
+                              withParameters:parameters
+                                     success:success
+                                     failure:failure];
 }
 
 @end

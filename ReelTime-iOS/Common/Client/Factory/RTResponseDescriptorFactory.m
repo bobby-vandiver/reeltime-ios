@@ -373,6 +373,32 @@
                                      statusCodes:statusCodes];
 }
 
++ (RKResponseDescriptor *)listFollowersDescriptor {
+    return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory userListMapping]
+                                                        method:RKRequestMethodGET
+                                                   pathPattern:API_LIST_FOLLOWERS
+                                                    statusCode:200];
+}
+
++ (RKResponseDescriptor *)listFollowersErrorDescriptor {
+    return [self serverErrorsDescriptorForMethod:RKRequestMethodGET
+                                            path:API_LIST_FOLLOWERS
+                                      statusCode:400];
+}
+
++ (RKResponseDescriptor *)listFolloweesDescriptor {
+    return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory userListMapping]
+                                                        method:RKRequestMethodGET
+                                                   pathPattern:API_LIST_FOLLOWEES
+                                                    statusCode:200];
+}
+
++ (RKResponseDescriptor *)listFolloweesErrorDescriptor {
+    return [self serverErrorsDescriptorForMethod:RKRequestMethodGET
+                                            path:API_LIST_FOLLOWEES
+                                      statusCode:400];
+}
+
 + (NSIndexSet *)forbiddenAndNotFoundStatusCodes {
     NSMutableIndexSet *statusCodes = [NSMutableIndexSet indexSet];
 

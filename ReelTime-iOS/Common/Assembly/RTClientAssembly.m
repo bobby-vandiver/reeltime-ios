@@ -113,7 +113,11 @@
                                           [RTResponseDescriptorFactory followUserDescriptor],
                                           [RTResponseDescriptorFactory followUserErrorDescriptor],
                                           [RTResponseDescriptorFactory unfollowUserDescriptor],
-                                          [RTResponseDescriptorFactory unfollowUserErrorDescriptor]
+                                          [RTResponseDescriptorFactory unfollowUserErrorDescriptor],
+                                          [RTResponseDescriptorFactory listFollowersDescriptor],
+                                          [RTResponseDescriptorFactory listFollowersErrorDescriptor],
+                                          [RTResponseDescriptorFactory listFolloweesDescriptor],
+                                          [RTResponseDescriptorFactory listFolloweesErrorDescriptor]
                                           ]];
         }];
     }];

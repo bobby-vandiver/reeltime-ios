@@ -1735,6 +1735,138 @@ describe(@"ReelTime Client", ^{
                     });
                 });
             });
+            
+            describe(@"list followers", ^{
+                __block NSRegularExpression *listFollowersUrlRegex;
+                
+                beforeEach(^{
+                    listFollowersUrlRegex = [helper createUrlRegexForEndpoint:API_LIST_FOLLOWERS
+                                                               withParameters:pathParams];
+                });
+                
+                afterEach(^{
+                    expect(httpClient.lastParameters.allKeys).to.haveCountOf(1);
+                    expect(httpClient.lastParameters[@"page"]).to.equal(pageNumber);
+                });
+                
+                it(@"is successful and has no users", ^{
+                    [helper stubAuthenticatedRequestWithMethod:GET
+                                                      urlRegex:listFollowersUrlRegex
+                                           rawResponseFilename:SUCCESSFUL_OK_WITH_USERS_LIST_EMPTY];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client listFollowersPage:pageNumber
+                              forUserWithUsername:username
+                                          success:shouldReceiveEmptyUserListInSuccessfulResponse(done)
+                                          failure:shouldNotExecuteFailureCallback(done)];
+                    });
+                });
+                
+                it(@"is successful and has one user", ^{
+                    [helper stubAuthenticatedRequestWithMethod:GET
+                                                      urlRegex:listFollowersUrlRegex
+                                           rawResponseFilename:SUCCESSFUL_OK_WITH_USERS_LIST_ONE_USER];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client listFollowersPage:pageNumber
+                              forUserWithUsername:username
+                                          success:shouldReceiveUserListWithOneUserInSuccessfulResponse(done)
+                                          failure:shouldNotExecuteFailureCallback(done)];
+                    });
+                });
+                
+                it(@"is successful and has multiple users", ^{
+                    [helper stubAuthenticatedRequestWithMethod:GET
+                                                      urlRegex:listFollowersUrlRegex
+                                           rawResponseFilename:SUCCESSFUL_OK_WITH_USERS_LIST_MULTIPLE_USERS];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client listFollowersPage:pageNumber
+                              forUserWithUsername:username
+                                          success:shouldReceiveUserListWithMultipleUsersInSuccessfulResponse(done)
+                                          failure:shouldNotExecuteFailureCallback(done)];
+                    });
+                });
+                
+                it(@"fails due to bad request", ^{
+                    [helper stubAuthenticatedRequestWithMethod:GET
+                                                      urlRegex:listFollowersUrlRegex
+                                           rawResponseFilename:BAD_REQUEST_WITH_ERRORS_FILENAME];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client listFollowersPage:pageNumber
+                              forUserWithUsername:username
+                                          success:shouldNotExecuteSuccessCallback(done)
+                                          failure:shouldExecuteFailureCallbackWithMessage(BAD_REQUEST_ERROR_MESSAGE, done)];
+                    });
+                });
+            });
+            
+            describe(@"list followees", ^{
+                __block NSRegularExpression *listFolloweesUrlRegex;
+                
+                beforeEach(^{
+                    listFolloweesUrlRegex = [helper createUrlRegexForEndpoint:API_LIST_FOLLOWEES
+                                                               withParameters:pathParams];
+                });
+                
+                afterEach(^{
+                    expect(httpClient.lastParameters.allKeys).to.haveCountOf(1);
+                    expect(httpClient.lastParameters[@"page"]).to.equal(pageNumber);
+                });
+                
+                it(@"is successful and has no users", ^{
+                    [helper stubAuthenticatedRequestWithMethod:GET
+                                                      urlRegex:listFolloweesUrlRegex
+                                           rawResponseFilename:SUCCESSFUL_OK_WITH_USERS_LIST_EMPTY];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client listFolloweesPage:pageNumber
+                              forUserWithUsername:username
+                                          success:shouldReceiveEmptyUserListInSuccessfulResponse(done)
+                                          failure:shouldNotExecuteFailureCallback(done)];
+                    });
+                });
+                
+                it(@"is successful and has one user", ^{
+                    [helper stubAuthenticatedRequestWithMethod:GET
+                                                      urlRegex:listFolloweesUrlRegex
+                                           rawResponseFilename:SUCCESSFUL_OK_WITH_USERS_LIST_ONE_USER];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client listFolloweesPage:pageNumber
+                              forUserWithUsername:username
+                                          success:shouldReceiveUserListWithOneUserInSuccessfulResponse(done)
+                                          failure:shouldNotExecuteFailureCallback(done)];
+                    });
+                });
+                
+                it(@"is successful and has multiple users", ^{
+                    [helper stubAuthenticatedRequestWithMethod:GET
+                                                      urlRegex:listFolloweesUrlRegex
+                                           rawResponseFilename:SUCCESSFUL_OK_WITH_USERS_LIST_MULTIPLE_USERS];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client listFolloweesPage:pageNumber
+                              forUserWithUsername:username
+                                          success:shouldReceiveUserListWithMultipleUsersInSuccessfulResponse(done)
+                                          failure:shouldNotExecuteFailureCallback(done)];
+                    });
+                });
+                
+                it(@"fails due to bad request", ^{
+                    [helper stubAuthenticatedRequestWithMethod:GET
+                                                      urlRegex:listFolloweesUrlRegex
+                                           rawResponseFilename:BAD_REQUEST_WITH_ERRORS_FILENAME];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client listFolloweesPage:pageNumber
+                              forUserWithUsername:username
+                                          success:shouldNotExecuteSuccessCallback(done)
+                                          failure:shouldExecuteFailureCallbackWithMessage(BAD_REQUEST_ERROR_MESSAGE, done)];
+                    });
+                });
+            });
         });
     });
 });
