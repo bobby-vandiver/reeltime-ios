@@ -266,6 +266,19 @@
                                      statusCodes:statusCodes];
 }
 
++ (RKResponseDescriptor *)removeVideoFromReelDescriptor {
+    return [self noResponseBodyDescriptorForMethod:RKRequestMethodDELETE
+                                              path:API_REMOVE_REEL_VIDEO
+                                        statusCode:200];
+}
+
++ (RKResponseDescriptor *)removeVideoFromReelErrorDescriptor {
+    NSIndexSet *statusCodes = [self forbiddenAndNotFoundStatusCodes];
+    return [self serverErrorsDescriptorForMethod:RKRequestMethodDELETE
+                                            path:API_REMOVE_REEL_VIDEO
+                                     statusCodes:statusCodes];
+}
+
 + (RKResponseDescriptor *)joinAudienceDescriptor {
     return [self noResponseBodyDescriptorForMethod:RKRequestMethodPOST
                                               path:API_ADD_AUDIENCE_MEMBER

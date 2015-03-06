@@ -61,6 +61,9 @@
 + (RKResponseDescriptor *)addVideoToReelDescriptor;
 + (RKResponseDescriptor *)addVideoToReelErrorDescriptor;
 
++ (RKResponseDescriptor *)removeVideoFromReelDescriptor;
++ (RKResponseDescriptor *)removeVideoFromReelErrorDescriptor;
+
 + (RKResponseDescriptor *)joinAudienceDescriptor;
 + (RKResponseDescriptor *)joinAudienceErrorDescriptor;
 

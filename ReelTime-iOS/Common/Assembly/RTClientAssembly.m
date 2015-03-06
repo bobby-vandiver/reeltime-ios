@@ -102,6 +102,8 @@
                                           [RTResponseDescriptorFactory listReelVideosErrorDescriptor],
                                           [RTResponseDescriptorFactory addVideoToReelDescriptor],
                                           [RTResponseDescriptorFactory addVideoToReelErrorDescriptor],
+                                          [RTResponseDescriptorFactory removeVideoFromReelDescriptor],
+                                          [RTResponseDescriptorFactory removeVideoFromReelErrorDescriptor],
                                           [RTResponseDescriptorFactory followUserDescriptor],
                                           [RTResponseDescriptorFactory followUserErrorDescriptor],
                                           [RTResponseDescriptorFactory unfollowUserDescriptor],

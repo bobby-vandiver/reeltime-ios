@@ -1281,6 +1281,63 @@ describe(@"ReelTime Client", ^{
             });
         });
         
+        describe(@"remove video from reel", ^{
+            __block NSRegularExpression *removeVideoFromReelUrlRegex;
+            
+            beforeEach(^{
+                NSDictionary *pathParams = @{
+                                             @":reel_id": [helper stringForUnsignedInteger:reelId],
+                                             @":video_id": [helper stringForUnsignedInteger:videoId]
+                                             };
+                removeVideoFromReelUrlRegex = [helper createUrlRegexForEndpoint:API_REMOVE_REEL_VIDEO
+                                                                 withParameters:pathParams];
+            });
+            
+            afterEach(^{
+                expect(httpClient.lastPath).to.contain(reelId);
+                expect(httpClient.lastPath).to.contain(videoId);
+            });
+            
+            it(@"is successful", ^{
+                [helper stubAuthenticatedRequestWithMethod:DELETE
+                                                  urlRegex:removeVideoFromReelUrlRegex
+                                       rawResponseFilename:SUCCESSFUL_OK_WITH_NO_BODY_FILENAME];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client removeVideoWithVideoId:videoId
+                                fromReelWithReelId:reelId
+                                           success:shouldExecuteSuccessCallback(done)
+                                           failure:shouldNotExecuteFailureCallback(done)];
+                });
+            });
+            
+            it(@"fails due to forbidden", ^{
+                [helper stubAuthenticatedRequestWithMethod:DELETE
+                                                  urlRegex:removeVideoFromReelUrlRegex
+                                       rawResponseFilename:FORBIDDEN_WITH_ERRORS_FILENAME];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client removeVideoWithVideoId:videoId
+                                fromReelWithReelId:reelId
+                                           success:shouldNotExecuteSuccessCallback(done)
+                                           failure:shouldExecuteFailureCallbackWithMessage(FORBIDDEN_ERROR_MESSAGE, done)];
+                });
+            });
+            
+            it(@"fails due to not found", ^{
+                [helper stubAuthenticatedRequestWithMethod:DELETE
+                                                  urlRegex:removeVideoFromReelUrlRegex
+                                       rawResponseFilename:NOT_FOUND_WITH_ERRORS_FILENAME];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client removeVideoWithVideoId:videoId
+                                fromReelWithReelId:reelId
+                                           success:shouldNotExecuteSuccessCallback(done)
+                                           failure:shouldExecuteFailureCallbackWithMessage(NOT_FOUND_ERROR_MESSAGE, done)];
+                });
+            });
+        });
+        
         describe(@"list audience members", ^{
             __block NSRegularExpression *listAudienceUrlRegex;
             
@@ -1289,7 +1346,6 @@ describe(@"ReelTime Client", ^{
                 listAudienceUrlRegex = [helper createUrlRegexForEndpoint:API_LIST_AUDIENCE_MEMBERS
                                                           withParameters:pathParams];
             });
-            
             afterEach(^{
                 expect(httpClient.lastPath).to.contain(reelId);
                 expect(httpClient.lastParameters.allKeys).to.haveCountOf(1);

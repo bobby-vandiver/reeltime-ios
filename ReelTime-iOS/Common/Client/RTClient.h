@@ -127,6 +127,11 @@ typedef void (^VideoListCallback)(RTVideoList *);
                     success:(NoArgsCallback)success
                     failure:(ServerErrorsCallback)failure;
 
+- (void)removeVideoWithVideoId:(NSUInteger)videoId
+            fromReelWithReelId:(NSUInteger)reelId
+                       success:(NoArgsCallback)success
+                       failure:(ServerErrorsCallback)failure;
+
 - (void)listAudienceMembersPage:(NSUInteger)page
                       forReelId:(NSUInteger)reelId
                         success:(UserListCallback)success

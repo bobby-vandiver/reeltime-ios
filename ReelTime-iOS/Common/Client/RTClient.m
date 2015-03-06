@@ -265,6 +265,19 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
                                       failure:failure];
 }
 
+- (void)removeVideoWithVideoId:(NSUInteger)videoId
+            fromReelWithReelId:(NSUInteger)reelId
+                       success:(NoArgsCallback)success
+                       failure:(ServerErrorsCallback)failure {
+    NSString *path = [self.pathFormatter formatPath:API_REMOVE_REEL_VIDEO
+                                         withReelId:reelId
+                                            videoId:videoId];
+    [self.httpClient authenticatedDeleteForPath:path
+                                 withParameters:nil
+                                        success:success
+                                        failure:failure];
+}
+
 - (void)listAudienceMembersPage:(NSUInteger)page
                       forReelId:(NSUInteger)reelId
                         success:(UserListCallback)success

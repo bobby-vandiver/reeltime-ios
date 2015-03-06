@@ -13,6 +13,13 @@
 }
 
 - (NSString *)formatPath:(NSString *)path
+              withReelId:(NSUInteger)reelId
+                 videoId:(NSUInteger)videoId {
+    NSDictionary *parameters = @{@":reel_id": @(reelId), @":video_id": @(videoId)};
+    return [self formatPath:path withParameters:parameters];
+}
+
+- (NSString *)formatPath:(NSString *)path
             withUsername:(NSString *)username {
     return [self formatPath:path withParameters:@{@":username": username}];
 }

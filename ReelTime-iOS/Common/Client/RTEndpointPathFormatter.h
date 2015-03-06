@@ -9,6 +9,10 @@
               withReelId:(NSUInteger)reelId;
 
 - (NSString *)formatPath:(NSString *)path
+              withReelId:(NSUInteger)reelId
+                 videoId:(NSUInteger)videoId;
+
+- (NSString *)formatPath:(NSString *)path
             withUsername:(NSString *)username;
 
 @end
