@@ -145,6 +145,10 @@ typedef void (^VideoListCallback)(RTVideoList *);
                                success:(NoArgsCallback)success
                                failure:(ServerErrorsCallback)failure;
 
+- (void)listUsersPage:(NSUInteger)page
+              success:(UserListCallback)success
+              failure:(ServerErrorsCallback)failure;
+
 - (void)followUserForUsername:(NSString *)username
                       success:(NoArgsCallback)success
                       failure:(ServerErrorsCallback)failure;

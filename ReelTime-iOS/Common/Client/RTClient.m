@@ -309,7 +309,16 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
                                  withParameters:nil
                                         success:success
                                         failure:failure];
-    
+}
+
+- (void)listUsersPage:(NSUInteger)page
+              success:(UserListCallback)success
+              failure:(ServerErrorsCallback)failure {
+    NSDictionary *parameters = @{@"page": @(page)};
+    [self.httpClient authenticatedGetForPath:API_LIST_USERS
+                              withParameters:parameters
+                                     success:success
+                                     failure:failure];
 }
 
 - (void)followUserForUsername:(NSString *)username

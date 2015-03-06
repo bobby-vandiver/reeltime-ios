@@ -70,6 +70,9 @@
 + (RKResponseDescriptor *)leaveAudienceDescriptor;
 + (RKResponseDescriptor *)leaveAudienceErrorDescriptor;
 
++ (RKResponseDescriptor *)listUsersDescriptor;
++ (RKResponseDescriptor *)listUsersErrorDescriptor;
+
 + (RKResponseDescriptor *)followUserDescriptor;
 + (RKResponseDescriptor *)followUserErrorDescriptor;
 

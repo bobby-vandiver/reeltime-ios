@@ -1518,6 +1518,67 @@ describe(@"ReelTime Client", ^{
             });
         });
         
+        describe(@"list users", ^{
+            __block NSRegularExpression *listUsersUrlRegex;
+            
+            beforeEach(^{
+                listUsersUrlRegex = [helper createUrlRegexForEndpoint:API_LIST_USERS];
+            });
+            
+            afterEach(^{
+                expect(httpClient.lastParameters.allKeys).to.haveCountOf(1);
+                expect(httpClient.lastParameters[@"page"]).to.equal(pageNumber);
+            });
+            
+            it(@"is successful and has no users", ^{
+                [helper stubAuthenticatedRequestWithMethod:GET
+                                                  urlRegex:listUsersUrlRegex
+                                       rawResponseFilename:SUCCESSFUL_OK_WITH_USERS_LIST_EMPTY];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client listUsersPage:pageNumber
+                                  success:shouldReceiveEmptyUserListInSuccessfulResponse(done)
+                                  failure:shouldNotExecuteFailureCallback(done)];
+                });
+            });
+            
+            it(@"is successful and has one user", ^{
+                [helper stubAuthenticatedRequestWithMethod:GET
+                                                  urlRegex:listUsersUrlRegex
+                                       rawResponseFilename:SUCCESSFUL_OK_WITH_USERS_LIST_ONE_USER];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client listUsersPage:pageNumber
+                                  success:shouldReceiveUserListWithOneUserInSuccessfulResponse(done)
+                                  failure:shouldNotExecuteFailureCallback(done)];
+                });
+            });
+            
+            it(@"is successful and has multiple users", ^{
+                [helper stubAuthenticatedRequestWithMethod:GET
+                                                  urlRegex:listUsersUrlRegex
+                                       rawResponseFilename:SUCCESSFUL_OK_WITH_USERS_LIST_MULTIPLE_USERS];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client listUsersPage:pageNumber
+                                  success:shouldReceiveUserListWithMultipleUsersInSuccessfulResponse(done)
+                                  failure:shouldNotExecuteFailureCallback(done)];
+                });
+            });
+            
+            it(@"fails due to bad request", ^{
+                [helper stubAuthenticatedRequestWithMethod:GET
+                                                  urlRegex:listUsersUrlRegex
+                                       rawResponseFilename:BAD_REQUEST_WITH_ERRORS_FILENAME];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client listUsersPage:pageNumber
+                                  success:shouldNotExecuteSuccessCallback(done)
+                                  failure:shouldExecuteFailureCallbackWithMessage(BAD_REQUEST_ERROR_MESSAGE, done)];
+                });
+            });
+        });
+        
         describe(@"follower user", ^{
             __block NSRegularExpression *followUserUrlRegex;
             

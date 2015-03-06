@@ -305,6 +305,19 @@
                                      statusCodes:statusCodes];
 }
 
++ (RKResponseDescriptor *)listUsersDescriptor {
+    return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory userListMapping]
+                                                        method:RKRequestMethodGET
+                                                   pathPattern:API_LIST_USERS
+                                                    statusCode:200];
+}
+
++ (RKResponseDescriptor *)listUsersErrorDescriptor {
+    return [self serverErrorsDescriptorForMethod:RKRequestMethodGET
+                                            path:API_LIST_USERS
+                                      statusCode:400];
+}
+
 + (RKResponseDescriptor *)followUserDescriptor {
     return [self noResponseBodyDescriptorForMethod:RKRequestMethodPOST
                                               path:API_FOLLOW_USER
