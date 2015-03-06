@@ -256,7 +256,7 @@
 + (RKResponseDescriptor *)addVideoToReelDescriptor {
     return [self noResponseBodyDescriptorForMethod:RKRequestMethodPOST
                                               path:API_ADD_REEL_VIDEO
-                                        statusCode:200];
+                                        statusCode:201];
 }
 
 + (RKResponseDescriptor *)addVideoToReelErrorDescriptor {

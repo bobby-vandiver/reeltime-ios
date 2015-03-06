@@ -1244,7 +1244,7 @@ describe(@"ReelTime Client", ^{
             it(@"is successful", ^{
                 [helper stubAuthenticatedRequestWithMethod:POST
                                                   urlRegex:addVideoToReelUrlRegex
-                                       rawResponseFilename:SUCCESSFUL_OK_WITH_NO_BODY_FILENAME];
+                                       rawResponseFilename:SUCCESSFUL_CREATED_WITH_NO_BODY_FILENAME];
                
                 waitUntil(^(DoneCallback done) {
                     [client addVideoWithVideoId:videoId
