@@ -1662,7 +1662,6 @@ describe(@"ReelTime Client", ^{
                 __block NSRegularExpression *followUserUrlRegex;
                 
                 beforeEach(^{
-                    NSDictionary *pathParams = @{ @":username": username };
                     followUserUrlRegex = [helper createUrlRegexForEndpoint:API_FOLLOW_USER
                                                             withParameters:pathParams];
                 });
