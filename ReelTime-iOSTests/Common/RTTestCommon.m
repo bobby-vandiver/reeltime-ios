@@ -10,3 +10,7 @@ NSString *const displayName = @"Some One";
 NSString *const clientName = @"iPhone";
 
 NSString *const BLANK = @"";
+
+const NSUInteger reelId = 49132;
+const NSUInteger videoId = 841;
+const NSUInteger pageNumber = 13;

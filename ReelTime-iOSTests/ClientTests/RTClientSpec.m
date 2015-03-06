@@ -148,13 +148,6 @@ describe(@"ReelTime Client", ^{
         };
     };
     
-    FailureCallback (^shouldExecuteFailureCallbackWithoutMessage)(DoneCallback) = ^FailureCallback(DoneCallback done) {
-        return ^(id obj) {
-            expect(obj).to.beNil();
-            done();
-        };
-    };
-    
     FailureCallback (^shouldExecuteFailureCallbackWithMessage)(NSString *, DoneCallback) = ^FailureCallback(NSString *expectedError, DoneCallback done) {
         return ^(id obj) {
             expect(obj).to.beKindOf([RTServerErrors class]);
@@ -670,7 +663,6 @@ describe(@"ReelTime Client", ^{
         
         describe(@"client removal", ^{
             __block NSRegularExpression *clientRemovalUrlRegex;
-            __block NSString *clientId = @"clientUUID";
             
             beforeEach(^{
                 NSDictionary *parameters = @{ @":client_id": clientId };
@@ -851,7 +843,6 @@ describe(@"ReelTime Client", ^{
         
         describe(@"newsfeed", ^{
             __block NSRegularExpression *newsfeedUrlRegex;
-            __block NSUInteger pageNumber = 13;
             
             beforeEach(^{
                 newsfeedUrlRegex = [helper createUrlRegexForEndpoint:API_NEWSFEED];
@@ -963,7 +954,6 @@ describe(@"ReelTime Client", ^{
         
         describe(@"list reels", ^{
             __block NSRegularExpression *listReelsUrlRegex;
-            __block NSUInteger pageNumber = 34;
             
             beforeEach(^{
                 listReelsUrlRegex = [helper createUrlRegexForEndpoint:API_LIST_REELS];
@@ -1066,7 +1056,6 @@ describe(@"ReelTime Client", ^{
         
         describe(@"get reel", ^{
             __block NSRegularExpression *getReelUrlRegex;
-            __block NSUInteger reelId = 431;
            
             beforeEach(^{
                 NSDictionary *pathParams = @{ @":reel_id": [helper stringForUnsignedInteger:reelId] };
@@ -1108,7 +1097,6 @@ describe(@"ReelTime Client", ^{
         
         describe(@"delete reel", ^{
             __block NSRegularExpression *deleteReelUrlRegex;
-            __block NSUInteger reelId = 9481;
             
             beforeEach(^{
                 NSDictionary *pathParams = @{ @":reel_id": [helper stringForUnsignedInteger:reelId] };
@@ -1159,9 +1147,6 @@ describe(@"ReelTime Client", ^{
         
         describe(@"list videos in reel", ^{
             __block NSRegularExpression *listReelVideosUrlRegex;
-            
-            __block NSUInteger reelId = 89481;
-            __block NSUInteger pageNumber = 129;
             
             beforeEach(^{
                 NSDictionary *pathParams = @{ @":reel_id": [helper stringForUnsignedInteger:reelId] };
@@ -1244,9 +1229,6 @@ describe(@"ReelTime Client", ^{
         describe(@"add video to reel", ^{
             __block NSRegularExpression *addVideoToReelUrlRegex;
             
-            __block NSUInteger reelId = 49132;
-            __block NSUInteger videoId = 841;
-            
             beforeEach(^{
                 NSDictionary *pathParams = @{ @":reel_id": [helper stringForUnsignedInteger:reelId] };
                 addVideoToReelUrlRegex = [helper createUrlRegexForEndpoint:API_ADD_REEL_VIDEO
@@ -1301,9 +1283,6 @@ describe(@"ReelTime Client", ^{
         
         describe(@"list audience members", ^{
             __block NSRegularExpression *listAudienceUrlRegex;
-            
-            __block NSUInteger reelId = 1204;
-            __block NSUInteger pageNumber = 9;
             
             beforeEach(^{
                 NSDictionary *pathParams = @{ @":reel_id": [helper stringForUnsignedInteger:reelId] };
@@ -1385,7 +1364,6 @@ describe(@"ReelTime Client", ^{
         
         describe(@"join audience", ^{
             __block NSRegularExpression *joinAudienceUrlRegex;
-            __block NSUInteger reelId = 42;
             
             beforeEach(^{
                 NSDictionary *pathParams = @{ @":reel_id": [helper stringForUnsignedInteger:reelId] };
@@ -1424,7 +1402,6 @@ describe(@"ReelTime Client", ^{
         
         describe(@"leaving audience", ^{
             __block NSRegularExpression *leaveAudienceUrlRegex;
-            __block NSUInteger reelId = 5819;
         
             beforeEach(^{
                 NSDictionary *pathParams = @{ @":reel_id": [helper stringForUnsignedInteger:reelId] };
