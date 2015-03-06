@@ -321,6 +321,13 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
                                      failure:failure];
 }
 
+- (void)listReelsPage:(NSUInteger)page
+  forUserWithUsername:(NSString *)username
+              success:(ReelListCallback)success
+              failure:(ServerErrorsCallback)failure {
+    
+}
+
 - (void)userForUsername:(NSString *)username
                 success:(UserCallback)success
                 failure:(ServerErrorsCallback)failure {

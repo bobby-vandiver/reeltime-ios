@@ -1579,134 +1579,137 @@ describe(@"ReelTime Client", ^{
             });
         });
         
-        describe(@"get user", ^{
-            __block NSRegularExpression *getUserUrlRegex;
-            
-            beforeEach(^{
-                NSDictionary *pathParams = @{ @":username": username };
-                getUserUrlRegex = [helper createUrlRegexForEndpoint:API_GET_USER
-                                                     withParameters:pathParams];
-            });
+        context(@"username required in path", ^{
+            NSDictionary *pathParams = @{ @":username": username };
             
             afterEach(^{
                 expect(httpClient.lastPath).to.contain(username);
             });
             
-            it(@"is successful", ^{
-                [helper stubAuthenticatedRequestWithMethod:GET
-                                                  urlRegex:getUserUrlRegex
-                                       rawResponseFilename:@"single-user"];
+            describe(@"get user", ^{
+                __block NSRegularExpression *getUserUrlRegex;
                 
-                waitUntil(^(DoneCallback done) {
-                    [client userForUsername:username
-                                    success:^(RTUser *user) {
-                                        expect(user).to.beUser(@"alone", @"all alone", @(123), @(95));
-                                        done();
-                                    }
-                                    failure:shouldNotExecuteFailureCallback(done)];
+                beforeEach(^{
+                    getUserUrlRegex = [helper createUrlRegexForEndpoint:API_GET_USER
+                                                         withParameters:pathParams];
+                });
+                
+                it(@"is successful", ^{
+                    [helper stubAuthenticatedRequestWithMethod:GET
+                                                      urlRegex:getUserUrlRegex
+                                           rawResponseFilename:@"single-user"];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client userForUsername:username
+                                        success:^(RTUser *user) {
+                                            expect(user).to.beUser(@"alone", @"all alone", @(123), @(95));
+                                            done();
+                                        }
+                                        failure:shouldNotExecuteFailureCallback(done)];
+                    });
+                });
+                
+                it(@"fails due to not found", ^{
+                    [helper stubAuthenticatedRequestWithMethod:GET
+                                                      urlRegex:getUserUrlRegex
+                                           rawResponseFilename:NOT_FOUND_WITH_ERRORS_FILENAME];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client userForUsername:username
+                                        success:shouldNotExecuteSuccessCallback(done)
+                                        failure:shouldExecuteFailureCallbackWithMessage(NOT_FOUND_ERROR_MESSAGE, done)];
+                    });
                 });
             });
             
-            it(@"fails due to not found", ^{
-                [helper stubAuthenticatedRequestWithMethod:GET
-                                                  urlRegex:getUserUrlRegex
-                                       rawResponseFilename:NOT_FOUND_WITH_ERRORS_FILENAME];
+            describe(@"list user reels", ^{
+                __block NSRegularExpression *listUserReelsUrlRegex;
                 
-                waitUntil(^(DoneCallback done) {
-                    [client userForUsername:username
-                                    success:shouldNotExecuteSuccessCallback(done)
-                                    failure:shouldExecuteFailureCallbackWithMessage(NOT_FOUND_ERROR_MESSAGE, done)];
-                });
-            });
-        });
-        
-        describe(@"follower user", ^{
-            __block NSRegularExpression *followUserUrlRegex;
-            
-            beforeEach(^{
-                NSDictionary *pathParams = @{ @":username": username };
-                followUserUrlRegex = [helper createUrlRegexForEndpoint:API_FOLLOW_USER
-                                                        withParameters:pathParams];
-            });
-            
-            afterEach(^{
-                expect(httpClient.lastPath).to.contain(username);
-            });
-            
-            it(@"is successful", ^{
-                [helper stubAuthenticatedRequestWithMethod:POST
-                                                  urlRegex:followUserUrlRegex
-                                       rawResponseFilename:SUCCESSFUL_CREATED_WITH_NO_BODY_FILENAME];
-                
-                waitUntil(^(DoneCallback done) {
-                    [client followUserForUsername:username
-                                          success:shouldExecuteSuccessCallback(done)
-                                          failure:shouldNotExecuteFailureCallback(done)];
-                });
-                
-                expect(callbackExecuted).to.beTruthy();
-                expect(httpClient.lastPath).to.contain(username);
-            });
-            
-            it(@"fails due to bad request", ^{
-                [helper stubAuthenticatedRequestWithMethod:POST
-                                                  urlRegex:followUserUrlRegex
-                                       rawResponseFilename:BAD_REQUEST_WITH_ERRORS_FILENAME];
-                
-                waitUntil(^(DoneCallback done) {
-                    [client followUserForUsername:username
-                                          success:shouldNotExecuteSuccessCallback(done)
-                                          failure:shouldExecuteFailureCallbackWithMessage(BAD_REQUEST_ERROR_MESSAGE, done)];
-                });
-            });
-        });
-        
-        describe(@"unfollow user", ^{
-            __block NSRegularExpression *unfollowUserUrlRegex;
-            
-            beforeEach(^{
-                NSDictionary *pathParams = @{ @":username": username };
-                unfollowUserUrlRegex = [helper createUrlRegexForEndpoint:API_UNFOLLOW_USER
-                                                          withParameters:pathParams];
-            });
-            
-            afterEach(^{
-                expect(httpClient.lastPath).to.contain(username);
-            });
-            
-            it(@"is successful", ^{
-                [helper stubAuthenticatedRequestWithMethod:DELETE
-                                                  urlRegex:unfollowUserUrlRegex
-                                       rawResponseFilename:SUCCESSFUL_OK_WITH_NO_BODY_FILENAME];
-                
-                waitUntil(^(DoneCallback done) {
-                    [client unfollowUserForUsername:username
-                                            success:shouldExecuteSuccessCallback(done)
-                                            failure:shouldNotExecuteFailureCallback(done)];
+                beforeEach(^{
+                    listUserReelsUrlRegex = [helper createUrlRegexForEndpoint:API_LIST_USER_REELS
+                                                               withParameters:pathParams];
                 });
             });
             
-            it(@"fails due to bad request", ^{
-                [helper stubAuthenticatedRequestWithMethod:DELETE
-                                                  urlRegex:unfollowUserUrlRegex
-                                       rawResponseFilename:BAD_REQUEST_WITH_ERRORS_FILENAME];
+            describe(@"follower user", ^{
+                __block NSRegularExpression *followUserUrlRegex;
                 
-                waitUntil(^(DoneCallback done) {
-                    [client unfollowUserForUsername:username
-                                            success:shouldNotExecuteSuccessCallback(done)
-                                            failure:shouldExecuteFailureCallbackWithMessage(BAD_REQUEST_ERROR_MESSAGE, done)];
+                beforeEach(^{
+                    NSDictionary *pathParams = @{ @":username": username };
+                    followUserUrlRegex = [helper createUrlRegexForEndpoint:API_FOLLOW_USER
+                                                            withParameters:pathParams];
+                });
+                
+                it(@"is successful", ^{
+                    [helper stubAuthenticatedRequestWithMethod:POST
+                                                      urlRegex:followUserUrlRegex
+                                           rawResponseFilename:SUCCESSFUL_CREATED_WITH_NO_BODY_FILENAME];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client followUserForUsername:username
+                                              success:shouldExecuteSuccessCallback(done)
+                                              failure:shouldNotExecuteFailureCallback(done)];
+                    });
+                    
+                    expect(callbackExecuted).to.beTruthy();
+                    expect(httpClient.lastPath).to.contain(username);
+                });
+                
+                it(@"fails due to bad request", ^{
+                    [helper stubAuthenticatedRequestWithMethod:POST
+                                                      urlRegex:followUserUrlRegex
+                                           rawResponseFilename:BAD_REQUEST_WITH_ERRORS_FILENAME];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client followUserForUsername:username
+                                              success:shouldNotExecuteSuccessCallback(done)
+                                              failure:shouldExecuteFailureCallbackWithMessage(BAD_REQUEST_ERROR_MESSAGE, done)];
+                    });
                 });
             });
             
-            it(@"fails due to forbidden", ^{
-                [helper stubAuthenticatedRequestWithMethod:DELETE
-                                                  urlRegex:unfollowUserUrlRegex
-                                       rawResponseFilename:FORBIDDEN_WITH_ERRORS_FILENAME];
+            describe(@"unfollow user", ^{
+                __block NSRegularExpression *unfollowUserUrlRegex;
                 
-                waitUntil(^(DoneCallback done) {
-                    [client unfollowUserForUsername:username
-                                            success:shouldNotExecuteSuccessCallback(done)
-                                            failure:shouldExecuteFailureCallbackWithMessage(FORBIDDEN_ERROR_MESSAGE, done)];
+                beforeEach(^{
+                    unfollowUserUrlRegex = [helper createUrlRegexForEndpoint:API_UNFOLLOW_USER
+                                                              withParameters:pathParams];
+                });
+                
+                it(@"is successful", ^{
+                    [helper stubAuthenticatedRequestWithMethod:DELETE
+                                                      urlRegex:unfollowUserUrlRegex
+                                           rawResponseFilename:SUCCESSFUL_OK_WITH_NO_BODY_FILENAME];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client unfollowUserForUsername:username
+                                                success:shouldExecuteSuccessCallback(done)
+                                                failure:shouldNotExecuteFailureCallback(done)];
+                    });
+                });
+                
+                it(@"fails due to bad request", ^{
+                    [helper stubAuthenticatedRequestWithMethod:DELETE
+                                                      urlRegex:unfollowUserUrlRegex
+                                           rawResponseFilename:BAD_REQUEST_WITH_ERRORS_FILENAME];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client unfollowUserForUsername:username
+                                                success:shouldNotExecuteSuccessCallback(done)
+                                                failure:shouldExecuteFailureCallbackWithMessage(BAD_REQUEST_ERROR_MESSAGE, done)];
+                    });
+                });
+                
+                it(@"fails due to forbidden", ^{
+                    [helper stubAuthenticatedRequestWithMethod:DELETE
+                                                      urlRegex:unfollowUserUrlRegex
+                                           rawResponseFilename:FORBIDDEN_WITH_ERRORS_FILENAME];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client unfollowUserForUsername:username
+                                                success:shouldNotExecuteSuccessCallback(done)
+                                                failure:shouldExecuteFailureCallbackWithMessage(FORBIDDEN_ERROR_MESSAGE, done)];
+                    });
                 });
             });
         });
