@@ -1221,6 +1221,45 @@ describe(@"ReelTime Client", ^{
             });
         });
         
+        describe(@"leaving audience", ^{
+            __block NSRegularExpression *leaveAudienceUrlRegex;
+            __block NSUInteger reelId = 5819;
+        
+            beforeEach(^{
+                NSDictionary *pathParams = @{ @":reel_id": [helper stringForUnsignedInteger:reelId] };
+                leaveAudienceUrlRegex = [helper createUrlRegexForEndpoint:API_REMOVE_AUDIENCE_MEMBER
+                                                           withParameters:pathParams];
+            });
+            
+            afterEach(^{
+                expect(httpClient.lastPath).to.contain(reelId);
+            });
+            
+            it(@"is successful", ^{
+                [helper stubAuthenticatedRequestWithMethod:DELETE
+                                                  urlRegex:leaveAudienceUrlRegex
+                                       rawResponseFilename:SUCCESSFUL_OK_WITH_NO_BODY_FILENAME];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client leaveAudienceForReelId:reelId
+                                           success:shouldExecuteSuccessCallback(done)
+                                           failure:shouldNotExecuteFailureCallback(done)];
+                });
+            });
+            
+            it(@"fails due to not found", ^{
+                [helper stubAuthenticatedRequestWithMethod:DELETE
+                                                  urlRegex:leaveAudienceUrlRegex
+                                       rawResponseFilename:NOT_FOUND_WITH_ERRORS_FILENAME];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client leaveAudienceForReelId:reelId
+                                           success:shouldNotExecuteSuccessCallback(done)
+                                           failure:shouldExecuteFailureCallbackWithMessage(NOT_FOUND_ERROR_MESSAGE, done)];
+                });
+            });
+        });
+        
         describe(@"follower user", ^{
             __block NSRegularExpression *followUserUrlRegex;
             

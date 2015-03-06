@@ -253,6 +253,18 @@
                                       statusCode:404];
 }
 
++ (RKResponseDescriptor *)leaveAudienceDescriptor {
+    return [self noResponseBodyDescriptorForMethod:RKRequestMethodDELETE
+                                              path:API_REMOVE_AUDIENCE_MEMBER
+                                        statusCode:200];
+}
+
++ (RKResponseDescriptor *)leaveAudienceErrorDescriptor {
+    return [self serverErrorsDescriptorForMethod:RKRequestMethodDELETE
+                                            path:API_REMOVE_AUDIENCE_MEMBER
+                                      statusCode:404];
+}
+
 + (RKResponseDescriptor *)followUserDescriptor {
     return [self noResponseBodyDescriptorForMethod:RKRequestMethodPOST
                                               path:API_FOLLOW_USER

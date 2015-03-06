@@ -262,6 +262,17 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
                                       failure:failure];
 }
 
+- (void)leaveAudienceForReelId:(NSUInteger)reelId
+                       success:(NoArgsCallback)success
+                       failure:(ServerErrorsCallback)failure {
+    NSString *path = [self.pathFormatter formatPath:API_REMOVE_AUDIENCE_MEMBER withReelId:reelId];
+    [self.httpClient authenticatedDeleteForPath:path
+                                 withParameters:nil
+                                        success:success
+                                        failure:failure];
+    
+}
+
 - (void)followUserForUsername:(NSString *)username
                       success:(NoArgsCallback)success
                       failure:(void (^)(RTServerErrors *errors))failure {

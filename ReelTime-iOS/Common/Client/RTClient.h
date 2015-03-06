@@ -120,6 +120,10 @@ typedef void (^UserListCallback)(RTUserList *);
                       success:(NoArgsCallback)success
                       failure:(NoArgsCallback)failure;
 
+- (void)leaveAudienceForReelId:(NSUInteger)reelId
+                       success:(NoArgsCallback)success
+                       failure:(ServerErrorsCallback)failure;
+
 - (void)followUserForUsername:(NSString *)username
                       success:(NoArgsCallback)success
                       failure:(ServerErrorsCallback)failure;
