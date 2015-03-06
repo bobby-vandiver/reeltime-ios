@@ -184,4 +184,8 @@ typedef void (^VideoListCallback)(RTVideoList *videoList);
                 success:(VideoCallback)success
                 failure:(ServerErrorsCallback)failure;
 
+- (void)deleteVideoForVideoId:(NSUInteger)videoId
+                      success:(NoArgsCallback)success
+                      failure:(ServerErrorsCallback)failure;
+
 @end

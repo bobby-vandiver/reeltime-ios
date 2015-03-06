@@ -97,4 +97,7 @@
 + (RKResponseDescriptor *)getVideoDescriptor;
 + (RKResponseDescriptor *)getVideoErrorDescriptor;
 
++ (RKResponseDescriptor *)deleteVideoDescriptor;
++ (RKResponseDescriptor *)deleteVideoErrorDescriptor;
+
 @end

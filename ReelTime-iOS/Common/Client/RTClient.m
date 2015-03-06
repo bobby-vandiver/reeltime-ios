@@ -410,6 +410,16 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
                                      failure:failure];
 }
 
+- (void)deleteVideoForVideoId:(NSUInteger)videoId
+                      success:(NoArgsCallback)success
+                      failure:(ServerErrorsCallback)failure {
+    NSString *path = [self.pathFormatter formatPath:API_DELETE_VIDEO withVideoId:videoId];
+    [self.httpClient authenticatedDeleteForPath:path
+                                 withParameters:nil
+                                        success:success
+                                        failure:failure];
+}
+
 - (NSDictionary *)parametersWithPage:(NSUInteger)page {
     return @{@"page": @(page)};
 }

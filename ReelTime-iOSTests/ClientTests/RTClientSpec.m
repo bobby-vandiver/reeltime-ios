@@ -1992,6 +1992,39 @@ describe(@"ReelTime Client", ^{
                     });
                 });
             });
+            
+            describe(@"delete video", ^{
+                __block NSRegularExpression *deleteVideoUrlRegex;
+                
+                beforeEach(^{
+                    deleteVideoUrlRegex = [helper createUrlRegexForEndpoint:API_DELETE_VIDEO
+                                                             withParameters:pathParams];
+                });
+                
+                it(@"is successful", ^{
+                    [helper stubAuthenticatedRequestWithMethod:DELETE
+                                                      urlRegex:deleteVideoUrlRegex
+                                           rawResponseFilename:SUCCESSFUL_OK_WITH_NO_BODY_FILENAME];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client deleteVideoForVideoId:videoId
+                                              success:shouldExecuteSuccessCallback(done)
+                                              failure:shouldNotExecuteFailureCallback(done)];
+                    });
+                });
+                
+                it(@"fails due to not found", ^{
+                    [helper stubAuthenticatedRequestWithMethod:DELETE
+                                                      urlRegex:deleteVideoUrlRegex
+                                           rawResponseFilename:NOT_FOUND_WITH_ERRORS_FILENAME];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client deleteVideoForVideoId:videoId
+                                              success:shouldNotExecuteSuccessCallback(done)
+                                              failure:shouldExecuteFailureCallbackWithMessage(NOT_FOUND_ERROR_MESSAGE, done)];
+                    });
+                });
+            });
         });
     });
 });

@@ -121,7 +121,9 @@
                                           [RTResponseDescriptorFactory listVideosDescriptor],
                                           [RTResponseDescriptorFactory listVideosErrorDescriptor],
                                           [RTResponseDescriptorFactory getVideoDescriptor],
-                                          [RTResponseDescriptorFactory getVideoErrorDescriptor]
+                                          [RTResponseDescriptorFactory getVideoErrorDescriptor],
+                                          [RTResponseDescriptorFactory deleteVideoDescriptor],
+                                          [RTResponseDescriptorFactory deleteVideoErrorDescriptor]
                                           ]];
         }];
     }];

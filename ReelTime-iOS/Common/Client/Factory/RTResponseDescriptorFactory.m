@@ -431,6 +431,18 @@
                                       statusCode:404];
 }
 
++ (RKResponseDescriptor *)deleteVideoDescriptor {
+    return [self noResponseBodyDescriptorForMethod:RKRequestMethodDELETE
+                                              path:API_DELETE_VIDEO
+                                        statusCode:200];
+}
+
++ (RKResponseDescriptor *)deleteVideoErrorDescriptor {
+    return [self serverErrorsDescriptorForMethod:RKRequestMethodDELETE
+                                            path:API_DELETE_VIDEO
+                                      statusCode:404];
+}
+
 + (NSIndexSet *)forbiddenAndNotFoundStatusCodes {
     NSMutableIndexSet *statusCodes = [NSMutableIndexSet indexSet];
 
