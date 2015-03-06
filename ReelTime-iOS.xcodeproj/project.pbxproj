@@ -20,6 +20,7 @@
 		7112EF561AA9395300BC7731 /* video-list-multiple-videos.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7112EF521AA9395300BC7731 /* video-list-multiple-videos.txt */; };
 		7112EF571AA9395300BC7731 /* video-list-no-videos.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7112EF531AA9395300BC7731 /* video-list-no-videos.txt */; };
 		7112EF581AA9395300BC7731 /* video-list-one-video.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7112EF541AA9395300BC7731 /* video-list-one-video.txt */; };
+		7112EF5A1AA943A900BC7731 /* forbidden-with-errors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7112EF591AA943A900BC7731 /* forbidden-with-errors.txt */; };
 		7116908F1A6AB3970031578E /* RTSecurityAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 7116908E1A6AB3970031578E /* RTSecurityAssembly.m */; };
 		711690921A6AB5510031578E /* RTSecureStoreAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 711690911A6AB5510031578E /* RTSecureStoreAssembly.m */; };
 		7116909C1A6AEBDA0031578E /* RTStoryboardViewControllerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7116909B1A6AEBDA0031578E /* RTStoryboardViewControllerFactory.m */; };
@@ -38,7 +39,6 @@
 		711FF4BD1AA20CEC00E11BDE /* successful-ok-with-no-body.txt in Resources */ = {isa = PBXBuildFile; fileRef = 711FF4B91AA20CEC00E11BDE /* successful-ok-with-no-body.txt */; };
 		711FF4BF1AA20D2600E11BDE /* successful-created-with-no-body.txt in Resources */ = {isa = PBXBuildFile; fileRef = 711FF4BE1AA20D2600E11BDE /* successful-created-with-no-body.txt */; };
 		711FF4C11AA20FAA00E11BDE /* successful-created-client-credentials.txt in Resources */ = {isa = PBXBuildFile; fileRef = 711FF4C01AA20FAA00E11BDE /* successful-created-client-credentials.txt */; };
-		711FF4C31AA2191A00E11BDE /* forbidden-with-no-body.txt in Resources */ = {isa = PBXBuildFile; fileRef = 711FF4C21AA2191A00E11BDE /* forbidden-with-no-body.txt */; };
 		711FF4C61AA23A3A00E11BDE /* RTAuthenticationAwareHTTPClientSpy.m in Sources */ = {isa = PBXBuildFile; fileRef = 711FF4C51AA23A3A00E11BDE /* RTAuthenticationAwareHTTPClientSpy.m */; };
 		711FF4CB1AA2657200E11BDE /* RKResponseDescriptor+SingleStatusCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 711FF4CA1AA2657200E11BDE /* RKResponseDescriptor+SingleStatusCode.m */; };
 		71201F831A9689C6003F2831 /* RTActivityCell+ConfigureForRTActivityMessageSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71201F821A9689C6003F2831 /* RTActivityCell+ConfigureForRTActivityMessageSpec.m */; };
@@ -187,6 +187,7 @@
 		7112EF521AA9395300BC7731 /* video-list-multiple-videos.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "video-list-multiple-videos.txt"; sourceTree = "<group>"; };
 		7112EF531AA9395300BC7731 /* video-list-no-videos.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "video-list-no-videos.txt"; sourceTree = "<group>"; };
 		7112EF541AA9395300BC7731 /* video-list-one-video.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "video-list-one-video.txt"; sourceTree = "<group>"; };
+		7112EF591AA943A900BC7731 /* forbidden-with-errors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "forbidden-with-errors.txt"; sourceTree = "<group>"; };
 		7116908D1A6AB3970031578E /* RTSecurityAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTSecurityAssembly.h; sourceTree = "<group>"; };
 		7116908E1A6AB3970031578E /* RTSecurityAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTSecurityAssembly.m; sourceTree = "<group>"; };
 		711690901A6AB5510031578E /* RTSecureStoreAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTSecureStoreAssembly.h; sourceTree = "<group>"; };
@@ -215,7 +216,6 @@
 		711FF4B91AA20CEC00E11BDE /* successful-ok-with-no-body.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "successful-ok-with-no-body.txt"; sourceTree = "<group>"; };
 		711FF4BE1AA20D2600E11BDE /* successful-created-with-no-body.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "successful-created-with-no-body.txt"; sourceTree = "<group>"; };
 		711FF4C01AA20FAA00E11BDE /* successful-created-client-credentials.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "successful-created-client-credentials.txt"; sourceTree = "<group>"; };
-		711FF4C21AA2191A00E11BDE /* forbidden-with-no-body.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "forbidden-with-no-body.txt"; sourceTree = "<group>"; };
 		711FF4C41AA23A3A00E11BDE /* RTAuthenticationAwareHTTPClientSpy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTAuthenticationAwareHTTPClientSpy.h; sourceTree = "<group>"; };
 		711FF4C51AA23A3A00E11BDE /* RTAuthenticationAwareHTTPClientSpy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAuthenticationAwareHTTPClientSpy.m; sourceTree = "<group>"; };
 		711FF4C91AA261E000E11BDE /* RKResponseDescriptor+SingleStatusCode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RKResponseDescriptor+SingleStatusCode.h"; sourceTree = "<group>"; };
@@ -582,7 +582,7 @@
 			isa = PBXGroup;
 			children = (
 				711FF4B61AA20CEC00E11BDE /* bad-request-with-errors.txt */,
-				711FF4C21AA2191A00E11BDE /* forbidden-with-no-body.txt */,
+				7112EF591AA943A900BC7731 /* forbidden-with-errors.txt */,
 				712D5A211AA7FB720041DD24 /* not-found-with-errors.txt */,
 				711FF4B71AA20CEC00E11BDE /* server-internal-error.txt */,
 				711FF4B81AA20CEC00E11BDE /* service-unavailable-with-errors.txt */,
@@ -1302,7 +1302,6 @@
 				712698151AA3EC3800E7066B /* reel-list-multiple-reels.txt in Resources */,
 				711FF4C11AA20FAA00E11BDE /* successful-created-client-credentials.txt in Resources */,
 				7126981B1AA3ED2200E7066B /* reel-list-one-reel.txt in Resources */,
-				711FF4C31AA2191A00E11BDE /* forbidden-with-no-body.txt in Resources */,
 				7112EF551AA9395300BC7731 /* single-video.txt in Resources */,
 				7112EF561AA9395300BC7731 /* video-list-multiple-videos.txt in Resources */,
 				7112EF4B1AA915CC00BC7731 /* user-list-no-users.txt in Resources */,
@@ -1310,6 +1309,7 @@
 				712D5A201AA7F4690041DD24 /* reel-created.txt in Resources */,
 				7112EF581AA9395300BC7731 /* video-list-one-video.txt in Resources */,
 				7112EF4D1AA915EF00BC7731 /* user-list-one-user.txt in Resources */,
+				7112EF5A1AA943A900BC7731 /* forbidden-with-errors.txt in Resources */,
 				711FF4BC1AA20CEC00E11BDE /* service-unavailable-with-errors.txt in Resources */,
 				717215D01A865C8E0002ECC7 /* newsfeed-multiple-activities.txt in Resources */,
 				7112EF4F1AA9160500BC7731 /* single-user.txt in Resources */,

@@ -41,11 +41,12 @@ SpecBegin(RTClient)
 
 static NSString *const BAD_REQUEST_ERROR_MESSAGE = @"Bad Request";
 static NSString *const NOT_FOUND_ERROR_MESSAGE = @"Not Found";
+static NSString *const FORBIDDEN_ERROR_MESSAGE = @"Forbidden";
 static NSString *const SERVICE_UNAVAILABLE_ERROR_MESSAGE = @"Service Unavailable";
 
 static NSString *const BAD_REQUEST_WITH_ERRORS_FILENAME = @"bad-request-with-errors";
 static NSString *const NOT_FOUND_WITH_ERRORS_FILENAME = @"not-found-with-errors";
-static NSString *const FORBIDDEN_WITH_NO_BODY_FILENAME = @"forbidden-with-no-body";
+static NSString *const FORBIDDEN_WITH_ERRORS_FILENAME = @"forbidden-with-errors";
 
 static NSString *const SERVER_INTERNAL_ERROR_FILENAME __attribute__((unused)) = @"server-internal-error";
 static NSString *const SERVICE_UNAVAILABLE_WITH_ERRORS_FILENAME = @"service-unavailable-with-errors";
@@ -658,11 +659,11 @@ describe(@"ReelTime Client", ^{
             it(@"fails due to forbidden", ^{
                 [helper stubAuthenticatedRequestWithMethod:DELETE
                                                   urlRegex:accountRemovalUrlRegex
-                                       rawResponseFilename:FORBIDDEN_WITH_NO_BODY_FILENAME];
+                                       rawResponseFilename:FORBIDDEN_WITH_ERRORS_FILENAME];
                 
                 waitUntil(^(DoneCallback done) {
                     [client removeAccountWithSuccess:shouldNotExecuteSuccessCallback(done)
-                                             failure:shouldExecuteFailureCallbackWithoutMessage(done)];
+                                             failure:shouldExecuteFailureCallbackWithMessage(FORBIDDEN_ERROR_MESSAGE, done)];
                 });
             });
         });
@@ -697,12 +698,12 @@ describe(@"ReelTime Client", ^{
             it(@"fails due to forbidden", ^{
                 [helper stubAuthenticatedRequestWithMethod:DELETE
                                                   urlRegex:clientRemovalUrlRegex
-                                       rawResponseFilename:FORBIDDEN_WITH_NO_BODY_FILENAME];
+                                       rawResponseFilename:FORBIDDEN_WITH_ERRORS_FILENAME];
                 
                 waitUntil(^(DoneCallback done) {
                     [client removeClientWithClientId:clientId
                                              success:shouldNotExecuteSuccessCallback(done)
-                                             failure:shouldExecuteFailureCallbackWithoutMessage(done)];
+                                             failure:shouldExecuteFailureCallbackWithMessage(FORBIDDEN_ERROR_MESSAGE, done)];
                 });
             });
         });
@@ -734,12 +735,12 @@ describe(@"ReelTime Client", ^{
             it(@"fails due to forbidden request", ^{
                 [helper stubAuthenticatedRequestWithMethod:POST
                                                   urlRegex:accountConfirmationUrlRegex
-                                       rawResponseFilename:FORBIDDEN_WITH_NO_BODY_FILENAME];
+                                       rawResponseFilename:FORBIDDEN_WITH_ERRORS_FILENAME];
                 
                 waitUntil(^(DoneCallback done) {
                     [client confirmAccountWithCode:@"confirmation"
                                            success:shouldNotExecuteSuccessCallback(done)
-                                           failure:shouldExecuteFailureCallbackWithoutMessage(done)];
+                                           failure:shouldExecuteFailureCallbackWithMessage(FORBIDDEN_ERROR_MESSAGE, done)];
                 });
             });
         });
@@ -1143,16 +1144,15 @@ describe(@"ReelTime Client", ^{
                 });
             });
             
-            // TODO: Enable once server includes error message in response
-            xit(@"fails due to forbidden", ^{
+            it(@"fails due to forbidden", ^{
                 [helper stubAuthenticatedRequestWithMethod:DELETE
                                                   urlRegex:deleteReelUrlRegex
-                                       rawResponseFilename:FORBIDDEN_WITH_NO_BODY_FILENAME];
+                                       rawResponseFilename:FORBIDDEN_WITH_ERRORS_FILENAME];
                 
                 waitUntil(^(DoneCallback done) {
                     [client deleteReelForReelId:reelId
                                         success:shouldNotExecuteSuccessCallback(done)
-                                        failure:shouldExecuteFailureCallbackWithoutMessage(done)];
+                                        failure:shouldExecuteFailureCallbackWithMessage(FORBIDDEN_ERROR_MESSAGE, done)];
                 });
             });
         });
@@ -1401,6 +1401,18 @@ describe(@"ReelTime Client", ^{
                                            failure:shouldExecuteFailureCallbackWithMessage(NOT_FOUND_ERROR_MESSAGE, done)];
                 });
             });
+            
+            it(@"fails due to forbidden", ^{
+                [helper stubAuthenticatedRequestWithMethod:DELETE
+                                                  urlRegex:leaveAudienceUrlRegex
+                                       rawResponseFilename:FORBIDDEN_WITH_ERRORS_FILENAME];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client leaveAudienceForReelId:reelId
+                                           success:shouldNotExecuteSuccessCallback(done)
+                                           failure:shouldExecuteFailureCallbackWithMessage(FORBIDDEN_ERROR_MESSAGE, done)];
+                });
+            });
         });
         
         describe(@"follower user", ^{
@@ -1478,6 +1490,18 @@ describe(@"ReelTime Client", ^{
                     [client unfollowUserForUsername:username
                                             success:shouldNotExecuteSuccessCallback(done)
                                             failure:shouldExecuteFailureCallbackWithMessage(BAD_REQUEST_ERROR_MESSAGE, done)];
+                });
+            });
+            
+            it(@"fails due to forbidden", ^{
+                [helper stubAuthenticatedRequestWithMethod:DELETE
+                                                  urlRegex:unfollowUserUrlRegex
+                                       rawResponseFilename:FORBIDDEN_WITH_ERRORS_FILENAME];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client unfollowUserForUsername:username
+                                            success:shouldNotExecuteSuccessCallback(done)
+                                            failure:shouldExecuteFailureCallbackWithMessage(FORBIDDEN_ERROR_MESSAGE, done)];
                 });
             });
         });

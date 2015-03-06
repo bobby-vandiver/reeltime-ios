@@ -45,9 +45,9 @@
 }
 
 + (RKResponseDescriptor *)accountRemovalErrorDescriptor {
-    return [self noResponseBodyDescriptorForMethod:RKRequestMethodDELETE
-                                              path:API_REMOVE_ACCOUNT
-                                        statusCode:403];
+    return [self serverErrorsDescriptorForMethod:RKRequestMethodDELETE
+                                            path:API_REMOVE_ACCOUNT
+                                      statusCode:403];
 }
 
 + (RKResponseDescriptor *)clientRegistrationDescriptor {
@@ -72,9 +72,9 @@
 }
 
 + (RKResponseDescriptor *)clientRemovalErrorDescriptor {
-    return [self noResponseBodyDescriptorForMethod:RKRequestMethodDELETE
-                                              path:API_REMOVE_CLIENT
-                                        statusCode:403];
+    return [self serverErrorsDescriptorForMethod:RKRequestMethodDELETE
+                                            path:API_REMOVE_CLIENT
+                                      statusCode:403];
 }
 
 + (RKResponseDescriptor *)accountConfirmationDescriptor {
@@ -84,9 +84,9 @@
 }
 
 + (RKResponseDescriptor *)accountConfirmationErrorDescriptor {
-    return [self noResponseBodyDescriptorForMethod:RKRequestMethodPOST
-                                              path:API_CONFIRM_ACCOUNT
-                                        statusCode:403];
+    return [self serverErrorsDescriptorForMethod:RKRequestMethodPOST
+                                            path:API_CONFIRM_ACCOUNT
+                                      statusCode:403];
 }
 
 + (RKResponseDescriptor *)accountConfirmationSendEmailDescriptor {
@@ -219,9 +219,10 @@
 }
 
 + (RKResponseDescriptor *)deleteReelErrorDescriptor {
+    NSIndexSet *statusCodes = [self forbiddenAndNotFoundStatusCodes];
     return [self serverErrorsDescriptorForMethod:RKRequestMethodDELETE
                                             path:API_DELETE_REEL
-                                      statusCode:404];
+                                     statusCodes:statusCodes];
 }
 
 + (RKResponseDescriptor *)listReelVideosDescriptor {
@@ -271,9 +272,10 @@
 }
 
 + (RKResponseDescriptor *)leaveAudienceErrorDescriptor {
+    NSIndexSet *statusCodes = [self forbiddenAndNotFoundStatusCodes];
     return [self serverErrorsDescriptorForMethod:RKRequestMethodDELETE
                                             path:API_REMOVE_AUDIENCE_MEMBER
-                                      statusCode:404];
+                                     statusCodes:statusCodes];
 }
 
 + (RKResponseDescriptor *)followUserDescriptor {
@@ -295,9 +297,22 @@
 }
 
 + (RKResponseDescriptor *)unfollowUserErrorDescriptor {
+    NSMutableIndexSet *statusCodes = [NSMutableIndexSet indexSet];
+    [statusCodes addIndex:400];
+    [statusCodes addIndex:403];
+    
     return [self serverErrorsDescriptorForMethod:RKRequestMethodDELETE
                                             path:API_UNFOLLOW_USER
-                                      statusCode:400];
+                                     statusCodes:statusCodes];
+}
+
++ (NSIndexSet *)forbiddenAndNotFoundStatusCodes {
+    NSMutableIndexSet *statusCodes = [NSMutableIndexSet indexSet];
+
+    [statusCodes addIndex:403];
+    [statusCodes addIndex:404];
+    
+    return statusCodes;
 }
 
 + (NSIndexSet *)badRequestAndNotFoundStatusCodes {
