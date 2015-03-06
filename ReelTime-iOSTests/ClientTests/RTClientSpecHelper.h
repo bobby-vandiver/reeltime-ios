@@ -9,6 +9,8 @@ extern NSString *const BEARER_TOKEN_AUTHORIZATION_HEADER;
 
 @interface RTClientSpecHelper : NSObject
 
+- (NSString *)stringForUnsignedInteger:(NSUInteger)unsignedInteger;
+
 - (NSRegularExpression *)createUrlRegexForEndpoint:(NSString *)endpoint;
 
 - (NSRegularExpression *)createUrlRegexForEndpoint:(NSString *)endpoint

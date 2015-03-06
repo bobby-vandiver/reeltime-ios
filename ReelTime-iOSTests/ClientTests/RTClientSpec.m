@@ -58,6 +58,10 @@ static NSString *const SUCCESSFUL_OK_WITH_REELS_LIST_EMPTY = @"reel-list-no-reel
 static NSString *const SUCCESSFUL_OK_WITH_REELS_LIST_ONE_REEL = @"reel-list-one-reel";
 static NSString *const SUCCESSFUL_OK_WITH_REELS_LIST_MULTIPLE_REELS = @"reel-list-multiple-reels";
 
+static NSString *const SUCCESSFUL_OK_WITH_USERS_LIST_EMPTY = @"user-list-no-users";
+static NSString *const SUCCESSFUL_OK_WITH_USERS_LIST_ONE_USER = @"user-list-one-user";
+static NSString *const SUCCESSFUL_OK_WITH_USERS_LIST_MULTIPLE_USERS = @"user-list-multiple-users";
+
 describe(@"ReelTime Client", ^{
     
     __block RTClient *client;
@@ -207,6 +211,48 @@ describe(@"ReelTime Client", ^{
             
             RTReel *second = reelList.reels[1];
             expect(second).to.beReel(@(758), @"any reel", @(41), @(30));
+            
+            done();
+        };
+    };
+    
+    SuccessCallback (^shouldReceiveEmptyUserListInSuccessfulResponse)(DoneCallback) = ^SuccessCallback(DoneCallback done) {
+        return ^(id obj) {
+            expect(obj).to.beKindOf([RTUserList class]);
+            
+            RTUserList *userList = (RTUserList *)obj;
+            expect(userList.users).to.haveCountOf(0);
+            
+            done();
+        };
+    };
+    
+    SuccessCallback (^shouldReceiveUserListWithOneUserInSuccessfulResponse)(DoneCallback) = ^SuccessCallback(DoneCallback done) {
+        return ^(id obj) {
+            expect(obj).to.beKindOf([RTUserList class]);
+            
+            RTUserList *userList = (RTUserList *)obj;
+            expect(userList.users).to.haveCountOf(1);
+            
+            RTUser *first = userList.users[0];
+            expect(first).to.beUser(@"first", @"the first", @(31), @(941));
+            
+            done();
+        };
+    };
+    
+    SuccessCallback (^shouldReceiveUserListWithMultipleUsersInSuccessfulResponse)(DoneCallback) = ^SuccessCallback(DoneCallback done) {
+        return ^(id obj) {
+            expect(obj).to.beKindOf([RTUserList class]);
+            
+            RTUserList *userList = (RTUserList *)obj;
+            expect(userList.users).to.haveCountOf(2);
+            
+            RTUser *first = userList.users[0];
+            expect(first).to.beUser(@"first", @"the first", @(31), @(941));
+            
+            RTUser *second = userList.users[1];
+            expect(second).to.beUser(@"second", @"the second", @(74), @(4019));
             
             done();
         };
@@ -976,9 +1022,13 @@ describe(@"ReelTime Client", ^{
             __block NSUInteger reelId = 431;
            
             beforeEach(^{
-                NSDictionary *pathParams = @{ @":reel_id": [NSString stringWithFormat:@"%lu", (unsigned long)reelId] };
+                NSDictionary *pathParams = @{ @":reel_id": [helper stringForUnsignedInteger:reelId] };
                 getReelUrlRegex = [helper createUrlRegexForEndpoint:API_GET_REEL
                                                      withParameters:pathParams];
+            });
+            
+            afterEach(^{
+                expect(httpClient.lastPath).to.contain(reelId);
             });
             
             it(@"is successful", ^{
@@ -1014,9 +1064,13 @@ describe(@"ReelTime Client", ^{
             __block NSUInteger reelId = 9481;
             
             beforeEach(^{
-                NSDictionary *pathParams = @{ @":reel_id": [NSString stringWithFormat:@"%lu", (unsigned long)reelId] };
+                NSDictionary *pathParams = @{ @":reel_id": [helper stringForUnsignedInteger:reelId] };
                 deleteReelUrlRegex = [helper createUrlRegexForEndpoint:API_DELETE_REEL
                                                         withParameters:pathParams];
+            });
+            
+            afterEach(^{
+                expect(httpClient.lastPath).to.contain(reelId);
             });
             
             it(@"is successful", ^{
@@ -1040,6 +1094,90 @@ describe(@"ReelTime Client", ^{
                     [client deleteReelForReelId:reelId
                                         success:shouldNotExecuteSuccessCallback(done)
                                         failure:shouldExecuteFailureCallbackWithoutMessage(done)];
+                });
+            });
+        });
+        
+        describe(@"list audience members", ^{
+            __block NSRegularExpression *listAudienceUrlRegex;
+            
+            __block NSUInteger reelId = 1204;
+            __block NSUInteger pageNumber = 9;
+            
+            beforeEach(^{
+                NSDictionary *pathParams = @{ @":reel_id": [helper stringForUnsignedInteger:reelId] };
+                listAudienceUrlRegex = [helper createUrlRegexForEndpoint:API_LIST_AUDIENCE_MEMBERS
+                                                          withParameters:pathParams];
+            });
+            
+            afterEach(^{
+                expect(httpClient.lastPath).to.contain(reelId);
+                expect(httpClient.lastParameters.allKeys).to.haveCountOf(1);
+                expect(httpClient.lastParameters[@"page"]).to.equal(pageNumber);
+            });
+            
+            it(@"is successful and has no members", ^{
+                [helper stubAuthenticatedRequestWithMethod:GET
+                                                  urlRegex:listAudienceUrlRegex
+                                       rawResponseFilename:SUCCESSFUL_OK_WITH_USERS_LIST_EMPTY];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client listAudienceMembersPage:pageNumber
+                                          forReelId:reelId
+                                            success:shouldReceiveEmptyUserListInSuccessfulResponse(done)
+                                            failure:shouldNotExecuteFailureCallback(done)];
+                });
+            });
+            
+            it(@"is successful and has one member", ^{
+                [helper stubAuthenticatedRequestWithMethod:GET
+                                                  urlRegex:listAudienceUrlRegex
+                                       rawResponseFilename:SUCCESSFUL_OK_WITH_USERS_LIST_ONE_USER];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client listAudienceMembersPage:pageNumber
+                                          forReelId:reelId
+                                            success:shouldReceiveUserListWithOneUserInSuccessfulResponse(done)
+                                            failure:shouldNotExecuteFailureCallback(done)];
+                });
+            });
+            
+            it(@"is successful and has multiple members", ^{
+                [helper stubAuthenticatedRequestWithMethod:GET
+                                                  urlRegex:listAudienceUrlRegex
+                                       rawResponseFilename:SUCCESSFUL_OK_WITH_USERS_LIST_MULTIPLE_USERS];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client listAudienceMembersPage:pageNumber
+                                          forReelId:reelId
+                                            success:shouldReceiveUserListWithMultipleUsersInSuccessfulResponse(done)
+                                            failure:shouldNotExecuteFailureCallback(done)];
+                });
+            });
+            
+            it(@"fails due to bad request", ^{
+                [helper stubAuthenticatedRequestWithMethod:GET
+                                                  urlRegex:listAudienceUrlRegex
+                                       rawResponseFilename:BAD_REQUEST_WITH_ERRORS_FILENAME];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client listAudienceMembersPage:pageNumber
+                                          forReelId:reelId
+                                            success:shouldNotExecuteSuccessCallback(done)
+                                            failure:shouldExecuteFailureCallbackWithMessage(BAD_REQUEST_ERROR_MESSAGE, done)];
+                });
+            });
+            
+            it(@"fails due to not found", ^{
+                [helper stubAuthenticatedRequestWithMethod:GET
+                                                  urlRegex:listAudienceUrlRegex
+                                       rawResponseFilename:NOT_FOUND_WITH_ERRORS_FILENAME];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client listAudienceMembersPage:pageNumber
+                                          forReelId:reelId
+                                            success:shouldNotExecuteSuccessCallback(done)
+                                            failure:shouldExecuteFailureCallbackWithMessage(NOT_FOUND_ERROR_MESSAGE, done)];
                 });
             });
         });

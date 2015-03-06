@@ -92,6 +92,8 @@
                                           [RTResponseDescriptorFactory getReelErrorDescriptor],
                                           [RTResponseDescriptorFactory deleteReelDescriptor],
                                           [RTResponseDescriptorFactory deleteReelErrorDescriptor],
+                                          [RTResponseDescriptorFactory listAudienceMembersDescriptor],
+                                          [RTResponseDescriptorFactory listAudienceMembersErrorDescriptor],
                                           [RTResponseDescriptorFactory joinAudienceDescriptor],
                                           [RTResponseDescriptorFactory followUserDescriptor],
                                           [RTResponseDescriptorFactory followUserErrorDescriptor],

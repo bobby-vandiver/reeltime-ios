@@ -96,9 +96,7 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
 - (void)removeClientWithClientId:(NSString *)clientId
                          success:(NoArgsCallback)success
                          failure:(NoArgsCallback)failure {
-    NSString *path = [self.pathFormatter formatPath:API_REMOVE_CLIENT
-                                     withParameters:@{@":client_id": clientId}];
-
+    NSString *path = [self.pathFormatter formatPath:API_REMOVE_CLIENT withClientId:clientId];
     [self.httpClient authenticatedDeleteForPath:path
                                  withParameters:nil
                                         success:success
@@ -224,7 +222,7 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
 - (void)reelForReelId:(NSUInteger)reelId
               success:(ReelCallback)success
               failure:(ServerErrorsCallback)failure {
-    NSString *path = [self.pathFormatter formatPath:API_GET_REEL withParameters:@{@":reel_id": @(reelId)}];
+    NSString *path = [self.pathFormatter formatPath:API_GET_REEL withReelId:reelId];
     [self.httpClient authenticatedGetForPath:path
                               withParameters:nil
                                      success:success
@@ -234,17 +232,30 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
 - (void)deleteReelForReelId:(NSUInteger)reelId
                     success:(NoArgsCallback)success
                     failure:(NoArgsCallback)failure {
-    NSString *path = [self.pathFormatter formatPath:API_DELETE_REEL withParameters:@{@":reel_id": @(reelId)}];
+    NSString *path = [self.pathFormatter formatPath:API_DELETE_REEL withReelId:reelId];
     [self.httpClient authenticatedDeleteForPath:path
                                  withParameters:nil
                                         success:success
                                         failure:failure];                            
 }
 
+- (void)listAudienceMembersPage:(NSUInteger)page
+                      forReelId:(NSUInteger)reelId
+                        success:(UserListCallback)success
+                        failure:(ServerErrorsCallback)failure {
+    NSDictionary *parameters = @{@"page": @(page)};
+    NSString *path = [self.pathFormatter formatPath:API_LIST_AUDIENCE_MEMBERS withReelId:reelId];
+
+    [self.httpClient authenticatedGetForPath:path
+                              withParameters:parameters
+                                     success:success
+                                     failure:failure];
+}
+
 - (void)joinAudienceForReelId:(NSUInteger)reelId
                       success:(NoArgsCallback)success
                       failure:(NoArgsCallback)failure {
-    NSString *path = [self.pathFormatter formatPath:API_ADD_AUDIENCE_MEMBER withParameters:@{@":reel_id": @(reelId)}];
+    NSString *path = [self.pathFormatter formatPath:API_ADD_AUDIENCE_MEMBER withReelId:reelId];
     [self.httpClient authenticatedPostForPath:path
                                withParameters:nil
                                       success:success
@@ -254,7 +265,7 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
 - (void)followUserForUsername:(NSString *)username
                       success:(NoArgsCallback)success
                       failure:(void (^)(RTServerErrors *errors))failure {
-    NSString *path = [self.pathFormatter formatPath:API_FOLLOW_USER withParameters:@{@":username": username}];
+    NSString *path = [self.pathFormatter formatPath:API_FOLLOW_USER withUsername:username];
     [self.httpClient authenticatedPostForPath:path
                                withParameters:nil
                                       success:success
@@ -264,7 +275,7 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
 - (void)unfollowUserForUsername:(NSString *)username
                         success:(NoArgsCallback)success
                         failure:(ServerErrorsCallback)failure {
-    NSString *path = [self.pathFormatter formatPath:API_UNFOLLOW_USER withParameters:@{@":username": username}];
+    NSString *path = [self.pathFormatter formatPath:API_UNFOLLOW_USER withUsername:username];
     [self.httpClient authenticatedDeleteForPath:path
                                  withParameters:nil
                                         success:success

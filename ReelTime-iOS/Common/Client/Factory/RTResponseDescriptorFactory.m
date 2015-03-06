@@ -224,6 +224,23 @@
                                         statusCode:403];
 }
 
++ (RKResponseDescriptor *)listAudienceMembersDescriptor {
+    return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory userListMapping]
+                                                        method:RKRequestMethodGET
+                                                   pathPattern:API_LIST_AUDIENCE_MEMBERS
+                                                    statusCode:200];
+}
+
++ (RKResponseDescriptor *)listAudienceMembersErrorDescriptor {
+    NSMutableIndexSet *statusCodes = [NSMutableIndexSet indexSet];
+    [statusCodes addIndex:400];
+    [statusCodes addIndex:404];
+    
+    return [self serverErrorsDescriptorForMethod:RKRequestMethodGET
+                                            path:API_LIST_AUDIENCE_MEMBERS
+                                     statusCodes:statusCodes];
+}
+
 + (RKResponseDescriptor *)joinAudienceDescriptor {
     return [self noResponseBodyDescriptorForMethod:RKRequestMethodPOST
                                               path:API_ADD_AUDIENCE_MEMBER

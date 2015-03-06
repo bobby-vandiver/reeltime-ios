@@ -12,6 +12,10 @@
 		71073CF31A82DED800BE6E19 /* EXPMatchers+beVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 71073CF21A82DED800BE6E19 /* EXPMatchers+beVideo.m */; };
 		71073CF61A83060700BE6E19 /* RKObjectManager+IncludeHeaders.m in Sources */ = {isa = PBXBuildFile; fileRef = 71073CF51A83060700BE6E19 /* RKObjectManager+IncludeHeaders.m */; };
 		71073CFE1A831EAB00BE6E19 /* RTNewsfeedDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71073CFD1A831EAB00BE6E19 /* RTNewsfeedDataManagerSpec.m */; };
+		7112EF491AA915BC00BC7731 /* user-list-multiple-users.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7112EF481AA915BC00BC7731 /* user-list-multiple-users.txt */; };
+		7112EF4B1AA915CC00BC7731 /* user-list-no-users.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7112EF4A1AA915CC00BC7731 /* user-list-no-users.txt */; };
+		7112EF4D1AA915EF00BC7731 /* user-list-one-user.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7112EF4C1AA915EF00BC7731 /* user-list-one-user.txt */; };
+		7112EF4F1AA9160500BC7731 /* single-user.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7112EF4E1AA9160500BC7731 /* single-user.txt */; };
 		7116908F1A6AB3970031578E /* RTSecurityAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 7116908E1A6AB3970031578E /* RTSecurityAssembly.m */; };
 		711690921A6AB5510031578E /* RTSecureStoreAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 711690911A6AB5510031578E /* RTSecureStoreAssembly.m */; };
 		7116909C1A6AEBDA0031578E /* RTStoryboardViewControllerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7116909B1A6AEBDA0031578E /* RTStoryboardViewControllerFactory.m */; };
@@ -171,6 +175,10 @@
 		71073CF41A83060700BE6E19 /* RKObjectManager+IncludeHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RKObjectManager+IncludeHeaders.h"; sourceTree = "<group>"; };
 		71073CF51A83060700BE6E19 /* RKObjectManager+IncludeHeaders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RKObjectManager+IncludeHeaders.m"; sourceTree = "<group>"; };
 		71073CFD1A831EAB00BE6E19 /* RTNewsfeedDataManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTNewsfeedDataManagerSpec.m; sourceTree = "<group>"; };
+		7112EF481AA915BC00BC7731 /* user-list-multiple-users.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "user-list-multiple-users.txt"; sourceTree = "<group>"; };
+		7112EF4A1AA915CC00BC7731 /* user-list-no-users.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "user-list-no-users.txt"; sourceTree = "<group>"; };
+		7112EF4C1AA915EF00BC7731 /* user-list-one-user.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "user-list-one-user.txt"; sourceTree = "<group>"; };
+		7112EF4E1AA9160500BC7731 /* single-user.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "single-user.txt"; sourceTree = "<group>"; };
 		7116908D1A6AB3970031578E /* RTSecurityAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTSecurityAssembly.h; sourceTree = "<group>"; };
 		7116908E1A6AB3970031578E /* RTSecurityAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTSecurityAssembly.m; sourceTree = "<group>"; };
 		711690901A6AB5510031578E /* RTSecureStoreAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTSecureStoreAssembly.h; sourceTree = "<group>"; };
@@ -462,6 +470,17 @@
 			path = NewsfeedTests;
 			sourceTree = "<group>";
 		};
+		7112EF471AA9157800BC7731 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				7112EF4E1AA9160500BC7731 /* single-user.txt */,
+				7112EF481AA915BC00BC7731 /* user-list-multiple-users.txt */,
+				7112EF4A1AA915CC00BC7731 /* user-list-no-users.txt */,
+				7112EF4C1AA915EF00BC7731 /* user-list-one-user.txt */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
 		71166E101A6C2F3900EAE5BA /* AccountRegistrationTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -558,11 +577,11 @@
 		712698131AA3EC0900E7066B /* Reel */ = {
 			isa = PBXGroup;
 			children = (
+				712D5A1F1AA7F4680041DD24 /* reel-created.txt */,
 				712698141AA3EC3800E7066B /* reel-list-multiple-reels.txt */,
 				712698181AA3ECEB00E7066B /* reel-list-no-reels.txt */,
 				7126981A1AA3ED2200E7066B /* reel-list-one-reel.txt */,
 				712698161AA3EC4400E7066B /* single-reel.txt */,
-				712D5A1F1AA7F4680041DD24 /* reel-created.txt */,
 			);
 			path = Reel;
 			sourceTree = "<group>";
@@ -853,6 +872,7 @@
 				717215C51A865C8E0002ECC7 /* Newsfeed */,
 				712698131AA3EC0900E7066B /* Reel */,
 				717215C91A865C8E0002ECC7 /* Token */,
+				7112EF471AA9157800BC7731 /* User */,
 			);
 			path = ServerJSONResponses;
 			sourceTree = "<group>";
@@ -1263,12 +1283,16 @@
 				711FF4C11AA20FAA00E11BDE /* successful-created-client-credentials.txt in Resources */,
 				7126981B1AA3ED2200E7066B /* reel-list-one-reel.txt in Resources */,
 				711FF4C31AA2191A00E11BDE /* forbidden-with-no-body.txt in Resources */,
+				7112EF4B1AA915CC00BC7731 /* user-list-no-users.txt in Resources */,
 				717215D41A865C8E0002ECC7 /* token-bad-user-credentials.txt in Resources */,
 				712D5A201AA7F4690041DD24 /* reel-created.txt in Resources */,
+				7112EF4D1AA915EF00BC7731 /* user-list-one-user.txt in Resources */,
 				711FF4BC1AA20CEC00E11BDE /* service-unavailable-with-errors.txt in Resources */,
 				717215D01A865C8E0002ECC7 /* newsfeed-multiple-activities.txt in Resources */,
+				7112EF4F1AA9160500BC7731 /* single-user.txt in Resources */,
 				711FF4BA1AA20CEC00E11BDE /* bad-request-with-errors.txt in Resources */,
 				712D5A221AA7FB720041DD24 /* not-found-with-errors.txt in Resources */,
+				7112EF491AA915BC00BC7731 /* user-list-multiple-users.txt in Resources */,
 				712698191AA3ECEB00E7066B /* reel-list-no-reels.txt in Resources */,
 				717215D31A865C8E0002ECC7 /* token-bad-client-credentials.txt in Resources */,
 				711FF4BD1AA20CEC00E11BDE /* successful-ok-with-no-body.txt in Resources */,

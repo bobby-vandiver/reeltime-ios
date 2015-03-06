@@ -12,6 +12,10 @@ NSString *const BEARER_TOKEN_AUTHORIZATION_HEADER = @"Bearer access-token";
 
 @implementation RTClientSpecHelper
 
+- (NSString *)stringForUnsignedInteger:(NSUInteger)unsignedInteger {
+    return [NSString stringWithFormat:@"%lu", (unsigned long)unsignedInteger];
+}
+
 - (NSRegularExpression *)createUrlRegexForEndpoint:(NSString *)endpoint {
     return [NSString stringWithFormat:@"http://(.*?)/%@", endpoint].regex;
 }

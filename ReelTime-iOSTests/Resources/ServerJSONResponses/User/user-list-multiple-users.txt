@@ -1,0 +1,22 @@
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+Content-Type: application/json;charset=UTF-8
+Transfer-Encoding: chunked
+Date: Sun, 22 Feb 2015 17:55:58 GMT
+
+{
+    "users":[
+        {
+            "username": "first",
+            "display_name": "the first",
+            "follower_count": 31,
+            "followee_count": 941
+        },
+        {
+            "username": "second",
+            "display_name": "the second",
+            "follower_count": 74,
+            "followee_count": 4019
+        }
+    ]
+}
