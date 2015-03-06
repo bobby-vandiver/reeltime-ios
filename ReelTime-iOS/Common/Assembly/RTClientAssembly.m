@@ -108,6 +108,8 @@
                                           [RTResponseDescriptorFactory listUsersErrorDescriptor],
                                           [RTResponseDescriptorFactory getUserDescriptor],
                                           [RTResponseDescriptorFactory getUserErrorDescriptor],
+                                          [RTResponseDescriptorFactory listUserReelsDescriptor],
+                                          [RTResponseDescriptorFactory listUserReelsErrorDescriptor],
                                           [RTResponseDescriptorFactory followUserDescriptor],
                                           [RTResponseDescriptorFactory followUserErrorDescriptor],
                                           [RTResponseDescriptorFactory unfollowUserDescriptor],

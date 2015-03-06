@@ -1612,6 +1612,50 @@ describe(@"ReelTime Client", ^{
                     listUserReelsUrlRegex = [helper createUrlRegexForEndpoint:API_LIST_USER_REELS
                                                                withParameters:pathParams];
                 });
+                
+                afterEach(^{
+                    expect(httpClient.lastParameters.allKeys).to.haveCountOf(1);
+                    expect(httpClient.lastParameters[@"page"]).to.equal(pageNumber);
+                });
+                
+                it(@"is successful and has no reels", ^{
+                    [helper stubAuthenticatedRequestWithMethod:GET
+                                                      urlRegex:listUserReelsUrlRegex
+                                           rawResponseFilename:SUCCESSFUL_OK_WITH_REELS_LIST_EMPTY];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client listReelsPage:pageNumber
+                          forUserWithUsername:username
+                                      success:shouldReceiveEmptyReelListInSuccessfulResponse(done)
+                                      failure:shouldNotExecuteFailureCallback(done)];
+                    });
+                });
+                
+                it(@"fails due to bad request", ^{
+                    [helper stubAuthenticatedRequestWithMethod:GET
+                                                      urlRegex:listUserReelsUrlRegex
+                                           rawResponseFilename:BAD_REQUEST_WITH_ERRORS_FILENAME];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client listReelsPage:pageNumber
+                          forUserWithUsername:username
+                                      success:shouldNotExecuteSuccessCallback(done)
+                                      failure:shouldExecuteFailureCallbackWithMessage(BAD_REQUEST_ERROR_MESSAGE, done)];
+                    });
+                });
+                
+                it(@"fails due to not found", ^{
+                    [helper stubAuthenticatedRequestWithMethod:GET
+                                                      urlRegex:listUserReelsUrlRegex
+                                           rawResponseFilename:NOT_FOUND_WITH_ERRORS_FILENAME];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client listReelsPage:pageNumber
+                          forUserWithUsername:username
+                                      success:shouldNotExecuteSuccessCallback(done)
+                                      failure:shouldExecuteFailureCallbackWithMessage(NOT_FOUND_ERROR_MESSAGE, done)];
+                    });
+                });
             });
             
             describe(@"follower user", ^{
@@ -1633,9 +1677,6 @@ describe(@"ReelTime Client", ^{
                                               success:shouldExecuteSuccessCallback(done)
                                               failure:shouldNotExecuteFailureCallback(done)];
                     });
-                    
-                    expect(callbackExecuted).to.beTruthy();
-                    expect(httpClient.lastPath).to.contain(username);
                 });
                 
                 it(@"fails due to bad request", ^{

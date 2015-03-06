@@ -331,6 +331,20 @@
                                       statusCode:404];
 }
 
++ (RKResponseDescriptor *)listUserReelsDescriptor {
+    return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory reelListMapping]
+                                                        method:RKRequestMethodGET
+                                                   pathPattern:API_LIST_USER_REELS
+                                                    statusCode:200];
+}
+
++ (RKResponseDescriptor *)listUserReelsErrorDescriptor {
+    NSIndexSet *statusCodes = [self badRequestAndNotFoundStatusCodes];
+    return [self serverErrorsDescriptorForMethod:RKRequestMethodGET
+                                            path:API_LIST_USER_REELS
+                                     statusCodes:statusCodes];
+}
+
 + (RKResponseDescriptor *)followUserDescriptor {
     return [self noResponseBodyDescriptorForMethod:RKRequestMethodPOST
                                               path:API_FOLLOW_USER

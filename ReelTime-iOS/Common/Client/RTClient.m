@@ -321,19 +321,25 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
                                      failure:failure];
 }
 
-- (void)listReelsPage:(NSUInteger)page
-  forUserWithUsername:(NSString *)username
-              success:(ReelListCallback)success
-              failure:(ServerErrorsCallback)failure {
-    
-}
-
 - (void)userForUsername:(NSString *)username
                 success:(UserCallback)success
                 failure:(ServerErrorsCallback)failure {
     NSString *path = [self.pathFormatter formatPath:API_GET_USER withUsername:username];
     [self.httpClient authenticatedGetForPath:path
                               withParameters:nil
+                                     success:success
+                                     failure:failure];
+}
+
+- (void)listReelsPage:(NSUInteger)page
+  forUserWithUsername:(NSString *)username
+              success:(ReelListCallback)success
+              failure:(ServerErrorsCallback)failure {
+    NSDictionary *parameters = @{@"page": @(page)};
+    NSString *path = [self.pathFormatter formatPath:API_LIST_USER_REELS withUsername:username];
+    
+    [self.httpClient authenticatedGetForPath:path
+                              withParameters:parameters
                                      success:success
                                      failure:failure];
 }

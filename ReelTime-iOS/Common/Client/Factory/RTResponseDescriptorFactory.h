@@ -76,6 +76,9 @@
 + (RKResponseDescriptor *)getUserDescriptor;
 + (RKResponseDescriptor *)getUserErrorDescriptor;
 
++ (RKResponseDescriptor *)listUserReelsDescriptor;
++ (RKResponseDescriptor *)listUserReelsErrorDescriptor;
+
 + (RKResponseDescriptor *)followUserDescriptor;
 + (RKResponseDescriptor *)followUserErrorDescriptor;
 
