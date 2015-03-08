@@ -352,9 +352,10 @@
 }
 
 + (RKResponseDescriptor *)followUserErrorDescriptor {
+    NSIndexSet *statusCodes = [self forbiddenAndNotFoundStatusCodes];
     return [self serverErrorsDescriptorForMethod:RKRequestMethodPOST
                                             path:API_FOLLOW_USER
-                                      statusCode:400];
+                                     statusCodes:statusCodes];
 }
 
 + (RKResponseDescriptor *)unfollowUserDescriptor {
@@ -364,11 +365,7 @@
 }
 
 + (RKResponseDescriptor *)unfollowUserErrorDescriptor {
-    NSMutableIndexSet *statusCodes = [NSMutableIndexSet indexSet];
-    
-    [statusCodes addIndex:400];
-    [statusCodes addIndex:403];
-    
+    NSIndexSet *statusCodes = [self forbiddenAndNotFoundStatusCodes];
     return [self serverErrorsDescriptorForMethod:RKRequestMethodDELETE
                                             path:API_UNFOLLOW_USER
                                      statusCodes:statusCodes];

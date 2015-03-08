@@ -1659,7 +1659,7 @@ describe(@"ReelTime Client", ^{
                 });
             });
             
-            describe(@"follower user", ^{
+            describe(@"follow user", ^{
                 __block NSRegularExpression *followUserUrlRegex;
                 
                 beforeEach(^{
@@ -1679,15 +1679,27 @@ describe(@"ReelTime Client", ^{
                     });
                 });
                 
-                it(@"fails due to bad request", ^{
+                it(@"fails due to forbidden", ^{
                     [helper stubAuthenticatedRequestWithMethod:POST
                                                       urlRegex:followUserUrlRegex
-                                           rawResponseFilename:BAD_REQUEST_WITH_ERRORS_FILENAME];
+                                           rawResponseFilename:FORBIDDEN_WITH_ERRORS_FILENAME];
                     
                     waitUntil(^(DoneCallback done) {
                         [client followUserForUsername:username
                                               success:shouldNotExecuteSuccessCallback(done)
-                                              failure:shouldExecuteFailureCallbackWithMessage(BAD_REQUEST_ERROR_MESSAGE, done)];
+                                              failure:shouldExecuteFailureCallbackWithMessage(FORBIDDEN_ERROR_MESSAGE, done)];
+                    });
+                });
+                
+                it(@"fails due to not found", ^{
+                    [helper stubAuthenticatedRequestWithMethod:POST
+                                                      urlRegex:followUserUrlRegex
+                                           rawResponseFilename:NOT_FOUND_WITH_ERRORS_FILENAME];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client followUserForUsername:username
+                                              success:shouldNotExecuteSuccessCallback(done)
+                                              failure:shouldExecuteFailureCallbackWithMessage(NOT_FOUND_ERROR_MESSAGE, done)];
                     });
                 });
             });
@@ -1712,18 +1724,6 @@ describe(@"ReelTime Client", ^{
                     });
                 });
                 
-                it(@"fails due to bad request", ^{
-                    [helper stubAuthenticatedRequestWithMethod:DELETE
-                                                      urlRegex:unfollowUserUrlRegex
-                                           rawResponseFilename:BAD_REQUEST_WITH_ERRORS_FILENAME];
-                    
-                    waitUntil(^(DoneCallback done) {
-                        [client unfollowUserForUsername:username
-                                                success:shouldNotExecuteSuccessCallback(done)
-                                                failure:shouldExecuteFailureCallbackWithMessage(BAD_REQUEST_ERROR_MESSAGE, done)];
-                    });
-                });
-                
                 it(@"fails due to forbidden", ^{
                     [helper stubAuthenticatedRequestWithMethod:DELETE
                                                       urlRegex:unfollowUserUrlRegex
@@ -1733,6 +1733,18 @@ describe(@"ReelTime Client", ^{
                         [client unfollowUserForUsername:username
                                                 success:shouldNotExecuteSuccessCallback(done)
                                                 failure:shouldExecuteFailureCallbackWithMessage(FORBIDDEN_ERROR_MESSAGE, done)];
+                    });
+                });
+                
+                it(@"fails due to not found", ^{
+                    [helper stubAuthenticatedRequestWithMethod:DELETE
+                                                      urlRegex:unfollowUserUrlRegex
+                                           rawResponseFilename:NOT_FOUND_WITH_ERRORS_FILENAME];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client unfollowUserForUsername:username
+                                                success:shouldNotExecuteSuccessCallback(done)
+                                                failure:shouldExecuteFailureCallbackWithMessage(NOT_FOUND_ERROR_MESSAGE, done)];
                     });
                 });
             });
