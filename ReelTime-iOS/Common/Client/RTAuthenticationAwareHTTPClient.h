@@ -3,9 +3,12 @@
 @class RTAuthenticationAwareHTTPClientDelegate;
 @class RKObjectManager;
 @class RTServerErrors;
+@protocol AFMultipartFormData;
 
 typedef void (^SuccessCallback)(id result);
 typedef void (^FailureCallback)(id error);
+
+typedef void (^MultipartFormDataBlock)(id<AFMultipartFormData> formData);
 
 @interface RTAuthenticationAwareHTTPClient : NSObject
 
@@ -21,6 +24,12 @@ typedef void (^FailureCallback)(id error);
                    withParameters:(NSDictionary *)parameters
                           success:(SuccessCallback)success
                           failure:(FailureCallback)failure;
+
+- (void)authenticatedPostForPath:(NSString *)path
+                  withParameters:(NSDictionary *)parameters
+                   formDataBlock:(MultipartFormDataBlock)formDataBlock
+                         success:(SuccessCallback)success
+                         failure:(FailureCallback)failure;
 
 - (void)authenticatedPostForPath:(NSString *)path
                   withParameters:(NSDictionary *)parameters

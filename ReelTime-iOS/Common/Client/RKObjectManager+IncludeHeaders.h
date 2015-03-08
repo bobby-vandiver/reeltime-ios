@@ -16,6 +16,14 @@
            success:(void (^)(RKObjectRequestOperation *, RKMappingResult *))success
            failure:(void (^)(RKObjectRequestOperation *, NSError *))failure;
 
+- (void)postObject:(id)object
+              path:(NSString *)path
+        parameters:(NSDictionary *)parameters
+           headers:(NSDictionary *)headers
+     formDataBlock:(void (^)(id<AFMultipartFormData>))formDataBlock
+           success:(void (^)(RKObjectRequestOperation *, RKMappingResult *))success
+           failure:(void (^)(RKObjectRequestOperation *, NSError *))failure;
+
 - (void)deleteObject:(id)object
                 path:(NSString *)path
           parameters:(NSDictionary *)parameters

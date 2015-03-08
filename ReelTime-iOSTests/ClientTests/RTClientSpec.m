@@ -35,6 +35,7 @@
 #import <Typhoon/Typhoon.h>
 #import <Typhoon/TyphoonPatcher.h>
 
+#import <RestKit/RestKit.h>
 #import <Nocilla/Nocilla.h>
 
 SpecBegin(RTClient)
@@ -1930,6 +1931,97 @@ describe(@"ReelTime Client", ^{
             });
         });
        
+        describe(@"add video", ^{
+            __block NSRegularExpression *addVideoUrlRegex;
+            __block NSURL *videoFileURL;
+            
+            NSString *title = @"some video";
+            NSString *reelName = @"some reel";
+            
+            beforeEach(^{
+                addVideoUrlRegex = [helper createUrlRegexForEndpoint:API_ADD_VIDEO];
+                
+                NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+                videoFileURL = [bundle URLForResource:@"small" withExtension:@"mp4"];
+            });
+
+            afterEach(^{
+                expect(httpClient.lastParameters.allKeys).to.haveCountOf(2);
+                expect(httpClient.lastParameters[@"title"]).to.equal(title);
+                expect(httpClient.lastParameters[@"reel"]).to.equal(reelName);
+                expect(httpClient.lastFormDataBlock).toNot.beNil();
+
+                id<AFMultipartFormData> formData = mockProtocol(@protocol(AFMultipartFormData));
+                httpClient.lastFormDataBlock(formData);
+                
+                id videoVerification = [verify(formData) withMatcher:anything() forArgument:4];
+                [videoVerification appendPartWithFileURL:videoFileURL
+                                                    name:@"video"
+                                                fileName:@"some video.mp4"
+                                                mimeType:@"video/mp4"
+                                                   error:nil];
+            });
+
+            it(@"is successful", ^{
+                [helper stubAuthenticatedRequestWithMethod:POST
+                                                  urlRegex:addVideoUrlRegex
+                                       rawResponseFilename:@"accepted-video"];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client addVideoFromFileURL:videoFileURL
+                                      withTitle:title
+                                 toReelWithName:reelName
+                                        success:^(RTVideo *video) {
+                                            expect(video).to.beVideo(@(9413), @"accepted video");
+                                            done();
+                                        }
+                                        failure:shouldNotExecuteFailureCallback(done)];
+                });
+            });
+            
+            it(@"fails due to bad request", ^{
+                [helper stubAuthenticatedRequestWithMethod:POST
+                                                  urlRegex:addVideoUrlRegex
+                                       rawResponseFilename:BAD_REQUEST_WITH_ERRORS_FILENAME];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client addVideoFromFileURL:videoFileURL
+                                      withTitle:title
+                                 toReelWithName:reelName
+                                        success:shouldNotExecuteSuccessCallback(done)
+                                        failure:shouldExecuteFailureCallbackWithMessage(BAD_REQUEST_ERROR_MESSAGE, done)];
+                });
+            });
+            
+            it(@"fails due to forbidden", ^{
+                [helper stubAuthenticatedRequestWithMethod:POST
+                                                  urlRegex:addVideoUrlRegex
+                                       rawResponseFilename:FORBIDDEN_WITH_ERRORS_FILENAME];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client addVideoFromFileURL:videoFileURL
+                                      withTitle:title
+                                 toReelWithName:reelName
+                                        success:shouldNotExecuteSuccessCallback(done)
+                                        failure:shouldExecuteFailureCallbackWithMessage(FORBIDDEN_ERROR_MESSAGE, done)];
+                });
+            });
+            
+            it(@"fails due to service unavailable", ^{
+                [helper stubAuthenticatedRequestWithMethod:POST
+                                                  urlRegex:addVideoUrlRegex
+                                       rawResponseFilename:SERVICE_UNAVAILABLE_WITH_ERRORS_FILENAME];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client addVideoFromFileURL:videoFileURL
+                                      withTitle:title
+                                 toReelWithName:reelName
+                                        success:shouldNotExecuteSuccessCallback(done)
+                                        failure:shouldExecuteFailureCallbackWithMessage(SERVICE_UNAVAILABLE_ERROR_MESSAGE, done)];
+                });
+            });
+        });
+        
         context(@"video_id required in path", ^{
             __block NSMutableDictionary *pathParams;
             

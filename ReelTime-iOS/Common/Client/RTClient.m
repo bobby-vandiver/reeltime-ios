@@ -13,6 +13,8 @@
 #import "RTServerErrors.h"
 #import "RTAccountRegistration.h"
 
+#import <RestKit/RestKit.h>
+
 static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read reels-write users-read users-write videos-read videos-write";
 
 @interface RTClient ()
@@ -398,6 +400,35 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
                               withParameters:parameters
                                      success:success
                                      failure:failure];
+}
+
+- (void)addVideoFromFileURL:(NSURL *)videoFileURL
+                  withTitle:(NSString *)title
+             toReelWithName:(NSString *)reelName
+                    success:(VideoCallback)success
+                    failure:(ServerErrorsCallback)failure {
+    NSDictionary *parameters = @{@"title": title, @"reel": reelName};
+
+    MultipartFormDataBlock formData = ^(id<AFMultipartFormData> formData) {
+        NSString *videoFileName = [NSString stringWithFormat:@"%@.mp4", title];
+
+        NSError *appendError;
+        BOOL success = [formData appendPartWithFileURL:videoFileURL
+                                                  name:@"video"
+                                              fileName:videoFileName
+                                              mimeType:@"video/mp4"
+                                                 error:&appendError];
+        
+        if (!success) {
+            // TODO: Log appendError
+        }
+    };
+
+    [self.httpClient authenticatedPostForPath:API_ADD_VIDEO
+                               withParameters:parameters
+                                formDataBlock:formData
+                                      success:success
+                                      failure:failure];
 }
 
 - (void)videoForVideoId:(NSUInteger)videoId

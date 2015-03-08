@@ -180,6 +180,12 @@ typedef void (^VideoListCallback)(RTVideoList *videoList);
                success:(VideoListCallback)success
                failure:(ServerErrorsCallback)failure;
 
+- (void)addVideoFromFileURL:(NSURL *)videoFileURL
+                  withTitle:(NSString *)title
+             toReelWithName:(NSString *)reelName
+                    success:(VideoCallback)success
+                    failure:(ServerErrorsCallback)failure;
+
 - (void)videoForVideoId:(NSUInteger)videoId
                 success:(VideoCallback)success
                 failure:(ServerErrorsCallback)failure;

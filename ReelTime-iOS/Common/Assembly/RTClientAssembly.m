@@ -120,6 +120,8 @@
                                           [RTResponseDescriptorFactory listFolloweesErrorDescriptor],
                                           [RTResponseDescriptorFactory listVideosDescriptor],
                                           [RTResponseDescriptorFactory listVideosErrorDescriptor],
+                                          [RTResponseDescriptorFactory addVideoDescriptor],
+                                          [RTResponseDescriptorFactory addVideoErrorDescriptor],
                                           [RTResponseDescriptorFactory getVideoDescriptor],
                                           [RTResponseDescriptorFactory getVideoErrorDescriptor],
                                           [RTResponseDescriptorFactory deleteVideoDescriptor],

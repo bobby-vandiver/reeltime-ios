@@ -413,6 +413,25 @@
                                      statusCode:400];
 }
 
++ (RKResponseDescriptor *)addVideoDescriptor {
+    return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory videoMapping]
+                                                        method:RKRequestMethodPOST
+                                                   pathPattern:API_ADD_VIDEO
+                                                    statusCode:202];
+}
+
++ (RKResponseDescriptor *)addVideoErrorDescriptor {
+    NSMutableIndexSet *statusCodes = [NSMutableIndexSet indexSet];
+    
+    [statusCodes addIndex:400];
+    [statusCodes addIndex:403];
+    [statusCodes addIndex:503];
+    
+    return [self serverErrorsDescriptorForMethod:RKRequestMethodPOST
+                                            path:API_ADD_VIDEO
+                                     statusCodes:statusCodes];
+}
+
 + (RKResponseDescriptor *)getVideoDescriptor {
     NSMutableIndexSet *statusCodes = [NSMutableIndexSet indexSet];
     

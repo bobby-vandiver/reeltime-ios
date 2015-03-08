@@ -30,7 +30,7 @@ static NSString *const AUTHORIZATION_HEADER = @"Authorization";
                  withParameters:(NSDictionary *)parameters
                         success:(SuccessCallback)success
                         failure:(FailureCallback)failure {
-    NSDictionary *headers = @{AUTHORIZATION_HEADER:[self formatAccessTokenForAuthorizationHeader]};
+    NSDictionary *headers = [self authorizationHeader];
     [self getForPath:path withParameters:parameters headers:headers success:success failure:failure];
 }
 
@@ -43,24 +43,33 @@ static NSString *const AUTHORIZATION_HEADER = @"Authorization";
 
 - (void)authenticatedPostForPath:(NSString *)path
                   withParameters:(NSDictionary *)parameters
+                   formDataBlock:(MultipartFormDataBlock)formDataBlock
                          success:(SuccessCallback)success
                          failure:(FailureCallback)failure {
-    NSDictionary *headers = @{AUTHORIZATION_HEADER:[self formatAccessTokenForAuthorizationHeader]};
-    [self postForPath:path withParameters:parameters headers:headers success:success failure:failure];
+    NSDictionary *headers = [self authorizationHeader];
+    [self postForPath:path withParameters:parameters headers:headers formDataBlock:formDataBlock success:success failure:failure];
+}
+
+- (void)authenticatedPostForPath:(NSString *)path
+                  withParameters:(NSDictionary *)parameters
+                         success:(SuccessCallback)success
+                         failure:(FailureCallback)failure {
+    NSDictionary *headers = [self authorizationHeader];
+    [self postForPath:path withParameters:parameters headers:headers formDataBlock:nil success:success failure:failure];
 }
 
 - (void)unauthenticatedPostForPath:(NSString *)path
                     withParameters:(NSDictionary *)parameters
                            success:(SuccessCallback)success
                            failure:(FailureCallback)failure {
-    [self postForPath:path withParameters:parameters headers:nil success:success failure:failure];
+    [self postForPath:path withParameters:parameters headers:nil formDataBlock:nil success:success failure:failure];
 }
 
 - (void)authenticatedDeleteForPath:(NSString *)path
                     withParameters:(NSDictionary *)parameters
                            success:(SuccessCallback)success
                            failure:(FailureCallback)failure {
-    NSDictionary *headers = @{AUTHORIZATION_HEADER:[self formatAccessTokenForAuthorizationHeader]};
+    NSDictionary *headers = [self authorizationHeader];
     [self deleteForPath:path withParameters:parameters headers:headers success:success failure:failure];
 }
 
@@ -93,13 +102,23 @@ static NSString *const AUTHORIZATION_HEADER = @"Authorization";
 - (void)postForPath:(NSString *)path
      withParameters:(NSDictionary *)parameters
             headers:(NSDictionary *)headers
+      formDataBlock:(MultipartFormDataBlock)formDataBlock
             success:(SuccessCallback)success
             failure:(FailureCallback)failure {
     
     id successCallback = [self successHandlerWithCallback:success];
     id failureCallback = [self serverFailureHandlerWithCallback:failure];
     
-    if (headers) {
+    if (headers && formDataBlock) {
+        [self.objectManager postObject:nil
+                                  path:path
+                            parameters:parameters
+                               headers:headers
+                         formDataBlock:formDataBlock
+                               success:successCallback
+                               failure:failureCallback];
+    }
+    else if (headers) {
         [self.objectManager postObject:nil
                                   path:path
                             parameters:parameters
@@ -140,6 +159,10 @@ static NSString *const AUTHORIZATION_HEADER = @"Authorization";
                                  success:successCallback
                                  failure:failureCallback];
     }
+}
+
+- (NSDictionary *)authorizationHeader {
+    return @{AUTHORIZATION_HEADER:[self formatAccessTokenForAuthorizationHeader]};
 }
 
 - (NSString *)formatAccessTokenForAuthorizationHeader {

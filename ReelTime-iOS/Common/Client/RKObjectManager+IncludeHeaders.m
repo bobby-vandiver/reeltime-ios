@@ -32,6 +32,24 @@
     [self enqueueRequest:request success:success failure:failure];
 }
 
+- (void)postObject:(id)object
+              path:(NSString *)path
+        parameters:(NSDictionary *)parameters
+           headers:(NSDictionary *)headers
+     formDataBlock:(void (^)(id<AFMultipartFormData>))formDataBlock
+           success:(void (^)(RKObjectRequestOperation *, RKMappingResult *))success
+           failure:(void (^)(RKObjectRequestOperation *, NSError *))failure {
+    
+    NSMutableURLRequest *request = [self multipartFormRequestWithObject:object
+                                                                 method:RKRequestMethodPOST
+                                                                   path:path
+                                                             parameters:parameters
+                                              constructingBodyWithBlock:formDataBlock];
+    
+    [self addHeaders:headers toRequest:request];
+    [self enqueueRequest:request success:success failure:failure];
+}
+
 - (void)deleteObject:(id)object
                 path:(NSString *)path
           parameters:(NSDictionary *)parameters
