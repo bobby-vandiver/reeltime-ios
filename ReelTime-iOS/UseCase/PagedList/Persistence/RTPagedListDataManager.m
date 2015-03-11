@@ -1,5 +1,6 @@
 #import "RTPagedListDataManager.h"
 #import "RTClient.h"
+#import "RTException.h"
 
 @interface RTPagedListDataManager ()
 
@@ -19,8 +20,8 @@
 
 - (void)retrievePage:(NSUInteger)page
             callback:(void (^)(NSArray *items))callback {
-    [NSException raise:@"RTIllegalInvocation"
-                format:@"This message must be implemented by subclasses"];
+    [NSException raise:RTAbstractMethodException
+                format:@"Cannot invoke abstract method"];
 }
 
 @end
