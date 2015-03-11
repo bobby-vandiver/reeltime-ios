@@ -52,7 +52,7 @@ describe(@"newsfeed view controller", ^{
         });
         
         it(@"should request the first page of activities", ^{
-            [verify(presenter) requestedNextNewsfeedPage];
+            [verify(presenter) requestedNextPage];
         });
     });
     

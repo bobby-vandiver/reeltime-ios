@@ -53,34 +53,34 @@ describe(@"newsfeed presenter", ^{
     
     describe(@"newsfeed page requested", ^{
         it(@"should always get the next requested page", ^{
-            [presenter requestedNextNewsfeedPage];
+            [presenter requestedNextPage];
             [verify(interactor) listItemsForPage:1];
             
-            [presenter requestedNextNewsfeedPage];
+            [presenter requestedNextPage];
             [verify(interactor) listItemsForPage:2];
             
-            [presenter requestedNextNewsfeedPage];
+            [presenter requestedNextPage];
             [verify(interactor) listItemsForPage:3];
         });
     });
     
     describe(@"newsfeed reset", ^{
         it(@"should reset page counter so the first page is retrieved next", ^{
-            [presenter requestedNextNewsfeedPage];
+            [presenter requestedNextPage];
             [verify(interactor) listItemsForPage:1];
             
-            [presenter requestedNextNewsfeedPage];
+            [presenter requestedNextPage];
             [verify(interactor) listItemsForPage:2];
 
-            [presenter requestedNewsfeedReset];
+            [presenter requestedReset];
             [verify(interactor) reset];
             
-            [presenter requestedNextNewsfeedPage];
+            [presenter requestedNextPage];
             [verify(interactor) listItemsForPage:1];
         });
         
         it(@"should notify view that currently displayed messages should be removed", ^{
-            [presenter requestedNewsfeedReset];
+            [presenter requestedReset];
             [verify(view) clearMessages];
         });
     });
@@ -165,7 +165,7 @@ describe(@"newsfeed presenter", ^{
             [verify(view) showMessage:message];
             
             [verify(view) reset];
-            [presenter requestedNewsfeedReset];
+            [presenter requestedReset];
             
             [presenter retrievedItems:activities];
             [verify(view) showMessage:message];
