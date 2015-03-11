@@ -6,7 +6,7 @@
 #import "RTNewsfeedViewController.h"
 #import "RTNewsfeedPresenter.h"
 #import "RTNewsfeedMessageSource.h"
-#import "RTNewsfeedInteractor.h"
+#import "RTPagedListInteractor.h"
 #import "RTNewsfeedDataManager.h"
 
 @implementation RTNewsfeedAssembly
@@ -45,8 +45,8 @@
     return [TyphoonDefinition withClass:[RTNewsfeedMessageSource class]];
 }
 
-- (RTNewsfeedInteractor *)newsfeedInteractor {
-    return [TyphoonDefinition withClass:[RTNewsfeedInteractor class] configuration:^(TyphoonDefinition *definition) {
+- (RTPagedListInteractor *)newsfeedInteractor {
+    return [TyphoonDefinition withClass:[RTPagedListInteractor class] configuration:^(TyphoonDefinition *definition) {
         [definition injectMethod:@selector(initWithDelegate:dataManager:)
                       parameters:^(TyphoonMethod *initializer) {
                           [initializer injectParameterWith:[self newsfeedPresenter]];

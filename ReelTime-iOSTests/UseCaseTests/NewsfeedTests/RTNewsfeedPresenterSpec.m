@@ -3,7 +3,7 @@
 #import "RTNewsfeedPresenter.h"
 
 #import "RTNewsfeedView.h"
-#import "RTNewsfeedInteractor.h"
+#import "RTPagedListInteractor.h"
 #import "RTNewsfeedWireframe.h"
 #import "RTNewsfeedMessageSource.h"
 
@@ -24,7 +24,7 @@ describe(@"newsfeed presenter", ^{
     __block RTNewsfeedPresenter *presenter;
 
     __block id<RTNewsfeedView> view;
-    __block RTNewsfeedInteractor *interactor;
+    __block RTPagedListInteractor *interactor;
     __block RTNewsfeedWireframe *wireframe;
     __block RTNewsfeedMessageSource *messageSource;
     
@@ -34,7 +34,7 @@ describe(@"newsfeed presenter", ^{
     
     beforeEach(^{
         view = mockProtocol(@protocol(RTNewsfeedView));
-        interactor = mock([RTNewsfeedInteractor class]);
+        interactor = mock([RTPagedListInteractor class]);
         wireframe = mock([RTNewsfeedWireframe class]);
         messageSource = mock([RTNewsfeedMessageSource class]);
         
@@ -54,29 +54,29 @@ describe(@"newsfeed presenter", ^{
     describe(@"newsfeed page requested", ^{
         it(@"should always get the next requested page", ^{
             [presenter requestedNextNewsfeedPage];
-            [verify(interactor) newsfeedPage:1];
+            [verify(interactor) listPage:1];
             
             [presenter requestedNextNewsfeedPage];
-            [verify(interactor) newsfeedPage:2];
+            [verify(interactor) listPage:2];
             
             [presenter requestedNextNewsfeedPage];
-            [verify(interactor) newsfeedPage:3];
+            [verify(interactor) listPage:3];
         });
     });
     
     describe(@"newsfeed reset", ^{
         it(@"should reset page counter so the first page is retrieved next", ^{
             [presenter requestedNextNewsfeedPage];
-            [verify(interactor) newsfeedPage:1];
+            [verify(interactor) listPage:1];
             
             [presenter requestedNextNewsfeedPage];
-            [verify(interactor) newsfeedPage:2];
+            [verify(interactor) listPage:2];
 
             [presenter requestedNewsfeedReset];
             [verify(interactor) reset];
             
             [presenter requestedNextNewsfeedPage];
-            [verify(interactor) newsfeedPage:1];
+            [verify(interactor) listPage:1];
         });
         
         it(@"should notify view that currently displayed messages should be removed", ^{
@@ -94,7 +94,7 @@ describe(@"newsfeed presenter", ^{
         
         it(@"no activities to show", ^{
             newsfeed.activities = @[];
-            [presenter retrievedNewsfeed:newsfeed];
+            [presenter retrievedListPage:newsfeed];
             [verifyCount(view, never()) showMessage:anything()];
         });
        
@@ -105,7 +105,7 @@ describe(@"newsfeed presenter", ^{
             RTActivityMessage *message = [[RTActivityMessage alloc] init];
             [given([messageSource messageForActivity:activity]) willReturn:message];
             
-            [presenter retrievedNewsfeed:newsfeed];
+            [presenter retrievedListPage:newsfeed];
             [verify(view) showMessage:message];
         });
         
@@ -116,7 +116,7 @@ describe(@"newsfeed presenter", ^{
             RTActivityMessage *message = [[RTActivityMessage alloc] init];
             [given([messageSource messageForActivity:activity]) willReturn:message];
 
-            [presenter retrievedNewsfeed:newsfeed];
+            [presenter retrievedListPage:newsfeed];
             [verify(view) showMessage:message];
         });
         
@@ -127,7 +127,7 @@ describe(@"newsfeed presenter", ^{
             RTActivityMessage *message = [[RTActivityMessage alloc] init];
             [given([messageSource messageForActivity:activity]) willReturn:message];
             
-            [presenter retrievedNewsfeed:newsfeed];
+            [presenter retrievedListPage:newsfeed];
             [verify(view) showMessage:message];
         });
         
@@ -143,7 +143,7 @@ describe(@"newsfeed presenter", ^{
             RTActivityMessage *addVideoToReelMessage = [[RTActivityMessage alloc] init];
             [given([messageSource messageForActivity:addVideoToReelActivity]) willReturn:addVideoToReelMessage];
             
-            [presenter retrievedNewsfeed:newsfeed];
+            [presenter retrievedListPage:newsfeed];
             [verify(view) showMessage:createReelMessage];
             [verify(view) showMessage:addVideoToReelMessage];
         });
@@ -155,12 +155,12 @@ describe(@"newsfeed presenter", ^{
             RTActivityMessage *message = [[RTActivityMessage alloc] init];
             [given([messageSource messageForActivity:activity]) willReturn:message];
             
-            [presenter retrievedNewsfeed:newsfeed];
+            [presenter retrievedListPage:newsfeed];
             [verify(view) showMessage:message];
             
             [verify(view) reset];
             
-            [presenter retrievedNewsfeed:newsfeed];
+            [presenter retrievedListPage:newsfeed];
             [verifyCount(view, never()) showMessage:message];
         });
         
@@ -171,13 +171,13 @@ describe(@"newsfeed presenter", ^{
             RTActivityMessage *message = [[RTActivityMessage alloc] init];
             [given([messageSource messageForActivity:activity]) willReturn:message];
             
-            [presenter retrievedNewsfeed:newsfeed];
+            [presenter retrievedListPage:newsfeed];
             [verify(view) showMessage:message];
             
             [verify(view) reset];
             [presenter requestedNewsfeedReset];
             
-            [presenter retrievedNewsfeed:newsfeed];
+            [presenter retrievedListPage:newsfeed];
             [verify(view) showMessage:message];
         });
     });

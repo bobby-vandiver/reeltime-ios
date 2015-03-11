@@ -1,7 +1,7 @@
 #import "RTNewsfeedPresenter.h"
 
 #import "RTNewsfeedView.h"
-#import "RTNewsfeedInteractor.h"
+#import "RTPagedListInteractor.h"
 #import "RTNewsfeedWireframe.h"
 #import "RTNewsfeedMessageSource.h"
 
@@ -16,7 +16,7 @@ static const NSUInteger INITIAL_PAGE_NUMBER = 1;
 @interface RTNewsfeedPresenter ()
 
 @property id<RTNewsfeedView> view;
-@property RTNewsfeedInteractor *interactor;
+@property RTPagedListInteractor *interactor;
 @property (weak) RTNewsfeedWireframe *wireframe;
 @property RTNewsfeedMessageSource *messageSource;
 
@@ -28,7 +28,7 @@ static const NSUInteger INITIAL_PAGE_NUMBER = 1;
 @implementation RTNewsfeedPresenter
 
 - (instancetype)initWithView:(id<RTNewsfeedView>)view
-                  interactor:(RTNewsfeedInteractor *)interactor
+                  interactor:(RTPagedListInteractor *)interactor
                    wireframe:(RTNewsfeedWireframe *)wireframe
                messageSource:(RTNewsfeedMessageSource *)messageSource {
     self = [super init];
@@ -49,7 +49,7 @@ static const NSUInteger INITIAL_PAGE_NUMBER = 1;
 }
 
 - (void)requestedNextNewsfeedPage {
-    [self.interactor newsfeedPage:self.nextPage++];
+    [self.interactor listPage:self.nextPage++];
 }
 
 - (void)requestedNewsfeedReset {
@@ -57,7 +57,8 @@ static const NSUInteger INITIAL_PAGE_NUMBER = 1;
     [self.view clearMessages];
 }
 
-- (void)retrievedNewsfeed:(RTNewsfeed *)newsfeed {
+- (void)retrievedListPage:(id)listPage {
+    RTNewsfeed *newsfeed = (RTNewsfeed *)listPage;
     for (RTActivity *activity in newsfeed.activities) {
         if (![self.activities containsObject:activity]) {
             [self showActivity:activity];
@@ -71,7 +72,7 @@ static const NSUInteger INITIAL_PAGE_NUMBER = 1;
     [self.view showMessage:message];
 }
 
-- (void)failedToRetrieveNewsfeedWithError:(NSError *)error {
+- (void)failedToRetrieveListPageWithError:(NSError *)error {
     // TODO: Log error or inform user if appropriate
 }
 

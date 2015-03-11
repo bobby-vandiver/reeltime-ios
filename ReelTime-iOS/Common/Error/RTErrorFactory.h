@@ -3,7 +3,7 @@
 #import "RTKeyChainError.h"
 #import "RTLoginError.h"
 #import "RTAccountRegistrationError.h"
-#import "RTNewsfeedError.h"
+#import "RTPagedListError.h"
 
 @interface RTErrorFactory : NSObject
 
@@ -17,6 +17,6 @@
 
 + (NSError *)accountRegistrationErrorWithCode:(RTAccountRegistrationError)code;
 
-+ (NSError *)newsfeedErrorWithCode:(RTNewsfeedError)code;
++ (NSError *)pagedListErrorWithCode:(RTPagedListError)code;
 
 @end

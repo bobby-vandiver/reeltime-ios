@@ -30,8 +30,8 @@
                            userInfo:nil];
 }
 
-+ (NSError *)newsfeedErrorWithCode:(RTNewsfeedError)code {
-    return [NSError errorWithDomain:RTNewsfeedErrorDomain
++ (NSError *)pagedListErrorWithCode:(RTPagedListError)code {
+    return [NSError errorWithDomain:RTPagedListErrorDomain
                                code:code
                            userInfo:nil];
 }

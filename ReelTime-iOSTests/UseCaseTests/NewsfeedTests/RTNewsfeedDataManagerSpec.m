@@ -32,7 +32,7 @@ describe(@"newsfeed data manager", ^{
         beforeEach(^{
             callbackExecuted = NO;
 
-            [dataManager retrieveNewsfeedPage:page callback:callback];
+            [dataManager retrievePage:page callback:callback];
         });
         
         it(@"should pass newsfeed page to callback on success", ^{

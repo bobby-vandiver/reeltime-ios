@@ -1,17 +1,17 @@
 #import <Foundation/Foundation.h>
 #import <TTTAttributedLabel/TTTAttributedLabel.h>
 
-#import "RTNewsfeedInteractorDelegate.h"
+#import "RTPagedListInteractorDelegate.h"
 
 @protocol RTNewsfeedView;
-@class RTNewsfeedInteractor;
+@class RTPagedListInteractor;
 @class RTNewsfeedWireframe;
 @class RTNewsfeedMessageSource;
 
-@interface RTNewsfeedPresenter : NSObject <RTNewsfeedInteractorDelegate, TTTAttributedLabelDelegate>
+@interface RTNewsfeedPresenter : NSObject <RTPagedListInteractorDelegate, TTTAttributedLabelDelegate>
 
 - (instancetype)initWithView:(id<RTNewsfeedView>)view
-                  interactor:(RTNewsfeedInteractor *)interactor
+                  interactor:(RTPagedListInteractor *)interactor
                    wireframe:(RTNewsfeedWireframe *)wireframe
                messageSource:(RTNewsfeedMessageSource *)messageSource;
 

@@ -6,7 +6,7 @@
 @class RTNewsfeedViewController;
 @class RTNewsfeedPresenter;
 @class RTNewsfeedMessageSource;
-@class RTNewsfeedInteractor;
+@class RTPagedListInteractor;
 @class RTNewsfeedDataManager;
 
 @interface RTNewsfeedAssembly : TyphoonAssembly
@@ -21,7 +21,7 @@
 
 - (RTNewsfeedMessageSource *)newsfeedMessageSource;
 
-- (RTNewsfeedInteractor *)newsfeedInteractor;
+- (RTPagedListInteractor *)newsfeedInteractor;
 
 - (RTNewsfeedDataManager *)newsfeedDataManager;
 
