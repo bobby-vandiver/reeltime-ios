@@ -8,6 +8,6 @@
 - (instancetype)initWithDelegate:(id<RTPagedListInteractorDelegate>)delegate
                      dataManager:(RTPagedListDataManager *)dataManager;
 
-- (void)listPage:(NSUInteger)page;
+- (void)listItemsForPage:(NSUInteger)page;
 
 @end

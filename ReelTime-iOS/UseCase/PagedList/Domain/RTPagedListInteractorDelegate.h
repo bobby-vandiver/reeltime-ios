@@ -2,8 +2,8 @@
 
 @protocol RTPagedListInteractorDelegate <NSObject>
 
-- (void)retrievedListPage:(id)listPage;
+- (void)retrievedItems:(NSArray *)items;
 
-- (void)failedToRetrieveListPageWithError:(NSError *)error;
+- (void)failedToRetrieveItemsWithError:(NSError *)error;
 
 @end

@@ -26,30 +26,30 @@ describe(@"paged list interactor", ^{
         const NSUInteger page = 23;
         
         it(@"should pass list page to delegate", ^{
-            [interactor listPage:page];
+            [interactor listItemsForPage:page];
             
             MKTArgumentCaptor *callbackCaptor = [[MKTArgumentCaptor alloc] init];
             
             [verify(dataManager) retrievePage:page
                                      callback:[callbackCaptor capture]];
             
-            NSObject *listPage = [[NSObject alloc] init];
-            [verifyCount(delegate, never()) retrievedListPage:listPage];
+            NSArray *items = @[];
+            [verifyCount(delegate, never()) retrievedItems:items];
             
             void (^callback)(id) = [callbackCaptor value];
-            callback(listPage);
+            callback(items);
             
-            [verify(delegate) retrievedListPage:listPage];
+            [verify(delegate) retrievedItems:items];
         });
     });
     
     describe(@"newsfeed page retrieval failure", ^{
         it(@"should not allow non-negative numbers", ^{
             const NSUInteger invalidPage = 0;
-            [interactor listPage:invalidPage];
+            [interactor listItemsForPage:invalidPage];
             
             MKTArgumentCaptor *errorCaptor = [[MKTArgumentCaptor alloc] init];
-            [verify(delegate) failedToRetrieveListPageWithError:[errorCaptor capture]];
+            [verify(delegate) failedToRetrieveItemsWithError:[errorCaptor capture]];
             
             NSError *error = [errorCaptor value];
             expect(error).to.beError(RTPagedListErrorDomain, RTPagedListErrorInvalidPageNumber);

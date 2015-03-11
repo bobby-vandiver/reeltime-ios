@@ -9,6 +9,6 @@
 - (instancetype)initWithClient:(RTClient *)client;
 
 - (void)retrievePage:(NSUInteger)page
-            callback:(void (^)(id listPage))callback;
+            callback:(void (^)(NSArray *items))callback;
 
 @end

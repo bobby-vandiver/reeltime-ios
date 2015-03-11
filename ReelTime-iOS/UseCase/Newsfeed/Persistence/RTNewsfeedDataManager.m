@@ -8,20 +8,17 @@
 @implementation RTNewsfeedDataManager
 
 - (void)retrievePage:(NSUInteger)page
-            callback:(void (^)(id listPage))callback {
+            callback:(void (^)(NSArray *items))callback {
     
     // TODO: Ensure listPage is instance of RTNewsfeed
 
     NewsfeedCallback successCallback = ^(RTNewsfeed *newsfeed) {
-        callback(newsfeed);
+        callback(newsfeed.activities);
     };
     
     ServerErrorsCallback failureCallback = ^(RTServerErrors *errors) {
         // TODO: Log errors
-        RTNewsfeed *newsfeed = [[RTNewsfeed alloc] init];
-        newsfeed.activities = [NSArray array];
-
-        callback(newsfeed);
+        callback(@[]);
     };
     
     [self.client newsfeedPage:page

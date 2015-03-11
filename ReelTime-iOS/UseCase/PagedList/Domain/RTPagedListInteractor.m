@@ -24,15 +24,15 @@
     return self;
 }
 
-- (void)listPage:(NSUInteger)page {
+- (void)listItemsForPage:(NSUInteger)page {
     if (page > 0) {
-        [self.dataManager retrievePage:page callback:^(id listPage) {
-            [self.delegate retrievedListPage:listPage];
+        [self.dataManager retrievePage:page callback:^(NSArray *items) {
+            [self.delegate retrievedItems:items];
         }];
     }
     else {
         NSError *error = [RTErrorFactory pagedListErrorWithCode:RTPagedListErrorInvalidPageNumber];
-        [self.delegate failedToRetrieveListPageWithError:error];
+        [self.delegate failedToRetrieveItemsWithError:error];
     }
 }
 

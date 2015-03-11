@@ -49,7 +49,7 @@ static const NSUInteger INITIAL_PAGE_NUMBER = 1;
 }
 
 - (void)requestedNextNewsfeedPage {
-    [self.interactor listPage:self.nextPage++];
+    [self.interactor listItemsForPage:self.nextPage++];
 }
 
 - (void)requestedNewsfeedReset {
@@ -57,9 +57,8 @@ static const NSUInteger INITIAL_PAGE_NUMBER = 1;
     [self.view clearMessages];
 }
 
-- (void)retrievedListPage:(id)listPage {
-    RTNewsfeed *newsfeed = (RTNewsfeed *)listPage;
-    for (RTActivity *activity in newsfeed.activities) {
+- (void)retrievedItems:(NSArray *)items {
+    for (RTActivity *activity in items) {
         if (![self.activities containsObject:activity]) {
             [self showActivity:activity];
             [self.activities addObject:activity];
@@ -72,7 +71,7 @@ static const NSUInteger INITIAL_PAGE_NUMBER = 1;
     [self.view showMessage:message];
 }
 
-- (void)failedToRetrieveListPageWithError:(NSError *)error {
+- (void)failedToRetrieveItemsWithError:(NSError *)error {
     // TODO: Log error or inform user if appropriate
 }
 

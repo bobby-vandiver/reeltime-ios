@@ -22,16 +22,15 @@ describe(@"newsfeed data manager", ^{
         __block const NSUInteger page = 24;
         __block BOOL callbackExecuted;
         
-        __block RTNewsfeed *callbackNewsfeed;
+        __block NSArray *callbackActivities;
         
-        void (^callback)(RTNewsfeed *) = ^(RTNewsfeed *newsfeed) {
-            callbackNewsfeed = newsfeed;
+        void (^callback)(NSArray *) = ^(NSArray *activites) {
+            callbackActivities = activites;
             callbackExecuted = YES;
         };
         
         beforeEach(^{
             callbackExecuted = NO;
-
             [dataManager retrievePage:page callback:callback];
         });
         
@@ -64,8 +63,8 @@ describe(@"newsfeed data manager", ^{
             
             expect(callbackExecuted).to.beTruthy();
             
-            expect(callbackNewsfeed.activities).toNot.beNil();
-            expect(callbackNewsfeed.activities.count).to.equal(0);
+            expect(callbackActivities).toNot.beNil();
+            expect(callbackActivities).to.haveCountOf(0);
         });
     });
 });

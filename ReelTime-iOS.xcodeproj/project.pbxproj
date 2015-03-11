@@ -51,6 +51,7 @@
 		712B2BCA1AAFB17B0026258A /* RTPagedListInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 712B2BC61AAFB17B0026258A /* RTPagedListInteractor.m */; };
 		712B2BCD1AAFB2010026258A /* RTPagedListDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 712B2BCC1AAFB2010026258A /* RTPagedListDataManager.m */; };
 		712B2BD01AAFB8870026258A /* RTPagedListInteractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 712B2BCF1AAFB8870026258A /* RTPagedListInteractorSpec.m */; };
+		712B2BD41AAFBEFD0026258A /* RTPagedListPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 712B2BD31AAFBEFD0026258A /* RTPagedListPresenter.m */; };
 		712BE2FC1A75D74300478277 /* RTClientCredentialsStoreSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 712BE2FB1A75D74300478277 /* RTClientCredentialsStoreSpec.m */; };
 		712BE3021A75D74C00478277 /* EXPMatchers+beError.m in Sources */ = {isa = PBXBuildFile; fileRef = 712BE2FF1A75D74C00478277 /* EXPMatchers+beError.m */; };
 		712BE3031A75D74C00478277 /* RTTestCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 712BE3011A75D74C00478277 /* RTTestCommon.m */; };
@@ -240,6 +241,8 @@
 		712B2BCB1AAFB2010026258A /* RTPagedListDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTPagedListDataManager.h; sourceTree = "<group>"; };
 		712B2BCC1AAFB2010026258A /* RTPagedListDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTPagedListDataManager.m; sourceTree = "<group>"; };
 		712B2BCF1AAFB8870026258A /* RTPagedListInteractorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTPagedListInteractorSpec.m; sourceTree = "<group>"; };
+		712B2BD21AAFBEFD0026258A /* RTPagedListPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTPagedListPresenter.h; sourceTree = "<group>"; };
+		712B2BD31AAFBEFD0026258A /* RTPagedListPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTPagedListPresenter.m; sourceTree = "<group>"; };
 		712BE2FB1A75D74300478277 /* RTClientCredentialsStoreSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTClientCredentialsStoreSpec.m; sourceTree = "<group>"; };
 		712BE2FE1A75D74C00478277 /* EXPMatchers+beError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+beError.h"; sourceTree = "<group>"; };
 		712BE2FF1A75D74C00478277 /* EXPMatchers+beError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EXPMatchers+beError.m"; sourceTree = "<group>"; };
@@ -617,6 +620,7 @@
 			children = (
 				712B2BC31AAFB17B0026258A /* Domain */,
 				712B2BC81AAFB17B0026258A /* Persistence */,
+				712B2BD11AAFBEC20026258A /* Presentation */,
 			);
 			path = PagedList;
 			sourceTree = "<group>";
@@ -647,6 +651,15 @@
 				712B2BCF1AAFB8870026258A /* RTPagedListInteractorSpec.m */,
 			);
 			path = PagedListTests;
+			sourceTree = "<group>";
+		};
+		712B2BD11AAFBEC20026258A /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				712B2BD21AAFBEFD0026258A /* RTPagedListPresenter.h */,
+				712B2BD31AAFBEFD0026258A /* RTPagedListPresenter.m */,
+			);
+			path = Presentation;
 			sourceTree = "<group>";
 		};
 		712BE2FD1A75D74C00478277 /* Common */ = {
@@ -1506,6 +1519,7 @@
 				7134C63D1A958D7D0048CFCF /* RTActivityCell+ConfigureForRTActivityMessage.m in Sources */,
 				713188AF1A914B1E006155E6 /* RTActivityMessage.m in Sources */,
 				717215A31A86590D0002ECC7 /* RTAccountRegistrationInteractor.m in Sources */,
+				712B2BD41AAFBEFD0026258A /* RTPagedListPresenter.m in Sources */,
 				7102A7B51A57AB0A00DEDA83 /* RTKeyChainWrapper.m in Sources */,
 				7157589F1A9A3B93002859DE /* RTEndpointPathFormatter.m in Sources */,
 				713188A21A9125FF006155E6 /* NSURL+RTURL.m in Sources */,
