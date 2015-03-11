@@ -2,18 +2,16 @@
 
 #import "RTPagedListInteractorDelegate.h"
 
+@protocol RTPagedListPresenterDelegate;
 @class RTPagedListInteractor;
 
 @interface RTPagedListPresenter : NSObject <RTPagedListInteractorDelegate>
 
-- (instancetype)initWithInteractor:(RTPagedListInteractor *)interactor;
+- (instancetype)initWithDelegate:(id<RTPagedListPresenterDelegate>)delegate
+                      interactor:(RTPagedListInteractor *)interactor;
 
 - (void)requestedNextPage;
 
 - (void)requestedReset;
-
-- (void)clearPresentedItems;
-
-- (void)presentItem:(id)item;
 
 @end

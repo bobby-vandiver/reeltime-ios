@@ -1,4 +1,5 @@
 #import "RTPagedListPresenter.h"
+#import "RTPagedListPresenterDelegate.h"
 #import <TTTAttributedLabel/TTTAttributedLabel.h>
 
 @protocol RTNewsfeedView;
@@ -6,7 +7,7 @@
 @class RTNewsfeedWireframe;
 @class RTNewsfeedMessageSource;
 
-@interface RTNewsfeedPresenter : RTPagedListPresenter <TTTAttributedLabelDelegate>
+@interface RTNewsfeedPresenter : RTPagedListPresenter <RTPagedListPresenterDelegate, TTTAttributedLabelDelegate>
 
 - (instancetype)initWithView:(id<RTNewsfeedView>)view
                   interactor:(RTPagedListInteractor *)interactor

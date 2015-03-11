@@ -51,123 +51,21 @@ describe(@"newsfeed presenter", ^{
         video = [[RTVideo alloc] initWithVideoId:@(1) title:@"title"];
     });
     
-    describe(@"newsfeed page requested", ^{
-        it(@"should always get the next requested page", ^{
-            [presenter requestedNextPage];
-            [verify(interactor) listItemsForPage:1];
-            
-            [presenter requestedNextPage];
-            [verify(interactor) listItemsForPage:2];
-            
-            [presenter requestedNextPage];
-            [verify(interactor) listItemsForPage:3];
-        });
-    });
-    
     describe(@"newsfeed reset", ^{
-        it(@"should reset page counter so the first page is retrieved next", ^{
-            [presenter requestedNextPage];
-            [verify(interactor) listItemsForPage:1];
-            
-            [presenter requestedNextPage];
-            [verify(interactor) listItemsForPage:2];
-
-            [presenter requestedReset];
-            [verify(interactor) reset];
-            
-            [presenter requestedNextPage];
-            [verify(interactor) listItemsForPage:1];
-        });
-        
         it(@"should notify view that currently displayed messages should be removed", ^{
-            [presenter requestedReset];
+            [presenter clearPresentedItems];
             [verify(view) clearMessages];
         });
     });
     
-    describe(@"show newsfeed page activities", ^{
-        it(@"no activities to show", ^{
-            [presenter retrievedItems:@[]];
-            [verifyCount(view, never()) showMessage:anything()];
-        });
-       
-        it(@"show create reel activity", ^{
-            RTActivity *activity = [RTActivity createReelActivityWithUser:user reel:reel];
+    describe(@"show newsfeed activities", ^{
+        it(@"should show activity message", ^{
+            RTActivity *activity = [[RTActivity alloc] init];
             
             RTActivityMessage *message = [[RTActivityMessage alloc] init];
             [given([messageSource messageForActivity:activity]) willReturn:message];
             
-            [presenter retrievedItems:@[activity]];
-            [verify(view) showMessage:message];
-        });
-        
-        it(@"show join reel activity", ^{
-            RTActivity *activity = [RTActivity joinReelActivityWithUser:user reel:reel];
-
-            RTActivityMessage *message = [[RTActivityMessage alloc] init];
-            [given([messageSource messageForActivity:activity]) willReturn:message];
-
-            [presenter retrievedItems:@[activity]];
-            [verify(view) showMessage:message];
-        });
-        
-        it(@"show add video to reel activity", ^{
-            RTActivity *activity = [RTActivity addVideoToReelActivityWithUser:user reel:reel video:video];
-
-            RTActivityMessage *message = [[RTActivityMessage alloc] init];
-            [given([messageSource messageForActivity:activity]) willReturn:message];
-            
-            [presenter retrievedItems:@[activity]];
-            [verify(view) showMessage:message];
-        });
-        
-        it(@"show multiple activities", ^{
-            RTActivity *createReelActivity = [RTActivity createReelActivityWithUser:user reel:reel];
-            RTActivity *addVideoToReelActivity = [RTActivity addVideoToReelActivityWithUser:user reel:reel video:video];
-            
-            NSArray *activities = @[createReelActivity, addVideoToReelActivity];
-            
-            RTActivityMessage *createReelMessage = [[RTActivityMessage alloc] init];
-            [given([messageSource messageForActivity:createReelActivity]) willReturn:createReelMessage];
-            
-            RTActivityMessage *addVideoToReelMessage = [[RTActivityMessage alloc] init];
-            [given([messageSource messageForActivity:addVideoToReelActivity]) willReturn:addVideoToReelMessage];
-            
-            [presenter retrievedItems:activities];
-            [verify(view) showMessage:createReelMessage];
-            [verify(view) showMessage:addVideoToReelMessage];
-        });
-        
-        it(@"show message for each activity once", ^{
-            RTActivity *activity = [RTActivity createReelActivityWithUser:user reel:reel];
-            NSArray *activities = @[activity];
-            
-            RTActivityMessage *message = [[RTActivityMessage alloc] init];
-            [given([messageSource messageForActivity:activity]) willReturn:message];
-            
-            [presenter retrievedItems:activities];
-            [verify(view) showMessage:message];
-            
-            [verify(view) reset];
-            
-            [presenter retrievedItems:activities];
-            [verifyCount(view, never()) showMessage:message];
-        });
-        
-        it(@"show message for activity after newsfeed reset", ^{
-            RTActivity *activity = [RTActivity createReelActivityWithUser:user reel:reel];
-            NSArray *activities = @[activity];
-            
-            RTActivityMessage *message = [[RTActivityMessage alloc] init];
-            [given([messageSource messageForActivity:activity]) willReturn:message];
-            
-            [presenter retrievedItems:activities];
-            [verify(view) showMessage:message];
-            
-            [verify(view) reset];
-            [presenter requestedReset];
-            
-            [presenter retrievedItems:activities];
+            [presenter presentItem:activity];
             [verify(view) showMessage:message];
         });
     });

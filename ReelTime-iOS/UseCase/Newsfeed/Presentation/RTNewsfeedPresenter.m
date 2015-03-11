@@ -23,7 +23,7 @@
                   interactor:(RTPagedListInteractor *)interactor
                    wireframe:(RTNewsfeedWireframe *)wireframe
                messageSource:(RTNewsfeedMessageSource *)messageSource {
-    self = [super initWithInteractor:interactor];
+    self = [super initWithDelegate:self interactor:interactor];
     if (self) {
         self.view = view;
         self.wireframe = wireframe;
