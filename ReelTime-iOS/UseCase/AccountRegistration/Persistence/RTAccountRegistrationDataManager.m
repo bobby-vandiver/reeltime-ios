@@ -34,6 +34,7 @@
              
              @"[email] is required": @(RTAccountRegistrationErrorMissingEmail),
              @"[email] is not a valid e-mail address": @(RTAccountRegistrationErrorInvalidEmail),
+             @"[email] is not available": @(RTAccountRegistrationErrorEmailIsUnavailable),
              
              @"[display_name] is required": @(RTAccountRegistrationErrorMissingDisplayName),
              @"[display_name] must be 2-20 alphanumeric or space characters long": @(RTAccountRegistrationErrorInvalidDisplayName),

@@ -45,6 +45,7 @@
              
              @(RTAccountRegistrationErrorMissingEmail): @"Email is required",
              @(RTAccountRegistrationErrorInvalidEmail): @"Email is not a valid email address",
+             @(RTAccountRegistrationErrorEmailIsUnavailable): @"Email is unavailable",
              
              @(RTAccountRegistrationErrorMissingDisplayName): @"Display name is required",
              @(RTAccountRegistrationErrorInvalidDisplayName): @"Display name must be 2-20 alphanumeric or space characters",
@@ -127,6 +128,7 @@
             
         case RTAccountRegistrationErrorMissingEmail:
         case RTAccountRegistrationErrorInvalidEmail:
+        case RTAccountRegistrationErrorEmailIsUnavailable:
             [self.view showValidationErrorMessage:message forField:RTAccountRegistrationViewFieldEmail];
             break;
             

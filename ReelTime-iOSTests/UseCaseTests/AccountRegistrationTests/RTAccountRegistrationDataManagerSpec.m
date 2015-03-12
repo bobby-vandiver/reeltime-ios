@@ -169,6 +169,11 @@ describe(@"account registration data manager", ^{
                                            RTAccountRegistrationErrorUsernameIsUnavailable, 1);
             });
             
+            it(@"should map email is unavailable", ^{
+                expectServerMessageMapping("[email] is not available",
+                                           RTAccountRegistrationErrorEmailIsUnavailable, 1);
+            });
+            
             it(@"should map registration unavailable", ^{
                 expectServerMessageMapping("Unable to register. Please try again.",
                                            RTAccountRegistrationErrorRegistrationServiceUnavailable, 1);

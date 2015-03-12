@@ -156,6 +156,12 @@ describe(@"account registration presenter", ^{
                                                 RTAccountRegistrationViewFieldEmail);
         });
         
+        it(@"email is not available", ^{
+            verifyValidationErrorMessageIsShown(@"Email is unavailable",
+                                                RTAccountRegistrationErrorEmailIsUnavailable,
+                                                RTAccountRegistrationViewFieldEmail);
+        });
+        
         it(@"missing display name", ^{
             verifyValidationErrorMessageIsShown(@"Display name is required",
                                                 RTAccountRegistrationErrorMissingDisplayName,
