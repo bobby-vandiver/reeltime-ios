@@ -1,15 +1,13 @@
 #import <Foundation/Foundation.h>
 
+#import "RTUserWireframe.h"
+#import "RTReelWireframe.h"
+#import "RTVideoWireframe.h"
+
 @class RTNewsfeedViewController;
 
-@interface RTNewsfeedWireframe : NSObject
+@interface RTNewsfeedWireframe : NSObject <RTUserWireframe, RTReelWireframe, RTVideoWireframe>
 
 - (instancetype)initWithViewController:(RTNewsfeedViewController *)viewController;
-
-- (void)presentUserForUsername:(NSString *)username;
-
-- (void)presentReelForReelId:(NSNumber *)reelId;
-
-- (void)presentVideoForVideoId:(NSNumber *)videoId;
 
 @end

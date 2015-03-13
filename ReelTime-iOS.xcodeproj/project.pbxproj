@@ -418,6 +418,9 @@
 		71A8BA2F1AB1036A00B0708B /* RTPagedListDataManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTPagedListDataManagerSpec.m; sourceTree = "<group>"; };
 		71A8BA311AB1047100B0708B /* RTException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTException.h; sourceTree = "<group>"; };
 		71A8BA321AB104AC00B0708B /* RTException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTException.m; sourceTree = "<group>"; };
+		71B004911AB36C3F00ABE1C3 /* RTUserWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTUserWireframe.h; sourceTree = "<group>"; };
+		71B004921AB36C5C00ABE1C3 /* RTReelWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTReelWireframe.h; sourceTree = "<group>"; };
+		71B004931AB36C7300ABE1C3 /* RTVideoWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTVideoWireframe.h; sourceTree = "<group>"; };
 		71B50BCE1A756C6700D7D397 /* RTAccountRegistrationPresenterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAccountRegistrationPresenterSpec.m; sourceTree = "<group>"; };
 		71C5C09C1A55B29700CAAFAC /* RTLoginPresenterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLoginPresenterSpec.m; sourceTree = "<group>"; };
 		71C5C0A41A55EAE700CAAFAC /* RTOAuth2Token.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTOAuth2Token.h; path = "ReelTime-iOS/Common/Model/RTOAuth2Token.h"; sourceTree = SOURCE_ROOT; };
@@ -1120,6 +1123,16 @@
 			path = Error;
 			sourceTree = "<group>";
 		};
+		71B004901AB36C2400ABE1C3 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				71B004921AB36C5C00ABE1C3 /* RTReelWireframe.h */,
+				71B004911AB36C3F00ABE1C3 /* RTUserWireframe.h */,
+				71B004931AB36C7300ABE1C3 /* RTVideoWireframe.h */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
 		71D9477E1A4FB37E00401963 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -1128,6 +1141,7 @@
 				713D7A491A50A24E00754A06 /* Client */,
 				719B35E11A51150000FFD543 /* Error */,
 				71D9477F1A4FB39C00401963 /* Model */,
+				71B004901AB36C2400ABE1C3 /* Navigation */,
 				711C5DDB1A8D5B4F007652FC /* Routing */,
 				7102A7B21A57AAEF00DEDA83 /* Security */,
 				71D947831A4FB7BC00401963 /* Store */,
