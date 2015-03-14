@@ -799,11 +799,11 @@
 		71403D241AB3CE27007CB8B9 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				71403D291AB3D078007CB8B9 /* RTBrowseUsersPresenter.h */,
+				71403D2A1AB3D078007CB8B9 /* RTBrowseUsersPresenter.m */,
 				71403D281AB3D018007CB8B9 /* RTBrowseUsersView.h */,
 				71403D251AB3CE68007CB8B9 /* RTUserMessage.h */,
 				71403D261AB3CE68007CB8B9 /* RTUserMessage.m */,
-				71403D291AB3D078007CB8B9 /* RTBrowseUsersPresenter.h */,
-				71403D2A1AB3D078007CB8B9 /* RTBrowseUsersPresenter.m */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
