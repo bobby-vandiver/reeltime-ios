@@ -90,6 +90,7 @@
 		713DCAAB1A6C9D1C0032B252 /* RTAccountRegistrationInteractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 713DCAAA1A6C9D1C0032B252 /* RTAccountRegistrationInteractorSpec.m */; };
 		71403D201AB3C6F1007CB8B9 /* RTBrowseUsersDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 71403D1F1AB3C6F1007CB8B9 /* RTBrowseUsersDataManager.m */; };
 		71403D231AB3C7BC007CB8B9 /* RTBrowseUsersDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71403D221AB3C7BC007CB8B9 /* RTBrowseUsersDataManagerSpec.m */; };
+		71403D271AB3CE68007CB8B9 /* RTUserMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 71403D261AB3CE68007CB8B9 /* RTUserMessage.m */; };
 		714205CB1A90F55200F65D4F /* RTURLFactorySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 714205CA1A90F55200F65D4F /* RTURLFactorySpec.m */; };
 		71427E1F1A8C100200E2C53F /* RTActivitySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71427E1E1A8C100200E2C53F /* RTActivitySpec.m */; };
 		7145C6211A8AE645006A77DE /* RTUserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7145C6201A8AE645006A77DE /* RTUserSpec.m */; };
@@ -307,6 +308,8 @@
 		71403D1E1AB3C6F1007CB8B9 /* RTBrowseUsersDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseUsersDataManager.h; sourceTree = "<group>"; };
 		71403D1F1AB3C6F1007CB8B9 /* RTBrowseUsersDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseUsersDataManager.m; sourceTree = "<group>"; };
 		71403D221AB3C7BC007CB8B9 /* RTBrowseUsersDataManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseUsersDataManagerSpec.m; sourceTree = "<group>"; };
+		71403D251AB3CE68007CB8B9 /* RTUserMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTUserMessage.h; sourceTree = "<group>"; };
+		71403D261AB3CE68007CB8B9 /* RTUserMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTUserMessage.m; sourceTree = "<group>"; };
 		714205CA1A90F55200F65D4F /* RTURLFactorySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTURLFactorySpec.m; sourceTree = "<group>"; };
 		71427E1E1A8C100200E2C53F /* RTActivitySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTActivitySpec.m; sourceTree = "<group>"; };
 		7145C6201A8AE645006A77DE /* RTUserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTUserSpec.m; sourceTree = "<group>"; };
@@ -764,6 +767,7 @@
 			isa = PBXGroup;
 			children = (
 				71403D1D1AB3C6A0007CB8B9 /* Persistence */,
+				71403D241AB3CE27007CB8B9 /* Presentation */,
 			);
 			path = BrowseUsers;
 			sourceTree = "<group>";
@@ -783,6 +787,15 @@
 				71403D221AB3C7BC007CB8B9 /* RTBrowseUsersDataManagerSpec.m */,
 			);
 			path = BrowseUsersTests;
+			sourceTree = "<group>";
+		};
+		71403D241AB3CE27007CB8B9 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				71403D251AB3CE68007CB8B9 /* RTUserMessage.h */,
+				71403D261AB3CE68007CB8B9 /* RTUserMessage.m */,
+			);
+			path = Presentation;
 			sourceTree = "<group>";
 		};
 		7145DF5B1AABFBD7006BC157 /* Files */ = {
@@ -1532,6 +1545,7 @@
 				71C7D4151A7406A6006B84AC /* RTServerErrorsConverter.m in Sources */,
 				713188AC1A91454F006155E6 /* RTNewsfeedViewController.m in Sources */,
 				7172158A1A86576E0002ECC7 /* RTLoginDataManager.m in Sources */,
+				71403D271AB3CE68007CB8B9 /* RTUserMessage.m in Sources */,
 				7172159C1A8659050002ECC7 /* RTAccountRegistrationAutoLoginAssembly.m in Sources */,
 				717D926D1A5B722300EAB6BF /* NSError+RTError.m in Sources */,
 				717215A41A86590D0002ECC7 /* RTAccountRegistrationValidator.m in Sources */,
