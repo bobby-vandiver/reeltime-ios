@@ -1,9 +1,8 @@
 #import "RTNewsfeedDataManager.h"
-
 #import "RTClient.h"
-
 #import "RTNewsfeed.h"
 #import "RTServerErrors.h"
+#import "RTLogging.h"
 
 @implementation RTNewsfeedDataManager
 
@@ -15,7 +14,7 @@
     };
     
     ServerErrorsCallback failureCallback = ^(RTServerErrors *errors) {
-        // TODO: Log errors
+        DDLogWarn(@"Failed to retrieve newsfeed activities: %@", errors);
         callback(@[]);
     };
     

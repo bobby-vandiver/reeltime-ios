@@ -1,6 +1,7 @@
 #import "RTBrowseUsersDataManager.h"
 #import "RTClient.h"
 #import "RTUserList.h"
+#import "RTLogging.h"
 
 @implementation RTBrowseUsersDataManager
 
@@ -12,7 +13,7 @@
     };
     
     ServerErrorsCallback failureCallback = ^(RTServerErrors *serverErrors) {
-        // TODO: Log errors
+        DDLogWarn(@"Failed to retrieve user list: %@", serverErrors);
         callback(@[]);
     };
     
