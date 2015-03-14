@@ -27,7 +27,7 @@
 }
 
 - (void)clearPresentedItems {
-    [self.view clearMessages];
+    [self.view clearUserMessages];
 }
 
 // TODO: Determine what the text should say

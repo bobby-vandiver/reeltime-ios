@@ -32,7 +32,7 @@ describe(@"browse users presenter", ^{
     describe(@"list reset", ^{
         it(@"should notify view that currently displayed messages should be removed", ^{
             [presenter clearPresentedItems];
-            [verify(view) clearMessages];
+            [verify(view) clearUserMessages];
         });
     });
     

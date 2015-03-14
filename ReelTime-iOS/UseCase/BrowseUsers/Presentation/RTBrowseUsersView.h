@@ -6,6 +6,6 @@
 
 - (void)showUserMessage:(RTUserMessage *)message;
 
-- (void)clearMessages;
+- (void)clearUserMessages;
 
 @end
