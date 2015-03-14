@@ -21,6 +21,7 @@
 		7112EF571AA9395300BC7731 /* video-list-no-videos.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7112EF531AA9395300BC7731 /* video-list-no-videos.txt */; };
 		7112EF581AA9395300BC7731 /* video-list-one-video.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7112EF541AA9395300BC7731 /* video-list-one-video.txt */; };
 		7112EF5A1AA943A900BC7731 /* forbidden-with-errors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7112EF591AA943A900BC7731 /* forbidden-with-errors.txt */; };
+		7114DF761AB4B401003B1D2E /* RTServerErrorsSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7114DF751AB4B401003B1D2E /* RTServerErrorsSpec.m */; };
 		7116908F1A6AB3970031578E /* RTSecurityAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 7116908E1A6AB3970031578E /* RTSecurityAssembly.m */; };
 		711690921A6AB5510031578E /* RTSecureStoreAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 711690911A6AB5510031578E /* RTSecureStoreAssembly.m */; };
 		7116909C1A6AEBDA0031578E /* RTStoryboardViewControllerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7116909B1A6AEBDA0031578E /* RTStoryboardViewControllerFactory.m */; };
@@ -201,6 +202,7 @@
 		7112EF541AA9395300BC7731 /* video-list-one-video.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "video-list-one-video.txt"; sourceTree = "<group>"; };
 		7112EF591AA943A900BC7731 /* forbidden-with-errors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "forbidden-with-errors.txt"; sourceTree = "<group>"; };
 		7114DF711AB4AF3A003B1D2E /* RTLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLogging.h; sourceTree = "<group>"; };
+		7114DF751AB4B401003B1D2E /* RTServerErrorsSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTServerErrorsSpec.m; sourceTree = "<group>"; };
 		7116908D1A6AB3970031578E /* RTSecurityAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTSecurityAssembly.h; sourceTree = "<group>"; };
 		7116908E1A6AB3970031578E /* RTSecurityAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTSecurityAssembly.m; sourceTree = "<group>"; };
 		711690901A6AB5510031578E /* RTSecureStoreAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTSecureStoreAssembly.h; sourceTree = "<group>"; };
@@ -584,6 +586,7 @@
 				7145C6201A8AE645006A77DE /* RTUserSpec.m */,
 				7145C6221A8AF07F006A77DE /* RTReelSpec.m */,
 				71427E1E1A8C100200E2C53F /* RTActivitySpec.m */,
+				7114DF751AB4B401003B1D2E /* RTServerErrorsSpec.m */,
 			);
 			path = ModelTests;
 			sourceTree = "<group>";
@@ -1641,6 +1644,7 @@
 				71201F831A9689C6003F2831 /* RTActivityCell+ConfigureForRTActivityMessageSpec.m in Sources */,
 				714205CB1A90F55200F65D4F /* RTURLFactorySpec.m in Sources */,
 				71C5C09D1A55B29700CAAFAC /* RTLoginPresenterSpec.m in Sources */,
+				7114DF761AB4B401003B1D2E /* RTServerErrorsSpec.m in Sources */,
 				717A4B7E1A53503B004C2BC1 /* RTRestAPIMappingFactorySpec.m in Sources */,
 				7134C6311A9537720048CFCF /* RTAccountRegistrationViewControllerSpec.m in Sources */,
 				7169F1761A5F6CDD00E161C4 /* RTLoginDataManagerSpec.m in Sources */,
