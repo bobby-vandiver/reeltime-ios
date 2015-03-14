@@ -89,6 +89,9 @@
 		7136A53F1AA3652C0059DF43 /* RTUserList.m in Sources */ = {isa = PBXBuildFile; fileRef = 7136A53E1AA3652B0059DF43 /* RTUserList.m */; };
 		713A238F1AB4EB520098CE48 /* RTBrowseVideosDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 713A238E1AB4EB520098CE48 /* RTBrowseVideosDataManager.m */; };
 		713A23921AB4EB950098CE48 /* RTBrowseVideosDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 713A23911AB4EB950098CE48 /* RTBrowseVideosDataManagerSpec.m */; };
+		713A23961AB4F4FD0098CE48 /* RTVideoMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 713A23951AB4F4FD0098CE48 /* RTVideoMessage.m */; };
+		713A239A1AB4F5F80098CE48 /* RTBrowseVideosPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 713A23991AB4F5F80098CE48 /* RTBrowseVideosPresenter.m */; };
+		713A239C1AB4F6BF0098CE48 /* RTBrowseVideosPresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 713A239B1AB4F6BF0098CE48 /* RTBrowseVideosPresenterSpec.m */; };
 		713BCE041A5908E4000F2D96 /* RTOAuth2TokenStoreSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 713BCE031A5908E4000F2D96 /* RTOAuth2TokenStoreSpec.m */; };
 		713BCE071A5909DA000F2D96 /* RTFakeKeyChainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 713BCE061A5909DA000F2D96 /* RTFakeKeyChainWrapper.m */; };
 		713D7A451A509AC000754A06 /* RTClientCredentialsStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 713D7A441A509AC000754A06 /* RTClientCredentialsStore.m */; };
@@ -317,6 +320,12 @@
 		713A238D1AB4EB520098CE48 /* RTBrowseVideosDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseVideosDataManager.h; sourceTree = "<group>"; };
 		713A238E1AB4EB520098CE48 /* RTBrowseVideosDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseVideosDataManager.m; sourceTree = "<group>"; };
 		713A23911AB4EB950098CE48 /* RTBrowseVideosDataManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseVideosDataManagerSpec.m; sourceTree = "<group>"; };
+		713A23941AB4F4FD0098CE48 /* RTVideoMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTVideoMessage.h; sourceTree = "<group>"; };
+		713A23951AB4F4FD0098CE48 /* RTVideoMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTVideoMessage.m; sourceTree = "<group>"; };
+		713A23971AB4F5A20098CE48 /* RTBrowseVideosView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseVideosView.h; sourceTree = "<group>"; };
+		713A23981AB4F5F80098CE48 /* RTBrowseVideosPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseVideosPresenter.h; sourceTree = "<group>"; };
+		713A23991AB4F5F80098CE48 /* RTBrowseVideosPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseVideosPresenter.m; sourceTree = "<group>"; };
+		713A239B1AB4F6BF0098CE48 /* RTBrowseVideosPresenterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseVideosPresenterSpec.m; sourceTree = "<group>"; };
 		713BCE031A5908E4000F2D96 /* RTOAuth2TokenStoreSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTOAuth2TokenStoreSpec.m; sourceTree = "<group>"; };
 		713BCE051A5909DA000F2D96 /* RTFakeKeyChainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTFakeKeyChainWrapper.h; sourceTree = "<group>"; };
 		713BCE061A5909DA000F2D96 /* RTFakeKeyChainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTFakeKeyChainWrapper.m; sourceTree = "<group>"; };
@@ -821,6 +830,7 @@
 			isa = PBXGroup;
 			children = (
 				713A238C1AB4EB3F0098CE48 /* Persistence */,
+				713A23931AB4F4D90098CE48 /* Presentation */,
 			);
 			path = BrowseVideos;
 			sourceTree = "<group>";
@@ -838,8 +848,21 @@
 			isa = PBXGroup;
 			children = (
 				713A23911AB4EB950098CE48 /* RTBrowseVideosDataManagerSpec.m */,
+				713A239B1AB4F6BF0098CE48 /* RTBrowseVideosPresenterSpec.m */,
 			);
 			path = BrowseVideosTests;
+			sourceTree = "<group>";
+		};
+		713A23931AB4F4D90098CE48 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				713A23981AB4F5F80098CE48 /* RTBrowseVideosPresenter.h */,
+				713A23991AB4F5F80098CE48 /* RTBrowseVideosPresenter.m */,
+				713A23971AB4F5A20098CE48 /* RTBrowseVideosView.h */,
+				713A23941AB4F4FD0098CE48 /* RTVideoMessage.h */,
+				713A23951AB4F4FD0098CE48 /* RTVideoMessage.m */,
+			);
+			path = Presentation;
 			sourceTree = "<group>";
 		};
 		713D7A491A50A24E00754A06 /* Client */ = {
@@ -1642,6 +1665,7 @@
 				7172159B1A8659050002ECC7 /* RTAccountRegistrationAssembly.m in Sources */,
 				7136A53F1AA3652C0059DF43 /* RTUserList.m in Sources */,
 				71C5C0B21A55EB3900CAAFAC /* RTOAuth2TokenStore.m in Sources */,
+				713A23961AB4F4FD0098CE48 /* RTVideoMessage.m in Sources */,
 				71565A261A98ED5900AE1C43 /* RTApplicationWireframe.m in Sources */,
 				715370FA1A88680700D3355B /* RTArrayDataSource.m in Sources */,
 				718CFFCA1A6C007C00B418F9 /* RTAccountRegistration.m in Sources */,
@@ -1720,6 +1744,7 @@
 				71647BDB1A7E802200F44996 /* RTReel.m in Sources */,
 				718A0BE21A4DA87900137C49 /* main.m in Sources */,
 				71331A2D1A880A6F00912B5F /* RTNewsfeedPresenter.m in Sources */,
+				713A239A1AB4F5F80098CE48 /* RTBrowseVideosPresenter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1756,6 +1781,7 @@
 				71427E1F1A8C100200E2C53F /* RTActivitySpec.m in Sources */,
 				712B2BD01AAFB8870026258A /* RTPagedListInteractorSpec.m in Sources */,
 				71565A291A98EDE900AE1C43 /* RTApplicationWireframeSpec.m in Sources */,
+				713A239C1AB4F6BF0098CE48 /* RTBrowseVideosPresenterSpec.m in Sources */,
 				7114DF7F1AB4BB1E003B1D2E /* RTBrowseReelsDataManagerSpec.m in Sources */,
 				71B50BCF1A756C6700D7D397 /* RTAccountRegistrationPresenterSpec.m in Sources */,
 				71331A321A880D7300912B5F /* RTNewsfeedPresenterSpec.m in Sources */,
