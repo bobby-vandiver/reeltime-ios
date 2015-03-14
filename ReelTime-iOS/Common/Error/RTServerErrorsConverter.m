@@ -1,9 +1,6 @@
 #import "RTServerErrorsConverter.h"
 #import "RTServerErrors.h"
-
-#import <CocoaLumberjack/CocoaLumberjack.h>
-
-static const DDLogLevel ddLogLevel = DDLogLevelVerbose;
+#import "RTLogging.h"
 
 @implementation RTServerErrorsConverter
 
