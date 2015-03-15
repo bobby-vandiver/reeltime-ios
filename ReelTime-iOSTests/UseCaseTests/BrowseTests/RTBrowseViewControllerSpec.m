@@ -54,26 +54,12 @@ describe(@"browse view controller", ^{
         viewController.tableView = tableView;
     });
     
-    describe(@"when created from storyboard", ^{
-        it(@"should have an empty data source", ^{
-            expect(viewController.tableViewDataSource).toNot.beNil();
-            expect(viewController.tableViewDataSource.items).toNot.beNil();
-            expect(viewController.tableViewDataSource.items).to.haveCountOf(0);
-        });
-        
-        it(@"should use the users data source", ^{
-            expect(viewController.tableViewDataSource).to.beIdenticalTo(viewController.usersDataSource);
-        });
-    });
-    
     describe(@"selecting a different list", ^{
         it(@"should select users data source", ^{
             [given([segmentedControl selectedSegmentIndex]) willReturnInteger:0];
             
             [viewController segmentedControlChanged];
             [verify(tableView) setDataSource:viewController.usersDataSource];
-            
-            expect(viewController.tableViewDataSource).to.beIdenticalTo(viewController.usersDataSource);
         });
         
         it(@"should select reels data source", ^{
@@ -81,8 +67,6 @@ describe(@"browse view controller", ^{
             
             [viewController segmentedControlChanged];
             [verify(tableView) setDataSource:viewController.reelsDataSource];
-            
-            expect(viewController.tableViewDataSource).to.beIdenticalTo(viewController.reelsDataSource);
         });
         
         it(@"should select videos data source", ^{
@@ -90,8 +74,6 @@ describe(@"browse view controller", ^{
             
             [viewController segmentedControlChanged];
             [verify(tableView) setDataSource:viewController.videosDataSource];
-            
-            expect(viewController.tableViewDataSource).to.beIdenticalTo(viewController.videosDataSource);
         });
     });
     

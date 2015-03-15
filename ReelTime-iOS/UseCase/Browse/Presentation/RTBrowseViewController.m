@@ -45,8 +45,6 @@ typedef enum {
         controller.reelsPresenter = reelsPresenter;
         controller.videosPresenter = videosPresenter;
         
-        controller.currentDataSourceType = UsersDataSource;
-        
         controller.usersDataSource = [RTBrowseViewDataSourceFactory usersDataSource];
         controller.reelsDataSource = [RTBrowseViewDataSourceFactory reelsDataSource];
         controller.videosDataSource = [RTBrowseViewDataSourceFactory videosDataSource];
@@ -55,72 +53,39 @@ typedef enum {
 }
 
 - (IBAction)segmentedControlChanged {
-    id<UITableViewDataSource> dataSource;
-    DataSourceType dataSourceType;
+    NSInteger selectedIndex = self.segmentedControl.selectedSegmentIndex;
     
-    switch (self.segmentedControl.selectedSegmentIndex) {
-        case UsersDataSource:
-            dataSource = self.usersDataSource;
-            dataSourceType = UsersDataSource;
-            break;
-            
-        case ReelsDataSource:
-            dataSource = self.reelsDataSource;
-            dataSourceType = ReelsDataSource;
-            break;
-            
-        case VideosDataSource:
-            dataSource = self.videosDataSource;
-            dataSourceType = VideosDataSource;
-            break;
-            
-        default:
-            DDLogError(@"Received unknown segment index: %ld", (long)self.segmentedControl.selectedSegmentIndex);
-            break;
+    if (selectedIndex == UsersDataSource) {
+        [self useUsersDataSource];
     }
-    
-    self.tableView.dataSource = dataSource;
-    self.currentDataSourceType = dataSourceType;
+    else if (selectedIndex == ReelsDataSource) {
+        [self useReelsDataSource];
+    }
+    else if (selectedIndex == VideosDataSource) {
+        [self useVideosDataSource];
+    }
+    else {
+        DDLogError(@"Received unknown segment index: %ld", (long)selectedIndex);
+    }
 }
 
 + (NSString *)storyboardIdentifier {
     return @"Browse View Controller";
 }
 
-- (RTArrayDataSource *)tableViewDataSource {
-    RTArrayDataSource *dataSource;
-    
-    switch (self.currentDataSourceType) {
-        case UsersDataSource:
-            dataSource = self.usersDataSource;
-            break;
-            
-        case ReelsDataSource:
-            dataSource = self.reelsDataSource;
-            break;
-            
-        case VideosDataSource:
-            dataSource = self.videosDataSource;
-            break;
-            
-        default:
-            DDLogError(@"Unknown data source type: %u", self.currentDataSourceType);
-            break;
-    }
-    
-    return dataSource;
-}
-
 - (void)useUsersDataSource {
     self.currentDataSourceType = UsersDataSource;
+    self.tableView.dataSource = self.usersDataSource;
 }
 
 - (void)useReelsDataSource {
     self.currentDataSourceType = ReelsDataSource;
+    self.tableView.dataSource = self.reelsDataSource;
 }
 
 - (void)useVideosDataSource {
     self.currentDataSourceType = VideosDataSource;
+    self.tableView.dataSource = self.videosDataSource;
 }
 
 - (void)reloadTableViewIfDataSourceType:(DataSourceType)dataSourceType {
