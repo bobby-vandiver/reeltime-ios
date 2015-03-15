@@ -52,6 +52,19 @@ typedef enum {
     return controller;
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self useUsersDataSource];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self.usersPresenter requestedNextPage];
+    [self.reelsPresenter requestedNextPage];
+    [self.videosPresenter requestedNextPage];
+}
+
 - (IBAction)segmentedControlChanged {
     NSInteger selectedIndex = self.segmentedControl.selectedSegmentIndex;
     

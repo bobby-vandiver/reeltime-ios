@@ -54,6 +54,23 @@ describe(@"browse view controller", ^{
         viewController.tableView = tableView;
     });
     
+    describe(@"when view did load", ^{
+        it(@"should use users data source", ^{
+            [viewController viewDidLoad];
+            [verify(tableView) setDataSource:viewController.usersDataSource];
+        });
+    });
+    
+    describe(@"when view will appear", ^{
+        it(@"should load the first page for each data source", ^{
+            [viewController viewWillAppear:anything()];
+
+            [verify(usersPresenter) requestedNextPage];
+            [verify(reelsPresenter) requestedNextPage];
+            [verify(videosPresenter) requestedNextPage];
+        });
+    });
+    
     describe(@"selecting a different list", ^{
         it(@"should select users data source", ^{
             [given([segmentedControl selectedSegmentIndex]) willReturnInteger:0];
