@@ -52,6 +52,10 @@ typedef enum {
     return controller;
 }
 
++ (NSString *)storyboardIdentifier {
+    return @"Browse View Controller";
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self useUsersDataSource];
@@ -82,59 +86,67 @@ typedef enum {
     }
 }
 
-+ (NSString *)storyboardIdentifier {
-    return @"Browse View Controller";
-}
-
 - (void)useUsersDataSource {
-    self.currentDataSourceType = UsersDataSource;
-    self.tableView.dataSource = self.usersDataSource;
+    [self useDataSource:self.usersDataSource ofType:UsersDataSource];
 }
 
 - (void)useReelsDataSource {
-    self.currentDataSourceType = ReelsDataSource;
-    self.tableView.dataSource = self.reelsDataSource;
+    [self useDataSource:self.reelsDataSource ofType:ReelsDataSource];
 }
 
 - (void)useVideosDataSource {
-    self.currentDataSourceType = VideosDataSource;
-    self.tableView.dataSource = self.videosDataSource;
+    [self useDataSource:self.videosDataSource ofType:VideosDataSource];
+}
+
+- (void)showUserMessage:(RTUserMessage *)message {
+    [self addItem:message toDataSource:self.usersDataSource ofType:UsersDataSource];
+}
+
+- (void)clearUserMessages {
+    [self removeAllItemsFromDataSource:self.usersDataSource ofType:UsersDataSource];
+}
+
+- (void)showReelMessage:(RTReelMessage *)message {
+    [self addItem:message toDataSource:self.reelsDataSource ofType:ReelsDataSource];
+}
+
+- (void)clearReelMessages {
+    [self removeAllItemsFromDataSource:self.reelsDataSource ofType:ReelsDataSource];
+}
+
+- (void)showVideoMessage:(RTVideoMessage *)message {
+    [self addItem:message toDataSource:self.videosDataSource ofType:VideosDataSource];
+}
+
+- (void)clearVideoMessages {
+    [self removeAllItemsFromDataSource:self.videosDataSource ofType:VideosDataSource];
+}
+
+- (void)useDataSource:(RTMutableArrayDataSource *)dataSource
+               ofType:(DataSourceType)type {
+    self.currentDataSourceType = type;
+    
+    [self.tableView setDataSource:dataSource];
+    [self.tableView reloadData];
+}
+
+- (void)addItem:(id)item
+   toDataSource:(RTMutableArrayDataSource *)dataSource
+         ofType:(DataSourceType)type {
+    [dataSource addItem:item];
+    [self reloadTableViewIfDataSourceType:type];
+}
+
+- (void)removeAllItemsFromDataSource:(RTMutableArrayDataSource *)dataSource
+                              ofType:(DataSourceType)type {
+    [dataSource removeAllItems];
+    [self reloadTableViewIfDataSourceType:type];
 }
 
 - (void)reloadTableViewIfDataSourceType:(DataSourceType)dataSourceType {
     if (self.currentDataSourceType == dataSourceType) {
         [self.tableView reloadData];
     }
-}
-
-- (void)showUserMessage:(RTUserMessage *)message {
-    [self.usersDataSource addItem:message];
-    [self reloadTableViewIfDataSourceType:UsersDataSource];
-}
-
-- (void)clearUserMessages {
-    [self.usersDataSource removeAllItems];
-    [self reloadTableViewIfDataSourceType:UsersDataSource];
-}
-
-- (void)showReelMessage:(RTReelMessage *)message {
-    [self.reelsDataSource addItem:message];
-    [self reloadTableViewIfDataSourceType:ReelsDataSource];
-}
-
-- (void)clearReelMessages {
-    [self.reelsDataSource removeAllItems];
-    [self reloadTableViewIfDataSourceType:ReelsDataSource];
-}
-
-- (void)showVideoMessage:(RTVideoMessage *)message {
-    [self.videosDataSource addItem:message];
-    [self reloadTableViewIfDataSourceType:VideosDataSource];
-}
-
-- (void)clearVideoMessages {
-    [self.videosDataSource removeAllItems];
-    [self reloadTableViewIfDataSourceType:VideosDataSource];
 }
 
 @end

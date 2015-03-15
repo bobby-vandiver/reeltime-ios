@@ -72,6 +72,10 @@ describe(@"browse view controller", ^{
     });
     
     describe(@"selecting a different list", ^{
+        afterEach(^{
+            [verify(tableView) reloadData];
+        });
+        
         it(@"should select users data source", ^{
             [given([segmentedControl selectedSegmentIndex]) willReturnInteger:0];
             
@@ -112,12 +116,16 @@ describe(@"browse view controller", ^{
             
             it(@"should not reload the table data when users data source isn't active", ^{
                 [viewController useReelsDataSource];
+                [verify(tableView) reset];
+                
                 [viewController showUserMessage:userMessage];
                 [verifyCount(tableView, never()) reloadData];
             });
             
             it(@"should reload the table data when users data source is active", ^{
                 [viewController useUsersDataSource];
+                [verify(tableView) reset];
+
                 [viewController showUserMessage:userMessage];
                 [verify(tableView) reloadData];
             });
@@ -171,12 +179,16 @@ describe(@"browse view controller", ^{
             
             it(@"should not reload the table data when reels data source isn't active", ^{
                 [viewController useUsersDataSource];
+                [verify(tableView) reset];
+
                 [viewController showReelMessage:reelMessage];
                 [verifyCount(tableView, never()) reloadData];
             });
             
             it(@"should reload the table data when reels data source is active", ^{
                 [viewController useReelsDataSource];
+                [verify(tableView) reset];
+
                 [viewController showReelMessage:reelMessage];
                 [verify(tableView) reloadData];
             });
@@ -230,12 +242,16 @@ describe(@"browse view controller", ^{
             
             it(@"should not reload the table data when videos data source isn't active", ^{
                 [viewController useUsersDataSource];
+                [verify(tableView) reset];
+
                 [viewController showVideoMessage:videoMessage];
                 [verifyCount(tableView, never()) reloadData];
             });
             
             it(@"should reload the table data when videos data source is active", ^{
                 [viewController useVideosDataSource];
+                [verify(tableView) reset];
+
                 [viewController showVideoMessage:videoMessage];
                 [verify(tableView) reloadData];
             });
