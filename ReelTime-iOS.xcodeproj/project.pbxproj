@@ -94,6 +94,8 @@
 		713A239C1AB4F6BF0098CE48 /* RTBrowseVideosPresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 713A239B1AB4F6BF0098CE48 /* RTBrowseVideosPresenterSpec.m */; };
 		713A239F1AB4FF4C0098CE48 /* RTMutableArrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 713A239E1AB4FF4C0098CE48 /* RTMutableArrayDataSource.m */; };
 		713A23A41AB50EF00098CE48 /* RTBrowseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 713A23A31AB50EF00098CE48 /* RTBrowseViewController.m */; };
+		713A23A71AB52B740098CE48 /* RTBrowseViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 713A23A61AB52B740098CE48 /* RTBrowseViewControllerSpec.m */; };
+		713A23AD1AB533390098CE48 /* RTBrowseViewDataSourceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 713A23AC1AB533390098CE48 /* RTBrowseViewDataSourceFactory.m */; };
 		713BCE041A5908E4000F2D96 /* RTOAuth2TokenStoreSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 713BCE031A5908E4000F2D96 /* RTOAuth2TokenStoreSpec.m */; };
 		713BCE071A5909DA000F2D96 /* RTFakeKeyChainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 713BCE061A5909DA000F2D96 /* RTFakeKeyChainWrapper.m */; };
 		713D7A451A509AC000754A06 /* RTClientCredentialsStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 713D7A441A509AC000754A06 /* RTClientCredentialsStore.m */; };
@@ -332,6 +334,9 @@
 		713A239E1AB4FF4C0098CE48 /* RTMutableArrayDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMutableArrayDataSource.m; sourceTree = "<group>"; };
 		713A23A21AB50EF00098CE48 /* RTBrowseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseViewController.h; sourceTree = "<group>"; };
 		713A23A31AB50EF00098CE48 /* RTBrowseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseViewController.m; sourceTree = "<group>"; };
+		713A23A61AB52B740098CE48 /* RTBrowseViewControllerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseViewControllerSpec.m; sourceTree = "<group>"; };
+		713A23AB1AB533390098CE48 /* RTBrowseViewDataSourceFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseViewDataSourceFactory.h; sourceTree = "<group>"; };
+		713A23AC1AB533390098CE48 /* RTBrowseViewDataSourceFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseViewDataSourceFactory.m; sourceTree = "<group>"; };
 		713BCE031A5908E4000F2D96 /* RTOAuth2TokenStoreSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTOAuth2TokenStoreSpec.m; sourceTree = "<group>"; };
 		713BCE051A5909DA000F2D96 /* RTFakeKeyChainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTFakeKeyChainWrapper.h; sourceTree = "<group>"; };
 		713BCE061A5909DA000F2D96 /* RTFakeKeyChainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTFakeKeyChainWrapper.m; sourceTree = "<group>"; };
@@ -884,8 +889,18 @@
 			children = (
 				713A23A21AB50EF00098CE48 /* RTBrowseViewController.h */,
 				713A23A31AB50EF00098CE48 /* RTBrowseViewController.m */,
+				713A23AB1AB533390098CE48 /* RTBrowseViewDataSourceFactory.h */,
+				713A23AC1AB533390098CE48 /* RTBrowseViewDataSourceFactory.m */,
 			);
 			path = Presentation;
+			sourceTree = "<group>";
+		};
+		713A23A51AB52B4C0098CE48 /* BrowseTests */ = {
+			isa = PBXGroup;
+			children = (
+				713A23A61AB52B740098CE48 /* RTBrowseViewControllerSpec.m */,
+			);
+			path = BrowseTests;
 			sourceTree = "<group>";
 		};
 		713D7A491A50A24E00754A06 /* Client */ = {
@@ -1442,6 +1457,7 @@
 			children = (
 				71166E101A6C2F3900EAE5BA /* AccountRegistrationTests */,
 				7114DF7D1AB4B9EA003B1D2E /* BrowseReelsTests */,
+				713A23A51AB52B4C0098CE48 /* BrowseTests */,
 				71403D211AB3C775007CB8B9 /* BrowseUsersTests */,
 				713A23901AB4EB7C0098CE48 /* BrowseVideosTests */,
 				71D947961A4FCB2900401963 /* LoginTests */,
@@ -1712,6 +1728,7 @@
 				717D926D1A5B722300EAB6BF /* NSError+RTError.m in Sources */,
 				717215A41A86590D0002ECC7 /* RTAccountRegistrationValidator.m in Sources */,
 				71073CF61A83060700BE6E19 /* RKObjectManager+IncludeHeaders.m in Sources */,
+				713A23AD1AB533390098CE48 /* RTBrowseViewDataSourceFactory.m in Sources */,
 				7116908F1A6AB3970031578E /* RTSecurityAssembly.m in Sources */,
 				713D7A4C1A50A33300754A06 /* RTClient.m in Sources */,
 				713A23A41AB50EF00098CE48 /* RTBrowseViewController.m in Sources */,
@@ -1804,6 +1821,7 @@
 				7170C86D1A59A98600C460BB /* RTKeyChainWrapperSpec.m in Sources */,
 				717A4B801A535942004C2BC1 /* RTClientSpec.m in Sources */,
 				713BCE041A5908E4000F2D96 /* RTOAuth2TokenStoreSpec.m in Sources */,
+				713A23A71AB52B740098CE48 /* RTBrowseViewControllerSpec.m in Sources */,
 				713188A41A912734006155E6 /* NSURL+RTURLSpec.m in Sources */,
 				71D947981A4FCB5600401963 /* RTLoginInteractorSpec.m in Sources */,
 				71427E1F1A8C100200E2C53F /* RTActivitySpec.m in Sources */,

@@ -12,6 +12,9 @@
 
 @interface RTBrowseViewController : UIViewController <RTBrowseUsersView, RTBrowseReelsView, RTBrowseVideosView, RTStoryboardViewController>
 
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (readonly) RTArrayDataSource *tableViewDataSource;
 
 + (RTBrowseViewController *)viewControllerWithUsersPresenter:(RTBrowseUsersPresenter *)usersPresenter
