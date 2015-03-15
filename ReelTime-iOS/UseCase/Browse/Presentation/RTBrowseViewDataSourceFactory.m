@@ -19,12 +19,14 @@ static NSString *const BrowseCellIdentifier = @"BrowseCell";
 + (RTMutableArrayDataSource *)reelsDataSource {
     return [self dataSourceWithCellIdentifier:BrowseCellIdentifier
                            configureCellBlock:^(UITableViewCell *cell, RTReelMessage *message) {
+                               cell.textLabel.text = message.text;
                            }];
 }
 
 + (RTMutableArrayDataSource *)videosDataSource {
     return [self dataSourceWithCellIdentifier:BrowseCellIdentifier
                            configureCellBlock:^(UITableViewCell *cell, RTVideoMessage *message) {
+                               cell.textLabel.text = message.text;
                            }];
 }
 

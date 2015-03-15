@@ -2,7 +2,22 @@ require 'sinatra'
 require 'sinatra/json'
 
 get '/api/reels' do
-    json :reels =>[]
+    list = []
+    page = params[:page].to_i
+
+    logger.info("page: #{page}")
+
+    if page == 1 or page == 2
+        count = 20
+        initial = (page * count)
+
+        (0..count).each { |num|
+            i = initial + num + 100
+            list << { :reel_id => i, :name => "reel#{i}", :audience_size => 3, :video_count => 4 }
+        }
+    end
+
+    json :reels => list
 end
 
 get '/api/users' do
@@ -16,7 +31,7 @@ get '/api/users' do
         initial = (page * count)
 
         (0..count).each { |num|
-            i = initial + num
+            i = initial + num + 200
             list << { :username => "user#{i}", :display_name => "display#{i}", :follower_count => 1, :followee_count => 2 }
         }
     end
@@ -25,5 +40,20 @@ get '/api/users' do
 end
 
 get '/api/videos' do
-    json :videos => []
+    list = []
+    page = params[:page].to_i
+
+    logger.info("page: #{page}")
+
+    if page == 1 or page == 2
+        count = 20
+        initial = (page * count)
+
+        (0..count).each { |num|
+            i = initial + num + 300
+            list << { :video_id => i, :title => "title#{i}" }
+        }
+    end
+
+    json :videos => list
 end
