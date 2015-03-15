@@ -29,7 +29,7 @@
 
 - (RTBrowseViewController *)browseViewController {
     return [TyphoonDefinition withClass:[RTBrowseViewController class] configuration:^(TyphoonDefinition *definition) {
-        [definition injectMethod:@selector(viewControllerWithUsersPresenter:reelsPresenter:videosPresenter:)
+        [definition useInitializer:@selector(viewControllerWithUsersPresenter:reelsPresenter:videosPresenter:)
                       parameters:^(TyphoonMethod *method) {
                           [method injectParameterWith:[self browseUsersPresenter]];
                           [method injectParameterWith:[self browseReelsPresenter]];
