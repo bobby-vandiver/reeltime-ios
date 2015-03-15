@@ -56,8 +56,11 @@ static NSString *const ActivityCellIdentifier = @"ActivityCell";
     [super viewDidLoad];
     
     [self.tableView registerClass:[RTActivityCell class] forCellReuseIdentifier:ActivityCellIdentifier];
-    [self.tableView setDataSource:self.dataSource];
-    
+    [self.tableView setDataSource:self.dataSource];    
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [self.presenter requestedNextPage];
 }
 

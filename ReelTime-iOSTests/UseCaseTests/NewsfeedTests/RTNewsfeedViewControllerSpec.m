@@ -47,8 +47,14 @@ describe(@"newsfeed view controller", ^{
             [verify(tableView) registerClass:[RTActivityCell class] forCellReuseIdentifier:@"ActivityCell"];
         });
         
-        it(@"should provide set up table view data source", ^{
+        it(@"should set up table view data source", ^{
             [verify(tableView) setDataSource:viewController.tableViewDataSource];
+        });
+    });
+    
+    describe(@"when view will appear", ^{
+        beforeEach(^{
+            [viewController viewWillAppear:anything()];
         });
         
         it(@"should request the first page of activities", ^{
