@@ -32,6 +32,9 @@
                           [initializer injectParameterWith:[self applicationTabBarController]];
                           [initializer injectParameterWith:[self.loginAssembly loginWireframe]];
         }];
+        
+        // TODO: Only for testing purposes -- should be removed!
+        [definition injectProperty:@selector(browseViewController) with:[self.browseAssembly browseViewController]];
     }];
 }
 

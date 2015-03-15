@@ -131,8 +131,10 @@
     }];
 }
 
+// TODO: Make baseUrl configurable
 - (NSURL *)baseUrl {
-    return [NSURL URLWithString: @"http://localhost:8080/reeltime"];
+//    return [NSURL URLWithString: @"http://localhost:8080/reeltime"];
+    return [NSURL URLWithString: @"http://localhost:4567/"];
 }
 
 - (RTServerErrorsConverter *)serverErrorsConverter {

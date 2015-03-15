@@ -3,6 +3,8 @@
 #import "RTApplicationTabBarController.h"
 #import "RTLoginWireframe.h"
 
+#import "RTBrowseViewController.h"
+
 @interface RTApplicationWireframe ()
 
 @property (nonatomic) UIWindow *window;
@@ -26,7 +28,10 @@
 }
 
 - (void)presentInitialScreen {
-    [self.loginWirefame presentLoginInterfaceFromWindow:self.window];
+//    [self.loginWirefame presentLoginInterfaceFromWindow:self.window];
+    
+    // TODO: Remove this and re-enable associated test in RTApplicationWireframeSpec
+    self.window.rootViewController = self.browseViewController;
 }
 
 - (void)presentTabBarManagedScreen {

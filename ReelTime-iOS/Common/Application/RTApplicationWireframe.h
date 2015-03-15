@@ -3,8 +3,11 @@
 
 @class RTApplicationTabBarController;
 @class RTLoginWireframe;
+@class RTBrowseViewController;
 
 @interface RTApplicationWireframe : NSObject
+
+@property RTBrowseViewController *browseViewController;
 
 - (instancetype)initWithWindow:(UIWindow *)window
               tabBarController:(RTApplicationTabBarController *)tabBarController

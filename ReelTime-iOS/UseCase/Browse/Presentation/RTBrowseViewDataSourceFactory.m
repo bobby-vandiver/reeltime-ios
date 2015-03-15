@@ -5,26 +5,25 @@
 #import "RTReelMessage.h"
 #import "RTVideoMessage.h"
 
-static NSString *const UserCellIdentifier = @"BrowseUsersCell";
-static NSString *const ReelCellIdentifier = @"BrowseReelsCell";
-static NSString *const VideoCellIdentifier = @"BrowseVideosCell";
+static NSString *const BrowseCellIdentifier = @"BrowseCell";
 
 @implementation RTBrowseViewDataSourceFactory
 
 + (RTMutableArrayDataSource *)usersDataSource {
-    return [self dataSourceWithCellIdentifier:UserCellIdentifier
+    return [self dataSourceWithCellIdentifier:BrowseCellIdentifier
                            configureCellBlock:^(UITableViewCell *cell, RTUserMessage *message) {
+                               cell.textLabel.text = message.text;
                            }];
 }
 
 + (RTMutableArrayDataSource *)reelsDataSource {
-    return [self dataSourceWithCellIdentifier:ReelCellIdentifier
+    return [self dataSourceWithCellIdentifier:BrowseCellIdentifier
                            configureCellBlock:^(UITableViewCell *cell, RTReelMessage *message) {
                            }];
 }
 
 + (RTMutableArrayDataSource *)videosDataSource {
-    return [self dataSourceWithCellIdentifier:VideoCellIdentifier
+    return [self dataSourceWithCellIdentifier:BrowseCellIdentifier
                            configureCellBlock:^(UITableViewCell *cell, RTVideoMessage *message) {
                            }];
 }
