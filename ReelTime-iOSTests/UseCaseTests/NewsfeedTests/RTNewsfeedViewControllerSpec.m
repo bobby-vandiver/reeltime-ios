@@ -32,9 +32,9 @@ describe(@"newsfeed view controller", ^{
     
     describe(@"when created from storyboard", ^{
         it(@"should have an empty data source", ^{
-            expect(viewController.dataSource).toNot.beNil();
-            expect(viewController.dataSource.items).toNot.beNil();
-            expect(viewController.dataSource.items.count).to.equal(0);
+            expect(viewController.tableViewDataSource).toNot.beNil();
+            expect(viewController.tableViewDataSource.items).toNot.beNil();
+            expect(viewController.tableViewDataSource.items.count).to.equal(0);
         });
     });
     
@@ -48,7 +48,7 @@ describe(@"newsfeed view controller", ^{
         });
         
         it(@"should provide set up table view data source", ^{
-            [verify(tableView) setDataSource:viewController.dataSource];
+            [verify(tableView) setDataSource:viewController.tableViewDataSource];
         });
         
         it(@"should request the first page of activities", ^{
@@ -70,7 +70,7 @@ describe(@"newsfeed view controller", ^{
             it(@"should delegate to activity cell for configuration", ^{
                 RTActivityCell *cell = mock([RTActivityCell class]);
                
-                viewController.dataSource.configureCellBlock(cell, message);
+                viewController.tableViewDataSource.configureCellBlock(cell, message);
                 [verify(cell) configureForActivityMessage:message withLabelDelegate:presenter];
             });
         });
@@ -79,8 +79,8 @@ describe(@"newsfeed view controller", ^{
             it(@"should add message to data source", ^{
                 [viewController showMessage:message];
 
-                expect(viewController.dataSource.items.count).to.equal(1);
-                expect(viewController.dataSource.items).to.contain(message);
+                expect(viewController.tableViewDataSource.items.count).to.equal(1);
+                expect(viewController.tableViewDataSource.items).to.contain(message);
             });
             
             it(@"should reload the table data", ^{
@@ -94,7 +94,7 @@ describe(@"newsfeed view controller", ^{
                 [viewController showMessage:message];
 
                 [viewController clearMessages];
-                expect(viewController.dataSource.items.count).to.equal(0);
+                expect(viewController.tableViewDataSource.items.count).to.equal(0);
             });
             
             it(@"should reload the table data", ^{

@@ -7,20 +7,19 @@
 #import "RTActivityType.h"
 
 #import "RTArrayDataSource.h"
+#import "RTMutableArrayDataSource.h"
 
 #import "RTActivityCell.h"
 #import "RTActivityCell+ConfigureForRTActivityMessage.h"
 
 #import <TTTAttributedLabel/TTTAttributedLabel.h>
 
-static NSString *const CELL_IDENTIFIER = @"ActivityCell";
+static NSString *const ActivityCellIdentifier = @"ActivityCell";
 
 @interface RTNewsfeedViewController ()
 
 @property RTNewsfeedPresenter *presenter;
-
-@property NSMutableArray *messages;
-@property (readwrite) RTArrayDataSource *dataSource;
+@property RTMutableArrayDataSource *dataSource;
 
 @end
 
@@ -32,42 +31,43 @@ static NSString *const CELL_IDENTIFIER = @"ActivityCell";
     
     if (controller) {
         controller.presenter = presenter;
-        controller.messages = [NSMutableArray array];
-        controller.dataSource = [self createDataSourceWithMessages:controller.messages
-                                                         presenter:controller.presenter];
+        controller.dataSource = [self createDataSourceWithPresenter:controller.presenter];
     }
     return controller;
 }
 
-+ (RTArrayDataSource *)createDataSourceWithMessages:(NSMutableArray *)messages
-                                          presenter:(RTNewsfeedPresenter *)presenter {
-    return [[RTArrayDataSource alloc] initWithItems:messages
-                                     cellIdentifier:CELL_IDENTIFIER
-                                 configureCellBlock:^(RTActivityCell *cell, RTActivityMessage *message) {
-                                     [cell configureForActivityMessage:message withLabelDelegate:presenter];
-                                 }];
++ (RTMutableArrayDataSource *)createDataSourceWithPresenter:(RTNewsfeedPresenter *)presenter {
+    return [[RTMutableArrayDataSource alloc] initWithItems:@[]
+                                            cellIdentifier:ActivityCellIdentifier
+                                        configureCellBlock:^(RTActivityCell *cell, RTActivityMessage *message) {
+                                            [cell configureForActivityMessage:message withLabelDelegate:presenter];
+                                        }];
 }
 
 + (NSString *)storyboardIdentifier {
     return @"Newsfeed View Controller";
 }
 
+- (RTArrayDataSource *)tableViewDataSource {
+    return self.dataSource;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.tableView registerClass:[RTActivityCell class] forCellReuseIdentifier:CELL_IDENTIFIER];
+    [self.tableView registerClass:[RTActivityCell class] forCellReuseIdentifier:ActivityCellIdentifier];
     [self.tableView setDataSource:self.dataSource];
     
     [self.presenter requestedNextPage];
 }
 
 - (void)showMessage:(RTActivityMessage *)message {
-    [self.messages addObject:message];
+    [self.dataSource addItem:message];
     [self.tableView reloadData];
 }
 
 - (void)clearMessages {
-    [self.messages removeAllObjects];
+    [self.dataSource removeAllItems];
     [self.tableView reloadData];
 }
 

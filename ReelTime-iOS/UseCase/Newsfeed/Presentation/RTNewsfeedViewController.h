@@ -9,7 +9,7 @@
 @interface RTNewsfeedViewController : UIViewController <UITableViewDelegate, RTNewsfeedView, RTStoryboardViewController>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (readonly) RTArrayDataSource *dataSource;
+@property (readonly) RTArrayDataSource *tableViewDataSource;
 
 + (RTNewsfeedViewController *)viewControllerWithPresenter:(RTNewsfeedPresenter *)presenter;
 
