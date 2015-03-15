@@ -21,4 +21,6 @@
                                               reelsPresenter:(RTBrowseReelsPresenter *)reelsPresenter
                                              videosPresenter:(RTBrowseVideosPresenter *)videosPresenter;
 
+- (IBAction)segmentedControlChanged;
+
 @end

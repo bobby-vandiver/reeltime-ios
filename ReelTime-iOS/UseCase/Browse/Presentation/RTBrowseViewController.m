@@ -54,6 +54,35 @@ typedef enum {
     return controller;
 }
 
+- (IBAction)segmentedControlChanged {
+    id<UITableViewDataSource> dataSource;
+    DataSourceType dataSourceType;
+    
+    switch (self.segmentedControl.selectedSegmentIndex) {
+        case UsersDataSource:
+            dataSource = self.usersDataSource;
+            dataSourceType = UsersDataSource;
+            break;
+            
+        case ReelsDataSource:
+            dataSource = self.reelsDataSource;
+            dataSourceType = ReelsDataSource;
+            break;
+            
+        case VideosDataSource:
+            dataSource = self.videosDataSource;
+            dataSourceType = VideosDataSource;
+            break;
+            
+        default:
+            DDLogError(@"Received unknown segment index: %ld", (long)self.segmentedControl.selectedSegmentIndex);
+            break;
+    }
+    
+    self.tableView.dataSource = dataSource;
+    self.currentDataSourceType = dataSourceType;
+}
+
 + (NSString *)storyboardIdentifier {
     return @"Browse View Controller";
 }

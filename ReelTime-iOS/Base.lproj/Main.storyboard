@@ -489,6 +489,7 @@
                         <viewControllerLayoutGuide type="bottom" id="ooW-hr-Koz"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="9x8-DW-5mY">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="aGb-su-KmA">
@@ -505,6 +506,9 @@
                                             <segment title="Reels"/>
                                             <segment title="Videos"/>
                                         </segments>
+                                        <connections>
+                                            <action selector="segmentedControlChanged" destination="I7q-7u-SIm" eventType="valueChanged" id="1Vw-YM-j7g"/>
+                                        </connections>
                                     </segmentedControl>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -549,14 +553,14 @@
                                 <exclude reference="qz7-qT-5Nf"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="Ahd-MS-3AI"/>
-                                <exclude reference="QdY-pN-s7O"/>
-                                <exclude reference="WRY-Hc-lK3"/>
+                                <exclude reference="TNJ-zj-Rop"/>
                                 <exclude reference="3FX-d6-4Nx"/>
                                 <exclude reference="LAI-LW-EfT"/>
                                 <exclude reference="MYR-12-xM8"/>
                                 <exclude reference="PY1-uC-RNd"/>
-                                <exclude reference="TNJ-zj-Rop"/>
+                                <exclude reference="Ahd-MS-3AI"/>
+                                <exclude reference="QdY-pN-s7O"/>
+                                <exclude reference="WRY-Hc-lK3"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -565,14 +569,14 @@
                                 <include reference="qz7-qT-5Nf"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="Ahd-MS-3AI"/>
-                                <include reference="QdY-pN-s7O"/>
-                                <include reference="WRY-Hc-lK3"/>
+                                <include reference="TNJ-zj-Rop"/>
                                 <include reference="3FX-d6-4Nx"/>
                                 <include reference="LAI-LW-EfT"/>
                                 <include reference="MYR-12-xM8"/>
                                 <include reference="PY1-uC-RNd"/>
-                                <include reference="TNJ-zj-Rop"/>
+                                <include reference="Ahd-MS-3AI"/>
+                                <include reference="QdY-pN-s7O"/>
+                                <include reference="WRY-Hc-lK3"/>
                             </mask>
                         </variation>
                     </view>

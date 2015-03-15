@@ -66,6 +66,35 @@ describe(@"browse view controller", ^{
         });
     });
     
+    describe(@"selecting a different list", ^{
+        it(@"should select users data source", ^{
+            [given([segmentedControl selectedSegmentIndex]) willReturnInteger:0];
+            
+            [viewController segmentedControlChanged];
+            [verify(tableView) setDataSource:viewController.usersDataSource];
+            
+            expect(viewController.tableViewDataSource).to.beIdenticalTo(viewController.usersDataSource);
+        });
+        
+        it(@"should select reels data source", ^{
+            [given([segmentedControl selectedSegmentIndex]) willReturnInteger:1];
+            
+            [viewController segmentedControlChanged];
+            [verify(tableView) setDataSource:viewController.reelsDataSource];
+            
+            expect(viewController.tableViewDataSource).to.beIdenticalTo(viewController.reelsDataSource);
+        });
+        
+        it(@"should select videos data source", ^{
+            [given([segmentedControl selectedSegmentIndex]) willReturnInteger:2];
+            
+            [viewController segmentedControlChanged];
+            [verify(tableView) setDataSource:viewController.videosDataSource];
+            
+            expect(viewController.tableViewDataSource).to.beIdenticalTo(viewController.videosDataSource);
+        });
+    });
+    
     context(@"user message is required", ^{
         __block RTUserMessage *userMessage;
         
