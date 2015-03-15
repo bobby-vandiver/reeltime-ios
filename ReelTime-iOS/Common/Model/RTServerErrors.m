@@ -4,7 +4,7 @@
 
 - (NSString *)description {
     NSUInteger count = self.errors.count;
-    NSMutableString *description = [NSMutableString stringWithFormat:@"errors(%lu): [", count];
+    NSMutableString *description = [NSMutableString stringWithFormat:@"errors(%lu): [", (unsigned long)count];
 
     for (NSUInteger idx = 0; idx < count; idx++) {
         [description appendString:self.errors[idx]];
