@@ -1,4 +1,4 @@
-#import <UIKit/UIKit.h>
+#import "RTPagedListViewController.h"
 
 #import "RTBrowseUsersView.h"
 #import "RTBrowseReelsView.h"
@@ -10,7 +10,7 @@
 @class RTBrowseVideosPresenter;
 @class RTArrayDataSource;
 
-@interface RTBrowseViewController : UIViewController <RTBrowseUsersView, RTBrowseReelsView, RTBrowseVideosView, RTStoryboardViewController, UITableViewDelegate>
+@interface RTBrowseViewController : RTPagedListViewController <RTBrowseUsersView, RTBrowseReelsView, RTBrowseVideosView, RTStoryboardViewController>
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;

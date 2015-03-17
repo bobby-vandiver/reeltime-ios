@@ -71,18 +71,19 @@ typedef enum {
     [self.videosPresenter requestedNextPage];
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    NSInteger lastVisibleRow = [self.tableView lastVisibleRowForSection:0];
-    
-    RTArrayDataSource *dataSource = self.tableView.dataSource;
-    NSInteger lastItemIndex = dataSource.items.count - 1;
-
-    BOOL noRowsAreVisible = (lastVisibleRow == NSNotFound);
-    BOOL lastRowIsVisible = (lastVisibleRow == lastItemIndex);
-    
-    if (noRowsAreVisible || lastRowIsVisible) {
-        [self.usersPresenter requestedNextPage];
+- (RTPagedListPresenter *)presenter {
+    if (self.currentDataSourceType == UsersDataSource) {
+        return self.usersPresenter;
     }
+    else if (self.currentDataSourceType == ReelsDataSource) {
+        return self.reelsPresenter;
+    }
+    else if (self.currentDataSourceType == VideosDataSource) {
+        return self.videosPresenter;
+    }
+
+    DDLogError(@"Unknown presenter type");
+    return [super presenter];
 }
 
 - (IBAction)segmentedControlChanged {
