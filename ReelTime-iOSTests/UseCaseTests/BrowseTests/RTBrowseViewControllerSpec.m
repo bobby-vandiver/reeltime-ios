@@ -23,11 +23,11 @@
 @property RTBrowseReelsPresenter *reelsPresenter;
 @property RTBrowseVideosPresenter *videosPresenter;
 
-- (void)useUsersDataSource;
+- (void)makeUsersListActive;
 
-- (void)useReelsDataSource;
+- (void)makeReelsListActive;
 
-- (void)useVideosDataSource;
+- (void)makeVideosListActive;
 
 @end
 
@@ -79,17 +79,17 @@ describe(@"browse view controller", ^{
     
     describe(@"presenter should reflect current active list", ^{
         it(@"should return users presenter", ^{
-            [viewController useUsersDataSource];
+            [viewController makeUsersListActive];
             expect(viewController.presenter).to.beIdenticalTo(viewController.usersPresenter);
         });
         
         it(@"should return reels presenter", ^{
-            [viewController useReelsDataSource];
+            [viewController makeReelsListActive];
             expect(viewController.presenter).to.beIdenticalTo(viewController.reelsPresenter);
         });
         
         it(@"should return videos presenter", ^{
-            [viewController useVideosDataSource];
+            [viewController makeVideosListActive];
             expect(viewController.presenter).to.beIdenticalTo(viewController.videosPresenter);
         });
     });
@@ -138,7 +138,7 @@ describe(@"browse view controller", ^{
             });
             
             it(@"should not reload the table data when users data source isn't active", ^{
-                [viewController useReelsDataSource];
+                [viewController makeReelsListActive];
                 [verify(tableView) reset];
                 
                 [viewController showUserMessage:userMessage];
@@ -146,7 +146,7 @@ describe(@"browse view controller", ^{
             });
             
             it(@"should reload the table data when users data source is active", ^{
-                [viewController useUsersDataSource];
+                [viewController makeUsersListActive];
                 [verify(tableView) reset];
 
                 [viewController showUserMessage:userMessage];
@@ -163,7 +163,7 @@ describe(@"browse view controller", ^{
             });
             
             it(@"should not reload table data when users data source isn't active", ^{
-                [viewController useReelsDataSource];
+                [viewController makeReelsListActive];
                 [viewController showUserMessage:userMessage];
                 
                 [verify(tableView) reset];
@@ -173,7 +173,7 @@ describe(@"browse view controller", ^{
             });
             
             it(@"should reload table data when users data source is active", ^{
-                [viewController useUsersDataSource];
+                [viewController makeUsersListActive];
                 [viewController showUserMessage:userMessage];
 
                 [verify(tableView) reset];
@@ -201,7 +201,7 @@ describe(@"browse view controller", ^{
             });
             
             it(@"should not reload the table data when reels data source isn't active", ^{
-                [viewController useUsersDataSource];
+                [viewController makeUsersListActive];
                 [verify(tableView) reset];
 
                 [viewController showReelMessage:reelMessage];
@@ -209,7 +209,7 @@ describe(@"browse view controller", ^{
             });
             
             it(@"should reload the table data when reels data source is active", ^{
-                [viewController useReelsDataSource];
+                [viewController makeReelsListActive];
                 [verify(tableView) reset];
 
                 [viewController showReelMessage:reelMessage];
@@ -226,7 +226,7 @@ describe(@"browse view controller", ^{
             });
             
             it(@"should not reload table data when reels data source isn't active", ^{
-                [viewController useUsersDataSource];
+                [viewController makeUsersListActive];
                 [viewController showReelMessage:reelMessage];
                 
                 [verify(tableView) reset];
@@ -236,7 +236,7 @@ describe(@"browse view controller", ^{
             });
             
             it(@"should reload table data when reels data source is active", ^{
-                [viewController useReelsDataSource];
+                [viewController makeReelsListActive];
                 [viewController showReelMessage:reelMessage];
                 
                 [verify(tableView) reset];
@@ -264,7 +264,7 @@ describe(@"browse view controller", ^{
             });
             
             it(@"should not reload the table data when videos data source isn't active", ^{
-                [viewController useUsersDataSource];
+                [viewController makeUsersListActive];
                 [verify(tableView) reset];
 
                 [viewController showVideoMessage:videoMessage];
@@ -272,7 +272,7 @@ describe(@"browse view controller", ^{
             });
             
             it(@"should reload the table data when videos data source is active", ^{
-                [viewController useVideosDataSource];
+                [viewController makeVideosListActive];
                 [verify(tableView) reset];
 
                 [viewController showVideoMessage:videoMessage];
@@ -289,7 +289,7 @@ describe(@"browse view controller", ^{
             });
             
             it(@"should not reload table data when videos data source isn't active", ^{
-                [viewController useUsersDataSource];
+                [viewController makeUsersListActive];
                 [viewController showVideoMessage:videoMessage];
                 
                 [verify(tableView) reset];
@@ -299,7 +299,7 @@ describe(@"browse view controller", ^{
             });
             
             it(@"should reload table data when videos data source is active", ^{
-                [viewController useVideosDataSource];
+                [viewController makeVideosListActive];
                 [viewController showVideoMessage:videoMessage];
                 
                 [verify(tableView) reset];

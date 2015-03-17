@@ -14,10 +14,10 @@
 #import "UITableView+LastVisibleRow.h"
 
 typedef enum {
-    UsersDataSource,
-    ReelsDataSource,
-    VideosDataSource
-} DataSourceType;
+    BrowseUsersList,
+    BrowseReelsList,
+    BrowseVideosList
+} BrowseListType;
 
 @interface RTBrowseViewController ()
 
@@ -25,7 +25,7 @@ typedef enum {
 @property RTBrowseReelsPresenter *reelsPresenter;
 @property RTBrowseVideosPresenter *videosPresenter;
 
-@property DataSourceType currentDataSourceType;
+@property BrowseListType currentListType;
 
 @property RTMutableArrayDataSource *usersDataSource;
 @property RTMutableArrayDataSource *reelsDataSource;
@@ -59,7 +59,7 @@ typedef enum {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self useUsersDataSource];
+    [self makeUsersListActive];
     [self.tableView setDelegate:self];
 }
 
@@ -72,16 +72,16 @@ typedef enum {
 }
 
 - (RTPagedListPresenter *)presenter {
-    if (self.currentDataSourceType == UsersDataSource) {
+    if (self.currentListType == BrowseUsersList) {
         return self.usersPresenter;
     }
-    else if (self.currentDataSourceType == ReelsDataSource) {
+    else if (self.currentListType == BrowseReelsList) {
         return self.reelsPresenter;
     }
-    else if (self.currentDataSourceType == VideosDataSource) {
+    else if (self.currentListType == BrowseVideosList) {
         return self.videosPresenter;
     }
-
+    
     DDLogError(@"Unknown presenter type");
     return [super presenter];
 }
@@ -89,59 +89,59 @@ typedef enum {
 - (IBAction)segmentedControlChanged {
     NSInteger selectedIndex = self.segmentedControl.selectedSegmentIndex;
     
-    if (selectedIndex == UsersDataSource) {
-        [self useUsersDataSource];
+    if (selectedIndex == BrowseUsersList) {
+        [self makeUsersListActive];
     }
-    else if (selectedIndex == ReelsDataSource) {
-        [self useReelsDataSource];
+    else if (selectedIndex == BrowseReelsList) {
+        [self makeReelsListActive];
     }
-    else if (selectedIndex == VideosDataSource) {
-        [self useVideosDataSource];
+    else if (selectedIndex == BrowseVideosList) {
+        [self makeVideosListActive];
     }
     else {
         DDLogError(@"Received unknown segment index: %ld", (long)selectedIndex);
     }
 }
 
-- (void)useUsersDataSource {
-    [self useDataSource:self.usersDataSource ofType:UsersDataSource];
+- (void)makeUsersListActive {
+    [self useDataSource:self.usersDataSource forType:BrowseUsersList];
 }
 
-- (void)useReelsDataSource {
-    [self useDataSource:self.reelsDataSource ofType:ReelsDataSource];
+- (void)makeReelsListActive {
+    [self useDataSource:self.reelsDataSource forType:BrowseReelsList];
 }
 
-- (void)useVideosDataSource {
-    [self useDataSource:self.videosDataSource ofType:VideosDataSource];
+- (void)makeVideosListActive {
+    [self useDataSource:self.videosDataSource forType:BrowseVideosList];
 }
 
 - (void)showUserMessage:(RTUserMessage *)message {
-    [self addItem:message toDataSource:self.usersDataSource ofType:UsersDataSource];
+    [self addItem:message toDataSource:self.usersDataSource forType:BrowseUsersList];
 }
 
 - (void)clearUserMessages {
-    [self removeAllItemsFromDataSource:self.usersDataSource ofType:UsersDataSource];
+    [self removeAllItemsFromDataSource:self.usersDataSource ofType:BrowseUsersList];
 }
 
 - (void)showReelMessage:(RTReelMessage *)message {
-    [self addItem:message toDataSource:self.reelsDataSource ofType:ReelsDataSource];
+    [self addItem:message toDataSource:self.reelsDataSource forType:BrowseReelsList];
 }
 
 - (void)clearReelMessages {
-    [self removeAllItemsFromDataSource:self.reelsDataSource ofType:ReelsDataSource];
+    [self removeAllItemsFromDataSource:self.reelsDataSource ofType:BrowseReelsList];
 }
 
 - (void)showVideoMessage:(RTVideoMessage *)message {
-    [self addItem:message toDataSource:self.videosDataSource ofType:VideosDataSource];
+    [self addItem:message toDataSource:self.videosDataSource forType:BrowseVideosList];
 }
 
 - (void)clearVideoMessages {
-    [self removeAllItemsFromDataSource:self.videosDataSource ofType:VideosDataSource];
+    [self removeAllItemsFromDataSource:self.videosDataSource ofType:BrowseVideosList];
 }
 
 - (void)useDataSource:(RTMutableArrayDataSource *)dataSource
-               ofType:(DataSourceType)type {
-    self.currentDataSourceType = type;
+              forType:(BrowseListType)type {
+    self.currentListType = type;
     
     [self.tableView setDataSource:dataSource];
     [self.tableView reloadData];
@@ -149,19 +149,19 @@ typedef enum {
 
 - (void)addItem:(id)item
    toDataSource:(RTMutableArrayDataSource *)dataSource
-         ofType:(DataSourceType)type {
+        forType:(BrowseListType)type {
     [dataSource addItem:item];
     [self reloadTableViewIfDataSourceType:type];
 }
 
 - (void)removeAllItemsFromDataSource:(RTMutableArrayDataSource *)dataSource
-                              ofType:(DataSourceType)type {
+                              ofType:(BrowseListType)type {
     [dataSource removeAllItems];
     [self reloadTableViewIfDataSourceType:type];
 }
 
-- (void)reloadTableViewIfDataSourceType:(DataSourceType)dataSourceType {
-    if (self.currentDataSourceType == dataSourceType) {
+- (void)reloadTableViewIfDataSourceType:(BrowseListType)dataSourceType {
+    if (self.currentListType == dataSourceType) {
         [self.tableView reloadData];
     }
 }
