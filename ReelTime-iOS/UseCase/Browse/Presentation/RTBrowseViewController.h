@@ -10,7 +10,7 @@
 @class RTBrowseVideosPresenter;
 @class RTArrayDataSource;
 
-@interface RTBrowseViewController : UIViewController <RTBrowseUsersView, RTBrowseReelsView, RTBrowseVideosView, RTStoryboardViewController>
+@interface RTBrowseViewController : UIViewController <RTBrowseUsersView, RTBrowseReelsView, RTBrowseVideosView, RTStoryboardViewController, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;

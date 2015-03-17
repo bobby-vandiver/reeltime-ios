@@ -11,6 +11,8 @@
 #import "RTReelMessage.h"
 #import "RTVideoMessage.h"
 
+#import "UITableView+LastVisibleRow.h"
+
 @interface RTBrowseViewController (Test)
 
 @property RTArrayDataSource *usersDataSource;
@@ -68,6 +70,50 @@ describe(@"browse view controller", ^{
             [verify(usersPresenter) requestedNextPage];
             [verify(reelsPresenter) requestedNextPage];
             [verify(videosPresenter) requestedNextPage];
+        });
+    });
+    
+    describe(@"loading the next page for the active list when scrolling to the bottom", ^{
+
+        context(@"users data source is active", ^{
+            beforeEach(^{
+                [viewController useUsersDataSource];
+                [verify(tableView) reset];
+
+                [given([tableView dataSource]) willReturn:viewController.usersDataSource];
+            });
+            
+            it(@"should request next page for empty data source", ^{
+                [given([tableView lastVisibleRowForSection:0]) willReturnInteger:NSNotFound];
+                viewController.usersDataSource.items = @[];
+                
+                [viewController scrollViewDidScroll:anything()];
+                [verify(usersPresenter) requestedNextPage];
+            });
+            
+            it(@"should not request next page when last visible row is not the last item in the list", ^{
+                [given([tableView lastVisibleRowForSection:0]) willReturnInteger:0];
+
+                RTUserMessage *message1 = mock([RTUserMessage class]);
+                RTUserMessage *message2 = mock([RTUserMessage class]);
+                
+                viewController.usersDataSource.items = @[message1, message2];
+
+                [viewController scrollViewDidScroll:anything()];
+                [verifyCount(usersPresenter, never()) requestedNextPage];
+            });
+            
+            it(@"should request next page when last visible row is the last item in the list", ^{
+                [given([tableView lastVisibleRowForSection:0]) willReturnInteger:1];
+                
+                RTUserMessage *message1 = mock([RTUserMessage class]);
+                RTUserMessage *message2 = mock([RTUserMessage class]);
+                
+                viewController.usersDataSource.items = @[message1, message2];
+                
+                [viewController scrollViewDidScroll:anything()];
+                [verify(usersPresenter) requestedNextPage];
+            });
         });
     });
     

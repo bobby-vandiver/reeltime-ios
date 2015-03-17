@@ -11,6 +11,7 @@
 #import "RTStoryboardViewControllerFactory.h"
 
 #import "RTLogging.h"
+#import "UITableView+LastVisibleRow.h"
 
 typedef enum {
     UsersDataSource,
@@ -59,6 +60,7 @@ typedef enum {
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self useUsersDataSource];
+    [self.tableView setDelegate:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -67,6 +69,20 @@ typedef enum {
     [self.usersPresenter requestedNextPage];
     [self.reelsPresenter requestedNextPage];
     [self.videosPresenter requestedNextPage];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    NSInteger lastVisibleRow = [self.tableView lastVisibleRowForSection:0];
+    
+    RTArrayDataSource *dataSource = self.tableView.dataSource;
+    NSInteger lastItemIndex = dataSource.items.count - 1;
+
+    BOOL noRowsAreVisible = (lastVisibleRow == NSNotFound);
+    BOOL lastRowIsVisible = (lastVisibleRow == lastItemIndex);
+    
+    if (noRowsAreVisible || lastRowIsVisible) {
+        [self.usersPresenter requestedNextPage];
+    }
 }
 
 - (IBAction)segmentedControlChanged {
