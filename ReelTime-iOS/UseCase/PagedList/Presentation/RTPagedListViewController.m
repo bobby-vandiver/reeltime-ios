@@ -8,6 +8,12 @@
 
 @implementation RTPagedListViewController
 
+- (UITableView *)tableView {
+    [NSException raise:RTAbstractMethodException
+                format:@"Table view must be provided by subclass"];
+    return nil;
+}
+
 - (RTPagedListPresenter *)presenter {
     [NSException raise:RTAbstractMethodException
                 format:@"Presenter must be provided by subclass"];

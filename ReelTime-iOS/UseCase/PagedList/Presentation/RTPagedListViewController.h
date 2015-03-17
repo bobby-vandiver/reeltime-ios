@@ -4,7 +4,7 @@
 
 @interface RTPagedListViewController : UIViewController <UITableViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (readonly) UITableView *tableView;
 
 @property (readonly) RTPagedListPresenter *presenter;
 

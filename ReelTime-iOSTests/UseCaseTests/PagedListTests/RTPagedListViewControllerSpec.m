@@ -10,11 +10,16 @@
 
 @interface RTPagedListTestViewController : RTPagedListViewController
 
+@property UITableView *mockTableView;
 @property RTPagedListPresenter *mockPresenter;
 
 @end
 
 @implementation RTPagedListTestViewController
+
+- (UITableView *)tableView {
+    return self.mockTableView;
+}
 
 - (RTPagedListPresenter *)presenter {
     return self.mockPresenter;
@@ -37,15 +42,28 @@ describe(@"paged list view controller", ^{
         
         viewController = [[RTPagedListTestViewController alloc] init];
 
-        viewController.tableView = tableView;
+        viewController.mockTableView = tableView;
         viewController.mockPresenter = presenter;
     });
     
-    it(@"should now allow presenter to be undefined", ^{
-        RTPagedListViewController *controller = [[RTPagedListViewController alloc] init];
-        expect(^{
-            (void)controller.presenter;
-        }).to.raiseWithReason(RTAbstractMethodException, @"Presenter must be provided by subclass");
+    describe(@"abstract properties", ^{
+        __block RTPagedListViewController *abstractController;
+        
+        beforeEach(^{
+            abstractController = [[RTPagedListViewController alloc] init];
+        });
+        
+        it(@"should not allow presenter to be undefined", ^{
+            expect(^{
+                (void)abstractController.presenter;
+            }).to.raiseWithReason(RTAbstractMethodException, @"Presenter must be provided by subclass");
+        });
+        
+        it(@"should not allow table view to be undefined", ^{
+            expect(^{
+                (void)abstractController.tableView;
+            }).to.raiseWithReason(RTAbstractMethodException, @"Table view must be provided by subclass");
+        });
     });
     
     describe(@"loading the next page for the active list when scrolling to the bottom", ^{

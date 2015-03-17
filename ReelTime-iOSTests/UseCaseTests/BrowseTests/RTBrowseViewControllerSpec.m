@@ -23,6 +23,8 @@
 @property RTBrowseReelsPresenter *reelsPresenter;
 @property RTBrowseVideosPresenter *videosPresenter;
 
+@property (weak, nonatomic) IBOutlet UITableView *browseListTableView;
+
 - (void)makeUsersListActive;
 
 - (void)makeReelsListActive;
@@ -57,7 +59,7 @@ describe(@"browse view controller", ^{
                                                                   videosPresenter:videosPresenter];
         
         viewController.segmentedControl = segmentedControl;
-        viewController.tableView = tableView;
+        viewController.browseListTableView = tableView;
     });
     
     describe(@"when view did load", ^{

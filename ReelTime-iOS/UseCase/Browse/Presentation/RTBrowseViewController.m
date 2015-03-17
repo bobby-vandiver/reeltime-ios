@@ -71,6 +71,10 @@ typedef enum {
     [self.videosPresenter requestedNextPage];
 }
 
+- (UITableView *)tableView {
+    return self.browseListTableView;
+}
+
 - (RTPagedListPresenter *)presenter {
     if (self.currentListType == BrowseUsersList) {
         return self.usersPresenter;
