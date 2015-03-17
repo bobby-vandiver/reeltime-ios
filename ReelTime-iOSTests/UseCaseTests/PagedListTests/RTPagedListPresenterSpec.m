@@ -21,15 +21,30 @@ describe(@"paged list presenter", ^{
     });
     
     describe(@"page requested", ^{
-        it(@"should always get the next requested page", ^{
+        it(@"should allow next request once previous one has finished with results", ^{
+            [presenter requestedNextPage];
+            [verify(interactor) listItemsForPage:1];
+
+            NSObject *obj = [NSObject new];
+            [presenter retrievedItems:@[obj]];
+            
+            [presenter requestedNextPage];
+            [verify(interactor) listItemsForPage:2];
+        });
+        
+        it(@"should not allow multiple requests until the previous one has finisehd", ^{
             [presenter requestedNextPage];
             [verify(interactor) listItemsForPage:1];
             
             [presenter requestedNextPage];
-            [verify(interactor) listItemsForPage:2];
+            [verifyCount(interactor, never()) listItemsForPage:2];
+        });
+        
+        it(@"should not request any more items after receiving an empty list of results", ^{
+            [presenter retrievedItems:@[]];
             
             [presenter requestedNextPage];
-            [verify(interactor) listItemsForPage:3];
+            [[verifyCount(interactor, never()) withMatcher:anything() forArgument:0] listItemsForPage:0];
         });
     });
     
@@ -37,6 +52,9 @@ describe(@"paged list presenter", ^{
         it(@"should reset page counter so the first page is retrieved next", ^{
             [presenter requestedNextPage];
             [verify(interactor) listItemsForPage:1];
+
+            NSObject *obj = [NSObject new];
+            [presenter retrievedItems:@[obj]];
             
             [presenter requestedNextPage];
             [verify(interactor) listItemsForPage:2];

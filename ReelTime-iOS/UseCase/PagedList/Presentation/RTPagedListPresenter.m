@@ -12,6 +12,9 @@ static const NSUInteger INITIAL_PAGE_NUMBER = 1;
 @property NSUInteger nextPage;
 @property NSMutableArray *items;
 
+@property BOOL canRequestNextPage;
+@property BOOL requestInProgress;
+
 @end
 
 @implementation RTPagedListPresenter
@@ -29,12 +32,18 @@ static const NSUInteger INITIAL_PAGE_NUMBER = 1;
 }
 
 - (void)resetItems {
+    self.canRequestNextPage = YES;
+    self.requestInProgress = NO;
+
     self.nextPage = INITIAL_PAGE_NUMBER;
     self.items = [NSMutableArray array];
 }
 
 - (void)requestedNextPage {
-    [self.interactor listItemsForPage:self.nextPage++];
+    if (self.canRequestNextPage && !self.requestInProgress) {
+        self.requestInProgress = YES;
+        [self.interactor listItemsForPage:self.nextPage++];
+    }
 }
 
 - (void)requestedReset {
@@ -49,6 +58,9 @@ static const NSUInteger INITIAL_PAGE_NUMBER = 1;
             [self.items addObject:item];
         }
     }
+
+    self.canRequestNextPage = items.count > 0;
+    self.requestInProgress = NO;
 }
 
 - (void)failedToRetrieveItemsWithError:(NSError *)error {
