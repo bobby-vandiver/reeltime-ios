@@ -21,11 +21,15 @@ typedef enum {
 
 @interface RTBrowseViewController ()
 
+@property BrowseListType currentListType;
+
+@property CGPoint usersListScrollPosition;
+@property CGPoint reelsListScrollPosition;
+@property CGPoint videosListScrollPosition;
+
 @property RTBrowseUsersPresenter *usersPresenter;
 @property RTBrowseReelsPresenter *reelsPresenter;
 @property RTBrowseVideosPresenter *videosPresenter;
-
-@property BrowseListType currentListType;
 
 @property RTMutableArrayDataSource *usersDataSource;
 @property RTMutableArrayDataSource *reelsDataSource;
@@ -59,8 +63,18 @@ typedef enum {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self resetSavedScrollPositions];
+
     [self makeUsersListActive];
     [self.tableView setDelegate:self];
+}
+
+- (void)resetSavedScrollPositions {
+    CGPoint startingScrollPosition = self.tableView.contentOffset;
+    
+    self.usersListScrollPosition = startingScrollPosition;
+    self.reelsListScrollPosition = startingScrollPosition;
+    self.videosListScrollPosition = startingScrollPosition;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -86,7 +100,7 @@ typedef enum {
         return self.videosPresenter;
     }
     
-    DDLogError(@"Unknown presenter type");
+    DDLogError(@"Unknown presenter type: %u", self.currentListType);
     return [super presenter];
 }
 
@@ -109,14 +123,17 @@ typedef enum {
 
 - (void)makeUsersListActive {
     [self useDataSource:self.usersDataSource forType:BrowseUsersList];
+    self.tableView.contentOffset = self.usersListScrollPosition;
 }
 
 - (void)makeReelsListActive {
     [self useDataSource:self.reelsDataSource forType:BrowseReelsList];
+    self.tableView.contentOffset = self.reelsListScrollPosition;
 }
 
 - (void)makeVideosListActive {
     [self useDataSource:self.videosDataSource forType:BrowseVideosList];
+    self.tableView.contentOffset = self.videosListScrollPosition;
 }
 
 - (void)showUserMessage:(RTUserMessage *)message {
@@ -145,10 +162,30 @@ typedef enum {
 
 - (void)useDataSource:(RTMutableArrayDataSource *)dataSource
               forType:(BrowseListType)type {
+    [self rememberScrollPosition];
+
     self.currentListType = type;
-    
+
     [self.tableView setDataSource:dataSource];
     [self.tableView reloadData];
+}
+
+- (void)rememberScrollPosition {
+    CGPoint contentOffset = self.tableView.contentOffset;
+    CGPoint currentScrollPosition = CGPointMake(contentOffset.x, contentOffset.y);
+    
+    if (self.currentListType == BrowseUsersList) {
+        self.usersListScrollPosition = currentScrollPosition;
+    }
+    else if (self.currentListType == BrowseReelsList) {
+        self.reelsListScrollPosition = currentScrollPosition;
+    }
+    else if (self.currentListType == BrowseVideosList) {
+        self.videosListScrollPosition = currentScrollPosition;
+    }
+    else {
+        DDLogError(@"Cannot remember scroll position for unknown type: %u", self.currentListType);
+    }
 }
 
 - (void)addItem:(id)item

@@ -15,6 +15,10 @@
 
 @interface RTBrowseViewController (Test)
 
+@property CGPoint usersListScrollPosition;
+@property CGPoint reelsListScrollPosition;
+@property CGPoint videosListScrollPosition;
+
 @property RTArrayDataSource *usersDataSource;
 @property RTArrayDataSource *reelsDataSource;
 @property RTArrayDataSource *videosDataSource;
@@ -120,6 +124,81 @@ describe(@"browse view controller", ^{
             
             [viewController segmentedControlChanged];
             [verify(tableView) setDataSource:viewController.videosDataSource];
+        });
+    });
+    
+    describe(@"scrolling", ^{
+        it(@"should start all lists at the top", ^{
+            CGPoint bogus = CGPointMake(120, 320);
+            CGPoint origin = CGPointZero;
+            
+            expect(origin).toNot.equal(bogus);
+            
+            viewController.usersListScrollPosition = bogus;
+            viewController.reelsListScrollPosition = bogus;
+            viewController.videosListScrollPosition = bogus;
+            
+            [given([tableView contentOffset]) willReturnStruct:&origin objCType:@encode(CGPoint)];
+            [viewController viewDidLoad];
+            
+            expect(viewController.usersListScrollPosition).to.equal(origin);
+            expect(viewController.reelsListScrollPosition).to.equal(origin);
+            expect(viewController.videosListScrollPosition).to.equal(origin);
+        });
+        
+        
+        context(@"lists start at origin", ^{
+            __block CGPoint origin;
+            __block CGPoint scrollPosition;
+            
+            beforeEach(^{
+                origin = CGPointZero;
+                scrollPosition = CGPointMake(0, 200);
+                
+                viewController.usersListScrollPosition = CGPointZero;
+                viewController.reelsListScrollPosition = CGPointZero;
+                viewController.videosListScrollPosition = CGPointZero;
+
+                [given([tableView contentOffset]) willReturnStruct:&origin objCType:@encode(CGPoint)];
+            });
+
+            void (^stubContentOffset)() = ^{
+                [verify(tableView) reset];
+                [given([tableView contentOffset]) willReturnStruct:&scrollPosition objCType:@encode(CGPoint)];
+            };
+            
+            it(@"should remember users scroll position", ^{
+                [viewController makeUsersListActive];
+
+                stubContentOffset();
+                [viewController makeReelsListActive];
+                
+                expect(viewController.usersListScrollPosition).to.equal(scrollPosition);
+                expect(viewController.reelsListScrollPosition).to.equal(origin);
+                expect(viewController.videosListScrollPosition).to.equal(origin);
+            });
+            
+            it(@"should remember reels scroll position", ^{
+                [viewController makeReelsListActive];
+                
+                stubContentOffset();
+                [viewController makeUsersListActive];
+                
+                expect(viewController.reelsListScrollPosition).to.equal(scrollPosition);
+                expect(viewController.usersListScrollPosition).to.equal(origin);
+                expect(viewController.videosListScrollPosition).to.equal(origin);
+            });
+            
+            it(@"should remember videos scroll position", ^{
+                [viewController makeVideosListActive];
+                
+                stubContentOffset();
+                [viewController makeUsersListActive];
+
+                expect(viewController.videosListScrollPosition).to.equal(scrollPosition);
+                expect(viewController.usersListScrollPosition).to.equal(origin);
+                expect(viewController.reelsListScrollPosition).to.equal(origin);
+            });
         });
     });
     
