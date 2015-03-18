@@ -5,6 +5,8 @@
 @protocol RTPagedListPresenterDelegate;
 @class RTPagedListInteractor;
 
+typedef void (^RefreshCompletedCallback)();
+
 @interface RTPagedListPresenter : NSObject <RTPagedListInteractorDelegate>
 
 - (instancetype)initWithDelegate:(id<RTPagedListPresenterDelegate>)delegate
@@ -12,6 +14,6 @@
 
 - (void)requestedNextPage;
 
-- (void)requestedReset;
+- (void)requestedRefreshWithCallback:(RefreshCompletedCallback)callback;
 
 @end

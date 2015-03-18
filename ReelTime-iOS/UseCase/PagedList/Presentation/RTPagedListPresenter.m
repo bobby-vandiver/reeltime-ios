@@ -15,6 +15,9 @@ static const NSUInteger INITIAL_PAGE_NUMBER = 1;
 @property BOOL canRequestNextPage;
 @property BOOL requestInProgress;
 
+@property BOOL refreshInProgress;
+@property (nonatomic, copy) RefreshCompletedCallback refreshCallback;
+
 @end
 
 @implementation RTPagedListPresenter
@@ -37,6 +40,9 @@ static const NSUInteger INITIAL_PAGE_NUMBER = 1;
 
     self.nextPage = INITIAL_PAGE_NUMBER;
     self.items = [NSMutableArray array];
+
+    self.refreshInProgress = NO;
+    self.refreshCallback = nil;
 }
 
 - (void)requestedNextPage {
@@ -46,9 +52,14 @@ static const NSUInteger INITIAL_PAGE_NUMBER = 1;
     }
 }
 
-- (void)requestedReset {
+- (void)requestedRefreshWithCallback:(RefreshCompletedCallback)callback {
     [self resetItems];
     [self.delegate clearPresentedItems];
+ 
+    self.refreshCallback = callback;
+    self.refreshInProgress = YES;
+    
+    [self requestedNextPage];
 }
 
 - (void)retrievedItems:(NSArray *)items {
@@ -61,6 +72,10 @@ static const NSUInteger INITIAL_PAGE_NUMBER = 1;
 
     self.canRequestNextPage = items.count > 0;
     self.requestInProgress = NO;
+    
+    if (self.refreshInProgress) {
+        self.refreshCallback();
+    }
 }
 
 - (void)failedToRetrieveItemsWithError:(NSError *)error {

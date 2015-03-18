@@ -13,7 +13,15 @@ describe(@"paged list presenter", ^{
     __block id<RTPagedListPresenterDelegate> delegate;
     __block RTPagedListInteractor *interactor;
     
+    __block BOOL callbackExecuted;
+    
+    RefreshCompletedCallback refreshCallback = ^{
+        callbackExecuted = YES;
+    };
+
     beforeEach(^{
+        callbackExecuted = NO;
+
         delegate = mockProtocol(@protocol(RTPagedListPresenterDelegate));
         interactor = mock([RTPagedListInteractor class]);
         presenter = [[RTPagedListPresenter alloc] initWithDelegate:delegate
@@ -48,8 +56,8 @@ describe(@"paged list presenter", ^{
         });
     });
     
-    describe(@"reset", ^{
-        it(@"should reset page counter so the first page is retrieved next", ^{
+    describe(@"refresh", ^{
+        it(@"should reset page counter and request that the first page is retrieved", ^{
             [presenter requestedNextPage];
             [verify(interactor) listItemsForPage:1];
 
@@ -59,16 +67,28 @@ describe(@"paged list presenter", ^{
             [presenter requestedNextPage];
             [verify(interactor) listItemsForPage:2];
             
-            [presenter requestedReset];
             [verify(interactor) reset];
-            
-            [presenter requestedNextPage];
+
+            [presenter requestedRefreshWithCallback:refreshCallback];
             [verify(interactor) listItemsForPage:1];
         });
         
         it(@"should notify view that currently displayed messages should be removed", ^{
-            [presenter requestedReset];
+            [presenter requestedRefreshWithCallback:refreshCallback];
             [verify(delegate) clearPresentedItems];
+        });
+
+        it(@"should execute callback when refresh has completed", ^{
+            [presenter requestedRefreshWithCallback:refreshCallback];
+            expect(callbackExecuted).to.beFalsy();
+            
+            [presenter retrievedItems:@[]];
+            expect(callbackExecuted).to.beTruthy();
+        });
+        
+        it(@"should not execute callback if refresh was not previously requested", ^{
+            [presenter retrievedItems:@[]];
+            expect(callbackExecuted).to.beFalsy();
         });
     });
     
@@ -110,7 +130,7 @@ describe(@"paged list presenter", ^{
             [verifyCount(delegate, never()) presentItem:anything()];
         });
         
-        it(@"present item after reset", ^{
+        it(@"present item after refresh", ^{
             id item = [NSObject new];
             NSArray *items = @[item];
             
@@ -118,7 +138,7 @@ describe(@"paged list presenter", ^{
             [verify(delegate) presentItem:item];
             
             [verify(delegate) reset];
-            [presenter requestedReset];
+            [presenter requestedRefreshWithCallback:refreshCallback];
             
             [presenter retrievedItems:items];
             [verify(delegate) presentItem:item];
