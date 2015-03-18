@@ -6,6 +6,12 @@
 
 #import "RTException.h"
 
+@interface RTPagedListViewController ()
+
+@property (readwrite) UIRefreshControl *refreshControl;
+
+@end
+
 @implementation RTPagedListViewController
 
 - (UITableView *)tableView {
@@ -18,6 +24,29 @@
     [NSException raise:RTAbstractMethodException
                 format:@"Presenter must be provided by subclass"];
     return nil;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    UIRefreshControl *refreshControl = [self createRefreshControl];
+    
+    if (refreshControl) {
+        [refreshControl addTarget:self action:@selector(handleRefresh) forControlEvents:UIControlEventValueChanged];
+        
+        self.refreshControl = refreshControl;
+        [self.tableView addSubview:refreshControl];
+    }
+}
+
+- (UIRefreshControl *)createRefreshControl {
+    return nil;
+}
+
+- (void)handleRefresh {
+    [self.presenter requestedRefreshWithCallback:^{
+        [self.refreshControl endRefreshing];
+    }];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {

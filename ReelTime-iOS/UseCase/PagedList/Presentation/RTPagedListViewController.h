@@ -6,6 +6,10 @@
 
 @property (readonly) UITableView *tableView;
 
+@property (readonly) UIRefreshControl *refreshControl;
+
 @property (readonly) RTPagedListPresenter *presenter;
+
+- (UIRefreshControl *)createRefreshControl;
 
 @end
