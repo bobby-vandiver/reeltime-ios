@@ -10,6 +10,10 @@
 #import "RTBrowseViewDataSourceFactory.h"
 #import "RTStoryboardViewControllerFactory.h"
 
+#import "RTUserMessage.h"
+#import "RTReelMessage.h"
+#import "RTVideoMessage.h"
+
 #import "RTLogging.h"
 #import "UITableView+LastVisibleRow.h"
 
@@ -119,6 +123,28 @@ typedef enum {
     else {
         DDLogError(@"Received unknown segment index: %ld", (long)selectedIndex);
     }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSInteger row = indexPath.row;
+    
+    if (self.currentListType == BrowseUsersList) {
+        RTUserMessage *message = self.usersDataSource.items[row];
+        [self.usersPresenter requestedUserDetailsForUsername:message.username];
+    }
+    else if (self.currentListType == BrowseReelsList) {
+        RTReelMessage *message = self.reelsDataSource.items[row];
+        [self.reelsPresenter requestedReelDetailsForReelId:message.reelId];
+    }
+    else if (self.currentListType == BrowseVideosList) {
+        RTVideoMessage *message = self.videosDataSource.items[row];
+        [self.videosPresenter requestedVideoDetailsForVideoId:message.videoId];
+    }
+    else {
+        DDLogError(@"Selected row for unknown list type: %u", self.currentListType);
+    }
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 - (void)makeUsersListActive {

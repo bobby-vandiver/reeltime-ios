@@ -19,15 +19,31 @@
 }
 
 - (void)presentUserForUsername:(NSString *)username {
-    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Present User Details"
+                                                        message:[NSString stringWithFormat:@"Username: %@", username]
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+    [alertView show];
+
 }
 
 - (void)presentReelForReelId:(NSNumber *)reelId {
-    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Present Reel Details"
+                                                        message:[NSString stringWithFormat:@"Reel ID: %@", reelId]
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+    [alertView show];
 }
 
 - (void)presentVideoForVideoId:(NSNumber *)videoId {
-    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Present Video Details"
+                                                        message:[NSString stringWithFormat:@"Video ID: %@", videoId]
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+    [alertView show];
 }
 
 @end

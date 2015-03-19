@@ -127,6 +127,48 @@ describe(@"browse view controller", ^{
         });
     });
     
+    describe(@"row selected", ^{
+        __block NSIndexPath *indexPath;
+        
+        __block RTUserMessage *userMessage;
+        __block RTReelMessage *reelMessage;
+        __block RTVideoMessage *videoMessage;
+        
+        beforeEach(^{
+            indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+            
+            userMessage = [RTUserMessage userMessageWithText:@"text" forUsername:username];
+            reelMessage = [RTReelMessage reelMessageWithText:@"text" forReelId:@(reelId)];
+            videoMessage = [RTVideoMessage videoMessageWithText:@"text" videoId:@(videoId)];
+            
+            viewController.usersDataSource.items = @[userMessage];
+            viewController.reelsDataSource.items = @[reelMessage];
+            viewController.videosDataSource.items = @[videoMessage];
+        });
+        
+        afterEach(^{
+            [verify(tableView) deselectRowAtIndexPath:indexPath animated:NO];
+        });
+        
+        it(@"should present selected user", ^{
+            [viewController makeUsersListActive];
+            [viewController tableView:tableView didSelectRowAtIndexPath:indexPath];
+            [verify(usersPresenter) requestedUserDetailsForUsername:username];
+        });
+        
+        it(@"should present selected reel", ^{
+            [viewController makeReelsListActive];
+            [viewController tableView:tableView didSelectRowAtIndexPath:indexPath];
+            [verify(reelsPresenter) requestedReelDetailsForReelId:@(reelId)];
+        });
+        
+        it(@"should present selected video", ^{
+            [viewController makeVideosListActive];
+            [viewController tableView:tableView didSelectRowAtIndexPath:indexPath];
+            [verify(videosPresenter) requestedVideoDetailsForVideoId:@(videoId)];
+        });
+    });
+    
     describe(@"scrolling", ^{
         it(@"should start all lists at the top", ^{
             CGPoint bogus = CGPointMake(120, 320);
