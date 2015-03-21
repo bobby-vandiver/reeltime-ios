@@ -10,7 +10,7 @@
 #import "RTBrowseViewDataSourceFactory.h"
 #import "RTStoryboardViewControllerFactory.h"
 
-#import "RTUserMessage.h"
+#import "RTUserDescription.h"
 #import "RTReelMessage.h"
 #import "RTVideoMessage.h"
 
@@ -128,8 +128,8 @@ typedef enum {
     NSInteger row = indexPath.row;
     
     if (self.currentListType == BrowseUsersList) {
-        RTUserMessage *message = self.usersDataSource.items[row];
-        [self.usersPresenter requestedUserDetailsForUsername:message.username];
+        RTUserDescription *description = self.usersDataSource.items[row];
+        [self.usersPresenter requestedUserDetailsForUsername:description.username];
     }
     else if (self.currentListType == BrowseReelsList) {
         RTReelMessage *message = self.reelsDataSource.items[row];
@@ -161,11 +161,11 @@ typedef enum {
     self.tableView.contentOffset = self.videosListScrollPosition;
 }
 
-- (void)showUserMessage:(RTUserMessage *)message {
-    [self addItem:message toDataSource:self.usersDataSource forType:BrowseUsersList];
+- (void)showUserDescription:(RTUserDescription *)description {
+    [self addItem:description toDataSource:self.usersDataSource forType:BrowseUsersList];
 }
 
-- (void)clearUserMessages {
+- (void)clearUserDescriptions {
     [self removeAllItemsFromDataSource:self.usersDataSource ofType:BrowseUsersList];
 }
 

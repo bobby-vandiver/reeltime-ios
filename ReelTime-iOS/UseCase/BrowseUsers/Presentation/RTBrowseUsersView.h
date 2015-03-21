@@ -1,11 +1,11 @@
 #import <Foundation/Foundation.h>
 
-@class RTUserMessage;
+@class RTUserDescription;
 
 @protocol RTBrowseUsersView <NSObject>
 
-- (void)showUserMessage:(RTUserMessage *)message;
+- (void)showUserDescription:(RTUserDescription *)description;
 
-- (void)clearUserMessages;
+- (void)clearUserDescriptions;
 
 @end

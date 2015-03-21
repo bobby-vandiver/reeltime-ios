@@ -1,17 +1,17 @@
-#import "RTUserMessage.h"
+#import "RTUserDescription.h"
 
-@interface RTUserMessage ()
+@interface RTUserDescription ()
 
 @property (readwrite, copy) NSString *text;
 @property (readwrite, copy) NSString *username;
 
 @end
 
-@implementation RTUserMessage
+@implementation RTUserDescription
 
-+ (RTUserMessage *)userMessageWithText:(NSString *)text
-                           forUsername:(NSString *)username {
-    return [[RTUserMessage alloc] initWithText:text forUsername:username];
++ (RTUserDescription *)userDescriptionWithText:(NSString *)text
+                                   forUsername:(NSString *)username {
+    return [[RTUserDescription alloc] initWithText:text forUsername:username];
 }
 
 - (instancetype)initWithText:(NSString *)text

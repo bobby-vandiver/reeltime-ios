@@ -1,7 +1,7 @@
 #import "RTBrowseViewDataSourceFactory.h"
 #import "RTMutableArrayDataSource.h"
 
-#import "RTUserMessage.h"
+#import "RTUserDescription.h"
 #import "RTReelMessage.h"
 #import "RTVideoMessage.h"
 
@@ -11,8 +11,8 @@ static NSString *const BrowseCellIdentifier = @"BrowseCell";
 
 + (RTMutableArrayDataSource *)usersDataSource {
     return [self dataSourceWithCellIdentifier:BrowseCellIdentifier
-                           configureCellBlock:^(UITableViewCell *cell, RTUserMessage *message) {
-                               cell.textLabel.text = message.text;
+                           configureCellBlock:^(UITableViewCell *cell, RTUserDescription *description) {
+                               cell.textLabel.text = description.text;
                            }];
 }
 

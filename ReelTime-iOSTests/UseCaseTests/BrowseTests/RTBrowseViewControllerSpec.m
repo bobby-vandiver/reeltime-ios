@@ -7,7 +7,7 @@
 #import "RTBrowseReelsPresenter.h"
 #import "RTBrowseVideosPresenter.h"
 
-#import "RTUserMessage.h"
+#import "RTUserDescription.h"
 #import "RTReelMessage.h"
 #import "RTVideoMessage.h"
 
@@ -128,18 +128,18 @@ describe(@"browse view controller", ^{
     describe(@"row selected", ^{
         __block NSIndexPath *indexPath;
         
-        __block RTUserMessage *userMessage;
+        __block RTUserDescription *userDescription;
         __block RTReelMessage *reelMessage;
         __block RTVideoMessage *videoMessage;
         
         beforeEach(^{
             indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
             
-            userMessage = [RTUserMessage userMessageWithText:@"text" forUsername:username];
+            userDescription = [RTUserDescription userDescriptionWithText:@"text" forUsername:username];
             reelMessage = [RTReelMessage reelMessageWithText:@"text" forReelId:@(reelId)];
             videoMessage = [RTVideoMessage videoMessageWithText:@"text" videoId:@(videoId)];
             
-            viewController.usersDataSource.items = @[userMessage];
+            viewController.usersDataSource.items = @[userDescription];
             viewController.reelsDataSource.items = @[reelMessage];
             viewController.videosDataSource.items = @[videoMessage];
         });
@@ -242,27 +242,27 @@ describe(@"browse view controller", ^{
         });
     });
     
-    context(@"user message is required", ^{
-        __block RTUserMessage *userMessage;
+    context(@"user description is required", ^{
+        __block RTUserDescription *userDescription;
         
         beforeEach(^{
-            userMessage = [RTUserMessage userMessageWithText:@"user" forUsername:username];
+            userDescription = [RTUserDescription userDescriptionWithText:@"user" forUsername:username];
             expect(viewController.usersDataSource.items).to.haveCountOf(0);
         });
         
-        describe(@"show message requested", ^{
-            it(@"should add message to users data source", ^{
-                [viewController showUserMessage:userMessage];
+        describe(@"show description requested", ^{
+            it(@"should add description to users data source", ^{
+                [viewController showUserDescription:userDescription];
                 
                 expect(viewController.usersDataSource.items).to.haveCountOf(1);
-                expect(viewController.usersDataSource.items).to.contain(userMessage);
+                expect(viewController.usersDataSource.items).to.contain(userDescription);
             });
             
             it(@"should not reload the table data when users data source isn't active", ^{
                 [viewController makeReelsListActive];
                 [verify(tableView) reset];
                 
-                [viewController showUserMessage:userMessage];
+                [viewController showUserDescription:userDescription];
                 [verifyCount(tableView, never()) reloadData];
             });
             
@@ -270,36 +270,36 @@ describe(@"browse view controller", ^{
                 [viewController makeUsersListActive];
                 [verify(tableView) reset];
 
-                [viewController showUserMessage:userMessage];
+                [viewController showUserDescription:userDescription];
                 [verify(tableView) reloadData];
             });
         });
         
-        describe(@"clear messages requested", ^{
+        describe(@"clear descriptions requested", ^{
             it(@"should reset users data source", ^{
-                [viewController showUserMessage:userMessage];
+                [viewController showUserDescription:userDescription];
                 
-                [viewController clearUserMessages];
+                [viewController clearUserDescriptions];
                 expect(viewController.usersDataSource.items).to.haveCountOf(0);
             });
             
             it(@"should not reload table data when users data source isn't active", ^{
                 [viewController makeReelsListActive];
-                [viewController showUserMessage:userMessage];
+                [viewController showUserDescription:userDescription];
                 
                 [verify(tableView) reset];
                 
-                [viewController clearUserMessages];
+                [viewController clearUserDescriptions];
                 [verifyCount(tableView, never()) reloadData];
             });
             
             it(@"should reload table data when users data source is active", ^{
                 [viewController makeUsersListActive];
-                [viewController showUserMessage:userMessage];
+                [viewController showUserDescription:userDescription];
 
                 [verify(tableView) reset];
                 
-                [viewController clearUserMessages];
+                [viewController clearUserDescriptions];
                 [verify(tableView) reloadData];
             });
         });

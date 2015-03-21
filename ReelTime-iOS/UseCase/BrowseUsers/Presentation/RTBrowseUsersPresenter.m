@@ -4,7 +4,7 @@
 #import "RTUserWireframe.h"
 
 #import "RTUser.h"
-#import "RTUserMessage.h"
+#import "RTUserDescription.h"
 
 @interface RTBrowseUsersPresenter ()
 
@@ -27,14 +27,14 @@
 }
 
 - (void)clearPresentedItems {
-    [self.view clearUserMessages];
+    [self.view clearUserDescriptions];
 }
 
 // TODO: Determine what the text should say
 - (void)presentItem:(RTUser *)user {
-    RTUserMessage *message = [RTUserMessage userMessageWithText:user.displayName
-                                                    forUsername:user.username];
-    [self.view showUserMessage:message];
+    RTUserDescription *description = [RTUserDescription userDescriptionWithText:user.displayName
+                                                                    forUsername:user.username];
+    [self.view showUserDescription:description];
 }
 
 - (void)requestedUserDetailsForUsername:(NSString *)username {

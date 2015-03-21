@@ -7,7 +7,7 @@
 #import "RTUserWireframe.h"
 
 #import "RTUser.h"
-#import "RTUserMessage.h"
+#import "RTUserDescription.h"
 
 SpecBegin(RTBrowseUsersPresenter)
 
@@ -32,7 +32,7 @@ describe(@"browse users presenter", ^{
     describe(@"list reset", ^{
         it(@"should notify view that currently displayed messages should be removed", ^{
             [presenter clearPresentedItems];
-            [verify(view) clearUserMessages];
+            [verify(view) clearUserDescriptions];
         });
     });
     
@@ -46,13 +46,13 @@ describe(@"browse users presenter", ^{
             [presenter presentItem:user];
             
             MKTArgumentCaptor *captor = [[MKTArgumentCaptor alloc] init];
-            [verify(view) showUserMessage:[captor capture]];
+            [verify(view) showUserDescription:[captor capture]];
             
-            RTUserMessage *message = [captor value];
-            expect(message).toNot.beNil();
+            RTUserDescription *description = [captor value];
+            expect(description).toNot.beNil();
             
-            expect(message.text).to.equal(displayName);
-            expect(message.username).to.equal(username);
+            expect(description.text).to.equal(displayName);
+            expect(description.username).to.equal(username);
         });
     });
     
