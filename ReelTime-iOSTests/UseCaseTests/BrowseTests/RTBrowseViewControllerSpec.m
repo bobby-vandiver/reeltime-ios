@@ -8,7 +8,7 @@
 #import "RTBrowseVideosPresenter.h"
 
 #import "RTUserDescription.h"
-#import "RTReelMessage.h"
+#import "RTReelDescription.h"
 #import "RTVideoMessage.h"
 
 @interface RTBrowseViewController (Test)
@@ -129,18 +129,18 @@ describe(@"browse view controller", ^{
         __block NSIndexPath *indexPath;
         
         __block RTUserDescription *userDescription;
-        __block RTReelMessage *reelMessage;
+        __block RTReelDescription *reelDescription;
         __block RTVideoMessage *videoMessage;
         
         beforeEach(^{
             indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
             
             userDescription = [RTUserDescription userDescriptionWithText:@"text" forUsername:username];
-            reelMessage = [RTReelMessage reelMessageWithText:@"text" forReelId:@(reelId)];
+            reelDescription = [RTReelDescription reelDescriptionWithText:@"text" forReelId:@(reelId)];
             videoMessage = [RTVideoMessage videoMessageWithText:@"text" videoId:@(videoId)];
             
             viewController.usersDataSource.items = @[userDescription];
-            viewController.reelsDataSource.items = @[reelMessage];
+            viewController.reelsDataSource.items = @[reelDescription];
             viewController.videosDataSource.items = @[videoMessage];
         });
         
@@ -305,27 +305,27 @@ describe(@"browse view controller", ^{
         });
     });
     
-    context(@"reel message is required", ^{
-        __block RTReelMessage *reelMessage;
+    context(@"reel description is required", ^{
+        __block RTReelDescription *reelDescription;
         
         beforeEach(^{
-            reelMessage = [RTReelMessage reelMessageWithText:@"reel" forReelId:@(reelId)];
+            reelDescription = [RTReelDescription reelDescriptionWithText:@"reel" forReelId:@(reelId)];
             expect(viewController.reelsDataSource.items).to.haveCountOf(0);
         });
         
-        describe(@"show message requested", ^{
-            it(@"should add message to reels data source", ^{
-                [viewController showReelMessage:reelMessage];
+        describe(@"show description requested", ^{
+            it(@"should add description to reels data source", ^{
+                [viewController showReelDescription:reelDescription];
                 
                 expect(viewController.reelsDataSource.items).to.haveCountOf(1);
-                expect(viewController.reelsDataSource.items).to.contain(reelMessage);
+                expect(viewController.reelsDataSource.items).to.contain(reelDescription);
             });
             
             it(@"should not reload the table data when reels data source isn't active", ^{
                 [viewController makeUsersListActive];
                 [verify(tableView) reset];
 
-                [viewController showReelMessage:reelMessage];
+                [viewController showReelDescription:reelDescription];
                 [verifyCount(tableView, never()) reloadData];
             });
             
@@ -333,36 +333,36 @@ describe(@"browse view controller", ^{
                 [viewController makeReelsListActive];
                 [verify(tableView) reset];
 
-                [viewController showReelMessage:reelMessage];
+                [viewController showReelDescription:reelDescription];
                 [verify(tableView) reloadData];
             });
         });
         
-        describe(@"clear messages requested", ^{
+        describe(@"clear descriptions requested", ^{
             it(@"should reset reels data source", ^{
-                [viewController showReelMessage:reelMessage];
+                [viewController showReelDescription:reelDescription];
                 
-                [viewController clearReelMessages];
+                [viewController clearReelDescriptions];
                 expect(viewController.reelsDataSource.items).to.haveCountOf(0);
             });
             
             it(@"should not reload table data when reels data source isn't active", ^{
                 [viewController makeUsersListActive];
-                [viewController showReelMessage:reelMessage];
+                [viewController showReelDescription:reelDescription];
                 
                 [verify(tableView) reset];
                 
-                [viewController clearReelMessages];
+                [viewController clearReelDescriptions];
                 [verifyCount(tableView, never()) reloadData];
             });
             
             it(@"should reload table data when reels data source is active", ^{
                 [viewController makeReelsListActive];
-                [viewController showReelMessage:reelMessage];
+                [viewController showReelDescription:reelDescription];
                 
                 [verify(tableView) reset];
                 
-                [viewController clearReelMessages];
+                [viewController clearReelDescriptions];
                 [verify(tableView) reloadData];
             });
         });
@@ -377,7 +377,7 @@ describe(@"browse view controller", ^{
         });
         
         describe(@"show message requested", ^{
-            it(@"should add message to videos data source", ^{
+            it(@"should add description to videos data source", ^{
                 [viewController showVideoMessage:videoMessage];
                 
                 expect(viewController.videosDataSource.items).to.haveCountOf(1);
@@ -401,7 +401,7 @@ describe(@"browse view controller", ^{
             });
         });
         
-        describe(@"clear messages requested", ^{
+        describe(@"clear descriptions requested", ^{
             it(@"should reset videos data source", ^{
                 [viewController showVideoMessage:videoMessage];
                 

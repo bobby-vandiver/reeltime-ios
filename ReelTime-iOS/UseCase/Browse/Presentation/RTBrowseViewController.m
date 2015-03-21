@@ -11,7 +11,7 @@
 #import "RTStoryboardViewControllerFactory.h"
 
 #import "RTUserDescription.h"
-#import "RTReelMessage.h"
+#import "RTReelDescription.h"
 #import "RTVideoMessage.h"
 
 #import "RTLogging.h"
@@ -132,12 +132,12 @@ typedef enum {
         [self.usersPresenter requestedUserDetailsForUsername:description.username];
     }
     else if (self.currentListType == BrowseReelsList) {
-        RTReelMessage *message = self.reelsDataSource.items[row];
-        [self.reelsPresenter requestedReelDetailsForReelId:message.reelId];
+        RTReelDescription *description = self.reelsDataSource.items[row];
+        [self.reelsPresenter requestedReelDetailsForReelId:description.reelId];
     }
     else if (self.currentListType == BrowseVideosList) {
-        RTVideoMessage *message = self.videosDataSource.items[row];
-        [self.videosPresenter requestedVideoDetailsForVideoId:message.videoId];
+        RTVideoMessage *description = self.videosDataSource.items[row];
+        [self.videosPresenter requestedVideoDetailsForVideoId:description.videoId];
     }
     else {
         DDLogError(@"Selected row for unknown list type: %u", self.currentListType);
@@ -169,16 +169,16 @@ typedef enum {
     [self removeAllItemsFromDataSource:self.usersDataSource ofType:BrowseUsersList];
 }
 
-- (void)showReelMessage:(RTReelMessage *)message {
-    [self addItem:message toDataSource:self.reelsDataSource forType:BrowseReelsList];
+- (void)showReelDescription:(RTReelDescription *)description {
+    [self addItem:description toDataSource:self.reelsDataSource forType:BrowseReelsList];
 }
 
-- (void)clearReelMessages {
+- (void)clearReelDescriptions {
     [self removeAllItemsFromDataSource:self.reelsDataSource ofType:BrowseReelsList];
 }
 
-- (void)showVideoMessage:(RTVideoMessage *)message {
-    [self addItem:message toDataSource:self.videosDataSource forType:BrowseVideosList];
+- (void)showVideoMessage:(RTVideoMessage *)description {
+    [self addItem:description toDataSource:self.videosDataSource forType:BrowseVideosList];
 }
 
 - (void)clearVideoMessages {

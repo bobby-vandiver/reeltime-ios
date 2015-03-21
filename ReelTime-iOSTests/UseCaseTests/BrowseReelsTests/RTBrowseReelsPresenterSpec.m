@@ -7,7 +7,7 @@
 #import "RTReelWireframe.h"
 
 #import "RTReel.h"
-#import "RTReelMessage.h"
+#import "RTReelDescription.h"
 
 SpecBegin(RTBrowseReelsPresenter)
 
@@ -30,14 +30,14 @@ describe(@"browse reels presenter", ^{
     });
     
     describe(@"list reset", ^{
-        it(@"should notify view that currently displayed messages should be removed", ^{
+        it(@"should notify view that currently displayed descriptions should be removed", ^{
             [presenter clearPresentedItems];
-            [verify(view) clearReelMessages];
+            [verify(view) clearReelDescriptions];
         });
     });
     
-    describe(@"show reel message", ^{
-        it(@"should show reel message", ^{
+    describe(@"show reel description", ^{
+        it(@"should show reel description", ^{
             RTReel *reel = [[RTReel alloc] initWithReelId:@(reelId)
                                                      name:@"something"
                                              audienceSize:@(4)
@@ -46,13 +46,13 @@ describe(@"browse reels presenter", ^{
             [presenter presentItem:reel];
             
             MKTArgumentCaptor *captor = [[MKTArgumentCaptor alloc] init];
-            [verify(view) showReelMessage:[captor capture]];
+            [verify(view) showReelDescription:[captor capture]];
             
-            RTReelMessage *messsage = [captor value];
-            expect(messsage).toNot.beNil();
+            RTReelDescription *description = [captor value];
+            expect(description).toNot.beNil();
             
-            expect(messsage.text).to.equal(@"something");
-            expect(messsage.reelId).to.equal(@(reelId));
+            expect(description.text).to.equal(@"something");
+            expect(description.reelId).to.equal(@(reelId));
         });
     });
     

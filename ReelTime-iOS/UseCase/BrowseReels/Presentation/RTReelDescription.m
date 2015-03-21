@@ -1,17 +1,17 @@
-#import "RTReelMessage.h"
+#import "RTReelDescription.h"
 
-@interface RTReelMessage ()
+@interface RTReelDescription ()
 
 @property (readwrite, copy) NSString *text;
 @property (readwrite, copy) NSNumber *reelId;
 
 @end
 
-@implementation RTReelMessage
+@implementation RTReelDescription
 
-+ (RTReelMessage *)reelMessageWithText:(NSString *)text
-                             forReelId:(NSNumber *)reelId {
-    return [[RTReelMessage alloc] initWithText:text forReelId:reelId];
++ (RTReelDescription *)reelDescriptionWithText:(NSString *)text
+                                     forReelId:(NSNumber *)reelId {
+    return [[RTReelDescription alloc] initWithText:text forReelId:reelId];
 }
 
 - (instancetype)initWithText:(NSString *)text

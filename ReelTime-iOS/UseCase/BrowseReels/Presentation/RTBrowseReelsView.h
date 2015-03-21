@@ -1,11 +1,11 @@
 #import <Foundation/Foundation.h>
 
-@class RTReelMessage;
+@class RTReelDescription;
 
 @protocol RTBrowseReelsView <NSObject>
 
-- (void)showReelMessage:(RTReelMessage *)message;
+- (void)showReelDescription:(RTReelDescription *)description;
 
-- (void)clearReelMessages;
+- (void)clearReelDescriptions;
 
 @end

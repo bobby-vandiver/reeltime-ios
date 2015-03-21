@@ -24,7 +24,7 @@
 		7114DF761AB4B401003B1D2E /* RTServerErrorsSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7114DF751AB4B401003B1D2E /* RTServerErrorsSpec.m */; };
 		7114DF7C1AB4B9C2003B1D2E /* RTBrowseReelsDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7114DF7B1AB4B9C2003B1D2E /* RTBrowseReelsDataManager.m */; };
 		7114DF7F1AB4BB1E003B1D2E /* RTBrowseReelsDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7114DF7E1AB4BB1E003B1D2E /* RTBrowseReelsDataManagerSpec.m */; };
-		7114DF821AB4BF4A003B1D2E /* RTReelMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7114DF811AB4BF4A003B1D2E /* RTReelMessage.m */; };
+		7114DF821AB4BF4A003B1D2E /* RTReelDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 7114DF811AB4BF4A003B1D2E /* RTReelDescription.m */; };
 		7114DF861AB4C157003B1D2E /* RTBrowseReelsPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7114DF851AB4C157003B1D2E /* RTBrowseReelsPresenter.m */; };
 		7114DF881AB4C38C003B1D2E /* RTBrowseReelsPresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7114DF871AB4C38C003B1D2E /* RTBrowseReelsPresenterSpec.m */; };
 		7116908F1A6AB3970031578E /* RTSecurityAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 7116908E1A6AB3970031578E /* RTSecurityAssembly.m */; };
@@ -226,8 +226,8 @@
 		7114DF7A1AB4B9C2003B1D2E /* RTBrowseReelsDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseReelsDataManager.h; sourceTree = "<group>"; };
 		7114DF7B1AB4B9C2003B1D2E /* RTBrowseReelsDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseReelsDataManager.m; sourceTree = "<group>"; };
 		7114DF7E1AB4BB1E003B1D2E /* RTBrowseReelsDataManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseReelsDataManagerSpec.m; sourceTree = "<group>"; };
-		7114DF801AB4BF4A003B1D2E /* RTReelMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTReelMessage.h; sourceTree = "<group>"; };
-		7114DF811AB4BF4A003B1D2E /* RTReelMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTReelMessage.m; sourceTree = "<group>"; };
+		7114DF801AB4BF4A003B1D2E /* RTReelDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTReelDescription.h; sourceTree = "<group>"; };
+		7114DF811AB4BF4A003B1D2E /* RTReelDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTReelDescription.m; sourceTree = "<group>"; };
 		7114DF831AB4C0D1003B1D2E /* RTBrowseReelsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseReelsView.h; sourceTree = "<group>"; };
 		7114DF841AB4C157003B1D2E /* RTBrowseReelsPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseReelsPresenter.h; sourceTree = "<group>"; };
 		7114DF851AB4C157003B1D2E /* RTBrowseReelsPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseReelsPresenter.m; sourceTree = "<group>"; };
@@ -624,8 +624,8 @@
 				7114DF841AB4C157003B1D2E /* RTBrowseReelsPresenter.h */,
 				7114DF851AB4C157003B1D2E /* RTBrowseReelsPresenter.m */,
 				7114DF831AB4C0D1003B1D2E /* RTBrowseReelsView.h */,
-				7114DF801AB4BF4A003B1D2E /* RTReelMessage.h */,
-				7114DF811AB4BF4A003B1D2E /* RTReelMessage.m */,
+				7114DF801AB4BF4A003B1D2E /* RTReelDescription.h */,
+				7114DF811AB4BF4A003B1D2E /* RTReelDescription.m */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -1768,7 +1768,7 @@
 				711C5DE01A8D5B4F007652FC /* RTEmbeddedURL.m in Sources */,
 				717D92761A5B925700EAB6BF /* RTCurrentUserStore.m in Sources */,
 				715555A71A9ED1F40091F432 /* RTAuthenticationAwareHTTPClient.m in Sources */,
-				7114DF821AB4BF4A003B1D2E /* RTReelMessage.m in Sources */,
+				7114DF821AB4BF4A003B1D2E /* RTReelDescription.m in Sources */,
 				7114DF861AB4C157003B1D2E /* RTBrowseReelsPresenter.m in Sources */,
 				7166E9701AB5C6600080F156 /* RTBrowseWireframe.m in Sources */,
 				71C7D4151A7406A6006B84AC /* RTServerErrorsConverter.m in Sources */,

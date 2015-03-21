@@ -4,7 +4,7 @@
 #import "RTReelWireframe.h"
 
 #import "RTReel.h"
-#import "RTReelMessage.h"
+#import "RTReelDescription.h"
 
 @interface RTBrowseReelsPresenter ()
 
@@ -27,13 +27,13 @@
 }
 
 - (void)clearPresentedItems {
-    [self.view clearReelMessages];
+    [self.view clearReelDescriptions];
 }
 
 - (void)presentItem:(RTReel *)reel {
-    RTReelMessage *message = [RTReelMessage reelMessageWithText:reel.name
-                                                      forReelId:reel.reelId];
-    [self.view showReelMessage:message];
+    RTReelDescription *description = [RTReelDescription reelDescriptionWithText:reel.name
+                                                                      forReelId:reel.reelId];
+    [self.view showReelDescription:description];
 }
 
 - (void)requestedReelDetailsForReelId:(NSNumber *)reelId {
