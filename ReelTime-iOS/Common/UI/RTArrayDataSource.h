@@ -11,10 +11,15 @@ typedef void (^ConfigureCellBlock)(id cell, id object);
 @property (strong, nonatomic) NSArray *items;
 @property (copy, nonatomic) NSString *cellIdentifier;
 @property (copy, nonatomic) ConfigureCellBlock configureCellBlock;
+@property (nonatomic) BOOL useRowToSelectItem;
 
 - (instancetype)initWithItems:(NSArray *)items
                cellIdentifier:(NSString *)cellIdentifier
            configureCellBlock:(ConfigureCellBlock)configureCellBlock;
 
+- (instancetype)initWithItems:(NSArray *)items
+               cellIdentifier:(NSString *)cellIdentifier
+           configureCellBlock:(ConfigureCellBlock)configureCellBlock
+           useRowToSelectItem:(BOOL)useRowToSelectItem;
 
 @end
