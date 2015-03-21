@@ -48,6 +48,7 @@
 		711FF4CB1AA2657200E11BDE /* RKResponseDescriptor+SingleStatusCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 711FF4CA1AA2657200E11BDE /* RKResponseDescriptor+SingleStatusCode.m */; };
 		71201F831A9689C6003F2831 /* RTActivityCell+ConfigureForRTActivityMessageSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71201F821A9689C6003F2831 /* RTActivityCell+ConfigureForRTActivityMessageSpec.m */; };
 		71201F8C1A96B7CD003F2831 /* RTNewsfeedAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 71201F8B1A96B7CD003F2831 /* RTNewsfeedAssembly.m */; };
+		712410CF1ABDC58200B1FF75 /* UITableView+LastVisibleRowSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 712410CE1ABDC58200B1FF75 /* UITableView+LastVisibleRowSpec.m */; };
 		7126980F1AA3CC8000E7066B /* RTReelList.m in Sources */ = {isa = PBXBuildFile; fileRef = 7126980E1AA3CC8000E7066B /* RTReelList.m */; };
 		712698121AA3CCB600E7066B /* RTVideoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 712698111AA3CCB600E7066B /* RTVideoList.m */; };
 		712698151AA3EC3800E7066B /* reel-list-multiple-reels.txt in Resources */ = {isa = PBXBuildFile; fileRef = 712698141AA3EC3800E7066B /* reel-list-multiple-reels.txt */; };
@@ -265,6 +266,7 @@
 		71201F821A9689C6003F2831 /* RTActivityCell+ConfigureForRTActivityMessageSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RTActivityCell+ConfigureForRTActivityMessageSpec.m"; sourceTree = "<group>"; };
 		71201F8A1A96B7CD003F2831 /* RTNewsfeedAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTNewsfeedAssembly.h; sourceTree = "<group>"; };
 		71201F8B1A96B7CD003F2831 /* RTNewsfeedAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTNewsfeedAssembly.m; sourceTree = "<group>"; };
+		712410CE1ABDC58200B1FF75 /* UITableView+LastVisibleRowSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+LastVisibleRowSpec.m"; sourceTree = "<group>"; };
 		7126980D1AA3CC8000E7066B /* RTReelList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTReelList.h; path = "ReelTime-iOS/Common/Model/RTReelList.h"; sourceTree = SOURCE_ROOT; };
 		7126980E1AA3CC8000E7066B /* RTReelList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTReelList.m; path = "ReelTime-iOS/Common/Model/RTReelList.m"; sourceTree = SOURCE_ROOT; };
 		712698101AA3CCB600E7066B /* RTVideoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTVideoList.h; path = "ReelTime-iOS/Common/Model/RTVideoList.h"; sourceTree = SOURCE_ROOT; };
@@ -730,6 +732,14 @@
 				711FF4B91AA20CEC00E11BDE /* successful-ok-with-no-body.txt */,
 			);
 			path = CommonResponses;
+			sourceTree = "<group>";
+		};
+		712410CD1ABDC55400B1FF75 /* UITests */ = {
+			isa = PBXGroup;
+			children = (
+				712410CE1ABDC58200B1FF75 /* UITableView+LastVisibleRowSpec.m */,
+			);
+			path = UITests;
 			sourceTree = "<group>";
 		};
 		712698131AA3EC0900E7066B /* Reel */ = {
@@ -1320,6 +1330,7 @@
 				7170C86B1A59A95000C460BB /* SecurityTests */,
 				71D947891A4FBC7100401963 /* StoreTests */,
 				718A0BF91A4DA87900137C49 /* Supporting Files */,
+				712410CD1ABDC55400B1FF75 /* UITests */,
 				71D947951A4FCB1C00401963 /* UseCaseTests */,
 			);
 			path = "ReelTime-iOSTests";
@@ -1843,6 +1854,7 @@
 				712BE3021A75D74C00478277 /* EXPMatchers+beError.m in Sources */,
 				713A23921AB4EB950098CE48 /* RTBrowseVideosDataManagerSpec.m in Sources */,
 				711FF4C61AA23A3A00E11BDE /* RTAuthenticationAwareHTTPClientSpy.m in Sources */,
+				712410CF1ABDC58200B1FF75 /* UITableView+LastVisibleRowSpec.m in Sources */,
 				712BE3031A75D74C00478277 /* RTTestCommon.m in Sources */,
 				71A8BA2D1AB0F92E00B0708B /* RTPagedListPresenterSpec.m in Sources */,
 				7160C2BF1A6F48A60045ADDA /* RTAccountRegistrationValidatorSpec.m in Sources */,
