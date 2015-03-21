@@ -9,7 +9,7 @@
 
 #import "RTUserDescription.h"
 #import "RTReelDescription.h"
-#import "RTVideoMessage.h"
+#import "RTVideoDescription.h"
 
 @interface RTBrowseViewController (Test)
 
@@ -130,18 +130,18 @@ describe(@"browse view controller", ^{
         
         __block RTUserDescription *userDescription;
         __block RTReelDescription *reelDescription;
-        __block RTVideoMessage *videoMessage;
+        __block RTVideoDescription *videoDescription;
         
         beforeEach(^{
             indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
             
             userDescription = [RTUserDescription userDescriptionWithText:@"text" forUsername:username];
             reelDescription = [RTReelDescription reelDescriptionWithText:@"text" forReelId:@(reelId)];
-            videoMessage = [RTVideoMessage videoMessageWithText:@"text" videoId:@(videoId)];
+            videoDescription = [RTVideoDescription videoDescriptionWithText:@"text" videoId:@(videoId)];
             
             viewController.usersDataSource.items = @[userDescription];
             viewController.reelsDataSource.items = @[reelDescription];
-            viewController.videosDataSource.items = @[videoMessage];
+            viewController.videosDataSource.items = @[videoDescription];
         });
         
         afterEach(^{
@@ -369,26 +369,26 @@ describe(@"browse view controller", ^{
     });
     
     context(@"video message is required", ^{
-        __block RTVideoMessage *videoMessage;
+        __block RTVideoDescription *videoDescription;
         
         beforeEach(^{
-            videoMessage = [RTVideoMessage videoMessageWithText:@"video" videoId:@(videoId)];
+            videoDescription = [RTVideoDescription videoDescriptionWithText:@"video" videoId:@(videoId)];
             expect(viewController.videosDataSource.items).to.haveCountOf(0);
         });
         
         describe(@"show message requested", ^{
             it(@"should add description to videos data source", ^{
-                [viewController showVideoMessage:videoMessage];
+                [viewController showVideoDescription:videoDescription];
                 
                 expect(viewController.videosDataSource.items).to.haveCountOf(1);
-                expect(viewController.videosDataSource.items).to.contain(videoMessage);
+                expect(viewController.videosDataSource.items).to.contain(videoDescription);
             });
             
             it(@"should not reload the table data when videos data source isn't active", ^{
                 [viewController makeUsersListActive];
                 [verify(tableView) reset];
 
-                [viewController showVideoMessage:videoMessage];
+                [viewController showVideoDescription:videoDescription];
                 [verifyCount(tableView, never()) reloadData];
             });
             
@@ -396,36 +396,36 @@ describe(@"browse view controller", ^{
                 [viewController makeVideosListActive];
                 [verify(tableView) reset];
 
-                [viewController showVideoMessage:videoMessage];
+                [viewController showVideoDescription:videoDescription];
                 [verify(tableView) reloadData];
             });
         });
         
         describe(@"clear descriptions requested", ^{
             it(@"should reset videos data source", ^{
-                [viewController showVideoMessage:videoMessage];
+                [viewController showVideoDescription:videoDescription];
                 
-                [viewController clearVideoMessages];
+                [viewController clearVideoDescriptions];
                 expect(viewController.videosDataSource.items).to.haveCountOf(0);
             });
             
             it(@"should not reload table data when videos data source isn't active", ^{
                 [viewController makeUsersListActive];
-                [viewController showVideoMessage:videoMessage];
+                [viewController showVideoDescription:videoDescription];
                 
                 [verify(tableView) reset];
                 
-                [viewController clearVideoMessages];
+                [viewController clearVideoDescriptions];
                 [verifyCount(tableView, never()) reloadData];
             });
             
             it(@"should reload table data when videos data source is active", ^{
                 [viewController makeVideosListActive];
-                [viewController showVideoMessage:videoMessage];
+                [viewController showVideoDescription:videoDescription];
                 
                 [verify(tableView) reset];
                 
-                [viewController clearVideoMessages];
+                [viewController clearVideoDescriptions];
                 [verify(tableView) reloadData];
             });
         });

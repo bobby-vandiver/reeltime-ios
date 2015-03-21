@@ -4,7 +4,7 @@
 #import "RTVideoWireframe.h"
 
 #import "RTVideo.h"
-#import "RTVideoMessage.h"
+#import "RTVideoDescription.h"
 
 @interface RTBrowseVideosPresenter ()
 
@@ -27,13 +27,13 @@
 }
 
 - (void)clearPresentedItems {
-    [self.view clearVideoMessages];
+    [self.view clearVideoDescriptions];
 }
 
 - (void)presentItem:(RTVideo *)video {
-    RTVideoMessage *message = [RTVideoMessage videoMessageWithText:video.title
-                                                           videoId:video.videoId];
-    [self.view showVideoMessage:message];
+    RTVideoDescription *description = [RTVideoDescription videoDescriptionWithText:video.title
+                                                                           videoId:video.videoId];
+    [self.view showVideoDescription:description];
 }
 
 - (void)requestedVideoDetailsForVideoId:(NSNumber *)videoId {

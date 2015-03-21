@@ -1,17 +1,17 @@
-#import "RTVideoMessage.h"
+#import "RTVideoDescription.h"
 
-@interface RTVideoMessage ()
+@interface RTVideoDescription ()
 
 @property (readwrite, copy) NSString *text;
 @property (readwrite, copy) NSNumber *videoId;
 
 @end
 
-@implementation RTVideoMessage
+@implementation RTVideoDescription
 
-+ (RTVideoMessage *)videoMessageWithText:(NSString *)text
-                                 videoId:(NSNumber *)videoId {
-    return [[RTVideoMessage alloc] initWithText:text videoId:videoId];
++ (RTVideoDescription *)videoDescriptionWithText:(NSString *)text
+                                         videoId:(NSNumber *)videoId {
+    return [[RTVideoDescription alloc] initWithText:text videoId:videoId];
 }
 
 - (instancetype)initWithText:(NSString *)text

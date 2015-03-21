@@ -7,7 +7,7 @@
 #import "RTVideoWireframe.h"
 
 #import "RTVideo.h"
-#import "RTVideoMessage.h"
+#import "RTVideoDescription.h"
 
 SpecBegin(RTBrowseVideosPresenter)
 
@@ -32,11 +32,11 @@ describe(@"browse videos presenter", ^{
     describe(@"list reset", ^{
         it(@"should notify view that currently displayed messages should be removed", ^{
             [presenter clearPresentedItems];
-            [verify(view) clearVideoMessages];
+            [verify(view) clearVideoDescriptions];
         });
     });
     
-    describe(@"show video message", ^{
+    describe(@"show video description", ^{
         it(@"should show video message", ^{
             RTVideo *video = [[RTVideo alloc] initWithVideoId:@(videoId)
                                                         title:@"some video"];
@@ -44,13 +44,13 @@ describe(@"browse videos presenter", ^{
             [presenter presentItem:video];
             
             MKTArgumentCaptor *captor = [[MKTArgumentCaptor alloc] init];
-            [verify(view) showVideoMessage:[captor capture]];
+            [verify(view) showVideoDescription:[captor capture]];
             
-            RTVideoMessage *message = [captor value];
-            expect(message).toNot.beNil();
+            RTVideoDescription *description = [captor value];
+            expect(description).toNot.beNil();
             
-            expect(message.text).to.equal(@"some video");
-            expect(message.videoId).to.equal(@(videoId));
+            expect(description.text).to.equal(@"some video");
+            expect(description.videoId).to.equal(@(videoId));
         });
     });
     

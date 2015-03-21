@@ -3,7 +3,7 @@
 
 #import "RTUserDescription.h"
 #import "RTReelDescription.h"
-#import "RTVideoMessage.h"
+#import "RTVideoDescription.h"
 
 static NSString *const BrowseCellIdentifier = @"BrowseCell";
 
@@ -18,15 +18,15 @@ static NSString *const BrowseCellIdentifier = @"BrowseCell";
 
 + (RTMutableArrayDataSource *)reelsDataSource {
     return [self dataSourceWithCellIdentifier:BrowseCellIdentifier
-                           configureCellBlock:^(UITableViewCell *cell, RTReelDescription *message) {
-                               cell.textLabel.text = message.text;
+                           configureCellBlock:^(UITableViewCell *cell, RTReelDescription *description) {
+                               cell.textLabel.text = description.text;
                            }];
 }
 
 + (RTMutableArrayDataSource *)videosDataSource {
     return [self dataSourceWithCellIdentifier:BrowseCellIdentifier
-                           configureCellBlock:^(UITableViewCell *cell, RTVideoMessage *message) {
-                               cell.textLabel.text = message.text;
+                           configureCellBlock:^(UITableViewCell *cell, RTVideoDescription *description) {
+                               cell.textLabel.text = description.text;
                            }];
 }
 

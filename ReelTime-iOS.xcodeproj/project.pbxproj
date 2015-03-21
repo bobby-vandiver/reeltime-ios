@@ -90,7 +90,7 @@
 		7136A53F1AA3652C0059DF43 /* RTUserList.m in Sources */ = {isa = PBXBuildFile; fileRef = 7136A53E1AA3652B0059DF43 /* RTUserList.m */; };
 		713A238F1AB4EB520098CE48 /* RTBrowseVideosDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 713A238E1AB4EB520098CE48 /* RTBrowseVideosDataManager.m */; };
 		713A23921AB4EB950098CE48 /* RTBrowseVideosDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 713A23911AB4EB950098CE48 /* RTBrowseVideosDataManagerSpec.m */; };
-		713A23961AB4F4FD0098CE48 /* RTVideoMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 713A23951AB4F4FD0098CE48 /* RTVideoMessage.m */; };
+		713A23961AB4F4FD0098CE48 /* RTVideoDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 713A23951AB4F4FD0098CE48 /* RTVideoDescription.m */; };
 		713A239A1AB4F5F80098CE48 /* RTBrowseVideosPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 713A23991AB4F5F80098CE48 /* RTBrowseVideosPresenter.m */; };
 		713A239C1AB4F6BF0098CE48 /* RTBrowseVideosPresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 713A239B1AB4F6BF0098CE48 /* RTBrowseVideosPresenterSpec.m */; };
 		713A239F1AB4FF4C0098CE48 /* RTMutableArrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 713A239E1AB4FF4C0098CE48 /* RTMutableArrayDataSource.m */; };
@@ -331,8 +331,8 @@
 		713A238D1AB4EB520098CE48 /* RTBrowseVideosDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseVideosDataManager.h; sourceTree = "<group>"; };
 		713A238E1AB4EB520098CE48 /* RTBrowseVideosDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseVideosDataManager.m; sourceTree = "<group>"; };
 		713A23911AB4EB950098CE48 /* RTBrowseVideosDataManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseVideosDataManagerSpec.m; sourceTree = "<group>"; };
-		713A23941AB4F4FD0098CE48 /* RTVideoMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTVideoMessage.h; sourceTree = "<group>"; };
-		713A23951AB4F4FD0098CE48 /* RTVideoMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTVideoMessage.m; sourceTree = "<group>"; };
+		713A23941AB4F4FD0098CE48 /* RTVideoDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTVideoDescription.h; sourceTree = "<group>"; };
+		713A23951AB4F4FD0098CE48 /* RTVideoDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTVideoDescription.m; sourceTree = "<group>"; };
 		713A23971AB4F5A20098CE48 /* RTBrowseVideosView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseVideosView.h; sourceTree = "<group>"; };
 		713A23981AB4F5F80098CE48 /* RTBrowseVideosPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseVideosPresenter.h; sourceTree = "<group>"; };
 		713A23991AB4F5F80098CE48 /* RTBrowseVideosPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseVideosPresenter.m; sourceTree = "<group>"; };
@@ -897,8 +897,8 @@
 				713A23981AB4F5F80098CE48 /* RTBrowseVideosPresenter.h */,
 				713A23991AB4F5F80098CE48 /* RTBrowseVideosPresenter.m */,
 				713A23971AB4F5A20098CE48 /* RTBrowseVideosView.h */,
-				713A23941AB4F4FD0098CE48 /* RTVideoMessage.h */,
-				713A23951AB4F4FD0098CE48 /* RTVideoMessage.m */,
+				713A23941AB4F4FD0098CE48 /* RTVideoDescription.h */,
+				713A23951AB4F4FD0098CE48 /* RTVideoDescription.m */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -1757,7 +1757,7 @@
 				7172159B1A8659050002ECC7 /* RTAccountRegistrationAssembly.m in Sources */,
 				7136A53F1AA3652C0059DF43 /* RTUserList.m in Sources */,
 				71C5C0B21A55EB3900CAAFAC /* RTOAuth2TokenStore.m in Sources */,
-				713A23961AB4F4FD0098CE48 /* RTVideoMessage.m in Sources */,
+				713A23961AB4F4FD0098CE48 /* RTVideoDescription.m in Sources */,
 				71565A261A98ED5900AE1C43 /* RTApplicationWireframe.m in Sources */,
 				715370FA1A88680700D3355B /* RTArrayDataSource.m in Sources */,
 				718CFFCA1A6C007C00B418F9 /* RTAccountRegistration.m in Sources */,

@@ -12,7 +12,7 @@
 
 #import "RTUserDescription.h"
 #import "RTReelDescription.h"
-#import "RTVideoMessage.h"
+#import "RTVideoDescription.h"
 
 #import "RTLogging.h"
 
@@ -136,7 +136,7 @@ typedef enum {
         [self.reelsPresenter requestedReelDetailsForReelId:description.reelId];
     }
     else if (self.currentListType == BrowseVideosList) {
-        RTVideoMessage *description = self.videosDataSource.items[row];
+        RTVideoDescription *description = self.videosDataSource.items[row];
         [self.videosPresenter requestedVideoDetailsForVideoId:description.videoId];
     }
     else {
@@ -177,11 +177,11 @@ typedef enum {
     [self removeAllItemsFromDataSource:self.reelsDataSource ofType:BrowseReelsList];
 }
 
-- (void)showVideoMessage:(RTVideoMessage *)description {
+- (void)showVideoDescription:(RTVideoDescription *)description {
     [self addItem:description toDataSource:self.videosDataSource forType:BrowseVideosList];
 }
 
-- (void)clearVideoMessages {
+- (void)clearVideoDescriptions {
     [self removeAllItemsFromDataSource:self.videosDataSource ofType:BrowseVideosList];
 }
 

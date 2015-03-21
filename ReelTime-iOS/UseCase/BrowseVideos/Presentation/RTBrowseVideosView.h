@@ -1,11 +1,11 @@
 #import <Foundation/Foundation.h>
 
-@class RTVideoMessage;
+@class RTVideoDescription;
 
 @protocol RTBrowseVideosView <NSObject>
 
-- (void)showVideoMessage:(RTVideoMessage *)message;
+- (void)showVideoDescription:(RTVideoDescription *)description;
 
-- (void)clearVideoMessages;
+- (void)clearVideoDescriptions;
 
 @end
