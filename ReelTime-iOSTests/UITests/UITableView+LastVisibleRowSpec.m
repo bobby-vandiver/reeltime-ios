@@ -26,6 +26,35 @@ describe(@"table view last visible category", ^{
         tableView = [[TestUITableView alloc] init];
     });
     
+    describe(@"last visible section", ^{
+        it(@"has no visible paths", ^{
+            tableView.visibleIndexPaths = nil;
+            
+            NSInteger lastSection = [tableView lastVisibleSection];
+            expect(lastSection).to.equal(NSNotFound);
+        });
+        
+        it(@"has one visible path", ^{
+            NSIndexPath *r0s0 = [NSIndexPath indexPathForRow:0 inSection:0];
+            tableView.visibleIndexPaths = @[r0s0];
+            
+            NSInteger lastSection = [tableView lastVisibleSection];
+            expect(lastSection).to.equal(0);
+        });
+        
+        it(@"has multiple visible paths", ^{
+            NSIndexPath *r0s0 = [NSIndexPath indexPathForRow:0 inSection:0];
+            NSIndexPath *r0s1 = [NSIndexPath indexPathForRow:0 inSection:1];
+            NSIndexPath *r0s2 = [NSIndexPath indexPathForRow:0 inSection:2];
+            NSIndexPath *r0s3 = [NSIndexPath indexPathForRow:0 inSection:3];
+            
+            tableView.visibleIndexPaths = @[r0s0, r0s1, r0s2, r0s3];
+            
+            NSInteger lastSection = [tableView lastVisibleSection];
+            expect(lastSection).to.equal(3);
+        });
+    });
+    
     describe(@"last visible row for section", ^{
         it(@"has no visible paths", ^{
             tableView.visibleIndexPaths = nil;

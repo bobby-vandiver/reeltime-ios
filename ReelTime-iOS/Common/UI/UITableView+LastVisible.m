@@ -2,6 +2,13 @@
 
 @implementation UITableView (LastVisible)
 
+- (NSInteger)lastVisibleSection {
+    NSArray *visiblePaths = [self indexPathsForVisibleRows];
+    
+    NSIndexPath *lastVisiblePath = [visiblePaths lastObject];
+    return lastVisiblePath ? lastVisiblePath.section : NSNotFound;
+}
+
 - (NSInteger)lastVisibleRowForSection:(NSInteger)section {
     NSArray *visiblePaths = [self indexPathsForVisibleRows];
 
