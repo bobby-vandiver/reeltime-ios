@@ -11,8 +11,6 @@
 #import "RTReelMessage.h"
 #import "RTVideoMessage.h"
 
-#import "UITableView+LastVisibleRow.h"
-
 @interface RTBrowseViewController (Test)
 
 @property CGPoint usersListScrollPosition;

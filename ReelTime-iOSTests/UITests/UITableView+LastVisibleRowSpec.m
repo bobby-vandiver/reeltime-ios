@@ -1,6 +1,6 @@
 #import "RTTestCommon.h"
 
-#import "UITableView+LastVisibleRow.h"
+#import "UITableView+LastVisible.h"
 
 @interface TestUITableView : UITableView
 
@@ -16,7 +16,7 @@
 
 @end
 
-SpecBegin(UITableView_LastVisibleRow)
+SpecBegin(UITableView_LastVisible)
 
 describe(@"table view last visible category", ^{
     

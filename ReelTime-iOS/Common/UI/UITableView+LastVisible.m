@@ -1,6 +1,6 @@
-#import "UITableView+LastVisibleRow.h"
+#import "UITableView+LastVisible.h"
 
-@implementation UITableView (LastVisibleRow)
+@implementation UITableView (LastVisible)
 
 - (NSInteger)lastVisibleRowForSection:(NSInteger)section {
     NSArray *visiblePaths = [self indexPathsForVisibleRows];

@@ -15,7 +15,6 @@
 #import "RTVideoMessage.h"
 
 #import "RTLogging.h"
-#import "UITableView+LastVisibleRow.h"
 
 typedef enum {
     BrowseUsersList,

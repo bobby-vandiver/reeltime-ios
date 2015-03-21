@@ -2,7 +2,7 @@
 #import "RTPagedListPresenter.h"
 
 #import "RTArrayDataSource.h"
-#import "UITableView+LastVisibleRow.h"
+#import "UITableView+LastVisible.h"
 
 #import "RTException.h"
 

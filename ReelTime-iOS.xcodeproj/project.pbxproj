@@ -156,7 +156,7 @@
 		717215D31A865C8E0002ECC7 /* token-bad-client-credentials.txt in Resources */ = {isa = PBXBuildFile; fileRef = 717215CA1A865C8E0002ECC7 /* token-bad-client-credentials.txt */; };
 		717215D41A865C8E0002ECC7 /* token-bad-user-credentials.txt in Resources */ = {isa = PBXBuildFile; fileRef = 717215CB1A865C8E0002ECC7 /* token-bad-user-credentials.txt */; };
 		717215D51A865C8E0002ECC7 /* token-successful.txt in Resources */ = {isa = PBXBuildFile; fileRef = 717215CC1A865C8E0002ECC7 /* token-successful.txt */; };
-		717970041AB7B92E00A0B9B5 /* UITableView+LastVisibleRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 717970031AB7B92E00A0B9B5 /* UITableView+LastVisibleRow.m */; };
+		717970041AB7B92E00A0B9B5 /* UITableView+LastVisible.m in Sources */ = {isa = PBXBuildFile; fileRef = 717970031AB7B92E00A0B9B5 /* UITableView+LastVisible.m */; };
 		717970071AB7C60D00A0B9B5 /* RTPagedListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 717970061AB7C60D00A0B9B5 /* RTPagedListViewController.m */; };
 		717970091AB7C83800A0B9B5 /* RTPagedListViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 717970081AB7C83800A0B9B5 /* RTPagedListViewControllerSpec.m */; };
 		717A4B781A534EBD004C2BC1 /* RTResponseDescriptorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 717A4B771A534EBD004C2BC1 /* RTResponseDescriptorFactory.m */; };
@@ -451,8 +451,8 @@
 		717215CA1A865C8E0002ECC7 /* token-bad-client-credentials.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "token-bad-client-credentials.txt"; sourceTree = "<group>"; };
 		717215CB1A865C8E0002ECC7 /* token-bad-user-credentials.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "token-bad-user-credentials.txt"; sourceTree = "<group>"; };
 		717215CC1A865C8E0002ECC7 /* token-successful.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "token-successful.txt"; sourceTree = "<group>"; };
-		717970021AB7B90E00A0B9B5 /* UITableView+LastVisibleRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+LastVisibleRow.h"; sourceTree = "<group>"; };
-		717970031AB7B92E00A0B9B5 /* UITableView+LastVisibleRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+LastVisibleRow.m"; sourceTree = "<group>"; };
+		717970021AB7B90E00A0B9B5 /* UITableView+LastVisible.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+LastVisible.h"; sourceTree = "<group>"; };
+		717970031AB7B92E00A0B9B5 /* UITableView+LastVisible.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+LastVisible.m"; sourceTree = "<group>"; };
 		717970051AB7C60D00A0B9B5 /* RTPagedListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTPagedListViewController.h; sourceTree = "<group>"; };
 		717970061AB7C60D00A0B9B5 /* RTPagedListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTPagedListViewController.m; sourceTree = "<group>"; };
 		717970081AB7C83800A0B9B5 /* RTPagedListViewControllerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTPagedListViewControllerSpec.m; sourceTree = "<group>"; };
@@ -1008,8 +1008,8 @@
 				715370F91A88680700D3355B /* RTArrayDataSource.m */,
 				713A239D1AB4FF4C0098CE48 /* RTMutableArrayDataSource.h */,
 				713A239E1AB4FF4C0098CE48 /* RTMutableArrayDataSource.m */,
-				717970021AB7B90E00A0B9B5 /* UITableView+LastVisibleRow.h */,
-				717970031AB7B92E00A0B9B5 /* UITableView+LastVisibleRow.m */,
+				717970021AB7B90E00A0B9B5 /* UITableView+LastVisible.h */,
+				717970031AB7B92E00A0B9B5 /* UITableView+LastVisible.m */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1818,7 +1818,7 @@
 				71647BD81A7E7F9D00F44996 /* RTUser.m in Sources */,
 				71647BE61A7F17CD00F44996 /* RTAuthenticationAwareHTTPClientDelegate.m in Sources */,
 				71331A301A880B0100912B5F /* RTNewsfeedWireframe.m in Sources */,
-				717970041AB7B92E00A0B9B5 /* UITableView+LastVisibleRow.m in Sources */,
+				717970041AB7B92E00A0B9B5 /* UITableView+LastVisible.m in Sources */,
 				71C5C0AC1A55EAE700CAAFAC /* RTOAuth2Token.m in Sources */,
 				717215BF1A865B7B0002ECC7 /* RTNewsfeedDataManager.m in Sources */,
 				719B35DE1A51140900FFD543 /* RTRestAPI.m in Sources */,
