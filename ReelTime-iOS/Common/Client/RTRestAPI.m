@@ -53,3 +53,5 @@ API_VERSION_LATEST(API_LIST_VIDEOS,                    "videos");
 API_VERSION_LATEST(API_ADD_VIDEO,                      "videos");
 API_VERSION_LATEST(API_GET_VIDEO,                      "videos/:video_id");
 API_VERSION_LATEST(API_DELETE_VIDEO,                   "videos/:video_id");
+
+API_VERSION_LATEST(API_GET_VIDEO_THUMBNAIL,            "videos/:video_id/thumbnail");

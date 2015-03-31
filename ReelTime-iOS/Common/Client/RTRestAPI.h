@@ -51,3 +51,5 @@ extern NSString *const API_LIST_VIDEOS;
 extern NSString *const API_ADD_VIDEO;
 extern NSString *const API_GET_VIDEO;
 extern NSString *const API_DELETE_VIDEO;
+
+extern NSString *const API_GET_VIDEO_THUMBNAIL;
