@@ -21,6 +21,8 @@ extern NSString *const API_NEWSFEED;
 
 extern NSString *const API_VARIANT_PLAYLIST;
 
+extern NSString *const API_REMOVE_TOKEN;
+
 extern NSString *const API_LIST_REELS;
 extern NSString *const API_ADD_REEL;
 extern NSString *const API_GET_REEL;

@@ -101,6 +101,10 @@ typedef void (^VideoListCallback)(RTVideoList *videoList);
              success:(NewsfeedCallback)success
              failure:(ServerErrorsCallback)failure;
 
+- (void)revokeAccessToken:(NSString *)token
+                  success:(NoArgsCallback)success
+                  failure:(ServerErrorsCallback)failure;
+
 - (void)listReelsPage:(NSUInteger)page
               success:(ReelListCallback)success
               failure:(ServerErrorsCallback)failure;

@@ -8,6 +8,11 @@
 }
 
 - (NSString *)formatPath:(NSString *)path
+         withAccessToken:(NSString *)accessToken {
+    return [self formatPath:path withParameters:@{@":access_token": accessToken}];
+}
+
+- (NSString *)formatPath:(NSString *)path
             withUsername:(NSString *)username {
     return [self formatPath:path withParameters:@{@":username": username}];
 }

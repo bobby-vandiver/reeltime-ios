@@ -23,6 +23,8 @@ API_VERSION_LATEST(API_NEWSFEED,                       "newsfeed");
 
 API_VERSION_LATEST(API_VARIANT_PLAYLIST,               "playlists/:video_id");
 
+API_VERSION_LATEST(API_REMOVE_TOKEN,                   "tokens/:access_token");
+
 API_VERSION_LATEST(API_LIST_REELS,                     "reels");
 API_VERSION_LATEST(API_ADD_REEL,                       "reels");
 API_VERSION_LATEST(API_GET_REEL,                       "reels/:reel_id");

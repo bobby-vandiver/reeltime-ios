@@ -200,6 +200,16 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
                                      failure:failure];
 }
 
+- (void)revokeAccessToken:(NSString *)token
+                  success:(NoArgsCallback)success
+                  failure:(ServerErrorsCallback)failure {
+    NSString *path = [self.pathFormatter formatPath:API_REMOVE_TOKEN withAccessToken:token];
+    [self.httpClient authenticatedDeleteForPath:path
+                                 withParameters:nil
+                                        success:success
+                                        failure:failure];
+}
+
 - (void)listReelsPage:(NSUInteger)page
               success:(ReelListCallback)success
               failure:(ServerErrorsCallback)failure {

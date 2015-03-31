@@ -953,6 +953,28 @@ describe(@"ReelTime Client", ^{
             });
         });
         
+        describe(@"revoke access token", ^{
+            __block NSRegularExpression *revokeAccessTokenUrlRegex;
+            
+            beforeEach(^{
+                NSDictionary *pathParams = @{@":access_token": ACCESS_TOKEN};
+                revokeAccessTokenUrlRegex = [helper createUrlRegexForEndpoint:API_REMOVE_TOKEN
+                                                               withParameters:pathParams];
+            });
+            
+            it(@"is successful", ^{
+                [helper stubAuthenticatedRequestWithMethod:DELETE
+                                                  urlRegex:revokeAccessTokenUrlRegex
+                                       rawResponseFilename:SUCCESSFUL_OK_WITH_NO_BODY_FILENAME];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client revokeAccessToken:ACCESS_TOKEN
+                                      success:shouldExecuteSuccessCallback(done)
+                                      failure:shouldNotExecuteFailureCallback(done)];
+                });
+            });
+        });
+        
         describe(@"list reels", ^{
             __block NSRegularExpression *listReelsUrlRegex;
             
