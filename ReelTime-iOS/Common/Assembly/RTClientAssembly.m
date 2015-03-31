@@ -84,6 +84,7 @@
                                           [RTResponseDescriptorFactory resetPasswordSendEmailErrorDescriptor],
                                           [RTResponseDescriptorFactory newsfeedDescriptor],
                                           [RTResponseDescriptorFactory newsfeedErrorDescriptor],
+                                          [RTResponseDescriptorFactory revokeAccessTokenDescriptor],
                                           [RTResponseDescriptorFactory listReelsDescriptor],
                                           [RTResponseDescriptorFactory listReelsErrorDescriptor],
                                           [RTResponseDescriptorFactory addReelDescriptor],
