@@ -30,6 +30,8 @@
 #import "RTVideo.h"
 #import "RTVideoList.h"
 
+#import "RTThumbnail.h"
+
 #import "RTRestAPI.h"
 
 #import <Typhoon/Typhoon.h>
@@ -2148,6 +2150,39 @@ describe(@"ReelTime Client", ^{
                         [client deleteVideoForVideoId:videoId
                                               success:shouldNotExecuteSuccessCallback(done)
                                               failure:shouldExecuteFailureCallbackWithMessage(NOT_FOUND_ERROR_MESSAGE, done)];
+                    });
+                });
+            });
+            
+            describe(@"get thumbnail", ^{
+                __block NSRegularExpression *getThumbnailUrlRegex;
+                NSString *resolution = @"small";
+                
+                beforeEach(^{
+                    getThumbnailUrlRegex = [helper createUrlRegexForEndpoint:API_GET_VIDEO_THUMBNAIL
+                                                              withParameters:pathParams];
+                });
+                
+                afterEach(^{
+                    expect(httpClient.lastParameters.allKeys).to.haveCountOf(1);
+                    expect(httpClient.lastParameters[@"resolution"]).to.equal(resolution);
+                });
+                
+                it(@"is successful", ^{
+                    [helper stubAuthenticatedRequestWithMethod:GET
+                                                      urlRegex:getThumbnailUrlRegex
+                                           rawResponseFilename:@"thumbnail"];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client thumbnailForVideoId:videoId
+                                     withResolution:resolution
+                                            success:^(RTThumbnail *thumbnail) {
+                                                NSData *expectedData = [helper rawDataFromFile:@"small" ofType:@"png"];
+
+                                                expect(thumbnail.data).to.equal(expectedData);
+                                                done();
+                                            }
+                                            failure:shouldNotExecuteFailureCallback(done)];
                     });
                 });
             });

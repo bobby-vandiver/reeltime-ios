@@ -16,7 +16,8 @@ extern NSString *const BEARER_TOKEN_AUTHORIZATION_HEADER;
 - (NSRegularExpression *)createUrlRegexForEndpoint:(NSString *)endpoint
                                     withParameters:(NSDictionary *)parameters;
 
-- (NSData *)rawResponseFromFile:(NSString *)filename;
+- (NSData *)rawDataFromFile:(NSString *)filename
+                     ofType:(NSString *)type;
 
 - (void)stubUnauthenticatedRequestWithMethod:(NSString *)method
                                     urlRegex:(NSRegularExpression *)urlRegex

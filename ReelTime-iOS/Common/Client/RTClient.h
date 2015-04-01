@@ -23,6 +23,8 @@
 @class RTVideo;
 @class RTVideoList;
 
+@class RTThumbnail;
+
 typedef void (^NoArgsCallback)();
 typedef void (^ServerErrorsCallback)(RTServerErrors *serverErrors);
 
@@ -40,6 +42,8 @@ typedef void (^UserListCallback)(RTUserList *userList);
 
 typedef void (^VideoCallback)(RTVideo *video);
 typedef void (^VideoListCallback)(RTVideoList *videoList);
+
+typedef void (^ThumbnailCallback)(RTThumbnail *thumbnail);
 
 @interface RTClient : NSObject
 
@@ -197,5 +201,10 @@ typedef void (^VideoListCallback)(RTVideoList *videoList);
 - (void)deleteVideoForVideoId:(NSUInteger)videoId
                       success:(NoArgsCallback)success
                       failure:(ServerErrorsCallback)failure;
+
+- (void)thumbnailForVideoId:(NSUInteger)videoId
+             withResolution:(NSString *)resolution
+                    success:(ThumbnailCallback)success
+                    failure:(ServerErrorsCallback)failure;
 
 @end

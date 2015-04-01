@@ -130,6 +130,9 @@
 		71647BE31A7EA68C00F44996 /* RTNewsfeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 71647BE21A7EA68C00F44996 /* RTNewsfeed.m */; };
 		71647BE61A7F17CD00F44996 /* RTAuthenticationAwareHTTPClientDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 71647BE51A7F17CD00F44996 /* RTAuthenticationAwareHTTPClientDelegate.m */; };
 		71647BE81A7F185500F44996 /* RTClientDelegateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71647BE71A7F185500F44996 /* RTClientDelegateSpec.m */; };
+		7164D7281ACB6B48005D02FE /* RTThumbnail.m in Sources */ = {isa = PBXBuildFile; fileRef = 7164D7271ACB6B48005D02FE /* RTThumbnail.m */; };
+		7164D72A1ACB7568005D02FE /* small.png in Resources */ = {isa = PBXBuildFile; fileRef = 7164D7291ACB7568005D02FE /* small.png */; };
+		7164D72D1ACB775B005D02FE /* thumbnail.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7164D72C1ACB775B005D02FE /* thumbnail.txt */; };
 		7166E96C1AB5C5260080F156 /* RTBrowseAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 7166E96B1AB5C5260080F156 /* RTBrowseAssembly.m */; };
 		7166E9701AB5C6600080F156 /* RTBrowseWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 7166E96F1AB5C6600080F156 /* RTBrowseWireframe.m */; };
 		7169F1761A5F6CDD00E161C4 /* RTLoginDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7169F1751A5F6CDD00E161C4 /* RTLoginDataManagerSpec.m */; };
@@ -399,6 +402,10 @@
 		71647BE51A7F17CD00F44996 /* RTAuthenticationAwareHTTPClientDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAuthenticationAwareHTTPClientDelegate.m; sourceTree = "<group>"; };
 		71647BE71A7F185500F44996 /* RTClientDelegateSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTClientDelegateSpec.m; sourceTree = "<group>"; };
 		71647BE91A7F24E000F44996 /* RTKeyChainError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTKeyChainError.h; sourceTree = "<group>"; };
+		7164D7261ACB6B48005D02FE /* RTThumbnail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTThumbnail.h; path = "ReelTime-iOS/Common/Model/RTThumbnail.h"; sourceTree = SOURCE_ROOT; };
+		7164D7271ACB6B48005D02FE /* RTThumbnail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTThumbnail.m; path = "ReelTime-iOS/Common/Model/RTThumbnail.m"; sourceTree = SOURCE_ROOT; };
+		7164D7291ACB7568005D02FE /* small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = small.png; sourceTree = "<group>"; };
+		7164D72C1ACB775B005D02FE /* thumbnail.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = thumbnail.txt; sourceTree = "<group>"; };
 		7166E96A1AB5C5260080F156 /* RTBrowseAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseAssembly.h; sourceTree = "<group>"; };
 		7166E96B1AB5C5260080F156 /* RTBrowseAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseAssembly.m; sourceTree = "<group>"; };
 		7166E96E1AB5C6600080F156 /* RTBrowseWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseWireframe.h; sourceTree = "<group>"; };
@@ -996,6 +1003,7 @@
 		7145DF5B1AABFBD7006BC157 /* Files */ = {
 			isa = PBXGroup;
 			children = (
+				7164D7291ACB7568005D02FE /* small.png */,
 				7145DF5C1AAC0356006BC157 /* small.mp4 */,
 			);
 			path = Files;
@@ -1031,6 +1039,14 @@
 				71565A281A98EDE900AE1C43 /* RTApplicationWireframeSpec.m */,
 			);
 			path = ApplicationTests;
+			sourceTree = "<group>";
+		};
+		7164D72B1ACB771E005D02FE /* Thumbnail */ = {
+			isa = PBXGroup;
+			children = (
+				7164D72C1ACB775B005D02FE /* thumbnail.txt */,
+			);
+			path = Thumbnail;
 			sourceTree = "<group>";
 		};
 		7166E9691AB5C5020080F156 /* Assembly */ = {
@@ -1218,6 +1234,7 @@
 				711FF4B51AA20CEC00E11BDE /* CommonResponses */,
 				717215C51A865C8E0002ECC7 /* Newsfeed */,
 				712698131AA3EC0900E7066B /* Reel */,
+				7164D72B1ACB771E005D02FE /* Thumbnail */,
 				717215C91A865C8E0002ECC7 /* Token */,
 				7112EF471AA9157800BC7731 /* User */,
 				7112EF501AA9386300BC7731 /* Video */,
@@ -1446,6 +1463,8 @@
 				71647BD41A7E7EEA00F44996 /* RTVideo.m */,
 				712698101AA3CCB600E7066B /* RTVideoList.h */,
 				712698111AA3CCB600E7066B /* RTVideoList.m */,
+				7164D7261ACB6B48005D02FE /* RTThumbnail.h */,
+				7164D7271ACB6B48005D02FE /* RTThumbnail.m */,
 			);
 			name = Model;
 			path = Models;
@@ -1659,12 +1678,14 @@
 				7112EF551AA9395300BC7731 /* single-video.txt in Resources */,
 				7112EF561AA9395300BC7731 /* video-list-multiple-videos.txt in Resources */,
 				7112EF4B1AA915CC00BC7731 /* user-list-no-users.txt in Resources */,
+				7164D72D1ACB775B005D02FE /* thumbnail.txt in Resources */,
 				717215D41A865C8E0002ECC7 /* token-bad-user-credentials.txt in Resources */,
 				712D5A201AA7F4690041DD24 /* reel-created.txt in Resources */,
 				7112EF581AA9395300BC7731 /* video-list-one-video.txt in Resources */,
 				715A32A11AAA64800008F9CF /* accepted-video.txt in Resources */,
 				7112EF4D1AA915EF00BC7731 /* user-list-one-user.txt in Resources */,
 				7112EF5A1AA943A900BC7731 /* forbidden-with-errors.txt in Resources */,
+				7164D72A1ACB7568005D02FE /* small.png in Resources */,
 				711FF4BC1AA20CEC00E11BDE /* service-unavailable-with-errors.txt in Resources */,
 				717215D01A865C8E0002ECC7 /* newsfeed-multiple-activities.txt in Resources */,
 				7112EF4F1AA9160500BC7731 /* single-user.txt in Resources */,
@@ -1780,6 +1801,7 @@
 				717215A41A86590D0002ECC7 /* RTAccountRegistrationValidator.m in Sources */,
 				71073CF61A83060700BE6E19 /* RKObjectManager+IncludeHeaders.m in Sources */,
 				713A23AD1AB533390098CE48 /* RTBrowseViewDataSourceFactory.m in Sources */,
+				7164D7281ACB6B48005D02FE /* RTThumbnail.m in Sources */,
 				7116908F1A6AB3970031578E /* RTSecurityAssembly.m in Sources */,
 				713D7A4C1A50A33300754A06 /* RTClient.m in Sources */,
 				713A23A41AB50EF00098CE48 /* RTBrowseViewController.m in Sources */,

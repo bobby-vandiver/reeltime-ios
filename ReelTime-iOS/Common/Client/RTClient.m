@@ -461,6 +461,19 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
                                         failure:failure];
 }
 
+- (void)thumbnailForVideoId:(NSUInteger)videoId
+             withResolution:(NSString *)resolution
+                    success:(ThumbnailCallback)success
+                    failure:(ServerErrorsCallback)failure {
+    NSString *path = [self.pathFormatter formatPath:API_GET_VIDEO_THUMBNAIL withVideoId:videoId];
+    NSDictionary *parameters = @{@"resolution": resolution};
+    
+    [self.httpClient authentciatedGetBinaryForPath:path
+                                    withParameters:parameters
+                                           success:success
+                                           failure:failure];
+}
+
 - (NSDictionary *)parametersWithPage:(NSUInteger)page {
     return @{@"page": @(page)};
 }

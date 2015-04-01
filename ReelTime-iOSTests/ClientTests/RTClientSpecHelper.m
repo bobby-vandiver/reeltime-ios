@@ -32,10 +32,15 @@ NSString *const BEARER_TOKEN_AUTHORIZATION_HEADER = @"Bearer access-token";
     return [self createUrlRegexForEndpoint:populatedEndpoint];
 }
 
-- (NSData *)rawResponseFromFile:(NSString *)filename {
+- (NSData *)rawDataFromFile:(NSString *)filename
+                     ofType:(NSString *)type {
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    NSString *path = [bundle pathForResource:filename ofType:@"txt"];
+    NSString *path = [bundle pathForResource:filename ofType:type];
     return [NSData dataWithContentsOfFile:path];
+}
+
+- (NSData *)rawResponseFromFile:(NSString *)filename {
+    return [self rawDataFromFile:filename ofType:@"txt"];
 }
 
 - (void)stubUnauthenticatedRequestWithMethod:(NSString *)method

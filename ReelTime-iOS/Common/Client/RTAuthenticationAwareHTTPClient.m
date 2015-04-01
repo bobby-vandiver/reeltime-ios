@@ -26,6 +26,18 @@ static NSString *const AUTHORIZATION_HEADER = @"Authorization";
     return self;
 }
 
+- (void)authentciatedGetBinaryForPath:(NSString *)path
+                       withParameters:(NSDictionary *)parameters
+                              success:(SuccessCallback)success
+                              failure:(FailureCallback)failure {
+
+    id successCallback = [self binarySuccessHandlerWithCallback:success];
+    id failureCallback = [self serverFailureHandlerWithCallback:failure];
+
+    NSDictionary *headers = [self authorizationHeader];
+    [self.objectManager getObject:nil path:path parameters:parameters headers:headers success:successCallback failure:failureCallback];
+}
+
 - (void)authenticatedGetForPath:(NSString *)path
                  withParameters:(NSDictionary *)parameters
                         success:(SuccessCallback)success
@@ -170,7 +182,13 @@ static NSString *const AUTHORIZATION_HEADER = @"Authorization";
     return [NSString stringWithFormat:@"Bearer %@", token];
 }
 
-- (void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult))successHandlerWithCallback:(void (^)(id))callback {
+- (void (^)(RKObjectRequestOperation *, RKMappingResult *))binarySuccessHandlerWithCallback:(void (^)(id))callback {
+    return ^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        callback(operation.HTTPRequestOperation.responseData);
+    };
+}
+
+- (void (^)(RKObjectRequestOperation *, RKMappingResult *))successHandlerWithCallback:(void (^)(id))callback {
     return ^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         id result = [mappingResult firstObject];
         callback(result);
