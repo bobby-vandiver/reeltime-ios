@@ -465,6 +465,12 @@
                                       statusCode:404];
 }
 
++ (RKResponseDescriptor *)getThumbnailDescriptor {
+    return [self noResponseBodyDescriptorForMethod:RKRequestMethodGET
+                                              path:API_GET_VIDEO_THUMBNAIL
+                                        statusCode:200];
+}
+
 + (NSIndexSet *)forbiddenAndNotFoundStatusCodes {
     NSMutableIndexSet *statusCodes = [NSMutableIndexSet indexSet];
 

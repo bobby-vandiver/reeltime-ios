@@ -105,4 +105,6 @@
 + (RKResponseDescriptor *)deleteVideoDescriptor;
 + (RKResponseDescriptor *)deleteVideoErrorDescriptor;
 
++ (RKResponseDescriptor *)getThumbnailDescriptor;
+
 @end

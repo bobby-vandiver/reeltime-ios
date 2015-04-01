@@ -173,6 +173,7 @@
 		718A0BEB1A4DA87900137C49 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 718A0BE91A4DA87900137C49 /* Main.storyboard */; };
 		718A0BED1A4DA87900137C49 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 718A0BEC1A4DA87900137C49 /* Images.xcassets */; };
 		718A0BF01A4DA87900137C49 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 718A0BEE1A4DA87900137C49 /* LaunchScreen.xib */; };
+		718BC4C41ACB7F8E00C1257F /* RTImagePNGSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 718BC4C31ACB7F8E00C1257F /* RTImagePNGSerialization.m */; };
 		718CFFCA1A6C007C00B418F9 /* RTAccountRegistration.m in Sources */ = {isa = PBXBuildFile; fileRef = 718CFFC91A6C007C00B418F9 /* RTAccountRegistration.m */; };
 		7190DABA1A5CC55D00BDCE4C /* RTCurrentUserStoreSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7190DAB91A5CC55D00BDCE4C /* RTCurrentUserStoreSpec.m */; };
 		719B35DB1A51012E00FFD543 /* RTClientAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 719B35DA1A51012E00FFD543 /* RTClientAssembly.m */; };
@@ -484,6 +485,8 @@
 		718A0BEF1A4DA87900137C49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		718A0BF51A4DA87900137C49 /* ReelTime-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ReelTime-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		718A0BFA1A4DA87900137C49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		718BC4C21ACB7F8D00C1257F /* RTImagePNGSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTImagePNGSerialization.h; sourceTree = "<group>"; };
+		718BC4C31ACB7F8E00C1257F /* RTImagePNGSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTImagePNGSerialization.m; sourceTree = "<group>"; };
 		718CFFC81A6C007C00B418F9 /* RTAccountRegistration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTAccountRegistration.h; path = "ReelTime-iOS/Common/Model/RTAccountRegistration.h"; sourceTree = SOURCE_ROOT; };
 		718CFFC91A6C007C00B418F9 /* RTAccountRegistration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTAccountRegistration.m; path = "ReelTime-iOS/Common/Model/RTAccountRegistration.m"; sourceTree = SOURCE_ROOT; };
 		7190DAB91A5CC55D00BDCE4C /* RTCurrentUserStoreSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTCurrentUserStoreSpec.m; sourceTree = "<group>"; };
@@ -955,6 +958,8 @@
 				712EA2C41A9C1B4600AFCA15 /* RTClientAdditionalConfiguration.m */,
 				7157589D1A9A3B93002859DE /* RTEndpointPathFormatter.h */,
 				7157589E1A9A3B93002859DE /* RTEndpointPathFormatter.m */,
+				718BC4C21ACB7F8D00C1257F /* RTImagePNGSerialization.h */,
+				718BC4C31ACB7F8E00C1257F /* RTImagePNGSerialization.m */,
 				719B35DC1A51086600FFD543 /* RTRestAPI.h */,
 				719B35DD1A51140900FFD543 /* RTRestAPI.m */,
 			);
@@ -1839,6 +1844,7 @@
 				71201F8C1A96B7CD003F2831 /* RTNewsfeedAssembly.m in Sources */,
 				71647BD81A7E7F9D00F44996 /* RTUser.m in Sources */,
 				71647BE61A7F17CD00F44996 /* RTAuthenticationAwareHTTPClientDelegate.m in Sources */,
+				718BC4C41ACB7F8E00C1257F /* RTImagePNGSerialization.m in Sources */,
 				71331A301A880B0100912B5F /* RTNewsfeedWireframe.m in Sources */,
 				717970041AB7B92E00A0B9B5 /* UITableView+LastVisible.m in Sources */,
 				71C5C0AC1A55EAE700CAAFAC /* RTOAuth2Token.m in Sources */,

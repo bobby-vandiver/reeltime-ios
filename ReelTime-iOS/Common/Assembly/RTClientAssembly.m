@@ -52,6 +52,7 @@
 - (RKObjectManager *)restKitObjectManager {
     return [TyphoonDefinition withClass:[RKObjectManager class] configuration:^(TyphoonDefinition *definition) {
         [RTClientAdditionalConfiguration registerEmptyResponseSupport];
+        [RTClientAdditionalConfiguration registerPNGResponseSupport];
         
         [definition useInitializer:@selector(managerWithBaseURL:) parameters:^(TyphoonMethod *method) {
             [method injectParameterWith:[self baseUrl]];
@@ -126,7 +127,8 @@
                                           [RTResponseDescriptorFactory getVideoDescriptor],
                                           [RTResponseDescriptorFactory getVideoErrorDescriptor],
                                           [RTResponseDescriptorFactory deleteVideoDescriptor],
-                                          [RTResponseDescriptorFactory deleteVideoErrorDescriptor]
+                                          [RTResponseDescriptorFactory deleteVideoErrorDescriptor],
+                                          [RTResponseDescriptorFactory getThumbnailDescriptor]
                                           ]];
         }];
     }];
