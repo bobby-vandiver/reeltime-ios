@@ -1969,7 +1969,9 @@ describe(@"ReelTime Client", ^{
        
         describe(@"add video", ^{
             __block NSRegularExpression *addVideoUrlRegex;
-            __block NSURL *videoFileURL;
+           
+            __block NSURL *videoFileUrl;
+            __block NSURL *thumbnailFileUrl;
             
             NSString *title = @"some video";
             NSString *reelName = @"some reel";
@@ -1978,7 +1980,9 @@ describe(@"ReelTime Client", ^{
                 addVideoUrlRegex = [helper createUrlRegexForEndpoint:API_ADD_VIDEO];
                 
                 NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-                videoFileURL = [bundle URLForResource:@"small" withExtension:@"mp4"];
+
+                videoFileUrl = [bundle URLForResource:@"small" withExtension:@"mp4"];
+                thumbnailFileUrl = [bundle URLForResource:@"small" withExtension:@"png"];
             });
 
             afterEach(^{
@@ -1991,11 +1995,18 @@ describe(@"ReelTime Client", ^{
                 httpClient.lastFormDataBlock(formData);
                 
                 id videoVerification = [verify(formData) withMatcher:anything() forArgument:4];
-                [videoVerification appendPartWithFileURL:videoFileURL
+                [videoVerification appendPartWithFileURL:videoFileUrl
                                                     name:@"video"
                                                 fileName:@"some video.mp4"
                                                 mimeType:@"video/mp4"
                                                    error:nil];
+                
+                id thumbnailVerification = [verify(formData) withMatcher:anything() forArgument:4];
+                [thumbnailVerification appendPartWithFileURL:thumbnailFileUrl
+                                                        name:@"thumbnail"
+                                                    fileName:@"some video.png"
+                                                    mimeType:@"image/png"
+                                                       error:nil];
             });
 
             it(@"is successful", ^{
@@ -2004,7 +2015,8 @@ describe(@"ReelTime Client", ^{
                                        rawResponseFilename:@"accepted-video"];
                 
                 waitUntil(^(DoneCallback done) {
-                    [client addVideoFromFileURL:videoFileURL
+                    [client addVideoFromFileURL:videoFileUrl
+                           thumbnailFromFileURL:thumbnailFileUrl
                                       withTitle:title
                                  toReelWithName:reelName
                                         success:^(RTVideo *video) {
@@ -2021,7 +2033,8 @@ describe(@"ReelTime Client", ^{
                                        rawResponseFilename:BAD_REQUEST_WITH_ERRORS_FILENAME];
                 
                 waitUntil(^(DoneCallback done) {
-                    [client addVideoFromFileURL:videoFileURL
+                    [client addVideoFromFileURL:videoFileUrl
+                           thumbnailFromFileURL:thumbnailFileUrl
                                       withTitle:title
                                  toReelWithName:reelName
                                         success:shouldNotExecuteSuccessCallback(done)
@@ -2035,7 +2048,8 @@ describe(@"ReelTime Client", ^{
                                        rawResponseFilename:FORBIDDEN_WITH_ERRORS_FILENAME];
                 
                 waitUntil(^(DoneCallback done) {
-                    [client addVideoFromFileURL:videoFileURL
+                    [client addVideoFromFileURL:videoFileUrl
+                           thumbnailFromFileURL:thumbnailFileUrl
                                       withTitle:title
                                  toReelWithName:reelName
                                         success:shouldNotExecuteSuccessCallback(done)
@@ -2049,7 +2063,8 @@ describe(@"ReelTime Client", ^{
                                        rawResponseFilename:SERVICE_UNAVAILABLE_WITH_ERRORS_FILENAME];
                 
                 waitUntil(^(DoneCallback done) {
-                    [client addVideoFromFileURL:videoFileURL
+                    [client addVideoFromFileURL:videoFileUrl
+                           thumbnailFromFileURL:thumbnailFileUrl
                                       withTitle:title
                                  toReelWithName:reelName
                                         success:shouldNotExecuteSuccessCallback(done)

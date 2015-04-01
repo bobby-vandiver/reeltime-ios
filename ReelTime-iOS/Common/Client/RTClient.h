@@ -189,6 +189,7 @@ typedef void (^ThumbnailCallback)(RTThumbnail *thumbnail);
                failure:(ServerErrorsCallback)failure;
 
 - (void)addVideoFromFileURL:(NSURL *)videoFileURL
+       thumbnailFromFileURL:(NSURL *)thumbnailFileURL
                   withTitle:(NSString *)title
              toReelWithName:(NSString *)reelName
                     success:(VideoCallback)success

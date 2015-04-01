@@ -13,6 +13,8 @@
 #import "RTServerErrors.h"
 #import "RTAccountRegistration.h"
 
+#import "RTLogging.h"
+
 #import <RestKit/RestKit.h>
 
 static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read reels-write users-read users-write videos-read videos-write";
@@ -413,6 +415,7 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
 }
 
 - (void)addVideoFromFileURL:(NSURL *)videoFileURL
+       thumbnailFromFileURL:(NSURL *)thumbnailFileURL
                   withTitle:(NSString *)title
              toReelWithName:(NSString *)reelName
                     success:(VideoCallback)success
@@ -420,17 +423,29 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
     NSDictionary *parameters = @{@"title": title, @"reel": reelName};
 
     MultipartFormDataBlock formData = ^(id<AFMultipartFormData> formData) {
-        NSString *videoFileName = [NSString stringWithFormat:@"%@.mp4", title];
-
+        BOOL success;
         NSError *appendError;
-        BOOL success = [formData appendPartWithFileURL:videoFileURL
+
+        NSString *videoFileName = [NSString stringWithFormat:@"%@.mp4", title];
+        success = [formData appendPartWithFileURL:videoFileURL
                                                   name:@"video"
                                               fileName:videoFileName
                                               mimeType:@"video/mp4"
                                                  error:&appendError];
         
         if (!success) {
-            // TODO: Log appendError
+            DDLogError(@"Failed to add video part to form data with error: %@", appendError);
+        }
+        
+        NSString *thumbnailFileName = [NSString stringWithFormat:@"%@.png", title];
+        success = [formData appendPartWithFileURL:thumbnailFileURL
+                                             name:@"thumbnail"
+                                         fileName:thumbnailFileName
+                                         mimeType:@"image/png"
+                                            error:&appendError];
+        
+        if (!success) {
+            DDLogError(@"Failed to add thumbnail part to form data with error: %@", appendError);
         }
     };
 
