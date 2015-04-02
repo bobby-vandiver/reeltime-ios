@@ -6,6 +6,8 @@
 #import "RTVideo.h"
 #import "RTVideoList.h"
 
+#import "RTThumbnail.h"
+
 SpecBegin(RTBrowseVideosDataManager)
 
 describe(@"browse videos data manager", ^{
@@ -34,8 +36,10 @@ describe(@"browse videos data manager", ^{
         });
         
         it(@"should pass videos page to callback on success", ^{
+            RTThumbnail *thumbnail = mock([RTThumbnail class]);
             RTVideo *video = [[RTVideo alloc] initWithVideoId:@(videoId)
-                                                        title:@"some video"];
+                                                        title:@"some video"
+                                                    thumbnail:thumbnail];
 
             RTVideoList *videoList = [[RTVideoList alloc] init];
             videoList.videos = @[video];

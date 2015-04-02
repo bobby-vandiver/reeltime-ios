@@ -5,6 +5,7 @@
 #import "RTUser.h"
 #import "RTReel.h"
 #import "RTVideo.h"
+#import "RTThumbnail.h"
 
 SpecBegin(RTURLFactory)
 
@@ -29,7 +30,9 @@ describe(@"url factory", ^{
     });
     
     it(@"video url", ^{
-        RTVideo *video = [[RTVideo alloc] initWithVideoId:@(31) title:@"title"];
+        RTThumbnail *thumbnail = mock([RTThumbnail class]);
+        
+        RTVideo *video = [[RTVideo alloc] initWithVideoId:@(31) title:@"title" thumbnail:thumbnail];
         NSURL *videoURL = [NSURL URLWithString:@"reeltime://videos/31"];
         
         NSURL *url = [RTURLFactory URLForVideo:video];

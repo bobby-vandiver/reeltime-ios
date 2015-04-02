@@ -4,11 +4,6 @@
 @implementation RTVideo
 
 - (instancetype)initWithVideoId:(NSNumber *)videoId
-                          title:(NSString *)title {
-    return [self initWithVideoId:videoId title:title thumbnail:nil];
-}
-
-- (instancetype)initWithVideoId:(NSNumber *)videoId
                           title:(NSString *)title
                       thumbnail:(RTThumbnail *)thumbnail {
     self = [super init];

@@ -8,6 +8,7 @@
 #import "RTUser.h"
 #import "RTReel.h"
 #import "RTVideo.h"
+#import "RTThumbnail.h"
 
 #import "RTStringWithEmbeddedLinks.h"
 #import "RTEmbeddedURL.h"
@@ -34,7 +35,8 @@ describe(@"newsfeed message source", ^{
         
         reel = [[RTReel alloc] initWithReelId:@(1) name:@"reel" audienceSize:@(2) numberOfVideos:@(3)];
         
-        video = [[RTVideo alloc] initWithVideoId:@(1) title:@"title"];
+        RTThumbnail *thumbnail = mock([RTThumbnail class]);
+        video = [[RTVideo alloc] initWithVideoId:@(1) title:@"title" thumbnail:thumbnail];
         
         userURL = [NSURL URLWithString:[NSString stringWithFormat:@"reeltime://users/%@", user.username]];
         reelURL = [NSURL URLWithString:[NSString stringWithFormat:@"reeltime://reels/%@", reel.reelId]];

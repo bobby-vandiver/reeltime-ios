@@ -7,6 +7,7 @@
 #import "RTVideoWireframe.h"
 
 #import "RTVideo.h"
+#import "RTThumbnail.h"
 #import "RTVideoDescription.h"
 
 SpecBegin(RTBrowseVideosPresenter)
@@ -38,8 +39,10 @@ describe(@"browse videos presenter", ^{
     
     describe(@"show video description", ^{
         it(@"should show video message", ^{
+            RTThumbnail *thumbnail = mock([RTThumbnail class]);
             RTVideo *video = [[RTVideo alloc] initWithVideoId:@(videoId)
-                                                        title:@"some video"];
+                                                        title:@"some video"
+                                                    thumbnail:thumbnail];
             
             [presenter presentItem:video];
             

@@ -13,6 +13,7 @@
 #import "RTUser.h"
 #import "RTReel.h"
 #import "RTVideo.h"
+#import "RTThumbnail.h"
 
 #import "RTActivityMessage.h"
 #import "RTURLFactory.h"
@@ -48,7 +49,8 @@ describe(@"newsfeed presenter", ^{
         
         reel = [[RTReel alloc] initWithReelId:@(1) name:@"reel" audienceSize:@(2) numberOfVideos:@(3)];
         
-        video = [[RTVideo alloc] initWithVideoId:@(1) title:@"title"];
+        RTThumbnail *thumbnail = mock([RTThumbnail class]);
+        video = [[RTVideo alloc] initWithVideoId:@(1) title:@"title" thumbnail:thumbnail];
     });
     
     describe(@"newsfeed reset", ^{
