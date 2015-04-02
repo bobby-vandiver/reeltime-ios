@@ -5,6 +5,7 @@
 #import "RTUser.h"
 #import "RTReel.h"
 #import "RTVideo.h"
+#import "RTThumbnail.h"
 
 SpecBegin(RTActivity)
 
@@ -31,6 +32,8 @@ describe(@"activity", ^{
     __block RTVideo *identicalVideo;
     __block RTVideo *differentVideo;
     
+    __block RTThumbnail *thumbnail;
+    
     __block BOOL equal;
     __block NSUInteger hash;
     
@@ -54,9 +57,13 @@ describe(@"activity", ^{
         expect(reel).to.equal(identicalReel);
         expect(reel).toNot.equal(differentReel);
         
-        video = [[RTVideo alloc] initWithVideoId:@(1) title:@"title"];
-        identicalVideo = [[RTVideo alloc] initWithVideoId:@(1) title:@"title"];
-        differentVideo = [[RTVideo alloc] initWithVideoId:@(1) title:@"different"];
+        unsigned char bytes[] = { 0x01 };
+        NSData *data = [NSData dataWithBytes:bytes length:sizeof(bytes)];
+        thumbnail = [[RTThumbnail alloc] initWithData:data];
+        
+        video = [[RTVideo alloc] initWithVideoId:@(1) title:@"title" thumbnail:thumbnail];
+        identicalVideo = [[RTVideo alloc] initWithVideoId:@(1) title:@"title" thumbnail:thumbnail];
+        differentVideo = [[RTVideo alloc] initWithVideoId:@(1) title:@"different" thumbnail:thumbnail];
 
         expect(identicalVideo).to.equal(video);
         expect(video).toNot.equal(differentVideo);
