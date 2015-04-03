@@ -12,6 +12,7 @@
 		71073CF31A82DED800BE6E19 /* EXPMatchers+beVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 71073CF21A82DED800BE6E19 /* EXPMatchers+beVideo.m */; };
 		71073CF61A83060700BE6E19 /* RKObjectManager+IncludeHeaders.m in Sources */ = {isa = PBXBuildFile; fileRef = 71073CF51A83060700BE6E19 /* RKObjectManager+IncludeHeaders.m */; };
 		71073CFE1A831EAB00BE6E19 /* RTNewsfeedDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71073CFD1A831EAB00BE6E19 /* RTNewsfeedDataManagerSpec.m */; };
+		710BB5F91ACDF6EE00F724C7 /* RTCountDownLatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 710BB5F81ACDF6EE00F724C7 /* RTCountDownLatch.m */; };
 		7112EF491AA915BC00BC7731 /* user-list-multiple-users.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7112EF481AA915BC00BC7731 /* user-list-multiple-users.txt */; };
 		7112EF4B1AA915CC00BC7731 /* user-list-no-users.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7112EF4A1AA915CC00BC7731 /* user-list-no-users.txt */; };
 		7112EF4D1AA915EF00BC7731 /* user-list-one-user.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7112EF4C1AA915EF00BC7731 /* user-list-one-user.txt */; };
@@ -217,6 +218,8 @@
 		71073CF41A83060700BE6E19 /* RKObjectManager+IncludeHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RKObjectManager+IncludeHeaders.h"; sourceTree = "<group>"; };
 		71073CF51A83060700BE6E19 /* RKObjectManager+IncludeHeaders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RKObjectManager+IncludeHeaders.m"; sourceTree = "<group>"; };
 		71073CFD1A831EAB00BE6E19 /* RTNewsfeedDataManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTNewsfeedDataManagerSpec.m; sourceTree = "<group>"; };
+		710BB5F71ACDF6EE00F724C7 /* RTCountDownLatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCountDownLatch.h; sourceTree = "<group>"; };
+		710BB5F81ACDF6EE00F724C7 /* RTCountDownLatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTCountDownLatch.m; sourceTree = "<group>"; };
 		7112EF481AA915BC00BC7731 /* user-list-multiple-users.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "user-list-multiple-users.txt"; sourceTree = "<group>"; };
 		7112EF4A1AA915CC00BC7731 /* user-list-no-users.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "user-list-no-users.txt"; sourceTree = "<group>"; };
 		7112EF4C1AA915EF00BC7731 /* user-list-one-user.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "user-list-one-user.txt"; sourceTree = "<group>"; };
@@ -579,6 +582,15 @@
 				7134C6321A9580FF0048CFCF /* RTNewsfeedViewControllerSpec.m */,
 			);
 			path = NewsfeedTests;
+			sourceTree = "<group>";
+		};
+		710BB5F61ACDF69C00F724C7 /* Concurrency */ = {
+			isa = PBXGroup;
+			children = (
+				710BB5F71ACDF6EE00F724C7 /* RTCountDownLatch.h */,
+				710BB5F81ACDF6EE00F724C7 /* RTCountDownLatch.m */,
+			);
+			path = Concurrency;
 			sourceTree = "<group>";
 		};
 		7112EF471AA9157800BC7731 /* User */ = {
@@ -1425,6 +1437,7 @@
 				71565A231A98ED3400AE1C43 /* Application */,
 				719B35D81A51012E00FFD543 /* Assembly */,
 				713D7A491A50A24E00754A06 /* Client */,
+				710BB5F61ACDF69C00F724C7 /* Concurrency */,
 				719B35E11A51150000FFD543 /* Error */,
 				7114DF701AB4AF1B003B1D2E /* Logging */,
 				71D9477F1A4FB39C00401963 /* Model */,
@@ -1873,6 +1886,7 @@
 				71647BDB1A7E802200F44996 /* RTReel.m in Sources */,
 				718A0BE21A4DA87900137C49 /* main.m in Sources */,
 				71331A2D1A880A6F00912B5F /* RTNewsfeedPresenter.m in Sources */,
+				710BB5F91ACDF6EE00F724C7 /* RTCountDownLatch.m in Sources */,
 				713A239A1AB4F5F80098CE48 /* RTBrowseVideosPresenter.m in Sources */,
 				713A239F1AB4FF4C0098CE48 /* RTMutableArrayDataSource.m in Sources */,
 			);

@@ -36,31 +36,52 @@ describe(@"browse videos data manager", ^{
         });
         
         it(@"should pass videos page to callback on success", ^{
-            RTThumbnail *thumbnail = mock([RTThumbnail class]);
             RTVideo *video = [[RTVideo alloc] initWithVideoId:@(videoId)
                                                         title:@"some video"
-                                                    thumbnail:thumbnail];
+                                                    thumbnail:nil];
 
             RTVideoList *videoList = [[RTVideoList alloc] init];
             videoList.videos = @[video];
             
-            MKTArgumentCaptor *successCaptor = [[MKTArgumentCaptor alloc] init];
+            MKTArgumentCaptor *videoListCallbackCaptor = [[MKTArgumentCaptor alloc] init];
             
             [verify(client) listVideosPage:pageNumber
-                                   success:[successCaptor capture]
+                                   success:[videoListCallbackCaptor capture]
                                    failure:anything()];
             
             expect(callbackExecuted).to.beFalsy();
             
-            VideoListCallback successHandler = [successCaptor value];
-            successHandler(videoList);
+            [verifyCount(client, never()) thumbnailForVideoId:videoId
+                                               withResolution:@"small"
+                                                      success:anything()
+                                                      failure:anything()];
             
-            expect(callbackExecuted).to.beTruthy();
+            VideoListCallback videoListCallbackHandler = [videoListCallbackCaptor value];
+            videoListCallbackHandler(videoList);
             
-            expect(callbackVideos).toNot.beNil();
-            expect(callbackVideos).to.haveCountOf(1);
+            expect(callbackExecuted).to.beFalsy();
             
-            expect(callbackVideos[0]).to.beVideo(@(videoId), @"some video");
+            MKTArgumentCaptor *thumbnailCallbackCaptor = [[MKTArgumentCaptor alloc] init];
+            
+            [verify(client) thumbnailForVideoId:videoId
+                                 withResolution:@"small"
+                                        success:[thumbnailCallbackCaptor capture]
+                                        failure:anything()];
+
+            RTThumbnail *thumbnail = mock([RTThumbnail class]);
+            
+            ThumbnailCallback thumbnailCallbackHandler = [thumbnailCallbackCaptor value];
+            thumbnailCallbackHandler(thumbnail);
+            
+            expect(callbackExecuted).will.beTruthy();
+            
+            expect(callbackVideos).willNot.beNil();
+            expect(callbackVideos).will.haveCountOf(1);
+            
+            RTVideo *retrievedVideo = callbackVideos[0];
+
+            expect(retrievedVideo).will.beVideo(@(videoId), @"some video");
+            expect(retrievedVideo.thumbnail).will.equal(thumbnail);
         });
         
         it(@"should pass empty list to callback on failure", ^{
