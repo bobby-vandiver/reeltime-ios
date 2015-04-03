@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 
-@interface RTThumbnail : NSObject
+@interface RTThumbnail : NSObject <NSCopying>
 
 @property (nonatomic) NSData *data;
 

@@ -68,7 +68,9 @@ describe(@"browse videos data manager", ^{
                                         success:[thumbnailCallbackCaptor capture]
                                         failure:anything()];
 
-            RTThumbnail *thumbnail = mock([RTThumbnail class]);
+            unsigned char bytes[] = { 1, 2, 3, 4 };
+            NSData *data = [NSData dataWithBytes:bytes length:sizeof(bytes)];
+            RTThumbnail *thumbnail = [[RTThumbnail alloc] initWithData:data];
             
             ThumbnailCallback thumbnailCallbackHandler = [thumbnailCallbackCaptor value];
             thumbnailCallbackHandler(thumbnail);

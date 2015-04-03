@@ -10,6 +10,11 @@
     return self;
 }
 
+- (instancetype)copyWithZone:(NSZone *)zone {
+    NSData *copyData = [self.data copy];
+    return [[[self class] alloc] initWithData:copyData];
+}
+
 - (BOOL)isEqualToThumbnail:(RTThumbnail *)thumbnail {
     return [self.data isEqual:thumbnail.data];
 }

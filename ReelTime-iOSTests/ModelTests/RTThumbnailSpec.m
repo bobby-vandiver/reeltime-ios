@@ -21,6 +21,14 @@ describe(@"thumbnail", ^{
         differentThumbnail = [[RTThumbnail alloc] initWithData:differentThumbnailData];
     });
     
+    describe(@"copy", ^{
+        it(@"shallow copy of data per NSData copy semantics", ^{
+            RTThumbnail *copy = [thumbnail copy];
+            expect(copy).toNot.beIdenticalTo(thumbnail);
+            expect(copy.data).to.equal(thumbnail.data);
+        });
+    });
+    
     describe(@"isEqual for thumbnail with non-thumbnail", ^{
         it(@"nil", ^{
             BOOL equal = [thumbnail isEqual:nil];
