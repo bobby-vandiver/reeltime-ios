@@ -16,11 +16,7 @@
 }
 
 - (BOOL)isEqualToVideo:(RTVideo *)video {
-    BOOL sameVideoId = [self.videoId isEqual:video.videoId];
-    BOOL sameTitle = [self.title isEqual:video.title];
-    BOOL sameThumbnail = [self.thumbnail isEqual:video.thumbnail];
-    
-    return sameVideoId && sameTitle && sameThumbnail;
+    return [self.videoId isEqual:video.videoId];
 }
 
 - (BOOL)isEqual:(id)object {
@@ -36,11 +32,7 @@
 }
 
 - (NSUInteger)hash {
-    NSUInteger videoIdHash = [self.videoId hash] << 20;
-    NSUInteger titleHash = [self.title hash] << 10;
-    NSUInteger thumbnailHash = [self.thumbnail hash];
-    
-    return videoIdHash ^ titleHash ^ thumbnailHash;
+    return [self.videoId hash];
 }
 
 @end

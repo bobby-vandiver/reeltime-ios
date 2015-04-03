@@ -77,37 +77,26 @@ describe(@"reel", ^{
                 expect(otherHash).toNot.equal(reelHash);
             };
             
-            it(@"different property values", ^{
+            it(@"different reel id", ^{
                 expectNotEqual(@([reelId intValue] + 1), [name copy],
                                [audienceSize copy], [numberOfVideos copy]);
-                
-                expectNotEqual([reelId copy], [NSString stringWithFormat:@"%@a", name],
-                               [audienceSize copy], [numberOfVideos copy]);
-                
-                expectNotEqual([reelId copy], [name copy],
-                               @([audienceSize intValue] + 1), [numberOfVideos copy]);
-                
-                expectNotEqual([reelId copy], [name copy],
-                               [audienceSize copy], @([numberOfVideos intValue] + 1));
             });
             
-            it(@"nil property values", ^{
+            it(@"nil reel id", ^{
                 expectNotEqual(nil, [name copy],
                                [audienceSize copy], [numberOfVideos copy]);
-                
-                expectNotEqual([reelId copy], nil,
-                               [audienceSize copy], [numberOfVideos copy]);
-                
-                expectNotEqual([reelId copy], [name copy],
-                               nil, [numberOfVideos copy]);
-                
-                expectNotEqual([reelId copy], [name copy],
-                               [audienceSize copy], nil);
             });
             
-            it(@"both have nil properties", ^{
-                RTReel *left = [[RTReel alloc] initWithReelId:nil name:nil audienceSize:nil numberOfVideos:nil];
-                RTReel *right = [[RTReel alloc] initWithReelId:nil name:nil audienceSize:nil numberOfVideos:nil];
+            it(@"both have nil reel id", ^{
+                RTReel *left = [[RTReel alloc] initWithReelId:nil
+                                                         name:name
+                                                 audienceSize:audienceSize
+                                               numberOfVideos:numberOfVideos];
+
+                RTReel *right = [[RTReel alloc] initWithReelId:nil
+                                                          name:[name copy]
+                                                  audienceSize:[audienceSize copy]
+                                                numberOfVideos:[numberOfVideos copy]];
                 
                 BOOL equal = [left isEqual:right];
                 expect(equal).to.beFalsy();

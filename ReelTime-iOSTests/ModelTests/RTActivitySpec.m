@@ -52,7 +52,7 @@ describe(@"activity", ^{
         
         reel = [[RTReel alloc] initWithReelId:@(1) name:@"reel" audienceSize:@(2) numberOfVideos:@(3)];
         identicalReel = [[RTReel alloc] initWithReelId:@(1) name:@"reel" audienceSize:@(2) numberOfVideos:@(3)];
-        differentReel = [[RTReel alloc] initWithReelId:@(1) name:@"different" audienceSize:@(2) numberOfVideos:@(3)];
+        differentReel = [[RTReel alloc] initWithReelId:@(2) name:@"reel" audienceSize:@(2) numberOfVideos:@(3)];
 
         expect(reel).to.equal(identicalReel);
         expect(reel).toNot.equal(differentReel);
@@ -63,7 +63,7 @@ describe(@"activity", ^{
         
         video = [[RTVideo alloc] initWithVideoId:@(1) title:@"title" thumbnail:thumbnail];
         identicalVideo = [[RTVideo alloc] initWithVideoId:@(1) title:@"title" thumbnail:thumbnail];
-        differentVideo = [[RTVideo alloc] initWithVideoId:@(1) title:@"different" thumbnail:thumbnail];
+        differentVideo = [[RTVideo alloc] initWithVideoId:@(2) title:@"title" thumbnail:thumbnail];
 
         expect(identicalVideo).to.equal(video);
         expect(video).toNot.equal(differentVideo);

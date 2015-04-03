@@ -17,13 +17,7 @@
 }
 
 - (BOOL)isEqualToReel:(RTReel *)reel {
-    BOOL sameReelId = [self.reelId isEqual:reel.reelId];
-    BOOL sameName = [self.name isEqual:reel.name];
-    
-    BOOL sameAudienceSize = [self.audienceSize isEqual:reel.audienceSize];
-    BOOL sameNumberOfVideos = [self.numberOfVideos isEqual:reel.numberOfVideos];
-    
-    return sameReelId && sameName && sameAudienceSize && sameNumberOfVideos;
+    return [self.reelId isEqual:reel.reelId];
 }
 
 - (BOOL)isEqual:(id)object {
@@ -39,13 +33,7 @@
 }
 
 - (NSUInteger)hash {
-    NSUInteger reelIdHash = [self.reelId hash] << 24;
-    NSUInteger nameHash = [self.name hash] << 16;
-
-    NSUInteger audienceSizeHash = [self.audienceSize hash] << 8;
-    NSUInteger numberOfVideosHash = [self.numberOfVideos hash];
-    
-    return reelIdHash ^ nameHash ^ audienceSizeHash ^ numberOfVideosHash;
+    return [self.reelId hash];
 }
 
 @end

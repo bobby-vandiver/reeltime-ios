@@ -10,9 +10,6 @@ describe(@"video", ^{
     __block RTVideo *video;
     __block RTThumbnail *thumbnail;
     
-    __block RTThumbnail *copyThumbnail;
-    __block RTThumbnail *differentThumbnail;
-    
     NSNumber *videoId = @(1);
     NSString *title = @"title";
     
@@ -23,13 +20,6 @@ describe(@"video", ^{
         thumbnail = [[RTThumbnail alloc] initWithData:thumbnailData];
         
         video = [[RTVideo alloc] initWithVideoId:videoId title:title thumbnail:thumbnail];
-        
-        copyThumbnail = [[RTThumbnail alloc] initWithData:[thumbnailData copy]];
-        
-        unsigned char differentBytes[] = { 0x10, 0x11, 0x12, 0x13 };
-        NSData *differentThumbnailData = [NSData dataWithBytes:differentBytes length:sizeof(differentBytes)];
-        
-        differentThumbnail = [[RTThumbnail alloc] initWithData:differentThumbnailData];
     });
     
     describe(@"isEqual for video with non-video", ^{
@@ -58,7 +48,7 @@ describe(@"video", ^{
             });
             
             it(@"same videoId, title and thumbnail", ^{
-                RTVideo *other = [[RTVideo alloc] initWithVideoId:[videoId copy] title:[title copy] thumbnail:copyThumbnail];
+                RTVideo *other = [[RTVideo alloc] initWithVideoId:[videoId copy] title:[title copy] thumbnail:[thumbnail copy]];
                 
                 BOOL equal = [video isEqual:other];
                 expect(equal).to.beTruthy();
@@ -78,48 +68,18 @@ describe(@"video", ^{
                 NSUInteger otherHash = [other hash];
                 expect(otherHash).toNot.equal(videoHash);
             };
-            
-            it(@"same videoId, different title and same thumbnail", ^{
-                expectNotEqual([videoId copy], [NSString stringWithFormat:@"%@a", title], copyThumbnail);
-            });
-            
+
             it(@"different videoId, same title and same thumbnail", ^{
-                expectNotEqual(@([videoId intValue] + 1), [title copy], copyThumbnail);
-            });
-            
-            it(@"same videoId, same title and different thumbnail", ^{
-                expectNotEqual([videoId copy], [title copy], differentThumbnail);
+                expectNotEqual(@([videoId intValue] + 1), [title copy], [thumbnail copy]);
             });
             
             it(@"nil videoId, same title and same thumbnail", ^{
-                expectNotEqual(nil, [title copy], copyThumbnail);
-            });
-            
-            it(@"same videoId, nil title and same thumbnail", ^{
-                expectNotEqual([videoId copy], nil, copyThumbnail);
+                expectNotEqual(nil, [title copy], [thumbnail copy]);
             });
             
             it(@"both have nil videoId", ^{
                 video.videoId = nil;
-                expectNotEqual(nil, [title copy], copyThumbnail);
-            });
-            
-            it(@"both have nil title", ^{
-                video.title = nil;
-                expectNotEqual([videoId copy], nil, copyThumbnail);
-            });
-            
-            it(@"both have nil thumbnail", ^{
-                video.thumbnail = nil;
-                expectNotEqual([videoId copy], [title copy], nil);
-            });
-            
-            it(@"both have nil videoId, nil title and nil thumbnail", ^{
-                RTVideo *left = [[RTVideo alloc] initWithVideoId:nil title:nil thumbnail:nil];
-                RTVideo *right = [[RTVideo alloc] initWithVideoId:nil title:nil thumbnail:nil];
-                
-                BOOL equal = [left isEqual:right];
-                expect(equal).to.beFalsy();
+                expectNotEqual(nil, [title copy], [thumbnail copy]);
             });
         });
     });

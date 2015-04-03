@@ -74,44 +74,26 @@ describe(@"user", ^{
                 expect(otherHash).toNot.equal(userHash);
             };
             
-            it(@"different property values", ^{
+            it(@"different username", ^{
                 expectNotEqual([NSString stringWithFormat:@"%@a", username], [displayName copy],
                                [numberOfFollowers copy], [numberOfFollowees copy]);
-                
-                expectNotEqual(username, [NSString stringWithFormat:@"%@a", displayName],
-                               [numberOfFollowers copy], [numberOfFollowees copy]);
-                
-                expectNotEqual(username, displayName,
-                               @([numberOfFollowers intValue] + 1), [numberOfFollowees copy]);
-                
-                expectNotEqual(username, displayName,
-                               [numberOfFollowers copy], @([numberOfFollowees intValue] + 1));
             });
             
-            it(@"nil property values", ^{
+            it(@"nil username", ^{
                 expectNotEqual(nil, [displayName copy],
                                [numberOfFollowers copy], [numberOfFollowees copy]);
-                
-                expectNotEqual([username copy], nil,
-                               [numberOfFollowers copy], [numberOfFollowees copy]);
-                
-                expectNotEqual([username copy], [displayName copy],
-                               nil, [numberOfFollowees copy]);
-                
-                expectNotEqual([username copy], [displayName copy],
-                               [numberOfFollowers copy], nil);
             });
             
-            it(@"both have nil properties", ^{
+            it(@"both have nil username", ^{
                 RTUser *left = [[RTUser alloc] initWithUsername:nil
-                                                    displayName:nil
-                                              numberOfFollowers:nil
-                                              numberOfFollowees:nil];
+                                                    displayName:displayName
+                                              numberOfFollowers:numberOfFollowers
+                                              numberOfFollowees:numberOfFollowees];
                 
                 RTUser *right = [[RTUser alloc] initWithUsername:nil
-                                                     displayName:nil
-                                               numberOfFollowers:nil
-                                               numberOfFollowees:nil];
+                                                     displayName:[displayName copy]
+                                               numberOfFollowers:[numberOfFollowers copy]
+                                               numberOfFollowees:[numberOfFollowees copy]];
                 
                 BOOL equal = [left isEqual:right];
                 expect(equal).to.beFalsy();
