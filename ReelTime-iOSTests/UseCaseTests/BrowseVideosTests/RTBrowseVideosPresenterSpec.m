@@ -39,7 +39,7 @@ describe(@"browse videos presenter", ^{
     
     describe(@"show video description", ^{
         it(@"should show video message", ^{
-            RTThumbnail *thumbnail = mock([RTThumbnail class]);
+            RTThumbnail *thumbnail = [[RTThumbnail alloc] initWithData:[NSData data]];
             RTVideo *video = [[RTVideo alloc] initWithVideoId:@(videoId)
                                                         title:@"some video"
                                                     thumbnail:thumbnail];
@@ -54,6 +54,7 @@ describe(@"browse videos presenter", ^{
             
             expect(description.text).to.equal(@"some video");
             expect(description.videoId).to.equal(@(videoId));
+            expect(description.thumbnail).to.equal(thumbnail);
         });
     });
     

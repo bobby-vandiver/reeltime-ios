@@ -137,7 +137,7 @@ describe(@"browse view controller", ^{
             
             userDescription = [RTUserDescription userDescriptionWithText:@"text" forUsername:username];
             reelDescription = [RTReelDescription reelDescriptionWithText:@"text" forReelId:@(reelId)];
-            videoDescription = [RTVideoDescription videoDescriptionWithText:@"text" videoId:@(videoId)];
+            videoDescription = [RTVideoDescription videoDescriptionWithText:@"text" videoId:@(videoId) thumbnail:nil];
             
             viewController.usersDataSource.items = @[userDescription];
             viewController.reelsDataSource.items = @[reelDescription];
@@ -372,7 +372,7 @@ describe(@"browse view controller", ^{
         __block RTVideoDescription *videoDescription;
         
         beforeEach(^{
-            videoDescription = [RTVideoDescription videoDescriptionWithText:@"video" videoId:@(videoId)];
+            videoDescription = [RTVideoDescription videoDescriptionWithText:@"video" videoId:@(videoId) thumbnail:nil];
             expect(viewController.videosDataSource.items).to.haveCountOf(0);
         });
         

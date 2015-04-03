@@ -32,7 +32,8 @@
 
 - (void)presentItem:(RTVideo *)video {
     RTVideoDescription *description = [RTVideoDescription videoDescriptionWithText:video.title
-                                                                           videoId:video.videoId];
+                                                                           videoId:video.videoId
+                                                                         thumbnail:video.thumbnail];
     [self.view showVideoDescription:description];
 }
 
