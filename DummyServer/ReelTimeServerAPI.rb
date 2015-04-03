@@ -1,3 +1,4 @@
+require 'rubygems'
 require 'sinatra'
 require 'sinatra/json'
 
@@ -39,6 +40,18 @@ get '/api/users' do
     json :users => list
 end
 
+get '/api/videos/:video_id/thumbnail' do
+    content_type 'image/png'
+
+    if params['resolution'] == 'small'
+        File.read(File.join('DummyServer', 'batman-75-quality.png'))
+    elsif params['resolution'] == 'medium'
+        File.read(File.join('DummyServer', 'batman-150-quality.png'))
+    elsif params['resolution'] == 'large'
+        File.read(File.join('DummyServer', 'batman-225-quality.png'))
+    end
+end
+
 get '/api/videos' do
     list = []
     page = params[:page].to_i
@@ -57,3 +70,4 @@ get '/api/videos' do
 
     json :videos => list
 end
+
