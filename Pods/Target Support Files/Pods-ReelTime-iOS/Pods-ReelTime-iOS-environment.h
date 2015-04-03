@@ -126,3 +126,9 @@
 #define COCOAPODS_VERSION_MINOR_UICKeyChainStore 0
 #define COCOAPODS_VERSION_PATCH_UICKeyChainStore 3
 
+// UIDeviceIdentifier
+#define COCOAPODS_POD_AVAILABLE_UIDeviceIdentifier
+#define COCOAPODS_VERSION_MAJOR_UIDeviceIdentifier 0
+#define COCOAPODS_VERSION_MINOR_UIDeviceIdentifier 4
+#define COCOAPODS_VERSION_PATCH_UIDeviceIdentifier 4
+

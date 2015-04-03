@@ -8,6 +8,8 @@ target 'ReelTime-iOS', :exclusive => true do
     pod 'UICKeyChainStore', '~> 2.0'
     pod 'CocoaLumberjack', '~> 2.0.0-rc'
     pod 'TTTAttributedLabel', '~> 1.13'
+
+    pod 'UIDeviceIdentifier', :git => 'https://github.com/squarefrog/UIDeviceIdentifier.git'
     
     # RestKit uses some deprecated APIs
     pod 'RestKit', '~> 0.24.0', :inhibit_warnings => true
