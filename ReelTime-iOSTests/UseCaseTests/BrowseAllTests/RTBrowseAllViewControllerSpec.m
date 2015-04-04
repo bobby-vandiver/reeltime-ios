@@ -1,6 +1,6 @@
 #import "RTTestCommon.h"
 
-#import "RTBrowseViewController.h"
+#import "RTBrowseAllViewController.h"
 #import "RTArrayDataSource.h"
 
 #import "RTBrowseUsersPresenter.h"
@@ -11,7 +11,7 @@
 #import "RTReelDescription.h"
 #import "RTVideoDescription.h"
 
-@interface RTBrowseViewController (Test)
+@interface RTBrowseAllViewController (Test)
 
 @property CGPoint usersListScrollPosition;
 @property CGPoint reelsListScrollPosition;
@@ -35,11 +35,11 @@
 
 @end
 
-SpecBegin(RTBrowseViewController)
+SpecBegin(RTBrowseAllViewController)
 
-describe(@"browse view controller", ^{
+describe(@"browse all view controller", ^{
     
-    __block RTBrowseViewController *viewController;
+    __block RTBrowseAllViewController *viewController;
     
     __block RTBrowseUsersPresenter *usersPresenter;
     __block RTBrowseReelsPresenter *reelsPresenter;
@@ -56,7 +56,7 @@ describe(@"browse view controller", ^{
         reelsPresenter = mock([RTBrowseReelsPresenter class]);
         videosPresenter = mock([RTBrowseVideosPresenter class]);
         
-        viewController = [RTBrowseViewController viewControllerWithUsersPresenter:usersPresenter
+        viewController = [RTBrowseAllViewController viewControllerWithUsersPresenter:usersPresenter
                                                                    reelsPresenter:reelsPresenter
                                                                   videosPresenter:videosPresenter];
         

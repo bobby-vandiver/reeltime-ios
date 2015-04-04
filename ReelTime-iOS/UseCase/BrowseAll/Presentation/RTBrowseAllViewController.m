@@ -1,4 +1,4 @@
-#import "RTBrowseViewController.h"
+#import "RTBrowseAllViewController.h"
 
 #import "RTBrowseUsersPresenter.h"
 #import "RTBrowseReelsPresenter.h"
@@ -7,7 +7,7 @@
 #import "RTArrayDataSource.h"
 #import "RTMutableArrayDataSource.h"
 
-#import "RTBrowseViewDataSourceFactory.h"
+#import "RTBrowseAllViewDataSourceFactory.h"
 #import "RTStoryboardViewControllerFactory.h"
 
 #import "RTUserDescription.h"
@@ -22,7 +22,7 @@ typedef enum {
     BrowseVideosList
 } BrowseListType;
 
-@interface RTBrowseViewController ()
+@interface RTBrowseAllViewController ()
 
 @property BrowseListType currentListType;
 
@@ -40,22 +40,22 @@ typedef enum {
 
 @end
 
-@implementation RTBrowseViewController
+@implementation RTBrowseAllViewController
 
-+ (RTBrowseViewController *)viewControllerWithUsersPresenter:(RTBrowseUsersPresenter *)usersPresenter
++ (RTBrowseAllViewController *)viewControllerWithUsersPresenter:(RTBrowseUsersPresenter *)usersPresenter
                                               reelsPresenter:(RTBrowseReelsPresenter *)reelsPresenter
                                              videosPresenter:(RTBrowseVideosPresenter *)videosPresenter {
-    NSString *identifier = [RTBrowseViewController storyboardIdentifier];
-    RTBrowseViewController *controller = [RTStoryboardViewControllerFactory viewControllerWithStoryboardIdentifier:identifier];
+    NSString *identifier = [RTBrowseAllViewController storyboardIdentifier];
+    RTBrowseAllViewController *controller = [RTStoryboardViewControllerFactory viewControllerWithStoryboardIdentifier:identifier];
     
     if (controller) {
         controller.usersPresenter = usersPresenter;
         controller.reelsPresenter = reelsPresenter;
         controller.videosPresenter = videosPresenter;
         
-        controller.usersDataSource = [RTBrowseViewDataSourceFactory usersDataSource];
-        controller.reelsDataSource = [RTBrowseViewDataSourceFactory reelsDataSource];
-        controller.videosDataSource = [RTBrowseViewDataSourceFactory videosDataSource];
+        controller.usersDataSource = [RTBrowseAllViewDataSourceFactory usersDataSource];
+        controller.reelsDataSource = [RTBrowseAllViewDataSourceFactory reelsDataSource];
+        controller.videosDataSource = [RTBrowseAllViewDataSourceFactory videosDataSource];
     }
     return controller;
 }

@@ -2,8 +2,8 @@
 
 @class RTClientAssembly;
 
-@class RTBrowseWireframe;
-@class RTBrowseViewController;
+@class RTBrowseAllWireframe;
+@class RTBrowseAllViewController;
 
 @class RTPagedListInteractor;
 
@@ -16,13 +16,13 @@
 @class RTBrowseVideosPresenter;
 @class RTBrowseVideosDataManager;
 
-@interface RTBrowseAssembly : TyphoonAssembly
+@interface RTBrowseAllAssembly : TyphoonAssembly
 
 @property (nonatomic, strong, readonly) RTClientAssembly *clientAssembly;
 
-- (RTBrowseWireframe *)browseAllWireframe;
+- (RTBrowseAllWireframe *)browseAllWireframe;
 
-- (RTBrowseViewController *)browseAllViewController;
+- (RTBrowseAllViewController *)browseAllViewController;
 
 - (RTBrowseUsersPresenter *)browseAllUsersPresenter;
 

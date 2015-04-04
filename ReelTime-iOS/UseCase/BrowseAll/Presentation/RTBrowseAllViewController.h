@@ -10,12 +10,12 @@
 @class RTBrowseVideosPresenter;
 @class RTArrayDataSource;
 
-@interface RTBrowseViewController : RTPagedListViewController <RTBrowseUsersView, RTBrowseReelsView, RTBrowseVideosView, RTStoryboardViewController>
+@interface RTBrowseAllViewController : RTPagedListViewController <RTBrowseUsersView, RTBrowseReelsView, RTBrowseVideosView, RTStoryboardViewController>
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property (weak, nonatomic) IBOutlet UITableView *browseListTableView;
 
-+ (RTBrowseViewController *)viewControllerWithUsersPresenter:(RTBrowseUsersPresenter *)usersPresenter
++ (RTBrowseAllViewController *)viewControllerWithUsersPresenter:(RTBrowseUsersPresenter *)usersPresenter
                                               reelsPresenter:(RTBrowseReelsPresenter *)reelsPresenter
                                              videosPresenter:(RTBrowseVideosPresenter *)videosPresenter;
 

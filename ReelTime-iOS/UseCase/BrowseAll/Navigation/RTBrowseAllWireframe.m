@@ -1,16 +1,16 @@
-#import "RTBrowseWireframe.h"
+#import "RTBrowseAllWireframe.h"
 
-#import "RTBrowseViewController.h"
+#import "RTBrowseAllViewController.h"
 
-@interface RTBrowseWireframe ()
+@interface RTBrowseAllWireframe ()
 
-@property RTBrowseViewController *viewController;
+@property RTBrowseAllViewController *viewController;
 
 @end
 
-@implementation RTBrowseWireframe
+@implementation RTBrowseAllWireframe
 
-- (instancetype)initWithViewController:(RTBrowseViewController *)viewController {
+- (instancetype)initWithViewController:(RTBrowseAllViewController *)viewController {
     self = [super init];
     if (self) {
         self.viewController = viewController;

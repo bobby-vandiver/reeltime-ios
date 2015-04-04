@@ -2,7 +2,7 @@
 
 @class RTMutableArrayDataSource;
 
-@interface RTBrowseViewDataSourceFactory : NSObject
+@interface RTBrowseAllViewDataSourceFactory : NSObject
 
 + (RTMutableArrayDataSource *)usersDataSource;
 

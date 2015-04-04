@@ -480,10 +480,10 @@
             </objects>
             <point key="canvasLocation" x="970.5" y="54"/>
         </scene>
-        <!--Browse View Controller-->
+        <!--Browse All View Controller-->
         <scene sceneID="JBE-W5-Bds">
             <objects>
-                <viewController storyboardIdentifier="Browse View Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="I7q-7u-SIm" customClass="RTBrowseViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Browse View Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="I7q-7u-SIm" customClass="RTBrowseAllViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="O7Q-z3-pzh"/>
                         <viewControllerLayoutGuide type="bottom" id="ooW-hr-Koz"/>

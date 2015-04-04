@@ -1,9 +1,9 @@
-#import "RTBrowseAssembly.h"
+#import "RTBrowseAllAssembly.h"
 
 #import "RTClientAssembly.h"
 
-#import "RTBrowseWireframe.h"
-#import "RTBrowseViewController.h"
+#import "RTBrowseAllWireframe.h"
+#import "RTBrowseAllViewController.h"
 
 #import "RTPagedListInteractor.h"
 
@@ -17,10 +17,10 @@
 #import "RTBrowseVideosPresenter.h"
 #import "RTBrowseVideosDataManager.h"
 
-@implementation RTBrowseAssembly
+@implementation RTBrowseAllAssembly
 
-- (RTBrowseWireframe *)browseAllWireframe {
-    return [TyphoonDefinition withClass:[RTBrowseWireframe class] configuration:^(TyphoonDefinition *definition) {
+- (RTBrowseAllWireframe *)browseAllWireframe {
+    return [TyphoonDefinition withClass:[RTBrowseAllWireframe class] configuration:^(TyphoonDefinition *definition) {
         [definition injectMethod:@selector(initWithViewController:)
                       parameters:^(TyphoonMethod *method) {
                           [method injectParameterWith:[self browseAllViewController]];
@@ -28,8 +28,8 @@
     }];
 }
 
-- (RTBrowseViewController *)browseAllViewController {
-    return [TyphoonDefinition withClass:[RTBrowseViewController class] configuration:^(TyphoonDefinition *definition) {
+- (RTBrowseAllViewController *)browseAllViewController {
+    return [TyphoonDefinition withClass:[RTBrowseAllViewController class] configuration:^(TyphoonDefinition *definition) {
         [definition useInitializer:@selector(viewControllerWithUsersPresenter:reelsPresenter:videosPresenter:)
                       parameters:^(TyphoonMethod *method) {
                           [method injectParameterWith:[self browseAllUsersPresenter]];

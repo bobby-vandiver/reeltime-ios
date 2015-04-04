@@ -3,7 +3,7 @@
 #import "RTApplicationTabBarController.h"
 #import "RTLoginWireframe.h"
 
-#import "RTBrowseViewController.h"
+#import "RTBrowseAllViewController.h"
 
 @interface RTApplicationWireframe ()
 

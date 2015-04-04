@@ -34,7 +34,7 @@
         }];
         
         // TODO: Only for testing purposes -- should be removed!
-        [definition injectProperty:@selector(browseViewController) with:[self.browseAssembly browseAllViewController]];
+        [definition injectProperty:@selector(browseViewController) with:[self.browseAllAssembly browseAllViewController]];
     }];
 }
 

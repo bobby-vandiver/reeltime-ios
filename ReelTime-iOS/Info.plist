@@ -4,7 +4,7 @@
 <dict>
 	<key>TyphoonInitialAssemblies</key>
 	<array>
-		<string>RTBrowseAssembly</string>
+		<string>RTBrowseAllAssembly</string>
 		<string>RTNewsfeedAssembly</string>
 		<string>RTAccountRegistrationAssembly</string>
 		<string>RTAccountRegistrationAutoLoginAssembly</string>

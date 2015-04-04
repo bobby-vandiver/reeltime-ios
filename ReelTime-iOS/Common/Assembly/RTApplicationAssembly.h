@@ -6,7 +6,7 @@
 #import "RTApplicationWireframe.h"
 
 #import "RTNewsfeedAssembly.h"
-#import "RTBrowseAssembly.h"
+#import "RTBrowseAllAssembly.h"
 
 @interface RTApplicationAssembly : TyphoonAssembly
 
@@ -14,7 +14,7 @@
 
 // TODO: These should be removed along with their headers
 @property (nonatomic, strong, readonly) RTNewsfeedAssembly *newsfeedAssembly;
-@property (nonatomic, strong, readonly) RTBrowseAssembly *browseAssembly;
+@property (nonatomic, strong, readonly) RTBrowseAllAssembly *browseAllAssembly;
 
 - (RTAppDelegate *)appDelegate;
 

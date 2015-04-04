@@ -1,4 +1,4 @@
-#import "RTBrowseViewDataSourceFactory.h"
+#import "RTBrowseAllViewDataSourceFactory.h"
 #import "RTMutableArrayDataSource.h"
 
 #import "RTUserDescription.h"
@@ -7,7 +7,7 @@
 
 static NSString *const BrowseCellIdentifier = @"BrowseCell";
 
-@implementation RTBrowseViewDataSourceFactory
+@implementation RTBrowseAllViewDataSourceFactory
 
 + (RTMutableArrayDataSource *)usersDataSource {
     return [self dataSourceWithCellIdentifier:BrowseCellIdentifier
