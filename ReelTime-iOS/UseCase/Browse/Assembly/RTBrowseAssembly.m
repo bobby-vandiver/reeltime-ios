@@ -19,48 +19,48 @@
 
 @implementation RTBrowseAssembly
 
-- (RTBrowseWireframe *)browseWireframe {
+- (RTBrowseWireframe *)browseAllWireframe {
     return [TyphoonDefinition withClass:[RTBrowseWireframe class] configuration:^(TyphoonDefinition *definition) {
         [definition injectMethod:@selector(initWithViewController:)
                       parameters:^(TyphoonMethod *method) {
-                          [method injectParameterWith:[self browseViewController]];
+                          [method injectParameterWith:[self browseAllViewController]];
         }];
     }];
 }
 
-- (RTBrowseViewController *)browseViewController {
+- (RTBrowseViewController *)browseAllViewController {
     return [TyphoonDefinition withClass:[RTBrowseViewController class] configuration:^(TyphoonDefinition *definition) {
         [definition useInitializer:@selector(viewControllerWithUsersPresenter:reelsPresenter:videosPresenter:)
                       parameters:^(TyphoonMethod *method) {
-                          [method injectParameterWith:[self browseUsersPresenter]];
-                          [method injectParameterWith:[self browseReelsPresenter]];
-                          [method injectParameterWith:[self browseVideosPresenter]];
+                          [method injectParameterWith:[self browseAllUsersPresenter]];
+                          [method injectParameterWith:[self browseAllReelsPresenter]];
+                          [method injectParameterWith:[self browseAllVideosPresenter]];
         }];
     }];
 }
 
-- (RTBrowseUsersPresenter *)browseUsersPresenter {
+- (RTBrowseUsersPresenter *)browseAllUsersPresenter {
     return [TyphoonDefinition withClass:[RTBrowseUsersPresenter class] configuration:^(TyphoonDefinition *definition) {
         [definition injectMethod:@selector(initWithView:interactor:wireframe:)
                       parameters:^(TyphoonMethod *method) {
-                          [method injectParameterWith:[self browseViewController]];
-                          [method injectParameterWith:[self browseUsersInteractor]];
-                          [method injectParameterWith:[self browseWireframe]];
+                          [method injectParameterWith:[self browseAllViewController]];
+                          [method injectParameterWith:[self browseAllUsersInteractor]];
+                          [method injectParameterWith:[self browseAllWireframe]];
         }];
     }];
 }
 
-- (RTPagedListInteractor *)browseUsersInteractor {
+- (RTPagedListInteractor *)browseAllUsersInteractor {
     return [TyphoonDefinition withClass:[RTPagedListInteractor class] configuration:^(TyphoonDefinition *definition) {
         [definition injectMethod:@selector(initWithDelegate:dataManager:)
                       parameters:^(TyphoonMethod *method) {
-                          [method injectParameterWith:[self browseUsersPresenter]];
-                          [method injectParameterWith:[self browseUsersDataManager]];
+                          [method injectParameterWith:[self browseAllUsersPresenter]];
+                          [method injectParameterWith:[self browseAllUsersDataManager]];
         }];
     }];
 }
 
-- (RTBrowseUsersDataManager *)browseUsersDataManager {
+- (RTBrowseUsersDataManager *)browseAllUsersDataManager {
     return [TyphoonDefinition withClass:[RTBrowseUsersDataManager class] configuration:^(TyphoonDefinition *definition) {
         [definition injectMethod:@selector(initWithClient:)
                       parameters:^(TyphoonMethod *method) {
@@ -69,28 +69,28 @@
     }];
 }
 
-- (RTBrowseReelsPresenter *)browseReelsPresenter {
+- (RTBrowseReelsPresenter *)browseAllReelsPresenter {
     return [TyphoonDefinition withClass:[RTBrowseReelsPresenter class] configuration:^(TyphoonDefinition *definition) {
         [definition injectMethod:@selector(initWithView:interactor:wireframe:)
                       parameters:^(TyphoonMethod *method) {
-                          [method injectParameterWith:[self browseViewController]];
-                          [method injectParameterWith:[self browseReelsInteractor]];
-                          [method injectParameterWith:[self browseWireframe]];
+                          [method injectParameterWith:[self browseAllViewController]];
+                          [method injectParameterWith:[self browseAllReelsInteractor]];
+                          [method injectParameterWith:[self browseAllWireframe]];
         }];
     }];
 }
 
-- (RTPagedListInteractor *)browseReelsInteractor {
+- (RTPagedListInteractor *)browseAllReelsInteractor {
     return [TyphoonDefinition withClass:[RTPagedListInteractor class] configuration:^(TyphoonDefinition *definition) {
         [definition injectMethod:@selector(initWithDelegate:dataManager:)
                       parameters:^(TyphoonMethod *method) {
-                          [method injectParameterWith:[self browseReelsPresenter]];
-                          [method injectParameterWith:[self browseReelsDataManager]];
+                          [method injectParameterWith:[self browseAllReelsPresenter]];
+                          [method injectParameterWith:[self browseAllReelsDataManager]];
         }];
     }];
 }
 
-- (RTBrowseReelsDataManager *)browseReelsDataManager {
+- (RTBrowseReelsDataManager *)browseAllReelsDataManager {
     return [TyphoonDefinition withClass:[RTBrowseReelsDataManager class] configuration:^(TyphoonDefinition *definition) {
         [definition injectMethod:@selector(initWithDelegate:client:)
                       parameters:^(TyphoonMethod *method) {
@@ -104,28 +104,28 @@
     return [TyphoonDefinition withClass:[RTBrowseAllReelsDataManagerDelegate class]];
 }
 
-- (RTBrowseVideosPresenter *)browseVideosPresenter {
+- (RTBrowseVideosPresenter *)browseAllVideosPresenter {
     return [TyphoonDefinition withClass:[RTBrowseVideosPresenter class] configuration:^(TyphoonDefinition *definition) {
         [definition injectMethod:@selector(initWithView:interactor:wireframe:)
                       parameters:^(TyphoonMethod *method) {
-                          [method injectParameterWith:[self browseViewController]];
-                          [method injectParameterWith:[self browseVideosInteractor]];
-                          [method injectParameterWith:[self browseWireframe]];
+                          [method injectParameterWith:[self browseAllViewController]];
+                          [method injectParameterWith:[self browseAllVideosInteractor]];
+                          [method injectParameterWith:[self browseAllWireframe]];
         }];
     }];
 }
 
-- (RTPagedListInteractor *)browseVideosInteractor {
+- (RTPagedListInteractor *)browseAllVideosInteractor {
     return [TyphoonDefinition withClass:[RTPagedListInteractor class] configuration:^(TyphoonDefinition *definition) {
         [definition injectMethod:@selector(initWithDelegate:dataManager:)
                       parameters:^(TyphoonMethod *method) {
-                          [method injectParameterWith:[self browseVideosPresenter]];
-                          [method injectParameterWith:[self browseVideosDataManager]];
+                          [method injectParameterWith:[self browseAllVideosPresenter]];
+                          [method injectParameterWith:[self browseAllVideosDataManager]];
         }];
     }];
 }
 
-- (RTBrowseVideosDataManager *)browseVideosDataManager {
+- (RTBrowseVideosDataManager *)browseAllVideosDataManager {
     return [TyphoonDefinition withClass:[RTBrowseVideosDataManager class] configuration:^(TyphoonDefinition *definition) {
         [definition injectMethod:@selector(initWithClient:)
                       parameters:^(TyphoonMethod *method) {

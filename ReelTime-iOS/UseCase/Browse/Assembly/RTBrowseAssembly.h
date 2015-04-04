@@ -20,26 +20,26 @@
 
 @property (nonatomic, strong, readonly) RTClientAssembly *clientAssembly;
 
-- (RTBrowseWireframe *)browseWireframe;
+- (RTBrowseWireframe *)browseAllWireframe;
 
-- (RTBrowseViewController *)browseViewController;
+- (RTBrowseViewController *)browseAllViewController;
 
-- (RTBrowseUsersPresenter *)browseUsersPresenter;
+- (RTBrowseUsersPresenter *)browseAllUsersPresenter;
 
-- (RTPagedListInteractor *)browseUsersInteractor;
+- (RTPagedListInteractor *)browseAllUsersInteractor;
 
-- (RTBrowseUsersDataManager *)browseUsersDataManager;
+- (RTBrowseUsersDataManager *)browseAllUsersDataManager;
 
-- (RTBrowseReelsPresenter *)browseReelsPresenter;
+- (RTBrowseReelsPresenter *)browseAllReelsPresenter;
 
-- (RTPagedListInteractor *)browseReelsInteractor;
+- (RTPagedListInteractor *)browseAllReelsInteractor;
 
-- (RTBrowseReelsDataManager *)browseReelsDataManager;
+- (RTBrowseReelsDataManager *)browseAllReelsDataManager;
 
-- (RTBrowseVideosPresenter *)browseVideosPresenter;
+- (RTBrowseVideosPresenter *)browseAllVideosPresenter;
 
-- (RTPagedListInteractor *)browseVideosInteractor;
+- (RTPagedListInteractor *)browseAllVideosInteractor;
 
-- (RTBrowseVideosDataManager *)browseVideosDataManager;
+- (RTBrowseVideosDataManager *)browseAllVideosDataManager;
 
 @end
