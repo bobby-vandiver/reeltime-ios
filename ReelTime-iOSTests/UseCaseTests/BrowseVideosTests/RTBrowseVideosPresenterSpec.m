@@ -54,7 +54,7 @@ describe(@"browse videos presenter", ^{
             
             expect(description.text).to.equal(@"some video");
             expect(description.videoId).to.equal(@(videoId));
-            expect(description.thumbnail).to.equal(thumbnail);
+            expect(description.thumbnailData).to.equal(thumbnail.data);
         });
     });
     

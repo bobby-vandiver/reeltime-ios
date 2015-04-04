@@ -13,6 +13,7 @@ static NSString *const BrowseCellIdentifier = @"BrowseCell";
     return [self dataSourceWithCellIdentifier:BrowseCellIdentifier
                            configureCellBlock:^(UITableViewCell *cell, RTUserDescription *description) {
                                cell.textLabel.text = description.text;
+                               cell.imageView.image = nil;
                            }];
 }
 
@@ -20,6 +21,7 @@ static NSString *const BrowseCellIdentifier = @"BrowseCell";
     return [self dataSourceWithCellIdentifier:BrowseCellIdentifier
                            configureCellBlock:^(UITableViewCell *cell, RTReelDescription *description) {
                                cell.textLabel.text = description.text;
+                               cell.imageView.image = nil;
                            }];
 }
 
@@ -27,6 +29,7 @@ static NSString *const BrowseCellIdentifier = @"BrowseCell";
     return [self dataSourceWithCellIdentifier:BrowseCellIdentifier
                            configureCellBlock:^(UITableViewCell *cell, RTVideoDescription *description) {
                                cell.textLabel.text = description.text;
+                               cell.imageView.image = [UIImage imageWithData:description.thumbnailData];
                            }];
 }
 

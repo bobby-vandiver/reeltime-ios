@@ -6,10 +6,10 @@
 
 @property (readonly, copy) NSString *text;
 @property (readonly, copy) NSNumber *videoId;
-@property (readonly, copy) RTThumbnail *thumbnail;
+@property (readonly, copy) NSData *thumbnailData;
 
 + (RTVideoDescription *)videoDescriptionWithText:(NSString *)text
                                          videoId:(NSNumber *)videoId
-                                       thumbnail:(RTThumbnail *)thumbnail;
+                                   thumbnailData:(NSData *)thumbnailData;
 
 @end

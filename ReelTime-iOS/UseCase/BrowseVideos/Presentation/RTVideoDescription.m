@@ -4,7 +4,7 @@
 
 @property (readwrite, copy) NSString *text;
 @property (readwrite, copy) NSNumber *videoId;
-@property (readwrite, copy) RTThumbnail *thumbnail;
+@property (readwrite, copy) NSData *thumbnailData;
 
 @end
 
@@ -12,18 +12,18 @@
 
 + (RTVideoDescription *)videoDescriptionWithText:(NSString *)text
                                          videoId:(NSNumber *)videoId
-                                       thumbnail:(RTThumbnail *)thumbnail {
-    return [[RTVideoDescription alloc] initWithText:text videoId:videoId thumbnail:thumbnail];
+                                   thumbnailData:(NSData *)thumbnailData {
+    return [[RTVideoDescription alloc] initWithText:text videoId:videoId thumbnailData:thumbnailData];
 }
 
 - (instancetype)initWithText:(NSString *)text
                      videoId:(NSNumber *)videoId
-                   thumbnail:(RTThumbnail *)thumbnail {
+               thumbnailData:(NSData *)thumbnailData {
     self = [super init];
     if (self) {
         self.text = text;
         self.videoId = videoId;
-        self.thumbnail = thumbnail;
+        self.thumbnailData = thumbnailData;
     }
     return self;
 }

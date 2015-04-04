@@ -4,6 +4,8 @@
 #import "RTVideoWireframe.h"
 
 #import "RTVideo.h"
+#import "RTThumbnail.h"
+
 #import "RTVideoDescription.h"
 
 @interface RTBrowseVideosPresenter ()
@@ -33,7 +35,7 @@
 - (void)presentItem:(RTVideo *)video {
     RTVideoDescription *description = [RTVideoDescription videoDescriptionWithText:video.title
                                                                            videoId:video.videoId
-                                                                         thumbnail:video.thumbnail];
+                                                                     thumbnailData:video.thumbnail.data];
     [self.view showVideoDescription:description];
 }
 
