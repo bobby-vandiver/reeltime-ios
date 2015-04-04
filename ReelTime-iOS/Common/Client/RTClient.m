@@ -13,6 +13,7 @@
 #import "RTServerErrors.h"
 #import "RTAccountRegistration.h"
 
+#import "RTThumbnail.h"
 #import "RTLogging.h"
 
 #import <RestKit/RestKit.h>
@@ -483,9 +484,14 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
     NSString *path = [self.pathFormatter formatPath:API_GET_VIDEO_THUMBNAIL withVideoId:videoId];
     NSDictionary *parameters = @{@"resolution": resolution};
     
+    SuccessCallback successDataCallback = ^(NSData *data) {
+        RTThumbnail *thumbnail = [[RTThumbnail alloc] initWithData:data];
+        success(thumbnail);
+    };
+    
     [self.httpClient authenticatedGetBinaryForPath:path
                                     withParameters:parameters
-                                           success:success
+                                           success:successDataCallback
                                            failure:failure];
 }
 
