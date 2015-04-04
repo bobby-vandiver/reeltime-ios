@@ -15,7 +15,7 @@ typedef void (^MultipartFormDataBlock)(id<AFMultipartFormData> formData);
 - (instancetype)initWithDelegate:(RTAuthenticationAwareHTTPClientDelegate *)delegate
             restKitObjectManager:(RKObjectManager *)objectManager;
 
-- (void)authentciatedGetBinaryForPath:(NSString *)path
+- (void)authenticatedGetBinaryForPath:(NSString *)path
                        withParameters:(NSDictionary *)parameters
                               success:(SuccessCallback)success
                               failure:(FailureCallback)failure;

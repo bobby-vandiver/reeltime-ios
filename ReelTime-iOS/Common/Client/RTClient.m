@@ -483,7 +483,7 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
     NSString *path = [self.pathFormatter formatPath:API_GET_VIDEO_THUMBNAIL withVideoId:videoId];
     NSDictionary *parameters = @{@"resolution": resolution};
     
-    [self.httpClient authentciatedGetBinaryForPath:path
+    [self.httpClient authenticatedGetBinaryForPath:path
                                     withParameters:parameters
                                            success:success
                                            failure:failure];

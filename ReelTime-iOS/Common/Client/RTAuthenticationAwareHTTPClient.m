@@ -26,7 +26,7 @@ static NSString *const AUTHORIZATION_HEADER = @"Authorization";
     return self;
 }
 
-- (void)authentciatedGetBinaryForPath:(NSString *)path
+- (void)authenticatedGetBinaryForPath:(NSString *)path
                        withParameters:(NSDictionary *)parameters
                               success:(SuccessCallback)success
                               failure:(FailureCallback)failure {

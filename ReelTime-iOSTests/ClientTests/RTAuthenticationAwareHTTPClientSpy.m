@@ -10,12 +10,12 @@
 
 @implementation RTAuthenticationAwareHTTPClientSpy
 
-- (void)authentciatedGetBinaryForPath:(NSString *)path
+- (void)authenticatedGetBinaryForPath:(NSString *)path
                        withParameters:(NSDictionary *)parameters
                               success:(SuccessCallback)success
                               failure:(FailureCallback)failure {
     [self rememberPath:path parameters:parameters];
-    [super authentciatedGetBinaryForPath:path withParameters:parameters success:success failure:failure];
+    [super authenticatedGetBinaryForPath:path withParameters:parameters success:success failure:failure];
 }
 
 - (void)authenticatedGetForPath:(NSString *)path
