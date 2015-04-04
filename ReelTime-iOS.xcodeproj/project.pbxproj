@@ -185,6 +185,8 @@
 		71A8BA301AB1036A00B0708B /* RTPagedListDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A8BA2F1AB1036A00B0708B /* RTPagedListDataManagerSpec.m */; };
 		71A8BA331AB104AC00B0708B /* RTException.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A8BA321AB104AC00B0708B /* RTException.m */; };
 		71B50BCF1A756C6700D7D397 /* RTAccountRegistrationPresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B50BCE1A756C6700D7D397 /* RTAccountRegistrationPresenterSpec.m */; };
+		71B6BA531AD0202E00723941 /* RTBrowseAllReelsDataManagerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B6BA521AD0202E00723941 /* RTBrowseAllReelsDataManagerDelegate.m */; };
+		71B6BA551AD0213600723941 /* RTBrowseAllReelsDataManagerDelegateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B6BA541AD0213600723941 /* RTBrowseAllReelsDataManagerDelegateSpec.m */; };
 		71C5C09D1A55B29700CAAFAC /* RTLoginPresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C5C09C1A55B29700CAAFAC /* RTLoginPresenterSpec.m */; };
 		71C5C0AC1A55EAE700CAAFAC /* RTOAuth2Token.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C5C0A51A55EAE700CAAFAC /* RTOAuth2Token.m */; };
 		71C5C0AD1A55EAE700CAAFAC /* RTOAuth2TokenError.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C5C0A71A55EAE700CAAFAC /* RTOAuth2TokenError.m */; };
@@ -509,6 +511,10 @@
 		71B004921AB36C5C00ABE1C3 /* RTReelWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTReelWireframe.h; sourceTree = "<group>"; };
 		71B004931AB36C7300ABE1C3 /* RTVideoWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTVideoWireframe.h; sourceTree = "<group>"; };
 		71B50BCE1A756C6700D7D397 /* RTAccountRegistrationPresenterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAccountRegistrationPresenterSpec.m; sourceTree = "<group>"; };
+		71B6BA4F1AD01EDE00723941 /* RTBrowseReelsDataManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseReelsDataManagerDelegate.h; sourceTree = "<group>"; };
+		71B6BA511AD0202E00723941 /* RTBrowseAllReelsDataManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseAllReelsDataManagerDelegate.h; sourceTree = "<group>"; };
+		71B6BA521AD0202E00723941 /* RTBrowseAllReelsDataManagerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseAllReelsDataManagerDelegate.m; sourceTree = "<group>"; };
+		71B6BA541AD0213600723941 /* RTBrowseAllReelsDataManagerDelegateSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseAllReelsDataManagerDelegateSpec.m; sourceTree = "<group>"; };
 		71C5C09C1A55B29700CAAFAC /* RTLoginPresenterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLoginPresenterSpec.m; sourceTree = "<group>"; };
 		71C5C0A41A55EAE700CAAFAC /* RTOAuth2Token.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTOAuth2Token.h; path = "ReelTime-iOS/Common/Model/RTOAuth2Token.h"; sourceTree = SOURCE_ROOT; };
 		71C5C0A51A55EAE700CAAFAC /* RTOAuth2Token.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTOAuth2Token.m; path = "ReelTime-iOS/Common/Model/RTOAuth2Token.m"; sourceTree = SOURCE_ROOT; };
@@ -638,6 +644,7 @@
 			children = (
 				7114DF7A1AB4B9C2003B1D2E /* RTBrowseReelsDataManager.h */,
 				7114DF7B1AB4B9C2003B1D2E /* RTBrowseReelsDataManager.m */,
+				71B6BA4F1AD01EDE00723941 /* RTBrowseReelsDataManagerDelegate.h */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -933,6 +940,7 @@
 			children = (
 				7166E9691AB5C5020080F156 /* Assembly */,
 				7166E96D1AB5C6270080F156 /* Navigation */,
+				71B6BA501AD0201200723941 /* Persistence */,
 				713A23A11AB50ECB0098CE48 /* Presentation */,
 			);
 			path = Browse;
@@ -953,6 +961,7 @@
 			isa = PBXGroup;
 			children = (
 				713A23A61AB52B740098CE48 /* RTBrowseViewControllerSpec.m */,
+				71B6BA541AD0213600723941 /* RTBrowseAllReelsDataManagerDelegateSpec.m */,
 			);
 			path = BrowseTests;
 			sourceTree = "<group>";
@@ -1431,6 +1440,15 @@
 			path = Navigation;
 			sourceTree = "<group>";
 		};
+		71B6BA501AD0201200723941 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				71B6BA511AD0202E00723941 /* RTBrowseAllReelsDataManagerDelegate.h */,
+				71B6BA521AD0202E00723941 /* RTBrowseAllReelsDataManagerDelegate.m */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
 		71D9477E1A4FB37E00401963 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -1882,6 +1900,7 @@
 				711690921A6AB5510031578E /* RTSecureStoreAssembly.m in Sources */,
 				7116909C1A6AEBDA0031578E /* RTStoryboardViewControllerFactory.m in Sources */,
 				7170C8691A59926E00C460BB /* RTErrorFactory.m in Sources */,
+				71B6BA531AD0202E00723941 /* RTBrowseAllReelsDataManagerDelegate.m in Sources */,
 				71647BDE1A7E817000F44996 /* RTActivity.m in Sources */,
 				71647BDB1A7E802200F44996 /* RTReel.m in Sources */,
 				718A0BE21A4DA87900137C49 /* main.m in Sources */,
@@ -1918,6 +1937,7 @@
 				7145C6231A8AF07F006A77DE /* RTReelSpec.m in Sources */,
 				7134C6331A9580FF0048CFCF /* RTNewsfeedViewControllerSpec.m in Sources */,
 				713BCE071A5909DA000F2D96 /* RTFakeKeyChainWrapper.m in Sources */,
+				71B6BA551AD0213600723941 /* RTBrowseAllReelsDataManagerDelegateSpec.m in Sources */,
 				71403D231AB3C7BC007CB8B9 /* RTBrowseUsersDataManagerSpec.m in Sources */,
 				7170C86D1A59A98600C460BB /* RTKeyChainWrapperSpec.m in Sources */,
 				717A4B801A535942004C2BC1 /* RTClientSpec.m in Sources */,

@@ -12,6 +12,7 @@
 
 #import "RTBrowseReelsPresenter.h"
 #import "RTBrowseReelsDataManager.h"
+#import "RTBrowseAllReelsDataManagerDelegate.h"
 
 #import "RTBrowseVideosPresenter.h"
 #import "RTBrowseVideosDataManager.h"
@@ -91,11 +92,16 @@
 
 - (RTBrowseReelsDataManager *)browseReelsDataManager {
     return [TyphoonDefinition withClass:[RTBrowseReelsDataManager class] configuration:^(TyphoonDefinition *definition) {
-        [definition injectMethod:@selector(initWithClient:)
+        [definition injectMethod:@selector(initWithDelegate:client:)
                       parameters:^(TyphoonMethod *method) {
+                          [method injectParameterWith:[self browseAllReelsDataManagerDelegate]];
                           [method injectParameterWith:[self.clientAssembly reelTimeClient]];
         }];
     }];
+}
+
+- (RTBrowseAllReelsDataManagerDelegate *)browseAllReelsDataManagerDelegate {
+    return [TyphoonDefinition withClass:[RTBrowseAllReelsDataManagerDelegate class]];
 }
 
 - (RTBrowseVideosPresenter *)browseVideosPresenter {

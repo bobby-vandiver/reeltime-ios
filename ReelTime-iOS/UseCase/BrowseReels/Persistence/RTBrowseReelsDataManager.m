@@ -1,10 +1,26 @@
 #import "RTBrowseReelsDataManager.h"
+#import "RTBrowseReelsDataManagerDelegate.h"
 #import "RTClient.h"
 
 #import "RTReelList.h"
 #import "RTLogging.h"
 
+@interface RTBrowseReelsDataManager ()
+
+@property id<RTBrowseReelsDataManagerDelegate> delegate;
+
+@end
+
 @implementation RTBrowseReelsDataManager
+
+- (instancetype)initWithDelegate:(id<RTBrowseReelsDataManagerDelegate>)delegate
+                          client:(RTClient *)client {
+    self = [super initWithClient:client];
+    if (self) {
+        self.delegate = delegate;
+    }
+    return self;
+}
 
 - (void)retrievePage:(NSUInteger)page
             callback:(void (^)(NSArray *))callback {
@@ -18,9 +34,10 @@
         callback(@[]);
     };
     
-    [self.client listReelsPage:page
-                       success:successCallback
-                       failure:failureCallback];
+    [self.delegate listReelsPage:page
+                      withClient:self.client
+                         success:successCallback
+                         failure:failureCallback];
 }
 
 @end

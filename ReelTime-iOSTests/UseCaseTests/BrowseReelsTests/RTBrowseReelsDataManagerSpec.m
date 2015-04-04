@@ -1,6 +1,7 @@
 #import "RTTestCommon.h"
 
 #import "RTBrowseReelsDataManager.h"
+#import "RTBrowseReelsDataManagerDelegate.h"
 #import "RTClient.h"
 
 #import "RTReelList.h"
@@ -12,11 +13,13 @@ describe(@"browse reels data manager", ^{
     
     __block RTBrowseReelsDataManager *dataManager;
     
+    __block id<RTBrowseReelsDataManagerDelegate> delegate;
     __block RTClient *client;
     
     beforeEach(^{
+        delegate = mockProtocol(@protocol(RTBrowseReelsDataManagerDelegate));
         client = mock([RTClient class]);
-        dataManager = [[RTBrowseReelsDataManager alloc] initWithClient:client];
+        dataManager = [[RTBrowseReelsDataManager alloc] initWithDelegate:delegate client:client];
     });
     
     describe(@"retrieving a reels list page", ^{
@@ -46,9 +49,10 @@ describe(@"browse reels data manager", ^{
             
             MKTArgumentCaptor *successCaptor = [[MKTArgumentCaptor alloc] init];
             
-            [verify(client) listReelsPage:page
-                                  success:[successCaptor capture]
-                                  failure:anything()];
+            [verify(delegate) listReelsPage:page
+                                 withClient:client
+                                    success:[successCaptor capture]
+                                    failure:anything()];
             
             expect(callbackExecuted).to.beFalsy();
             
@@ -66,9 +70,10 @@ describe(@"browse reels data manager", ^{
         it(@"should pass empty list to callback on failure", ^{
             MKTArgumentCaptor *failureCaptor = [[MKTArgumentCaptor alloc] init];
             
-            [verify(client) listReelsPage:page
-                                  success:anything()
-                                  failure:[failureCaptor capture]];
+            [verify(delegate) listReelsPage:page
+                                 withClient:client
+                                    success:anything()
+                                    failure:[failureCaptor capture]];
             
             expect(callbackExecuted).to.beFalsy();
             
