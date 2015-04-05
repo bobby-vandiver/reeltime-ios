@@ -1,6 +1,7 @@
 #import "RTTestCommon.h"
 
 #import "RTBrowseVideosDataManager.h"
+#import "RTBrowseVideosDataManagerDelegate.h"
 #import "RTClient.h"
 
 #import "RTVideo.h"
@@ -14,11 +15,13 @@ describe(@"browse videos data manager", ^{
     
     __block RTBrowseVideosDataManager *dataManager;
     
+    __block id<RTBrowseVideosDataManagerDelegate> delegate;
     __block RTClient *client;
     
     beforeEach(^{
+        delegate = mockProtocol(@protocol(RTBrowseVideosDataManagerDelegate));
         client = mock([RTClient class]);
-        dataManager = [[RTBrowseVideosDataManager alloc] initWithClient:client];
+        dataManager = [[RTBrowseVideosDataManager alloc] initWithDelegate:delegate client:client];
     });
     
     describe(@"retrieving a videos list page", ^{
@@ -45,9 +48,10 @@ describe(@"browse videos data manager", ^{
             
             MKTArgumentCaptor *videoListCallbackCaptor = [[MKTArgumentCaptor alloc] init];
             
-            [verify(client) listVideosPage:pageNumber
-                                   success:[videoListCallbackCaptor capture]
-                                   failure:anything()];
+            [verify(delegate) listVideosPage:pageNumber
+                                  withClient:client
+                                     success:[videoListCallbackCaptor capture]
+                                     failure:anything()];
             
             expect(callbackExecuted).to.beFalsy();
             
@@ -89,9 +93,10 @@ describe(@"browse videos data manager", ^{
         it(@"should pass empty list to callback on failure", ^{
             MKTArgumentCaptor *failureCaptor = [[MKTArgumentCaptor alloc] init];
             
-            [verify(client) listVideosPage:pageNumber
-                                   success:anything()
-                                   failure:[failureCaptor capture]];
+            [verify(delegate) listVideosPage:pageNumber
+                                  withClient:client
+                                     success:anything()
+                                     failure:[failureCaptor capture]];
             
             expect(callbackExecuted).to.beFalsy();
             

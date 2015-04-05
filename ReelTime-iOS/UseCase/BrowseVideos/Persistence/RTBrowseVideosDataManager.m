@@ -1,4 +1,5 @@
 #import "RTBrowseVideosDataManager.h"
+#import "RTBrowseVideosDataManagerDelegate.h"
 #import "RTClient.h"
 
 #import "RTVideo.h"
@@ -7,7 +8,22 @@
 #import "RTCountDownLatch.h"
 #import "RTLogging.h"
 
+@interface RTBrowseVideosDataManager ()
+
+@property id<RTBrowseVideosDataManagerDelegate> delegate;
+
+@end
+
 @implementation RTBrowseVideosDataManager
+
+- (instancetype)initWithDelegate:(id<RTBrowseVideosDataManagerDelegate>)delegate
+                          client:(RTClient *)client {
+    self = [super initWithClient:client];
+    if (self) {
+        self.delegate = delegate;
+    }
+    return self;
+}
 
 - (void)retrievePage:(NSUInteger)page
             callback:(void (^)(NSArray *))callback {
@@ -21,9 +37,10 @@
         callback(@[]);
     };
     
-    [self.client listVideosPage:page
-                        success:successCallback
-                        failure:failureCallback];
+    [self.delegate listVideosPage:page
+                       withClient:self.client
+                          success:successCallback
+                          failure:failureCallback];
 }
 
 - (void)retrieveThumbnailsForVideos:(NSArray *)videos

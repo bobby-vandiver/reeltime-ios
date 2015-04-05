@@ -23,8 +23,6 @@ describe(@"browse reels data manager", ^{
     });
     
     describe(@"retrieving a reels list page", ^{
-        __block const NSUInteger page = 95;
-        
         __block BOOL callbackExecuted;
         __block NSArray *callbackReels;
         
@@ -35,7 +33,7 @@ describe(@"browse reels data manager", ^{
         
         beforeEach(^{
             callbackExecuted = NO;
-            [dataManager retrievePage:page callback:callback];
+            [dataManager retrievePage:pageNumber callback:callback];
         });
         
         it(@"should pass reels page to callback on success", ^{
@@ -49,7 +47,7 @@ describe(@"browse reels data manager", ^{
             
             MKTArgumentCaptor *successCaptor = [[MKTArgumentCaptor alloc] init];
             
-            [verify(delegate) listReelsPage:page
+            [verify(delegate) listReelsPage:pageNumber
                                  withClient:client
                                     success:[successCaptor capture]
                                     failure:anything()];
@@ -70,7 +68,7 @@ describe(@"browse reels data manager", ^{
         it(@"should pass empty list to callback on failure", ^{
             MKTArgumentCaptor *failureCaptor = [[MKTArgumentCaptor alloc] init];
             
-            [verify(delegate) listReelsPage:page
+            [verify(delegate) listReelsPage:pageNumber
                                  withClient:client
                                     success:anything()
                                     failure:[failureCaptor capture]];

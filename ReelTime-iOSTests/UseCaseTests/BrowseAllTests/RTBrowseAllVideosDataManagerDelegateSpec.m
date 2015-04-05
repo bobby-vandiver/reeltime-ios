@@ -1,23 +1,23 @@
 #import "RTTestCommon.h"
 
-#import "RTBrowseAllReelsDataManagerDelegate.h"
+#import "RTBrowseAllVideosDataManagerDelegate.h"
 
-SpecBegin(RTBrowseAllReelsDataManagerDelegate)
+SpecBegin(RTBrowseAllVideosDataManagerDelegate)
 
-describe(@"browse all reels data manager delegate", ^{
+describe(@"browse all videos data manager delegate", ^{
     
-    __block RTBrowseAllReelsDataManagerDelegate *delegate;
+    __block RTBrowseAllVideosDataManagerDelegate *delegate;
     
     __block RTClient *client;
     
     beforeEach(^{
         client = mock([RTClient class]);
-        delegate = [[RTBrowseAllReelsDataManagerDelegate alloc] init];
+        delegate = [[RTBrowseAllVideosDataManagerDelegate alloc] init];
     });
     
-    it(@"should list reels", ^{
+    it(@"should list videos", ^{
         __block BOOL successCalled = NO;
-        ReelListCallback successCallback = ^(RTReelList *reelList) {
+        VideoListCallback successCallback = ^(RTVideoList *videoList) {
             successCalled = YES;
         };
         
@@ -26,21 +26,21 @@ describe(@"browse all reels data manager delegate", ^{
             failureCalled = YES;
         };
         
-        [delegate listReelsPage:pageNumber
-                     withClient:client
-                        success:successCallback
-                        failure:failureCallback];
-
+        [delegate listVideosPage:pageNumber
+                      withClient:client
+                         success:successCallback
+                         failure:failureCallback];
+        
         MKTArgumentCaptor *successCaptor = [[MKTArgumentCaptor alloc] init];
         MKTArgumentCaptor *failureCaptor = [[MKTArgumentCaptor alloc] init];
         
-        [verify(client) listReelsPage:pageNumber
-                              success:[successCaptor capture]
-                              failure:[failureCaptor capture]];
+        [verify(client) listVideosPage:pageNumber
+                               success:[successCaptor capture]
+                               failure:[failureCaptor capture]];
         
         expect(successCalled).to.beFalsy();
         
-        ReelListCallback capturedSuccessCallback = [successCaptor value];
+        VideoListCallback capturedSuccessCallback = [successCaptor value];
         capturedSuccessCallback(nil);
         
         expect(successCalled).to.beTruthy();

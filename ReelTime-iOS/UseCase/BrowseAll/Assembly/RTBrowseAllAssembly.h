@@ -12,9 +12,11 @@
 
 @class RTBrowseReelsPresenter;
 @class RTBrowseReelsDataManager;
+@protocol RTBrowseReelsDataManagerDelegate;
 
 @class RTBrowseVideosPresenter;
 @class RTBrowseVideosDataManager;
+@protocol RTBrowseVideosDataManagerDelegate;
 
 @interface RTBrowseAllAssembly : TyphoonAssembly
 
@@ -36,10 +38,14 @@
 
 - (RTBrowseReelsDataManager *)browseAllReelsDataManager;
 
+- (id<RTBrowseReelsDataManagerDelegate>)browseAllReelsDataManagerDelegate;
+
 - (RTBrowseVideosPresenter *)browseAllVideosPresenter;
 
 - (RTPagedListInteractor *)browseAllVideosInteractor;
 
 - (RTBrowseVideosDataManager *)browseAllVideosDataManager;
+
+- (id<RTBrowseVideosDataManagerDelegate>)browseAllVideosDataManagerDelegate;
 
 @end

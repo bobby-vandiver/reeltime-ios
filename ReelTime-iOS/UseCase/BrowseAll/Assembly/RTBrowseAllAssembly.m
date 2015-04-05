@@ -12,10 +12,13 @@
 
 #import "RTBrowseReelsPresenter.h"
 #import "RTBrowseReelsDataManager.h"
+#import "RTBrowseReelsDataManagerDelegate.h"
 #import "RTBrowseAllReelsDataManagerDelegate.h"
 
 #import "RTBrowseVideosPresenter.h"
 #import "RTBrowseVideosDataManager.h"
+#import "RTBrowseVideosDataManagerDelegate.h"
+#import "RTBrowseAllVideosDataManagerDelegate.h"
 
 @implementation RTBrowseAllAssembly
 
@@ -100,7 +103,7 @@
     }];
 }
 
-- (RTBrowseAllReelsDataManagerDelegate *)browseAllReelsDataManagerDelegate {
+- (id<RTBrowseReelsDataManagerDelegate>)browseAllReelsDataManagerDelegate {
     return [TyphoonDefinition withClass:[RTBrowseAllReelsDataManagerDelegate class]];
 }
 
@@ -127,11 +130,16 @@
 
 - (RTBrowseVideosDataManager *)browseAllVideosDataManager {
     return [TyphoonDefinition withClass:[RTBrowseVideosDataManager class] configuration:^(TyphoonDefinition *definition) {
-        [definition injectMethod:@selector(initWithClient:)
+        [definition injectMethod:@selector(initWithDelegate:client:)
                       parameters:^(TyphoonMethod *method) {
+                          [method injectParameterWith:[self browseAllVideosDataManagerDelegate]];
                           [method injectParameterWith:[self.clientAssembly reelTimeClient]];
         }];
     }];
+}
+
+- (id<RTBrowseVideosDataManagerDelegate>)browseAllVideosDataManagerDelegate {
+    return [TyphoonDefinition withClass:[RTBrowseAllVideosDataManagerDelegate class]];
 }
 
 @end
