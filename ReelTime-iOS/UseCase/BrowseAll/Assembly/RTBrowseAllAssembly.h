@@ -9,6 +9,7 @@
 
 @class RTBrowseUsersPresenter;
 @class RTBrowseUsersDataManager;
+@protocol RTBrowseUsersDataManagerDelegate;
 
 @class RTBrowseReelsPresenter;
 @class RTBrowseReelsDataManager;
@@ -31,6 +32,8 @@
 - (RTPagedListInteractor *)browseAllUsersInteractor;
 
 - (RTBrowseUsersDataManager *)browseAllUsersDataManager;
+
+- (id<RTBrowseUsersDataManagerDelegate>)browseAllUsersDataManagerDelegate;
 
 - (RTBrowseReelsPresenter *)browseAllReelsPresenter;
 

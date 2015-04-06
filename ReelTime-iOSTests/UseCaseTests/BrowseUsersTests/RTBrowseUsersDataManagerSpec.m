@@ -1,6 +1,7 @@
 #import "RTTestCommon.h"
 
 #import "RTBrowseUsersDataManager.h"
+#import "RTBrowseUsersDataManagerDelegate.h"
 #import "RTClient.h"
 
 #import "RTUserList.h"
@@ -12,16 +13,16 @@ describe(@"browse users data manager", ^{
 
     __block RTBrowseUsersDataManager *dataManager;
     
+    __block id<RTBrowseUsersDataManagerDelegate> delegate;
     __block RTClient *client;
     
     beforeEach(^{
+        delegate = mockProtocol(@protocol(RTBrowseUsersDataManagerDelegate));
         client = mock([RTClient class]);
-        dataManager = [[RTBrowseUsersDataManager alloc] initWithClient:client];
+        dataManager = [[RTBrowseUsersDataManager alloc] initWithDelegate:delegate client:client];
     });
     
     describe(@"retrieving a users list page", ^{
-        __block const NSUInteger page = 40;
-
         __block BOOL callbackExecuted;
         __block NSArray *callbackUsers;
         
@@ -32,7 +33,7 @@ describe(@"browse users data manager", ^{
         
         beforeEach(^{
             callbackExecuted = NO;
-            [dataManager retrievePage:page callback:callback];
+            [dataManager retrievePage:pageNumber callback:callback];
         });
         
         it(@"should pass users page to callback on success", ^{
@@ -46,9 +47,10 @@ describe(@"browse users data manager", ^{
             
             MKTArgumentCaptor *successCaptor = [[MKTArgumentCaptor alloc] init];
             
-            [verify(client) listUsersPage:page
-                                  success:[successCaptor capture]
-                                  failure:anything()];
+            [verify(delegate) listUsersPage:pageNumber
+                                 withClient:client
+                                    success:[successCaptor capture]
+                                    failure:anything()];
             
             expect(callbackExecuted).to.beFalsy();
             
@@ -66,9 +68,10 @@ describe(@"browse users data manager", ^{
         it(@"should pass empty list to callback on failure", ^{
             MKTArgumentCaptor *failureCaptor = [[MKTArgumentCaptor alloc] init];
             
-            [verify(client) listUsersPage:page
-                                  success:anything()
-                                  failure:[failureCaptor capture]];
+            [verify(delegate) listUsersPage:pageNumber
+                                 withClient:client
+                                    success:anything()
+                                    failure:[failureCaptor capture]];
             
             expect(callbackExecuted).to.beFalsy();
             

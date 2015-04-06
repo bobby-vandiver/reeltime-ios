@@ -9,6 +9,8 @@
 
 #import "RTBrowseUsersPresenter.h"
 #import "RTBrowseUsersDataManager.h"
+#import "RTBrowseUsersDataManager.h"
+#import "RTBrowseAllUsersDataManagerDelegate.h"
 
 #import "RTBrowseReelsPresenter.h"
 #import "RTBrowseReelsDataManager.h"
@@ -65,11 +67,16 @@
 
 - (RTBrowseUsersDataManager *)browseAllUsersDataManager {
     return [TyphoonDefinition withClass:[RTBrowseUsersDataManager class] configuration:^(TyphoonDefinition *definition) {
-        [definition injectMethod:@selector(initWithClient:)
+        [definition injectMethod:@selector(initWithDelegate:client:)
                       parameters:^(TyphoonMethod *method) {
+                          [method injectParameterWith:[self browseAllUsersDataManagerDelegate]];
                           [method injectParameterWith:[self.clientAssembly reelTimeClient]];
         }];
     }];
+}
+
+- (id<RTBrowseUsersDataManagerDelegate>)browseAllUsersDataManagerDelegate {
+    return [TyphoonDefinition withClass:[RTBrowseAllUsersDataManagerDelegate class]];
 }
 
 - (RTBrowseReelsPresenter *)browseAllReelsPresenter {
