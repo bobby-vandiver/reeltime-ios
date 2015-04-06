@@ -14,7 +14,18 @@ get '/api/reels' do
 
         (0..count).each { |num|
             i = initial + num + 100
-            list << { :reel_id => i, :name => "reel#{i}", :audience_size => 3, :video_count => 4 }
+            list << {
+                :reel_id => i,
+                :name => "reel#{i}",
+                :audience_size => 3,
+                :video_count => 4,
+                :owner => {
+                    :username => "user#{i * 2}",
+                    :display_name => "display#{i * 2}",
+                    :follower_count => 1,
+                    :followee_count => 2
+                }
+            }
         }
     end
 

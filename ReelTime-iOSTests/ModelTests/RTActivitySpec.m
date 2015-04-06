@@ -50,9 +50,9 @@ describe(@"activity", ^{
         expect(user).to.equal(identicalUser);
         expect(user).toNot.equal(differentUser);
         
-        reel = [[RTReel alloc] initWithReelId:@(1) name:@"reel" audienceSize:@(2) numberOfVideos:@(3)];
-        identicalReel = [[RTReel alloc] initWithReelId:@(1) name:@"reel" audienceSize:@(2) numberOfVideos:@(3)];
-        differentReel = [[RTReel alloc] initWithReelId:@(2) name:@"reel" audienceSize:@(2) numberOfVideos:@(3)];
+        reel = [[RTReel alloc] initWithReelId:@(1) name:@"reel" audienceSize:@(2) numberOfVideos:@(3) owner:nil];
+        identicalReel = [[RTReel alloc] initWithReelId:@(1) name:@"reel" audienceSize:@(2) numberOfVideos:@(3) owner:nil];
+        differentReel = [[RTReel alloc] initWithReelId:@(2) name:@"reel" audienceSize:@(2) numberOfVideos:@(3) owner:nil];
 
         expect(reel).to.equal(identicalReel);
         expect(reel).toNot.equal(differentReel);

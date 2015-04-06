@@ -18,7 +18,8 @@ describe(@"reel", ^{
         reel = [[RTReel alloc] initWithReelId:reelId
                                          name:name
                                  audienceSize:audienceSize
-                               numberOfVideos:numberOfVideos];
+                               numberOfVideos:numberOfVideos
+                                        owner:nil];
     });
     
     describe(@"isEqual for reel with non-reel", ^{
@@ -50,7 +51,8 @@ describe(@"reel", ^{
                 RTReel *other = [[RTReel alloc] initWithReelId:[reelId copy]
                                                           name:[name copy]
                                                   audienceSize:[audienceSize copy]
-                                                numberOfVideos:[numberOfVideos copy]];
+                                                numberOfVideos:[numberOfVideos copy]
+                                                         owner:nil];
                 
                 BOOL equal = [reel isEqual:other];
                 expect(equal).to.beTruthy();
@@ -68,7 +70,8 @@ describe(@"reel", ^{
                 RTReel *other = [[RTReel alloc] initWithReelId:otherReelId
                                                           name:otherName
                                                   audienceSize:otherAudienceSize
-                                                numberOfVideos:otherNumberOfVideos];
+                                                numberOfVideos:otherNumberOfVideos
+                                                         owner:nil];
                 
                 BOOL equal = [reel isEqual:other];
                 expect(equal).to.beFalsy();
@@ -91,12 +94,14 @@ describe(@"reel", ^{
                 RTReel *left = [[RTReel alloc] initWithReelId:nil
                                                          name:name
                                                  audienceSize:audienceSize
-                                               numberOfVideos:numberOfVideos];
+                                               numberOfVideos:numberOfVideos
+                                                        owner:nil];
 
                 RTReel *right = [[RTReel alloc] initWithReelId:nil
                                                           name:[name copy]
                                                   audienceSize:[audienceSize copy]
-                                                numberOfVideos:[numberOfVideos copy]];
+                                                numberOfVideos:[numberOfVideos copy]
+                                                         owner:nil];
                 
                 BOOL equal = [left isEqual:right];
                 expect(equal).to.beFalsy();

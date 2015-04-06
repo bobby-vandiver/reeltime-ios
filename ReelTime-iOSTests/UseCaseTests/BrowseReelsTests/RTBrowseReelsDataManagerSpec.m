@@ -40,7 +40,8 @@ describe(@"browse reels data manager", ^{
             RTReel *reel = [[RTReel alloc] initWithReelId:@(133)
                                                      name:@"something"
                                              audienceSize:@(1)
-                                           numberOfVideos:@(32)];
+                                           numberOfVideos:@(32)
+                                                    owner:nil];
 
             RTReelList *reelList = [[RTReelList alloc] init];
             reelList.reels = @[reel];

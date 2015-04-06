@@ -22,7 +22,7 @@ describe(@"url factory", ^{
     });
 
     it(@"reel url", ^{
-        RTReel *reel = [[RTReel alloc] initWithReelId:@(5) name:@"reel" audienceSize:@(2) numberOfVideos:@(3)];
+        RTReel *reel = [[RTReel alloc] initWithReelId:@(5) name:@"reel" audienceSize:@(2) numberOfVideos:@(3) owner:nil];
         NSURL *reelURL = [NSURL URLWithString:@"reeltime://reels/5"];
         
         NSURL *url = [RTURLFactory URLForReel:reel];

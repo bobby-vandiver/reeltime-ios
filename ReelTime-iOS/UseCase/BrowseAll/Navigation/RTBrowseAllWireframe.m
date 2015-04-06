@@ -28,9 +28,10 @@
 
 }
 
-- (void)presentReelForReelId:(NSNumber *)reelId {
+- (void)presentReelForReelId:(NSNumber *)reelId
+               ownerUsername:(NSString *)ownerUsername {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Present Reel Details"
-                                                        message:[NSString stringWithFormat:@"Reel ID: %@", reelId]
+                                                        message:[NSString stringWithFormat:@"Reel ID: %@ & owner username: %@", reelId, ownerUsername]
                                                        delegate:nil
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];

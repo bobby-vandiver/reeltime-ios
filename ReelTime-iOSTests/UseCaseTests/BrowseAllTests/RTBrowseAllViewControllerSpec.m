@@ -136,7 +136,7 @@ describe(@"browse all view controller", ^{
             indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
             
             userDescription = [RTUserDescription userDescriptionWithText:@"text" forUsername:username];
-            reelDescription = [RTReelDescription reelDescriptionWithText:@"text" forReelId:@(reelId)];
+            reelDescription = [RTReelDescription reelDescriptionWithText:@"text" forReelId:@(reelId) ownerUsername:username];
             videoDescription = [RTVideoDescription videoDescriptionWithText:@"text" videoId:@(videoId) thumbnailData:nil];
             
             viewController.usersDataSource.items = @[userDescription];
@@ -157,7 +157,7 @@ describe(@"browse all view controller", ^{
         it(@"should present selected reel", ^{
             [viewController makeReelsListActive];
             [viewController tableView:tableView didSelectRowAtIndexPath:indexPath];
-            [verify(reelsPresenter) requestedReelDetailsForReelId:@(reelId)];
+            [verify(reelsPresenter) requestedReelDetailsForReelId:@(reelId) ownerUsername:username];
         });
         
         it(@"should present selected video", ^{
@@ -309,7 +309,7 @@ describe(@"browse all view controller", ^{
         __block RTReelDescription *reelDescription;
         
         beforeEach(^{
-            reelDescription = [RTReelDescription reelDescriptionWithText:@"reel" forReelId:@(reelId)];
+            reelDescription = [RTReelDescription reelDescriptionWithText:@"reel" forReelId:@(reelId) ownerUsername:username];
             expect(viewController.reelsDataSource.items).to.haveCountOf(0);
         });
         

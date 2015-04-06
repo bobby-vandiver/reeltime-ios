@@ -133,7 +133,7 @@ typedef enum {
     }
     else if (self.currentListType == BrowseReelsList) {
         RTReelDescription *description = self.reelsDataSource.items[row];
-        [self.reelsPresenter requestedReelDetailsForReelId:description.reelId];
+        [self.reelsPresenter requestedReelDetailsForReelId:description.reelId ownerUsername:description.ownerUsername];
     }
     else if (self.currentListType == BrowseVideosList) {
         RTVideoDescription *description = self.videosDataSource.items[row];

@@ -11,6 +11,7 @@
                   interactor:(RTPagedListInteractor *)interactor
                    wireframe:(id<RTReelWireframe>)wireframe;
 
-- (void)requestedReelDetailsForReelId:(NSNumber *)reelId;
+- (void)requestedReelDetailsForReelId:(NSNumber *)reelId
+                        ownerUsername:(NSString *)ownerUsername;
 
 @end

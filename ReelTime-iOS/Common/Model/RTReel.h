@@ -15,7 +15,8 @@
 - (instancetype)initWithReelId:(NSNumber *)reelId
                           name:(NSString *)name
                   audienceSize:(NSNumber *)audienceSize
-                numberOfVideos:(NSNumber *)numberOfVideos;
+                numberOfVideos:(NSNumber *)numberOfVideos
+                         owner:(RTUser *)owner;
 
 - (BOOL)isEqualToReel:(RTReel *)reel;
 

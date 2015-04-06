@@ -33,7 +33,7 @@ describe(@"newsfeed message source", ^{
         user = [[RTUser alloc] initWithUsername:username displayName:displayName
                               numberOfFollowers:@(1) numberOfFollowees:@(2)];
         
-        reel = [[RTReel alloc] initWithReelId:@(1) name:@"reel" audienceSize:@(2) numberOfVideos:@(3)];
+        reel = [[RTReel alloc] initWithReelId:@(1) name:@"reel" audienceSize:@(2) numberOfVideos:@(3) owner:nil];
         
         RTThumbnail *thumbnail = mock([RTThumbnail class]);
         video = [[RTVideo alloc] initWithVideoId:@(1) title:@"title" thumbnail:thumbnail];

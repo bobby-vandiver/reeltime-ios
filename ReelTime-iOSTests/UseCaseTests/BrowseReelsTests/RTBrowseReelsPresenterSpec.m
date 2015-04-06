@@ -7,6 +7,8 @@
 #import "RTReelWireframe.h"
 
 #import "RTReel.h"
+#import "RTUser.h"
+
 #import "RTReelDescription.h"
 
 SpecBegin(RTBrowseReelsPresenter)
@@ -38,10 +40,16 @@ describe(@"browse reels presenter", ^{
     
     describe(@"show reel description", ^{
         it(@"should show reel description", ^{
+            RTUser *owner = [[RTUser alloc] initWithUsername:username
+                                                 displayName:displayName
+                                           numberOfFollowers:@(1)
+                                           numberOfFollowees:@(2)];
+            
             RTReel *reel = [[RTReel alloc] initWithReelId:@(reelId)
                                                      name:@"something"
                                              audienceSize:@(4)
-                                           numberOfVideos:@(3)];
+                                           numberOfVideos:@(3)
+                                                    owner:owner];
 
             [presenter presentItem:reel];
             
@@ -53,13 +61,14 @@ describe(@"browse reels presenter", ^{
             
             expect(description.text).to.equal(@"something");
             expect(description.reelId).to.equal(@(reelId));
+            expect(description.ownerUsername).to.equal(username);
         });
     });
     
     describe(@"requesting reel details", ^{
         it(@"should present reel", ^{
-            [presenter requestedReelDetailsForReelId:@(reelId)];
-            [verify(wireframe) presentReelForReelId:@(reelId)];
+            [presenter requestedReelDetailsForReelId:@(reelId) ownerUsername:username];
+            [verify(wireframe) presentReelForReelId:@(reelId) ownerUsername:username];
         });
     });
 });

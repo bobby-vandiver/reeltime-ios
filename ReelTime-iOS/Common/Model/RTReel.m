@@ -5,13 +5,15 @@
 - (instancetype)initWithReelId:(NSNumber *)reelId
                           name:(NSString *)name
                   audienceSize:(NSNumber *)audienceSize
-                numberOfVideos:(NSNumber *)numberOfVideos {
+                numberOfVideos:(NSNumber *)numberOfVideos
+                         owner:(RTUser *)owner {
     self = [super init];
     if (self) {
         self.reelId = reelId;
         self.name = name;
         self.audienceSize = audienceSize;
         self.numberOfVideos = numberOfVideos;
+        self.owner = owner;
     }
     return self;
 }

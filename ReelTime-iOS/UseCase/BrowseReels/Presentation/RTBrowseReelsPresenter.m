@@ -4,6 +4,8 @@
 #import "RTReelWireframe.h"
 
 #import "RTReel.h"
+#import "RTUser.h"
+
 #import "RTReelDescription.h"
 
 @interface RTBrowseReelsPresenter ()
@@ -32,12 +34,14 @@
 
 - (void)presentItem:(RTReel *)reel {
     RTReelDescription *description = [RTReelDescription reelDescriptionWithText:reel.name
-                                                                      forReelId:reel.reelId];
+                                                                      forReelId:reel.reelId
+                                                                  ownerUsername:reel.owner.username];
     [self.view showReelDescription:description];
 }
 
-- (void)requestedReelDetailsForReelId:(NSNumber *)reelId {
-    [self.wireframe presentReelForReelId:reelId];
+- (void)requestedReelDetailsForReelId:(NSNumber *)reelId
+                        ownerUsername:(NSString *)ownerUsername {
+    [self.wireframe presentReelForReelId:reelId ownerUsername:ownerUsername];
 }
 
 @end

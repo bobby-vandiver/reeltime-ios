@@ -2,6 +2,7 @@
 
 @protocol RTReelWireframe <NSObject>
 
-- (void)presentReelForReelId:(NSNumber *)reelId;
+- (void)presentReelForReelId:(NSNumber *)reelId
+               ownerUsername:(NSString *)ownerUsername;
 
 @end

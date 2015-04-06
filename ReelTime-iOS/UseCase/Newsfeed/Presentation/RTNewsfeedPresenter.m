@@ -47,7 +47,8 @@
         [self.wireframe presentUserForUsername:url.username];
     }
     else if (url.isReelURL) {
-        [self.wireframe presentReelForReelId:url.reelId];
+        // TODO: Incorporate reel owner during refactor of newsfeed
+        [self.wireframe presentReelForReelId:url.reelId ownerUsername:@""];
     }
     else if (url.isVideoURL) {
         [self.wireframe presentVideoForVideoId:url.videoId];

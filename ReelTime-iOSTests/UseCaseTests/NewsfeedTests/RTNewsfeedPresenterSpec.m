@@ -47,7 +47,7 @@ describe(@"newsfeed presenter", ^{
         user = [[RTUser alloc] initWithUsername:username displayName:displayName
                               numberOfFollowers:@(1) numberOfFollowees:@(2)];
         
-        reel = [[RTReel alloc] initWithReelId:@(1) name:@"reel" audienceSize:@(2) numberOfVideos:@(3)];
+        reel = [[RTReel alloc] initWithReelId:@(1) name:@"reel" audienceSize:@(2) numberOfVideos:@(3) owner:nil];
         
         RTThumbnail *thumbnail = mock([RTThumbnail class]);
         video = [[RTVideo alloc] initWithVideoId:@(1) title:@"title" thumbnail:thumbnail];
@@ -84,7 +84,7 @@ describe(@"newsfeed presenter", ^{
             NSURL *url = [RTURLFactory URLForReel:reel];
             
             [presenter attributedLabel:anything() didSelectLinkWithURL:url];
-            [verify(wireframe) presentReelForReelId:reel.reelId];
+            [verify(wireframe) presentReelForReelId:reel.reelId ownerUsername:@""];
         });
         
         it(@"should present video when video link is selected", ^{
@@ -99,7 +99,7 @@ describe(@"newsfeed presenter", ^{
             [presenter attributedLabel:anything() didSelectLinkWithURL:url];
             
             [verifyCount(wireframe, never()) presentUserForUsername:anything()];
-            [verifyCount(wireframe, never()) presentReelForReelId:anything()];
+            [verifyCount(wireframe, never()) presentReelForReelId:anything() ownerUsername:anything()];
             [verifyCount(wireframe, never()) presentVideoForVideoId:anything()];
         });
     });

@@ -4,8 +4,10 @@
 
 @property (readonly, copy) NSString *text;
 @property (readonly, copy) NSNumber *reelId;
+@property (readonly, copy) NSString *ownerUsername;
 
 + (RTReelDescription *)reelDescriptionWithText:(NSString *)text
-                                     forReelId:(NSNumber *)reelId;
+                                     forReelId:(NSNumber *)reelId
+                                 ownerUsername:(NSString *)ownerUsername;
 
 @end
