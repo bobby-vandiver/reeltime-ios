@@ -10,13 +10,25 @@ Date: Sun, 22 Feb 2015 17:55:58 GMT
             "reel_id": 759,
             "name": "some reel",
             "audience_size": 0,
-            "video_count": 1
+            "video_count": 1,
+            "owner":{
+                "username": "the first",
+                "display_name": "the one",
+                "follower_count": 123,
+                "followee_count": 95
+            }
         },
         {
             "reel_id": 758,
             "name": "any reel",
             "audience_size": 41,
-            "video_count": 30
+            "video_count": 30,
+            "owner":{
+                "username": "the second",
+                "display_name": "the two",
+                "follower_count": 123,
+                "followee_count": 95
+            }
         }
     ]
 }

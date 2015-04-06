@@ -43,14 +43,16 @@ describe(@"API Mapping", ^{
                                            @"reel_id": @(12),
                                            @"name": @"some reel",
                                            @"audience_size": @(2),
-                                           @"video_count": @(20)
+                                           @"video_count": @(20),
+                                           @"owner": userResponse1
                                            };
 
     __block NSDictionary *reelResponse2 = @{
                                             @"reel_id": @(94),
                                             @"name": @"any reel",
                                             @"audience_size": @(3),
-                                            @"video_count": @(81)
+                                            @"video_count": @(81),
+                                            @"owner": userResponse2
                                             };
 
     __block NSDictionary *videoResponse1 = @{
@@ -309,6 +311,11 @@ describe(@"API Mapping", ^{
                                                                                 destinationKeyPath:@"numberOfVideos"
                                                                                              value:@(20)]];
         
+        RKMapping *userMapping = [RTRestAPIMappingFactory userMapping];
+        [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:@"owner"
+                                                                                destinationKeyPath:@"owner"
+                                                                                           mapping:userMapping]];
+        
         [mappingTest performMapping];
         [mappingTest verify];
     });
@@ -350,6 +357,9 @@ describe(@"API Mapping", ^{
             RTReel *first = reelList.reels[0];
             expect(first).to.beReel(reelResponse1[@"reel_id"], reelResponse1[@"name"],
                                     reelResponse1[@"audience_size"], reelResponse1[@"video_count"]);
+            
+            expect(first.owner).to.beUser(userResponse1[@"username"], userResponse1[@"display_name"],
+                                          userResponse1[@"follower_count"], userResponse1[@"followee_count"]);
         });
         
         it(@"has multiple reels in list", ^{
@@ -372,10 +382,16 @@ describe(@"API Mapping", ^{
             RTReel *first = reelList.reels[0];
             expect(first).to.beReel(reelResponse1[@"reel_id"], reelResponse1[@"name"],
                                     reelResponse1[@"audience_size"], reelResponse1[@"video_count"]);
+
+            expect(first.owner).to.beUser(userResponse1[@"username"], userResponse1[@"display_name"],
+                                          userResponse1[@"follower_count"], userResponse1[@"followee_count"]);
             
             RTReel *second = reelList.reels[1];
             expect(second).to.beReel(reelResponse2[@"reel_id"], reelResponse2[@"name"],
                                     reelResponse2[@"audience_size"], reelResponse2[@"video_count"]);
+
+            expect(second.owner).to.beUser(userResponse2[@"username"], userResponse2[@"display_name"],
+                                           userResponse2[@"follower_count"], userResponse2[@"followee_count"]);
         });
     });
 

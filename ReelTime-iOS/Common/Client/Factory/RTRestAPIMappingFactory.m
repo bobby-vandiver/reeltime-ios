@@ -86,6 +86,12 @@
                                                   @"audience_size":     @"audienceSize",
                                                   @"video_count":       @"numberOfVideos"
                                                   }];
+    
+    RKRelationshipMapping *userMapping = [RKRelationshipMapping relationshipMappingFromKeyPath:@"owner"
+                                                                                     toKeyPath:@"owner"
+                                                                                   withMapping:[self userMapping]];
+    [mapping addPropertyMapping:userMapping];
+    
     return mapping;
 }
 
