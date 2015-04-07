@@ -28,7 +28,8 @@
 
 }
 
-- (void)presentReelForReelId:(NSNumber *)reelId {
+- (void)presentReelForReelId:(NSNumber *)reelId
+               ownerUsername:(NSString *)ownerUsername {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Present Reel"
                                                         message:[NSString stringWithFormat:@"Reel ID: %@", reelId]
                                                        delegate:nil
