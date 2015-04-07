@@ -25,7 +25,6 @@
 		7114DF761AB4B401003B1D2E /* RTServerErrorsSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7114DF751AB4B401003B1D2E /* RTServerErrorsSpec.m */; };
 		7114DF7C1AB4B9C2003B1D2E /* RTBrowseReelsDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7114DF7B1AB4B9C2003B1D2E /* RTBrowseReelsDataManager.m */; };
 		7114DF7F1AB4BB1E003B1D2E /* RTBrowseReelsDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7114DF7E1AB4BB1E003B1D2E /* RTBrowseReelsDataManagerSpec.m */; };
-		7114DF821AB4BF4A003B1D2E /* RTReelDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 7114DF811AB4BF4A003B1D2E /* RTReelDescription.m */; };
 		7114DF861AB4C157003B1D2E /* RTBrowseReelsPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7114DF851AB4C157003B1D2E /* RTBrowseReelsPresenter.m */; };
 		7114DF881AB4C38C003B1D2E /* RTBrowseReelsPresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7114DF871AB4C38C003B1D2E /* RTBrowseReelsPresenterSpec.m */; };
 		7116908F1A6AB3970031578E /* RTSecurityAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 7116908E1A6AB3970031578E /* RTSecurityAssembly.m */; };
@@ -95,9 +94,11 @@
 		71386E501AD34F8F009D064C /* RTBrowseUserReelsDataManagerDelegateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71386E4F1AD34F8F009D064C /* RTBrowseUserReelsDataManagerDelegateSpec.m */; };
 		71386E531AD352CA009D064C /* RTBrowseReelVideosDataManagerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 71386E521AD352CA009D064C /* RTBrowseReelVideosDataManagerDelegate.m */; };
 		71386E551AD3531E009D064C /* RTBrowseReelVideosDataManagerDelegateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71386E541AD3531E009D064C /* RTBrowseReelVideosDataManagerDelegateSpec.m */; };
+		71386E5E1AD36C01009D064C /* RTReelDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 71386E591AD36C01009D064C /* RTReelDescription.m */; };
+		71386E5F1AD36C01009D064C /* RTUserDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 71386E5B1AD36C01009D064C /* RTUserDescription.m */; };
+		71386E601AD36C01009D064C /* RTVideoDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 71386E5D1AD36C01009D064C /* RTVideoDescription.m */; };
 		713A238F1AB4EB520098CE48 /* RTBrowseVideosDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 713A238E1AB4EB520098CE48 /* RTBrowseVideosDataManager.m */; };
 		713A23921AB4EB950098CE48 /* RTBrowseVideosDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 713A23911AB4EB950098CE48 /* RTBrowseVideosDataManagerSpec.m */; };
-		713A23961AB4F4FD0098CE48 /* RTVideoDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 713A23951AB4F4FD0098CE48 /* RTVideoDescription.m */; };
 		713A239A1AB4F5F80098CE48 /* RTBrowseVideosPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 713A23991AB4F5F80098CE48 /* RTBrowseVideosPresenter.m */; };
 		713A239C1AB4F6BF0098CE48 /* RTBrowseVideosPresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 713A239B1AB4F6BF0098CE48 /* RTBrowseVideosPresenterSpec.m */; };
 		713A239F1AB4FF4C0098CE48 /* RTMutableArrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 713A239E1AB4FF4C0098CE48 /* RTMutableArrayDataSource.m */; };
@@ -110,7 +111,6 @@
 		713DCAAB1A6C9D1C0032B252 /* RTAccountRegistrationInteractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 713DCAAA1A6C9D1C0032B252 /* RTAccountRegistrationInteractorSpec.m */; };
 		71403D201AB3C6F1007CB8B9 /* RTBrowseUsersDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 71403D1F1AB3C6F1007CB8B9 /* RTBrowseUsersDataManager.m */; };
 		71403D231AB3C7BC007CB8B9 /* RTBrowseUsersDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71403D221AB3C7BC007CB8B9 /* RTBrowseUsersDataManagerSpec.m */; };
-		71403D271AB3CE68007CB8B9 /* RTUserDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 71403D261AB3CE68007CB8B9 /* RTUserDescription.m */; };
 		71403D2B1AB3D078007CB8B9 /* RTBrowseUsersPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 71403D2A1AB3D078007CB8B9 /* RTBrowseUsersPresenter.m */; };
 		71403D2D1AB3D18C007CB8B9 /* RTBrowseUsersPresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71403D2C1AB3D18C007CB8B9 /* RTBrowseUsersPresenterSpec.m */; };
 		714205CB1A90F55200F65D4F /* RTURLFactorySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 714205CA1A90F55200F65D4F /* RTURLFactorySpec.m */; };
@@ -244,8 +244,6 @@
 		7114DF7A1AB4B9C2003B1D2E /* RTBrowseReelsDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseReelsDataManager.h; sourceTree = "<group>"; };
 		7114DF7B1AB4B9C2003B1D2E /* RTBrowseReelsDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseReelsDataManager.m; sourceTree = "<group>"; };
 		7114DF7E1AB4BB1E003B1D2E /* RTBrowseReelsDataManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseReelsDataManagerSpec.m; sourceTree = "<group>"; };
-		7114DF801AB4BF4A003B1D2E /* RTReelDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTReelDescription.h; sourceTree = "<group>"; };
-		7114DF811AB4BF4A003B1D2E /* RTReelDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTReelDescription.m; sourceTree = "<group>"; };
 		7114DF831AB4C0D1003B1D2E /* RTBrowseReelsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseReelsView.h; sourceTree = "<group>"; };
 		7114DF841AB4C157003B1D2E /* RTBrowseReelsPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseReelsPresenter.h; sourceTree = "<group>"; };
 		7114DF851AB4C157003B1D2E /* RTBrowseReelsPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseReelsPresenter.m; sourceTree = "<group>"; };
@@ -356,11 +354,15 @@
 		71386E511AD352CA009D064C /* RTBrowseReelVideosDataManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseReelVideosDataManagerDelegate.h; sourceTree = "<group>"; };
 		71386E521AD352CA009D064C /* RTBrowseReelVideosDataManagerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseReelVideosDataManagerDelegate.m; sourceTree = "<group>"; };
 		71386E541AD3531E009D064C /* RTBrowseReelVideosDataManagerDelegateSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseReelVideosDataManagerDelegateSpec.m; sourceTree = "<group>"; };
+		71386E581AD36C01009D064C /* RTReelDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTReelDescription.h; sourceTree = "<group>"; };
+		71386E591AD36C01009D064C /* RTReelDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTReelDescription.m; sourceTree = "<group>"; };
+		71386E5A1AD36C01009D064C /* RTUserDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTUserDescription.h; sourceTree = "<group>"; };
+		71386E5B1AD36C01009D064C /* RTUserDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTUserDescription.m; sourceTree = "<group>"; };
+		71386E5C1AD36C01009D064C /* RTVideoDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTVideoDescription.h; sourceTree = "<group>"; };
+		71386E5D1AD36C01009D064C /* RTVideoDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTVideoDescription.m; sourceTree = "<group>"; };
 		713A238D1AB4EB520098CE48 /* RTBrowseVideosDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseVideosDataManager.h; sourceTree = "<group>"; };
 		713A238E1AB4EB520098CE48 /* RTBrowseVideosDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseVideosDataManager.m; sourceTree = "<group>"; };
 		713A23911AB4EB950098CE48 /* RTBrowseVideosDataManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseVideosDataManagerSpec.m; sourceTree = "<group>"; };
-		713A23941AB4F4FD0098CE48 /* RTVideoDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTVideoDescription.h; sourceTree = "<group>"; };
-		713A23951AB4F4FD0098CE48 /* RTVideoDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTVideoDescription.m; sourceTree = "<group>"; };
 		713A23971AB4F5A20098CE48 /* RTBrowseVideosView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseVideosView.h; sourceTree = "<group>"; };
 		713A23981AB4F5F80098CE48 /* RTBrowseVideosPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseVideosPresenter.h; sourceTree = "<group>"; };
 		713A23991AB4F5F80098CE48 /* RTBrowseVideosPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseVideosPresenter.m; sourceTree = "<group>"; };
@@ -382,8 +384,6 @@
 		71403D1E1AB3C6F1007CB8B9 /* RTBrowseUsersDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseUsersDataManager.h; sourceTree = "<group>"; };
 		71403D1F1AB3C6F1007CB8B9 /* RTBrowseUsersDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseUsersDataManager.m; sourceTree = "<group>"; };
 		71403D221AB3C7BC007CB8B9 /* RTBrowseUsersDataManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseUsersDataManagerSpec.m; sourceTree = "<group>"; };
-		71403D251AB3CE68007CB8B9 /* RTUserDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTUserDescription.h; sourceTree = "<group>"; };
-		71403D261AB3CE68007CB8B9 /* RTUserDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTUserDescription.m; sourceTree = "<group>"; };
 		71403D281AB3D018007CB8B9 /* RTBrowseUsersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseUsersView.h; sourceTree = "<group>"; };
 		71403D291AB3D078007CB8B9 /* RTBrowseUsersPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseUsersPresenter.h; sourceTree = "<group>"; };
 		71403D2A1AB3D078007CB8B9 /* RTBrowseUsersPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseUsersPresenter.m; sourceTree = "<group>"; };
@@ -677,8 +677,6 @@
 				7114DF841AB4C157003B1D2E /* RTBrowseReelsPresenter.h */,
 				7114DF851AB4C157003B1D2E /* RTBrowseReelsPresenter.m */,
 				7114DF831AB4C0D1003B1D2E /* RTBrowseReelsView.h */,
-				7114DF801AB4BF4A003B1D2E /* RTReelDescription.h */,
-				7114DF811AB4BF4A003B1D2E /* RTReelDescription.m */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -946,6 +944,26 @@
 			path = UserProfileTests;
 			sourceTree = "<group>";
 		};
+		71386E561AD35C22009D064C /* UserSummary */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UserSummary;
+			sourceTree = "<group>";
+		};
+		71386E571AD36B34009D064C /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				71386E581AD36C01009D064C /* RTReelDescription.h */,
+				71386E591AD36C01009D064C /* RTReelDescription.m */,
+				71386E5A1AD36C01009D064C /* RTUserDescription.h */,
+				71386E5B1AD36C01009D064C /* RTUserDescription.m */,
+				71386E5C1AD36C01009D064C /* RTVideoDescription.h */,
+				71386E5D1AD36C01009D064C /* RTVideoDescription.m */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
 		713A238B1AB4EB260098CE48 /* BrowseVideos */ = {
 			isa = PBXGroup;
 			children = (
@@ -980,8 +998,6 @@
 				713A23981AB4F5F80098CE48 /* RTBrowseVideosPresenter.h */,
 				713A23991AB4F5F80098CE48 /* RTBrowseVideosPresenter.m */,
 				713A23971AB4F5A20098CE48 /* RTBrowseVideosView.h */,
-				713A23941AB4F4FD0098CE48 /* RTVideoDescription.h */,
-				713A23951AB4F4FD0098CE48 /* RTVideoDescription.m */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -1044,8 +1060,6 @@
 				71403D291AB3D078007CB8B9 /* RTBrowseUsersPresenter.h */,
 				71403D2A1AB3D078007CB8B9 /* RTBrowseUsersPresenter.m */,
 				71403D281AB3D018007CB8B9 /* RTBrowseUsersView.h */,
-				71403D251AB3CE68007CB8B9 /* RTUserDescription.h */,
-				71403D261AB3CE68007CB8B9 /* RTUserDescription.m */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -1518,6 +1532,7 @@
 				7114DF701AB4AF1B003B1D2E /* Logging */,
 				71D9477F1A4FB39C00401963 /* Model */,
 				71B004901AB36C2400ABE1C3 /* Navigation */,
+				71386E571AD36B34009D064C /* Presentation */,
 				711C5DDB1A8D5B4F007652FC /* Routing */,
 				7102A7B21A57AAEF00DEDA83 /* Security */,
 				71D947831A4FB7BC00401963 /* Store */,
@@ -1603,6 +1618,7 @@
 				71073CF71A831BEF00BE6E19 /* Newsfeed */,
 				712B2BC21AAFB17B0026258A /* PagedList */,
 				71386E491AD34E67009D064C /* UserProfile */,
+				71386E561AD35C22009D064C /* UserSummary */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -1874,10 +1890,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71386E5E1AD36C01009D064C /* RTReelDescription.m in Sources */,
 				7172159B1A8659050002ECC7 /* RTAccountRegistrationAssembly.m in Sources */,
 				7136A53F1AA3652C0059DF43 /* RTUserList.m in Sources */,
 				71C5C0B21A55EB3900CAAFAC /* RTOAuth2TokenStore.m in Sources */,
-				713A23961AB4F4FD0098CE48 /* RTVideoDescription.m in Sources */,
 				71B6BA671AD036A400723941 /* RTBrowseAllReelsDataManagerDelegate.m in Sources */,
 				71565A261A98ED5900AE1C43 /* RTApplicationWireframe.m in Sources */,
 				715370FA1A88680700D3355B /* RTArrayDataSource.m in Sources */,
@@ -1890,14 +1906,13 @@
 				717D92761A5B925700EAB6BF /* RTCurrentUserStore.m in Sources */,
 				71386E531AD352CA009D064C /* RTBrowseReelVideosDataManagerDelegate.m in Sources */,
 				715555A71A9ED1F40091F432 /* RTAuthenticationAwareHTTPClient.m in Sources */,
-				7114DF821AB4BF4A003B1D2E /* RTReelDescription.m in Sources */,
 				7114DF861AB4C157003B1D2E /* RTBrowseReelsPresenter.m in Sources */,
 				71C7D4151A7406A6006B84AC /* RTServerErrorsConverter.m in Sources */,
 				713188AC1A91454F006155E6 /* RTNewsfeedViewController.m in Sources */,
 				7172158A1A86576E0002ECC7 /* RTLoginDataManager.m in Sources */,
-				71403D271AB3CE68007CB8B9 /* RTUserDescription.m in Sources */,
 				71B6BA681AD036A400723941 /* RTBrowseAllViewController.m in Sources */,
 				7172159C1A8659050002ECC7 /* RTAccountRegistrationAutoLoginAssembly.m in Sources */,
+				71386E601AD36C01009D064C /* RTVideoDescription.m in Sources */,
 				717D926D1A5B722300EAB6BF /* NSError+RTError.m in Sources */,
 				717215A41A86590D0002ECC7 /* RTAccountRegistrationValidator.m in Sources */,
 				71073CF61A83060700BE6E19 /* RKObjectManager+IncludeHeaders.m in Sources */,
@@ -1955,6 +1970,7 @@
 				717215901A8657770002ECC7 /* RTLoginPresenter.m in Sources */,
 				71386E4D1AD34EC2009D064C /* RTBrowseUserReelsDataManagerDelegate.m in Sources */,
 				7134C63D1A958D7D0048CFCF /* RTActivityCell+ConfigureForRTActivityMessage.m in Sources */,
+				71386E5F1AD36C01009D064C /* RTUserDescription.m in Sources */,
 				713188AF1A914B1E006155E6 /* RTActivityMessage.m in Sources */,
 				717215A31A86590D0002ECC7 /* RTAccountRegistrationInteractor.m in Sources */,
 				712B2BD41AAFBEFD0026258A /* RTPagedListPresenter.m in Sources */,
