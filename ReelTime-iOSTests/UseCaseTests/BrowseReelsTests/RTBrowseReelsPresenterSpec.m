@@ -43,7 +43,9 @@ describe(@"browse reels presenter", ^{
             RTUser *owner = [[RTUser alloc] initWithUsername:username
                                                  displayName:displayName
                                            numberOfFollowers:@(1)
-                                           numberOfFollowees:@(2)];
+                                           numberOfFollowees:@(2)
+                                          numberOfReelsOwned:@(5)
+                                 numberOfAudienceMemberships:@(6)];
             
             RTReel *reel = [[RTReel alloc] initWithReelId:@(reelId)
                                                      name:@"something"

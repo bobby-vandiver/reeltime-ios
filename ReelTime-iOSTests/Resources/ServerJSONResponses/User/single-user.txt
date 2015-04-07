@@ -8,5 +8,7 @@ Date: Sun, 22 Feb 2015 17:55:58 GMT
     "username": "alone",
     "display_name": "all alone",
     "follower_count": 123,
-    "followee_count": 95
+    "followee_count": 95,
+    "reel_count": 42,
+    "audience_membership_count": 31
 }

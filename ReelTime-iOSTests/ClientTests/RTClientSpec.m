@@ -236,7 +236,7 @@ describe(@"ReelTime Client", ^{
             expect(userList.users).to.haveCountOf(1);
             
             RTUser *first = userList.users[0];
-            expect(first).to.beUser(@"first", @"the first", @(31), @(941));
+            expect(first).to.beUser(@"first", @"the first", @(31), @(941), @(52), @(27));
             
             done();
         };
@@ -250,10 +250,10 @@ describe(@"ReelTime Client", ^{
             expect(userList.users).to.haveCountOf(2);
             
             RTUser *first = userList.users[0];
-            expect(first).to.beUser(@"first", @"the first", @(31), @(941));
+            expect(first).to.beUser(@"first", @"the first", @(31), @(941), @(52), @(27));
             
             RTUser *second = userList.users[1];
-            expect(second).to.beUser(@"second", @"the second", @(74), @(4019));
+            expect(second).to.beUser(@"second", @"the second", @(74), @(4019), @(510), @(213));
             
             done();
         };
@@ -885,7 +885,7 @@ describe(@"ReelTime Client", ^{
                                      expect(activity.type).to.equal(RTActivityTypeCreateReel);
                                      
                                      RTUser *user = activity.user;
-                                     expect(user).to.beUser(@"someone", @"some display", @(1), @(2));
+                                     expect(user).to.beUser(@"someone", @"some display", @(1), @(2), @(3), @(4));
                                      
                                      RTReel *reel = activity.reel;
                                      expect(reel).to.beReel(@(34), @"some reel", @(901), @(23));
@@ -910,7 +910,7 @@ describe(@"ReelTime Client", ^{
                                      expect(activity.type).to.equal(RTActivityTypeCreateReel);
                                      
                                      RTUser *user = activity.user;
-                                     expect(user).to.beUser(@"someone", @"some display", @(1), @(2));
+                                     expect(user).to.beUser(@"someone", @"some display", @(1), @(2), @(3), @(4));
                                      
                                      RTReel *reel = activity.reel;
                                      expect(reel).to.beReel(@(34), @"some reel", @(901), @(23));
@@ -919,7 +919,7 @@ describe(@"ReelTime Client", ^{
                                      expect(activity.type).to.equal(RTActivityTypeJoinReelAudience);
                                      
                                      user = activity.user;
-                                     expect(user).to.beUser(@"anyone", @"any display", @(6), @(8));
+                                     expect(user).to.beUser(@"anyone", @"any display", @(6), @(8), @(10), @(12));
                                      
                                      reel = activity.reel;
                                      expect(reel).to.beReel(@(34), @"some reel", @(901), @(23));
@@ -928,7 +928,7 @@ describe(@"ReelTime Client", ^{
                                      expect(activity.type).to.equal(RTActivityTypeAddVideoToReel);
                                      
                                      user = activity.user;
-                                     expect(user).to.beUser(@"someone", @"some display", @(1), @(2));
+                                     expect(user).to.beUser(@"someone", @"some display", @(1), @(2), @(3), @(4));
                                      
                                      reel = activity.reel;
                                      expect(reel).to.beReel(@(34), @"some reel", @(901), @(23));
@@ -1610,7 +1610,7 @@ describe(@"ReelTime Client", ^{
                     waitUntil(^(DoneCallback done) {
                         [client userForUsername:username
                                         success:^(RTUser *user) {
-                                            expect(user).to.beUser(@"alone", @"all alone", @(123), @(95));
+                                            expect(user).to.beUser(@"alone", @"all alone", @(123), @(95), @(42), @(31));
                                             done();
                                         }
                                         failure:shouldNotExecuteFailureCallback(done)];

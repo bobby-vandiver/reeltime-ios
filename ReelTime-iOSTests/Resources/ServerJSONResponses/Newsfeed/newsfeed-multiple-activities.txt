@@ -12,7 +12,9 @@ Date: Sun, 11 Jan 2015 15:05:38 GMT
                 "username":"someone",
                 "display_name":"some display",
                 "follower_count":1,
-                "followee_count":2
+                "followee_count":2,
+                "reel_count":3,
+                "audience_membership_count":4
             },
             "reel":{
                 "reel_id":34,
@@ -27,7 +29,9 @@ Date: Sun, 11 Jan 2015 15:05:38 GMT
                 "username":"anyone",
                 "display_name":"any display",
                 "follower_count":6,
-                "followee_count":8
+                "followee_count":8,
+                "reel_count":10,
+                "audience_membership_count":12
             },
             "reel":{
                 "reel_id":34,
@@ -42,7 +46,9 @@ Date: Sun, 11 Jan 2015 15:05:38 GMT
                 "username":"someone",
                 "display_name":"some display",
                 "follower_count":1,
-                "followee_count":2
+                "followee_count":2,
+                "reel_count":3,
+                "audience_membership_count":4
             },
             "reel":{
                 "reel_id":34,

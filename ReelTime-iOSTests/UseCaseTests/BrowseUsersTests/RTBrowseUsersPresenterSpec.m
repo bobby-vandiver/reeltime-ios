@@ -41,7 +41,9 @@ describe(@"browse users presenter", ^{
             RTUser *user = [[RTUser alloc] initWithUsername:username
                                                 displayName:displayName
                                           numberOfFollowers:@(1)
-                                          numberOfFollowees:@(2)];
+                                          numberOfFollowees:@(2)
+                                         numberOfReelsOwned:@(3)
+                                numberOfAudienceMemberships:@(4)];
             
             [presenter presentItem:user];
             

@@ -31,7 +31,8 @@ describe(@"newsfeed message source", ^{
         messageSource = [[RTNewsfeedMessageSource alloc] init];
         
         user = [[RTUser alloc] initWithUsername:username displayName:displayName
-                              numberOfFollowers:@(1) numberOfFollowees:@(2)];
+                              numberOfFollowers:@(1) numberOfFollowees:@(2)
+                             numberOfReelsOwned:@(3) numberOfAudienceMemberships:@(4)];
         
         reel = [[RTReel alloc] initWithReelId:@(1) name:@"reel" audienceSize:@(2) numberOfVideos:@(3) owner:nil];
         

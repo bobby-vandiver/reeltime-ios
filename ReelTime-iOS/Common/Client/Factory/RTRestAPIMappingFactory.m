@@ -61,10 +61,12 @@
 + (RKMapping *)userMapping {
     RKObjectMapping *mapping = [RKObjectMapping mappingForClass:[RTUser class]];
     [mapping addAttributeMappingsFromDictionary:@{
-                                                  @"username":          @"username",
-                                                  @"display_name":      @"displayName",
-                                                  @"follower_count":    @"numberOfFollowers",
-                                                  @"followee_count":    @"numberOfFollowees"
+                                                  @"username":                      @"username",
+                                                  @"display_name":                  @"displayName",
+                                                  @"follower_count":                @"numberOfFollowers",
+                                                  @"followee_count":                @"numberOfFollowees",
+                                                  @"reel_count":                    @"numberOfReelsOwned",
+                                                  @"audience_membership_count":     @"numberOfAudienceMemberships"
                                                   }];
     return mapping;
 }

@@ -10,7 +10,9 @@ Date: Sun, 22 Feb 2015 17:55:58 GMT
             "username": "first",
             "display_name": "the first",
             "follower_count": 31,
-            "followee_count": 941
+            "followee_count": 941,
+            "reel_count": 52,
+            "audience_membership_count": 27
         }
     ]
 }

@@ -5,13 +5,17 @@
 - (instancetype)initWithUsername:(NSString *)username
                      displayName:(NSString *)displayName
                numberOfFollowers:(NSNumber *)numberOfFollowers
-               numberOfFollowees:(NSNumber *)numberOfFollowees {
+               numberOfFollowees:(NSNumber *)numberOfFollowees
+              numberOfReelsOwned:(NSNumber *)numberOfReelsOwned
+     numberOfAudienceMemberships:(NSNumber *)numberOfAudienceMemberships {
     self = [super init];
     if (self) {
         self.username = username;
         self.displayName = displayName;
         self.numberOfFollowers = numberOfFollowers;
         self.numberOfFollowees = numberOfFollowees;
+        self.numberOfReelsOwned = numberOfReelsOwned;
+        self.numberOfAudienceMemberships = numberOfAudienceMemberships;
     }
     return self;
 }

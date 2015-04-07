@@ -13,7 +13,8 @@ describe(@"url factory", ^{
     
     it(@"user url", ^{
         RTUser *user = [[RTUser alloc] initWithUsername:@"joe" displayName:displayName
-                                      numberOfFollowers:@(1) numberOfFollowees:@(2)];
+                                      numberOfFollowers:@(1) numberOfFollowees:@(2)
+                                     numberOfReelsOwned:@(3) numberOfAudienceMemberships:@(4)];
         
         NSURL *userURL = [NSURL URLWithString:@"reeltime://users/joe"];
         
