@@ -35,6 +35,8 @@
 - (void)presentItem:(RTReel *)reel {
     RTReelDescription *description = [RTReelDescription reelDescriptionWithName:reel.name
                                                                       forReelId:reel.reelId
+                                                                   audienceSize:reel.audienceSize
+                                                                 numberOfVideos:reel.numberOfVideos
                                                                   ownerUsername:reel.owner.username];
     [self.view showReelDescription:description];
 }

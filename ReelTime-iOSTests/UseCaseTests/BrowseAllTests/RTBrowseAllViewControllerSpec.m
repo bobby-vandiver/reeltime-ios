@@ -45,6 +45,10 @@ describe(@"browse all view controller", ^{
     __block RTBrowseReelsPresenter *reelsPresenter;
     __block RTBrowseVideosPresenter *videosPresenter;
     
+    __block RTUserDescription *userDescription;
+    __block RTReelDescription *reelDescription;
+    __block RTVideoDescription *videoDescription;
+    
     __block UISegmentedControl *segmentedControl;
     __block UITableView *tableView;
     
@@ -59,6 +63,16 @@ describe(@"browse all view controller", ^{
         viewController = [RTBrowseAllViewController viewControllerWithUsersPresenter:usersPresenter
                                                                    reelsPresenter:reelsPresenter
                                                                   videosPresenter:videosPresenter];
+        
+        userDescription = [RTUserDescription userDescriptionWithDisplayName:@"text" forUsername:username];
+        
+        reelDescription = [RTReelDescription reelDescriptionWithName:@"text"
+                                                           forReelId:@(reelId)
+                                                        audienceSize:@(1)
+                                                      numberOfVideos:@(3)
+                                                       ownerUsername:username];
+        
+        videoDescription = [RTVideoDescription videoDescriptionWithTitle:@"text" videoId:@(videoId) thumbnailData:nil];
         
         viewController.segmentedControl = segmentedControl;
         viewController.browseListTableView = tableView;
@@ -128,16 +142,8 @@ describe(@"browse all view controller", ^{
     describe(@"row selected", ^{
         __block NSIndexPath *indexPath;
         
-        __block RTUserDescription *userDescription;
-        __block RTReelDescription *reelDescription;
-        __block RTVideoDescription *videoDescription;
-        
         beforeEach(^{
             indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-            
-            userDescription = [RTUserDescription userDescriptionWithDisplayName:@"text" forUsername:username];
-            reelDescription = [RTReelDescription reelDescriptionWithName:@"text" forReelId:@(reelId) ownerUsername:username];
-            videoDescription = [RTVideoDescription videoDescriptionWithTitle:@"text" videoId:@(videoId) thumbnailData:nil];
             
             viewController.usersDataSource.items = @[userDescription];
             viewController.reelsDataSource.items = @[reelDescription];
@@ -243,10 +249,7 @@ describe(@"browse all view controller", ^{
     });
     
     context(@"user description is required", ^{
-        __block RTUserDescription *userDescription;
-        
         beforeEach(^{
-            userDescription = [RTUserDescription userDescriptionWithDisplayName:@"user" forUsername:username];
             expect(viewController.usersDataSource.items).to.haveCountOf(0);
         });
         
@@ -306,10 +309,7 @@ describe(@"browse all view controller", ^{
     });
     
     context(@"reel description is required", ^{
-        __block RTReelDescription *reelDescription;
-        
         beforeEach(^{
-            reelDescription = [RTReelDescription reelDescriptionWithName:@"reel" forReelId:@(reelId) ownerUsername:username];
             expect(viewController.reelsDataSource.items).to.haveCountOf(0);
         });
         
@@ -369,10 +369,7 @@ describe(@"browse all view controller", ^{
     });
     
     context(@"video message is required", ^{
-        __block RTVideoDescription *videoDescription;
-        
         beforeEach(^{
-            videoDescription = [RTVideoDescription videoDescriptionWithTitle:@"video" videoId:@(videoId) thumbnailData:nil];
             expect(viewController.videosDataSource.items).to.haveCountOf(0);
         });
         

@@ -61,6 +61,8 @@ describe(@"browse reels presenter", ^{
             
             expect(description.name).to.equal(@"something");
             expect(description.reelId).to.equal(@(reelId));
+            expect(description.audienceSize).to.equal(@(4));
+            expect(description.numberOfVideos).to.equal(@(3));
             expect(description.ownerUsername).to.equal(username);
         });
     });
