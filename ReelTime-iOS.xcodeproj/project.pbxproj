@@ -91,6 +91,10 @@
 		7134C63A1A9588D50048CFCF /* JoinReelAudienceIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7134C6371A9588D50048CFCF /* JoinReelAudienceIcon.png */; };
 		7134C63D1A958D7D0048CFCF /* RTActivityCell+ConfigureForRTActivityMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7134C63C1A958D7D0048CFCF /* RTActivityCell+ConfigureForRTActivityMessage.m */; };
 		7136A53F1AA3652C0059DF43 /* RTUserList.m in Sources */ = {isa = PBXBuildFile; fileRef = 7136A53E1AA3652B0059DF43 /* RTUserList.m */; };
+		71386E4D1AD34EC2009D064C /* RTBrowseUserReelsDataManagerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 71386E4C1AD34EC2009D064C /* RTBrowseUserReelsDataManagerDelegate.m */; };
+		71386E501AD34F8F009D064C /* RTBrowseUserReelsDataManagerDelegateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71386E4F1AD34F8F009D064C /* RTBrowseUserReelsDataManagerDelegateSpec.m */; };
+		71386E531AD352CA009D064C /* RTBrowseReelVideosDataManagerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 71386E521AD352CA009D064C /* RTBrowseReelVideosDataManagerDelegate.m */; };
+		71386E551AD3531E009D064C /* RTBrowseReelVideosDataManagerDelegateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71386E541AD3531E009D064C /* RTBrowseReelVideosDataManagerDelegateSpec.m */; };
 		713A238F1AB4EB520098CE48 /* RTBrowseVideosDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 713A238E1AB4EB520098CE48 /* RTBrowseVideosDataManager.m */; };
 		713A23921AB4EB950098CE48 /* RTBrowseVideosDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 713A23911AB4EB950098CE48 /* RTBrowseVideosDataManagerSpec.m */; };
 		713A23961AB4F4FD0098CE48 /* RTVideoDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 713A23951AB4F4FD0098CE48 /* RTVideoDescription.m */; };
@@ -346,6 +350,12 @@
 		7134C63C1A958D7D0048CFCF /* RTActivityCell+ConfigureForRTActivityMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RTActivityCell+ConfigureForRTActivityMessage.m"; sourceTree = "<group>"; };
 		7136A53D1AA3652B0059DF43 /* RTUserList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTUserList.h; path = "ReelTime-iOS/Common/Model/RTUserList.h"; sourceTree = SOURCE_ROOT; };
 		7136A53E1AA3652B0059DF43 /* RTUserList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTUserList.m; path = "ReelTime-iOS/Common/Model/RTUserList.m"; sourceTree = SOURCE_ROOT; };
+		71386E4B1AD34EC2009D064C /* RTBrowseUserReelsDataManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseUserReelsDataManagerDelegate.h; sourceTree = "<group>"; };
+		71386E4C1AD34EC2009D064C /* RTBrowseUserReelsDataManagerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseUserReelsDataManagerDelegate.m; sourceTree = "<group>"; };
+		71386E4F1AD34F8F009D064C /* RTBrowseUserReelsDataManagerDelegateSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseUserReelsDataManagerDelegateSpec.m; sourceTree = "<group>"; };
+		71386E511AD352CA009D064C /* RTBrowseReelVideosDataManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseReelVideosDataManagerDelegate.h; sourceTree = "<group>"; };
+		71386E521AD352CA009D064C /* RTBrowseReelVideosDataManagerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseReelVideosDataManagerDelegate.m; sourceTree = "<group>"; };
+		71386E541AD3531E009D064C /* RTBrowseReelVideosDataManagerDelegateSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseReelVideosDataManagerDelegateSpec.m; sourceTree = "<group>"; };
 		713A238D1AB4EB520098CE48 /* RTBrowseVideosDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseVideosDataManager.h; sourceTree = "<group>"; };
 		713A238E1AB4EB520098CE48 /* RTBrowseVideosDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseVideosDataManager.m; sourceTree = "<group>"; };
 		713A23911AB4EB950098CE48 /* RTBrowseVideosDataManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseVideosDataManagerSpec.m; sourceTree = "<group>"; };
@@ -906,6 +916,34 @@
 				7134C6371A9588D50048CFCF /* JoinReelAudienceIcon.png */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		71386E491AD34E67009D064C /* UserProfile */ = {
+			isa = PBXGroup;
+			children = (
+				71386E4A1AD34E77009D064C /* Persistence */,
+			);
+			path = UserProfile;
+			sourceTree = "<group>";
+		};
+		71386E4A1AD34E77009D064C /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				71386E4B1AD34EC2009D064C /* RTBrowseUserReelsDataManagerDelegate.h */,
+				71386E4C1AD34EC2009D064C /* RTBrowseUserReelsDataManagerDelegate.m */,
+				71386E511AD352CA009D064C /* RTBrowseReelVideosDataManagerDelegate.h */,
+				71386E521AD352CA009D064C /* RTBrowseReelVideosDataManagerDelegate.m */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		71386E4E1AD34F6E009D064C /* UserProfileTests */ = {
+			isa = PBXGroup;
+			children = (
+				71386E4F1AD34F8F009D064C /* RTBrowseUserReelsDataManagerDelegateSpec.m */,
+				71386E541AD3531E009D064C /* RTBrowseReelVideosDataManagerDelegateSpec.m */,
+			);
+			path = UserProfileTests;
 			sourceTree = "<group>";
 		};
 		713A238B1AB4EB260098CE48 /* BrowseVideos */ = {
@@ -1564,6 +1602,7 @@
 				71D9478B1A4FC70B00401963 /* Login */,
 				71073CF71A831BEF00BE6E19 /* Newsfeed */,
 				712B2BC21AAFB17B0026258A /* PagedList */,
+				71386E491AD34E67009D064C /* UserProfile */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -1591,6 +1630,7 @@
 				71D947961A4FCB2900401963 /* LoginTests */,
 				71073CFC1A831E6600BE6E19 /* NewsfeedTests */,
 				712B2BCE1AAFB86B0026258A /* PagedListTests */,
+				71386E4E1AD34F6E009D064C /* UserProfileTests */,
 			);
 			path = UseCaseTests;
 			sourceTree = "<group>";
@@ -1848,6 +1888,7 @@
 				713188A91A912E4D006155E6 /* RTRegexPattern.m in Sources */,
 				711C5DE01A8D5B4F007652FC /* RTEmbeddedURL.m in Sources */,
 				717D92761A5B925700EAB6BF /* RTCurrentUserStore.m in Sources */,
+				71386E531AD352CA009D064C /* RTBrowseReelVideosDataManagerDelegate.m in Sources */,
 				715555A71A9ED1F40091F432 /* RTAuthenticationAwareHTTPClient.m in Sources */,
 				7114DF821AB4BF4A003B1D2E /* RTReelDescription.m in Sources */,
 				7114DF861AB4C157003B1D2E /* RTBrowseReelsPresenter.m in Sources */,
@@ -1912,6 +1953,7 @@
 				7169B0091AD175FC00890983 /* RTBrowseAllVideosDataManagerDelegate.m in Sources */,
 				71647BE31A7EA68C00F44996 /* RTNewsfeed.m in Sources */,
 				717215901A8657770002ECC7 /* RTLoginPresenter.m in Sources */,
+				71386E4D1AD34EC2009D064C /* RTBrowseUserReelsDataManagerDelegate.m in Sources */,
 				7134C63D1A958D7D0048CFCF /* RTActivityCell+ConfigureForRTActivityMessage.m in Sources */,
 				713188AF1A914B1E006155E6 /* RTActivityMessage.m in Sources */,
 				717215A31A86590D0002ECC7 /* RTAccountRegistrationInteractor.m in Sources */,
@@ -1987,10 +2029,12 @@
 				71A8BA301AB1036A00B0708B /* RTPagedListDataManagerSpec.m in Sources */,
 				71073CF31A82DED800BE6E19 /* EXPMatchers+beVideo.m in Sources */,
 				71C8D91F1A73485A00673F1A /* RTAccountRegistrationDataManagerSpec.m in Sources */,
+				71386E501AD34F8F009D064C /* RTBrowseUserReelsDataManagerDelegateSpec.m in Sources */,
 				71647BE81A7F185500F44996 /* RTClientDelegateSpec.m in Sources */,
 				71194C231A81C37900904A06 /* EXPMatchers+beReel.m in Sources */,
 				71194C1D1A81AEFC00904A06 /* EXPMatchers+beUser.m in Sources */,
 				712BE2FC1A75D74300478277 /* RTClientCredentialsStoreSpec.m in Sources */,
+				71386E551AD3531E009D064C /* RTBrowseReelVideosDataManagerDelegateSpec.m in Sources */,
 				7134C62F1A95322E0048CFCF /* RTLoginViewControllerSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
