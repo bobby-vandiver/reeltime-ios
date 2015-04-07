@@ -33,9 +33,9 @@
 }
 
 - (void)presentItem:(RTVideo *)video {
-    RTVideoDescription *description = [RTVideoDescription videoDescriptionWithText:video.title
-                                                                           videoId:video.videoId
-                                                                     thumbnailData:video.thumbnail.data];
+    RTVideoDescription *description = [RTVideoDescription videoDescriptionWithTitle:video.title
+                                                                            videoId:video.videoId
+                                                                      thumbnailData:video.thumbnail.data];
     [self.view showVideoDescription:description];
 }
 

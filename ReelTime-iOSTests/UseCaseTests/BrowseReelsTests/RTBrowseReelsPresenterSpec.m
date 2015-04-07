@@ -59,7 +59,7 @@ describe(@"browse reels presenter", ^{
             RTReelDescription *description = [captor value];
             expect(description).toNot.beNil();
             
-            expect(description.text).to.equal(@"something");
+            expect(description.name).to.equal(@"something");
             expect(description.reelId).to.equal(@(reelId));
             expect(description.ownerUsername).to.equal(username);
         });

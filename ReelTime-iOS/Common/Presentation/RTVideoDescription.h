@@ -4,12 +4,12 @@
 
 @interface RTVideoDescription : NSObject
 
-@property (readonly, copy) NSString *text;
+@property (readonly, copy) NSString *title;
 @property (readonly, copy) NSNumber *videoId;
 @property (readonly, copy) NSData *thumbnailData;
 
-+ (RTVideoDescription *)videoDescriptionWithText:(NSString *)text
-                                         videoId:(NSNumber *)videoId
-                                   thumbnailData:(NSData *)thumbnailData;
++ (RTVideoDescription *)videoDescriptionWithTitle:(NSString *)title
+                                          videoId:(NSNumber *)videoId
+                                    thumbnailData:(NSData *)thumbnailData;
 
 @end

@@ -2,7 +2,7 @@
 
 @interface RTReelDescription ()
 
-@property (readwrite, copy) NSString *text;
+@property (readwrite, copy) NSString *name;
 @property (readwrite, copy) NSNumber *reelId;
 @property (readwrite, copy) NSString *ownerUsername;
 
@@ -10,18 +10,18 @@
 
 @implementation RTReelDescription
 
-+ (RTReelDescription *)reelDescriptionWithText:(NSString *)text
++ (RTReelDescription *)reelDescriptionWithName:(NSString *)name
                                      forReelId:(NSNumber *)reelId
                                  ownerUsername:(NSString *)ownerUsername {
-    return [[RTReelDescription alloc] initWithText:text forReelId:reelId ownerUsername:ownerUsername];
+    return [[RTReelDescription alloc] initWithName:name forReelId:reelId ownerUsername:ownerUsername];
 }
 
-- (instancetype)initWithText:(NSString *)text
+- (instancetype)initWithName:(NSString *)name
                    forReelId:(NSNumber *)reelId
                ownerUsername:(NSString *)ownerUsername {
     self = [super init];
     if (self) {
-        self.text = text;
+        self.name = name;
         self.reelId = reelId;
         self.ownerUsername = ownerUsername;
     }

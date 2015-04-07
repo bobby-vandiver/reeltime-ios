@@ -2,23 +2,23 @@
 
 @interface RTUserDescription ()
 
-@property (readwrite, copy) NSString *text;
+@property (readwrite, copy) NSString *displayName;
 @property (readwrite, copy) NSString *username;
 
 @end
 
 @implementation RTUserDescription
 
-+ (RTUserDescription *)userDescriptionWithText:(NSString *)text
-                                   forUsername:(NSString *)username {
-    return [[RTUserDescription alloc] initWithText:text forUsername:username];
++ (RTUserDescription *)userDescriptionWithDisplayName:(NSString *)displayName
+                                          forUsername:(NSString *)username {
+    return [[RTUserDescription alloc] initWithDisplayName:displayName forUsername:username];
 }
 
-- (instancetype)initWithText:(NSString *)text
-                 forUsername:(NSString *)username {
+- (instancetype)initWithDisplayName:(NSString *)displayName
+                        forUsername:(NSString *)username {
     self = [super init];
     if (self) {
-        self.text = text;
+        self.displayName = displayName;
         self.username = username;
     }
     return self;

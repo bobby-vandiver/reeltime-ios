@@ -30,10 +30,9 @@
     [self.view clearUserDescriptions];
 }
 
-// TODO: Determine what the text should say
 - (void)presentItem:(RTUser *)user {
-    RTUserDescription *description = [RTUserDescription userDescriptionWithText:user.displayName
-                                                                    forUsername:user.username];
+    RTUserDescription *description = [RTUserDescription userDescriptionWithDisplayName:user.displayName
+                                                                           forUsername:user.username];
     [self.view showUserDescription:description];
 }
 

@@ -135,9 +135,9 @@ describe(@"browse all view controller", ^{
         beforeEach(^{
             indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
             
-            userDescription = [RTUserDescription userDescriptionWithText:@"text" forUsername:username];
-            reelDescription = [RTReelDescription reelDescriptionWithText:@"text" forReelId:@(reelId) ownerUsername:username];
-            videoDescription = [RTVideoDescription videoDescriptionWithText:@"text" videoId:@(videoId) thumbnailData:nil];
+            userDescription = [RTUserDescription userDescriptionWithDisplayName:@"text" forUsername:username];
+            reelDescription = [RTReelDescription reelDescriptionWithName:@"text" forReelId:@(reelId) ownerUsername:username];
+            videoDescription = [RTVideoDescription videoDescriptionWithTitle:@"text" videoId:@(videoId) thumbnailData:nil];
             
             viewController.usersDataSource.items = @[userDescription];
             viewController.reelsDataSource.items = @[reelDescription];
@@ -246,7 +246,7 @@ describe(@"browse all view controller", ^{
         __block RTUserDescription *userDescription;
         
         beforeEach(^{
-            userDescription = [RTUserDescription userDescriptionWithText:@"user" forUsername:username];
+            userDescription = [RTUserDescription userDescriptionWithDisplayName:@"user" forUsername:username];
             expect(viewController.usersDataSource.items).to.haveCountOf(0);
         });
         
@@ -309,7 +309,7 @@ describe(@"browse all view controller", ^{
         __block RTReelDescription *reelDescription;
         
         beforeEach(^{
-            reelDescription = [RTReelDescription reelDescriptionWithText:@"reel" forReelId:@(reelId) ownerUsername:username];
+            reelDescription = [RTReelDescription reelDescriptionWithName:@"reel" forReelId:@(reelId) ownerUsername:username];
             expect(viewController.reelsDataSource.items).to.haveCountOf(0);
         });
         
@@ -372,7 +372,7 @@ describe(@"browse all view controller", ^{
         __block RTVideoDescription *videoDescription;
         
         beforeEach(^{
-            videoDescription = [RTVideoDescription videoDescriptionWithText:@"video" videoId:@(videoId) thumbnailData:nil];
+            videoDescription = [RTVideoDescription videoDescriptionWithTitle:@"video" videoId:@(videoId) thumbnailData:nil];
             expect(viewController.videosDataSource.items).to.haveCountOf(0);
         });
         

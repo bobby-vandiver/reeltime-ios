@@ -2,7 +2,7 @@
 
 @interface RTVideoDescription ()
 
-@property (readwrite, copy) NSString *text;
+@property (readwrite, copy) NSString *title;
 @property (readwrite, copy) NSNumber *videoId;
 @property (readwrite, copy) NSData *thumbnailData;
 
@@ -10,18 +10,18 @@
 
 @implementation RTVideoDescription
 
-+ (RTVideoDescription *)videoDescriptionWithText:(NSString *)text
-                                         videoId:(NSNumber *)videoId
-                                   thumbnailData:(NSData *)thumbnailData {
-    return [[RTVideoDescription alloc] initWithText:text videoId:videoId thumbnailData:thumbnailData];
++ (RTVideoDescription *)videoDescriptionWithTitle:(NSString *)title
+                                          videoId:(NSNumber *)videoId
+                                    thumbnailData:(NSData *)thumbnailData {
+    return [[RTVideoDescription alloc] initWithTitle:title videoId:videoId thumbnailData:thumbnailData];
 }
 
-- (instancetype)initWithText:(NSString *)text
-                     videoId:(NSNumber *)videoId
-               thumbnailData:(NSData *)thumbnailData {
+- (instancetype)initWithTitle:(NSString *)title
+                      videoId:(NSNumber *)videoId
+                thumbnailData:(NSData *)thumbnailData {
     self = [super init];
     if (self) {
-        self.text = text;
+        self.title = title;
         self.videoId = videoId;
         self.thumbnailData = thumbnailData;
     }

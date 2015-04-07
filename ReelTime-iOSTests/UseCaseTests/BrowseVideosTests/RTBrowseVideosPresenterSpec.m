@@ -52,7 +52,7 @@ describe(@"browse videos presenter", ^{
             RTVideoDescription *description = [captor value];
             expect(description).toNot.beNil();
             
-            expect(description.text).to.equal(@"some video");
+            expect(description.title).to.equal(@"some video");
             expect(description.videoId).to.equal(@(videoId));
             expect(description.thumbnailData).to.equal(thumbnail.data);
         });

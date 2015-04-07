@@ -12,7 +12,7 @@ static NSString *const BrowseCellIdentifier = @"BrowseCell";
 + (RTMutableArrayDataSource *)usersDataSource {
     return [self dataSourceWithCellIdentifier:BrowseCellIdentifier
                            configureCellBlock:^(UITableViewCell *cell, RTUserDescription *description) {
-                               cell.textLabel.text = description.text;
+                               cell.textLabel.text = description.displayName;
                                cell.imageView.image = nil;
                            }];
 }
@@ -20,7 +20,7 @@ static NSString *const BrowseCellIdentifier = @"BrowseCell";
 + (RTMutableArrayDataSource *)reelsDataSource {
     return [self dataSourceWithCellIdentifier:BrowseCellIdentifier
                            configureCellBlock:^(UITableViewCell *cell, RTReelDescription *description) {
-                               cell.textLabel.text = description.text;
+                               cell.textLabel.text = description.name;
                                cell.imageView.image = nil;
                            }];
 }
@@ -28,7 +28,7 @@ static NSString *const BrowseCellIdentifier = @"BrowseCell";
 + (RTMutableArrayDataSource *)videosDataSource {
     return [self dataSourceWithCellIdentifier:BrowseCellIdentifier
                            configureCellBlock:^(UITableViewCell *cell, RTVideoDescription *description) {
-                               cell.textLabel.text = description.text;
+                               cell.textLabel.text = description.title;
                                cell.imageView.image = [UIImage imageWithData:description.thumbnailData];
                            }];
 }

@@ -33,7 +33,7 @@
 }
 
 - (void)presentItem:(RTReel *)reel {
-    RTReelDescription *description = [RTReelDescription reelDescriptionWithText:reel.name
+    RTReelDescription *description = [RTReelDescription reelDescriptionWithName:reel.name
                                                                       forReelId:reel.reelId
                                                                   ownerUsername:reel.owner.username];
     [self.view showReelDescription:description];
