@@ -64,7 +64,12 @@ describe(@"browse all view controller", ^{
                                                                    reelsPresenter:reelsPresenter
                                                                   videosPresenter:videosPresenter];
         
-        userDescription = [RTUserDescription userDescriptionWithDisplayName:@"text" forUsername:username];
+        userDescription = [RTUserDescription userDescriptionWithForUsername:username
+                                                            withDisplayName:@"text"
+                                                          numberOfFollowers:@(1)
+                                                          numberOfFollowees:@(2)
+                                                         numberOfReelsOwned:@(3)
+                                                numberOfAudienceMemberships:@(4)];
         
         reelDescription = [RTReelDescription reelDescriptionWithName:@"text"
                                                            forReelId:@(reelId)

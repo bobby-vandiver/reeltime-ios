@@ -31,8 +31,12 @@
 }
 
 - (void)presentItem:(RTUser *)user {
-    RTUserDescription *description = [RTUserDescription userDescriptionWithDisplayName:user.displayName
-                                                                           forUsername:user.username];
+    RTUserDescription *description = [RTUserDescription userDescriptionWithForUsername:user.username
+                                                                       withDisplayName:user.displayName
+                                                                     numberOfFollowers:user.numberOfFollowers
+                                                                     numberOfFollowees:user.numberOfFollowees
+                                                                    numberOfReelsOwned:user.numberOfReelsOwned
+                                                           numberOfAudienceMemberships:user.numberOfAudienceMemberships];
     [self.view showUserDescription:description];
 }
 

@@ -53,8 +53,12 @@ describe(@"browse users presenter", ^{
             RTUserDescription *description = [captor value];
             expect(description).toNot.beNil();
             
-            expect(description.displayName).to.equal(displayName);
             expect(description.username).to.equal(username);
+            expect(description.displayName).to.equal(displayName);
+            expect(description.numberOfFollowers).to.equal(@(1));
+            expect(description.numberOfFollowees).to.equal(@(2));
+            expect(description.numberOfReelsOwned).to.equal(@(3));
+            expect(description.numberOfAudienceMemberships).to.equal(@(4));
         });
     });
     
