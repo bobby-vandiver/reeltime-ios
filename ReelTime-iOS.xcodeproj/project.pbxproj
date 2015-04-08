@@ -131,6 +131,8 @@
 		715C54121AD4A34E009C755F /* RTUserSummaryDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 715C54111AD4A34E009C755F /* RTUserSummaryDataManager.m */; };
 		715C54171AD4A8AB009C755F /* RTUserSummaryDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 715C54161AD4A8AB009C755F /* RTUserSummaryDataManagerSpec.m */; };
 		715C54191AD4AFC3009C755F /* RTUserSummaryInteractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 715C54181AD4AFC3009C755F /* RTUserSummaryInteractorSpec.m */; };
+		715C541D1AD4C7B6009C755F /* RTUserSummaryPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 715C541C1AD4C7B6009C755F /* RTUserSummaryPresenter.m */; };
+		715C54201AD4C9A7009C755F /* RTUserSummaryPresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 715C541F1AD4C9A7009C755F /* RTUserSummaryPresenterSpec.m */; };
 		7160C2BF1A6F48A60045ADDA /* RTAccountRegistrationValidatorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7160C2BE1A6F48A60045ADDA /* RTAccountRegistrationValidatorSpec.m */; };
 		71647BD51A7E7EEA00F44996 /* RTVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 71647BD41A7E7EEA00F44996 /* RTVideo.m */; };
 		71647BD81A7E7F9D00F44996 /* RTUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 71647BD71A7E7F9D00F44996 /* RTUser.m */; };
@@ -421,6 +423,10 @@
 		715C54161AD4A8AB009C755F /* RTUserSummaryDataManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTUserSummaryDataManagerSpec.m; sourceTree = "<group>"; };
 		715C54181AD4AFC3009C755F /* RTUserSummaryInteractorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTUserSummaryInteractorSpec.m; sourceTree = "<group>"; };
 		715C541A1AD4B0DC009C755F /* RTUserSummaryError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTUserSummaryError.h; sourceTree = "<group>"; };
+		715C541B1AD4C7B6009C755F /* RTUserSummaryPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTUserSummaryPresenter.h; sourceTree = "<group>"; };
+		715C541C1AD4C7B6009C755F /* RTUserSummaryPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTUserSummaryPresenter.m; sourceTree = "<group>"; };
+		715C541E1AD4C7E8009C755F /* RTUserSummaryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTUserSummaryView.h; sourceTree = "<group>"; };
+		715C541F1AD4C9A7009C755F /* RTUserSummaryPresenterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTUserSummaryPresenterSpec.m; sourceTree = "<group>"; };
 		7160C2BE1A6F48A60045ADDA /* RTAccountRegistrationValidatorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAccountRegistrationValidatorSpec.m; sourceTree = "<group>"; };
 		71647BD31A7E7EEA00F44996 /* RTVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTVideo.h; path = "ReelTime-iOS/Common/Model/RTVideo.h"; sourceTree = SOURCE_ROOT; };
 		71647BD41A7E7EEA00F44996 /* RTVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTVideo.m; path = "ReelTime-iOS/Common/Model/RTVideo.m"; sourceTree = SOURCE_ROOT; };
@@ -1145,6 +1151,9 @@
 		715C540B1AD4A206009C755F /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				715C541B1AD4C7B6009C755F /* RTUserSummaryPresenter.h */,
+				715C541C1AD4C7B6009C755F /* RTUserSummaryPresenter.m */,
+				715C541E1AD4C7E8009C755F /* RTUserSummaryView.h */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -1154,6 +1163,7 @@
 			children = (
 				715C54161AD4A8AB009C755F /* RTUserSummaryDataManagerSpec.m */,
 				715C54181AD4AFC3009C755F /* RTUserSummaryInteractorSpec.m */,
+				715C541F1AD4C9A7009C755F /* RTUserSummaryPresenterSpec.m */,
 			);
 			path = UserSummaryTests;
 			sourceTree = "<group>";
@@ -1966,6 +1976,7 @@
 				7172158A1A86576E0002ECC7 /* RTLoginDataManager.m in Sources */,
 				71B6BA681AD036A400723941 /* RTBrowseAllViewController.m in Sources */,
 				7172159C1A8659050002ECC7 /* RTAccountRegistrationAutoLoginAssembly.m in Sources */,
+				715C541D1AD4C7B6009C755F /* RTUserSummaryPresenter.m in Sources */,
 				71386E601AD36C01009D064C /* RTVideoDescription.m in Sources */,
 				717D926D1A5B722300EAB6BF /* NSError+RTError.m in Sources */,
 				717215A41A86590D0002ECC7 /* RTAccountRegistrationValidator.m in Sources */,
@@ -2100,6 +2111,7 @@
 				71403D2D1AB3D18C007CB8B9 /* RTBrowseUsersPresenterSpec.m in Sources */,
 				7190DABA1A5CC55D00BDCE4C /* RTCurrentUserStoreSpec.m in Sources */,
 				71073CFE1A831EAB00BE6E19 /* RTNewsfeedDataManagerSpec.m in Sources */,
+				715C54201AD4C9A7009C755F /* RTUserSummaryPresenterSpec.m in Sources */,
 				71A8BA301AB1036A00B0708B /* RTPagedListDataManagerSpec.m in Sources */,
 				71073CF31A82DED800BE6E19 /* EXPMatchers+beVideo.m in Sources */,
 				71C8D91F1A73485A00673F1A /* RTAccountRegistrationDataManagerSpec.m in Sources */,
