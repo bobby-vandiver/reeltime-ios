@@ -427,6 +427,7 @@
 		715C541C1AD4C7B6009C755F /* RTUserSummaryPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTUserSummaryPresenter.m; sourceTree = "<group>"; };
 		715C541E1AD4C7E8009C755F /* RTUserSummaryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTUserSummaryView.h; sourceTree = "<group>"; };
 		715C541F1AD4C9A7009C755F /* RTUserSummaryPresenterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTUserSummaryPresenterSpec.m; sourceTree = "<group>"; };
+		715C54211AD4D2CF009C755F /* RTUserDescriptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTUserDescriptionView.h; sourceTree = "<group>"; };
 		7160C2BE1A6F48A60045ADDA /* RTAccountRegistrationValidatorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAccountRegistrationValidatorSpec.m; sourceTree = "<group>"; };
 		71647BD31A7E7EEA00F44996 /* RTVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTVideo.h; path = "ReelTime-iOS/Common/Model/RTVideo.h"; sourceTree = SOURCE_ROOT; };
 		71647BD41A7E7EEA00F44996 /* RTVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTVideo.m; path = "ReelTime-iOS/Common/Model/RTVideo.m"; sourceTree = SOURCE_ROOT; };
@@ -980,6 +981,7 @@
 				71386E591AD36C01009D064C /* RTReelDescription.m */,
 				71386E5A1AD36C01009D064C /* RTUserDescription.h */,
 				71386E5B1AD36C01009D064C /* RTUserDescription.m */,
+				715C54211AD4D2CF009C755F /* RTUserDescriptionView.h */,
 				71386E5C1AD36C01009D064C /* RTVideoDescription.h */,
 				71386E5D1AD36C01009D064C /* RTVideoDescription.m */,
 			);

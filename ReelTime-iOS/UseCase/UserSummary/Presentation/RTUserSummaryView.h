@@ -1,10 +1,6 @@
-#import <Foundation/Foundation.h>
+#import "RTUserDescriptionView.h"
 
-@class RTUserDescription;
-
-@protocol RTUserSummaryView <NSObject>
-
-- (void)showUserDescription:(RTUserDescription *)description;
+@protocol RTUserSummaryView <RTUserDescriptionView>
 
 - (void)showUserNotFoundMessage:(NSString *)message;
 

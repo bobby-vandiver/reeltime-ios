@@ -1,10 +1,6 @@
-#import <Foundation/Foundation.h>
+#import "RTUserDescriptionView.h"
 
-@class RTUserDescription;
-
-@protocol RTBrowseUsersView <NSObject>
-
-- (void)showUserDescription:(RTUserDescription *)description;
+@protocol RTBrowseUsersView <RTUserDescriptionView>
 
 - (void)clearUserDescriptions;
 
