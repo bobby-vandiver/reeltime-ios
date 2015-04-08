@@ -36,4 +36,10 @@
                            userInfo:nil];
 }
 
++ (NSError *)userSummaryErrorWithCode:(RTUserSummaryError)code {
+    return [NSError errorWithDomain:RTUserSummaryErrorDomain
+                               code:code
+                           userInfo:nil];
+}
+
 @end

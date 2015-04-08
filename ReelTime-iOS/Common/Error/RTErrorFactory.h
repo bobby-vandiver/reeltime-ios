@@ -4,6 +4,7 @@
 #import "RTLoginError.h"
 #import "RTAccountRegistrationError.h"
 #import "RTPagedListError.h"
+#import "RTUserSummaryError.h"
 
 @interface RTErrorFactory : NSObject
 
@@ -18,5 +19,7 @@
 + (NSError *)accountRegistrationErrorWithCode:(RTAccountRegistrationError)code;
 
 + (NSError *)pagedListErrorWithCode:(RTPagedListError)code;
+
++ (NSError *)userSummaryErrorWithCode:(RTUserSummaryError)code;
 
 @end

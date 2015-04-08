@@ -3,8 +3,6 @@
 #import "RTLoginDataManagerDelegate.h"
 
 @protocol RTLoginInteractorDelegate;
-
-@class RTLoginPresenter;
 @class RTLoginDataManager;
 
 @interface RTLoginInteractor : NSObject <RTLoginDataManagerDelegate>
