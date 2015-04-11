@@ -33,6 +33,7 @@
 		711690A21A6B00210031578E /* RTApplicationAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 711690A11A6B00210031578E /* RTApplicationAssembly.m */; };
 		7116C0541AD982D600590DAF /* RTPagedListViewScrollHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7116C0531AD982D600590DAF /* RTPagedListViewScrollHandler.m */; };
 		7116C0581AD9899A00590DAF /* RTUserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7116C0571AD9899A00590DAF /* RTUserProfileViewController.m */; };
+		7116C05A1AD98E2000590DAF /* RTUserProfileViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7116C0591AD98E2000590DAF /* RTUserProfileViewControllerSpec.m */; };
 		7117C0801A8998DF00EC0152 /* RTVideoSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7117C07F1A8998DF00EC0152 /* RTVideoSpec.m */; };
 		71194C1D1A81AEFC00904A06 /* EXPMatchers+beUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 71194C1C1A81AEFC00904A06 /* EXPMatchers+beUser.m */; };
 		71194C201A81B5D300904A06 /* EXPMatchers+ErrorMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = 71194C1F1A81B5D300904A06 /* EXPMatchers+ErrorMessages.m */; };
@@ -268,6 +269,7 @@
 		7116C0531AD982D600590DAF /* RTPagedListViewScrollHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTPagedListViewScrollHandler.m; sourceTree = "<group>"; };
 		7116C0561AD9899A00590DAF /* RTUserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTUserProfileViewController.h; sourceTree = "<group>"; };
 		7116C0571AD9899A00590DAF /* RTUserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTUserProfileViewController.m; sourceTree = "<group>"; };
+		7116C0591AD98E2000590DAF /* RTUserProfileViewControllerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTUserProfileViewControllerSpec.m; sourceTree = "<group>"; };
 		7117C07F1A8998DF00EC0152 /* RTVideoSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTVideoSpec.m; sourceTree = "<group>"; };
 		71194C1B1A81AED300904A06 /* EXPMatchers+beUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+beUser.h"; sourceTree = "<group>"; };
 		71194C1C1A81AEFC00904A06 /* EXPMatchers+beUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EXPMatchers+beUser.m"; sourceTree = "<group>"; };
@@ -978,6 +980,7 @@
 			children = (
 				71386E4F1AD34F8F009D064C /* RTBrowseUserReelsDataManagerDelegateSpec.m */,
 				71386E541AD3531E009D064C /* RTBrowseReelVideosDataManagerDelegateSpec.m */,
+				7116C0591AD98E2000590DAF /* RTUserProfileViewControllerSpec.m */,
 			);
 			path = UserProfileTests;
 			sourceTree = "<group>";
@@ -2099,6 +2102,7 @@
 				71C5C09D1A55B29700CAAFAC /* RTLoginPresenterSpec.m in Sources */,
 				7114DF761AB4B401003B1D2E /* RTServerErrorsSpec.m in Sources */,
 				717A4B7E1A53503B004C2BC1 /* RTRestAPIMappingFactorySpec.m in Sources */,
+				7116C05A1AD98E2000590DAF /* RTUserProfileViewControllerSpec.m in Sources */,
 				7134C6311A9537720048CFCF /* RTAccountRegistrationViewControllerSpec.m in Sources */,
 				7169F1761A5F6CDD00E161C4 /* RTLoginDataManagerSpec.m in Sources */,
 				713470BD1A9ABFAB000CFCA3 /* RTClientSpecHelper.m in Sources */,

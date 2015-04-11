@@ -12,7 +12,8 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *reelsListTableView;
 
-+ (RTUserProfileViewController *)viewControllerWithUserPresenter:(RTUserSummaryPresenter *)userPresenter
-                                                  reelsPresenter:(RTBrowseReelsPresenter *)reelsPresenter;
++ (RTUserProfileViewController *)viewControllerForUsername:(NSString *)username
+                                         withUserPresenter:(RTUserSummaryPresenter *)userPresenter
+                                            reelsPresenter:(RTBrowseReelsPresenter *)reelsPresenter;
 
 @end
