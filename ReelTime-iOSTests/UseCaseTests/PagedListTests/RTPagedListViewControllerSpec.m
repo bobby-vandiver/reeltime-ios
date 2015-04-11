@@ -132,6 +132,8 @@ describe(@"paged list view controller", ^{
             
             obj1 = [NSObject new];
             obj2 = [NSObject new];
+            
+            [viewController viewDidLoad];
         });
         
         it(@"should request next page for empty data source", ^{

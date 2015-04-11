@@ -1,13 +1,12 @@
 #import "RTPagedListViewController.h"
 #import "RTPagedListPresenter.h"
 
-#import "RTArrayDataSource.h"
-#import "UITableView+LastVisible.h"
-
+#import "RTPagedListViewScrollHandler.h"
 #import "RTException.h"
 
 @interface RTPagedListViewController ()
 
+@property (readwrite) RTPagedListViewScrollHandler *scrollHandler;
 @property (readwrite) UIRefreshControl *refreshControl;
 
 @end
@@ -29,6 +28,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self registerScrollHandler];
+    [self registerRefreshControl];
+}
+
+- (void)registerScrollHandler {
+    self.scrollHandler = [[RTPagedListViewScrollHandler alloc] init];
+}
+
+- (void)registerRefreshControl {
     UIRefreshControl *refreshControl = [self createRefreshControl];
     
     if (refreshControl) {
@@ -50,17 +58,7 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    NSInteger lastVisibleRow = [self.tableView lastVisibleRowForSection:0];
-    
-    RTArrayDataSource *dataSource = self.tableView.dataSource;
-    NSInteger lastItemIndex = dataSource.items.count - 1;
-    
-    BOOL noRowsAreVisible = (lastVisibleRow == NSNotFound);
-    BOOL lastRowIsVisible = (lastVisibleRow == lastItemIndex);
-    
-    if (noRowsAreVisible || lastRowIsVisible) {
-        [self.presenter requestedNextPage];
-    }
+    [self.scrollHandler handleScrollForTableView:self.tableView withPresenter:self.presenter];
 }
 
 @end
