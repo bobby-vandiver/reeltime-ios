@@ -32,6 +32,7 @@
 		7116909C1A6AEBDA0031578E /* RTStoryboardViewControllerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7116909B1A6AEBDA0031578E /* RTStoryboardViewControllerFactory.m */; };
 		711690A21A6B00210031578E /* RTApplicationAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 711690A11A6B00210031578E /* RTApplicationAssembly.m */; };
 		7116C0541AD982D600590DAF /* RTPagedListViewScrollHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7116C0531AD982D600590DAF /* RTPagedListViewScrollHandler.m */; };
+		7116C0581AD9899A00590DAF /* RTUserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7116C0571AD9899A00590DAF /* RTUserProfileViewController.m */; };
 		7117C0801A8998DF00EC0152 /* RTVideoSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7117C07F1A8998DF00EC0152 /* RTVideoSpec.m */; };
 		71194C1D1A81AEFC00904A06 /* EXPMatchers+beUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 71194C1C1A81AEFC00904A06 /* EXPMatchers+beUser.m */; };
 		71194C201A81B5D300904A06 /* EXPMatchers+ErrorMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = 71194C1F1A81B5D300904A06 /* EXPMatchers+ErrorMessages.m */; };
@@ -265,6 +266,8 @@
 		711690A11A6B00210031578E /* RTApplicationAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTApplicationAssembly.m; sourceTree = "<group>"; };
 		7116C0521AD982D600590DAF /* RTPagedListViewScrollHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTPagedListViewScrollHandler.h; sourceTree = "<group>"; };
 		7116C0531AD982D600590DAF /* RTPagedListViewScrollHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTPagedListViewScrollHandler.m; sourceTree = "<group>"; };
+		7116C0561AD9899A00590DAF /* RTUserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTUserProfileViewController.h; sourceTree = "<group>"; };
+		7116C0571AD9899A00590DAF /* RTUserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTUserProfileViewController.m; sourceTree = "<group>"; };
 		7117C07F1A8998DF00EC0152 /* RTVideoSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTVideoSpec.m; sourceTree = "<group>"; };
 		71194C1B1A81AED300904A06 /* EXPMatchers+beUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+beUser.h"; sourceTree = "<group>"; };
 		71194C1C1A81AEFC00904A06 /* EXPMatchers+beUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EXPMatchers+beUser.m"; sourceTree = "<group>"; };
@@ -747,6 +750,15 @@
 			path = Storyboard;
 			sourceTree = "<group>";
 		};
+		7116C0551AD9898100590DAF /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				7116C0561AD9899A00590DAF /* RTUserProfileViewController.h */,
+				7116C0571AD9899A00590DAF /* RTUserProfileViewController.m */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
 		7117C07E1A8998A100EC0152 /* ModelTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -944,6 +956,7 @@
 		71386E491AD34E67009D064C /* UserProfile */ = {
 			isa = PBXGroup;
 			children = (
+				7116C0551AD9898100590DAF /* Presentation */,
 				71386E4A1AD34E77009D064C /* Persistence */,
 			);
 			path = UserProfile;
@@ -2046,6 +2059,7 @@
 				71386E5F1AD36C01009D064C /* RTUserDescription.m in Sources */,
 				713188AF1A914B1E006155E6 /* RTActivityMessage.m in Sources */,
 				717215A31A86590D0002ECC7 /* RTAccountRegistrationInteractor.m in Sources */,
+				7116C0581AD9899A00590DAF /* RTUserProfileViewController.m in Sources */,
 				712B2BD41AAFBEFD0026258A /* RTPagedListPresenter.m in Sources */,
 				7102A7B51A57AB0A00DEDA83 /* RTKeyChainWrapper.m in Sources */,
 				712EF86A1AD20A200051E28B /* RTBrowseAllUsersDataManagerDelegate.m in Sources */,
