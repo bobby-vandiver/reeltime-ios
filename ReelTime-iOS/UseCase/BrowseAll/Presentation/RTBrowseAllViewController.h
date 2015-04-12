@@ -16,8 +16,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *browseListTableView;
 
 + (RTBrowseAllViewController *)viewControllerWithUsersPresenter:(RTBrowseUsersPresenter *)usersPresenter
-                                              reelsPresenter:(RTBrowseReelsPresenter *)reelsPresenter
-                                             videosPresenter:(RTBrowseVideosPresenter *)videosPresenter;
+                                                 reelsPresenter:(RTBrowseReelsPresenter *)reelsPresenter
+                                                videosPresenter:(RTBrowseVideosPresenter *)videosPresenter;
 
 - (IBAction)segmentedControlChanged;
 

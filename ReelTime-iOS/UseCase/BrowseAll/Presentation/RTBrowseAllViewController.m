@@ -43,8 +43,8 @@ typedef enum {
 @implementation RTBrowseAllViewController
 
 + (RTBrowseAllViewController *)viewControllerWithUsersPresenter:(RTBrowseUsersPresenter *)usersPresenter
-                                              reelsPresenter:(RTBrowseReelsPresenter *)reelsPresenter
-                                             videosPresenter:(RTBrowseVideosPresenter *)videosPresenter {
+                                                 reelsPresenter:(RTBrowseReelsPresenter *)reelsPresenter
+                                                videosPresenter:(RTBrowseVideosPresenter *)videosPresenter {
     NSString *identifier = [RTBrowseAllViewController storyboardIdentifier];
     RTBrowseAllViewController *controller = [RTStoryboardViewControllerFactory viewControllerWithStoryboardIdentifier:identifier];
     
