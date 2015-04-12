@@ -2,34 +2,63 @@ require 'rubygems'
 require 'sinatra'
 require 'sinatra/json'
 
-get '/api/reels' do
-    list = []
-    page = params[:page].to_i
+helpers do
+    def listReels
+        list = []
+        page = params[:page].to_i
 
-    logger.info("page: #{page}")
+        logger.info("page: #{page}")
 
-    if page == 1 or page == 2
-        count = 20
-        initial = (page * count)
+        if page == 1 or page == 2
+            count = 20
+            initial = (page * count)
 
-        (0..count).each { |num|
-            i = initial + num + 100
-            list << {
-                :reel_id => i,
-                :name => "reel#{i}",
-                :audience_size => 3,
-                :video_count => 4,
-                :owner => {
-                    :username => "user#{i * 2}",
-                    :display_name => "display#{i * 2}",
-                    :follower_count => 1,
-                    :followee_count => 2
+            (0..count).each { |num|
+                i = initial + num + 100
+                list << {
+                    :reel_id => i,
+                    :name => "reel#{i}",
+                    :audience_size => 3,
+                    :video_count => 4,
+                    :owner => {
+                        :username => "user#{i * 2}",
+                        :display_name => "display#{i * 2}",
+                        :follower_count => 1,
+                        :followee_count => 2
+                    }
                 }
             }
-        }
+        end
+
+        json :reels => list
     end
 
-    json :reels => list
+    def listVideos
+        list = []
+        page = params[:page].to_i
+
+        logger.info("page: #{page}")
+
+        if page == 1 or page == 2
+            count = 20
+            initial = (page * count)
+
+            (0..count).each { |num|
+                i = initial + num + 300
+                list << { :video_id => i, :title => "title#{i}" }
+            }
+        end
+
+        json :videos => list
+    end
+end
+
+get '/api/reels' do
+    listReels
+end
+
+get '/api/reels/:reel_id/videos' do
+    listVideos
 end
 
 get '/api/users' do
@@ -51,6 +80,10 @@ get '/api/users' do
     json :users => list
 end
 
+get '/api/users/:username/reels' do
+    listReels
+end
+
 get '/api/videos/:video_id/thumbnail' do
     content_type 'image/png'
 
@@ -64,21 +97,6 @@ get '/api/videos/:video_id/thumbnail' do
 end
 
 get '/api/videos' do
-    list = []
-    page = params[:page].to_i
-
-    logger.info("page: #{page}")
-
-    if page == 1 or page == 2
-        count = 20
-        initial = (page * count)
-
-        (0..count).each { |num|
-            i = initial + num + 300
-            list << { :video_id => i, :title => "title#{i}" }
-        }
-    end
-
-    json :videos => list
+    listVideos
 end
 
