@@ -15,6 +15,11 @@
 #import "RTBrowseReelsDataManagerDelegate.h"
 #import "RTBrowseUserReelsDataManagerDelegate.h"
 
+#import "RTBrowseVideosPresenter.h"
+#import "RTBrowseVideosDataManager.h"
+#import "RTBrowseVideosDataManagerDelegate.h"
+#import "RTBrowseReelVideosDataManagerDelegate.h"
+
 @implementation RTUserProfileAssembly
 
 - (RTUserProfileViewController *)userProfileViewControllerForUsername:(NSString *)username {
@@ -96,6 +101,50 @@
         [definition injectMethod:@selector(initWithUsername:)
                       parameters:^(TyphoonMethod *method) {
                           [method injectParameterWith:username];
+        }];
+    }];
+}
+
+- (RTBrowseVideosPresenter *)browseReelVideosPresenterForReelId:(NSNumber *)reelId
+                                                       username:(NSString *)username {
+    return [TyphoonDefinition withClass:[RTBrowseVideosPresenter class] configuration:^(TyphoonDefinition *definition) {
+        [definition injectMethod:@selector(initWithView:interactor:wireframe:)
+                      parameters:^(TyphoonMethod *method) {
+                          [method injectParameterWith:[self userProfileViewControllerForUsername:username]];
+                          [method injectParameterWith:[self browseReelVideosInteractorForReelId:reelId username:username]];
+                          [method injectParameterWith:nil];
+        }];
+    }];
+}
+
+- (RTPagedListInteractor *)browseReelVideosInteractorForReelId:(NSNumber *)reelId
+                                                      username:(NSString *)username {
+    return [TyphoonDefinition withClass:[RTPagedListInteractor class] configuration:^(TyphoonDefinition *definition) {
+        [definition injectMethod:@selector(initWithDelegate:dataManager:)
+                      parameters:^(TyphoonMethod *method) {
+                          [method injectParameterWith:[self browseReelVideosPresenterForReelId:reelId username:username]];
+                          [method injectParameterWith:[self browseReelVideosDataManagerForReelId:reelId username:username]];
+        }];
+    }];
+}
+
+- (RTBrowseVideosDataManager *)browseReelVideosDataManagerForReelId:(NSNumber *)reelId
+                                                           username:(NSString *)username {
+    return [TyphoonDefinition withClass:[RTBrowseVideosDataManager class] configuration:^(TyphoonDefinition *definition) {
+        [definition injectMethod:@selector(initWithDelegate:client:)
+                      parameters:^(TyphoonMethod *method) {
+                          [method injectParameterWith:[self browseReelVideosDataManagerDelegateForReelId:reelId username:username]];
+                          [method injectParameterWith:[self.clientAssembly reelTimeClient]];
+        }];
+    }];
+}
+
+- (id<RTBrowseVideosDataManagerDelegate>)browseReelVideosDataManagerDelegateForReelId:(NSNumber *)reelId
+                                                                             username:(NSString *)username {
+    return [TyphoonDefinition withClass:[RTBrowseReelVideosDataManagerDelegate class] configuration:^(TyphoonDefinition *definition) {
+        [definition injectMethod:@selector(initWithReelId:)
+                      parameters:^(TyphoonMethod *method) {
+                          [method injectParameterWith:reelId];
         }];
     }];
 }
