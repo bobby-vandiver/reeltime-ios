@@ -24,7 +24,9 @@ helpers do
                         :username => "user#{i * 2}",
                         :display_name => "display#{i * 2}",
                         :follower_count => 1,
-                        :followee_count => 2
+                        :followee_count => 2,
+                        :reel_count => 3,
+                        :audience_membership_count => 4
                     }
                 }
             }
@@ -73,11 +75,17 @@ get '/api/users' do
 
         (0..count).each { |num|
             i = initial + num + 200
-            list << { :username => "user#{i}", :display_name => "display#{i}", :follower_count => 1, :followee_count => 2 }
+            list << { :username => "user#{i}", :display_name => "display#{i}", :follower_count => 1, :followee_count => 2, :reel_count => 3, :audience_membership_count => 4 }
         }
     end
 
     json :users => list
+end
+
+get '/api/users/:username' do
+    username = params[:username]
+    map = { :username => "#{username}", :display_name => "display #{username}", :follower_count => 1, :followee_count => 2, :reel_count => 3, :audience_membership_count => 4 }
+    json map
 end
 
 get '/api/users/:username/reels' do
