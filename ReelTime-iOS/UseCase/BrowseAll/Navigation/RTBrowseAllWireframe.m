@@ -1,6 +1,10 @@
 #import "RTBrowseAllWireframe.h"
 
 #import "RTBrowseAllViewController.h"
+#import "RTLogging.h"
+
+#import "RTUserProfileAssembly.h"
+#import "RTUserProfileViewController.h"
 
 @interface RTBrowseAllWireframe ()
 
@@ -19,12 +23,19 @@
 }
 
 - (void)presentUserForUsername:(NSString *)username {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Present User Details"
-                                                        message:[NSString stringWithFormat:@"Username: %@", username]
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-    [alertView show];
+    
+    RTUserProfileViewController *userProfileViewController = [self.userProfileAssembly userProfileViewControllerForUsername:username];
+    
+    [self.viewController presentViewController:userProfileViewController animated:YES completion:^{
+        DDLogDebug(@"presenting user profile view controller completed");
+    }];
+    
+//    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Present User Details"
+//                                                        message:[NSString stringWithFormat:@"Username: %@", username]
+//                                                       delegate:nil
+//                                              cancelButtonTitle:@"OK"
+//                                              otherButtonTitles:nil];
+//    [alertView show];
 
 }
 

@@ -16,6 +16,7 @@
 
 @class RTBrowseVideosPresenter;
 @class RTBrowseVideosDataManager;
+@protocol RTBrowseVideosView;
 @protocol RTBrowseVideosDataManagerDelegate;
 
 @interface RTUserProfileAssembly : TyphoonAssembly
@@ -39,15 +40,19 @@
 - (id<RTBrowseReelsDataManagerDelegate>)browseUserReelsDataManagerDelegateForUsername:(NSString *)username;
 
 - (RTBrowseVideosPresenter *)browseReelVideosPresenterForReelId:(NSNumber *)reelId
-                                                       username:(NSString *)username;
+                                                       username:(NSString *)username
+                                                           view:(id<RTBrowseVideosView>)view;
 
 - (RTPagedListInteractor *)browseReelVideosInteractorForReelId:(NSNumber *)reelId
-                                                      username:(NSString *)username;
+                                                      username:(NSString *)username
+                                                          view:(id<RTBrowseVideosView>)view;
 
 - (RTBrowseVideosDataManager *)browseReelVideosDataManagerForReelId:(NSNumber *)reelId
-                                                           username:(NSString *)username;
+                                                           username:(NSString *)username
+                                                               view:(id<RTBrowseVideosView>)view;
 
 - (id<RTBrowseVideosDataManagerDelegate>)browseReelVideosDataManagerDelegateForReelId:(NSNumber *)reelId
-                                                                             username:(NSString *)username;
+                                                                             username:(NSString *)username
+                                                                                 view:(id<RTBrowseVideosView>)view;
 
 @end

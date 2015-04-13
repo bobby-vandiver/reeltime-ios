@@ -2,13 +2,13 @@
 
 @interface RTBrowseReelVideosDataManagerDelegate ()
 
-@property NSUInteger reelId;
+@property NSNumber *reelId;
 
 @end
 
 @implementation RTBrowseReelVideosDataManagerDelegate
 
-- (instancetype)initWithReelId:(NSUInteger)reelId {
+- (instancetype)initWithReelId:(NSNumber *)reelId {
     self = [super init];
     if (self) {
         self.reelId = reelId;
@@ -22,7 +22,7 @@
                failure:(ServerErrorsCallback)failure {
     
     [client listVideosPage:page
-         forReelWithReelId:self.reelId
+         forReelWithReelId:[self.reelId integerValue]
                    success:success
                    failure:failure];
 }

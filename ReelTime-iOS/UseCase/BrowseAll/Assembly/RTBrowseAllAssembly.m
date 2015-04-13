@@ -1,6 +1,7 @@
 #import "RTBrowseAllAssembly.h"
 
 #import "RTClientAssembly.h"
+#import "RTUserProfileAssembly.h"
 
 #import "RTBrowseAllWireframe.h"
 #import "RTBrowseAllViewController.h"
@@ -30,6 +31,8 @@
                       parameters:^(TyphoonMethod *method) {
                           [method injectParameterWith:[self browseAllViewController]];
         }];
+        
+        [definition injectProperty:@selector(userProfileAssembly) with:self.userProfileAssembly];
     }];
 }
 

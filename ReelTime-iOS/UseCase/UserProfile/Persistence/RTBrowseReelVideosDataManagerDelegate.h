@@ -3,6 +3,6 @@
 
 @interface RTBrowseReelVideosDataManagerDelegate : NSObject <RTBrowseVideosDataManagerDelegate>
 
-- (instancetype)initWithReelId:(NSUInteger)reelId;
+- (instancetype)initWithReelId:(NSNumber *)reelId;
 
 @end

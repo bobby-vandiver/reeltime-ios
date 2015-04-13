@@ -12,7 +12,7 @@ describe(@"browse reel videos data manager delegate", ^{
     
     beforeEach(^{
         client = mock([RTClient class]);
-        delegate = [[RTBrowseReelVideosDataManagerDelegate alloc] initWithReelId:reelId];
+        delegate = [[RTBrowseReelVideosDataManagerDelegate alloc] initWithReelId:@(reelId)];
     });
     
     it(@"should list videos in the reel", ^{

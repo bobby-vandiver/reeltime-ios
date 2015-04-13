@@ -30,6 +30,8 @@
                             [initializer injectParameterWith:[self userSummaryPresenterForUsername:username]];
                             [initializer injectParameterWith:[self browseUserReelsPresenterForUsername:username]];
         }];
+
+        [definition injectProperty:@selector(userProfileAssembly) with:self];
     }];
 }
 
@@ -106,41 +108,47 @@
 }
 
 - (RTBrowseVideosPresenter *)browseReelVideosPresenterForReelId:(NSNumber *)reelId
-                                                       username:(NSString *)username {
+                                                       username:(NSString *)username
+                                                           view:(id<RTBrowseVideosView>)view {
     return [TyphoonDefinition withClass:[RTBrowseVideosPresenter class] configuration:^(TyphoonDefinition *definition) {
         [definition injectMethod:@selector(initWithView:interactor:wireframe:)
                       parameters:^(TyphoonMethod *method) {
-                          [method injectParameterWith:[self userProfileViewControllerForUsername:username]];
-                          [method injectParameterWith:[self browseReelVideosInteractorForReelId:reelId username:username]];
+                          [method injectParameterWith:view];
+                          [method injectParameterWith:[self browseReelVideosInteractorForReelId:reelId username:username view:view]];
+                          
+                          // TODO: Inject wireframe
                           [method injectParameterWith:nil];
         }];
     }];
 }
 
 - (RTPagedListInteractor *)browseReelVideosInteractorForReelId:(NSNumber *)reelId
-                                                      username:(NSString *)username {
+                                                      username:(NSString *)username
+                                                          view:(id<RTBrowseVideosView>)view {
     return [TyphoonDefinition withClass:[RTPagedListInteractor class] configuration:^(TyphoonDefinition *definition) {
         [definition injectMethod:@selector(initWithDelegate:dataManager:)
                       parameters:^(TyphoonMethod *method) {
-                          [method injectParameterWith:[self browseReelVideosPresenterForReelId:reelId username:username]];
-                          [method injectParameterWith:[self browseReelVideosDataManagerForReelId:reelId username:username]];
+                          [method injectParameterWith:[self browseReelVideosPresenterForReelId:reelId username:username view:view]];
+                          [method injectParameterWith:[self browseReelVideosDataManagerForReelId:reelId username:username view:view]];
         }];
     }];
 }
 
 - (RTBrowseVideosDataManager *)browseReelVideosDataManagerForReelId:(NSNumber *)reelId
-                                                           username:(NSString *)username {
+                                                           username:(NSString *)username
+                                                               view:(id<RTBrowseVideosView>)view {
     return [TyphoonDefinition withClass:[RTBrowseVideosDataManager class] configuration:^(TyphoonDefinition *definition) {
         [definition injectMethod:@selector(initWithDelegate:client:)
                       parameters:^(TyphoonMethod *method) {
-                          [method injectParameterWith:[self browseReelVideosDataManagerDelegateForReelId:reelId username:username]];
+                          [method injectParameterWith:[self browseReelVideosDataManagerDelegateForReelId:reelId username:username view:view]];
                           [method injectParameterWith:[self.clientAssembly reelTimeClient]];
         }];
     }];
 }
 
 - (id<RTBrowseVideosDataManagerDelegate>)browseReelVideosDataManagerDelegateForReelId:(NSNumber *)reelId
-                                                                             username:(NSString *)username {
+                                                                             username:(NSString *)username
+                                                                                 view:(id<RTBrowseVideosView>)view {
     return [TyphoonDefinition withClass:[RTBrowseReelVideosDataManagerDelegate class] configuration:^(TyphoonDefinition *definition) {
         [definition injectMethod:@selector(initWithReelId:)
                       parameters:^(TyphoonMethod *method) {
