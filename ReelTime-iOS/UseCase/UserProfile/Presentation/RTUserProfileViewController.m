@@ -57,15 +57,20 @@
 
 - (void)loadDataSource {
     ConfigureCellBlock configBlock = ^(RTUserReelTableViewCell *cell, RTReelDescription *description) {
-        RTBrowseVideosPresenter *videosPresenter = [self.userProfileAssembly browseReelVideosPresenterForReelId:description.reelId
-                                                                                                       username:self.username
-                                                                                                           view:cell];
-        [cell configureWithVideosPresenter:videosPresenter];
+//        DDLogDebug(@"config reel = %@", description.name);
+//        RTBrowseVideosPresenter *videosPresenter = [self.userProfileAssembly browseReelVideosPresenterForReelId:description.reelId
+//                                                                                                       username:self.username
+//                                                                                                           view:cell];
+//        [cell configureWithVideosPresenter:videosPresenter];
     };
     
     self.reelsDataSource = [[RTMutableArrayDataSource alloc] initWithItems:@[]
                                                             cellIdentifier:@"UserReelCell"
                                                         configureCellBlock:configBlock];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 100;
 }
 
 - (void)viewWillAppear:(BOOL)animated {

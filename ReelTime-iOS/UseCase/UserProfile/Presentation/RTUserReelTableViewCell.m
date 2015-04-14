@@ -2,9 +2,9 @@
 #import "RTMutableArrayDataSource.h"
 
 #import "RTBrowseVideosPresenter.h"
-#import "RTVideoDescription.h"
 
-#import "RTVideoThumbnailTableViewCell.h"
+#import "RTVideoDescription.h"
+#import "RTVideoThumbnailCell.h"
 
 #import "RTPagedListViewScrollHandler.h"
 #import "RTLogging.h"
@@ -14,57 +14,99 @@
 @property RTBrowseVideosPresenter *videosPresenter;
 @property RTPagedListViewScrollHandler *scrollHandler;
 
-@property UITableView *tableView;
+@property UICollectionView *collectionView;
 @property RTMutableArrayDataSource *dataSource;
 
 @end
 
 @implementation RTUserReelTableViewCell
 
-- (void)configureWithVideosPresenter:(RTBrowseVideosPresenter *)videosPresenter {
-    [self registerDataSource];
-    [self registerTableView];
-    [self registerScrollHandler];
+- (instancetype)initWithStyle:(UITableViewCellStyle)style
+              reuseIdentifier:(NSString *)reuseIdentifier {
     
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        [self initCollectionView];
+    }
+    return self;
+}
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self initCollectionView];
+}
+
+- (void)initCollectionView {
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    
+    layout.itemSize = CGSizeMake(75, 75);
+    layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
+    
+    self.collectionView.backgroundColor = [UIColor whiteColor];
+    self.collectionView.showsHorizontalScrollIndicator = NO;
+    
+    [self.collectionView registerClass:[RTVideoThumbnailCell class] forCellWithReuseIdentifier:@"UserReelVideoCell"];
+    [self.contentView addSubview:self.collectionView];
+    
+    [self registerDataSource];
+    
+    [self.collectionView setDataSource:self.dataSource];
+    [self.collectionView setDelegate:self];
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    self.collectionView.frame = self.contentView.bounds;
+}
+
+- (void)configureWithVideosPresenter:(RTBrowseVideosPresenter *)videosPresenter {
     self.videosPresenter = videosPresenter;
     [self.videosPresenter requestedNextPage];
 }
 
 - (void)registerDataSource {
     
-    ConfigureCellBlock configureBlock = ^(RTVideoThumbnailTableViewCell *cell, RTVideoDescription *description) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            cell.thumbnail.image = [UIImage imageWithData:description.thumbnailData];
+    ConfigureCellBlock configureBlock = ^(RTVideoThumbnailCell *cell, RTVideoDescription *description) {
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        
+        dispatch_async(queue, ^{
+            if (!cell.thumbnailView) {
+                UIImageView *thumbnailView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 75, 75)];
+                
+                thumbnailView.contentMode = UIViewContentModeScaleAspectFit;
+                thumbnailView.opaque = YES;
+                
+                cell.thumbnailView = thumbnailView;
+                [cell.contentView addSubview:thumbnailView];
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                cell.thumbnailView.image = [UIImage imageWithData:description.thumbnailData];
+            });
         });
     };
     
-    self.dataSource = [[RTMutableArrayDataSource alloc] initWithItems:@[]
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    NSString *path = [bundle pathForResource:@"boogie2988-rage" ofType:@"png"];
+    NSData *data1 = [NSData dataWithContentsOfFile:path];
+    
+    RTVideoDescription *d1 = [RTVideoDescription videoDescriptionWithTitle:@"foo"
+                                                                            videoId:@(12)
+                                                                      thumbnailData:data1];
+    
+    path = [bundle pathForResource:@"maddox" ofType:@"jpg"];
+    NSData *data2 = [NSData dataWithContentsOfFile:path];
+    
+    RTVideoDescription *d2 = [RTVideoDescription videoDescriptionWithTitle:@"bar"
+                                                                   videoId:@(34)
+                                                             thumbnailData:data2];
+    
+    
+    self.dataSource = [[RTMutableArrayDataSource alloc] initWithItems:@[d1, d2]
                                                        cellIdentifier:@"UserReelVideoCell"
                                                    configureCellBlock:configureBlock];
-}
-
-- (void)registerTableView {
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 75, 375)
-                                                          style:UITableViewStylePlain];
-    
-    tableView.showsVerticalScrollIndicator = NO;
-    tableView.showsHorizontalScrollIndicator = NO;
-    
-    tableView.transform = CGAffineTransformMakeRotation(-M_PI * 0.5);
-    tableView.frame = CGRectMake(0, 0, 375, 75);
-    
-    tableView.rowHeight = 75;
-    
-    tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    tableView.separatorColor = [UIColor clearColor];
-    
-    tableView.dataSource = self.dataSource;
-    tableView.delegate = self;
-    
-    [tableView registerClass:[RTVideoThumbnailTableViewCell class] forCellReuseIdentifier:@"UserReelVideoCell"];
-
-    self.tableView = tableView;
-    [self addSubview:tableView];
 }
 
 - (void)registerScrollHandler {
@@ -73,12 +115,12 @@
 
 - (void)showVideoDescription:(RTVideoDescription *)description {
     [self.dataSource addItem:description];
-    [self.tableView reloadData];
+    [self.collectionView reloadData];
 }
 
 - (void)clearVideoDescriptions {
     [self.dataSource removeAllItems];
-    [self.tableView reloadData];
+    [self.collectionView reloadData];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {

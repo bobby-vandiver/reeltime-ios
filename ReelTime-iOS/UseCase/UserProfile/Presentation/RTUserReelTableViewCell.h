@@ -4,7 +4,7 @@
 
 @class RTBrowseVideosPresenter;
 
-@interface RTUserReelTableViewCell : UITableViewCell <UITableViewDelegate, RTBrowseVideosView>
+@interface RTUserReelTableViewCell : UITableViewCell <UICollectionViewDelegate, RTBrowseVideosView>
 
 - (void)configureWithVideosPresenter:(RTBrowseVideosPresenter *)videosPresenter;
 
