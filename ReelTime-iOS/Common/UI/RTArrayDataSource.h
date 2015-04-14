@@ -6,7 +6,7 @@
 
 typedef void (^ConfigureCellBlock)(id cell, id object);
 
-@interface RTArrayDataSource : NSObject <UITableViewDataSource>
+@interface RTArrayDataSource : NSObject <UITableViewDataSource, UICollectionViewDataSource>
 
 @property (strong, nonatomic) NSArray *items;
 @property (copy, nonatomic) NSString *cellIdentifier;
