@@ -1,8 +1,9 @@
 #import "RTMutableArrayDataSource.h"
+#import "RTSynchronizedMutableArray.h"
 
 @interface RTMutableArrayDataSource ()
 
-@property NSMutableArray *mutableItems;
+@property RTSynchronizedMutableArray *mutableItems;
 
 @end
 

@@ -8,6 +8,7 @@
 
 - (void)countDown;
 
-- (void)awaitWithCallback:(void (^)())callback;
+- (void)awaitExecutionOnQueue:(dispatch_queue_t)queue
+                 withCallback:(void (^)())callback;
 
 @end

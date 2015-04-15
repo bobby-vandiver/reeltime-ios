@@ -67,7 +67,9 @@
                                  failure:failureCallback];
     }
     
-    [countdownLatch awaitWithCallback:^{
+    dispatch_queue_t mainQueue = dispatch_get_main_queue();
+
+    [countdownLatch awaitExecutionOnQueue:mainQueue withCallback:^{
         callback(videos);
     }];
 }

@@ -8,8 +8,8 @@ typedef void (^ConfigureCellBlock)(id cell, id object);
 
 @interface RTArrayDataSource : NSObject <UITableViewDataSource, UICollectionViewDataSource>
 
-@property (strong, nonatomic) NSArray *items;
-@property (copy, nonatomic) NSString *cellIdentifier;
+@property (strong) NSArray *items;
+@property (copy) NSString *cellIdentifier;
 @property (copy, nonatomic) ConfigureCellBlock configureCellBlock;
 
 - (instancetype)initWithItems:(NSArray *)items

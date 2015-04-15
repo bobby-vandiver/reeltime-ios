@@ -11,7 +11,8 @@
     
     NSInteger lastVisibleRow = [tableView lastVisibleRowForSection:0];
     
-    RTArrayDataSource *dataSource = tableView.dataSource;
+    // TODO: Add isKindOf check to ensure type
+    RTArrayDataSource *dataSource = (RTArrayDataSource *)tableView.dataSource;
     NSInteger lastItemIndex = dataSource.items.count - 1;
     
     BOOL noRowsAreVisible = (lastVisibleRow == NSNotFound);

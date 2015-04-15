@@ -88,23 +88,7 @@
         });
     };
     
-    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    NSString *path = [bundle pathForResource:@"boogie2988-rage" ofType:@"png"];
-    NSData *data1 = [NSData dataWithContentsOfFile:path];
-    
-    RTVideoDescription *d1 = [RTVideoDescription videoDescriptionWithTitle:@"foo"
-                                                                            videoId:@(12)
-                                                                      thumbnailData:data1];
-    
-    path = [bundle pathForResource:@"maddox" ofType:@"jpg"];
-    NSData *data2 = [NSData dataWithContentsOfFile:path];
-    
-    RTVideoDescription *d2 = [RTVideoDescription videoDescriptionWithTitle:@"bar"
-                                                                   videoId:@(34)
-                                                             thumbnailData:data2];
-    
-    
-    self.dataSource = [[RTMutableArrayDataSource alloc] initWithItems:@[d1, d2]
+    self.dataSource = [[RTMutableArrayDataSource alloc] initWithItems:@[]
                                                        cellIdentifier:@"UserReelVideoCell"
                                                    configureCellBlock:configureBlock];
 }

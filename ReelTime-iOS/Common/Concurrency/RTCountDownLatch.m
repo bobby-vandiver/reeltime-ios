@@ -32,16 +32,19 @@
         dispatch_semaphore_signal(self.semaphore);
     }
 }
+- (void)awaitExecutionOnQueue:(dispatch_queue_t)queue
+                 withCallback:(void (^)())callback {
+    
+    dispatch_queue_t waitQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
 
-- (void)awaitWithCallback:(void (^)())callback {
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-
-    dispatch_async(queue, ^{
+    dispatch_async(waitQueue, ^{
         DDLogDebug(@"Waiting for countdown");
         dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
 
         DDLogDebug(@"Countdown finished");
-        callback();
+        dispatch_async(queue, ^{
+            callback();
+        });
     });
 }
 

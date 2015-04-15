@@ -58,10 +58,10 @@
 - (void)loadDataSource {
     ConfigureCellBlock configBlock = ^(RTUserReelTableViewCell *cell, RTReelDescription *description) {
 //        DDLogDebug(@"config reel = %@", description.name);
-//        RTBrowseVideosPresenter *videosPresenter = [self.userProfileAssembly browseReelVideosPresenterForReelId:description.reelId
-//                                                                                                       username:self.username
-//                                                                                                           view:cell];
-//        [cell configureWithVideosPresenter:videosPresenter];
+        RTBrowseVideosPresenter *videosPresenter = [self.userProfileAssembly browseReelVideosPresenterForReelId:description.reelId
+                                                                                                       username:self.username
+                                                                                                           view:cell];
+        [cell configureWithVideosPresenter:videosPresenter];
     };
     
     self.reelsDataSource = [[RTMutableArrayDataSource alloc] initWithItems:@[]

@@ -53,6 +53,7 @@
 		71201F831A9689C6003F2831 /* RTActivityCell+ConfigureForRTActivityMessageSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71201F821A9689C6003F2831 /* RTActivityCell+ConfigureForRTActivityMessageSpec.m */; };
 		71201F8C1A96B7CD003F2831 /* RTNewsfeedAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 71201F8B1A96B7CD003F2831 /* RTNewsfeedAssembly.m */; };
 		712410CF1ABDC58200B1FF75 /* UITableView+LastVisibleRowSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 712410CE1ABDC58200B1FF75 /* UITableView+LastVisibleRowSpec.m */; };
+		7124363D1ADDE35B00D39A95 /* RTSynchronizedMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 7124363C1ADDE35B00D39A95 /* RTSynchronizedMutableArray.m */; };
 		7126980F1AA3CC8000E7066B /* RTReelList.m in Sources */ = {isa = PBXBuildFile; fileRef = 7126980E1AA3CC8000E7066B /* RTReelList.m */; };
 		712698121AA3CCB600E7066B /* RTVideoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 712698111AA3CCB600E7066B /* RTVideoList.m */; };
 		712698151AA3EC3800E7066B /* reel-list-multiple-reels.txt in Resources */ = {isa = PBXBuildFile; fileRef = 712698141AA3EC3800E7066B /* reel-list-multiple-reels.txt */; };
@@ -302,6 +303,8 @@
 		71201F8A1A96B7CD003F2831 /* RTNewsfeedAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTNewsfeedAssembly.h; sourceTree = "<group>"; };
 		71201F8B1A96B7CD003F2831 /* RTNewsfeedAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTNewsfeedAssembly.m; sourceTree = "<group>"; };
 		712410CE1ABDC58200B1FF75 /* UITableView+LastVisibleRowSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+LastVisibleRowSpec.m"; sourceTree = "<group>"; };
+		7124363B1ADDE35B00D39A95 /* RTSynchronizedMutableArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTSynchronizedMutableArray.h; sourceTree = "<group>"; };
+		7124363C1ADDE35B00D39A95 /* RTSynchronizedMutableArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTSynchronizedMutableArray.m; sourceTree = "<group>"; };
 		7126980D1AA3CC8000E7066B /* RTReelList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTReelList.h; path = "ReelTime-iOS/Common/Model/RTReelList.h"; sourceTree = SOURCE_ROOT; };
 		7126980E1AA3CC8000E7066B /* RTReelList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTReelList.m; path = "ReelTime-iOS/Common/Model/RTReelList.m"; sourceTree = SOURCE_ROOT; };
 		712698101AA3CCB600E7066B /* RTVideoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTVideoList.h; path = "ReelTime-iOS/Common/Model/RTVideoList.h"; sourceTree = SOURCE_ROOT; };
@@ -654,6 +657,8 @@
 			children = (
 				710BB5F71ACDF6EE00F724C7 /* RTCountDownLatch.h */,
 				710BB5F81ACDF6EE00F724C7 /* RTCountDownLatch.m */,
+				7124363B1ADDE35B00D39A95 /* RTSynchronizedMutableArray.h */,
+				7124363C1ADDE35B00D39A95 /* RTSynchronizedMutableArray.m */,
 			);
 			path = Concurrency;
 			sourceTree = "<group>";
@@ -2103,6 +2108,7 @@
 				71331A2D1A880A6F00912B5F /* RTNewsfeedPresenter.m in Sources */,
 				710BB5F91ACDF6EE00F724C7 /* RTCountDownLatch.m in Sources */,
 				7116C0541AD982D600590DAF /* RTPagedListViewScrollHandler.m in Sources */,
+				7124363D1ADDE35B00D39A95 /* RTSynchronizedMutableArray.m in Sources */,
 				713A239A1AB4F5F80098CE48 /* RTBrowseVideosPresenter.m in Sources */,
 				715C540E1AD4A264009C755F /* RTUserSummaryInteractor.m in Sources */,
 				713A239F1AB4FF4C0098CE48 /* RTMutableArrayDataSource.m in Sources */,
