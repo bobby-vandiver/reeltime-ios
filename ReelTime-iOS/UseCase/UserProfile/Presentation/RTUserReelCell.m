@@ -28,17 +28,17 @@ static NSString *const UserReelVideoCellIdentifier = @"UserReelVideoCell";
     
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        [self initCollectionView];
+        [self createCollectionView];
     }
     return self;
 }
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    [self initCollectionView];
+    [self createCollectionView];
 }
 
-- (void)initCollectionView {
+- (void)createCollectionView {
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     
     layout.itemSize = CGSizeMake(75, 75);
@@ -53,19 +53,10 @@ static NSString *const UserReelVideoCellIdentifier = @"UserReelVideoCell";
     [self.contentView addSubview:self.collectionView];
     
     [self createDataSource];
+    [self registerScrollHandler];
     
     [self.collectionView setDataSource:self.dataSource];
     [self.collectionView setDelegate:self];
-}
-
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    self.collectionView.frame = self.contentView.bounds;
-}
-
-- (void)configureWithVideosPresenter:(RTBrowseVideosPresenter *)videosPresenter {
-    self.videosPresenter = videosPresenter;
-    [self.videosPresenter requestedNextPage];
 }
 
 - (void)createDataSource {
@@ -93,6 +84,16 @@ static NSString *const UserReelVideoCellIdentifier = @"UserReelVideoCell";
     self.scrollHandler = [[RTPagedListViewScrollHandler alloc] init];
 }
 
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    self.collectionView.frame = self.contentView.bounds;
+}
+
+- (void)configureWithVideosPresenter:(RTBrowseVideosPresenter *)videosPresenter {
+    self.videosPresenter = videosPresenter;
+    [self.videosPresenter requestedNextPage];
+}
+
 - (void)showVideoDescription:(RTVideoDescription *)description {
     [self.dataSource addItem:description];
     [self.collectionView reloadData];
@@ -104,7 +105,7 @@ static NSString *const UserReelVideoCellIdentifier = @"UserReelVideoCell";
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-//    [self.scrollHandler handleScrollForTableView:self.tableView withPresenter:self.videosPresenter];
+    [self.scrollHandler handleScrollForCollectionView:self.collectionView withPresenter:self.videosPresenter];
 }
 
 @end
