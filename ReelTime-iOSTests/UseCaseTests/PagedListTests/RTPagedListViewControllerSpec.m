@@ -119,47 +119,6 @@ describe(@"paged list view controller", ^{
             [verify(refreshControl) endRefreshing];
         });
     });
-    
-    describe(@"loading the next page for the active list when scrolling to the bottom", ^{
-        __block RTArrayDataSource *dataSource;
-
-        __block NSObject *obj1;
-        __block NSObject *obj2;
-        
-        beforeEach(^{
-            dataSource = mock([RTArrayDataSource class]);
-            [given([tableView dataSource]) willReturn:dataSource];
-            
-            obj1 = [NSObject new];
-            obj2 = [NSObject new];
-            
-            [viewController viewDidLoad];
-        });
-        
-        it(@"should request next page for empty data source", ^{
-            [given([tableView lastVisibleRowForSection:0]) willReturnInteger:NSNotFound];
-            [given([dataSource items]) willReturn:@[]];
-            
-            [viewController scrollViewDidScroll:anything()];
-            [verify(presenter) requestedNextPage];
-        });
-        
-        it(@"should not request next page when last visible row is not the last item in the list", ^{
-            [given([tableView lastVisibleRowForSection:0]) willReturnInteger:0];
-            [given([dataSource items]) willReturn:@[obj1, obj2]];
-            
-            [viewController scrollViewDidScroll:anything()];
-            [verifyCount(presenter, never()) requestedNextPage];
-        });
-        
-        it(@"should request next page when last visible row is the last item in the list", ^{
-            [given([tableView lastVisibleRowForSection:0]) willReturnInteger:1];
-            [given([dataSource items]) willReturn:@[obj1, obj2]];
-            
-            [viewController scrollViewDidScroll:anything()];
-            [verify(presenter) requestedNextPage];
-        });
-    });
 });
 
 SpecEnd

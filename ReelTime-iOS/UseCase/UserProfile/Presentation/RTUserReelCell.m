@@ -9,6 +9,8 @@
 #import "RTPagedListViewScrollHandler.h"
 #import "RTLogging.h"
 
+static NSString *const UserReelVideoCellIdentifier = @"UserReelVideoCell";
+
 @interface RTUserReelCell ()
 
 @property RTBrowseVideosPresenter *videosPresenter;
@@ -47,10 +49,10 @@
     self.collectionView.backgroundColor = [UIColor whiteColor];
     self.collectionView.showsHorizontalScrollIndicator = NO;
     
-    [self.collectionView registerClass:[RTVideoThumbnailCell class] forCellWithReuseIdentifier:@"UserReelVideoCell"];
+    [self.collectionView registerClass:[RTVideoThumbnailCell class] forCellWithReuseIdentifier:UserReelVideoCellIdentifier];
     [self.contentView addSubview:self.collectionView];
     
-    [self registerDataSource];
+    [self createDataSource];
     
     [self.collectionView setDataSource:self.dataSource];
     [self.collectionView setDelegate:self];
@@ -66,30 +68,24 @@
     [self.videosPresenter requestedNextPage];
 }
 
-- (void)registerDataSource {
+- (void)createDataSource {
     
     ConfigureCellBlock configureBlock = ^(RTVideoThumbnailCell *cell, RTVideoDescription *description) {
-        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-        
-        dispatch_async(queue, ^{
-            if (!cell.thumbnailView) {
-                UIImageView *thumbnailView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 75, 75)];
-                
-                thumbnailView.contentMode = UIViewContentModeScaleAspectFit;
-                thumbnailView.opaque = YES;
-                
-                cell.thumbnailView = thumbnailView;
-                [cell.contentView addSubview:thumbnailView];
-            }
+        if (!cell.thumbnailView) {
+            UIImageView *thumbnailView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 75, 75)];
             
-            dispatch_async(dispatch_get_main_queue(), ^{
-                cell.thumbnailView.image = [UIImage imageWithData:description.thumbnailData];
-            });
-        });
+            thumbnailView.contentMode = UIViewContentModeScaleAspectFit;
+            thumbnailView.opaque = YES;
+            
+            cell.thumbnailView = thumbnailView;
+            [cell.contentView addSubview:thumbnailView];
+        }
+
+        cell.thumbnailView.image = [UIImage imageWithData:description.thumbnailData];
     };
     
     self.dataSource = [[RTMutableArrayDataSource alloc] initWithItems:@[]
-                                                       cellIdentifier:@"UserReelVideoCell"
+                                                       cellIdentifier:UserReelVideoCellIdentifier
                                                    configureCellBlock:configureBlock];
 }
 
