@@ -15,7 +15,7 @@
 #import "RTUserProfileAssembly.h"
 #import "RTBrowseVideosPresenter.h"
 
-#import "RTUserReelTableViewCell.h"
+#import "RTUserReelCell.h"
 #import "RTReelDescription.h"
 
 #import "RTLogging.h"
@@ -60,7 +60,7 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
 }
 
 - (void)createDataSource {
-    ConfigureCellBlock configBlock = ^(RTUserReelTableViewCell *cell, RTReelDescription *description) {
+    ConfigureCellBlock configBlock = ^(RTUserReelCell *cell, RTReelDescription *description) {
         RTBrowseVideosPresenter *videosPresenter = [self.reelVideosPresenterFactory browseReelVideosPresenterForReelId:description.reelId
                                                                                                               username:self.username
                                                                                                                   view:cell];

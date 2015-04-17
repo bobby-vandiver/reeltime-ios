@@ -9,7 +9,7 @@
 #import "RTBrowseReelVideosPresenterFactory.h"
 
 #import "RTReelDescription.h"
-#import "RTUserReelTableViewCell.h"
+#import "RTUserReelCell.h"
 
 @interface RTUserProfileViewController (Test)
 
@@ -107,11 +107,11 @@ describe(@"user profile view controller", ^{
         });
         
         describe(@"cell configuration", ^{
-            __block RTUserReelTableViewCell *cell;
+            __block RTUserReelCell *cell;
             __block RTBrowseVideosPresenter *videosPresenter;
             
             beforeEach(^{
-                cell = mock([RTUserReelTableViewCell class]);
+                cell = mock([RTUserReelCell class]);
                 videosPresenter = mock([RTBrowseVideosPresenter class]);
                 
                 [given([description reelId]) willReturn:@(reelId)];

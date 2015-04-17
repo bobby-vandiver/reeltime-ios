@@ -1,4 +1,4 @@
-#import "RTUserReelTableViewCell.h"
+#import "RTUserReelCell.h"
 #import "RTMutableArrayDataSource.h"
 
 #import "RTBrowseVideosPresenter.h"
@@ -9,7 +9,7 @@
 #import "RTPagedListViewScrollHandler.h"
 #import "RTLogging.h"
 
-@interface RTUserReelTableViewCell ()
+@interface RTUserReelCell ()
 
 @property RTBrowseVideosPresenter *videosPresenter;
 @property RTPagedListViewScrollHandler *scrollHandler;
@@ -19,7 +19,7 @@
 
 @end
 
-@implementation RTUserReelTableViewCell
+@implementation RTUserReelCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style
               reuseIdentifier:(NSString *)reuseIdentifier {
