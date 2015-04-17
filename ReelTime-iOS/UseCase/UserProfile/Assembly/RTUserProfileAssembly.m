@@ -24,14 +24,13 @@
 
 - (RTUserProfileViewController *)userProfileViewControllerForUsername:(NSString *)username {
     return [TyphoonDefinition withClass:[RTUserProfileViewController class] configuration:^(TyphoonDefinition *definition) {
-        [definition useInitializer:@selector(viewControllerForUsername:withUserPresenter:reelsPresenter:)
+        [definition useInitializer:@selector(viewControllerForUsername:withUserPresenter:reelsPresenter:reelVideosPresenterFactory:)
                         parameters:^(TyphoonMethod *initializer) {
                             [initializer injectParameterWith:username];
                             [initializer injectParameterWith:[self userSummaryPresenterForUsername:username]];
                             [initializer injectParameterWith:[self browseUserReelsPresenterForUsername:username]];
+                            [initializer injectParameterWith:self];
         }];
-
-        [definition injectProperty:@selector(userProfileAssembly) with:self];
     }];
 }
 

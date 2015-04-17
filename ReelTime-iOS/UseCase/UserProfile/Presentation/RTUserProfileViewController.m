@@ -3,6 +3,8 @@
 #import "RTUserSummaryPresenter.h"
 #import "RTBrowseReelsPresenter.h"
 
+#import "RTBrowseReelVideosPresenterFactory.h"
+
 #import "RTArrayDataSource.h"
 #import "RTMutableArrayDataSource.h"
 
@@ -18,6 +20,8 @@
 
 #import "RTLogging.h"
 
+static NSString *const UserReelCellIdentifier = @"UserReelCell";
+
 @interface RTUserProfileViewController ()
 
 @property (copy) NSString *username;
@@ -26,13 +30,17 @@
 @property RTBrowseReelsPresenter *reelsPresenter;
 @property RTMutableArrayDataSource *reelsDataSource;
 
+@property id<RTBrowseReelVideosPresenterFactory> reelVideosPresenterFactory;
+
 @end
 
 @implementation RTUserProfileViewController
 
 + (RTUserProfileViewController *)viewControllerForUsername:(NSString *)username
                                          withUserPresenter:(RTUserSummaryPresenter *)userPresenter
-                                            reelsPresenter:(RTBrowseReelsPresenter *)reelsPresenter {
+                                            reelsPresenter:(RTBrowseReelsPresenter *)reelsPresenter
+                                reelVideosPresenterFactory:(id<RTBrowseReelVideosPresenterFactory>)reelVideosPresenterFactory {
+
     NSString *identifier = [RTUserProfileViewController storyboardIdentifier];
     RTUserProfileViewController *controller = [RTStoryboardViewControllerFactory viewControllerWithStoryboardIdentifier:identifier];
     
@@ -40,7 +48,10 @@
         controller.username = username;
         controller.userPresenter = userPresenter;
         controller.reelsPresenter = reelsPresenter;
+        controller.reelVideosPresenterFactory = reelVideosPresenterFactory;
     }
+    
+    [controller createDataSource];
     return controller;
 }
 
@@ -48,29 +59,27 @@
     return @"User Profile View Controller";
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-
-    [self loadDataSource];
-    [self.tableView setDataSource:self.reelsDataSource];
-}
-
-- (void)loadDataSource {
+- (void)createDataSource {
     ConfigureCellBlock configBlock = ^(RTUserReelTableViewCell *cell, RTReelDescription *description) {
-//        DDLogDebug(@"config reel = %@", description.name);
-        RTBrowseVideosPresenter *videosPresenter = [self.userProfileAssembly browseReelVideosPresenterForReelId:description.reelId
-                                                                                                       username:self.username
-                                                                                                           view:cell];
+        RTBrowseVideosPresenter *videosPresenter = [self.reelVideosPresenterFactory browseReelVideosPresenterForReelId:description.reelId
+                                                                                                              username:self.username
+                                                                                                                  view:cell];
         [cell configureWithVideosPresenter:videosPresenter];
     };
     
     self.reelsDataSource = [[RTMutableArrayDataSource alloc] initWithItems:@[]
-                                                            cellIdentifier:@"UserReelCell"
+                                                            cellIdentifier:UserReelCellIdentifier
                                                         configureCellBlock:configBlock];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    // TODO: This depends on the thumbnail height
     return 100;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self.tableView setDataSource:self.reelsDataSource];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

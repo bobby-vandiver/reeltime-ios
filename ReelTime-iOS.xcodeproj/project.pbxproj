@@ -289,6 +289,8 @@
 		711C5DDF1A8D5B4F007652FC /* RTStringWithEmbeddedLinks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTStringWithEmbeddedLinks.m; sourceTree = "<group>"; };
 		711C5DE31A8D5BA9007652FC /* RTStringWithEmbeddedLinksSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTStringWithEmbeddedLinksSpec.m; sourceTree = "<group>"; };
 		711C5DE51A8D657F007652FC /* RTActivityType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTActivityType.h; sourceTree = SOURCE_ROOT; };
+		711DE5EC1AE05C2300F923E9 /* RTBrowseReelVideosPresenterFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseReelVideosPresenterFactory.h; sourceTree = "<group>"; };
+		711DE5ED1AE05C5D00F923E9 /* RTUserProfileViewControllerFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTUserProfileViewControllerFactory.h; sourceTree = "<group>"; };
 		711FF4B61AA20CEC00E11BDE /* bad-request-with-errors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "bad-request-with-errors.txt"; sourceTree = "<group>"; };
 		711FF4B71AA20CEC00E11BDE /* server-internal-error.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "server-internal-error.txt"; sourceTree = "<group>"; };
 		711FF4B81AA20CEC00E11BDE /* service-unavailable-with-errors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "service-unavailable-with-errors.txt"; sourceTree = "<group>"; };
@@ -782,8 +784,10 @@
 		7116C05B1AD9951000590DAF /* Assembly */ = {
 			isa = PBXGroup;
 			children = (
+				711DE5EC1AE05C2300F923E9 /* RTBrowseReelVideosPresenterFactory.h */,
 				7116C05C1AD9954700590DAF /* RTUserProfileAssembly.h */,
 				7116C05D1AD9954700590DAF /* RTUserProfileAssembly.m */,
+				711DE5ED1AE05C5D00F923E9 /* RTUserProfileViewControllerFactory.h */,
 			);
 			path = Assembly;
 			sourceTree = "<group>";

@@ -1,5 +1,8 @@
 #import <Typhoon/Typhoon.h>
 
+#import "RTUserProfileViewControllerFactory.h"
+#import "RTBrowseReelVideosPresenterFactory.h"
+
 @class RTClientAssembly;
 
 @class RTUserProfileViewController;
@@ -19,7 +22,7 @@
 @protocol RTBrowseVideosView;
 @protocol RTBrowseVideosDataManagerDelegate;
 
-@interface RTUserProfileAssembly : TyphoonAssembly
+@interface RTUserProfileAssembly : TyphoonAssembly <RTUserProfileViewControllerFactory, RTBrowseReelVideosPresenterFactory>
 
 @property (nonatomic, strong, readonly) RTClientAssembly *clientAssembly;
 

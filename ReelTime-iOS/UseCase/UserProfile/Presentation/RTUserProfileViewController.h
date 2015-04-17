@@ -4,20 +4,19 @@
 #import "RTBrowseReelsView.h"
 #import "RTStoryboardViewController.h"
 
-@class RTUserProfileAssembly;
-
 @class RTUserSummaryPresenter;
 @class RTBrowseReelsPresenter;
+@protocol RTBrowseReelVideosPresenterFactory;
+
 @class RTArrayDataSource;
 
 @interface RTUserProfileViewController : RTPagedListViewController <RTUserSummaryView, RTBrowseReelsView, RTStoryboardViewController>
-
-@property RTUserProfileAssembly *userProfileAssembly;
 
 @property (weak, nonatomic) IBOutlet UITableView *reelsListTableView;
 
 + (RTUserProfileViewController *)viewControllerForUsername:(NSString *)username
                                          withUserPresenter:(RTUserSummaryPresenter *)userPresenter
-                                            reelsPresenter:(RTBrowseReelsPresenter *)reelsPresenter;
+                                            reelsPresenter:(RTBrowseReelsPresenter *)reelsPresenter
+                                reelVideosPresenterFactory:(id<RTBrowseReelVideosPresenterFactory>)reelVideosPresenterFactory;
 
 @end
