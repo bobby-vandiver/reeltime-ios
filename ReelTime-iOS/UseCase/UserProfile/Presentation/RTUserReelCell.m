@@ -53,9 +53,9 @@ static NSString *const UserReelVideoCellIdentifier = @"UserReelVideoCell";
     [self.contentView addSubview:self.collectionView];
     
     [self createDataSource];
-    [self registerScrollHandler];
-    
     [self.collectionView setDataSource:self.dataSource];
+
+    [self createScrollHandler];
     [self.collectionView setDelegate:self];
 }
 
@@ -80,7 +80,7 @@ static NSString *const UserReelVideoCellIdentifier = @"UserReelVideoCell";
                                                    configureCellBlock:configureBlock];
 }
 
-- (void)registerScrollHandler {
+- (void)createScrollHandler {
     self.scrollHandler = [[RTPagedListViewScrollHandler alloc] init];
 }
 
