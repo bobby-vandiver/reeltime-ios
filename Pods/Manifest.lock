@@ -1,60 +1,60 @@
 PODS:
   - AFNetworking (1.3.4)
-  - CocoaLumberjack (2.0.0-rc):
-    - CocoaLumberjack/Default (= 2.0.0-rc)
-    - CocoaLumberjack/Extensions (= 2.0.0-rc)
-  - CocoaLumberjack/Core (2.0.0-rc)
-  - CocoaLumberjack/Default (2.0.0-rc):
+  - CocoaLumberjack (2.0.0):
+    - CocoaLumberjack/Default (= 2.0.0)
+    - CocoaLumberjack/Extensions (= 2.0.0)
+  - CocoaLumberjack/Core (2.0.0)
+  - CocoaLumberjack/Default (2.0.0):
     - CocoaLumberjack/Core
-  - CocoaLumberjack/Extensions (2.0.0-rc):
+  - CocoaLumberjack/Extensions (2.0.0):
     - CocoaLumberjack/Default
-  - Expecta (0.3.2)
+  - Expecta (0.4.0)
   - ISO8601DateFormatterValueTransformer (0.6.0):
     - RKValueTransformers (~> 1.1.0)
   - Nocilla (0.9.0)
   - OCHamcrest (4.1.1)
   - OCMockito (1.4.0):
     - OCHamcrest (~> 4.0)
-  - RestKit (0.24.0):
-    - RestKit/Core (= 0.24.0)
-  - RestKit/Core (0.24.0):
+  - RestKit (0.24.1):
+    - RestKit/Core (= 0.24.1)
+  - RestKit/Core (0.24.1):
     - RestKit/CoreData
     - RestKit/Network
     - RestKit/ObjectMapping
-  - RestKit/CoreData (0.24.0):
+  - RestKit/CoreData (0.24.1):
     - RestKit/ObjectMapping
-  - RestKit/Network (0.24.0):
+  - RestKit/Network (0.24.1):
     - AFNetworking (~> 1.3.0)
     - RestKit/ObjectMapping
     - RestKit/Support
     - SOCKit
-  - RestKit/ObjectMapping (0.24.0):
+  - RestKit/ObjectMapping (0.24.1):
     - ISO8601DateFormatterValueTransformer (~> 0.6.0)
     - RestKit/Support
     - RKValueTransformers (~> 1.1.0)
-  - RestKit/Support (0.24.0):
-    - TransitionKit (= 2.1.0)
-  - RestKit/Testing (0.24.0):
+  - RestKit/Support (0.24.1):
+    - TransitionKit (~> 2.1.0)
+  - RestKit/Testing (0.24.1):
     - RestKit/Network
-  - RKValueTransformers (1.1.1)
+  - RKValueTransformers (1.1.2)
   - SOCKit (1.1)
-  - Specta (0.3.2)
-  - TransitionKit (2.1.0)
-  - TTTAttributedLabel (1.13.1)
+  - Specta (0.5.0)
+  - TransitionKit (2.1.1)
+  - TTTAttributedLabel (1.13.3)
   - Typhoon (2.3.4):
     - Typhoon/no-arc (= 2.3.4)
   - Typhoon/no-arc (2.3.4)
-  - UICKeyChainStore (2.0.3)
+  - UICKeyChainStore (2.0.4)
   - UIDeviceIdentifier (0.4.4)
 
 DEPENDENCIES:
-  - CocoaLumberjack (~> 2.0.0-rc)
+  - CocoaLumberjack (~> 2.0)
   - Expecta (~> 0.3)
   - ISO8601DateFormatterValueTransformer (~> 0.6.0)
   - Nocilla (~> 0.9)
   - OCMockito (~> 1.4)
-  - RestKit (~> 0.24.0)
-  - RestKit/Testing (~> 0.24.0)
+  - RestKit (~> 0.24)
+  - RestKit/Testing (~> 0.24)
   - Specta (~> 0.3)
   - TTTAttributedLabel (~> 1.13)
   - Typhoon (~> 2.3)
@@ -72,20 +72,20 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   AFNetworking: cf8e418e16f0c9c7e5c3150d019a3c679d015018
-  CocoaLumberjack: 04c5b9b7479dd4276a09700fcd6644423ea1751c
-  Expecta: 8c507baf13211207b1e9d0a741480600e6b4ed15
+  CocoaLumberjack: a6f77d987d65dc7ba86b0f84db7d0b9084f77bcb
+  Expecta: 392a6b5bfb9f4097e47dd8064d9b732079490332
   ISO8601DateFormatterValueTransformer: 3ac3a721381697cab4e792d8049ce2f2e9ad3036
   Nocilla: d7d96e8a11e363f0d7c976d48b320c43d61fb471
   OCHamcrest: 6f03ffa81d12feab872638490a44ab0a6d3aca10
   OCMockito: 4981140c9a9ec06c31af40f636e3c0f25f27e6b2
-  RestKit: 34ba15ca955f7d5436a4120b7f19884f3df056a8
-  RKValueTransformers: d016f1967ae67997e492520fd0f9c512ccf168ae
+  RestKit: 1987b5efef289c6b27bd980714d6ca48d3871b78
+  RKValueTransformers: 66ac5e4f077fdbe3496e792d89eeff4c3eb67701
   SOCKit: c7376ac262bea9115b8f749358f762522a47d392
-  Specta: e5ad38f1b2227a23bc63d0b5a3b41c5e628f2851
-  TransitionKit: bc306605fb5e05a743c18d42239dc0e211619547
-  TTTAttributedLabel: 0a9e524c8d78301506c26affffc827429b833b25
+  Specta: eb90708ed77569bbda089f8ead10bb99b8e9489e
+  TransitionKit: 3a14b6acc7cf2d1dd3e454e24dbad1cfab9a1ef1
+  TTTAttributedLabel: 6f3174aef8e738f44dff97c2eb7d8184f6ab6277
   Typhoon: f2f712f549867ba69e8f1bccf46b3fb67d595838
-  UICKeyChainStore: 615a198b2b548419fbeca4f81bb00c4d2faa916d
+  UICKeyChainStore: 69eb0c3a6f669bccf16ba88de3b9069b71501361
   UIDeviceIdentifier: c9ee256b8792e8e343d170f0836b4317d091153e
 
 COCOAPODS: 0.35.0

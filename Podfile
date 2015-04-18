@@ -6,17 +6,17 @@ target 'ReelTime-iOS', :exclusive => true do
     pod 'Typhoon', '~> 2.3'
 
     pod 'UICKeyChainStore', '~> 2.0'
-    pod 'CocoaLumberjack', '~> 2.0.0-rc'
+    pod 'CocoaLumberjack', '~> 2.0'
     pod 'TTTAttributedLabel', '~> 1.13'
 
     pod 'UIDeviceIdentifier', :git => 'https://github.com/squarefrog/UIDeviceIdentifier.git'
     
     # RestKit uses some deprecated APIs
-    pod 'RestKit', '~> 0.24.0', :inhibit_warnings => true
+    pod 'RestKit', '~> 0.24', :inhibit_warnings => true
 
     # Testing module must be included in the main target
     # to avoid introducing duplicate symbols
-    pod 'RestKit/Testing', '~> 0.24.0', :inhibit_warnings => true
+    pod 'RestKit/Testing', '~> 0.24', :inhibit_warnings => true
     
     # RestKit dependency that uses deprecated APIs
     pod 'ISO8601DateFormatterValueTransformer', '~> 0.6.0', :inhibit_warnings => true
