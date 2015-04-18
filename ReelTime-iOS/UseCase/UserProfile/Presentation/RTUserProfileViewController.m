@@ -72,14 +72,10 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
                                                              configureCellBlock:configBlock];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    // TODO: This depends on the thumbnail height
-    return 100;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.tableView setDataSource:self.reelsDataSource];
+    [self.tableView setDelegate:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -113,6 +109,26 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
 - (void)clearReelDescriptions {
     [self.reelsDataSource removeAllItems];
     [self.tableView reloadData];
+}
+
+#pragma mark - UITableViewDelegate Methods (WIP)
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    RTReelDescription *description = [self.reelsDataSource itemAtIndex:section];
+    
+    UILabel *label = [[UILabel alloc] init];
+    label.text = description.name;
+    
+    return label;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 50;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    // TODO: This depends on the thumbnail height
+    return 75;
 }
 
 @end

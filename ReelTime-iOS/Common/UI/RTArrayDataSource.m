@@ -43,6 +43,12 @@
     return self;
 }
 
+#pragma mark - Items Methods
+
+- (id)itemAtIndex:(NSUInteger)index {
+    return [self.items objectAtIndex:index];
+}
+
 #pragma mark - UITableViewDataSource Methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
