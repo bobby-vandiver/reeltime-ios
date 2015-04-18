@@ -37,11 +37,11 @@ static NSString *const ActivityCellIdentifier = @"ActivityCell";
 }
 
 + (RTMutableArrayDataSource *)createDataSourceWithPresenter:(RTNewsfeedPresenter *)presenter {
-    return [[RTMutableArrayDataSource alloc] initWithItems:@[]
-                                            cellIdentifier:ActivityCellIdentifier
-                                        configureCellBlock:^(RTActivityCell *cell, RTActivityMessage *message) {
-                                            [cell configureForActivityMessage:message withLabelDelegate:presenter];
-                                        }];
+    return [RTMutableArrayDataSource rowMajorArrayWithItems:@[]
+                                             cellIdentifier:ActivityCellIdentifier
+                                         configureCellBlock:^(RTActivityCell *cell, RTActivityMessage *message) {
+                                             [cell configureForActivityMessage:message withLabelDelegate:presenter];
+                                         }];
 }
 
 + (NSString *)storyboardIdentifier {

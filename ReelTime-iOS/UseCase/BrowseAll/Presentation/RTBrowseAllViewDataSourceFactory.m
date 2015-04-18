@@ -35,8 +35,8 @@ static NSString *const BrowseCellIdentifier = @"BrowseCell";
 
 + (RTMutableArrayDataSource *)dataSourceWithCellIdentifier:(NSString *)cellIdentifier
                                         configureCellBlock:(ConfigureCellBlock)configureCellBlock {
-    return [[RTMutableArrayDataSource alloc] initWithItems:@[]
-                                            cellIdentifier:cellIdentifier
-                                        configureCellBlock:configureCellBlock];
+    return [RTMutableArrayDataSource rowMajorArrayWithItems:@[]
+                                             cellIdentifier:cellIdentifier
+                                         configureCellBlock:configureCellBlock];
 }
 @end

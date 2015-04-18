@@ -74,10 +74,10 @@ static NSString *const UserReelVideoCellIdentifier = @"UserReelVideoCell";
 
         cell.thumbnailView.image = [UIImage imageWithData:description.thumbnailData];
     };
-    
-    self.dataSource = [[RTMutableArrayDataSource alloc] initWithItems:@[]
-                                                       cellIdentifier:UserReelVideoCellIdentifier
-                                                   configureCellBlock:configureBlock];
+
+    self.dataSource = [RTMutableArrayDataSource rowMajorArrayWithItems:@[]
+                                                        cellIdentifier:UserReelVideoCellIdentifier
+                                                    configureCellBlock:configureBlock];
 }
 
 - (void)createScrollHandler {

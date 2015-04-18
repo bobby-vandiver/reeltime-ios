@@ -12,8 +12,12 @@ typedef void (^ConfigureCellBlock)(id cell, id object);
 @property (copy) NSString *cellIdentifier;
 @property (copy, nonatomic) ConfigureCellBlock configureCellBlock;
 
-- (instancetype)initWithItems:(NSArray *)items
-               cellIdentifier:(NSString *)cellIdentifier
-           configureCellBlock:(ConfigureCellBlock)configureCellBlock;
++ (instancetype)rowMajorArrayWithItems:(NSArray *)items
+                        cellIdentifier:(NSString *)cellIdentifier
+                    configureCellBlock:(ConfigureCellBlock)configureCellBlock;
+
++ (instancetype)sectionMajorArrayWithItems:(NSArray *)items
+                            cellIdentifier:(NSString *)cellIdentifier
+                        configureCellBlock:(ConfigureCellBlock)configureCellBlock;
 
 @end

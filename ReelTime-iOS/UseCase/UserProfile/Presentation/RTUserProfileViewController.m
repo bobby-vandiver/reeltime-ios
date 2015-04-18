@@ -67,9 +67,9 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
         [cell configureWithVideosPresenter:videosPresenter];
     };
     
-    self.reelsDataSource = [[RTMutableArrayDataSource alloc] initWithItems:@[]
-                                                            cellIdentifier:UserReelCellIdentifier
-                                                        configureCellBlock:configBlock];
+    self.reelsDataSource = [RTMutableArrayDataSource sectionMajorArrayWithItems:@[]
+                                                                 cellIdentifier:UserReelCellIdentifier
+                                                             configureCellBlock:configBlock];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
