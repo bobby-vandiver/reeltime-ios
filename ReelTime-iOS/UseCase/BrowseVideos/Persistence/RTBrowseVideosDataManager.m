@@ -1,6 +1,8 @@
 #import "RTBrowseVideosDataManager.h"
 #import "RTBrowseVideosDataManagerDelegate.h"
+
 #import "RTClient.h"
+#import "RTThumbnailSupport.h"
 
 #import "RTVideo.h"
 #import "RTVideoList.h"
@@ -11,16 +13,19 @@
 @interface RTBrowseVideosDataManager ()
 
 @property id<RTBrowseVideosDataManagerDelegate> delegate;
+@property RTThumbnailSupport *thumbnailSupport;
 
 @end
 
 @implementation RTBrowseVideosDataManager
 
 - (instancetype)initWithDelegate:(id<RTBrowseVideosDataManagerDelegate>)delegate
+                thumbnailSupport:(RTThumbnailSupport *)thumbnailSupport
                           client:(RTClient *)client {
     self = [super initWithClient:client];
     if (self) {
         self.delegate = delegate;
+        self.thumbnailSupport = thumbnailSupport;
     }
     return self;
 }
@@ -60,9 +65,10 @@
             [countdownLatch countDown];
         };
     
-        // TODO: Determine resolution based on iPhone model
+        NSString *resolution = [self thumbnailResolutionValue];
+        
         [self.client thumbnailForVideoId:[video.videoId integerValue]
-                          withResolution:@"small"
+                          withResolution:resolution
                                  success:successCallback
                                  failure:failureCallback];
     }
@@ -72,6 +78,19 @@
     [countdownLatch awaitExecutionOnQueue:mainQueue withCallback:^{
         callback(videos);
     }];
+}
+
+- (NSString *)thumbnailResolutionValue {
+    RTThumbnailResolution resolution = [self.thumbnailSupport resolution];
+
+    if (resolution == RTThumbnailResolution1X) {
+        return @"small";
+    }
+    else if (resolution == RTThumbnailResolution2X) {
+        return @"medium";
+    }
+    
+    return @"large";
 }
 
 @end

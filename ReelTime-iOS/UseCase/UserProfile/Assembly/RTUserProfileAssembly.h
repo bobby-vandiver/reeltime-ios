@@ -4,6 +4,7 @@
 #import "RTBrowseReelVideosPresenterFactory.h"
 
 @class RTClientAssembly;
+@class RTDeviceAssembly;
 
 @class RTUserProfileViewController;
 
@@ -25,6 +26,7 @@
 @interface RTUserProfileAssembly : TyphoonAssembly <RTUserProfileViewControllerFactory, RTBrowseReelVideosPresenterFactory>
 
 @property (nonatomic, strong, readonly) RTClientAssembly *clientAssembly;
+@property (nonatomic, strong, readonly) RTDeviceAssembly *deviceAssembly;
 
 - (RTUserProfileViewController *)userProfileViewControllerForUsername:(NSString *)username;
 

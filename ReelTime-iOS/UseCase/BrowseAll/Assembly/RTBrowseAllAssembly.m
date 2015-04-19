@@ -1,6 +1,7 @@
 #import "RTBrowseAllAssembly.h"
 
 #import "RTClientAssembly.h"
+#import "RTDeviceAssembly.h"
 #import "RTUserProfileAssembly.h"
 
 #import "RTBrowseAllWireframe.h"
@@ -140,9 +141,10 @@
 
 - (RTBrowseVideosDataManager *)browseAllVideosDataManager {
     return [TyphoonDefinition withClass:[RTBrowseVideosDataManager class] configuration:^(TyphoonDefinition *definition) {
-        [definition injectMethod:@selector(initWithDelegate:client:)
+        [definition injectMethod:@selector(initWithDelegate:thumbnailSupport:client:)
                       parameters:^(TyphoonMethod *method) {
                           [method injectParameterWith:[self browseAllVideosDataManagerDelegate]];
+                          [method injectParameterWith:[self.deviceAssembly thumbnailSupport]];
                           [method injectParameterWith:[self.clientAssembly reelTimeClient]];
         }];
     }];

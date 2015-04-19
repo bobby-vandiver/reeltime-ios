@@ -1,6 +1,7 @@
 #import <Typhoon/Typhoon.h>
 
 @class RTClientAssembly;
+@class RTDeviceAssembly;
 @class RTUserProfileAssembly;
 
 @class RTBrowseAllWireframe;
@@ -23,6 +24,7 @@
 @interface RTBrowseAllAssembly : TyphoonAssembly
 
 @property (nonatomic, strong, readonly) RTClientAssembly *clientAssembly;
+@property (nonatomic, strong, readonly) RTDeviceAssembly *deviceAssembly;
 @property (nonatomic, strong, readonly) RTUserProfileAssembly *userProfileAssembly;
 
 - (RTBrowseAllWireframe *)browseAllWireframe;

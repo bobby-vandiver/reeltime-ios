@@ -1,6 +1,7 @@
 #import "RTUserProfileAssembly.h"
 
 #import "RTClientAssembly.h"
+#import "RTDeviceAssembly.h"
 
 #import "RTUserProfileViewController.h"
 
@@ -137,9 +138,10 @@
                                                            username:(NSString *)username
                                                                view:(id<RTBrowseVideosView>)view {
     return [TyphoonDefinition withClass:[RTBrowseVideosDataManager class] configuration:^(TyphoonDefinition *definition) {
-        [definition injectMethod:@selector(initWithDelegate:client:)
+        [definition injectMethod:@selector(initWithDelegate:thumbnailSupport:client:)
                       parameters:^(TyphoonMethod *method) {
                           [method injectParameterWith:[self browseReelVideosDataManagerDelegateForReelId:reelId username:username view:view]];
+                          [method injectParameterWith:[self.deviceAssembly thumbnailSupport]];
                           [method injectParameterWith:[self.clientAssembly reelTimeClient]];
         }];
     }];

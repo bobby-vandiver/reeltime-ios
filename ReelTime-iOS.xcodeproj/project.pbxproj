@@ -110,6 +110,7 @@
 		713A239F1AB4FF4C0098CE48 /* RTMutableArrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 713A239E1AB4FF4C0098CE48 /* RTMutableArrayDataSource.m */; };
 		713BCE041A5908E4000F2D96 /* RTOAuth2TokenStoreSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 713BCE031A5908E4000F2D96 /* RTOAuth2TokenStoreSpec.m */; };
 		713BCE071A5909DA000F2D96 /* RTFakeKeyChainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 713BCE061A5909DA000F2D96 /* RTFakeKeyChainWrapper.m */; };
+		713CE1371AE3F3F4005B05C3 /* RTDeviceAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 713CE1361AE3F3F4005B05C3 /* RTDeviceAssembly.m */; };
 		713CF1CF1AE28F7D003E2F89 /* RTArrayDataSourceSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 713CF1CE1AE28F7D003E2F89 /* RTArrayDataSourceSpec.m */; };
 		713CF1D31AE2A4E6003E2F89 /* RTThumbnailSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 713CF1D21AE2A4E6003E2F89 /* RTThumbnailSupport.m */; };
 		713CF1D61AE2A5F7003E2F89 /* RTDeviceInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 713CF1D51AE2A5F7003E2F89 /* RTDeviceInformation.m */; };
@@ -405,6 +406,8 @@
 		713BCE031A5908E4000F2D96 /* RTOAuth2TokenStoreSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTOAuth2TokenStoreSpec.m; sourceTree = "<group>"; };
 		713BCE051A5909DA000F2D96 /* RTFakeKeyChainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTFakeKeyChainWrapper.h; sourceTree = "<group>"; };
 		713BCE061A5909DA000F2D96 /* RTFakeKeyChainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTFakeKeyChainWrapper.m; sourceTree = "<group>"; };
+		713CE1351AE3F3F4005B05C3 /* RTDeviceAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTDeviceAssembly.h; sourceTree = "<group>"; };
+		713CE1361AE3F3F4005B05C3 /* RTDeviceAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTDeviceAssembly.m; sourceTree = "<group>"; };
 		713CF1CE1AE28F7D003E2F89 /* RTArrayDataSourceSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTArrayDataSourceSpec.m; sourceTree = "<group>"; };
 		713CF1D11AE2A4E6003E2F89 /* RTThumbnailSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTThumbnailSupport.h; sourceTree = "<group>"; };
 		713CF1D21AE2A4E6003E2F89 /* RTThumbnailSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTThumbnailSupport.m; sourceTree = "<group>"; };
@@ -1583,6 +1586,8 @@
 				711690A11A6B00210031578E /* RTApplicationAssembly.m */,
 				719B35D91A51012E00FFD543 /* RTClientAssembly.h */,
 				719B35DA1A51012E00FFD543 /* RTClientAssembly.m */,
+				713CE1351AE3F3F4005B05C3 /* RTDeviceAssembly.h */,
+				713CE1361AE3F3F4005B05C3 /* RTDeviceAssembly.m */,
 				711690901A6AB5510031578E /* RTSecureStoreAssembly.h */,
 				711690911A6AB5510031578E /* RTSecureStoreAssembly.m */,
 				7116908D1A6AB3970031578E /* RTSecurityAssembly.h */,
@@ -2157,6 +2162,7 @@
 				718A0BE21A4DA87900137C49 /* main.m in Sources */,
 				71331A2D1A880A6F00912B5F /* RTNewsfeedPresenter.m in Sources */,
 				710BB5F91ACDF6EE00F724C7 /* RTCountDownLatch.m in Sources */,
+				713CE1371AE3F3F4005B05C3 /* RTDeviceAssembly.m in Sources */,
 				7116C0541AD982D600590DAF /* RTPagedListViewScrollHandler.m in Sources */,
 				7124363D1ADDE35B00D39A95 /* RTSynchronizedMutableArray.m in Sources */,
 				713A239A1AB4F5F80098CE48 /* RTBrowseVideosPresenter.m in Sources */,
