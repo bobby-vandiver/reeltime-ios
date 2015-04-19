@@ -52,7 +52,7 @@
 		711FF4CB1AA2657200E11BDE /* RKResponseDescriptor+SingleStatusCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 711FF4CA1AA2657200E11BDE /* RKResponseDescriptor+SingleStatusCode.m */; };
 		71201F831A9689C6003F2831 /* RTActivityCell+ConfigureForRTActivityMessageSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71201F821A9689C6003F2831 /* RTActivityCell+ConfigureForRTActivityMessageSpec.m */; };
 		71201F8C1A96B7CD003F2831 /* RTNewsfeedAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 71201F8B1A96B7CD003F2831 /* RTNewsfeedAssembly.m */; };
-		712410CF1ABDC58200B1FF75 /* UITableView+LastVisibleRowSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 712410CE1ABDC58200B1FF75 /* UITableView+LastVisibleRowSpec.m */; };
+		712410CF1ABDC58200B1FF75 /* UITableView+LastVisibleSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 712410CE1ABDC58200B1FF75 /* UITableView+LastVisibleSpec.m */; };
 		7124363D1ADDE35B00D39A95 /* RTSynchronizedMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 7124363C1ADDE35B00D39A95 /* RTSynchronizedMutableArray.m */; };
 		7126980F1AA3CC8000E7066B /* RTReelList.m in Sources */ = {isa = PBXBuildFile; fileRef = 7126980E1AA3CC8000E7066B /* RTReelList.m */; };
 		712698121AA3CCB600E7066B /* RTVideoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 712698111AA3CCB600E7066B /* RTVideoList.m */; };
@@ -313,7 +313,7 @@
 		71201F821A9689C6003F2831 /* RTActivityCell+ConfigureForRTActivityMessageSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RTActivityCell+ConfigureForRTActivityMessageSpec.m"; sourceTree = "<group>"; };
 		71201F8A1A96B7CD003F2831 /* RTNewsfeedAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTNewsfeedAssembly.h; sourceTree = "<group>"; };
 		71201F8B1A96B7CD003F2831 /* RTNewsfeedAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTNewsfeedAssembly.m; sourceTree = "<group>"; };
-		712410CE1ABDC58200B1FF75 /* UITableView+LastVisibleRowSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+LastVisibleRowSpec.m"; sourceTree = "<group>"; };
+		712410CE1ABDC58200B1FF75 /* UITableView+LastVisibleSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+LastVisibleSpec.m"; sourceTree = "<group>"; };
 		7124363B1ADDE35B00D39A95 /* RTSynchronizedMutableArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTSynchronizedMutableArray.h; sourceTree = "<group>"; };
 		7124363C1ADDE35B00D39A95 /* RTSynchronizedMutableArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTSynchronizedMutableArray.m; sourceTree = "<group>"; };
 		7126980D1AA3CC8000E7066B /* RTReelList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTReelList.h; path = "ReelTime-iOS/Common/Model/RTReelList.h"; sourceTree = SOURCE_ROOT; };
@@ -880,7 +880,7 @@
 		712410CD1ABDC55400B1FF75 /* UITests */ = {
 			isa = PBXGroup;
 			children = (
-				712410CE1ABDC58200B1FF75 /* UITableView+LastVisibleRowSpec.m */,
+				712410CE1ABDC58200B1FF75 /* UITableView+LastVisibleSpec.m */,
 				713CF1CE1AE28F7D003E2F89 /* RTArrayDataSourceSpec.m */,
 			);
 			path = UITests;
@@ -2187,7 +2187,7 @@
 				7144176E1AE09DF700BFA01C /* RTPagedListViewScrollHandlerSpec.m in Sources */,
 				71B6BA6D1AD038FD00723941 /* RTBrowseAllReelsDataManagerDelegateSpec.m in Sources */,
 				71B6BA6E1AD038FD00723941 /* RTBrowseAllViewControllerSpec.m in Sources */,
-				712410CF1ABDC58200B1FF75 /* UITableView+LastVisibleRowSpec.m in Sources */,
+				712410CF1ABDC58200B1FF75 /* UITableView+LastVisibleSpec.m in Sources */,
 				713CF1DE1AE34CE1003E2F89 /* RTThumbnailSupportSpec.m in Sources */,
 				712BE3031A75D74C00478277 /* RTTestCommon.m in Sources */,
 				71A8BA2D1AB0F92E00B0708B /* RTPagedListPresenterSpec.m in Sources */,
