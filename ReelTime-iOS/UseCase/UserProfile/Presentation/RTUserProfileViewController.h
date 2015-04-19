@@ -6,6 +6,8 @@
 
 @class RTUserSummaryPresenter;
 @class RTBrowseReelsPresenter;
+@class RTThumbnailSupport;
+
 @protocol RTBrowseReelVideosPresenterFactory;
 
 @class RTArrayDataSource;
@@ -17,6 +19,7 @@
 + (RTUserProfileViewController *)viewControllerForUsername:(NSString *)username
                                          withUserPresenter:(RTUserSummaryPresenter *)userPresenter
                                             reelsPresenter:(RTBrowseReelsPresenter *)reelsPresenter
-                                reelVideosPresenterFactory:(id<RTBrowseReelVideosPresenterFactory>)reelVideosPresenterFactory;
+                                reelVideosPresenterFactory:(id<RTBrowseReelVideosPresenterFactory>)reelVideosPresenterFactory
+                                          thumbnailSupport:(RTThumbnailSupport *)thumbnailSupport;
 
 @end

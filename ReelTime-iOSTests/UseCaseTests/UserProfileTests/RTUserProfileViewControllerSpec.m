@@ -7,6 +7,7 @@
 #import "RTBrowseReelsPresenter.h"
 #import "RTBrowseVideosPresenter.h"
 #import "RTBrowseReelVideosPresenterFactory.h"
+#import "RTThumbnailSupport.h"
 
 #import "RTReelDescription.h"
 #import "RTUserReelCell.h"
@@ -27,6 +28,7 @@ describe(@"user profile view controller", ^{
     __block RTBrowseReelsPresenter *reelsPresenter;
     
     __block id<RTBrowseReelVideosPresenterFactory> reelVideosPresenterFactory;
+    __block RTThumbnailSupport *thumbnailSupport;
     
     __block UITableView *tableView;
     
@@ -37,11 +39,13 @@ describe(@"user profile view controller", ^{
         reelsPresenter = mock([RTBrowseReelsPresenter class]);
         
         reelVideosPresenterFactory = mockProtocol(@protocol(RTBrowseReelVideosPresenterFactory));
+        thumbnailSupport = mock([RTThumbnailSupport class]);
 
         viewController = [RTUserProfileViewController viewControllerForUsername:username
                                                               withUserPresenter:userPresenter
                                                                  reelsPresenter:reelsPresenter
-                                                     reelVideosPresenterFactory:reelVideosPresenterFactory];
+                                                     reelVideosPresenterFactory:reelVideosPresenterFactory
+                                                               thumbnailSupport:thumbnailSupport];
 
         viewController.reelsListTableView = tableView;
     });
@@ -64,6 +68,17 @@ describe(@"user profile view controller", ^{
         
         it(@"should request the first page of reels", ^{
             [verify(reelsPresenter) requestedNextPage];
+        });
+    });
+    
+    describe(@"table properties", ^{
+
+        it(@"row height is determined by thumbnail height", ^{
+            CGSize stub = CGSizeMake(200, 400);
+            [given([thumbnailSupport dimensions]) willReturnStruct:&stub objCType:@encode(CGSize)];
+            
+            CGFloat height = [viewController tableView:tableView heightForRowAtIndexPath:0];
+            expect(height).to.equal(400);
         });
     });
 

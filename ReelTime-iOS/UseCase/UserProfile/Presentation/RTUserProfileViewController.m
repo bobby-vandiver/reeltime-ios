@@ -4,6 +4,7 @@
 #import "RTBrowseReelsPresenter.h"
 
 #import "RTBrowseReelVideosPresenterFactory.h"
+#import "RTThumbnailSupport.h"
 
 #import "RTArrayDataSource.h"
 #import "RTMutableArrayDataSource.h"
@@ -31,6 +32,7 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
 @property RTMutableArrayDataSource *reelsDataSource;
 
 @property id<RTBrowseReelVideosPresenterFactory> reelVideosPresenterFactory;
+@property RTThumbnailSupport *thumbnailSupport;
 
 @end
 
@@ -39,7 +41,8 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
 + (RTUserProfileViewController *)viewControllerForUsername:(NSString *)username
                                          withUserPresenter:(RTUserSummaryPresenter *)userPresenter
                                             reelsPresenter:(RTBrowseReelsPresenter *)reelsPresenter
-                                reelVideosPresenterFactory:(id<RTBrowseReelVideosPresenterFactory>)reelVideosPresenterFactory {
+                                reelVideosPresenterFactory:(id<RTBrowseReelVideosPresenterFactory>)reelVideosPresenterFactory
+                                          thumbnailSupport:(RTThumbnailSupport *)thumbnailSupport {
 
     NSString *identifier = [RTUserProfileViewController storyboardIdentifier];
     RTUserProfileViewController *controller = [RTStoryboardViewControllerFactory viewControllerWithStoryboardIdentifier:identifier];
@@ -49,6 +52,7 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
         controller.userPresenter = userPresenter;
         controller.reelsPresenter = reelsPresenter;
         controller.reelVideosPresenterFactory = reelVideosPresenterFactory;
+        controller.thumbnailSupport = thumbnailSupport;
     }
     
     [controller createDataSource];
@@ -127,8 +131,7 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    // TODO: This depends on the thumbnail height
-    return 75;
+    return self.thumbnailSupport.dimensions.height;
 }
 
 @end
