@@ -111,6 +111,11 @@
 		713BCE041A5908E4000F2D96 /* RTOAuth2TokenStoreSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 713BCE031A5908E4000F2D96 /* RTOAuth2TokenStoreSpec.m */; };
 		713BCE071A5909DA000F2D96 /* RTFakeKeyChainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 713BCE061A5909DA000F2D96 /* RTFakeKeyChainWrapper.m */; };
 		713CF1CF1AE28F7D003E2F89 /* RTArrayDataSourceSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 713CF1CE1AE28F7D003E2F89 /* RTArrayDataSourceSpec.m */; };
+		713CF1D31AE2A4E6003E2F89 /* RTThumbnailSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 713CF1D21AE2A4E6003E2F89 /* RTThumbnailSupport.m */; };
+		713CF1D61AE2A5F7003E2F89 /* RTDeviceInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 713CF1D51AE2A5F7003E2F89 /* RTDeviceInformation.m */; };
+		713CF1D91AE2AA66003E2F89 /* RTDeviceInformationSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 713CF1D81AE2AA66003E2F89 /* RTDeviceInformationSpec.m */; };
+		713CF1DC1AE2AD53003E2F89 /* RTDeviceHardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 713CF1DB1AE2AD53003E2F89 /* RTDeviceHardware.m */; };
+		713CF1DE1AE34CE1003E2F89 /* RTThumbnailSupportSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 713CF1DD1AE34CE1003E2F89 /* RTThumbnailSupportSpec.m */; };
 		713D7A451A509AC000754A06 /* RTClientCredentialsStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 713D7A441A509AC000754A06 /* RTClientCredentialsStore.m */; };
 		713D7A481A509ACC00754A06 /* RTClientCredentials.m in Sources */ = {isa = PBXBuildFile; fileRef = 713D7A471A509ACC00754A06 /* RTClientCredentials.m */; };
 		713D7A4C1A50A33300754A06 /* RTClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 713D7A4B1A50A33300754A06 /* RTClient.m */; };
@@ -401,6 +406,14 @@
 		713BCE051A5909DA000F2D96 /* RTFakeKeyChainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTFakeKeyChainWrapper.h; sourceTree = "<group>"; };
 		713BCE061A5909DA000F2D96 /* RTFakeKeyChainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTFakeKeyChainWrapper.m; sourceTree = "<group>"; };
 		713CF1CE1AE28F7D003E2F89 /* RTArrayDataSourceSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTArrayDataSourceSpec.m; sourceTree = "<group>"; };
+		713CF1D11AE2A4E6003E2F89 /* RTThumbnailSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTThumbnailSupport.h; sourceTree = "<group>"; };
+		713CF1D21AE2A4E6003E2F89 /* RTThumbnailSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTThumbnailSupport.m; sourceTree = "<group>"; };
+		713CF1D41AE2A5F7003E2F89 /* RTDeviceInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTDeviceInformation.h; sourceTree = "<group>"; };
+		713CF1D51AE2A5F7003E2F89 /* RTDeviceInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTDeviceInformation.m; sourceTree = "<group>"; };
+		713CF1D81AE2AA66003E2F89 /* RTDeviceInformationSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTDeviceInformationSpec.m; sourceTree = "<group>"; };
+		713CF1DA1AE2AD53003E2F89 /* RTDeviceHardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTDeviceHardware.h; sourceTree = "<group>"; };
+		713CF1DB1AE2AD53003E2F89 /* RTDeviceHardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTDeviceHardware.m; sourceTree = "<group>"; };
+		713CF1DD1AE34CE1003E2F89 /* RTThumbnailSupportSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTThumbnailSupportSpec.m; sourceTree = "<group>"; };
 		713D7A431A509AC000754A06 /* RTClientCredentialsStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTClientCredentialsStore.h; path = "ReelTime-iOS/Common/Store/RTClientCredentialsStore.h"; sourceTree = SOURCE_ROOT; };
 		713D7A441A509AC000754A06 /* RTClientCredentialsStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTClientCredentialsStore.m; path = "ReelTime-iOS/Common/Store/RTClientCredentialsStore.m"; sourceTree = SOURCE_ROOT; };
 		713D7A461A509ACC00754A06 /* RTClientCredentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTClientCredentials.h; path = "ReelTime-iOS/Common/Model/RTClientCredentials.h"; sourceTree = SOURCE_ROOT; };
@@ -1085,6 +1098,28 @@
 			path = Presentation;
 			sourceTree = "<group>";
 		};
+		713CF1D01AE2A4B5003E2F89 /* Device */ = {
+			isa = PBXGroup;
+			children = (
+				713CF1DA1AE2AD53003E2F89 /* RTDeviceHardware.h */,
+				713CF1DB1AE2AD53003E2F89 /* RTDeviceHardware.m */,
+				713CF1D41AE2A5F7003E2F89 /* RTDeviceInformation.h */,
+				713CF1D51AE2A5F7003E2F89 /* RTDeviceInformation.m */,
+				713CF1D11AE2A4E6003E2F89 /* RTThumbnailSupport.h */,
+				713CF1D21AE2A4E6003E2F89 /* RTThumbnailSupport.m */,
+			);
+			path = Device;
+			sourceTree = "<group>";
+		};
+		713CF1D71AE2AA53003E2F89 /* DeviceTests */ = {
+			isa = PBXGroup;
+			children = (
+				713CF1D81AE2AA66003E2F89 /* RTDeviceInformationSpec.m */,
+				713CF1DD1AE34CE1003E2F89 /* RTThumbnailSupportSpec.m */,
+			);
+			path = DeviceTests;
+			sourceTree = "<group>";
+		};
 		713D7A491A50A24E00754A06 /* Client */ = {
 			isa = PBXGroup;
 			children = (
@@ -1510,6 +1545,7 @@
 				71565A271A98EDDB00AE1C43 /* ApplicationTests */,
 				717A4B7C1A53503B004C2BC1 /* ClientTests */,
 				712BE2FD1A75D74C00478277 /* Common */,
+				713CF1D71AE2AA53003E2F89 /* DeviceTests */,
 				71921C031A54E1490003A42F /* FakeObjects */,
 				7117C07E1A8998A100EC0152 /* ModelTests */,
 				711F336B1A6234AE00D8D843 /* Resources */,
@@ -1652,6 +1688,7 @@
 				719B35D81A51012E00FFD543 /* Assembly */,
 				713D7A491A50A24E00754A06 /* Client */,
 				710BB5F61ACDF69C00F724C7 /* Concurrency */,
+				713CF1D01AE2A4B5003E2F89 /* Device */,
 				719B35E11A51150000FFD543 /* Error */,
 				7114DF701AB4AF1B003B1D2E /* Logging */,
 				71D9477F1A4FB39C00401963 /* Model */,
@@ -2037,8 +2074,10 @@
 				7172158A1A86576E0002ECC7 /* RTLoginDataManager.m in Sources */,
 				71B6BA681AD036A400723941 /* RTBrowseAllViewController.m in Sources */,
 				7172159C1A8659050002ECC7 /* RTAccountRegistrationAutoLoginAssembly.m in Sources */,
+				713CF1D61AE2A5F7003E2F89 /* RTDeviceInformation.m in Sources */,
 				715C541D1AD4C7B6009C755F /* RTUserSummaryPresenter.m in Sources */,
 				71386E601AD36C01009D064C /* RTVideoDescription.m in Sources */,
+				713CF1D31AE2A4E6003E2F89 /* RTThumbnailSupport.m in Sources */,
 				717D926D1A5B722300EAB6BF /* NSError+RTError.m in Sources */,
 				717215A41A86590D0002ECC7 /* RTAccountRegistrationValidator.m in Sources */,
 				71073CF61A83060700BE6E19 /* RKObjectManager+IncludeHeaders.m in Sources */,
@@ -2070,6 +2109,7 @@
 				71399DF71ADB68C600500E6C /* RTVideoThumbnailCell.m in Sources */,
 				717A4B7B1A534EF8004C2BC1 /* RTRestAPIMappingFactory.m in Sources */,
 				717215A71A8659150002ECC7 /* RTAccountRegistrationWireframe.m in Sources */,
+				713CF1DC1AE2AD53003E2F89 /* RTDeviceHardware.m in Sources */,
 				711690A21A6B00210031578E /* RTApplicationAssembly.m in Sources */,
 				71C5C0AF1A55EAE700CAAFAC /* RTUserCredentials.m in Sources */,
 				715C54121AD4A34E009C755F /* RTUserSummaryDataManager.m in Sources */,
@@ -2136,6 +2176,7 @@
 				71B6BA6D1AD038FD00723941 /* RTBrowseAllReelsDataManagerDelegateSpec.m in Sources */,
 				71B6BA6E1AD038FD00723941 /* RTBrowseAllViewControllerSpec.m in Sources */,
 				712410CF1ABDC58200B1FF75 /* UITableView+LastVisibleRowSpec.m in Sources */,
+				713CF1DE1AE34CE1003E2F89 /* RTThumbnailSupportSpec.m in Sources */,
 				712BE3031A75D74C00478277 /* RTTestCommon.m in Sources */,
 				71A8BA2D1AB0F92E00B0708B /* RTPagedListPresenterSpec.m in Sources */,
 				7160C2BF1A6F48A60045ADDA /* RTAccountRegistrationValidatorSpec.m in Sources */,
@@ -2188,6 +2229,7 @@
 				71647BE81A7F185500F44996 /* RTClientDelegateSpec.m in Sources */,
 				713CF1CF1AE28F7D003E2F89 /* RTArrayDataSourceSpec.m in Sources */,
 				71194C231A81C37900904A06 /* EXPMatchers+beReel.m in Sources */,
+				713CF1D91AE2AA66003E2F89 /* RTDeviceInformationSpec.m in Sources */,
 				71194C1D1A81AEFC00904A06 /* EXPMatchers+beUser.m in Sources */,
 				712BE2FC1A75D74300478277 /* RTClientCredentialsStoreSpec.m in Sources */,
 				71386E551AD3531E009D064C /* RTBrowseReelVideosDataManagerDelegateSpec.m in Sources */,
