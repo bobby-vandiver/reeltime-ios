@@ -56,6 +56,11 @@ describe(@"table view last visible category", ^{
     });
     
     describe(@"last visible row for section", ^{
+        it(@"requested section is not found", ^{
+            NSInteger lastRow = [tableView lastVisibleRowForSection:NSNotFound];
+            expect(lastRow).to.equal(NSNotFound);
+        });
+        
         it(@"has no visible paths", ^{
             tableView.visibleIndexPaths = nil;
             

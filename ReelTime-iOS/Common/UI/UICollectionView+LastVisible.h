@@ -1,6 +1,6 @@
 #import <UIKit/UIKit.h>
 
-@interface UITableView (LastVisible)
+@interface UICollectionView (LastVisible)
 
 - (NSInteger)lastVisibleSection;
 

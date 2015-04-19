@@ -2,7 +2,11 @@
 #import "RTPagedListPresenter.h"
 
 #import "RTArrayDataSource.h"
+
 #import "UITableView+LastVisible.h"
+#import "UICollectionView+LastVisible.h"
+
+#import "RTLogging.h"
 
 @implementation RTPagedListViewScrollHandler
 
@@ -11,25 +15,43 @@
 
     if (![tableView.dataSource isKindOfClass:[RTArrayDataSource class]]) {
         [NSException raise:NSInvalidArgumentException
-                    format:@"Data source must be RTArrayDataSource"];
+                    format:@"Table view data source must be RTArrayDataSource"];
     }
     
-    NSInteger lastVisibleRow = [tableView lastVisibleRowForSection:0];
+    NSInteger lastVisibleSection = [tableView lastVisibleSection];
+    NSInteger lastVisibleRow = [tableView lastVisibleRowForSection:lastVisibleSection];
     
     RTArrayDataSource *dataSource = (RTArrayDataSource *)tableView.dataSource;
-    NSInteger lastItemIndex = dataSource.items.count - 1;
+    [self handleScrollForDataSource:dataSource lastVisibleRow:lastVisibleRow withPresenter:presenter];
+}
+
+- (void)handleScrollForCollectionView:(UICollectionView *)collectionView
+                        withPresenter:(RTPagedListPresenter *)presenter {
+
+    if (![collectionView.dataSource isKindOfClass:[RTArrayDataSource class]]) {
+        [NSException raise:NSInvalidArgumentException
+                    format:@"Collection view data source must be RTArrayDataSource"];
+    }
     
+    NSInteger lastVisibleSection = [collectionView lastVisibleSection];
+    NSInteger lastVisibleRow = [collectionView lastVisibleRowForSection:lastVisibleSection];
+    
+    RTArrayDataSource *dataSource = (RTArrayDataSource *)collectionView.dataSource;
+    [self handleScrollForDataSource:dataSource lastVisibleRow:lastVisibleRow withPresenter:presenter];
+}
+
+- (void)handleScrollForDataSource:(RTArrayDataSource *)dataSource
+                   lastVisibleRow:(NSInteger)lastVisibleRow
+                    withPresenter:(RTPagedListPresenter *)presenter {
+    
+    NSInteger lastItemIndex = dataSource.items.count - 1;
+
     BOOL noRowsAreVisible = (lastVisibleRow == NSNotFound);
     BOOL lastRowIsVisible = (lastVisibleRow == lastItemIndex);
     
     if (noRowsAreVisible || lastRowIsVisible) {
         [presenter requestedNextPage];
     }
-}
-
-- (void)handleScrollForCollectionView:(UICollectionView *)collectionView
-                        withPresenter:(RTPagedListPresenter *)presenter {
-    
 }
 
 @end
