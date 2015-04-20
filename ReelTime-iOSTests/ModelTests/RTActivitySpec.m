@@ -172,7 +172,7 @@ describe(@"activity", ^{
                         break;
                         
                     default:
-                        fail();
+                        failure(@"Unexpected activity type");
                 };
                 
                 equal = [target isEqual:otherActivity];

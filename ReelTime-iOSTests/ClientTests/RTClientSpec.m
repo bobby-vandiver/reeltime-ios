@@ -127,7 +127,7 @@ describe(@"ReelTime Client", ^{
     });
     
     void (^shouldNotExecute)(DoneCallback) = ^(DoneCallback done) {
-        fail();
+        failure(@"Executed an unexpected callback");
         done();
     };
 

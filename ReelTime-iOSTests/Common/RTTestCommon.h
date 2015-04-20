@@ -15,9 +15,6 @@
 #import "EXPMatchers+beReel.h"
 #import "EXPMatchers+beVideo.h"
 
-// Neither Specta nor Expecta provide a way to unconditionally fail a test
-#define fail() expect(0).to.equal(1)
-
 // Constants used in multiple tests
 extern NSString *const clientId;
 extern NSString *const clientSecret;
