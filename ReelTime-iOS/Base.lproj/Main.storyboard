@@ -594,20 +594,35 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
-                                </variation>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="gXl-zo-sPy" secondAttribute="centerX" id="cmv-gD-v4U"/>
+                            <constraint firstAttribute="centerY" secondItem="gXl-zo-sPy" secondAttribute="centerY" id="jwJ-UY-NmN"/>
+                            <constraint firstItem="gXl-zo-sPy" firstAttribute="bottom" secondItem="URe-cE-7tQ" secondAttribute="top" id="mSj-02-Eu2"/>
+                            <constraint firstItem="gXl-zo-sPy" firstAttribute="leading" secondItem="U4f-9u-0nl" secondAttribute="leading" id="qtm-CD-fT7"/>
+                        </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="gXl-zo-sPy"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="cmv-gD-v4U"/>
+                                <exclude reference="jwJ-UY-NmN"/>
+                                <exclude reference="mSj-02-Eu2"/>
+                                <exclude reference="qtm-CD-fT7"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="gXl-zo-sPy"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="cmv-gD-v4U"/>
+                                <include reference="jwJ-UY-NmN"/>
+                                <include reference="mSj-02-Eu2"/>
+                                <include reference="qtm-CD-fT7"/>
                             </mask>
                         </variation>
                     </view>
