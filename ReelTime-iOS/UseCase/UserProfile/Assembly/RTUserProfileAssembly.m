@@ -16,6 +16,9 @@
 #import "RTBrowseReelsDataManagerDelegate.h"
 #import "RTBrowseUserReelsDataManagerDelegate.h"
 
+#import "RTReelWireframe.h"
+#import "RTNoOpReelWireframe.h"
+
 #import "RTBrowseVideosPresenter.h"
 #import "RTBrowseVideosDataManager.h"
 #import "RTBrowseVideosDataManagerDelegate.h"
@@ -72,9 +75,7 @@
                       parameters:^(TyphoonMethod *method) {
                           [method injectParameterWith:[self userProfileViewControllerForUsername:username]];
                           [method injectParameterWith:[self browseUserReelsInteractorForUsername:username]];
-
-                          // TODO: Inject wireframe
-                          [method injectParameterWith:nil];
+                          [method injectParameterWith:[self browseUserReelsWireframe]];
         }];
     }];
 }
@@ -106,6 +107,10 @@
                           [method injectParameterWith:username];
         }];
     }];
+}
+
+- (id<RTReelWireframe>)browseUserReelsWireframe {
+    return [TyphoonDefinition withClass:[RTNoOpReelWireframe class]];
 }
 
 - (RTBrowseVideosPresenter *)browseReelVideosPresenterForReelId:(NSNumber *)reelId

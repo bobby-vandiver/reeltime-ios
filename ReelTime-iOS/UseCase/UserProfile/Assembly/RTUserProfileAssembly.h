@@ -17,6 +17,7 @@
 @class RTBrowseReelsPresenter;
 @class RTBrowseReelsDataManager;
 @protocol RTBrowseReelsDataManagerDelegate;
+@protocol RTReelWireframe;
 
 @class RTBrowseVideosPresenter;
 @class RTBrowseVideosDataManager;
@@ -43,6 +44,8 @@
 - (RTBrowseReelsDataManager *)browseUserReelsDataManagerForUsername:(NSString *)username;
 
 - (id<RTBrowseReelsDataManagerDelegate>)browseUserReelsDataManagerDelegateForUsername:(NSString *)username;
+
+- (id<RTReelWireframe>)browseUserReelsWireframe;
 
 - (RTBrowseVideosPresenter *)browseReelVideosPresenterForReelId:(NSNumber *)reelId
                                                        username:(NSString *)username
