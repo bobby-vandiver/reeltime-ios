@@ -29,14 +29,6 @@
     [self.viewController presentViewController:userProfileViewController animated:YES completion:^{
         DDLogDebug(@"presenting user profile view controller completed");
     }];
-    
-//    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Present User Details"
-//                                                        message:[NSString stringWithFormat:@"Username: %@", username]
-//                                                       delegate:nil
-//                                              cancelButtonTitle:@"OK"
-//                                              otherButtonTitles:nil];
-//    [alertView show];
-
 }
 
 - (void)presentReelForReelId:(NSNumber *)reelId
