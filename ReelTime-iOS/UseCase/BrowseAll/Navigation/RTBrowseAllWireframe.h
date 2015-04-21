@@ -9,6 +9,7 @@
 
 @interface RTBrowseAllWireframe : NSObject <RTUserWireframe, RTReelWireframe, RTVideoWireframe>
 
+// TODO: Depend on factory protocol instead of assembly
 @property RTUserProfileAssembly *userProfileAssembly;
 
 - (instancetype)initWithViewController:(RTBrowseAllViewController *)viewController;

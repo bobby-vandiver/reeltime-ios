@@ -67,7 +67,8 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
     ConfigureCellBlock configBlock = ^(RTUserReelCell *cell, RTReelDescription *description) {
         RTBrowseVideosPresenter *videosPresenter = [self.reelVideosPresenterFactory browseReelVideosPresenterForReelId:description.reelId
                                                                                                               username:self.username
-                                                                                                                  view:cell];
+                                                                                                                  view:cell
+                                                                                                             wireframe:nil];
         [cell configureWithVideosPresenter:videosPresenter];
     };
     

@@ -6,6 +6,7 @@
 @class RTClientAssembly;
 @class RTDeviceAssembly;
 
+@class RTUserProfileWireframe;
 @class RTUserProfileViewController;
 
 @class RTUserSummaryPresenter;
@@ -17,6 +18,7 @@
 @class RTBrowseReelsPresenter;
 @class RTBrowseReelsDataManager;
 @protocol RTBrowseReelsDataManagerDelegate;
+
 @protocol RTReelWireframe;
 
 @class RTBrowseVideosPresenter;
@@ -24,10 +26,14 @@
 @protocol RTBrowseVideosView;
 @protocol RTBrowseVideosDataManagerDelegate;
 
+@protocol RTVideoWireframe;
+
 @interface RTUserProfileAssembly : TyphoonAssembly <RTUserProfileViewControllerFactory, RTBrowseReelVideosPresenterFactory>
 
 @property (nonatomic, strong, readonly) RTClientAssembly *clientAssembly;
 @property (nonatomic, strong, readonly) RTDeviceAssembly *deviceAssembly;
+
+- (RTUserProfileWireframe *)userProfileWireframeForUsername:(NSString *)username;
 
 - (RTUserProfileViewController *)userProfileViewControllerForUsername:(NSString *)username;
 
@@ -49,18 +55,19 @@
 
 - (RTBrowseVideosPresenter *)browseReelVideosPresenterForReelId:(NSNumber *)reelId
                                                        username:(NSString *)username
-                                                           view:(id<RTBrowseVideosView>)view;
+                                                           view:(id<RTBrowseVideosView>)view
+                                                      wireframe:(id<RTVideoWireframe>)wireframe;
 
 - (RTPagedListInteractor *)browseReelVideosInteractorForReelId:(NSNumber *)reelId
                                                       username:(NSString *)username
-                                                          view:(id<RTBrowseVideosView>)view;
+                                                          view:(id<RTBrowseVideosView>)view
+                                                     wireframe:(id<RTVideoWireframe>)wireframe;
 
 - (RTBrowseVideosDataManager *)browseReelVideosDataManagerForReelId:(NSNumber *)reelId
                                                            username:(NSString *)username
-                                                               view:(id<RTBrowseVideosView>)view;
+                                                               view:(id<RTBrowseVideosView>)view
+                                                          wireframe:(id<RTVideoWireframe>)wireframe;
 
-- (id<RTBrowseVideosDataManagerDelegate>)browseReelVideosDataManagerDelegateForReelId:(NSNumber *)reelId
-                                                                             username:(NSString *)username
-                                                                                 view:(id<RTBrowseVideosView>)view;
+- (id<RTBrowseVideosDataManagerDelegate>)browseReelVideosDataManagerDelegateForReelId:(NSNumber *)reelId;
 
 @end

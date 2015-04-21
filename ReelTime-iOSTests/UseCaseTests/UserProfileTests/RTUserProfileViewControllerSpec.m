@@ -132,12 +132,14 @@ describe(@"user profile view controller", ^{
                 [given([description reelId]) willReturn:@(reelId)];
                 [given([reelVideosPresenterFactory browseReelVideosPresenterForReelId:@(reelId)
                                                                              username:username
-                                                                                 view:cell])
+                                                                                 view:cell
+                                                                            wireframe:anything()])
                  willReturn:videosPresenter];
 
                 [verifyCount(reelVideosPresenterFactory, never()) browseReelVideosPresenterForReelId:anything()
                                                                                             username:anything()
-                                                                                                view:anything()];
+                                                                                                view:anything()
+                                                                                           wireframe:anything()];
                 [verifyCount(cell, never()) configureWithVideosPresenter:anything()];
             });
             
