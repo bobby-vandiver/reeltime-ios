@@ -7,6 +7,7 @@
 #import "RTBrowseReelsPresenter.h"
 #import "RTBrowseVideosPresenter.h"
 #import "RTBrowseReelVideosPresenterFactory.h"
+#import "RTVideoWireframe.h"
 #import "RTThumbnailSupport.h"
 
 #import "RTReelDescription.h"
@@ -28,6 +29,8 @@ describe(@"user profile view controller", ^{
     __block RTBrowseReelsPresenter *reelsPresenter;
     
     __block id<RTBrowseReelVideosPresenterFactory> reelVideosPresenterFactory;
+    __block id<RTVideoWireframe> reelVideosWireframe;
+    
     __block RTThumbnailSupport *thumbnailSupport;
     
     __block UITableView *tableView;
@@ -39,12 +42,15 @@ describe(@"user profile view controller", ^{
         reelsPresenter = mock([RTBrowseReelsPresenter class]);
         
         reelVideosPresenterFactory = mockProtocol(@protocol(RTBrowseReelVideosPresenterFactory));
+        reelVideosWireframe = mockProtocol(@protocol(RTVideoWireframe));
+        
         thumbnailSupport = mock([RTThumbnailSupport class]);
 
         viewController = [RTUserProfileViewController viewControllerForUsername:username
                                                               withUserPresenter:userPresenter
                                                                  reelsPresenter:reelsPresenter
                                                      reelVideosPresenterFactory:reelVideosPresenterFactory
+                                                            reelVideosWireframe:reelVideosWireframe
                                                                thumbnailSupport:thumbnailSupport];
 
         viewController.reelsListTableView = tableView;
@@ -133,7 +139,7 @@ describe(@"user profile view controller", ^{
                 [given([reelVideosPresenterFactory browseReelVideosPresenterForReelId:@(reelId)
                                                                              username:username
                                                                                  view:cell
-                                                                            wireframe:anything()])
+                                                                            wireframe:reelVideosWireframe])
                  willReturn:videosPresenter];
 
                 [verifyCount(reelVideosPresenterFactory, never()) browseReelVideosPresenterForReelId:anything()

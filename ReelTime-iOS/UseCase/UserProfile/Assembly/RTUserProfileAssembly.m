@@ -40,12 +40,13 @@
 
 - (RTUserProfileViewController *)userProfileViewControllerForUsername:(NSString *)username {
     return [TyphoonDefinition withClass:[RTUserProfileViewController class] configuration:^(TyphoonDefinition *definition) {
-        [definition useInitializer:@selector(viewControllerForUsername:withUserPresenter:reelsPresenter:reelVideosPresenterFactory:thumbnailSupport:)
+        [definition useInitializer:@selector(viewControllerForUsername:withUserPresenter:reelsPresenter:reelVideosPresenterFactory:reelVideosWireframe:thumbnailSupport:)
                         parameters:^(TyphoonMethod *initializer) {
                             [initializer injectParameterWith:username];
                             [initializer injectParameterWith:[self userSummaryPresenterForUsername:username]];
                             [initializer injectParameterWith:[self browseUserReelsPresenterForUsername:username]];
                             [initializer injectParameterWith:self];
+                            [initializer injectParameterWith:[self userProfileWireframeForUsername:username]];
                             [initializer injectParameterWith:[self.deviceAssembly thumbnailSupport]];
         }];
     }];

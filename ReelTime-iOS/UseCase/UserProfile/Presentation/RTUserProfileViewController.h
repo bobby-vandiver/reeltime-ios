@@ -9,6 +9,7 @@
 @class RTThumbnailSupport;
 
 @protocol RTBrowseReelVideosPresenterFactory;
+@protocol RTVideoWireframe;
 
 @class RTArrayDataSource;
 
@@ -20,6 +21,7 @@
                                          withUserPresenter:(RTUserSummaryPresenter *)userPresenter
                                             reelsPresenter:(RTBrowseReelsPresenter *)reelsPresenter
                                 reelVideosPresenterFactory:(id<RTBrowseReelVideosPresenterFactory>)reelVideosPresenterFactory
+                                       reelVideosWireframe:(id<RTVideoWireframe>)reelVideosWireframe
                                           thumbnailSupport:(RTThumbnailSupport *)thumbnailSupport;
 
 @end

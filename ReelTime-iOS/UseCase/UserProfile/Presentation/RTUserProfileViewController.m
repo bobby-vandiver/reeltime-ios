@@ -32,6 +32,8 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
 @property RTMutableArrayDataSource *reelsDataSource;
 
 @property id<RTBrowseReelVideosPresenterFactory> reelVideosPresenterFactory;
+@property id<RTVideoWireframe> reelVideosWireframe;
+
 @property RTThumbnailSupport *thumbnailSupport;
 
 @end
@@ -42,6 +44,7 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
                                          withUserPresenter:(RTUserSummaryPresenter *)userPresenter
                                             reelsPresenter:(RTBrowseReelsPresenter *)reelsPresenter
                                 reelVideosPresenterFactory:(id<RTBrowseReelVideosPresenterFactory>)reelVideosPresenterFactory
+                                       reelVideosWireframe:(id<RTVideoWireframe>)reelVideosWireframe
                                           thumbnailSupport:(RTThumbnailSupport *)thumbnailSupport {
 
     NSString *identifier = [RTUserProfileViewController storyboardIdentifier];
@@ -52,6 +55,7 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
         controller.userPresenter = userPresenter;
         controller.reelsPresenter = reelsPresenter;
         controller.reelVideosPresenterFactory = reelVideosPresenterFactory;
+        controller.reelVideosWireframe = reelVideosWireframe;
         controller.thumbnailSupport = thumbnailSupport;
     }
     
@@ -68,7 +72,7 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
         RTBrowseVideosPresenter *videosPresenter = [self.reelVideosPresenterFactory browseReelVideosPresenterForReelId:description.reelId
                                                                                                               username:self.username
                                                                                                                   view:cell
-                                                                                                             wireframe:nil];
+                                                                                                             wireframe:self.reelVideosWireframe];
         [cell configureWithVideosPresenter:videosPresenter];
     };
     
