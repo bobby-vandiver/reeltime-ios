@@ -1,13 +1,16 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "RTApplicationAwareWireframe.h"
+
 @class RTLoginViewController;
 @class RTAccountRegistrationWireframe;
 
-@interface RTLoginWireframe : NSObject
+@interface RTLoginWireframe : RTApplicationAwareWireframe
 
 - (instancetype)initWithViewController:(RTLoginViewController *)viewController
-          accountRegistrationWireframe:(RTAccountRegistrationWireframe *)accountRegistrationWireframe;
+          accountRegistrationWireframe:(RTAccountRegistrationWireframe *)accountRegistrationWireframe
+                  applicationWireframe:(RTApplicationWireframe *)applicationWireframe;
 
 - (void)presentLoginInterface;
 

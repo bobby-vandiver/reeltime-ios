@@ -1,6 +1,8 @@
 #import "RTTestCommon.h"
 
 #import "RTApplicationWireframe.h"
+
+#import "RTApplicationNavigationController.h"
 #import "RTApplicationTabBarController.h"
 
 #import "RTApplicationWireframeContainer.h"
@@ -12,7 +14,9 @@ describe(@"application wireframe", ^{
     
     __block RTApplicationWireframe *wireframe;
 
+    __block RTApplicationNavigationController *navigationController;
     __block RTApplicationTabBarController *tabBarController;
+    
     __block RTApplicationWireframeContainer *wireframeContainer;
     
     __block RTLoginWireframe *loginWireframe;
@@ -21,6 +25,8 @@ describe(@"application wireframe", ^{
     
     beforeEach(^{
         window = mock([UIWindow class]);
+    
+        navigationController = mock([RTApplicationNavigationController class]);
         tabBarController = mock([RTApplicationTabBarController class]);
 
         wireframeContainer = [[RTApplicationWireframeContainer alloc] init];
@@ -29,6 +35,7 @@ describe(@"application wireframe", ^{
         wireframeContainer.loginWireframe = loginWireframe;
         
         wireframe = [[RTApplicationWireframe alloc]initWithWindow:window
+                                             navigationController:navigationController
                                                   tabBarController:tabBarController
                                                 wireframeContainer:wireframeContainer];
     });

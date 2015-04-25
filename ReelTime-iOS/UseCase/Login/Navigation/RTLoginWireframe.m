@@ -1,4 +1,5 @@
 #import "RTLoginWireframe.h"
+#import "RTApplicationWireframe.h"
 
 #import "RTLoginViewController.h"
 #import "RTAccountRegistrationWireframe.h"
@@ -13,8 +14,9 @@
 @implementation RTLoginWireframe
 
 - (instancetype)initWithViewController:(RTLoginViewController *)viewController
-          accountRegistrationWireframe:(RTAccountRegistrationWireframe *)accountRegistrationWireframe {
-    self = [super init];
+          accountRegistrationWireframe:(RTAccountRegistrationWireframe *)accountRegistrationWireframe
+                  applicationWireframe:(RTApplicationWireframe *)applicationWireframe {
+    self = [super initWithApplicationWireframe:applicationWireframe];
     if (self) {
         self.viewController = viewController;
         self.accountRegistrationWireframe = accountRegistrationWireframe;
@@ -23,6 +25,7 @@
 }
 
 - (void)presentLoginInterface {
+    [self.applicationWireframe presentNavigationRootViewController:self.viewController];
 }
 
 - (void)presentPostLoginInterface {

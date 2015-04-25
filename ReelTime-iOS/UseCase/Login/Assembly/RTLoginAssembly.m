@@ -2,7 +2,9 @@
 
 #import "RTClientAssembly.h"
 #import "RTSecureStoreAssembly.h"
+
 #import "RTAccountRegistrationAssembly.h"
+#import "RTApplicationAssembly.h"
 
 #import "RTLoginWireframe.h"
 #import "RTLoginViewController.h"
@@ -14,10 +16,11 @@
 
 - (RTLoginWireframe *)loginWireframe {
     return [TyphoonDefinition withClass:[RTLoginWireframe class] configuration:^(TyphoonDefinition *definition) {
-        [definition injectMethod:@selector(initWithViewController:accountRegistrationWireframe:)
+        [definition injectMethod:@selector(initWithViewController:accountRegistrationWireframe:applicationWireframe:)
                       parameters:^(TyphoonMethod *initializer) {
                           [initializer injectParameterWith:[self loginViewController]];
                           [initializer injectParameterWith:[self.accountRegistrationAssembly accountRegistrationWireframe]];
+                          [initializer injectParameterWith:[self.applicationAssembly applicationWireframe]];
         }];
     }];
 }

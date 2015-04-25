@@ -1,7 +1,9 @@
 #import "RTApplicationAssembly.h"
 #import "RTApplicationWireframe.h"
 
+#import "RTApplicationNavigationController.h"
 #import "RTApplicationTabBarController.h"
+
 #import "RTApplicationWireframeContainer.h"
 
 @implementation RTApplicationAssembly
@@ -27,9 +29,10 @@
 
 - (RTApplicationWireframe *)applicationWireframe {
     return [TyphoonDefinition withClass:[RTApplicationWireframe class] configuration:^(TyphoonDefinition *definition) {
-        [definition injectMethod:@selector(initWithWindow:tabBarController:wireframeContainer:)
+        [definition injectMethod:@selector(initWithWindow:navigationController:tabBarController:wireframeContainer:)
                       parameters:^(TyphoonMethod *initializer) {
                           [initializer injectParameterWith:[self mainWindow]];
+                          [initializer injectParameterWith:[self applicationNavigationController]];
                           [initializer injectParameterWith:[self applicationTabBarController]];
                           [initializer injectParameterWith:[self applicationWireframeContainer]];
         }];
@@ -40,6 +43,12 @@
     return [TyphoonDefinition withClass:[RTApplicationWireframeContainer class] configuration:^(TyphoonDefinition *definition) {
         [definition injectProperty:@selector(loginWireframe) with:[self.loginAssembly loginWireframe]];
     }];
+}
+
+- (RTApplicationNavigationController *)applicationNavigationController {
+    return [TyphoonDefinition withClass:[RTApplicationNavigationController class] configuration:^(TyphoonDefinition *definition) {
+        [definition useInitializer:@selector(initWithoutRootViewController)];
+    }];    
 }
 
 - (RTApplicationTabBarController *)applicationTabBarController {
