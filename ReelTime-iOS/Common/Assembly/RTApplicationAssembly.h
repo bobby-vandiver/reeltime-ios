@@ -4,6 +4,7 @@
 
 #import "RTAppDelegate.h"
 #import "RTApplicationWireframe.h"
+#import "RTApplicationWireframeContainer.h"
 
 #import "RTNewsfeedAssembly.h"
 #import "RTBrowseAllAssembly.h"
@@ -19,6 +20,8 @@
 - (RTAppDelegate *)appDelegate;
 
 - (RTApplicationWireframe *)applicationWireframe;
+
+- (RTApplicationWireframeContainer *)applicationWireframeContainer;
 
 - (RTApplicationTabBarController *)applicationTabBarController;
 

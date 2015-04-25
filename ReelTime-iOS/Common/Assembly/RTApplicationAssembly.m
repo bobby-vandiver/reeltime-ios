@@ -2,6 +2,7 @@
 #import "RTApplicationWireframe.h"
 
 #import "RTApplicationTabBarController.h"
+#import "RTApplicationWireframeContainer.h"
 
 @implementation RTApplicationAssembly
 
@@ -26,15 +27,18 @@
 
 - (RTApplicationWireframe *)applicationWireframe {
     return [TyphoonDefinition withClass:[RTApplicationWireframe class] configuration:^(TyphoonDefinition *definition) {
-        [definition injectMethod:@selector(initWithWindow:tabBarController:loginWireframe:)
+        [definition injectMethod:@selector(initWithWindow:tabBarController:wireframeContainer:)
                       parameters:^(TyphoonMethod *initializer) {
                           [initializer injectParameterWith:[self mainWindow]];
                           [initializer injectParameterWith:[self applicationTabBarController]];
-                          [initializer injectParameterWith:[self.loginAssembly loginWireframe]];
+                          [initializer injectParameterWith:[self applicationWireframeContainer]];
         }];
-        
-        // TODO: Only for testing purposes -- should be removed!
-        [definition injectProperty:@selector(browseViewController) with:[self.browseAllAssembly browseAllViewController]];
+    }];
+}
+
+- (RTApplicationWireframeContainer *)applicationWireframeContainer {
+    return [TyphoonDefinition withClass:[RTApplicationWireframeContainer class] configuration:^(TyphoonDefinition *definition) {
+        [definition injectProperty:@selector(loginWireframe) with:[self.loginAssembly loginWireframe]];
     }];
 }
 

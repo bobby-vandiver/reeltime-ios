@@ -2,19 +2,13 @@
 #import <UIKit/UIKit.h>
 
 @class RTApplicationTabBarController;
-@class RTLoginWireframe;
-@class RTBrowseAllViewController;
-@class RTUserProfileViewController;
+@class RTApplicationWireframeContainer;
 
 @interface RTApplicationWireframe : NSObject
 
-@property RTBrowseAllViewController *browseViewController;
-
-@property RTUserProfileViewController *userProfileViewController;
-
 - (instancetype)initWithWindow:(UIWindow *)window
               tabBarController:(RTApplicationTabBarController *)tabBarController
-                loginWireframe:(RTLoginWireframe *)loginWireframe;
+            wireframeContainer:(RTApplicationWireframeContainer *)wireframeContainer;
 
 - (void)presentInitialScreen;
 
