@@ -4,6 +4,8 @@
 @class RTSecureStoreAssembly;
 
 @class RTAccountRegistrationAssembly;
+@class RTDeviceRegistrationAssembly;
+
 @class RTApplicationAssembly;
 
 @class RTLoginWireframe;
@@ -18,6 +20,8 @@
 @property (nonatomic, strong, readonly) RTSecureStoreAssembly *secureStoreAssembly;
 
 @property (nonatomic, strong, readonly) RTAccountRegistrationAssembly *accountRegistrationAssembly;
+@property (nonatomic, strong, readonly) RTDeviceRegistrationAssembly *deviceRegistrationAssembly;
+
 @property (nonatomic, strong, readonly) RTApplicationAssembly *applicationAssembly;
 
 - (RTLoginWireframe *)loginWireframe;

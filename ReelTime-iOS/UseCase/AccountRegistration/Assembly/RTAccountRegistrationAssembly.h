@@ -7,6 +7,7 @@
 
 @class RTLoginAssembly;
 @class RTAccountRegistrationAutoLoginAssembly;
+@class RTDeviceRegistrationAssembly;
 
 @class RTAccountRegistrationWireframe;
 @class RTAccountRegistrationViewController;
@@ -23,6 +24,7 @@
 
 @property (nonatomic, strong, readonly) RTLoginAssembly *loginAssembly;
 @property (nonatomic, strong, readonly) RTAccountRegistrationAutoLoginAssembly *accountRegistrationAutoLoginAssembly;
+@property (nonatomic, strong, readonly) RTDeviceRegistrationAssembly *deviceRegistrationAssembly;
 
 - (RTAccountRegistrationWireframe *)accountRegistrationWireframe;
 
