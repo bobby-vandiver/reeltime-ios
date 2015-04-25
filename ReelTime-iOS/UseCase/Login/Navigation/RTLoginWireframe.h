@@ -9,7 +9,7 @@
 - (instancetype)initWithViewController:(RTLoginViewController *)viewController
           accountRegistrationWireframe:(RTAccountRegistrationWireframe *)accountRegistrationWireframe;
 
-- (void)presentLoginInterfaceFromWindow:(UIWindow *)window;
+- (void)presentLoginInterface;
 
 - (void)presentPostLoginInterface;
 

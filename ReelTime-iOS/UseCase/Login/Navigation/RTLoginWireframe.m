@@ -8,8 +8,6 @@
 @property RTLoginViewController *viewController;
 @property RTAccountRegistrationWireframe *accountRegistrationWireframe;
 
-@property (nonatomic) UIWindow *window;
-
 @end
 
 @implementation RTLoginWireframe
@@ -24,9 +22,7 @@
     return self;
 }
 
-- (void)presentLoginInterfaceFromWindow:(UIWindow *)window {
-    window.rootViewController = self.viewController;
-    self.window = window;
+- (void)presentLoginInterface {
 }
 
 - (void)presentPostLoginInterface {
@@ -48,7 +44,7 @@
 }
 
 - (void)presentAccountRegistrationInterface {
-    [self.accountRegistrationWireframe presentAccountRegistrationInterfaceFromWindow:self.window];
+    [self.accountRegistrationWireframe presentAccountRegistrationInterface];
 }
 
 @end

@@ -36,7 +36,7 @@ describe(@"application wireframe", ^{
     describe(@"presenting initial screen", ^{
         it(@"should present the login interface", ^{
             [wireframe presentInitialScreen];
-            [verify(loginWireframe) presentLoginInterfaceFromWindow:window];
+            [verify(loginWireframe) presentLoginInterface];
         });
     });
 });

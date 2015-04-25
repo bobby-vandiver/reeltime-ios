@@ -31,7 +31,7 @@
 }
 
 - (void)presentInitialScreen {
-    [self.wireframeContainer.loginWireframe presentLoginInterfaceFromWindow:self.window];
+    [self.wireframeContainer.loginWireframe presentLoginInterface];
 }
 
 - (void)presentTabBarManagedScreen {

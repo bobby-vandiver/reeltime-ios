@@ -17,8 +17,7 @@
     return self;
 }
 
-- (void)presentAccountRegistrationInterfaceFromWindow:(UIWindow *)window {
-    window.rootViewController = self.viewController;
+- (void)presentAccountRegistrationInterface {
 }
 
 - (void)presentLoginInterface {

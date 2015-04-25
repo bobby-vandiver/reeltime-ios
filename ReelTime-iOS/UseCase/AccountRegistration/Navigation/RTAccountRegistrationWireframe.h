@@ -7,7 +7,7 @@
 
 - (instancetype)initWithViewController:(RTAccountRegistrationViewController *)viewController;
 
-- (void)presentAccountRegistrationInterfaceFromWindow:(UIWindow *)window;
+- (void)presentAccountRegistrationInterface;
 
 - (void)presentLoginInterface;
 
