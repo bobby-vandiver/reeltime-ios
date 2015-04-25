@@ -3,6 +3,8 @@
 @class RTClientAssembly;
 @class RTSecureStoreAssembly;
 
+@class RTApplicationAssembly;
+
 @class RTLoginAssembly;
 @class RTAccountRegistrationAutoLoginAssembly;
 
@@ -16,6 +18,8 @@
 
 @property (nonatomic, strong, readonly) RTClientAssembly *clientAssembly;
 @property (nonatomic, strong, readonly) RTSecureStoreAssembly *secureStoreAssembly;
+
+@property (nonatomic, strong, readonly) RTApplicationAssembly *applicationAssembly;
 
 @property (nonatomic, strong, readonly) RTLoginAssembly *loginAssembly;
 @property (nonatomic, strong, readonly) RTAccountRegistrationAutoLoginAssembly *accountRegistrationAutoLoginAssembly;

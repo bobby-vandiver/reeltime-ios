@@ -1,11 +1,15 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "RTApplicationAwareWireframe.h"
+
 @class RTAccountRegistrationViewController;
+@class RTApplicationWireframe;
 
-@interface RTAccountRegistrationWireframe : NSObject
+@interface RTAccountRegistrationWireframe : RTApplicationAwareWireframe
 
-- (instancetype)initWithViewController:(RTAccountRegistrationViewController *)viewController;
+- (instancetype)initWithViewController:(RTAccountRegistrationViewController *)viewController
+                  applicationWireframe:(RTApplicationWireframe *)applicationWireframe;
 
 - (void)presentAccountRegistrationInterface;
 

@@ -48,4 +48,8 @@
     [self.navigationController setRootViewController:viewController];
 }
 
+- (void)navigateToViewController:(UIViewController *)viewController {
+    [self.navigationController pushViewController:viewController animated:YES];
+}
+
 @end

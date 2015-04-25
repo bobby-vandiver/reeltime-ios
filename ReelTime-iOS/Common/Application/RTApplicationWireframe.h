@@ -18,4 +18,6 @@
 
 - (void)presentNavigationRootViewController:(UIViewController *)viewController;
 
+- (void)navigateToViewController:(UIViewController *)viewController;
+
 @end
