@@ -136,6 +136,49 @@ describe(@"device registration data manager", ^{
             });
         });
     });
+    
+    describe(@"store client credentials", ^{
+        __block BOOL callbackExecuted;
+        
+        void (^callback)() = ^{
+            callbackExecuted = YES;
+        };
+        
+        beforeEach(^{
+            callbackExecuted = NO;
+        });
+        
+        it(@"should execute callback on successful storage", ^{
+            [[given([clientCredentialsStore storeClientCredentials:clientCredentials forUsername:username error:nil])
+              withMatcher:anything() forArgument:2] willReturnBool:YES];
+            
+            [dataManager storeClientCredentials:clientCredentials
+                                    forUsername:username
+                                       callback:callback];
+            
+            expect(callbackExecuted).to.beTruthy();
+        });
+        
+        it(@"should notify delegate of storage error", ^{
+            [[given([clientCredentialsStore storeClientCredentials:clientCredentials forUsername:username error:nil])
+              withMatcher:anything() forArgument:2] willReturnBool:NO];
+            
+            [dataManager storeClientCredentials:clientCredentials
+                                    forUsername:username
+                                       callback:callback];
+            
+            expect(callbackExecuted).to.beFalsy();
+            
+            MKTArgumentCaptor *captor = [[MKTArgumentCaptor alloc] init];
+
+            [verify(delegate) deviceRegistrationDataOperationFailedWithErrors:[captor capture]];
+            
+            NSArray *errors = [captor value];
+            expect(errors).to.haveACountOf(1);
+            
+            expect(errors[0]).to.beError(RTDeviceRegistrationErrorDomain, RTDeviceRegistrationErrorUnableToStoreClientCredentials);
+        });
+    });
 });
 
 SpecEnd

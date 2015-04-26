@@ -13,6 +13,9 @@
 
 + (NSError *)deviceRegistrationErrorWithCode:(RTDeviceRegistrationError)code;
 
++ (NSError *)deviceRegistrationErrorWithCode:(RTDeviceRegistrationError)code
+                               originalError:(NSError *)error;
+
 + (NSError *)keyChainErrorWithCode:(RTKeyChainError)code
                      originalError:(NSError *)error;
 

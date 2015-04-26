@@ -78,7 +78,20 @@
 }
 
 - (void)storeClientCredentials:(RTClientCredentials *)clientCredentials
-                   forUsername:(NSString *)username callback:(void (^)())callback {
+                   forUsername:(NSString *)username
+                      callback:(void (^)())callback {
+    NSError *storeError;
+    BOOL success = [self.clientCredentialsStore storeClientCredentials:clientCredentials
+                                                           forUsername:username
+                                                                 error:&storeError];
+    if (success) {
+        callback();
+    }
+    else {
+        NSError *error = [RTErrorFactory deviceRegistrationErrorWithCode:RTDeviceRegistrationErrorUnableToStoreClientCredentials
+                                                           originalError:storeError];
+        [self.delegate deviceRegistrationDataOperationFailedWithErrors:@[error]];
+    }
 }
 
 @end

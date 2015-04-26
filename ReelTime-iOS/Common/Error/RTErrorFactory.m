@@ -15,6 +15,14 @@
                            userInfo:nil];
 }
 
++ (NSError *)deviceRegistrationErrorWithCode:(RTDeviceRegistrationError)code
+                               originalError:(NSError *)error {
+    return [NSError errorWithDomain:RTDeviceRegistrationErrorDomain
+                               code:code
+                           userInfo:nil
+                      originalError:error];
+}
+
 + (NSError *)keyChainErrorWithCode:(RTKeyChainError)code
                      originalError:(NSError *)error {
     return [NSError errorWithDomain:RTKeyChainWrapperErrorDomain
