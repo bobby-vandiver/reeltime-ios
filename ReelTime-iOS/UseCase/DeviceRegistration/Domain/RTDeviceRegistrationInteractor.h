@@ -1,8 +1,15 @@
 #import <Foundation/Foundation.h>
+#import "RTDeviceRegistrationDataManagerDelegate.h"
 
-@interface RTDeviceRegistrationInteractor : NSObject
+@protocol RTDeviceRegistrationInteractorDelegate;
+@class RTDeviceRegistrationDataManager;
 
-- (void)registerDeviceWithDeviceName:(NSString *)deviceName
+@interface RTDeviceRegistrationInteractor : NSObject <RTDeviceRegistrationDataManagerDelegate>
+
+- (instancetype)initWithDelegate:(id<RTDeviceRegistrationInteractorDelegate>)delegate
+                     dataManager:(RTDeviceRegistrationDataManager *)dataManager;
+
+- (void)registerDeviceWithClientName:(NSString *)clientName
                             username:(NSString *)username
                             password:(NSString *)password;
 
