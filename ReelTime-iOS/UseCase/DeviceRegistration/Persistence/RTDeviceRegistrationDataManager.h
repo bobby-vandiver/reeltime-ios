@@ -3,8 +3,6 @@
 @protocol RTDeviceRegistrationDataManagerDelegate;
 
 @class RTClient;
-
-@class RTServerErrorsConverter;
 @class RTClientCredentialsStore;
 
 @class RTUserCredentials;
@@ -14,7 +12,6 @@
 
 - (instancetype)initWithDelegate:(id<RTDeviceRegistrationDataManagerDelegate>)delegate
                           client:(RTClient *)client
-           serverErrorsConverter:(RTServerErrorsConverter *)serverErrorsConverter
           clientCredentialsStore:(RTClientCredentialsStore *)clientCredentialsStore;
 
 - (void)fetchClientCredentialsForClientName:(NSString *)clientName

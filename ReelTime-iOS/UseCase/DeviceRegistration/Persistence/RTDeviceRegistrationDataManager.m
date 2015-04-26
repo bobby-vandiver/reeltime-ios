@@ -2,9 +2,10 @@
 #import "RTDeviceRegistrationDataManagerDelegate.h"
 
 #import "RTClient.h"
-
-#import "RTServerErrorsConverter.h"
 #import "RTClientCredentialsStore.h"
+
+#import "RTDeviceRegistrationServerErrorMapping.h"
+#import "RTServerErrorsConverter.h"
 
 #import "RTUserCredentials.h"
 #import "RTClientCredentials.h"
@@ -23,25 +24,17 @@
 
 @implementation RTDeviceRegistrationDataManager
 
-+ (NSDictionary *)serverMessageToErrorCodeMap {
-    return @{
-             @"[username] is required": @(RTDeviceRegistrationErrorMissingUsername),
-             @"[password] is required": @(RTDeviceRegistrationErrorMissingPassword),
-             @"[client_name] is required": @(RTDeviceRegistrationErrorMissingClientName),
-             @"Invalid credentials": @(RTDeviceRegistrationErrorInvalidCredentials)
-             };
-}
-
 - (instancetype)initWithDelegate:(id<RTDeviceRegistrationDataManagerDelegate>)delegate
                           client:(RTClient *)client
-           serverErrorsConverter:(RTServerErrorsConverter *)serverErrorsConverter
           clientCredentialsStore:(RTClientCredentialsStore *)clientCredentialsStore {
     self = [super init];
     if (self) {
         self.delegate = delegate;
         self.client = client;
-        self.serverErrorsConverter = serverErrorsConverter;
         self.clientCredentialsStore = clientCredentialsStore;
+
+        RTDeviceRegistrationServerErrorMapping *mapping = [[RTDeviceRegistrationServerErrorMapping alloc] init];
+        self.serverErrorsConverter = [[RTServerErrorsConverter alloc] initWithMapping:mapping];
     }
     return self;
 }
@@ -55,7 +48,7 @@
     };
     
     ServerErrorsCallback failureCallback = ^(RTServerErrors *serverErrors) {
-        NSArray *deviceRegistrationErrors = [self convertServerErrors:serverErrors];
+        NSArray *deviceRegistrationErrors = [self.serverErrorsConverter convertServerErrors:serverErrors];
         [self.delegate deviceRegistrationDataOperationFailedWithErrors:deviceRegistrationErrors];
     };
     
@@ -63,18 +56,6 @@
                               userCredentials:userCredentials
                                       success:successCallback
                                       failure:failureCallback];
-}
-
-- (NSArray *)convertServerErrors:(RTServerErrors *)serverErrors {
-    NSDictionary *mapping = [RTDeviceRegistrationDataManager serverMessageToErrorCodeMap];
-    
-    id converter = ^NSError *(NSInteger code) {
-        return [RTErrorFactory deviceRegistrationErrorWithCode:code];
-    };
-    
-    return [self.serverErrorsConverter convertServerErrors:serverErrors
-                                               withMapping:mapping
-                                                 converter:converter];
 }
 
 - (void)storeClientCredentials:(RTClientCredentials *)clientCredentials

@@ -7,7 +7,6 @@
 @class RTAuthenticationAwareHTTPClientDelegate;
 @class RKObjectManager;
 @class RTEndpointPathFormatter;
-@class RTServerErrorsConverter;
 
 @interface RTClientAssembly : TyphoonAssembly
 
@@ -22,7 +21,5 @@
 - (RKObjectManager *)restKitObjectManager;
 
 - (RTEndpointPathFormatter *)endpointPathFormatter;
-
-- (RTServerErrorsConverter *)serverErrorsConverter;
 
 @end

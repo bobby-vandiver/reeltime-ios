@@ -2,8 +2,6 @@
 
 @protocol RTAccountRegistrationDataManagerDelegate;
 
-@class RTServerErrorsConverter;
-
 @class RTClient;
 @class RTClientCredentialsStore;
 
@@ -14,7 +12,6 @@
 
 - (instancetype)initWithDelegate:(id<RTAccountRegistrationDataManagerDelegate>)delegate
                           client:(RTClient *)client
-           serverErrorsConverter:(RTServerErrorsConverter *)serverErrorsConverter
           clientCredentialsStore:(RTClientCredentialsStore *)clientCredentialsStore;
 
 - (void)registerAccount:(RTAccountRegistration *)registration

@@ -31,12 +31,9 @@ describe(@"device registration data manager", ^{
         clientCredentialsStore = mock([RTClientCredentialsStore class]);
         client = mock([RTClient class]);
         
-        RTServerErrorsConverter *converter = [[RTServerErrorsConverter alloc] init];
-        
         delegate = mockProtocol(@protocol(RTDeviceRegistrationDataManagerDelegate));
         dataManager = [[RTDeviceRegistrationDataManager alloc] initWithDelegate:delegate
                                                                          client:client
-                                                          serverErrorsConverter:converter
                                                          clientCredentialsStore:clientCredentialsStore];
         
         userCredentials = [[RTUserCredentials alloc] initWithUsername:username

@@ -7,9 +7,7 @@
 #import "RTAuthenticationAwareHTTPClient.h"
 
 #import "RTEndpointPathFormatter.h"
-
 #import "RTResponseDescriptorFactory.h"
-#import "RTServerErrorsConverter.h"
 
 #import <RestKit/RestKit.h>
 
@@ -138,10 +136,6 @@
 - (NSURL *)baseUrl {
 //    return [NSURL URLWithString: @"http://localhost:8080/reeltime"];
     return [NSURL URLWithString: @"http://localhost:4567/"];
-}
-
-- (RTServerErrorsConverter *)serverErrorsConverter {
-    return [TyphoonDefinition withClass:[RTServerErrorsConverter class]];
 }
 
 @end

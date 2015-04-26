@@ -1,11 +1,13 @@
 #import <Foundation/Foundation.h>
 
+@protocol RTServerErrorMessageToErrorCodeMapping;
 @class RTServerErrors;
 
 @interface RTServerErrorsConverter : NSObject
 
-- (NSArray *)convertServerErrors:(RTServerErrors *)serverErrors
-                     withMapping:(NSDictionary *)mapping
-                       converter:(NSError *(^)(NSInteger code))converter;
+- (instancetype)initWithMapping:(id<RTServerErrorMessageToErrorCodeMapping>)mapping;
+
+- (NSArray *)convertServerErrors:(RTServerErrors *)serverErrors;
+
 
 @end

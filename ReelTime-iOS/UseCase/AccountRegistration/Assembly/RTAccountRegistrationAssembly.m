@@ -69,11 +69,10 @@
 
 - (RTAccountRegistrationDataManager *)accountRegistrationDataManager {
     return [TyphoonDefinition withClass:[RTAccountRegistrationDataManager class] configuration:^(TyphoonDefinition *definition) {
-        [definition injectMethod:@selector(initWithDelegate:client:serverErrorsConverter:clientCredentialsStore:)
+        [definition injectMethod:@selector(initWithDelegate:client:clientCredentialsStore:)
                       parameters:^(TyphoonMethod *initializer) {
                           [initializer injectParameterWith:[self accountRegistrationInteractor]];
                           [initializer injectParameterWith:[self.clientAssembly reelTimeClient]];
-                          [initializer injectParameterWith:[self.clientAssembly serverErrorsConverter]];
                           [initializer injectParameterWith:[self.secureStoreAssembly clientCredentialsStore]];
         }];
     }];

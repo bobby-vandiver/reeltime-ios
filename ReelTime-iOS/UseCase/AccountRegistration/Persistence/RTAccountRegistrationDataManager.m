@@ -10,6 +10,7 @@
 #import "RTServerErrors.h"
 #import "RTServerErrorsConverter.h"
 
+#import "RTAccountRegistrationServerErrorMapping.h"
 #import "RTErrorFactory.h"
 
 @interface RTAccountRegistrationDataManager ()
@@ -23,37 +24,17 @@
 
 @implementation RTAccountRegistrationDataManager
 
-+ (NSDictionary *)serverMessageToErrorCodeMap {
-    return @{
-             @"[username] is required": @(RTAccountRegistrationErrorMissingUsername),
-             @"[username] must be 2-15 alphanumeric characters long": @(RTAccountRegistrationErrorInvalidUsername),
-             @"[username] is not available": @(RTAccountRegistrationErrorUsernameIsUnavailable),
-             
-             @"[password] is required": @(RTAccountRegistrationErrorMissingPassword),
-             @"[password] must be at least 6 characters long": @(RTAccountRegistrationErrorInvalidPassword),
-             
-             @"[email] is required": @(RTAccountRegistrationErrorMissingEmail),
-             @"[email] is not a valid e-mail address": @(RTAccountRegistrationErrorInvalidEmail),
-             @"[email] is not available": @(RTAccountRegistrationErrorEmailIsUnavailable),
-             
-             @"[display_name] is required": @(RTAccountRegistrationErrorMissingDisplayName),
-             @"[display_name] must be 2-20 alphanumeric or space characters long": @(RTAccountRegistrationErrorInvalidDisplayName),
-             
-             @"[client_name] is required": @(RTAccountRegistrationErrorMissingClientName),
-             @"Unable to register. Please try again.": @(RTAccountRegistrationErrorRegistrationServiceUnavailable)
-             };
-}
-
 - (instancetype)initWithDelegate:(id<RTAccountRegistrationDataManagerDelegate>)delegate
                           client:(RTClient *)client
-           serverErrorsConverter:(RTServerErrorsConverter *)serverErrorsConverter
           clientCredentialsStore:(RTClientCredentialsStore *)clientCredentialsStore {
     self = [super init];
     if (self) {
         self.delegate = delegate;
         self.client = client;
-        self.serverErrorsConverter = serverErrorsConverter;
         self.clientCredentialsStore = clientCredentialsStore;
+
+        RTAccountRegistrationServerErrorMapping *mapping = [[RTAccountRegistrationServerErrorMapping alloc] init];
+        self.serverErrorsConverter = [[RTServerErrorsConverter alloc] initWithMapping:mapping];
     }
     return self;
 }
@@ -66,25 +47,13 @@
     };
     
     id failureCallback = ^(RTServerErrors *serverErrors) {
-        NSArray *registrationErrors = [self convertServerErrors:serverErrors];
+        NSArray *registrationErrors = [self.serverErrorsConverter convertServerErrors:serverErrors];
         [self.delegate registerAccountFailedWithErrors:registrationErrors];
     };
     
     [self.client registerAccount:registration
                          success:successCallback
                          failure:failureCallback];
-}
-
-- (NSArray *)convertServerErrors:(RTServerErrors *)serverErrors {
-    NSDictionary *mapping = [RTAccountRegistrationDataManager serverMessageToErrorCodeMap];
-
-    id converter = ^NSError *(NSInteger code) {
-        return [RTErrorFactory accountRegistrationErrorWithCode:code];
-    };
-    
-    return [self.serverErrorsConverter convertServerErrors:serverErrors
-                                               withMapping:mapping
-                                                 converter:converter];
 }
 
 - (void)saveClientCredentials:(RTClientCredentials *)clientCredentials

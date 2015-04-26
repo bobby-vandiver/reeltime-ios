@@ -151,6 +151,8 @@
 		7153EDF91AED169600000D1C /* RTDeviceRegistrationDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7153EDF81AED169600000D1C /* RTDeviceRegistrationDataManager.m */; };
 		7153EDFB1AED171D00000D1C /* RTDeviceRegistrationDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7153EDFA1AED171D00000D1C /* RTDeviceRegistrationDataManagerSpec.m */; };
 		7153EDFE1AED17A900000D1C /* RTDeviceRegistrationInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7153EDFD1AED17A900000D1C /* RTDeviceRegistrationInteractor.m */; };
+		7153EE041AED39C500000D1C /* RTDeviceRegistrationServerErrorMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 7153EE031AED39C500000D1C /* RTDeviceRegistrationServerErrorMapping.m */; };
+		7153EE091AED3CD900000D1C /* RTAccountRegistrationServerErrorMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 7153EE081AED3CD900000D1C /* RTAccountRegistrationServerErrorMapping.m */; };
 		715555A71A9ED1F40091F432 /* RTAuthenticationAwareHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 715555A61A9ED1F40091F432 /* RTAuthenticationAwareHTTPClient.m */; };
 		71565A261A98ED5900AE1C43 /* RTApplicationWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 71565A251A98ED5900AE1C43 /* RTApplicationWireframe.m */; };
 		71565A291A98EDE900AE1C43 /* RTApplicationWireframeSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71565A281A98EDE900AE1C43 /* RTApplicationWireframeSpec.m */; };
@@ -489,6 +491,11 @@
 		7153EDFD1AED17A900000D1C /* RTDeviceRegistrationInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTDeviceRegistrationInteractor.m; sourceTree = "<group>"; };
 		7153EDFF1AED1B8C00000D1C /* RTDeviceRegistrationDataManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTDeviceRegistrationDataManagerDelegate.h; sourceTree = "<group>"; };
 		7153EE001AED255900000D1C /* RTDeviceRegistrationError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTDeviceRegistrationError.h; sourceTree = "<group>"; };
+		7153EE021AED39C500000D1C /* RTDeviceRegistrationServerErrorMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTDeviceRegistrationServerErrorMapping.h; sourceTree = "<group>"; };
+		7153EE031AED39C500000D1C /* RTDeviceRegistrationServerErrorMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTDeviceRegistrationServerErrorMapping.m; sourceTree = "<group>"; };
+		7153EE061AED3AED00000D1C /* RTServerErrorMessageToErrorCodeMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTServerErrorMessageToErrorCodeMapping.h; sourceTree = "<group>"; };
+		7153EE071AED3CD900000D1C /* RTAccountRegistrationServerErrorMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTAccountRegistrationServerErrorMapping.h; sourceTree = "<group>"; };
+		7153EE081AED3CD900000D1C /* RTAccountRegistrationServerErrorMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAccountRegistrationServerErrorMapping.m; sourceTree = "<group>"; };
 		715555A51A9ED1F40091F432 /* RTAuthenticationAwareHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTAuthenticationAwareHTTPClient.h; sourceTree = "<group>"; };
 		715555A61A9ED1F40091F432 /* RTAuthenticationAwareHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAuthenticationAwareHTTPClient.m; sourceTree = "<group>"; };
 		71565A241A98ED5900AE1C43 /* RTApplicationWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTApplicationWireframe.h; sourceTree = "<group>"; };
@@ -1322,6 +1329,8 @@
 				7153EDF71AED169600000D1C /* RTDeviceRegistrationDataManager.h */,
 				7153EDF81AED169600000D1C /* RTDeviceRegistrationDataManager.m */,
 				7153EDFF1AED1B8C00000D1C /* RTDeviceRegistrationDataManagerDelegate.h */,
+				7153EE021AED39C500000D1C /* RTDeviceRegistrationServerErrorMapping.h */,
+				7153EE031AED39C500000D1C /* RTDeviceRegistrationServerErrorMapping.m */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -1508,6 +1517,8 @@
 				717215A81A86591D0002ECC7 /* RTAccountRegistrationDataManager.h */,
 				717215A91A86591D0002ECC7 /* RTAccountRegistrationDataManager.m */,
 				717215AA1A86591D0002ECC7 /* RTAccountRegistrationDataManagerDelegate.h */,
+				7153EE071AED3CD900000D1C /* RTAccountRegistrationServerErrorMapping.h */,
+				7153EE081AED3CD900000D1C /* RTAccountRegistrationServerErrorMapping.m */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -1743,6 +1754,7 @@
 				71A8BA321AB104AC00B0708B /* RTException.m */,
 				71C7D4131A7406A6006B84AC /* RTServerErrorsConverter.h */,
 				71C7D4141A7406A6006B84AC /* RTServerErrorsConverter.m */,
+				7153EE061AED3AED00000D1C /* RTServerErrorMessageToErrorCodeMapping.h */,
 			);
 			path = Error;
 			sourceTree = "<group>";
@@ -2246,6 +2258,7 @@
 				7116C05E1AD9954700590DAF /* RTUserProfileAssembly.m in Sources */,
 				717215B11A8659230002ECC7 /* RTAccountRegistrationPresenter.m in Sources */,
 				712B2BCD1AAFB2010026258A /* RTPagedListDataManager.m in Sources */,
+				7153EE091AED3CD900000D1C /* RTAccountRegistrationServerErrorMapping.m in Sources */,
 				712698121AA3CCB600E7066B /* RTVideoList.m in Sources */,
 				712B2BCA1AAFB17B0026258A /* RTPagedListInteractor.m in Sources */,
 				717215AB1A86591D0002ECC7 /* RTAccountRegistrationDataManager.m in Sources */,
@@ -2254,6 +2267,7 @@
 				713DCAA91A6C8B330032B252 /* RTServerErrors.m in Sources */,
 				715370E91A88442700D3355B /* RTActivityCell.m in Sources */,
 				717970071AB7C60D00A0B9B5 /* RTPagedListViewController.m in Sources */,
+				7153EE041AED39C500000D1C /* RTDeviceRegistrationServerErrorMapping.m in Sources */,
 				712EA2C51A9C1B4600AFCA15 /* RTClientAdditionalConfiguration.m in Sources */,
 				71399DF71ADB68C600500E6C /* RTVideoThumbnailCell.m in Sources */,
 				717A4B7B1A534EF8004C2BC1 /* RTRestAPIMappingFactory.m in Sources */,
