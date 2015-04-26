@@ -3,6 +3,18 @@
 
 @implementation RTErrorFactory
 
++ (NSError *)accountRegistrationErrorWithCode:(RTAccountRegistrationError)code {
+    return [NSError errorWithDomain:RTAccountRegistrationErrorDomain
+                               code:code
+                           userInfo:nil];
+}
+
++ (NSError *)deviceRegistrationErrorWithCode:(RTDeviceRegistrationError)code {
+    return [NSError errorWithDomain:RTDeviceRegistrationErrorDomain
+                               code:code
+                           userInfo:nil];
+}
+
 + (NSError *)keyChainErrorWithCode:(RTKeyChainError)code
                      originalError:(NSError *)error {
     return [NSError errorWithDomain:RTKeyChainWrapperErrorDomain
@@ -22,12 +34,6 @@
                                code:code
                            userInfo:nil
                       originalError:error];
-}
-
-+ (NSError *)accountRegistrationErrorWithCode:(RTAccountRegistrationError)code {
-    return [NSError errorWithDomain:RTAccountRegistrationErrorDomain
-                               code:code
-                           userInfo:nil];
 }
 
 + (NSError *)pagedListErrorWithCode:(RTPagedListError)code {
