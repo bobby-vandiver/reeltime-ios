@@ -76,13 +76,10 @@ describe(@"device registration data manager", ^{
         });
         
         describe(@"mapping server errors to registration errors and notifying delegate of failure to register", ^{
-            __block MKTArgumentCaptor *failureCaptor;
-            __block ServerErrorsCallback failureHandler;
-            
             __block RTServerErrorMessageToErrorCodeTestHelper *helper;
             
             beforeEach(^{
-                failureCaptor = [[MKTArgumentCaptor alloc] init];
+                MKTArgumentCaptor *failureCaptor = [[MKTArgumentCaptor alloc] init];
                 
                 [verify(client) registerClientWithClientName:clientName
                                              userCredentials:userCredentials
@@ -90,7 +87,7 @@ describe(@"device registration data manager", ^{
                                                      failure:[failureCaptor capture]];
 
                 [verifyCount(delegate, never()) deviceRegistrationDataOperationFailedWithErrors:anything()];
-                failureHandler = [failureCaptor value];
+                ServerErrorsCallback failureHandler = [failureCaptor value];
                 
                 void (^errorCaptureBlock)(MKTArgumentCaptor *) = ^(MKTArgumentCaptor *errorCaptor) {
                     [verify(delegate) deviceRegistrationDataOperationFailedWithErrors:[errorCaptor capture]];

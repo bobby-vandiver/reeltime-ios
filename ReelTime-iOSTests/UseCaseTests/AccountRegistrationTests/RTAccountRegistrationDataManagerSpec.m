@@ -1,4 +1,5 @@
 #import "RTTestCommon.h"
+#import "RTServerErrorMessageToErrorCodeTestHelper.h"
 
 #import "RTAccountRegistrationDataManager.h"
 #import "RTAccountRegistrationDataManagerDelegate.h"
@@ -77,105 +78,49 @@ describe(@"account registration data manager", ^{
         });
         
         describe(@"mapping server errors to registration errors and notifying delegate of failure to register", ^{
-            __block RTServerErrors *serverErrors;
+            __block RTServerErrorMessageToErrorCodeTestHelper *helper;
             
-            __block MKTArgumentCaptor *failureCaptor;
-            __block void (^failureHandler)(RTServerErrors *);
-
             beforeEach(^{
-                serverErrors = [[RTServerErrors alloc] init];
-                failureCaptor = [[MKTArgumentCaptor alloc] init];
-                
+                MKTArgumentCaptor *failureCaptor = [[MKTArgumentCaptor alloc] init];
+
                 [verify(client) registerAccount:registration
                                         success:anything()
                                         failure:[failureCaptor capture]];
                 
                 [verifyCount(delegate, never()) registerAccountFailedWithErrors:anything()];
+                ServerErrorsCallback failureHandler = [failureCaptor value];
                 
-                failureHandler = [failureCaptor value];
+                void (^errorCaptureBlock)(MKTArgumentCaptor *) = ^(MKTArgumentCaptor *errorCaptor) {
+                    [verify(delegate) registerAccountFailedWithErrors:[errorCaptor capture]];
+                    [verify(delegate) reset];
+                };
+                
+                helper = [[RTServerErrorMessageToErrorCodeTestHelper alloc] initForErrorDomain:RTAccountRegistrationErrorDomain
+                                                                            withFailureHandler:failureHandler
+                                                                             errorCaptureBlock:errorCaptureBlock];
             });
             
             afterEach(^{
                 expect(callbackExecuted).to.beFalsy();
             });
             
-            #define expectServerMessageMapping(msg, e, c) do {                              \
-                serverErrors.errors = [NSArray arrayWithObject:@msg];                       \
-                                                                                            \
-                failureHandler(serverErrors);                                               \
-                [verify(delegate) registerAccountFailedWithErrors:[errorCaptor capture]];   \
-                                                                                            \
-                capturedErrors = [errorCaptor value];                                       \
-                expect([capturedErrors count]).to.equal(c);                                 \
-                                                                                            \
-                if (c > 0) {                                                                \
-                    firstError = [capturedErrors objectAtIndex:0];                          \
-                    expect(firstError).to.beError(RTAccountRegistrationErrorDomain, e);     \
-                }                                                                           \
-            } while(0)
-            
-            it(@"should map username required to missing username", ^{
-                expectServerMessageMapping("[username] is required",
-                                           RTAccountRegistrationErrorMissingUsername, 1);
-            });
-            
-            it(@"should map password required to missing password", ^{
-                expectServerMessageMapping("[password] is required",
-                                           RTAccountRegistrationErrorMissingPassword, 1);
-            });
-            
-            it(@"should map email required to missing email", ^{
-                expectServerMessageMapping("[email] is required",
-                                           RTAccountRegistrationErrorMissingEmail, 1);
-            });
-            
-            it(@"should map display name required to missing display name", ^{
-                expectServerMessageMapping("[display_name] is required",
-                                           RTAccountRegistrationErrorMissingDisplayName, 1);
-            });
-            
-            it(@"should map client name required to missing client name", ^{
-                expectServerMessageMapping("[client_name] is required",
-                                           RTAccountRegistrationErrorMissingClientName, 1);
-            });
-            
-            it(@"should map invalid username", ^{
-                expectServerMessageMapping("[username] must be 2-15 alphanumeric characters long",
-                                           RTAccountRegistrationErrorInvalidUsername, 1);
-            });
-            
-            it(@"should map invalid password", ^{
-                expectServerMessageMapping("[password] must be at least 6 characters long",
-                                           RTAccountRegistrationErrorInvalidPassword, 1);
-            });
-            
-            it(@"should map invalid email", ^{
-                expectServerMessageMapping("[email] is not a valid e-mail address",
-                                           RTAccountRegistrationErrorInvalidEmail, 1);
-            });
-            
-            it(@"should map invalid display name", ^{
-                expectServerMessageMapping("[display_name] must be 2-20 alphanumeric or space characters long",
-                                           RTAccountRegistrationErrorInvalidDisplayName, 1);
-            });
-            
-            it(@"should map username is unavailable", ^{
-                expectServerMessageMapping("[username] is not available",
-                                           RTAccountRegistrationErrorUsernameIsUnavailable, 1);
-            });
-            
-            it(@"should map email is unavailable", ^{
-                expectServerMessageMapping("[email] is not available",
-                                           RTAccountRegistrationErrorEmailIsUnavailable, 1);
-            });
-            
-            it(@"should map registration unavailable", ^{
-                expectServerMessageMapping("Unable to register. Please try again.",
-                                           RTAccountRegistrationErrorRegistrationServiceUnavailable, 1);
-            });
-            
-            it(@"should not map unexpected message", ^{
-                expectServerMessageMapping("unknown registration error", 0, 0);
+            it(@"should map server errors to domain specific errors", ^{
+                NSDictionary *mapping = @{
+                                          @"[username] is required":                                            @(RTAccountRegistrationErrorMissingUsername),
+                                          @"[password] is required":                                            @(RTAccountRegistrationErrorMissingPassword),
+                                          @"[email] is required":                                               @(RTAccountRegistrationErrorMissingEmail),
+                                          @"[display_name] is required":                                        @(RTAccountRegistrationErrorMissingDisplayName),
+                                          @"[client_name] is required":                                         @(RTAccountRegistrationErrorMissingClientName),
+                                          @"[username] must be 2-15 alphanumeric characters long":              @(RTAccountRegistrationErrorInvalidUsername),
+                                          @"[password] must be at least 6 characters long":                     @(RTAccountRegistrationErrorInvalidPassword),
+                                          @"[email] is not a valid e-mail address":                             @(RTAccountRegistrationErrorInvalidEmail),
+                                          @"[display_name] must be 2-20 alphanumeric or space characters long": @(RTAccountRegistrationErrorInvalidDisplayName),
+                                          @"[username] is not available":                                       @(RTAccountRegistrationErrorUsernameIsUnavailable),
+                                          @"[email] is not available":                                          @(RTAccountRegistrationErrorEmailIsUnavailable),
+                                          @"Unable to register. Please try again.":                             @(RTAccountRegistrationErrorRegistrationServiceUnavailable)
+                                          };
+                
+                [helper expectForServerMessageToErrorCodeMapping:mapping];
             });
         });
     });
