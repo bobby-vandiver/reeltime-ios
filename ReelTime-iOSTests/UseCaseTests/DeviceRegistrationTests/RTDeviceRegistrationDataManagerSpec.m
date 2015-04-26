@@ -1,4 +1,5 @@
 #import "RTTestCommon.h"
+#import "RTServerErrorMessageToErrorCodeTestHelper.h"
 
 #import "RTDeviceRegistrationDataManager.h"
 #import "RTDeviceRegistrationDataManagerDelegate.h"
@@ -78,6 +79,8 @@ describe(@"device registration data manager", ^{
             __block MKTArgumentCaptor *failureCaptor;
             __block ServerErrorsCallback failureHandler;
             
+            __block RTServerErrorMessageToErrorCodeTestHelper *helper;
+            
             beforeEach(^{
                 failureCaptor = [[MKTArgumentCaptor alloc] init];
                 
@@ -88,48 +91,29 @@ describe(@"device registration data manager", ^{
 
                 [verifyCount(delegate, never()) deviceRegistrationDataOperationFailedWithErrors:anything()];
                 failureHandler = [failureCaptor value];
+                
+                void (^errorCaptureBlock)(MKTArgumentCaptor *) = ^(MKTArgumentCaptor *errorCaptor) {
+                    [verify(delegate) deviceRegistrationDataOperationFailedWithErrors:[errorCaptor capture]];
+                    [verify(delegate) reset];
+                };
+
+                helper = [[RTServerErrorMessageToErrorCodeTestHelper alloc] initForErrorDomain:RTDeviceRegistrationErrorDomain
+                                                                            withFailureHandler:failureHandler
+                                                                             errorCaptureBlock:errorCaptureBlock];
             });
             
             afterEach(^{
                 expect(callbackExecuted).to.beFalsy();
             });
-
-            void (^expectServerMessageMapping)(NSString *, NSInteger, NSInteger) = ^(NSString *msg, NSInteger code, NSInteger count) {
-                RTServerErrors *serverErrors = [[RTServerErrors alloc] init];
-                serverErrors.errors = @[msg];
-                
-                MKTArgumentCaptor *errorCaptor = [[MKTArgumentCaptor alloc] init];
-                
-                failureHandler(serverErrors);
-                [verify(delegate) deviceRegistrationDataOperationFailedWithErrors:[errorCaptor capture]];
-                
-                NSArray *capturedErrors = [errorCaptor value];
-                expect(capturedErrors).to.haveACountOf(count);
-                
-                if (count > 0) {
-                    NSError *firstError = capturedErrors[0];
-                    expect(firstError).to.beError(RTDeviceRegistrationErrorDomain, code);
-                }
-            };
             
-            it(@"should map username is required to missing username", ^{
-                expectServerMessageMapping(@"[username] is required",
-                                           RTDeviceRegistrationErrorMissingUsername, 1);
-            });
-            
-            it(@"should map password is required to missing password", ^{
-                expectServerMessageMapping(@"[password] is required",
-                                           RTDeviceRegistrationErrorMissingPassword, 1);
-            });
-            
-            it(@"should map client name is requires to missing client name", ^{
-                expectServerMessageMapping(@"[client_name] is required",
-                                           RTDeviceRegistrationErrorMissingClientName, 1);
-            });
-            
-            it(@"should map invalid credentials", ^{
-                expectServerMessageMapping(@"Invalid credentials",
-                                           RTDeviceRegistrationErrorInvalidCredentials, 1);
+            it(@"should map server errors to domain specific errors", ^{
+                NSDictionary *mapping = @{
+                                          @"[username] is required":    @(RTDeviceRegistrationErrorMissingUsername),
+                                          @"[password] is required":    @(RTDeviceRegistrationErrorMissingPassword),
+                                          @"[client_name] is required": @(RTDeviceRegistrationErrorMissingClientName),
+                                          @"Invalid credentials":       @(RTDeviceRegistrationErrorInvalidCredentials)
+                                          };
+                [helper expectForServerMessageToErrorCodeMapping:mapping];
             });
         });
     });

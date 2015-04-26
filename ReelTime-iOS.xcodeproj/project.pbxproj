@@ -153,6 +153,7 @@
 		7153EDFE1AED17A900000D1C /* RTDeviceRegistrationInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7153EDFD1AED17A900000D1C /* RTDeviceRegistrationInteractor.m */; };
 		7153EE041AED39C500000D1C /* RTDeviceRegistrationServerErrorMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 7153EE031AED39C500000D1C /* RTDeviceRegistrationServerErrorMapping.m */; };
 		7153EE091AED3CD900000D1C /* RTAccountRegistrationServerErrorMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 7153EE081AED3CD900000D1C /* RTAccountRegistrationServerErrorMapping.m */; };
+		7153EE0C1AED504E00000D1C /* RTServerErrorMessageToErrorCodeTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7153EE0B1AED504E00000D1C /* RTServerErrorMessageToErrorCodeTestHelper.m */; };
 		715555A71A9ED1F40091F432 /* RTAuthenticationAwareHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 715555A61A9ED1F40091F432 /* RTAuthenticationAwareHTTPClient.m */; };
 		71565A261A98ED5900AE1C43 /* RTApplicationWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 71565A251A98ED5900AE1C43 /* RTApplicationWireframe.m */; };
 		71565A291A98EDE900AE1C43 /* RTApplicationWireframeSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71565A281A98EDE900AE1C43 /* RTApplicationWireframeSpec.m */; };
@@ -496,6 +497,8 @@
 		7153EE061AED3AED00000D1C /* RTServerErrorMessageToErrorCodeMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTServerErrorMessageToErrorCodeMapping.h; sourceTree = "<group>"; };
 		7153EE071AED3CD900000D1C /* RTAccountRegistrationServerErrorMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTAccountRegistrationServerErrorMapping.h; sourceTree = "<group>"; };
 		7153EE081AED3CD900000D1C /* RTAccountRegistrationServerErrorMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAccountRegistrationServerErrorMapping.m; sourceTree = "<group>"; };
+		7153EE0A1AED504E00000D1C /* RTServerErrorMessageToErrorCodeTestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTServerErrorMessageToErrorCodeTestHelper.h; sourceTree = "<group>"; };
+		7153EE0B1AED504E00000D1C /* RTServerErrorMessageToErrorCodeTestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTServerErrorMessageToErrorCodeTestHelper.m; sourceTree = "<group>"; };
 		715555A51A9ED1F40091F432 /* RTAuthenticationAwareHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTAuthenticationAwareHTTPClient.h; sourceTree = "<group>"; };
 		715555A61A9ED1F40091F432 /* RTAuthenticationAwareHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAuthenticationAwareHTTPClient.m; sourceTree = "<group>"; };
 		71565A241A98ED5900AE1C43 /* RTApplicationWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTApplicationWireframe.h; sourceTree = "<group>"; };
@@ -1020,6 +1023,8 @@
 				71194C1F1A81B5D300904A06 /* EXPMatchers+ErrorMessages.m */,
 				712BE3001A75D74C00478277 /* RTTestCommon.h */,
 				712BE3011A75D74C00478277 /* RTTestCommon.m */,
+				7153EE0A1AED504E00000D1C /* RTServerErrorMessageToErrorCodeTestHelper.h */,
+				7153EE0B1AED504E00000D1C /* RTServerErrorMessageToErrorCodeTestHelper.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -2355,6 +2360,7 @@
 				714205CB1A90F55200F65D4F /* RTURLFactorySpec.m in Sources */,
 				714350561ACCC87E000C8B63 /* RTThumbnailSpec.m in Sources */,
 				71C5C09D1A55B29700CAAFAC /* RTLoginPresenterSpec.m in Sources */,
+				7153EE0C1AED504E00000D1C /* RTServerErrorMessageToErrorCodeTestHelper.m in Sources */,
 				7114DF761AB4B401003B1D2E /* RTServerErrorsSpec.m in Sources */,
 				717A4B7E1A53503B004C2BC1 /* RTRestAPIMappingFactorySpec.m in Sources */,
 				7116C05A1AD98E2000590DAF /* RTUserProfileViewControllerSpec.m in Sources */,
