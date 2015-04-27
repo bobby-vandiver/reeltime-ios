@@ -6,6 +6,9 @@
 #import "RTDeviceRegistrationError.h"
 #import "RTErrorFactory.h"
 
+#import "RTUserCredentials.h"
+#import "RTClientCredentials.h"
+
 @interface RTDeviceRegistrationInteractor ()
 
 @property (weak) id<RTDeviceRegistrationInteractorDelegate> delegate;
@@ -31,10 +34,22 @@
     
     NSArray *errors;
     BOOL valid = [self validateClientName:clientName username:username password:password errors:&errors];
-    
+
     if (!valid) {
         [self.delegate deviceRegistrationFailedWithErrors:errors];
+        return;
     }
+    
+    RTUserCredentials *userCredentials = [[RTUserCredentials alloc] initWithUsername:username
+                                                                            password:password];
+    
+    [self.dataManager fetchClientCredentialsForClientName:clientName
+                                      withUserCredentials:userCredentials
+                                                 callback:^(RTClientCredentials *clientCredentials) {
+         [self.dataManager storeClientCredentials:clientCredentials forUsername:username callback:^{
+             [self.delegate deviceRegistrationSucceeded];
+         }];
+    }];
 }
 
 - (BOOL)validateClientName:(NSString *)clientName
@@ -66,7 +81,7 @@
 }
 
 - (void)deviceRegistrationDataOperationFailedWithErrors:(NSArray *)errors {
-    
+    [self.delegate deviceRegistrationFailedWithErrors:errors];
 }
 
 @end

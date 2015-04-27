@@ -6,6 +6,11 @@
 
 #import "RTDeviceRegistrationError.h"
 
+#import "RTUserCredentials.h"
+#import "RTClientCredentials.h"
+
+#import "RTErrorFactory.h"
+
 SpecBegin(RTDeviceRegistrationInteractor)
 
 describe(@"device registration interactor", ^{
@@ -70,6 +75,55 @@ describe(@"device registration interactor", ^{
                 expect(errors[1]).to.beError(RTDeviceRegistrationErrorDomain, RTDeviceRegistrationErrorMissingUsername);
                 expect(errors[2]).to.beError(RTDeviceRegistrationErrorDomain, RTDeviceRegistrationErrorMissingPassword);
             });
+        });
+        
+        context(@"successful registration", ^{
+            it(@"should store client credentials and notify delegate on successful registration", ^{
+                MKTArgumentCaptor *userCredentialsCaptor = [[MKTArgumentCaptor alloc] init];
+                MKTArgumentCaptor *clientCredentialsCallbackCaptor = [[MKTArgumentCaptor alloc] init];
+                
+                [interactor registerDeviceWithClientName:clientName username:username password:password];
+                [verify(dataManager) fetchClientCredentialsForClientName:clientName
+                                                     withUserCredentials:[userCredentialsCaptor capture]
+                                                                callback:[clientCredentialsCallbackCaptor capture]];
+                
+                RTUserCredentials *userCredentials = [userCredentialsCaptor value];
+                expect(userCredentials.username).to.equal(username);
+                expect(userCredentials.password).to.equal(password);
+                
+                RTClientCredentials *clientCredentials = [[RTClientCredentials alloc] initWithClientId:clientId
+                                                                                          clientSecret:clientSecret];
+                
+                void (^clientCredentialsHandler)(RTClientCredentials *) = [clientCredentialsCallbackCaptor value];
+                clientCredentialsHandler(clientCredentials);
+                
+                MKTArgumentCaptor *storeClientCredentialsCallbackCaptor = [[MKTArgumentCaptor alloc] init];
+                
+                [verify(dataManager) storeClientCredentials:clientCredentials
+                                                forUsername:username
+                                                   callback:[storeClientCredentialsCallbackCaptor capture]];
+                
+                [verifyCount(delegate, never()) deviceRegistrationSucceeded];
+                
+                void (^finalCallback)() = [storeClientCredentialsCallbackCaptor value];
+                finalCallback();
+                
+                [verify(delegate) deviceRegistrationSucceeded];
+            });
+        });
+    });
+    
+    describe(@"data operation failures", ^{
+        it(@"should bubble error up to delegate", ^{
+            NSError *error = [RTErrorFactory deviceRegistrationErrorWithCode:RTDeviceRegistrationErrorInvalidCredentials];
+            [interactor deviceRegistrationDataOperationFailedWithErrors:@[error]];
+            
+            MKTArgumentCaptor *captor = [[MKTArgumentCaptor alloc] init];
+            [verify(delegate) deviceRegistrationFailedWithErrors:[captor capture]];
+            
+            NSArray *capturedErrors = [captor value];
+            expect(capturedErrors).to.haveACountOf(1);
+            expect(capturedErrors[0]).to.equal(error);
         });
     });
 });
