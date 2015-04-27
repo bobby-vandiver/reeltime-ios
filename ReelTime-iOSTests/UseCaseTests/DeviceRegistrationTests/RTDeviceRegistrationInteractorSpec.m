@@ -23,50 +23,53 @@ describe(@"device registration interactor", ^{
                                                                   dataManager:dataManager];
     });
     
-    describe(@"registration failure", ^{
-        __block MKTArgumentCaptor *captor;
+    describe(@"device registration requested", ^{
         
-        beforeEach(^{
-            captor = [[MKTArgumentCaptor alloc] init];
-        });
-        
-        it(@"invalid client name", ^{
-            [interactor registerDeviceWithClientName:BLANK username:username password:password];
-            [verify(delegate) deviceRegistrationFailedWithErrors:[captor capture]];
+        context(@"missing parameters", ^{
+            __block MKTArgumentCaptor *captor;
             
-            NSArray *errors = [captor value];
-            expect(errors).to.haveACountOf(1);
-            expect(errors[0]).to.beError(RTDeviceRegistrationErrorDomain, RTDeviceRegistrationErrorMissingClientName);
-        });
-        
-        it(@"invalid username", ^{
-            [interactor registerDeviceWithClientName:clientName username:BLANK password:password];
-            [verify(delegate) deviceRegistrationFailedWithErrors:[captor capture]];
+            beforeEach(^{
+                captor = [[MKTArgumentCaptor alloc] init];
+            });
             
-            NSArray *errors = [captor value];
-            expect(errors).to.haveACountOf(1);
-            expect(errors[0]).to.beError(RTDeviceRegistrationErrorDomain, RTDeviceRegistrationErrorMissingUsername);
-        });
-        
-        it(@"invalid password", ^{
-            [interactor registerDeviceWithClientName:clientName username:username password:BLANK];
-            [verify(delegate) deviceRegistrationFailedWithErrors:[captor capture]];
+            it(@"invalid client name", ^{
+                [interactor registerDeviceWithClientName:BLANK username:username password:password];
+                [verify(delegate) deviceRegistrationFailedWithErrors:[captor capture]];
+                
+                NSArray *errors = [captor value];
+                expect(errors).to.haveACountOf(1);
+                expect(errors[0]).to.beError(RTDeviceRegistrationErrorDomain, RTDeviceRegistrationErrorMissingClientName);
+            });
             
-            NSArray *errors = [captor value];
-            expect(errors).to.haveACountOf(1);
-            expect(errors[0]).to.beError(RTDeviceRegistrationErrorDomain, RTDeviceRegistrationErrorMissingPassword);
-        });
-        
-        it(@"invalid client name, username and password", ^{
-            [interactor registerDeviceWithClientName:BLANK username:BLANK password:BLANK];
-            [verify(delegate) deviceRegistrationFailedWithErrors:[captor capture]];
+            it(@"invalid username", ^{
+                [interactor registerDeviceWithClientName:clientName username:BLANK password:password];
+                [verify(delegate) deviceRegistrationFailedWithErrors:[captor capture]];
+                
+                NSArray *errors = [captor value];
+                expect(errors).to.haveACountOf(1);
+                expect(errors[0]).to.beError(RTDeviceRegistrationErrorDomain, RTDeviceRegistrationErrorMissingUsername);
+            });
             
-            NSArray *errors = [captor value];
-            expect(errors).to.haveACountOf(3);
+            it(@"invalid password", ^{
+                [interactor registerDeviceWithClientName:clientName username:username password:BLANK];
+                [verify(delegate) deviceRegistrationFailedWithErrors:[captor capture]];
+                
+                NSArray *errors = [captor value];
+                expect(errors).to.haveACountOf(1);
+                expect(errors[0]).to.beError(RTDeviceRegistrationErrorDomain, RTDeviceRegistrationErrorMissingPassword);
+            });
             
-            expect(errors[0]).to.beError(RTDeviceRegistrationErrorDomain, RTDeviceRegistrationErrorMissingClientName);
-            expect(errors[1]).to.beError(RTDeviceRegistrationErrorDomain, RTDeviceRegistrationErrorMissingUsername);
-            expect(errors[2]).to.beError(RTDeviceRegistrationErrorDomain, RTDeviceRegistrationErrorMissingPassword);
+            it(@"invalid client name, username and password", ^{
+                [interactor registerDeviceWithClientName:BLANK username:BLANK password:BLANK];
+                [verify(delegate) deviceRegistrationFailedWithErrors:[captor capture]];
+                
+                NSArray *errors = [captor value];
+                expect(errors).to.haveACountOf(3);
+                
+                expect(errors[0]).to.beError(RTDeviceRegistrationErrorDomain, RTDeviceRegistrationErrorMissingClientName);
+                expect(errors[1]).to.beError(RTDeviceRegistrationErrorDomain, RTDeviceRegistrationErrorMissingUsername);
+                expect(errors[2]).to.beError(RTDeviceRegistrationErrorDomain, RTDeviceRegistrationErrorMissingPassword);
+            });
         });
     });
 });
