@@ -105,10 +105,11 @@ describe(@"device registration data manager", ^{
             
             it(@"should map server errors to domain specific errors", ^{
                 NSDictionary *mapping = @{
-                                          @"[username] is required":    @(RTDeviceRegistrationErrorMissingUsername),
-                                          @"[password] is required":    @(RTDeviceRegistrationErrorMissingPassword),
-                                          @"[client_name] is required": @(RTDeviceRegistrationErrorMissingClientName),
-                                          @"Invalid credentials":       @(RTDeviceRegistrationErrorInvalidCredentials)
+                                          @"[username] is required":                @(RTDeviceRegistrationErrorMissingUsername),
+                                          @"[password] is required":                @(RTDeviceRegistrationErrorMissingPassword),
+                                          @"[client_name] is required":             @(RTDeviceRegistrationErrorMissingClientName),
+                                          @"Invalid credentials":                   @(RTDeviceRegistrationErrorInvalidCredentials),
+                                          @"Unable to register. Please try again.": @(RTDeviceRegistrationErrorServiceUnavailable)
                                           };
                 [helper expectForServerMessageToErrorCodeMapping:mapping];
             });

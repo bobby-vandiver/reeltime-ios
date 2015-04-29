@@ -7,5 +7,6 @@ typedef NS_ENUM(NSInteger, RTDeviceRegistrationError) {
     RTDeviceRegistrationErrorMissingPassword,
     RTDeviceRegistrationErrorMissingClientName, 
     RTDeviceRegistrationErrorInvalidCredentials,
-    RTDeviceRegistrationErrorUnableToStoreClientCredentials
+    RTDeviceRegistrationErrorUnableToStoreClientCredentials,
+    RTDeviceRegistrationErrorServiceUnavailable
 };

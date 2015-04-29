@@ -12,7 +12,8 @@
              @"[username] is required": @(RTDeviceRegistrationErrorMissingUsername),
              @"[password] is required": @(RTDeviceRegistrationErrorMissingPassword),
              @"[client_name] is required": @(RTDeviceRegistrationErrorMissingClientName),
-             @"Invalid credentials": @(RTDeviceRegistrationErrorInvalidCredentials)
+             @"Invalid credentials": @(RTDeviceRegistrationErrorInvalidCredentials),
+             @"Unable to register. Please try again.": @(RTDeviceRegistrationErrorServiceUnavailable)
              };
 }
 

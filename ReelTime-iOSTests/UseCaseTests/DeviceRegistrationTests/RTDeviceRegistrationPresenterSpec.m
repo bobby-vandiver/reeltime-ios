@@ -86,6 +86,20 @@ describe(@"device registration presenter", ^{
             
             [verify(view) showErrorMessage:@"Invalid username or password"];
         });
+        
+        it(@"should report failure to store client credentials", ^{
+            NSError *error = [RTErrorFactory deviceRegistrationErrorWithCode:RTDeviceRegistrationErrorUnableToStoreClientCredentials];
+            [presenter deviceRegistrationFailedWithErrors:@[error]];
+            
+            [verify(view) showErrorMessage:@"This device was registered but a problem occurred while completing the registration. Please register under a different name or unregister the current device from a different device and try again."];
+        });
+        
+        it(@"should report service unavailable", ^{
+            NSError *error = [RTErrorFactory deviceRegistrationErrorWithCode:RTDeviceRegistrationErrorServiceUnavailable];
+            [presenter deviceRegistrationFailedWithErrors:@[error]];
+            
+            [verify(view) showErrorMessage:@"Unable to register a device at this time. Please try again shortly."];
+        });
     });
     
     describe(@"routing to other modules", ^{
