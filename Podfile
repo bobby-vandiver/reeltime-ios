@@ -23,8 +23,8 @@ target 'ReelTime-iOS', :exclusive => true do
 end
 
 target 'ReelTime-iOSTests' do
-    pod 'Specta', '~> 0.3'
-    pod 'Expecta', '~> 0.3'
+    pod 'Specta', '~> 0.5'
+    pod 'Expecta', '~> 0.4'
     pod 'OCMockito', '~> 1.4'
 
     # Nocilla has a few conversion warnings

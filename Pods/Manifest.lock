@@ -8,7 +8,7 @@ PODS:
     - CocoaLumberjack/Core
   - CocoaLumberjack/Extensions (2.0.0):
     - CocoaLumberjack/Default
-  - Expecta (0.4.0)
+  - Expecta (0.4.2)
   - ISO8601DateFormatterValueTransformer (0.6.0):
     - RKValueTransformers (~> 1.1.0)
   - Nocilla (0.9.0)
@@ -49,13 +49,13 @@ PODS:
 
 DEPENDENCIES:
   - CocoaLumberjack (~> 2.0)
-  - Expecta (~> 0.3)
+  - Expecta (~> 0.4)
   - ISO8601DateFormatterValueTransformer (~> 0.6.0)
   - Nocilla (~> 0.9)
   - OCMockito (~> 1.4)
   - RestKit (~> 0.24)
   - RestKit/Testing (~> 0.24)
-  - Specta (~> 0.3)
+  - Specta (~> 0.5)
   - TTTAttributedLabel (~> 1.13)
   - Typhoon (~> 2.3)
   - UICKeyChainStore (~> 2.0)
@@ -73,7 +73,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   AFNetworking: cf8e418e16f0c9c7e5c3150d019a3c679d015018
   CocoaLumberjack: a6f77d987d65dc7ba86b0f84db7d0b9084f77bcb
-  Expecta: 392a6b5bfb9f4097e47dd8064d9b732079490332
+  Expecta: 78b4e8b0c8291fa4524d7f74016b6065c2e391ec
   ISO8601DateFormatterValueTransformer: 3ac3a721381697cab4e792d8049ce2f2e9ad3036
   Nocilla: d7d96e8a11e363f0d7c976d48b320c43d61fb471
   OCHamcrest: 6f03ffa81d12feab872638490a44ab0a6d3aca10
