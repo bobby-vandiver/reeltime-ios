@@ -106,6 +106,7 @@
 		71386E5E1AD36C01009D064C /* RTReelDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 71386E591AD36C01009D064C /* RTReelDescription.m */; };
 		71386E5F1AD36C01009D064C /* RTUserDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 71386E5B1AD36C01009D064C /* RTUserDescription.m */; };
 		71386E601AD36C01009D064C /* RTVideoDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 71386E5D1AD36C01009D064C /* RTVideoDescription.m */; };
+		7138A9291AFD5002007D3878 /* RTKeyboardAwareFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7138A9281AFD5002007D3878 /* RTKeyboardAwareFormViewController.m */; };
 		71399DF71ADB68C600500E6C /* RTVideoThumbnailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 71399DF61ADB68C600500E6C /* RTVideoThumbnailCell.m */; };
 		713A238F1AB4EB520098CE48 /* RTBrowseVideosDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 713A238E1AB4EB520098CE48 /* RTBrowseVideosDataManager.m */; };
 		713A23921AB4EB950098CE48 /* RTBrowseVideosDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 713A23911AB4EB950098CE48 /* RTBrowseVideosDataManagerSpec.m */; };
@@ -422,6 +423,8 @@
 		71386E5B1AD36C01009D064C /* RTUserDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTUserDescription.m; sourceTree = "<group>"; };
 		71386E5C1AD36C01009D064C /* RTVideoDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTVideoDescription.h; sourceTree = "<group>"; };
 		71386E5D1AD36C01009D064C /* RTVideoDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTVideoDescription.m; sourceTree = "<group>"; };
+		7138A9271AFD5002007D3878 /* RTKeyboardAwareFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTKeyboardAwareFormViewController.h; sourceTree = "<group>"; };
+		7138A9281AFD5002007D3878 /* RTKeyboardAwareFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTKeyboardAwareFormViewController.m; sourceTree = "<group>"; };
 		71399DF51ADB68C600500E6C /* RTVideoThumbnailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTVideoThumbnailCell.h; sourceTree = "<group>"; };
 		71399DF61ADB68C600500E6C /* RTVideoThumbnailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTVideoThumbnailCell.m; sourceTree = "<group>"; };
 		713A238D1AB4EB520098CE48 /* RTBrowseVideosDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseVideosDataManager.h; sourceTree = "<group>"; };
@@ -1132,6 +1135,8 @@
 		71386E571AD36B34009D064C /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				7138A9271AFD5002007D3878 /* RTKeyboardAwareFormViewController.h */,
+				7138A9281AFD5002007D3878 /* RTKeyboardAwareFormViewController.m */,
 				71386E581AD36C01009D064C /* RTReelDescription.h */,
 				71386E591AD36C01009D064C /* RTReelDescription.m */,
 				71386E5A1AD36C01009D064C /* RTUserDescription.h */,
@@ -2229,6 +2234,7 @@
 			files = (
 				71386E5E1AD36C01009D064C /* RTReelDescription.m in Sources */,
 				7172159B1A8659050002ECC7 /* RTAccountRegistrationAssembly.m in Sources */,
+				7138A9291AFD5002007D3878 /* RTKeyboardAwareFormViewController.m in Sources */,
 				7136A53F1AA3652C0059DF43 /* RTUserList.m in Sources */,
 				71C5C0B21A55EB3900CAAFAC /* RTOAuth2TokenStore.m in Sources */,
 				71B6BA671AD036A400723941 /* RTBrowseAllReelsDataManagerDelegate.m in Sources */,

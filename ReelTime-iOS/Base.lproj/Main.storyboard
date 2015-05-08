@@ -171,8 +171,8 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="loginFormScrollView" destination="3CT-If-axz" id="elr-pT-ObG"/>
                         <outlet property="passwordField" destination="Bq4-dk-Lkf" id="IFQ-Vf-IXa"/>
-                        <outlet property="scrollView" destination="3CT-If-axz" id="Dc4-6m-xqC"/>
                         <outlet property="usernameField" destination="d0h-gA-XQH" id="cXq-4A-3hh"/>
                     </connections>
                 </viewController>
