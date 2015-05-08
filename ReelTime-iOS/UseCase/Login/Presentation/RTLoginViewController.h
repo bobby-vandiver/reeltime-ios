@@ -5,7 +5,7 @@
 
 @class RTLoginPresenter;
 
-@interface RTLoginViewController : UIViewController <RTLoginView, RTStoryboardViewController, UITextFieldDelegate>
+@interface RTLoginViewController : UIViewController <RTLoginView, RTStoryboardViewController>
 
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;

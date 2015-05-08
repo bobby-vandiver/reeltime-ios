@@ -8,11 +8,6 @@
 
 @property RTLoginPresenter *presenter;
 
-@property UITextField *activeField;
-
-@property UIEdgeInsets originalInsets;
-@property BOOL keyboardIsDisplayed;
-
 @end
 
 @implementation RTLoginViewController
@@ -59,11 +54,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self registerForKeyboardNotifications];
-    
-    self.usernameField.delegate = self;
-    self.passwordField.delegate = self;
-    
-    self.keyboardIsDisplayed = NO;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -72,16 +62,6 @@
 }
 
 - (void)registerForKeyboardNotifications {
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(keyboardWasShown:)
-//                                                 name:UIKeyboardDidShowNotification
-//                                               object:nil];
-//
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(keyboardWillBeHidden:)
-//                                                 name:UIKeyboardWillHideNotification
-//                                               object:self];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardFrameDidChange:)
                                                  name:UIKeyboardWillChangeFrameNotification
@@ -116,28 +96,6 @@
     self.view.frame = newFrame;
     
     [UIView commitAnimations];
-    
-//    NSDictionary *info = [notification userInfo];
-//    CGSize keyboardSize = [info[UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-//
-//    if (!self.keyboardIsDisplayed) {
-//        DDLogDebug(@"showing keyboard");
-//        self.keyboardIsDisplayed = YES;
-//
-//        self.originalInsets = self.scrollView.contentInset;
-//
-//        UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height, 0.0);
-//        self.scrollView.contentInset = contentInsets;
-//        self.scrollView.scrollIndicatorInsets = contentInsets;
-//    }
-//    else {
-//        DDLogDebug(@"hiding keyboard");
-//        self.keyboardIsDisplayed = NO;
-//        
-//        UIEdgeInsets contentInsets = self.originalInsets;
-//        self.scrollView.contentInset = contentInsets;
-//        self.scrollView.scrollIndicatorInsets = contentInsets;
-//    }
 }
 
 - (void)keyboardWasShown:(NSNotification *)notification {
@@ -153,14 +111,6 @@
     UIEdgeInsets contentInsets = UIEdgeInsetsZero;
     self.scrollView.contentInset = contentInsets;
     self.scrollView.scrollIndicatorInsets = contentInsets;
-}
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-    self.activeField = textField;
-}
-
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-    self.activeField = nil;
 }
 
 @end
