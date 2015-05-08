@@ -48,4 +48,8 @@
     [alertView show];
 }
 
+- (UIScrollView *)scrollView {
+    return self.accountRegistrationFormScrollView;
+}
+
 @end
