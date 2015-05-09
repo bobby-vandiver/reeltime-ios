@@ -48,6 +48,17 @@
     [alertView show];
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    self.usernameField.delegate = self;
+    self.passwordField.delegate = self;
+    self.confirmationPasswordField.delegate = self;
+    self.emailField.delegate = self;
+    self.displayNameField.delegate = self;
+    self.clientNameField.delegate = self;
+}
+
 - (UIScrollView *)scrollView {
     return self.accountRegistrationFormScrollView;
 }

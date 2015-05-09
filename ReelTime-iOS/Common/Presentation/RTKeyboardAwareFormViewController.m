@@ -1,6 +1,14 @@
 #import "RTKeyboardAwareFormViewController.h"
 #import "RTException.h"
 
+#import "RTLogging.h"
+
+@interface RTKeyboardAwareFormViewController ()
+
+@property (weak) UITextField *activeTextField;
+
+@end
+
 @implementation RTKeyboardAwareFormViewController
 
 - (UIScrollView *)scrollView {
@@ -32,43 +40,36 @@
                                                   object:nil];
 }
 
-
-// Source: http://stackoverflow.com/questions/26213681/ios-8-keyboard-hides-my-textview
-
 - (void)keyboardFrameDidChange:(NSNotification *)notification {
-    CGRect keyboardEndFrame = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    CGRect keyboardBeginFrame = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
-    
-    UIViewAnimationCurve animationCurve = [[[notification userInfo] objectForKey:UIKeyboardAnimationCurveUserInfoKey] integerValue];
-    NSTimeInterval animationDuration = [[[notification userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey] integerValue];
-    
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:animationDuration];
-    [UIView setAnimationCurve:animationCurve];
-    
-    CGRect newFrame = self.view.frame;
-    CGRect keyboardFrameEnd = [self.view convertRect:keyboardEndFrame toView:nil];
-    CGRect keyboardFrameBegin = [self.view convertRect:keyboardBeginFrame toView:nil];
-    
-    newFrame.origin.y -= (keyboardFrameBegin.origin.y - keyboardFrameEnd.origin.y);
-    self.view.frame = newFrame;
-    
-    [UIView commitAnimations];
-}
+    NSDictionary *userInfo = [notification userInfo];
 
-- (void)keyboardWasShown:(NSNotification *)notification {
-    NSDictionary *info = [notification userInfo];
-    CGSize keyboardSize = [info[UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    CGRect keyboardBeginFrame = [userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue];
+    CGRect keyboardEndFrame = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+
+    CGRect frame = self.view.frame;
+    CGRect convertedKeyboardBeginFrame = [self.view convertRect:keyboardBeginFrame toView:nil];
+    CGRect convertedKeyboardEndFrame = [self.view convertRect:keyboardEndFrame toView:nil];
     
-    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height, 0.0);
+    CGFloat yOffset = frame.origin.y - (convertedKeyboardBeginFrame.origin.y - convertedKeyboardEndFrame.origin.y);
+    
+    CGFloat top = self.scrollView.contentInset.top + yOffset;
+    CGFloat bottom = self.scrollView.contentInset.bottom + yOffset;
+    
+    CGFloat left = self.scrollView.contentInset.left;
+    CGFloat right = self.scrollView.contentInset.right;
+    
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(top, left, bottom, right);
     self.scrollView.contentInset = contentInsets;
     self.scrollView.scrollIndicatorInsets = contentInsets;
+    
+    // TODO: Scroll active text field into view if keyboard pushes it off screen
 }
 
-- (void)keyboardWillBeHidden:(NSNotification *)notification {
-    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
-    self.scrollView.contentInset = contentInsets;
-    self.scrollView.scrollIndicatorInsets = contentInsets;
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    self.activeTextField = textField;
 }
 
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    self.activeTextField = nil;
+}
 @end

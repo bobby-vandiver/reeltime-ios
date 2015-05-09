@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="13F1077" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -103,6 +104,12 @@
                                         <exclude reference="hlT-Vp-n2Z"/>
                                     </mask>
                                     <mask key="constraints">
+                                        <exclude reference="UQD-zK-pjn"/>
+                                        <exclude reference="Xfb-at-05L"/>
+                                        <exclude reference="c8A-Kq-ehY"/>
+                                        <exclude reference="fC6-CP-6d2"/>
+                                        <exclude reference="m6e-b1-xg1"/>
+                                        <exclude reference="pqu-uF-nH6"/>
                                         <exclude reference="UWu-pR-bby"/>
                                         <exclude reference="19g-fB-4vj"/>
                                         <exclude reference="OWA-38-ttf"/>
@@ -110,12 +117,6 @@
                                         <exclude reference="tWK-O0-Tza"/>
                                         <exclude reference="vEh-ZC-cLS"/>
                                         <exclude reference="Zrc-ZC-4sX"/>
-                                        <exclude reference="UQD-zK-pjn"/>
-                                        <exclude reference="Xfb-at-05L"/>
-                                        <exclude reference="c8A-Kq-ehY"/>
-                                        <exclude reference="fC6-CP-6d2"/>
-                                        <exclude reference="m6e-b1-xg1"/>
-                                        <exclude reference="pqu-uF-nH6"/>
                                     </mask>
                                 </variation>
                                 <variation key="widthClass=compact">
@@ -126,6 +127,12 @@
                                         <include reference="hlT-Vp-n2Z"/>
                                     </mask>
                                     <mask key="constraints">
+                                        <include reference="UQD-zK-pjn"/>
+                                        <include reference="Xfb-at-05L"/>
+                                        <include reference="c8A-Kq-ehY"/>
+                                        <include reference="fC6-CP-6d2"/>
+                                        <include reference="m6e-b1-xg1"/>
+                                        <include reference="pqu-uF-nH6"/>
                                         <include reference="UWu-pR-bby"/>
                                         <include reference="19g-fB-4vj"/>
                                         <include reference="OWA-38-ttf"/>
@@ -133,12 +140,6 @@
                                         <include reference="tWK-O0-Tza"/>
                                         <include reference="vEh-ZC-cLS"/>
                                         <include reference="Zrc-ZC-4sX"/>
-                                        <include reference="UQD-zK-pjn"/>
-                                        <include reference="Xfb-at-05L"/>
-                                        <include reference="c8A-Kq-ehY"/>
-                                        <include reference="fC6-CP-6d2"/>
-                                        <include reference="m6e-b1-xg1"/>
-                                        <include reference="pqu-uF-nH6"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -195,7 +196,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ts3-E6-xrt" userLabel="Content View">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pdu-up-zY1" userLabel="Username Field">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pdu-up-zY1" userLabel="Username Field">
                                         <rect key="frame" x="155" y="3" width="167" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -203,7 +204,7 @@
                                             <rect key="frame" x="18" y="26" width="167" height="30"/>
                                         </variation>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ar4-ug-CD8" userLabel="Password Field">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ar4-ug-CD8" userLabel="Password Field">
                                         <rect key="frame" x="156" y="3" width="164" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -211,7 +212,7 @@
                                             <rect key="frame" x="18" y="64" width="164" height="30"/>
                                         </variation>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qmq-Vj-UHn" userLabel="Confirm Password Field">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qmq-Vj-UHn" userLabel="Confirm Password Field">
                                         <rect key="frame" x="155" y="3" width="167" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -219,7 +220,7 @@
                                             <rect key="frame" x="18" y="102" width="167" height="30"/>
                                         </variation>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hhh-H1-FEc" userLabel="Email Field">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hhh-H1-FEc" userLabel="Email Field">
                                         <rect key="frame" x="155" y="3" width="167" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -227,7 +228,7 @@
                                             <rect key="frame" x="18" y="140" width="167" height="30"/>
                                         </variation>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Client Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OWQ-NM-jW9" userLabel="Client Name Field">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Client Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OWQ-NM-jW9" userLabel="Client Name Field">
                                         <rect key="frame" x="156" y="2" width="167" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -235,7 +236,7 @@
                                             <rect key="frame" x="18" y="178" width="167" height="30"/>
                                         </variation>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Display Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ltQ-vK-zYH" userLabel="Display Name Field">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Display Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ltQ-vK-zYH" userLabel="Display Name Field">
                                         <rect key="frame" x="156" y="2" width="167" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
