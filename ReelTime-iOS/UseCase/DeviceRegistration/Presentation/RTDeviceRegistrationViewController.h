@@ -1,5 +1,18 @@
-#import <UIKit/UIKit.h>
+#import "RTKeyboardAwareFormViewController.h"
 
-@interface RTDeviceRegistrationViewController : UIViewController
+#import "RTDeviceRegistrationView.h"
+#import "RTStoryboardViewController.h"
+
+@class RTDeviceRegistrationPresenter;
+
+@interface RTDeviceRegistrationViewController : RTKeyboardAwareFormViewController <RTDeviceRegistrationView, RTStoryboardViewController>
+
+@property (weak, nonatomic) IBOutlet UITextField *usernameField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordField;
+@property (weak, nonatomic) IBOutlet UITextField *clientNameField;
+
++ (RTDeviceRegistrationViewController *)viewControllerWithPresenter:(RTDeviceRegistrationPresenter *)presenter;
+
+- (IBAction)pressedRegisterButton;
 
 @end
