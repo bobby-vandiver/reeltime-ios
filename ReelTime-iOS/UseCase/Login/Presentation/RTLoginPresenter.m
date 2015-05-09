@@ -32,6 +32,10 @@
     [self.interactor loginWithUsername:username password:password];
 }
 
+- (void)requestedDeviceRegistration {
+    [self.wireframe presentDeviceRegistrationInterface];
+}
+
 - (void)requestedAccountRegistration {
     [self.wireframe presentAccountRegistrationInterface];
 }

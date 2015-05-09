@@ -34,9 +34,16 @@ describe(@"login view controller", ^{
         });
     });
     
-    describe(@"when register button is pressed", ^{
+    describe(@"when register device button is pressed", ^{
+        it(@"should request device registration be presented", ^{
+            [viewController pressedRegisterDeviceButton];
+            [verify(presenter) requestedDeviceRegistration];
+        });
+    });
+    
+    describe(@"when register account button is pressed", ^{
         it(@"should request account registration be presented", ^{
-            [viewController pressedRegisterButton];
+            [viewController pressedRegisterAccountButton];
             [verify(presenter) requestedAccountRegistration];
         });
     });

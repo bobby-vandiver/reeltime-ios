@@ -15,6 +15,8 @@
 
 - (IBAction)pressedLoginButton;
 
-- (IBAction)pressedRegisterButton;
+- (IBAction)pressedRegisterDeviceButton;
+
+- (IBAction)pressedRegisterAccountButton;
 
 @end

@@ -14,6 +14,8 @@
 - (void)requestedLoginWithUsername:(NSString *)username
                            password:(NSString *)password;
 
+- (void)requestedDeviceRegistration;
+
 - (void)requestedAccountRegistration;
 
 @end

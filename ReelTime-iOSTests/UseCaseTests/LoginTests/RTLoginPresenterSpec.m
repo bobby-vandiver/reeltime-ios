@@ -83,6 +83,11 @@ describe(@"login presenter", ^{
     });
     
     describe(@"routing to other modules", ^{
+        it(@"should present device registration interface when requested", ^{
+            [presenter requestedDeviceRegistration];
+            [verify(wireframe) presentDeviceRegistrationInterface];
+        });
+        
         it(@"should present account registration interface when requested", ^{
             [presenter requestedAccountRegistration];
             [verify(wireframe) presentAccountRegistrationInterface];

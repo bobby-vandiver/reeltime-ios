@@ -31,7 +31,11 @@
                                       password:self.passwordField.text];
 }
 
-- (IBAction)pressedRegisterButton {
+- (IBAction)pressedRegisterDeviceButton {
+    [self.presenter requestedDeviceRegistration];
+}
+
+- (IBAction)pressedRegisterAccountButton {
     [self.presenter requestedAccountRegistration];
 }
 
