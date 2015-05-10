@@ -215,6 +215,7 @@
 		717A4B7B1A534EF8004C2BC1 /* RTRestAPIMappingFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 717A4B7A1A534EF8004C2BC1 /* RTRestAPIMappingFactory.m */; };
 		717A4B7E1A53503B004C2BC1 /* RTRestAPIMappingFactorySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 717A4B7D1A53503B004C2BC1 /* RTRestAPIMappingFactorySpec.m */; };
 		717A4B801A535942004C2BC1 /* RTClientSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 717A4B7F1A535942004C2BC1 /* RTClientSpec.m */; };
+		717D849A1AFF8AC40043797C /* RTDeviceRegistrationViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 717D84991AFF8AC40043797C /* RTDeviceRegistrationViewControllerSpec.m */; };
 		717D926D1A5B722300EAB6BF /* NSError+RTError.m in Sources */ = {isa = PBXBuildFile; fileRef = 717D926C1A5B722300EAB6BF /* NSError+RTError.m */; };
 		717D92761A5B925700EAB6BF /* RTCurrentUserStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 717D92751A5B925700EAB6BF /* RTCurrentUserStore.m */; };
 		718A0BE21A4DA87900137C49 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 718A0BE11A4DA87900137C49 /* main.m */; };
@@ -619,6 +620,7 @@
 		717A4B7A1A534EF8004C2BC1 /* RTRestAPIMappingFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTRestAPIMappingFactory.m; sourceTree = "<group>"; };
 		717A4B7D1A53503B004C2BC1 /* RTRestAPIMappingFactorySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTRestAPIMappingFactorySpec.m; sourceTree = "<group>"; };
 		717A4B7F1A535942004C2BC1 /* RTClientSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTClientSpec.m; sourceTree = "<group>"; };
+		717D84991AFF8AC40043797C /* RTDeviceRegistrationViewControllerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTDeviceRegistrationViewControllerSpec.m; sourceTree = "<group>"; };
 		717D926B1A5B722300EAB6BF /* NSError+RTError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+RTError.h"; sourceTree = "<group>"; };
 		717D926C1A5B722300EAB6BF /* NSError+RTError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+RTError.m"; sourceTree = "<group>"; };
 		717D92741A5B925700EAB6BF /* RTCurrentUserStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTCurrentUserStore.h; path = "ReelTime-iOS/Common/Store/RTCurrentUserStore.h"; sourceTree = SOURCE_ROOT; };
@@ -1328,6 +1330,7 @@
 				7153EDFA1AED171D00000D1C /* RTDeviceRegistrationDataManagerSpec.m */,
 				7153EE0E1AED7E2C00000D1C /* RTDeviceRegistrationInteractorSpec.m */,
 				7137F4E81AEEFA8A00B50DBA /* RTDeviceRegistrationPresenterSpec.m */,
+				717D84991AFF8AC40043797C /* RTDeviceRegistrationViewControllerSpec.m */,
 			);
 			path = DeviceRegistrationTests;
 			sourceTree = "<group>";
@@ -2433,6 +2436,7 @@
 				71647BE81A7F185500F44996 /* RTClientDelegateSpec.m in Sources */,
 				713CF1CF1AE28F7D003E2F89 /* RTArrayDataSourceSpec.m in Sources */,
 				71194C231A81C37900904A06 /* EXPMatchers+beReel.m in Sources */,
+				717D849A1AFF8AC40043797C /* RTDeviceRegistrationViewControllerSpec.m in Sources */,
 				713CF1D91AE2AA66003E2F89 /* RTDeviceInformationSpec.m in Sources */,
 				71194C1D1A81AEFC00904A06 /* EXPMatchers+beUser.m in Sources */,
 				712BE2FC1A75D74300478277 /* RTClientCredentialsStoreSpec.m in Sources */,

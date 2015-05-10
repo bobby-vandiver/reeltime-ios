@@ -10,6 +10,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet UITextField *clientNameField;
+@property (weak, nonatomic) IBOutlet UIScrollView *deviceRegistrationFormScrollView;
 
 + (RTDeviceRegistrationViewController *)viewControllerWithPresenter:(RTDeviceRegistrationPresenter *)presenter;
 

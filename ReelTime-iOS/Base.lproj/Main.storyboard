@@ -9,7 +9,7 @@
         <!--Login View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController storyboardIdentifier="Login View Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vXZ-lx-hvc" userLabel="Login View Controller" customClass="RTLoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Login View Controller" title="Login" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vXZ-lx-hvc" userLabel="Login View Controller" customClass="RTLoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gSO-Bz-E6f"/>
                         <viewControllerLayoutGuide type="bottom" id="tLI-XD-Xfj"/>
@@ -142,6 +142,16 @@
                                         <exclude reference="hlT-Vp-n2Z"/>
                                     </mask>
                                     <mask key="constraints">
+                                        <exclude reference="Jza-TT-d9z"/>
+                                        <exclude reference="O6h-vk-c9I"/>
+                                        <exclude reference="Ral-nP-I46"/>
+                                        <exclude reference="RcV-6i-Pae"/>
+                                        <exclude reference="Xnb-9S-2R9"/>
+                                        <exclude reference="fC6-CP-6d2"/>
+                                        <exclude reference="iUm-IN-8fC"/>
+                                        <exclude reference="q31-cu-3mR"/>
+                                        <exclude reference="Zlk-t4-ym1"/>
+                                        <exclude reference="m2P-Hv-hdr"/>
                                         <exclude reference="UWu-pR-bby"/>
                                         <exclude reference="19g-fB-4vj"/>
                                         <exclude reference="OWA-38-ttf"/>
@@ -152,16 +162,6 @@
                                         <exclude reference="PmL-eX-w6t"/>
                                         <exclude reference="ZUb-Vs-mGh"/>
                                         <exclude reference="iCz-4K-gcc"/>
-                                        <exclude reference="Zlk-t4-ym1"/>
-                                        <exclude reference="m2P-Hv-hdr"/>
-                                        <exclude reference="Jza-TT-d9z"/>
-                                        <exclude reference="O6h-vk-c9I"/>
-                                        <exclude reference="Ral-nP-I46"/>
-                                        <exclude reference="RcV-6i-Pae"/>
-                                        <exclude reference="Xnb-9S-2R9"/>
-                                        <exclude reference="fC6-CP-6d2"/>
-                                        <exclude reference="iUm-IN-8fC"/>
-                                        <exclude reference="q31-cu-3mR"/>
                                     </mask>
                                 </variation>
                                 <variation key="widthClass=compact">
@@ -173,6 +173,16 @@
                                         <include reference="hlT-Vp-n2Z"/>
                                     </mask>
                                     <mask key="constraints">
+                                        <include reference="Jza-TT-d9z"/>
+                                        <exclude reference="O6h-vk-c9I"/>
+                                        <include reference="Ral-nP-I46"/>
+                                        <include reference="RcV-6i-Pae"/>
+                                        <include reference="Xnb-9S-2R9"/>
+                                        <exclude reference="fC6-CP-6d2"/>
+                                        <include reference="iUm-IN-8fC"/>
+                                        <include reference="q31-cu-3mR"/>
+                                        <exclude reference="Zlk-t4-ym1"/>
+                                        <include reference="m2P-Hv-hdr"/>
                                         <include reference="UWu-pR-bby"/>
                                         <include reference="19g-fB-4vj"/>
                                         <include reference="OWA-38-ttf"/>
@@ -183,16 +193,6 @@
                                         <include reference="PmL-eX-w6t"/>
                                         <include reference="ZUb-Vs-mGh"/>
                                         <include reference="iCz-4K-gcc"/>
-                                        <exclude reference="Zlk-t4-ym1"/>
-                                        <include reference="m2P-Hv-hdr"/>
-                                        <include reference="Jza-TT-d9z"/>
-                                        <exclude reference="O6h-vk-c9I"/>
-                                        <include reference="Ral-nP-I46"/>
-                                        <include reference="RcV-6i-Pae"/>
-                                        <include reference="Xnb-9S-2R9"/>
-                                        <exclude reference="fC6-CP-6d2"/>
-                                        <include reference="iUm-IN-8fC"/>
-                                        <include reference="q31-cu-3mR"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -237,21 +237,22 @@
             </objects>
             <point key="canvasLocation" x="-952.5" y="54"/>
         </scene>
-        <!--Device Registration View Controller-->
+        <!--Device Registration-->
         <scene sceneID="gII-lF-nua">
             <objects>
-                <viewController storyboardIdentifier="Device Registration View Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hFG-Ha-dq8" customClass="RTDeviceRegistrationViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Device Registration View Controller" title="Device Registration" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hFG-Ha-dq8" customClass="RTDeviceRegistrationViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bT1-Ap-43G"/>
                         <viewControllerLayoutGuide type="bottom" id="usm-p8-Kff"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="BpQ-lR-jAT">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Acv-Z6-vdy">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rbW-hk-NsC">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rbW-hk-NsC" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gWH-e3-xXZ">
@@ -340,6 +341,7 @@
                     </view>
                     <connections>
                         <outlet property="clientNameField" destination="Q9H-sr-IUC" id="YQq-s9-adi"/>
+                        <outlet property="deviceRegistrationFormScrollView" destination="Acv-Z6-vdy" id="QTP-lb-NXE"/>
                         <outlet property="passwordField" destination="ln8-IO-6gD" id="nvO-Pi-SWo"/>
                         <outlet property="usernameField" destination="gWH-e3-xXZ" id="jyd-uA-iTe"/>
                     </connections>
@@ -348,10 +350,10 @@
             </objects>
             <point key="canvasLocation" x="-309" y="54"/>
         </scene>
-        <!--Account Registration View Controller-->
+        <!--Account Registration-->
         <scene sceneID="U7v-AF-ObX">
             <objects>
-                <viewController storyboardIdentifier="Account Registration View Controller" title="Account Registration View Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="OoY-IZ-qi2" customClass="RTAccountRegistrationViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Account Registration View Controller" title="Account Registration" useStoryboardIdentifierAsRestorationIdentifier="YES" id="OoY-IZ-qi2" customClass="RTAccountRegistrationViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VJF-vS-BMy"/>
                         <viewControllerLayoutGuide type="bottom" id="Mbe-JC-Xj4"/>
