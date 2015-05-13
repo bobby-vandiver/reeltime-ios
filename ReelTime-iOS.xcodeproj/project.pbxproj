@@ -185,6 +185,7 @@
 		7169B0091AD175FC00890983 /* RTBrowseAllVideosDataManagerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7169B0081AD175FC00890983 /* RTBrowseAllVideosDataManagerDelegate.m */; };
 		7169B00B1AD1796600890983 /* RTBrowseAllVideosDataManagerDelegateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7169B00A1AD1796600890983 /* RTBrowseAllVideosDataManagerDelegateSpec.m */; };
 		7169F1761A5F6CDD00E161C4 /* RTLoginDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7169F1751A5F6CDD00E161C4 /* RTLoginDataManagerSpec.m */; };
+		716C452A1B02E09D00BA9834 /* RTResetPasswordInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 716C45291B02E09D00BA9834 /* RTResetPasswordInteractor.m */; };
 		7170C8691A59926E00C460BB /* RTErrorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7170C8681A59926E00C460BB /* RTErrorFactory.m */; };
 		7170C86D1A59A98600C460BB /* RTKeyChainWrapperSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7170C86C1A59A98600C460BB /* RTKeyChainWrapperSpec.m */; };
 		7172157E1A8657540002ECC7 /* RTLoginAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 7172157D1A8657540002ECC7 /* RTLoginAssembly.m */; };
@@ -562,6 +563,10 @@
 		7169B0081AD175FC00890983 /* RTBrowseAllVideosDataManagerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseAllVideosDataManagerDelegate.m; sourceTree = "<group>"; };
 		7169B00A1AD1796600890983 /* RTBrowseAllVideosDataManagerDelegateSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseAllVideosDataManagerDelegateSpec.m; sourceTree = "<group>"; };
 		7169F1751A5F6CDD00E161C4 /* RTLoginDataManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLoginDataManagerSpec.m; sourceTree = "<group>"; };
+		716C45281B02E09D00BA9834 /* RTResetPasswordInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTResetPasswordInteractor.h; sourceTree = "<group>"; };
+		716C45291B02E09D00BA9834 /* RTResetPasswordInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTResetPasswordInteractor.m; sourceTree = "<group>"; };
+		716C452B1B02E0C500BA9834 /* RTResetPasswordInteractorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTResetPasswordInteractorDelegate.h; sourceTree = "<group>"; };
+		716C452C1B02E0E500BA9834 /* RTResetPasswordError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTResetPasswordError.h; sourceTree = "<group>"; };
 		7170C8671A59926E00C460BB /* RTErrorFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTErrorFactory.h; sourceTree = "<group>"; };
 		7170C8681A59926E00C460BB /* RTErrorFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTErrorFactory.m; sourceTree = "<group>"; };
 		7170C86C1A59A98600C460BB /* RTKeyChainWrapperSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTKeyChainWrapperSpec.m; sourceTree = "<group>"; };
@@ -1447,6 +1452,64 @@
 			path = Thumbnail;
 			sourceTree = "<group>";
 		};
+		716C45211B02E05400BA9834 /* ResetPassword */ = {
+			isa = PBXGroup;
+			children = (
+				716C45221B02E05400BA9834 /* Assembly */,
+				716C45231B02E05400BA9834 /* Domain */,
+				716C45241B02E05400BA9834 /* Navigation */,
+				716C45251B02E05400BA9834 /* Persistence */,
+				716C45261B02E05400BA9834 /* Presentation */,
+			);
+			path = ResetPassword;
+			sourceTree = "<group>";
+		};
+		716C45221B02E05400BA9834 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
+		716C45231B02E05400BA9834 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				716C45281B02E09D00BA9834 /* RTResetPasswordInteractor.h */,
+				716C45291B02E09D00BA9834 /* RTResetPasswordInteractor.m */,
+				716C452B1B02E0C500BA9834 /* RTResetPasswordInteractorDelegate.h */,
+				716C452C1B02E0E500BA9834 /* RTResetPasswordError.h */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		716C45241B02E05400BA9834 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		716C45251B02E05400BA9834 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		716C45261B02E05400BA9834 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		716C45271B02E06900BA9834 /* ResetPasswordTests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ResetPasswordTests;
+			sourceTree = "<group>";
+		};
 		7170C86B1A59A95000C460BB /* SecurityTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -1959,6 +2022,7 @@
 				71D9478B1A4FC70B00401963 /* Login */,
 				71073CF71A831BEF00BE6E19 /* Newsfeed */,
 				712B2BC21AAFB17B0026258A /* PagedList */,
+				716C45211B02E05400BA9834 /* ResetPassword */,
 				71386E491AD34E67009D064C /* UserProfile */,
 				71386E561AD35C22009D064C /* UserSummary */,
 			);
@@ -1989,6 +2053,7 @@
 				71D947961A4FCB2900401963 /* LoginTests */,
 				71073CFC1A831E6600BE6E19 /* NewsfeedTests */,
 				712B2BCE1AAFB86B0026258A /* PagedListTests */,
+				716C45271B02E06900BA9834 /* ResetPasswordTests */,
 				71386E4E1AD34F6E009D064C /* UserProfileTests */,
 				715C54151AD4A868009C755F /* UserSummaryTests */,
 			);
@@ -2244,6 +2309,7 @@
 				71565A261A98ED5900AE1C43 /* RTApplicationWireframe.m in Sources */,
 				715370FA1A88680700D3355B /* RTArrayDataSource.m in Sources */,
 				718CFFCA1A6C007C00B418F9 /* RTAccountRegistration.m in Sources */,
+				716C452A1B02E09D00BA9834 /* RTResetPasswordInteractor.m in Sources */,
 				714842F61AEBFD95001B885A /* RTApplicationNavigationController.m in Sources */,
 				714843061AEC1102001B885A /* RTDeviceRegistrationViewController.m in Sources */,
 				713229DB1A8FBBDC00DE900A /* RTURLFactory.m in Sources */,
