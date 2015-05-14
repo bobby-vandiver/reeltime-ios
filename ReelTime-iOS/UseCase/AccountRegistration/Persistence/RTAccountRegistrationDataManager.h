@@ -17,6 +17,7 @@
 - (void)registerAccount:(RTAccountRegistration *)registration
                callback:(void (^)(RTClientCredentials *clientCredentials))callback;
 
+// TODO: Refactor to use the RTClientCredentialsService instead
 - (void)saveClientCredentials:(RTClientCredentials *)clientCredentials
                   forUsername:(NSString *)username
                      callback:(void (^)())callback;
