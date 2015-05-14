@@ -237,6 +237,7 @@
 		71B238481B042F06002DE5DA /* RTCurrentUserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B238471B042F06002DE5DA /* RTCurrentUserService.m */; };
 		71B2384B1B042F91002DE5DA /* RTClientCredentialsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B2384A1B042F91002DE5DA /* RTClientCredentialsService.m */; };
 		71B2384E1B04305E002DE5DA /* RTCurrentUserServiceSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B2384D1B04305E002DE5DA /* RTCurrentUserServiceSpec.m */; };
+		71B238501B043934002DE5DA /* RTClientCredentialsServiceSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B2384F1B043934002DE5DA /* RTClientCredentialsServiceSpec.m */; };
 		71B50BCF1A756C6700D7D397 /* RTAccountRegistrationPresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B50BCE1A756C6700D7D397 /* RTAccountRegistrationPresenterSpec.m */; };
 		71B6BA651AD036A400723941 /* RTBrowseAllAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B6BA591AD036A400723941 /* RTBrowseAllAssembly.m */; };
 		71B6BA661AD036A400723941 /* RTBrowseAllWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B6BA5C1AD036A400723941 /* RTBrowseAllWireframe.m */; };
@@ -670,6 +671,7 @@
 		71B238491B042F91002DE5DA /* RTClientCredentialsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTClientCredentialsService.h; sourceTree = "<group>"; };
 		71B2384A1B042F91002DE5DA /* RTClientCredentialsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTClientCredentialsService.m; sourceTree = "<group>"; };
 		71B2384D1B04305E002DE5DA /* RTCurrentUserServiceSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTCurrentUserServiceSpec.m; sourceTree = "<group>"; };
+		71B2384F1B043934002DE5DA /* RTClientCredentialsServiceSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTClientCredentialsServiceSpec.m; sourceTree = "<group>"; };
 		71B50BCE1A756C6700D7D397 /* RTAccountRegistrationPresenterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAccountRegistrationPresenterSpec.m; sourceTree = "<group>"; };
 		71B6BA4F1AD01EDE00723941 /* RTBrowseReelsDataManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseReelsDataManagerDelegate.h; sourceTree = "<group>"; };
 		71B6BA581AD036A400723941 /* RTBrowseAllAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseAllAssembly.h; sourceTree = "<group>"; };
@@ -1889,6 +1891,7 @@
 			isa = PBXGroup;
 			children = (
 				71B2384D1B04305E002DE5DA /* RTCurrentUserServiceSpec.m */,
+				71B2384F1B043934002DE5DA /* RTClientCredentialsServiceSpec.m */,
 			);
 			path = ServiceTests;
 			sourceTree = "<group>";
@@ -2487,6 +2490,7 @@
 				713CE13C1AE4299A005B05C3 /* UICollectionView+LastVisibleSpec.m in Sources */,
 				714205CB1A90F55200F65D4F /* RTURLFactorySpec.m in Sources */,
 				714350561ACCC87E000C8B63 /* RTThumbnailSpec.m in Sources */,
+				71B238501B043934002DE5DA /* RTClientCredentialsServiceSpec.m in Sources */,
 				71C5C09D1A55B29700CAAFAC /* RTLoginPresenterSpec.m in Sources */,
 				7153EE0C1AED504E00000D1C /* RTServerErrorMessageToErrorCodeTestHelper.m in Sources */,
 				7114DF761AB4B401003B1D2E /* RTServerErrorsSpec.m in Sources */,
