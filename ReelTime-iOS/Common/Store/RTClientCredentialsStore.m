@@ -17,8 +17,13 @@
 }
 
 - (RTClientCredentials *)loadClientCredentialsForUsername:(NSString *)username {
+    return [self loadClientCredentialsForUsername:username error:nil];
+}
+
+- (RTClientCredentials *)loadClientCredentialsForUsername:(NSString *)username
+                                                    error:(NSError *__autoreleasing *)error {
     return (RTClientCredentials *)[self.keyChainWrapper objectForKey:[self generateKeyForUsername:username]
-                                                               error:nil];
+                                                               error:error];
 }
 
 - (BOOL)storeClientCredentials:(RTClientCredentials *)credentials

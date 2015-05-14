@@ -9,6 +9,9 @@
 
 - (RTClientCredentials *)loadClientCredentialsForUsername:(NSString *)username;
 
+- (RTClientCredentials *)loadClientCredentialsForUsername:(NSString *)username
+                                                    error:(NSError *__autoreleasing *)error;
+
 - (BOOL)storeClientCredentials:(RTClientCredentials *)credentials
                    forUsername:(NSString *)username
                          error:(NSError *__autoreleasing *)error;
