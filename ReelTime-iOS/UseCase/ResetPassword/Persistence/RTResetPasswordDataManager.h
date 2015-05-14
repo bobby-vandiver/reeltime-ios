@@ -4,7 +4,8 @@
 
 @interface RTResetPasswordDataManager : NSObject
 
-- (void)submitRequestForResetPasswordEmailWithCallback:(void (^)())callback;
+- (void)submitRequestForResetPasswordEmailForUsername:(NSString *)username
+                                         withCallback:(void (^)())callback;
 
 - (void)resetPasswordToNewPassword:(NSString *)newPassword
                        forUsername:(NSString *)username

@@ -600,14 +600,32 @@ describe(@"ReelTime Client", ^{
             sendResetPasswordEmailUrlRegex = [helper createUrlRegexForEndpoint:API_RESET_PASSWORD_SEND_EMAIL];
         });
         
+        afterEach(^{
+            expect(httpClient.lastParameters.allKeys).to.haveACountOf(1);
+            expect(httpClient.lastParameters[@"username"]).to.equal(username);
+        });
+        
         it(@"is successful", ^{
             [helper stubUnauthenticatedRequestWithMethod:POST
                                                 urlRegex:sendResetPasswordEmailUrlRegex
                                      rawResponseFilename:SUCCESSFUL_OK_WITH_NO_BODY_FILENAME];
             
             waitUntil(^(DoneCallback done) {
-                [client sendResetPasswordEmailWithSuccess:shouldExecuteSuccessCallback(done)
+                [client sendResetPasswordEmailForUsername:username
+                                                  success:shouldExecuteSuccessCallback(done)
                                                   failure:shouldNotExecuteFailureCallback(done)];
+            });
+        });
+        
+        it(@"fails due to not found", ^{
+            [helper stubUnauthenticatedRequestWithMethod:POST
+                                                urlRegex:sendResetPasswordEmailUrlRegex
+                                     rawResponseFilename:NOT_FOUND_WITH_ERRORS_FILENAME];
+            
+            waitUntil(^(DoneCallback done) {
+                [client sendResetPasswordEmailForUsername:username
+                                                  success:shouldNotExecuteSuccessCallback(done)
+                                                  failure:shouldExecuteFailureCallbackWithMessage(NOT_FOUND_ERROR_MESSAGE, done)];
             });
         });
         
@@ -617,7 +635,8 @@ describe(@"ReelTime Client", ^{
                                      rawResponseFilename:SERVICE_UNAVAILABLE_WITH_ERRORS_FILENAME];
             
             waitUntil(^(DoneCallback done) {
-                [client sendResetPasswordEmailWithSuccess:shouldNotExecuteSuccessCallback(done)
+                [client sendResetPasswordEmailForUsername:username
+                                                  success:shouldNotExecuteSuccessCallback(done)
                                                   failure:shouldExecuteFailureCallbackWithMessage(SERVICE_UNAVAILABLE_ERROR_MESSAGE, done)];
             });
         });

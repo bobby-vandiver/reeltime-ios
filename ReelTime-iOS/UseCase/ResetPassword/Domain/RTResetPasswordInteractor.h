@@ -2,7 +2,7 @@
 
 @interface RTResetPasswordInteractor : NSObject
 
-- (void)requestResetPasswordEmail;
+- (void)requestResetPasswordEmailForUsername:(NSString *)username;
 
 - (void)resetPasswordForCurrentClientWithCode:(NSString *)code
                                      username:(NSString *)username

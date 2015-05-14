@@ -98,7 +98,8 @@ typedef void (^ThumbnailCallback)(RTThumbnail *thumbnail);
                       success:(ClientCredentialsCallback)success
                       failure:(ServerErrorsCallback)failure;
 
-- (void)sendResetPasswordEmailWithSuccess:(NoArgsCallback)success
+- (void)sendResetPasswordEmailForUsername:(NSString *)username
+                                  success:(NoArgsCallback)success
                                   failure:(NoArgsCallback)failure;
 
 - (void)newsfeedPage:(NSUInteger)page

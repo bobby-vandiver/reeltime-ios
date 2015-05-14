@@ -155,9 +155,14 @@
 }
 
 + (RKResponseDescriptor *)resetPasswordSendEmailErrorDescriptor {
+    NSMutableIndexSet *statusCodes = [NSMutableIndexSet indexSet];
+    
+    [statusCodes addIndex:404];
+    [statusCodes addIndex:503];
+
     return [self serverErrorsDescriptorForMethod:RKRequestMethodPOST
                                             path:API_RESET_PASSWORD_SEND_EMAIL
-                                      statusCode:503];
+                                     statusCodes:statusCodes];
 }
 
 + (RKResponseDescriptor *)newsfeedDescriptor {

@@ -1477,10 +1477,10 @@
 		716C45231B02E05400BA9834 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				716C452C1B02E0E500BA9834 /* RTResetPasswordError.h */,
 				716C45281B02E09D00BA9834 /* RTResetPasswordInteractor.h */,
 				716C45291B02E09D00BA9834 /* RTResetPasswordInteractor.m */,
 				716C452B1B02E0C500BA9834 /* RTResetPasswordInteractorDelegate.h */,
-				716C452C1B02E0E500BA9834 /* RTResetPasswordError.h */,
 			);
 			path = Domain;
 			sourceTree = "<group>";

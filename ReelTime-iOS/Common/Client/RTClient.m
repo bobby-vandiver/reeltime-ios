@@ -185,10 +185,12 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
                                         failure:failure];
 }
 
-- (void)sendResetPasswordEmailWithSuccess:(NoArgsCallback)success
+- (void)sendResetPasswordEmailForUsername:(NSString *)username
+                                  success:(NoArgsCallback)success
                                   failure:(NoArgsCallback)failure {
+    NSDictionary *parameters = @{@"username": username};
     [self.httpClient unauthenticatedPostForPath:API_RESET_PASSWORD_SEND_EMAIL
-                                 withParameters:nil
+                                 withParameters:parameters
                                         success:success
                                         failure:failure];
 }
