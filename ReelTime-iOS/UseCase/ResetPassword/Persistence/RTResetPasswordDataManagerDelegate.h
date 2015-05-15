@@ -4,4 +4,6 @@
 
 - (void)sendResetPasswordEmailFailedWithErrors:(NSArray *)errors;
 
+- (void)resetPasswordFailedWithErrors:(NSArray *)errors;
+
 @end

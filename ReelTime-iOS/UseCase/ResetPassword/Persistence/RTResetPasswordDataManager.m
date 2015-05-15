@@ -2,6 +2,8 @@
 #import "RTResetPasswordDataManagerDelegate.h"
 
 #import "RTClient.h"
+
+#import "RTUserCredentials.h"
 #import "RTClientCredentials.h"
 
 #import "RTServerErrors.h"
@@ -54,6 +56,19 @@
                           withCode:(NSString *)code
                           callback:(void (^)())callback {
     
+    RTUserCredentials *userCredentials = [[RTUserCredentials alloc] initWithUsername:username
+                                                                            password:newPassword];
+    NoArgsCallback successCallback = ^{
+        callback();
+    };
+    
+    ServerErrorsCallback failureCallback = [self resetPasswordFailureCallback];
+    
+    [self.client resetPasswordWithCode:code
+                       userCredentials:userCredentials
+                     clientCredentials:clientCredentials
+                               success:successCallback
+                               failure:failureCallback];
 }
 
 - (void)resetPasswordToNewPassword:(NSString *)newPassword
@@ -62,6 +77,12 @@
    registerNewClientWithClientName:(NSString *)clientName
                           callback:(void (^)(RTClientCredentials *))callback {
     
+}
+
+- (ServerErrorsCallback)resetPasswordFailureCallback {
+    return ^(RTServerErrors *serverErrors) {
+        
+    };
 }
 
 @end
