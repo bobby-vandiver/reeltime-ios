@@ -119,7 +119,7 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
 }
 
 - (void)sendAccountConfirmationEmailWithSuccess:(NoArgsCallback)success
-                                        failure:(NoArgsCallback)failure {
+                                        failure:(ServerErrorsCallback)failure {
     [self.httpClient authenticatedPostForPath:API_CONFIRM_ACCOUNT_SEND_EMAIL
                                withParameters:nil
                                       success:success
@@ -187,7 +187,7 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
 
 - (void)sendResetPasswordEmailForUsername:(NSString *)username
                                   success:(NoArgsCallback)success
-                                  failure:(NoArgsCallback)failure {
+                                  failure:(ServerErrorsCallback)failure {
     NSDictionary *parameters = @{@"username": username};
     [self.httpClient unauthenticatedPostForPath:API_RESET_PASSWORD_SEND_EMAIL
                                  withParameters:parameters

@@ -170,6 +170,8 @@
 		715C54191AD4AFC3009C755F /* RTUserSummaryInteractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 715C54181AD4AFC3009C755F /* RTUserSummaryInteractorSpec.m */; };
 		715C541D1AD4C7B6009C755F /* RTUserSummaryPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 715C541C1AD4C7B6009C755F /* RTUserSummaryPresenter.m */; };
 		715C54201AD4C9A7009C755F /* RTUserSummaryPresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 715C541F1AD4C9A7009C755F /* RTUserSummaryPresenterSpec.m */; };
+		715E082A1B0576CD0037A17E /* RTResetPasswordDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 715E08291B0576CD0037A17E /* RTResetPasswordDataManagerSpec.m */; };
+		715E082E1B0582170037A17E /* RTResetPasswordServerErrorMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 715E082D1B0582170037A17E /* RTResetPasswordServerErrorMapping.m */; };
 		7160C2BF1A6F48A60045ADDA /* RTAccountRegistrationValidatorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7160C2BE1A6F48A60045ADDA /* RTAccountRegistrationValidatorSpec.m */; };
 		7163D7561ADAF20F009F30EF /* RTUserReelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7163D7551ADAF20F009F30EF /* RTUserReelCell.m */; };
 		71647BD51A7E7EEA00F44996 /* RTVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 71647BD41A7E7EEA00F44996 /* RTVideo.m */; };
@@ -542,6 +544,10 @@
 		715C541E1AD4C7E8009C755F /* RTUserSummaryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTUserSummaryView.h; sourceTree = "<group>"; };
 		715C541F1AD4C9A7009C755F /* RTUserSummaryPresenterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTUserSummaryPresenterSpec.m; sourceTree = "<group>"; };
 		715C54211AD4D2CF009C755F /* RTUserDescriptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTUserDescriptionView.h; sourceTree = "<group>"; };
+		715E08291B0576CD0037A17E /* RTResetPasswordDataManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTResetPasswordDataManagerSpec.m; sourceTree = "<group>"; };
+		715E082B1B0577930037A17E /* RTResetPasswordDataManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTResetPasswordDataManagerDelegate.h; sourceTree = "<group>"; };
+		715E082C1B0582170037A17E /* RTResetPasswordServerErrorMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTResetPasswordServerErrorMapping.h; sourceTree = "<group>"; };
+		715E082D1B0582170037A17E /* RTResetPasswordServerErrorMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTResetPasswordServerErrorMapping.m; sourceTree = "<group>"; };
 		7160C2BE1A6F48A60045ADDA /* RTAccountRegistrationValidatorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAccountRegistrationValidatorSpec.m; sourceTree = "<group>"; };
 		7163D7541ADAF20F009F30EF /* RTUserReelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTUserReelCell.h; sourceTree = "<group>"; };
 		7163D7551ADAF20F009F30EF /* RTUserReelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTUserReelCell.m; sourceTree = "<group>"; };
@@ -1507,6 +1513,9 @@
 			children = (
 				716C452D1B02E65900BA9834 /* RTResetPasswordDataManager.h */,
 				716C452E1B02E65900BA9834 /* RTResetPasswordDataManager.m */,
+				715E082B1B0577930037A17E /* RTResetPasswordDataManagerDelegate.h */,
+				715E082C1B0582170037A17E /* RTResetPasswordServerErrorMapping.h */,
+				715E082D1B0582170037A17E /* RTResetPasswordServerErrorMapping.m */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -1521,6 +1530,7 @@
 		716C45271B02E06900BA9834 /* ResetPasswordTests */ = {
 			isa = PBXGroup;
 			children = (
+				715E08291B0576CD0037A17E /* RTResetPasswordDataManagerSpec.m */,
 			);
 			path = ResetPasswordTests;
 			sourceTree = "<group>";
@@ -2347,6 +2357,7 @@
 				715370FA1A88680700D3355B /* RTArrayDataSource.m in Sources */,
 				718CFFCA1A6C007C00B418F9 /* RTAccountRegistration.m in Sources */,
 				716C452A1B02E09D00BA9834 /* RTResetPasswordInteractor.m in Sources */,
+				715E082E1B0582170037A17E /* RTResetPasswordServerErrorMapping.m in Sources */,
 				714842F61AEBFD95001B885A /* RTApplicationNavigationController.m in Sources */,
 				714843061AEC1102001B885A /* RTDeviceRegistrationViewController.m in Sources */,
 				713229DB1A8FBBDC00DE900A /* RTURLFactory.m in Sources */,
@@ -2508,6 +2519,7 @@
 				7134C6331A9580FF0048CFCF /* RTNewsfeedViewControllerSpec.m in Sources */,
 				713BCE071A5909DA000F2D96 /* RTFakeKeyChainWrapper.m in Sources */,
 				71403D231AB3C7BC007CB8B9 /* RTBrowseUsersDataManagerSpec.m in Sources */,
+				715E082A1B0576CD0037A17E /* RTResetPasswordDataManagerSpec.m in Sources */,
 				7170C86D1A59A98600C460BB /* RTKeyChainWrapperSpec.m in Sources */,
 				714843091AEC12C7001B885A /* RTDeviceRegistrationWireframeSpec.m in Sources */,
 				717A4B801A535942004C2BC1 /* RTClientSpec.m in Sources */,

@@ -76,7 +76,7 @@ typedef void (^ThumbnailCallback)(RTThumbnail *thumbnail);
                        failure:(NoArgsCallback)failure;
 
 - (void)sendAccountConfirmationEmailWithSuccess:(NoArgsCallback)success
-                                        failure:(NoArgsCallback)failure;
+                                        failure:(ServerErrorsCallback)failure;
 
 - (void)changeDisplayName:(NSString *)displayName
                   success:(NoArgsCallback)success
@@ -100,7 +100,7 @@ typedef void (^ThumbnailCallback)(RTThumbnail *thumbnail);
 
 - (void)sendResetPasswordEmailForUsername:(NSString *)username
                                   success:(NoArgsCallback)success
-                                  failure:(NoArgsCallback)failure;
+                                  failure:(ServerErrorsCallback)failure;
 
 - (void)newsfeedPage:(NSUInteger)page
              success:(NewsfeedCallback)success
