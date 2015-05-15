@@ -57,11 +57,11 @@ describe(@"reset password data manager", ^{
                                                       success:[successCaptor capture]
                                                       failure:[failureCaptor capture]];
             
-            [verifyCount(delegate, never()) sendResetEmailFailedWithErrors:anything()];
+            [verifyCount(delegate, never()) sendResetPasswordEmailFailedWithErrors:anything()];
             ServerErrorsCallback failureHandler = [failureCaptor value];
             
             void (^errorCaptureBlock)(MKTArgumentCaptor *) = ^(MKTArgumentCaptor *errorCaptor) {
-                [verify(delegate) sendResetEmailFailedWithErrors:[errorCaptor capture]];
+                [verify(delegate) sendResetPasswordEmailFailedWithErrors:[errorCaptor capture]];
                 [verify(delegate) reset];
             };
             

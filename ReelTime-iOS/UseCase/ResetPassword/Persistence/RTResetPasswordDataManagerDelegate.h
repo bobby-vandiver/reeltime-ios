@@ -2,6 +2,6 @@
 
 @protocol RTResetPasswordDataManagerDelegate <NSObject>
 
-- (void)sendResetEmailFailedWithErrors:(NSArray *)errors;
+- (void)sendResetPasswordEmailFailedWithErrors:(NSArray *)errors;
 
 @end

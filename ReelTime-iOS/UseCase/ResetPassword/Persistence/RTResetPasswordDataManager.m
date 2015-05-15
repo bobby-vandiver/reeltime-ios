@@ -40,7 +40,7 @@
     
     ServerErrorsCallback failureCallback = ^(RTServerErrors *serverErrors) {
         NSArray *emailErrors = [self.serverErrorsConverter convertServerErrors:serverErrors];
-        [self.delegate sendResetEmailFailedWithErrors:emailErrors];
+        [self.delegate sendResetPasswordEmailFailedWithErrors:emailErrors];
     };
     
     [self.client sendResetPasswordEmailForUsername:username
