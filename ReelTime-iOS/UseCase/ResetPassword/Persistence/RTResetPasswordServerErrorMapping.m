@@ -15,6 +15,7 @@
              @"[new_password] is required": @(RTResetPasswordErrorMissingNewPassword),
              @"[new_password] must be at least 6 characters long": @(RTResetPasswordErrorInvalidNewPassword),
              @"[code] is required": @(RTResetPasswordErrorMissingResetCode),
+             @"[code] is invalid": @(RTResetPasswordErrorInvalidResetCode),
              @"[client_name] is required": @(RTResetPasswordErrorMissingClientName)
              };
     

@@ -24,6 +24,8 @@ describe(@"reset password data manager", ^{
     __block RTClientCredentials *clientCredentials;
     
     __block BOOL callbackExecuted;
+    __block BOOL clientCredentialsCallbackExecuted;
+    
     __block RTServerErrorMessageToErrorCodeTestHelper *helper;
     
     __block MKTArgumentCaptor *successCaptor;
@@ -33,6 +35,12 @@ describe(@"reset password data manager", ^{
 
     NoArgsCallback callback = ^{
         callbackExecuted = YES;
+    };
+    
+    ClientCredentialsCallback clientCredentialsCallback = ^(RTClientCredentials *credentials) {
+        clientCredentialsCallbackExecuted = YES;
+        expect(credentials.clientId).to.equal(clientId);
+        expect(credentials.clientSecret).to.equal(clientSecret);
     };
     
     beforeEach(^{
@@ -49,7 +57,9 @@ describe(@"reset password data manager", ^{
                                                              clientSecret:clientSecret];
         
         resetCode = @"reset";
+        
         callbackExecuted = NO;
+        clientCredentialsCallbackExecuted = NO;
         
         successCaptor = [[MKTArgumentCaptor alloc] init];
         failureCaptor = [[MKTArgumentCaptor alloc] init];
@@ -97,20 +107,8 @@ describe(@"reset password data manager", ^{
         });
     });
     
-    describe(@"reset password for registered client", ^{
-        beforeEach(^{
-            [dataManager resetPasswordToNewPassword:password
-                                        forUsername:username
-                                  clientCredentials:clientCredentials
-                                           withCode:resetCode
-                                           callback:callback];
-            
-            [verify(client) resetPasswordWithCode:resetCode
-                                  userCredentials:[userCredentialsCaptor capture]
-                                clientCredentials:clientCredentials
-                                          success:[successCaptor capture]
-                                          failure:[failureCaptor capture]];
-            
+    describe(@"reset password", ^{
+        void (^initTestHelper)() = ^{
             RTUserCredentials *capturedUserCredentials = [userCredentialsCaptor value];
             expect(capturedUserCredentials.username).to.equal(username);
             expect(capturedUserCredentials.password).to.equal(password);
@@ -126,15 +124,9 @@ describe(@"reset password data manager", ^{
             helper = [[RTServerErrorMessageToErrorCodeTestHelper alloc] initForErrorDomain:RTResetPasswordErrorDomain
                                                                         withFailureHandler:failureHandler
                                                                          errorCaptureBlock:errorCaptureBlock];
-        });
+        };
         
-        it(@"should invoke callback on success", ^{
-            NoArgsCallback successCallback = [successCaptor value];
-            successCallback();
-            expect(callbackExecuted).to.beTruthy();
-        });
-        
-        it(@"should map server errors to domain specific errors", ^{
+        void (^testServerErrorMappings)() = ^{
             NSDictionary *mapping = @{
                                       @"[username] is required":
                                           @(RTResetPasswordErrorMissingUsername),
@@ -144,11 +136,69 @@ describe(@"reset password data manager", ^{
                                           @(RTResetPasswordErrorInvalidNewPassword),
                                       @"[code] is required":
                                           @(RTResetPasswordErrorMissingResetCode),
+                                      @"[code] is invalid":
+                                          @(RTResetPasswordErrorInvalidResetCode),
                                       @"[client_name] is required":
                                           @(RTResetPasswordErrorMissingClientName)
                                       };
-
+            
             [helper expectForServerMessageToErrorCodeMapping:mapping];
+        };
+        
+        context(@"registered client", ^{
+            beforeEach(^{
+                [dataManager resetPasswordToNewPassword:password
+                                            forUsername:username
+                                      clientCredentials:clientCredentials
+                                               withCode:resetCode
+                                               callback:callback];
+                
+                [verify(client) resetPasswordWithCode:resetCode
+                                      userCredentials:[userCredentialsCaptor capture]
+                                    clientCredentials:clientCredentials
+                                              success:[successCaptor capture]
+                                              failure:[failureCaptor capture]];
+                
+                initTestHelper();
+            });
+            
+            it(@"should invoke callback on success", ^{
+                NoArgsCallback successCallback = [successCaptor value];
+                successCallback();
+                expect(callbackExecuted).to.beTruthy();
+            });
+            
+            it(@"should map server errors to domain specific errors", ^{
+                testServerErrorMappings();
+            });
+        });
+        
+        context(@"new client", ^{
+            beforeEach(^{
+                [dataManager resetPasswordToNewPassword:password
+                                            forUsername:username
+                                               withCode:resetCode
+                        registerNewClientWithClientName:clientName
+                                               callback:clientCredentialsCallback];
+
+                [verify(client) resetPasswordWithCode:resetCode
+                                      userCredentials:[userCredentialsCaptor capture]
+                                           clientName:clientName
+                                              success:[successCaptor capture]
+                                              failure:[failureCaptor capture]];
+                
+                initTestHelper();
+            });
+            
+            it(@"should invoke callback on success", ^{
+                ClientCredentialsCallback successCallback = [successCaptor value];
+                successCallback(clientCredentials);
+                expect(clientCredentialsCallbackExecuted).to.beTruthy();
+            });
+            
+            it(@"should map server errors to domain specific errors", ^{
+                testServerErrorMappings();
+            });
         });
     });
 });

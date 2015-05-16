@@ -77,6 +77,20 @@
    registerNewClientWithClientName:(NSString *)clientName
                           callback:(void (^)(RTClientCredentials *))callback {
     
+    RTUserCredentials *userCredentials = [[RTUserCredentials alloc] initWithUsername:username
+                                                                            password:newPassword];
+    
+    ClientCredentialsCallback successCallback = ^(RTClientCredentials *clientCredentials) {
+        callback(clientCredentials);
+    };
+    
+    ServerErrorsCallback failureCallback = [self resetPasswordFailureCallback];
+    
+    [self.client resetPasswordWithCode:code
+                       userCredentials:userCredentials
+                            clientName:clientName
+                               success:successCallback
+                               failure:failureCallback];
 }
 
 - (ServerErrorsCallback)resetPasswordFailureCallback {
