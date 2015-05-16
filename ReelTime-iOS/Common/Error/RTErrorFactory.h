@@ -5,6 +5,7 @@
 #import "RTKeyChainError.h"
 #import "RTLoginError.h"
 #import "RTPagedListError.h"
+#import "RTResetPasswordError.h"
 #import "RTUserSummaryError.h"
 
 @interface RTErrorFactory : NSObject
@@ -25,6 +26,8 @@
                   originalError:(NSError *)error;
 
 + (NSError *)pagedListErrorWithCode:(RTPagedListError)code;
+
++ (NSError *)resetPasswordErrorWithCode:(RTResetPasswordError)code;
 
 + (NSError *)userSummaryErrorWithCode:(RTUserSummaryError)code;
 

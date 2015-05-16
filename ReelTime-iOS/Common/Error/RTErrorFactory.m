@@ -50,6 +50,12 @@
                            userInfo:nil];
 }
 
++ (NSError *)resetPasswordErrorWithCode:(RTResetPasswordError)code {
+    return [NSError errorWithDomain:RTResetPasswordErrorDomain
+                               code:code
+                           userInfo:nil];
+}
+
 + (NSError *)userSummaryErrorWithCode:(RTUserSummaryError)code {
     return [NSError errorWithDomain:RTUserSummaryErrorDomain
                                code:code

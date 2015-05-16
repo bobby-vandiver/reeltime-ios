@@ -1,8 +1,19 @@
 #import <Foundation/Foundation.h>
 
+@protocol RTResetPasswordInteractorDelegate;
+@class RTResetPasswordDataManager;
+
+@class RTCurrentUserService;
+@class RTClientCredentialsService;
+
 @interface RTResetPasswordInteractor : NSObject
 
-- (void)requestResetPasswordEmailForUsername:(NSString *)username;
+- (instancetype)initWithDelegate:(id<RTResetPasswordInteractorDelegate>)delegate
+                     dataManager:(RTResetPasswordDataManager *)dataManager
+              currentUserService:(RTCurrentUserService *)currentUserService
+        clientCredentialsService:(RTClientCredentialsService *)clientCredentialsService;
+
+- (void)sendResetPasswordEmailForUsername:(NSString *)username;
 
 - (void)resetPasswordForCurrentClientWithCode:(NSString *)code
                                      username:(NSString *)username
