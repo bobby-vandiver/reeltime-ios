@@ -139,7 +139,13 @@ describe(@"reset password data manager", ^{
                                       @"[code] is invalid":
                                           @(RTResetPasswordErrorInvalidResetCode),
                                       @"[client_name] is required":
-                                          @(RTResetPasswordErrorMissingClientName)
+                                          @(RTResetPasswordErrorMissingClientName),
+                                      @"Requested user was not found":
+                                          @(RTResetPasswordErrorUnknownUser),
+                                      @"Invalid credentials":
+                                          @(RTResetPasswordErrorInvalidClientCredentials),
+                                      @"Forbidden request":
+                                          @(RTResetPasswordErrorForbiddenClient)
                                       };
             
             [helper expectForServerMessageToErrorCodeMapping:mapping];
