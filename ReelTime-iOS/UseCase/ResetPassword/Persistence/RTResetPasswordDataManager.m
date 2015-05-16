@@ -81,7 +81,8 @@
 
 - (ServerErrorsCallback)resetPasswordFailureCallback {
     return ^(RTServerErrors *serverErrors) {
-        
+        NSArray *resetErrors = [self.serverErrorsConverter convertServerErrors:serverErrors];
+        [self.delegate resetPasswordFailedWithErrors:resetErrors];
     };
 }
 

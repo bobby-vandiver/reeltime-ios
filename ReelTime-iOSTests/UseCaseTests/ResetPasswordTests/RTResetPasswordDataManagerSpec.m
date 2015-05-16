@@ -136,7 +136,16 @@ describe(@"reset password data manager", ^{
         
         it(@"should map server errors to domain specific errors", ^{
             NSDictionary *mapping = @{
-                                      // TODO: Add expected mappings
+                                      @"[username] is required":
+                                          @(RTResetPasswordErrorMissingUsername),
+                                      @"[new_password] is required":
+                                          @(RTResetPasswordErrorMissingNewPassword),
+                                      @"[new_password] must be at least 6 characters long":
+                                          @(RTResetPasswordErrorInvalidNewPassword),
+                                      @"[code] is required":
+                                          @(RTResetPasswordErrorMissingResetCode),
+                                      @"[client_name] is required":
+                                          @(RTResetPasswordErrorMissingClientName)
                                       };
 
             [helper expectForServerMessageToErrorCodeMapping:mapping];
