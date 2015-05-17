@@ -131,9 +131,9 @@ describe(@"reset password data manager", ^{
                                       @"[username] is required":
                                           @(RTResetPasswordErrorMissingUsername),
                                       @"[new_password] is required":
-                                          @(RTResetPasswordErrorMissingNewPassword),
+                                          @(RTResetPasswordErrorMissingPassword),
                                       @"[new_password] must be at least 6 characters long":
-                                          @(RTResetPasswordErrorInvalidNewPassword),
+                                          @(RTResetPasswordErrorInvalidPassword),
                                       @"[code] is required":
                                           @(RTResetPasswordErrorMissingResetCode),
                                       @"[code] is invalid":

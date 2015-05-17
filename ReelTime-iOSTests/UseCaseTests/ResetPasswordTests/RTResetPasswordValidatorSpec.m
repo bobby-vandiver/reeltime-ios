@@ -59,8 +59,8 @@ describe(@"reset password validator", ^{
         });
         
         it(@"blank password", ^{
-            expectErrorForBadParametersForRegisteredClient(@{PASSWORD_KEY: BLANK}, @[@(RTResetPasswordErrorMissingNewPassword)]);
-            expectErrorForBadParametersForRegisteredClient(@{PASSWORD_KEY: [NSNull null]}, @[@(RTResetPasswordErrorMissingNewPassword)]);
+            expectErrorForBadParametersForRegisteredClient(@{PASSWORD_KEY: BLANK}, @[@(RTResetPasswordErrorMissingPassword)]);
+            expectErrorForBadParametersForRegisteredClient(@{PASSWORD_KEY: [NSNull null]}, @[@(RTResetPasswordErrorMissingPassword)]);
         });
     });
 });

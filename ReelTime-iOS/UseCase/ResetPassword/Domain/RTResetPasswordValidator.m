@@ -53,7 +53,7 @@ confirmationPassword:(NSString *)confirmationPassword
 - (void)validatePassword:(NSString *)password
                   errors:(NSMutableArray *)errors {
     if (password.length == 0) {
-        [self addResetErrorCode:RTResetPasswordErrorMissingNewPassword toErrors:errors];
+        [self addResetErrorCode:RTResetPasswordErrorMissingPassword toErrors:errors];
     }
 }
 
