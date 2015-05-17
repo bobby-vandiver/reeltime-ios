@@ -1,8 +1,8 @@
-#import <Foundation/Foundation.h>
+#import "RTValidator.h"
 
 @class RTAccountRegistration;
 
-@interface RTAccountRegistrationValidator : NSObject
+@interface RTAccountRegistrationValidator : RTValidator
 
 - (BOOL)validateAccountRegistration:(RTAccountRegistration *)registration
                              errors:(NSArray *__autoreleasing *)errors;

@@ -1,6 +1,6 @@
-#import <Foundation/Foundation.h>
+#import "RTValidator.h"
 
-@interface RTResetPasswordValidator : NSObject
+@interface RTResetPasswordValidator : RTValidator
 
 - (BOOL)validateCode:(NSString *)code
             username:(NSString *)username

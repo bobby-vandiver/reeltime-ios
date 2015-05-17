@@ -11,23 +11,13 @@
             password:(NSString *)password
 confirmationPassword:(NSString *)confirmationPassword
               errors:(NSArray *__autoreleasing *)errors {
-    BOOL valid = YES;
-    NSMutableArray *errorContainer = [NSMutableArray array];
     
-    [self validateCode:code errors:errorContainer];
-
-    [self validateUsername:username errors:errorContainer];
-    [self validatePassword:password confirmationPassword:confirmationPassword errors:errorContainer];
-    
-    if (errorContainer.count > 0) {
-        valid = NO;
+    return [super validateWithErrors:errors validationBlock:^(NSMutableArray *errorContainer) {
+        [self validateCode:code errors:errorContainer];
         
-        if (errors) {
-            *errors = errorContainer;
-        }
-    }
-    
-    return valid;
+        [self validateUsername:username errors:errorContainer];
+        [self validatePassword:password confirmationPassword:confirmationPassword errors:errorContainer];
+    }];
 }
 
 - (BOOL)validateCode:(NSString *)code

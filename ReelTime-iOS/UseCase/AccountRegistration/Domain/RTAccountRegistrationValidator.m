@@ -8,26 +8,16 @@
 
 - (BOOL)validateAccountRegistration:(RTAccountRegistration *)registration
                              errors:(NSArray *__autoreleasing *)errors {
-    BOOL valid = YES;
-    NSMutableArray *errorContainer = [NSMutableArray array];
     
-    [self validateUsername:registration.username errors:errorContainer];
-    [self validatePassword:registration.password confirmationPassword:registration.confirmationPassword errors:errorContainer];
-    
-    [self validateEmail:registration.email errors:errorContainer];
-    [self validateDisplayName:registration.displayName errors:errorContainer];
-    
-    [self validateClientName:registration.clientName errors:errorContainer];
-    
-    if ([errorContainer count] > 0) {
-        valid = NO;
+    return [super validateWithErrors:errors validationBlock:^(NSMutableArray *errorContainer) {
+        [self validateUsername:registration.username errors:errorContainer];
+        [self validatePassword:registration.password confirmationPassword:registration.confirmationPassword errors:errorContainer];
         
-        if (errors) {
-            *errors = errorContainer;
-        }
-    }
-    
-    return valid;
+        [self validateEmail:registration.email errors:errorContainer];
+        [self validateDisplayName:registration.displayName errors:errorContainer];
+        
+        [self validateClientName:registration.clientName errors:errorContainer];
+    }];
 }
 
 - (void)validateUsername:(NSString *)username
