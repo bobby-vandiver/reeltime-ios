@@ -15,4 +15,6 @@ typedef NS_ENUM(NSInteger, RTResetPasswordViewField) {
 
 - (void)showErrorMessage:(NSString *)message;
 
+- (void)showMessage:(NSString *)message;
+
 @end

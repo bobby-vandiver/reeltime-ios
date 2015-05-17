@@ -34,14 +34,18 @@
 }
 
 - (void)requestedResetPasswordEmailForUsername:(NSString *)username {
-    
+    [self.interactor sendResetPasswordEmailForUsername:username];
 }
 
 - (void)requestedResetPasswordWithCode:(NSString *)code
                               username:(NSString *)username
                               password:(NSString *)password
                   confirmationPassword:(NSString *)confirmationPassword {
-    
+
+    [self.interactor resetPasswordForCurrentClientWithCode:code
+                                                  username:username
+                                                  password:password
+                                      confirmationPassword:confirmationPassword];
 }
 
 - (void)requestedResetPasswordWithCode:(NSString *)code
@@ -50,10 +54,16 @@
                   confirmationPassword:(NSString *)confirmationPassword
                             clientName:(NSString *)clientName {
     
+    [self.interactor resetPasswordForNewClientWithClientName:clientName
+                                                        code:code
+                                                    username:username
+                                                    password:password
+                                        confirmationPassword:confirmationPassword];
 }
 
 - (void)resetPasswordEmailSent {
-    
+    [self.view showMessage:@"Please check your email to complete the reset process"];
+    [self.wireframe presentResetPasswordInterface];
 }
 
 - (void)resetPasswordEmailFailedWithErrors:(NSArray *)errors {
@@ -61,7 +71,7 @@
 }
 
 - (void)resetPasswordSucceeded {
-    
+    [self.wireframe presentLoginInterface];
 }
 
 - (void)resetPasswordFailedWithErrors:(NSArray *)errors {
