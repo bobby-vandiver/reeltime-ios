@@ -17,29 +17,15 @@ describe(@"account registration validator", ^{
     NSString *const DISPLAY_NAME_KEY = @"displayName";
     NSString *const CLIENT_NAME_KEY = @"clientName";
 
-    NSString *(^getParameterOrDefault)(NSString *parameter, NSString *defaultValue) =
-    ^NSString *(NSString *parameter, NSString *defaultValue) {
-        NSString *value;
-
-        if (parameter) {
-            value = [parameter isEqual:[NSNull null]] ? nil : parameter;
-        }
-        else {
-            value = defaultValue;
-        }
-        
-        return value;
-    };
-    
     void (^expectErrorForBadParameters)(NSDictionary *parameters, NSArray *expectedErrorCodes) =
     ^(NSDictionary *parameters, NSArray *expectedErrorCodes) {
         
-        NSString *usernameParam = [parameters objectForKey:USERNAME_KEY];
-        NSString *passwordParam = [parameters objectForKey:PASSWORD_KEY];
-        NSString *confirmationParam = [parameters objectForKey:CONFIRMATION_PASSWORD_KEY];
-        NSString *emailParam = [parameters objectForKey:EMAIL_KEY];
-        NSString *displayNameParam = [parameters objectForKey:DISPLAY_NAME_KEY];
-        NSString *clientNameParam = [parameters objectForKey:CLIENT_NAME_KEY];
+        NSString *usernameParam = parameters[USERNAME_KEY];
+        NSString *passwordParam = parameters[PASSWORD_KEY];
+        NSString *confirmationParam = parameters[CONFIRMATION_PASSWORD_KEY];
+        NSString *emailParam = parameters[EMAIL_KEY];
+        NSString *displayNameParam = parameters[DISPLAY_NAME_KEY];
+        NSString *clientNameParam = parameters[CLIENT_NAME_KEY];
         
         RTAccountRegistration *registration = [RTAccountRegistration alloc];
         registration = [registration initWithUsername:getParameterOrDefault(usernameParam, username)

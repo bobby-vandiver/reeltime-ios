@@ -14,3 +14,16 @@ NSString *const BLANK = @"";
 const NSUInteger reelId = 49132;
 const NSUInteger videoId = 841;
 const NSUInteger pageNumber = 13;
+
+NSString *getParameterOrDefault(NSString *parameter, NSString *defaultValue) {
+    NSString *value;
+    
+    if (parameter) {
+        value = [parameter isEqual:[NSNull null]] ? nil : parameter;
+    }
+    else {
+        value = defaultValue;
+    }
+    
+    return value;
+}

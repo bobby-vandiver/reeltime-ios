@@ -30,3 +30,5 @@ extern NSString *const BLANK;
 extern const NSUInteger reelId;
 extern const NSUInteger videoId;
 extern const NSUInteger pageNumber;
+
+extern NSString *getParameterOrDefault(NSString *parameter, NSString *defaultValue);
