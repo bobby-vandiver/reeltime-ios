@@ -26,7 +26,15 @@ confirmationPassword:(NSString *)confirmationPassword
 confirmationPassword:(NSString *)confirmationPassword
           clientName:(NSString *)clientName
               errors:(NSArray *__autoreleasing *)errors {
-    return NO;
+
+    return [super validateWithErrors:errors validationBlock:^(NSMutableArray *errorContainer) {
+        [self validateCode:code errors:errorContainer];
+        
+        [self validateUsername:username errors:errorContainer];
+        [self validatePassword:password confirmationPassword:confirmationPassword errors:errorContainer];
+        
+        [self validateClientName:clientName errors:errorContainer];
+    }];
 }
 
 - (void)validateCode:(NSString *)code
@@ -58,6 +66,13 @@ confirmationPassword:(NSString *)confirmationPassword
     }
     else if (password.length >= PASSWORD_MINIMUM_LENGTH && ![confirmationPassword isEqualToString:password]) {
         [self addResetErrorCode:RTResetPasswordErrorConfirmationPasswordDoesNotMatch toErrors:errors];
+    }
+}
+
+- (void)validateClientName:(NSString *)clientName
+                    errors:(NSMutableArray *)errors {
+    if (clientName.length == 0) {
+        [self addResetErrorCode:RTResetPasswordErrorMissingClientName toErrors:errors];
     }
 }
 
