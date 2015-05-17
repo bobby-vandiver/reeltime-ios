@@ -15,7 +15,8 @@ describe(@"reset password validator", ^{
     
     NSString *const CODE_KEY = @"code";
     NSString *const USERNAME_KEY = @"username";
-    NSString *const NEW_PASSWORD_KEY = @"newPassword";
+    NSString *const PASSWORD_KEY = @"password";
+    NSString *const CONFIRMATION_PASSWORD_KEY = @"confirmationPassword";
     NSString *const CLIENT_NAME_KEY = @"clientName";
 
     void (^expectErrorForBadParametersForRegisteredClient)(NSDictionary *parameters, NSArray *expectedErrorCodes) =
@@ -23,12 +24,14 @@ describe(@"reset password validator", ^{
         
         NSString *codeParam = parameters[CODE_KEY];
         NSString *usernameParam = parameters[USERNAME_KEY];
-        NSString *newPasswordParam = parameters[NEW_PASSWORD_KEY];
+        NSString *passwordParam = parameters[PASSWORD_KEY];
+        NSString *confirmationPasswordParam = parameters[CONFIRMATION_PASSWORD_KEY];
         
         NSArray *errors;
         BOOL valid = [validator validateCode:getParameterOrDefault(codeParam, resetCode)
                                     username:getParameterOrDefault(usernameParam, username)
-                                    password:getParameterOrDefault(newPasswordParam, password)
+                                    password:getParameterOrDefault(passwordParam, password)
+                        confirmationPassword:getParameterOrDefault(confirmationPasswordParam, password)
                                       errors:&errors];
         
         expect(valid).to.beFalsy();
@@ -56,8 +59,8 @@ describe(@"reset password validator", ^{
         });
         
         it(@"blank password", ^{
-            expectErrorForBadParametersForRegisteredClient(@{NEW_PASSWORD_KEY: BLANK}, @[@(RTResetPasswordErrorMissingNewPassword)]);
-            expectErrorForBadParametersForRegisteredClient(@{NEW_PASSWORD_KEY: [NSNull null]}, @[@(RTResetPasswordErrorMissingNewPassword)]);
+            expectErrorForBadParametersForRegisteredClient(@{PASSWORD_KEY: BLANK}, @[@(RTResetPasswordErrorMissingNewPassword)]);
+            expectErrorForBadParametersForRegisteredClient(@{PASSWORD_KEY: [NSNull null]}, @[@(RTResetPasswordErrorMissingNewPassword)]);
         });
     });
 });

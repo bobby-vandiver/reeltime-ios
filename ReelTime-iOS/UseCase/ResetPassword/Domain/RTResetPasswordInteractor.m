@@ -57,9 +57,10 @@
 
 - (void)resetPasswordForCurrentClientWithCode:(NSString *)code
                                      username:(NSString *)username
-                                     password:(NSString *)password {
+                                     password:(NSString *)password
+                         confirmationPassword:(NSString *)confirmationPassword {
     NSArray *errors;
-    BOOL valid = [self.validator validateCode:code username:username password:password errors:&errors];
+    BOOL valid = [self.validator validateCode:code username:username password:password confirmationPassword:confirmationPassword errors:&errors];
     
     if (!valid) {
         [self.delegate resetPasswordFailedWithErrors:errors];
@@ -89,9 +90,10 @@
 - (void)resetPasswordForNewClientWithClientName:(NSString *)clientName
                                            code:(NSString *)code
                                        username:(NSString *)username
-                                       password:(NSString *)password {
+                                       password:(NSString *)password
+                           confirmationPassword:(NSString *)confirmationPassword {
     NSArray *errors;
-    BOOL valid = [self.validator validateCode:code username:username password:password clientName:clientName errors:&errors];
+    BOOL valid = [self.validator validateCode:code username:username password:password confirmationPassword:confirmationPassword clientName:clientName errors:&errors];
     
     if (!valid) {
         [self.delegate resetPasswordFailedWithErrors:errors];

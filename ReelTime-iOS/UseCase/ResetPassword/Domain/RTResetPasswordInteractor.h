@@ -21,11 +21,13 @@
 
 - (void)resetPasswordForCurrentClientWithCode:(NSString *)code
                                      username:(NSString *)username
-                                     password:(NSString *)password;
+                                     password:(NSString *)password
+                         confirmationPassword:(NSString *)confirmationPassword;
 
 - (void)resetPasswordForNewClientWithClientName:(NSString *)clientName
                                            code:(NSString *)code
                                        username:(NSString *)username
-                                       password:(NSString *)password;
+                                       password:(NSString *)password
+                           confirmationPassword:(NSString *)confirmationPassword;
 
 @end

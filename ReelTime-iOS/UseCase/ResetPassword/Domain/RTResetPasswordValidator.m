@@ -7,6 +7,7 @@
 - (BOOL)validateCode:(NSString *)code
             username:(NSString *)username
             password:(NSString *)password
+confirmationPassword:(NSString *)confirmationPassword
               errors:(NSArray *__autoreleasing *)errors {
     BOOL valid = YES;
     NSMutableArray *errorContainer = [NSMutableArray array];
@@ -29,6 +30,7 @@
 - (BOOL)validateCode:(NSString *)code
             username:(NSString *)username
             password:(NSString *)password
+confirmationPassword:(NSString *)confirmationPassword
           clientName:(NSString *)clientName
               errors:(NSArray *__autoreleasing *)errors {
     return NO;
