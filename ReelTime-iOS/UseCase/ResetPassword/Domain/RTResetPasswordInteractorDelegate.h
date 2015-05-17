@@ -6,4 +6,8 @@
 
 - (void)resetPasswordEmailFailedWithErrors:(NSArray *)errors;
 
+- (void)resetPasswordSucceeded;
+
+- (void)resetPasswordFailedWithErrors:(NSArray *)errors;
+
 @end

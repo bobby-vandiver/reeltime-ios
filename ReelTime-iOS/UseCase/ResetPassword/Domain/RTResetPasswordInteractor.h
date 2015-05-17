@@ -2,7 +2,9 @@
 #import "RTResetPasswordDataManagerDelegate.h"
 
 @protocol RTResetPasswordInteractorDelegate;
+
 @class RTResetPasswordDataManager;
+@class RTResetPasswordValidator;
 
 @class RTCurrentUserService;
 @class RTClientCredentialsService;
@@ -11,6 +13,7 @@
 
 - (instancetype)initWithDelegate:(id<RTResetPasswordInteractorDelegate>)delegate
                      dataManager:(RTResetPasswordDataManager *)dataManager
+                       validator:(RTResetPasswordValidator *)validator
               currentUserService:(RTCurrentUserService *)currentUserService
         clientCredentialsService:(RTClientCredentialsService *)clientCredentialsService;
 
