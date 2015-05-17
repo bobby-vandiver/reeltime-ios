@@ -62,6 +62,63 @@ describe(@"reset password validator", ^{
             expectErrorForBadParametersForRegisteredClient(@{PASSWORD_KEY: BLANK}, @[@(RTResetPasswordErrorMissingPassword)]);
             expectErrorForBadParametersForRegisteredClient(@{PASSWORD_KEY: [NSNull null]}, @[@(RTResetPasswordErrorMissingPassword)]);
         });
+        
+        it(@"blank confirmation password", ^{
+            expectErrorForBadParametersForRegisteredClient(@{CONFIRMATION_PASSWORD_KEY: BLANK}, @[@(RTResetPasswordErrorMissingConfirmationPassword)]);
+            expectErrorForBadParametersForRegisteredClient(@{CONFIRMATION_PASSWORD_KEY: [NSNull null]}, @[@(RTResetPasswordErrorMissingConfirmationPassword)]);
+        });
+        
+        it(@"all blank", ^{
+            NSDictionary *parameters = @{
+                                         CODE_KEY: BLANK,
+                                         USERNAME_KEY: BLANK,
+                                         PASSWORD_KEY: BLANK,
+                                         CONFIRMATION_PASSWORD_KEY: BLANK
+                                         };
+            
+            NSArray *expectedErrorCodes = @[
+                                            @(RTResetPasswordErrorMissingResetCode),
+                                            @(RTResetPasswordErrorMissingUsername),
+                                            @(RTResetPasswordErrorMissingPassword),
+                                            @(RTResetPasswordErrorMissingConfirmationPassword)
+                                            ];
+            
+            expectErrorForBadParametersForRegisteredClient(parameters, expectedErrorCodes);
+        });
+    });
+    
+    context(@"invalid parameters", ^{
+        describe(@"invalid password", ^{
+            it(@"matches confirmation password but is too short", ^{
+                expectErrorForBadParametersForRegisteredClient(@{PASSWORD_KEY: @"a", CONFIRMATION_PASSWORD_KEY: @"a"},
+                                                               @[@(RTResetPasswordErrorInvalidPassword)]);
+
+                expectErrorForBadParametersForRegisteredClient(@{PASSWORD_KEY: @"abcde", CONFIRMATION_PASSWORD_KEY: @"abcde"},
+                                                               @[@(RTResetPasswordErrorInvalidPassword)]);
+            });
+            
+            it(@"does not match confirmation password", ^{
+                expectErrorForBadParametersForRegisteredClient(@{PASSWORD_KEY: BLANK, CONFIRMATION_PASSWORD_KEY: BLANK},
+                                                               @[@(RTResetPasswordErrorMissingPassword),
+                                                                 @(RTResetPasswordErrorMissingConfirmationPassword)]);
+                
+                expectErrorForBadParametersForRegisteredClient(@{PASSWORD_KEY: BLANK, CONFIRMATION_PASSWORD_KEY: @"a"},
+                                                               @[@(RTResetPasswordErrorMissingPassword)]);
+                
+                expectErrorForBadParametersForRegisteredClient(@{PASSWORD_KEY: @"a", CONFIRMATION_PASSWORD_KEY: BLANK},
+                                                               @[@(RTResetPasswordErrorInvalidPassword),
+                                                                 @(RTResetPasswordErrorMissingConfirmationPassword)]);
+                
+                expectErrorForBadParametersForRegisteredClient(@{PASSWORD_KEY: @"abcdef", CONFIRMATION_PASSWORD_KEY: BLANK},
+                                                               @[@(RTResetPasswordErrorMissingConfirmationPassword)]);
+                
+                expectErrorForBadParametersForRegisteredClient(@{PASSWORD_KEY: BLANK, CONFIRMATION_PASSWORD_KEY: @"abcdef"},
+                                                               @[@(RTResetPasswordErrorMissingPassword)]);
+                
+                expectErrorForBadParametersForRegisteredClient(@{PASSWORD_KEY: @"abcdef", CONFIRMATION_PASSWORD_KEY: @"ABCDEF"},
+                                                               @[@(RTResetPasswordErrorConfirmationPasswordDoesNotMatch)]);
+            });
+        });
     });
 });
 

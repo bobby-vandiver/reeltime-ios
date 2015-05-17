@@ -1,5 +1,7 @@
 #import "RTResetPasswordValidator.h"
 #import "RTResetPasswordError.h"
+
+#import "RTRegexPattern.h"
 #import "RTErrorFactory.h"
 
 @implementation RTResetPasswordValidator
@@ -13,8 +15,9 @@ confirmationPassword:(NSString *)confirmationPassword
     NSMutableArray *errorContainer = [NSMutableArray array];
     
     [self validateCode:code errors:errorContainer];
+
     [self validateUsername:username errors:errorContainer];
-    [self validatePassword:password errors:errorContainer];
+    [self validatePassword:password confirmationPassword:confirmationPassword errors:errorContainer];
     
     if (errorContainer.count > 0) {
         valid = NO;
@@ -51,9 +54,20 @@ confirmationPassword:(NSString *)confirmationPassword
 }
 
 - (void)validatePassword:(NSString *)password
+    confirmationPassword:(NSString *)confirmationPassword
                   errors:(NSMutableArray *)errors {
     if (password.length == 0) {
         [self addResetErrorCode:RTResetPasswordErrorMissingPassword toErrors:errors];
+    }
+    else if (password.length < PASSWORD_MINIMUM_LENGTH) {
+        [self addResetErrorCode:RTResetPasswordErrorInvalidPassword toErrors:errors];
+    }
+    
+    if (confirmationPassword.length == 0) {
+        [self addResetErrorCode:RTResetPasswordErrorMissingConfirmationPassword toErrors:errors];
+    }
+    else if (password.length >= PASSWORD_MINIMUM_LENGTH && ![confirmationPassword isEqualToString:password]) {
+        [self addResetErrorCode:RTResetPasswordErrorConfirmationPasswordDoesNotMatch toErrors:errors];
     }
 }
 
