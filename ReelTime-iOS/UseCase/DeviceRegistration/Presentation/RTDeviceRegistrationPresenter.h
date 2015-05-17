@@ -1,11 +1,13 @@
 #import <Foundation/Foundation.h>
+
 #import "RTDeviceRegistrationInteractorDelegate.h"
+#import "RTErrorCodeToErrorMessagePresenterDelelgate.h"
 
 @protocol RTDeviceRegistrationView;
 @class RTDeviceRegistrationInteractor;
 @class RTDeviceRegistrationWireframe;
 
-@interface RTDeviceRegistrationPresenter : NSObject <RTDeviceRegistrationInteractorDelegate>
+@interface RTDeviceRegistrationPresenter : NSObject <RTDeviceRegistrationInteractorDelegate, RTErrorCodeToErrorMessagePresenterDelelgate>
 
 - (instancetype)initWithView:(id<RTDeviceRegistrationView>)view
                   interactor:(RTDeviceRegistrationInteractor *)interactor

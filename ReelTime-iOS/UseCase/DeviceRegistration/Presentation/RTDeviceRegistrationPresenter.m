@@ -1,7 +1,11 @@
 #import "RTDeviceRegistrationPresenter.h"
+
 #import "RTDeviceRegistrationView.h"
 #import "RTDeviceRegistrationInteractor.h"
 #import "RTDeviceRegistrationWireframe.h"
+
+#import "RTErrorCodeToErrorMessagePresenter.h"
+#import "RTDeviceRegistrationErrorCodeToErrorMessageMapping.h"
 
 #import "RTDeviceRegistrationError.h"
 #import "RTLogging.h"
@@ -11,6 +15,7 @@
 @property id<RTDeviceRegistrationView> view;
 @property RTDeviceRegistrationInteractor *interactor;
 @property (weak) RTDeviceRegistrationWireframe *wireframe;
+@property RTErrorCodeToErrorMessagePresenter *errorPresenter;
 
 @end
 
@@ -24,19 +29,11 @@
         self.view = view;
         self.interactor = interactor;
         self.wireframe = wireframe;
+        
+        RTDeviceRegistrationErrorCodeToErrorMessageMapping *mapping = [[RTDeviceRegistrationErrorCodeToErrorMessageMapping alloc] init];
+        self.errorPresenter = [[RTErrorCodeToErrorMessagePresenter alloc] initWithDelegate:self mapping:mapping];
     }
     return self;
-}
-
-+ (NSDictionary *)deviceRegistrationCodeToErrorMessageMap {
-    return @{
-             @(RTDeviceRegistrationErrorMissingUsername): @"Username is required",
-             @(RTDeviceRegistrationErrorMissingPassword): @"Password is required",
-             @(RTDeviceRegistrationErrorMissingClientName): @"Client name is required",
-             @(RTDeviceRegistrationErrorInvalidCredentials): @"Invalid username or password",
-             @(RTDeviceRegistrationErrorUnableToStoreClientCredentials): @"This device was registered but a problem occurred while completing the registration. Please register under a different name or unregister the current device from a different device and try again.",
-             @(RTDeviceRegistrationErrorServiceUnavailable): @"Unable to register a device at this time. Please try again shortly."
-             };
 }
 
 - (void)requestedDeviceRegistrationWithClientName:(NSString *)clientName
@@ -51,26 +48,11 @@
 }
 
 - (void)deviceRegistrationFailedWithErrors:(NSArray *)errors {
-    NSDictionary *messages = [RTDeviceRegistrationPresenter deviceRegistrationCodeToErrorMessageMap];
-    
-    for (NSError *error in errors) {
-        if ([error.domain isEqual:RTDeviceRegistrationErrorDomain]) {
-
-            NSInteger code = error.code;
-            NSString *message = messages[@(code)];
-            
-            if (message) {
-                [self presentErrorMessage:message forCode:code];
-            }
-        }
-        else {
-            DDLogWarn(@"Encountered non-device registration error = %@", error);
-        }
-    }
+    [self.errorPresenter presentErrors:errors];
 }
 
 - (void)presentErrorMessage:(NSString *)message
-                    forCode:(RTDeviceRegistrationError)code {
+                    forCode:(NSInteger)code {
     switch (code) {
         case RTDeviceRegistrationErrorMissingUsername:
             [self.view showValidationErrorMessage:message forField:RTDeviceRegistrationViewFieldUsername];

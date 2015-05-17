@@ -131,6 +131,9 @@
 		713DCAAB1A6C9D1C0032B252 /* RTAccountRegistrationInteractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 713DCAAA1A6C9D1C0032B252 /* RTAccountRegistrationInteractorSpec.m */; };
 		713DE8321B08DB2100A5BBF0 /* RTResetPasswordValidatorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 713DE8311B08DB2100A5BBF0 /* RTResetPasswordValidatorSpec.m */; };
 		713DE8391B09028B00A5BBF0 /* RTValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 713DE8381B09028B00A5BBF0 /* RTValidator.m */; };
+		713DE83D1B0920DF00A5BBF0 /* RTErrorCodeToErrorMessagePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 713DE83C1B0920DF00A5BBF0 /* RTErrorCodeToErrorMessagePresenter.m */; };
+		713DE8431B09253800A5BBF0 /* RTDeviceRegistrationErrorCodeToErrorMessageMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 713DE8421B09253800A5BBF0 /* RTDeviceRegistrationErrorCodeToErrorMessageMapping.m */; };
+		713DE8461B0926E100A5BBF0 /* RTAccountRegistrationErrorCodeToErrorMessageMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 713DE8451B0926E100A5BBF0 /* RTAccountRegistrationErrorCodeToErrorMessageMapping.m */; };
 		713EDFB21B082EA800E40683 /* RTResetPasswordValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 713EDFB11B082EA800E40683 /* RTResetPasswordValidator.m */; };
 		71403D201AB3C6F1007CB8B9 /* RTBrowseUsersDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 71403D1F1AB3C6F1007CB8B9 /* RTBrowseUsersDataManager.m */; };
 		71403D231AB3C7BC007CB8B9 /* RTBrowseUsersDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71403D221AB3C7BC007CB8B9 /* RTBrowseUsersDataManagerSpec.m */; };
@@ -479,6 +482,14 @@
 		713DE8371B09028B00A5BBF0 /* RTValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTValidator.h; sourceTree = "<group>"; };
 		713DE8381B09028B00A5BBF0 /* RTValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTValidator.m; sourceTree = "<group>"; };
 		713DE83A1B091D6800A5BBF0 /* RTResetPasswordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTResetPasswordView.h; sourceTree = "<group>"; };
+		713DE83B1B0920DF00A5BBF0 /* RTErrorCodeToErrorMessagePresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTErrorCodeToErrorMessagePresenter.h; sourceTree = "<group>"; };
+		713DE83C1B0920DF00A5BBF0 /* RTErrorCodeToErrorMessagePresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTErrorCodeToErrorMessagePresenter.m; sourceTree = "<group>"; };
+		713DE83E1B09211E00A5BBF0 /* RTErrorCodeToErrorMessageMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTErrorCodeToErrorMessageMapping.h; sourceTree = "<group>"; };
+		713DE8401B0923C400A5BBF0 /* RTErrorCodeToErrorMessagePresenterDelelgate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTErrorCodeToErrorMessagePresenterDelelgate.h; sourceTree = "<group>"; };
+		713DE8411B09253800A5BBF0 /* RTDeviceRegistrationErrorCodeToErrorMessageMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTDeviceRegistrationErrorCodeToErrorMessageMapping.h; sourceTree = "<group>"; };
+		713DE8421B09253800A5BBF0 /* RTDeviceRegistrationErrorCodeToErrorMessageMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTDeviceRegistrationErrorCodeToErrorMessageMapping.m; sourceTree = "<group>"; };
+		713DE8441B0926E100A5BBF0 /* RTAccountRegistrationErrorCodeToErrorMessageMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTAccountRegistrationErrorCodeToErrorMessageMapping.h; sourceTree = "<group>"; };
+		713DE8451B0926E100A5BBF0 /* RTAccountRegistrationErrorCodeToErrorMessageMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAccountRegistrationErrorCodeToErrorMessageMapping.m; sourceTree = "<group>"; };
 		713EDFB01B082EA800E40683 /* RTResetPasswordValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTResetPasswordValidator.h; sourceTree = "<group>"; };
 		713EDFB11B082EA800E40683 /* RTResetPasswordValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTResetPasswordValidator.m; sourceTree = "<group>"; };
 		71403D1E1AB3C6F1007CB8B9 /* RTBrowseUsersDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseUsersDataManager.h; sourceTree = "<group>"; };
@@ -1174,6 +1185,10 @@
 		71386E571AD36B34009D064C /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				713DE83E1B09211E00A5BBF0 /* RTErrorCodeToErrorMessageMapping.h */,
+				713DE83B1B0920DF00A5BBF0 /* RTErrorCodeToErrorMessagePresenter.h */,
+				713DE83C1B0920DF00A5BBF0 /* RTErrorCodeToErrorMessagePresenter.m */,
+				713DE8401B0923C400A5BBF0 /* RTErrorCodeToErrorMessagePresenterDelelgate.h */,
 				7138A9271AFD5002007D3878 /* RTKeyboardAwareFormViewController.h */,
 				7138A9281AFD5002007D3878 /* RTKeyboardAwareFormViewController.m */,
 				71386E581AD36C01009D064C /* RTReelDescription.h */,
@@ -1351,6 +1366,8 @@
 		714843001AEC1047001B885A /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				713DE8411B09253800A5BBF0 /* RTDeviceRegistrationErrorCodeToErrorMessageMapping.h */,
+				713DE8421B09253800A5BBF0 /* RTDeviceRegistrationErrorCodeToErrorMessageMapping.m */,
 				7137F4E41AEEF7C000B50DBA /* RTDeviceRegistrationPresenter.h */,
 				7137F4E51AEEF7C000B50DBA /* RTDeviceRegistrationPresenter.m */,
 				7137F4E71AEEF91C00B50DBA /* RTDeviceRegistrationView.h */,
@@ -1660,6 +1677,8 @@
 		717215961A8658970002ECC7 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				713DE8441B0926E100A5BBF0 /* RTAccountRegistrationErrorCodeToErrorMessageMapping.h */,
+				713DE8451B0926E100A5BBF0 /* RTAccountRegistrationErrorCodeToErrorMessageMapping.m */,
 				717215AC1A8659230002ECC7 /* RTAccountRegistrationPresenter.h */,
 				717215AD1A8659230002ECC7 /* RTAccountRegistrationPresenter.m */,
 				717215AE1A8659230002ECC7 /* RTAccountRegistrationView.h */,
@@ -2398,6 +2417,7 @@
 				715C541D1AD4C7B6009C755F /* RTUserSummaryPresenter.m in Sources */,
 				714843031AEC108D001B885A /* RTDeviceRegistrationWireframe.m in Sources */,
 				71386E601AD36C01009D064C /* RTVideoDescription.m in Sources */,
+				713DE8461B0926E100A5BBF0 /* RTAccountRegistrationErrorCodeToErrorMessageMapping.m in Sources */,
 				713CF1D31AE2A4E6003E2F89 /* RTThumbnailSupport.m in Sources */,
 				717D926D1A5B722300EAB6BF /* NSError+RTError.m in Sources */,
 				717215A41A86590D0002ECC7 /* RTAccountRegistrationValidator.m in Sources */,
@@ -2421,6 +2441,7 @@
 				7116C05E1AD9954700590DAF /* RTUserProfileAssembly.m in Sources */,
 				717215B11A8659230002ECC7 /* RTAccountRegistrationPresenter.m in Sources */,
 				712B2BCD1AAFB2010026258A /* RTPagedListDataManager.m in Sources */,
+				713DE83D1B0920DF00A5BBF0 /* RTErrorCodeToErrorMessagePresenter.m in Sources */,
 				7153EE091AED3CD900000D1C /* RTAccountRegistrationServerErrorMapping.m in Sources */,
 				712698121AA3CCB600E7066B /* RTVideoList.m in Sources */,
 				712B2BCA1AAFB17B0026258A /* RTPagedListInteractor.m in Sources */,
@@ -2481,6 +2502,7 @@
 				71B2384B1B042F91002DE5DA /* RTClientCredentialsService.m in Sources */,
 				713188A21A9125FF006155E6 /* NSURL+RTURL.m in Sources */,
 				711690921A6AB5510031578E /* RTSecureStoreAssembly.m in Sources */,
+				713DE8431B09253800A5BBF0 /* RTDeviceRegistrationErrorCodeToErrorMessageMapping.m in Sources */,
 				714842FC1AEC0086001B885A /* RTApplicationAwareWireframe.m in Sources */,
 				7116909C1A6AEBDA0031578E /* RTStoryboardViewControllerFactory.m in Sources */,
 				7170C8691A59926E00C460BB /* RTErrorFactory.m in Sources */,

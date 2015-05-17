@@ -2,6 +2,7 @@
 
 #import "RTAccountRegistrationInteractorDelegate.h"
 #import "RTLoginInteractorDelegate.h"
+#import "RTErrorCodeToErrorMessagePresenterDelelgate.h"
 
 @protocol RTAccountRegistrationView;
 
@@ -9,7 +10,7 @@
 @class RTAccountRegistrationWireframe;
 @class RTAccountRegistrationAutoLoginPresenter;
 
-@interface RTAccountRegistrationPresenter : NSObject <RTAccountRegistrationInteractorDelegate, RTLoginInteractorDelegate>
+@interface RTAccountRegistrationPresenter : NSObject <RTAccountRegistrationInteractorDelegate, RTLoginInteractorDelegate, RTErrorCodeToErrorMessagePresenterDelelgate>
 
 - (instancetype)initWithView:(id<RTAccountRegistrationView>)view
                   interactor:(RTAccountRegistrationInteractor *)interactor
