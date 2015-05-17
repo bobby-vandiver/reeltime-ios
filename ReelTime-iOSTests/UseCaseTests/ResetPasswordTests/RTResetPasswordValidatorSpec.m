@@ -28,7 +28,7 @@ describe(@"reset password validator", ^{
         NSArray *errors;
         BOOL valid = [validator validateCode:getParameterOrDefault(codeParam, resetCode)
                                     username:getParameterOrDefault(usernameParam, username)
-                                 newPassword:getParameterOrDefault(newPasswordParam, password)
+                                    password:getParameterOrDefault(newPasswordParam, password)
                                       errors:&errors];
         
         expect(valid).to.beFalsy();

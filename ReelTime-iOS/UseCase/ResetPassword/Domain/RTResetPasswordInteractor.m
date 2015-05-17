@@ -57,9 +57,9 @@
 
 - (void)resetPasswordForCurrentClientWithCode:(NSString *)code
                                      username:(NSString *)username
-                                  newPassword:(NSString *)newPassword {
+                                     password:(NSString *)password {
     NSArray *errors;
-    BOOL valid = [self.validator validateCode:code username:username newPassword:newPassword errors:&errors];
+    BOOL valid = [self.validator validateCode:code username:username password:password errors:&errors];
     
     if (!valid) {
         [self.delegate resetPasswordFailedWithErrors:errors];
@@ -77,7 +77,7 @@
         return;
     }
     
-    [self.dataManager resetPasswordToNewPassword:newPassword
+    [self.dataManager resetPasswordToNewPassword:password
                                      forUsername:username
                                clientCredentials:clientCredentials
                                         withCode:code
@@ -89,9 +89,9 @@
 - (void)resetPasswordForNewClientWithClientName:(NSString *)clientName
                                            code:(NSString *)code
                                        username:(NSString *)username
-                                    newPassword:(NSString *)newPassword {
+                                       password:(NSString *)password {
     NSArray *errors;
-    BOOL valid = [self.validator validateCode:code username:username newPassword:newPassword newClientName:clientName errors:&errors];
+    BOOL valid = [self.validator validateCode:code username:username password:password clientName:clientName errors:&errors];
     
     if (!valid) {
         [self.delegate resetPasswordFailedWithErrors:errors];
@@ -116,7 +116,7 @@
                                                      failure:failedToSaveClientCredentialsCallback];
     };
     
-    [self.dataManager resetPasswordToNewPassword:newPassword
+    [self.dataManager resetPasswordToNewPassword:password
                                      forUsername:username
                                         withCode:code
                  registerNewClientWithClientName:clientName

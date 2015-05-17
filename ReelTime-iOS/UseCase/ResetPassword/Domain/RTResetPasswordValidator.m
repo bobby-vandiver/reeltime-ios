@@ -6,14 +6,14 @@
 
 - (BOOL)validateCode:(NSString *)code
             username:(NSString *)username
-         newPassword:(NSString *)newPassword
+            password:(NSString *)password
               errors:(NSArray *__autoreleasing *)errors {
     BOOL valid = YES;
     NSMutableArray *errorContainer = [NSMutableArray array];
-
+    
     [self validateCode:code errors:errorContainer];
     [self validateUsername:username errors:errorContainer];
-    [self validatePassword:newPassword errors:errorContainer];
+    [self validatePassword:password errors:errorContainer];
     
     if (errorContainer.count > 0) {
         valid = NO;
@@ -28,8 +28,8 @@
 
 - (BOOL)validateCode:(NSString *)code
             username:(NSString *)username
-         newPassword:(NSString *)newPassword
-       newClientName:(NSString *)newClientName
+            password:(NSString *)password
+          clientName:(NSString *)clientName
               errors:(NSArray *__autoreleasing *)errors {
     return NO;
 }

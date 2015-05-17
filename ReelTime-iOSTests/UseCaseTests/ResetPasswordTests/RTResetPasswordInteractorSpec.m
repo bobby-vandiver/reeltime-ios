@@ -94,7 +94,7 @@ describe(@"reset password interactor", ^{
         
         context(@"registered client", ^{
             void (^givenValid)(BOOL) = ^(BOOL valid) {
-                [[given([validator validateCode:resetCode username:username newPassword:password errors:nil]) withMatcher:anything() forArgument:3]
+                [[given([validator validateCode:resetCode username:username password:password errors:nil]) withMatcher:anything() forArgument:3]
                  willReturnBool:valid];
             };
             
@@ -104,7 +104,7 @@ describe(@"reset password interactor", ^{
         
             it(@"validation errors", ^{
                 givenValid(NO);
-                [interactor resetPasswordForCurrentClientWithCode:resetCode username:username newPassword:password];
+                [interactor resetPasswordForCurrentClientWithCode:resetCode username:username password:password];
                 [verify(delegate) resetPasswordFailedWithErrors:anything()];
             });
             
@@ -112,7 +112,7 @@ describe(@"reset password interactor", ^{
                 givenValid(YES);
                 givenClientCredentials(nil);
                 
-                [interactor resetPasswordForCurrentClientWithCode:resetCode username:username newPassword:password];
+                [interactor resetPasswordForCurrentClientWithCode:resetCode username:username password:password];
                 expectResetError(RTResetPasswordErrorUnknownClient);
             });
             
@@ -120,7 +120,7 @@ describe(@"reset password interactor", ^{
                 givenValid(YES);
                 givenClientCredentials(clientCredentials);
                 
-                [interactor resetPasswordForCurrentClientWithCode:resetCode username:username newPassword:password];
+                [interactor resetPasswordForCurrentClientWithCode:resetCode username:username password:password];
                 
                 [verify(dataManager) resetPasswordToNewPassword:password
                                                     forUsername:username
@@ -139,13 +139,13 @@ describe(@"reset password interactor", ^{
         
         context(@"new client", ^{
             void (^givenValid)(BOOL) = ^(BOOL valid) {
-                [[given([validator validateCode:resetCode username:username newPassword:password newClientName:clientName errors:nil]) withMatcher:anything() forArgument:4]
+                [[given([validator validateCode:resetCode username:username password:password clientName:clientName errors:nil]) withMatcher:anything() forArgument:4]
                  willReturnBool:valid];
             };
             
             it(@"validation errors", ^{
                 givenValid(NO);
-                [interactor resetPasswordForNewClientWithClientName:clientName code:resetCode username:username newPassword:password];
+                [interactor resetPasswordForNewClientWithClientName:clientName code:resetCode username:username password:password];
                 [verify(delegate) resetPasswordFailedWithErrors:anything()];
             });
             
@@ -157,7 +157,7 @@ describe(@"reset password interactor", ^{
                 beforeEach(^{
                     givenValid(YES);
                     
-                    [interactor resetPasswordForNewClientWithClientName:clientName code:resetCode username:username newPassword:password];
+                    [interactor resetPasswordForNewClientWithClientName:clientName code:resetCode username:username password:password];
                     
                     [verify(dataManager) resetPasswordToNewPassword:password
                                                         forUsername:username

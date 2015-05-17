@@ -4,13 +4,13 @@
 
 - (BOOL)validateCode:(NSString *)code
             username:(NSString *)username
-         newPassword:(NSString *)newPassword
+            password:(NSString *)password
               errors:(NSArray *__autoreleasing *)errors;
 
 - (BOOL)validateCode:(NSString *)code
             username:(NSString *)username
-         newPassword:(NSString *)newPassword
-       newClientName:(NSString *)newClientName
+            password:(NSString *)password
+          clientName:(NSString *)clientName
               errors:(NSArray *__autoreleasing *)errors;
 
 @end
