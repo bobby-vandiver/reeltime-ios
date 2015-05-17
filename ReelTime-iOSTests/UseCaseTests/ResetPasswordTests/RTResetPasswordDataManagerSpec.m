@@ -76,11 +76,11 @@ describe(@"reset password data manager", ^{
                                                       success:[successCaptor capture]
                                                       failure:[failureCaptor capture]];
             
-            [verifyCount(delegate, never()) sendResetPasswordEmailFailedWithErrors:anything()];
+            [verifyCount(delegate, never()) submitRequestForResetPasswordEmailFailedWithErrors:anything()];
             ServerErrorsCallback failureHandler = [failureCaptor value];
             
             void (^errorCaptureBlock)(MKTArgumentCaptor *) = ^(MKTArgumentCaptor *errorCaptor) {
-                [verify(delegate) sendResetPasswordEmailFailedWithErrors:[errorCaptor capture]];
+                [verify(delegate) submitRequestForResetPasswordEmailFailedWithErrors:[errorCaptor capture]];
                 [verify(delegate) reset];
             };
             
@@ -113,11 +113,11 @@ describe(@"reset password data manager", ^{
             expect(capturedUserCredentials.username).to.equal(username);
             expect(capturedUserCredentials.password).to.equal(password);
             
-            [verifyCount(delegate, never()) resetPasswordFailedWithErrors:anything()];
+            [verifyCount(delegate, never()) failedToResetPasswordWithErrors:anything()];
             ServerErrorsCallback failureHandler = [failureCaptor value];
             
             void (^errorCaptureBlock)(MKTArgumentCaptor *) = ^(MKTArgumentCaptor *errorCaptor) {
-                [verify(delegate) resetPasswordFailedWithErrors:[errorCaptor capture]];
+                [verify(delegate) failedToResetPasswordWithErrors:[errorCaptor capture]];
                 [verify(delegate) reset];
             };
             

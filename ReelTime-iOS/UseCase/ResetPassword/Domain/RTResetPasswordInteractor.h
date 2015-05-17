@@ -1,4 +1,5 @@
 #import <Foundation/Foundation.h>
+#import "RTResetPasswordDataManagerDelegate.h"
 
 @protocol RTResetPasswordInteractorDelegate;
 @class RTResetPasswordDataManager;
@@ -6,7 +7,7 @@
 @class RTCurrentUserService;
 @class RTClientCredentialsService;
 
-@interface RTResetPasswordInteractor : NSObject
+@interface RTResetPasswordInteractor : NSObject <RTResetPasswordDataManagerDelegate>
 
 - (instancetype)initWithDelegate:(id<RTResetPasswordInteractorDelegate>)delegate
                      dataManager:(RTResetPasswordDataManager *)dataManager
