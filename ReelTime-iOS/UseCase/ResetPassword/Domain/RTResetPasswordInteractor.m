@@ -90,7 +90,37 @@
                                            code:(NSString *)code
                                        username:(NSString *)username
                                     newPassword:(NSString *)newPassword {
+    NSArray *errors;
+    BOOL valid = [self.validator validateCode:code username:username newPassword:newPassword newClientName:clientName errors:&errors];
     
+    if (!valid) {
+        [self.delegate resetPasswordFailedWithErrors:errors];
+        return;
+    }
+    
+    void (^savedClientCredentialsCallback)() = ^{
+        [self.delegate resetPasswordSucceeded];
+    };
+    
+    void (^failedToSaveClientCredentialsCallback)(NSError *) = ^(NSError *error) {
+        DDLogError(@"Failed to save client credentials: %@", error);
+        
+        NSError *saveError = [RTErrorFactory resetPasswordErrorWithCode:RTResetPasswordErrorFailedToSaveClientCredentials];
+        [self.delegate resetPasswordFailedWithErrors:@[saveError]];
+    };
+
+    void (^callback)(RTClientCredentials *) = ^(RTClientCredentials *clientCredentials) {
+        [self.clientCredentialsService saveClientCredentials:clientCredentials
+                                                 forUsername:username
+                                                     success:savedClientCredentialsCallback
+                                                     failure:failedToSaveClientCredentialsCallback];
+    };
+    
+    [self.dataManager resetPasswordToNewPassword:newPassword
+                                     forUsername:username
+                                        withCode:code
+                 registerNewClientWithClientName:clientName
+                                        callback:callback];
 }
 
 - (void)submitRequestForResetPasswordEmailFailedWithErrors:(NSArray *)errors {
@@ -98,7 +128,7 @@
 }
 
 - (void)failedToResetPasswordWithErrors:(NSArray *)errors {
-    
+    [self.delegate resetPasswordFailedWithErrors:errors];
 }
 
 @end

@@ -17,5 +17,7 @@ typedef NS_ENUM(NSInteger, RTResetPasswordError) {
     RTResetPasswordErrorUnknownClient,
     
     RTResetPasswordErrorInvalidClientCredentials,
-    RTResetPasswordErrorForbiddenClient
+    RTResetPasswordErrorForbiddenClient,
+    
+    RTResetPasswordErrorFailedToSaveClientCredentials
 };
