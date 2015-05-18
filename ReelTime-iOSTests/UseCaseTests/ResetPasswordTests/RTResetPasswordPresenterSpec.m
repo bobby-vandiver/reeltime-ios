@@ -6,6 +6,9 @@
 #import "RTResetPasswordInteractor.h"
 #import "RTResetPasswordWireframe.h"
 
+#import "RTResetPasswordError.h"
+#import "RTErrorFactory.h"
+
 SpecBegin(RTResetPasswordPresenter)
 
 describe(@"reset password presenter", ^{
@@ -65,6 +68,102 @@ describe(@"reset password presenter", ^{
         it(@"should route to the login interface", ^{
             [presenter resetPasswordSucceeded];
             [verify(wireFrame) presentLoginInterface];
+        });
+    });
+    
+    describe(@"reset password failure message", ^{
+        
+        void (^verifyValidationErrorMessageIsShown)(NSString *message, RTResetPasswordError code, RTResetPasswordViewField field) =
+        ^(NSString *message, RTResetPasswordError code, RTResetPasswordViewField field) {
+            NSError *error = [RTErrorFactory resetPasswordErrorWithCode:code];
+            
+            [presenter resetPasswordEmailFailedWithErrors:@[error]];
+            [verify(view) showValidationErrorMessage:message forField:field];
+            
+            [verify(view) reset];
+            
+            [presenter resetPasswordFailedWithErrors:@[error]];
+            [verify(view) showValidationErrorMessage:message forField:field];
+            
+            [verify(view) reset];
+        };
+        
+        void (^verifyErrorMessageIsShown)(NSString *message, RTResetPasswordError code) =
+        ^(NSString *message, RTResetPasswordError code) {
+            NSError *error = [RTErrorFactory resetPasswordErrorWithCode:code];
+            
+            [presenter resetPasswordEmailFailedWithErrors:@[error]];
+            [verify(view) showErrorMessage:message];
+
+            [verify(view) reset];
+
+            [presenter resetPasswordFailedWithErrors:@[error]];
+            [verify(view) showErrorMessage:message];
+            
+            [verify(view) reset];
+        };
+        
+        it(@"missing code", ^{
+            verifyValidationErrorMessageIsShown(@"Reset code is required",
+                                                RTResetPasswordErrorMissingResetCode,
+                                                RTResetPasswordViewFieldResetCode);
+        });
+        
+        it(@"invalid code", ^{
+            verifyErrorMessageIsShown(@"Reset code is invalid",
+                                      RTResetPasswordErrorInvalidResetCode);
+        });
+        
+        it(@"missing username", ^{
+            verifyValidationErrorMessageIsShown(@"Username is required",
+                                                RTResetPasswordErrorMissingUsername,
+                                                RTResetPasswordViewFieldUsername);
+        });
+        
+        it(@"missing password", ^{
+            verifyValidationErrorMessageIsShown(@"Password is required",
+                                                RTResetPasswordErrorMissingPassword,
+                                                RTResetPasswordViewFieldPassword);
+        });
+        
+        it(@"invalid password", ^{
+            verifyValidationErrorMessageIsShown(@"Password must be at least 6 characters",
+                                                RTResetPasswordErrorInvalidPassword,
+                                                RTResetPasswordViewFieldPassword);
+        });
+        
+        it(@"missing confirmation password", ^{
+            verifyValidationErrorMessageIsShown(@"Confirmation password is required",
+                                                RTResetPasswordErrorMissingConfirmationPassword,
+                                                RTResetPasswordViewFieldConfirmationPassword);
+        });
+        
+        it(@"password and confirmation password do not match", ^{
+            verifyErrorMessageIsShown(@"Password and confirmation password must match",
+                                      RTResetPasswordErrorConfirmationPasswordDoesNotMatch);
+        });
+        
+        it(@"missing client name", ^{
+            verifyValidationErrorMessageIsShown(@"Client name is required",
+                                                RTResetPasswordErrorMissingClientName,
+                                                RTResetPasswordViewFieldClientName);
+        });
+        
+        it(@"email failure", ^{
+            verifyErrorMessageIsShown(@"We were not able to send the reset password email at this time. Try again shortly.",
+                                      RTResetPasswordErrorEmailFailure);
+        });
+
+        it(@"unknown, unauthenticated or unauthorized client", ^{
+            NSString *expected = @"We could not recognize this device. Please register a new one.";
+
+            verifyErrorMessageIsShown(expected, RTResetPasswordErrorUnknownClient);
+            verifyErrorMessageIsShown(expected, RTResetPasswordErrorInvalidClientCredentials);
+            verifyErrorMessageIsShown(expected, RTResetPasswordErrorForbiddenClient);
+        });
+        
+        it(@"registered new client but failed to save credentials", ^{
+            verifyErrorMessageIsShown(@"We reset your password, but encountered a problem while registering this device. Please try again later.", RTResetPasswordErrorFailedToSaveClientCredentials);
         });
     });
 });

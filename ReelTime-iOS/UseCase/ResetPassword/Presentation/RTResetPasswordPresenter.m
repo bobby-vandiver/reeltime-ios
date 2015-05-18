@@ -4,6 +4,8 @@
 #import "RTResetPasswordInteractor.h"
 #import "RTResetPasswordWireframe.h"
 
+#import "RTResetPasswordError.h"
+
 #import "RTResetPasswordErrorCodeToErrorMessageMapping.h"
 #import "RTErrorCodeToErrorMessagePresenter.h"
 
@@ -67,7 +69,7 @@
 }
 
 - (void)resetPasswordEmailFailedWithErrors:(NSArray *)errors {
-    
+    [self.errorPresenter presentErrors:errors];
 }
 
 - (void)resetPasswordSucceeded {
@@ -75,12 +77,46 @@
 }
 
 - (void)resetPasswordFailedWithErrors:(NSArray *)errors {
-    
+    [self.errorPresenter presentErrors:errors];
 }
 
 - (void)presentErrorMessage:(NSString *)message
                     forCode:(NSInteger)code {
-    
+    switch (code) {
+        case RTResetPasswordErrorMissingResetCode:
+            [self.view showValidationErrorMessage:message forField:RTResetPasswordViewFieldResetCode];
+            break;
+
+        case RTResetPasswordErrorMissingUsername:
+            [self.view showValidationErrorMessage:message forField:RTResetPasswordViewFieldUsername];
+            break;
+            
+        case RTResetPasswordErrorMissingPassword:
+        case RTResetPasswordErrorInvalidPassword:
+            [self.view showValidationErrorMessage:message forField:RTResetPasswordViewFieldPassword];
+            break;
+
+        case RTResetPasswordErrorMissingConfirmationPassword:
+            [self.view showValidationErrorMessage:message forField:RTResetPasswordViewFieldConfirmationPassword];
+            break;
+            
+        case RTResetPasswordErrorMissingClientName:
+            [self.view showValidationErrorMessage:message forField:RTResetPasswordViewFieldClientName];
+            break;
+
+        case RTResetPasswordErrorEmailFailure:
+        case RTResetPasswordErrorConfirmationPasswordDoesNotMatch:
+        case RTResetPasswordErrorInvalidResetCode:
+        case RTResetPasswordErrorUnknownClient:
+        case RTResetPasswordErrorInvalidClientCredentials:
+        case RTResetPasswordErrorForbiddenClient:
+        case RTResetPasswordErrorFailedToSaveClientCredentials:
+            [self.view showErrorMessage:message];
+            break;
+            
+        default:
+            break;
+    }
 }
 
 @end
