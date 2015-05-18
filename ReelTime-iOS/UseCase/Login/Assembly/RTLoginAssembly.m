@@ -18,11 +18,13 @@
 
 - (RTLoginWireframe *)loginWireframe {
     return [TyphoonDefinition withClass:[RTLoginWireframe class] configuration:^(TyphoonDefinition *definition) {
-        [definition injectMethod:@selector(initWithViewController:accountRegistrationWireframe:deviceRegistrationWireframe:applicationWireframe:)
+        [definition injectMethod:@selector(initWithViewController:accountRegistrationWireframe:deviceRegistrationWireframe:resetPasswordWireframe:applicationWireframe:)
                       parameters:^(TyphoonMethod *initializer) {
                           [initializer injectParameterWith:[self loginViewController]];
                           [initializer injectParameterWith:[self.accountRegistrationAssembly accountRegistrationWireframe]];
                           [initializer injectParameterWith:[self.deviceRegistrationAssembly deviceRegistrationWireframe]];
+                          // TODO: Inject reset password wireframe
+                          [initializer injectParameterWith:nil];
                           [initializer injectParameterWith:[self.applicationAssembly applicationWireframe]];
         }];
     }];

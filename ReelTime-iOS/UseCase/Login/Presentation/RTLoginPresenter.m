@@ -40,6 +40,10 @@
     [self.wireframe presentAccountRegistrationInterface];
 }
 
+- (void)requestedResetPassword {
+    [self.wireframe presentResetPasswordInterface];
+}
+
 - (void)loginSucceeded {
     [self.wireframe presentPostLoginInterface];
 }

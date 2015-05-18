@@ -93,6 +93,11 @@ describe(@"login presenter", ^{
             [verify(wireframe) presentAccountRegistrationInterface];
         });
         
+        it(@"should present reset password interface when requested", ^{
+            [presenter requestedResetPassword];
+            [verify(wireframe) presentResetPasswordInterface];
+        });
+        
         it(@"should present post login interface when login succeeds", ^{
             [presenter loginSucceeded];
             [verify(wireframe) presentPostLoginInterface];

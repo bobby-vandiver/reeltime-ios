@@ -5,6 +5,7 @@
 
 #import "RTAccountRegistrationWireframe.h"
 #import "RTDeviceRegistrationWireframe.h"
+#import "RTResetPasswordWireframe.h"
 
 #import "RTApplicationWireframe.h"
 
@@ -17,12 +18,14 @@ describe(@"login wireframe", ^{
     
     __block RTAccountRegistrationWireframe *accountRegistrationWireframe;
     __block RTDeviceRegistrationWireframe *deviceRegistrationWireframe;
+    __block RTResetPasswordWireframe *resetPasswordWireframe;
     
     __block RTApplicationWireframe *applicationWireframe;
     
     beforeEach(^{
         applicationWireframe = mock([RTApplicationWireframe class]);
         
+        resetPasswordWireframe = mock([RTResetPasswordWireframe class]);
         deviceRegistrationWireframe = mock([RTDeviceRegistrationWireframe class]);
         accountRegistrationWireframe = mock([RTAccountRegistrationWireframe class]);
         
@@ -30,6 +33,7 @@ describe(@"login wireframe", ^{
         wireframe = [[RTLoginWireframe alloc] initWithViewController:viewController
                                         accountRegistrationWireframe:accountRegistrationWireframe
                                          deviceRegistrationWireframe:deviceRegistrationWireframe
+                                              resetPasswordWireframe:resetPasswordWireframe
                                                 applicationWireframe:applicationWireframe];
     });
     
@@ -51,6 +55,13 @@ describe(@"login wireframe", ^{
         it(@"should delegate to account registration wireframe", ^{
             [wireframe presentAccountRegistrationInterface];
             [verify(accountRegistrationWireframe) presentAccountRegistrationInterface];
+        });
+    });
+    
+    describe(@"presenting reset password", ^{
+        it(@"should delegate to reset password wireframe", ^{
+            [wireframe presentResetPasswordInterface];
+            [verify(resetPasswordWireframe) presentResetPasswordEmailInterface];
         });
     });
 });

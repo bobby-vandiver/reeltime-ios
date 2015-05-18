@@ -19,4 +19,6 @@
 
 - (IBAction)pressedRegisterAccountButton;
 
+- (IBAction)pressedResetPasswordButton;
+
 @end

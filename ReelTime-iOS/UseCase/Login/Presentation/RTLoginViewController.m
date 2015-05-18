@@ -39,6 +39,10 @@
     [self.presenter requestedAccountRegistration];
 }
 
+- (IBAction)pressedResetPasswordButton {
+    [self.presenter requestedResetPassword];
+}
+
 - (void)showValidationErrorMessage:(NSString *)message
                           forField:(RTLoginViewField)field {
     [self showErrorMessage:message];

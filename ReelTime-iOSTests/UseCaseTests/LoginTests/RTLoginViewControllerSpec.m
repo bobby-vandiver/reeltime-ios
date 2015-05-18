@@ -47,6 +47,13 @@ describe(@"login view controller", ^{
             [verify(presenter) requestedAccountRegistration];
         });
     });
+    
+    describe(@"when reset password button is pressed", ^{
+        it(@"should request reset password be presented", ^{
+            [viewController pressedResetPasswordButton];
+            [verify(presenter) requestedResetPassword];
+        });
+    });
 });
 
 SpecEnd
