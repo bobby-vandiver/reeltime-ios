@@ -17,11 +17,11 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *reelsListTableView;
 
-+ (RTUserProfileViewController *)viewControllerForUsername:(NSString *)username
-                                         withUserPresenter:(RTUserSummaryPresenter *)userPresenter
-                                            reelsPresenter:(RTBrowseReelsPresenter *)reelsPresenter
-                                reelVideosPresenterFactory:(id<RTBrowseReelVideosPresenterFactory>)reelVideosPresenterFactory
-                                       reelVideosWireframe:(id<RTVideoWireframe>)reelVideosWireframe
-                                          thumbnailSupport:(RTThumbnailSupport *)thumbnailSupport;
++ (instancetype)viewControllerForUsername:(NSString *)username
+                        withUserPresenter:(RTUserSummaryPresenter *)userPresenter
+                           reelsPresenter:(RTBrowseReelsPresenter *)reelsPresenter
+               reelVideosPresenterFactory:(id<RTBrowseReelVideosPresenterFactory>)reelVideosPresenterFactory
+                      reelVideosWireframe:(id<RTVideoWireframe>)reelVideosWireframe
+                         thumbnailSupport:(RTThumbnailSupport *)thumbnailSupport;
 
 @end

@@ -12,7 +12,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *clientNameField;
 @property (weak, nonatomic) IBOutlet UIScrollView *deviceRegistrationFormScrollView;
 
-+ (RTDeviceRegistrationViewController *)viewControllerWithPresenter:(RTDeviceRegistrationPresenter *)presenter;
++ (instancetype)viewControllerWithPresenter:(RTDeviceRegistrationPresenter *)presenter;
 
 - (IBAction)pressedRegisterButton;
 

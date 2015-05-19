@@ -40,12 +40,12 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
 
 @implementation RTUserProfileViewController
 
-+ (RTUserProfileViewController *)viewControllerForUsername:(NSString *)username
-                                         withUserPresenter:(RTUserSummaryPresenter *)userPresenter
-                                            reelsPresenter:(RTBrowseReelsPresenter *)reelsPresenter
-                                reelVideosPresenterFactory:(id<RTBrowseReelVideosPresenterFactory>)reelVideosPresenterFactory
-                                       reelVideosWireframe:(id<RTVideoWireframe>)reelVideosWireframe
-                                          thumbnailSupport:(RTThumbnailSupport *)thumbnailSupport {
++ (instancetype)viewControllerForUsername:(NSString *)username
+                        withUserPresenter:(RTUserSummaryPresenter *)userPresenter
+                           reelsPresenter:(RTBrowseReelsPresenter *)reelsPresenter
+               reelVideosPresenterFactory:(id<RTBrowseReelVideosPresenterFactory>)reelVideosPresenterFactory
+                      reelVideosWireframe:(id<RTVideoWireframe>)reelVideosWireframe
+                         thumbnailSupport:(RTThumbnailSupport *)thumbnailSupport {
 
     NSString *identifier = [RTUserProfileViewController storyboardIdentifier];
     RTUserProfileViewController *controller = [RTStoryboardViewControllerFactory viewControllerWithStoryboardIdentifier:identifier];

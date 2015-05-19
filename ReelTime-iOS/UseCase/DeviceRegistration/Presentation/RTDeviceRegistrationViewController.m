@@ -11,7 +11,7 @@
 
 @implementation RTDeviceRegistrationViewController
 
-+ (RTDeviceRegistrationViewController *)viewControllerWithPresenter:(RTDeviceRegistrationPresenter *)presenter {
++ (instancetype)viewControllerWithPresenter:(RTDeviceRegistrationPresenter *)presenter {
     NSString *identifier = [RTDeviceRegistrationViewController storyboardIdentifier];
     RTDeviceRegistrationViewController *controller = [RTStoryboardViewControllerFactory viewControllerWithStoryboardIdentifier:identifier];
     

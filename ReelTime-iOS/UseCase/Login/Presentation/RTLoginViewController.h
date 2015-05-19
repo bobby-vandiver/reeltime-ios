@@ -11,7 +11,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet UIScrollView *loginFormScrollView;
 
-+ (RTLoginViewController *)viewControllerWithPresenter:(RTLoginPresenter *)presenter;
++ (instancetype)viewControllerWithPresenter:(RTLoginPresenter *)presenter;
 
 - (IBAction)pressedLoginButton;
 

@@ -25,7 +25,7 @@ static NSString *const ActivityCellIdentifier = @"ActivityCell";
 
 @implementation RTNewsfeedViewController
 
-+ (RTNewsfeedViewController *)viewControllerWithPresenter:(RTNewsfeedPresenter *)presenter {
++ (instancetype)viewControllerWithPresenter:(RTNewsfeedPresenter *)presenter {
     NSString *identifier = [RTNewsfeedViewController storyboardIdentifier];
     RTNewsfeedViewController *controller = [RTStoryboardViewControllerFactory viewControllerWithStoryboardIdentifier:identifier];
     

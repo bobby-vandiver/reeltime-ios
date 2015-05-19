@@ -15,7 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *clientNameField;
 @property (weak, nonatomic) IBOutlet UIScrollView *accountRegistrationFormScrollView;
 
-+ (RTAccountRegistrationViewController *)viewControllerWithPresenter:(RTAccountRegistrationPresenter *)presenter;
++ (instancetype)viewControllerWithPresenter:(RTAccountRegistrationPresenter *)presenter;
 
 - (IBAction)pressedRegisterButton;
 

@@ -11,6 +11,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (readonly) RTArrayDataSource *tableViewDataSource;
 
-+ (RTNewsfeedViewController *)viewControllerWithPresenter:(RTNewsfeedPresenter *)presenter;
++ (instancetype)viewControllerWithPresenter:(RTNewsfeedPresenter *)presenter;
 
 @end
