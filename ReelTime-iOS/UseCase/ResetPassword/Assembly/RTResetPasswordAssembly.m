@@ -27,7 +27,11 @@
 }
 
 - (RTResetPasswordViewController *)resetPasswordViewController {
-    return [TyphoonDefinition withClass:[RTResetPasswordViewController class]];
+    return [TyphoonDefinition withClass:[RTResetPasswordViewController class] configuration:^(TyphoonDefinition *definition) {
+        [definition useInitializer:@selector(viewControllerWithPresenter:) parameters:^(TyphoonMethod *initializer) {
+            [initializer injectParameterWith:[self resetPasswordPresenter]];
+        }];
+    }];
 }
 
 - (RTResetPasswordPresenter *)resetPasswordPresenter {

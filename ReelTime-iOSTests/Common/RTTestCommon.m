@@ -15,6 +15,8 @@ const NSUInteger reelId = 49132;
 const NSUInteger videoId = 841;
 const NSUInteger pageNumber = 13;
 
+NSString *const resetCode = @"reset";
+
 NSString *getParameterOrDefault(NSString *parameter, NSString *defaultValue) {
     NSString *value;
     

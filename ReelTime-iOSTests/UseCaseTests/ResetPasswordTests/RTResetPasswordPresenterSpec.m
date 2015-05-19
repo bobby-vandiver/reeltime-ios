@@ -18,9 +18,7 @@ describe(@"reset password presenter", ^{
     
     __block RTResetPasswordInteractor *interactor;
     __block RTResetPasswordWireframe *wireFrame;
-    
-    NSString *const resetCode = @"reset";
-    
+        
     beforeEach(^{
         wireFrame = mock([RTResetPasswordWireframe class]);
         interactor = mock([RTResetPasswordInteractor class]);

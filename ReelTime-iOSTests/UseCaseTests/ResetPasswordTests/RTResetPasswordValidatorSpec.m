@@ -10,9 +10,6 @@ SpecBegin(RTResetPasswordValidator)
 describe(@"reset password validator", ^{
     __block RTResetPasswordValidator *validator;
 
-    // TODO: Move this to test common and update other tests
-    NSString *const resetCode = @"reset";
-    
     NSString *const CODE_KEY = @"code";
     NSString *const USERNAME_KEY = @"username";
     NSString *const PASSWORD_KEY = @"password";

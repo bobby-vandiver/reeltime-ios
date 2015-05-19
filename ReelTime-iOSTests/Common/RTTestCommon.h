@@ -31,4 +31,6 @@ extern const NSUInteger reelId;
 extern const NSUInteger videoId;
 extern const NSUInteger pageNumber;
 
+extern NSString *const resetCode;
+
 extern NSString *getParameterOrDefault(NSString *parameter, NSString *defaultValue);

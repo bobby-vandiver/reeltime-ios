@@ -11,8 +11,10 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *resetUsernameField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
+@property (weak, nonatomic) IBOutlet UITextField *confirmationPasswordField;
 @property (weak, nonatomic) IBOutlet UITextField *clientNameField;
 @property (weak, nonatomic) IBOutlet UITextField *resetCodeField;
+
 
 + (instancetype)viewControllerWithPresenter:(RTResetPasswordPresenter *)presenter;
 

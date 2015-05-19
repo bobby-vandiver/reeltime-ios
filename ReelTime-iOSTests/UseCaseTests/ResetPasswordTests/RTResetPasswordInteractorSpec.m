@@ -27,7 +27,6 @@ describe(@"reset password interactor", ^{
     __block RTCurrentUserService *currentUserService;
     __block RTClientCredentialsService *clientCredentialsService;
 
-    __block NSString *resetCode = @"reset";
     __block RTClientCredentials *clientCredentials;
     
     __block MKTArgumentCaptor *callbackCaptor;

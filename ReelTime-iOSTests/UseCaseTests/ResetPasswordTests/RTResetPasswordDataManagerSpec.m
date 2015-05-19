@@ -18,7 +18,6 @@ describe(@"reset password data manager", ^{
     __block id<RTResetPasswordDataManagerDelegate> delegate;
 
     __block RTClient *client;
-    __block NSString *resetCode;
     
     __block RTUserCredentials *userCredentials;
     __block RTClientCredentials *clientCredentials;
@@ -55,9 +54,7 @@ describe(@"reset password data manager", ^{
         
         clientCredentials = [[RTClientCredentials alloc] initWithClientId:clientId
                                                              clientSecret:clientSecret];
-        
-        resetCode = @"reset";
-        
+                
         callbackExecuted = NO;
         clientCredentialsCallbackExecuted = NO;
         

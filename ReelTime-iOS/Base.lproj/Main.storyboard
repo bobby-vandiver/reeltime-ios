@@ -520,7 +520,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                                    <rect key="frame" x="76" y="308" width="249" height="30"/>
+                                                    <rect key="frame" x="76" y="346" width="249" height="30"/>
                                                 </variation>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Reset Code" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Py4-wd-1nf">
@@ -528,7 +528,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                                    <rect key="frame" x="76" y="346" width="249" height="30"/>
+                                                    <rect key="frame" x="76" y="384" width="249" height="30"/>
                                                 </variation>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Uc-5O-Y2m">
@@ -539,24 +539,10 @@
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                                    <rect key="frame" x="76" y="384" width="249" height="38"/>
+                                                    <rect key="frame" x="76" y="422" width="249" height="38"/>
                                                 </variation>
                                                 <connections>
                                                     <action selector="pressedResetPasswordForRegisteredClientButton" destination="gvl-P5-GHN" eventType="touchUpInside" id="2Tn-hN-rjV"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b4Z-lV-Xqu">
-                                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                <state key="normal" title="Reset for New Client">
-                                                    <color key="titleColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <variation key="widthClass=compact" fixedFrame="YES">
-                                                    <rect key="frame" x="76" y="430" width="249" height="38"/>
-                                                </variation>
-                                                <connections>
-                                                    <action selector="pressedResetPasswordForNewClientButton" destination="gvl-P5-GHN" eventType="touchUpInside" id="h7k-es-pRV"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OvD-L3-kFH">
@@ -571,6 +557,28 @@
                                                 </variation>
                                                 <connections>
                                                     <action selector="pressedSendResetEmailButton" destination="gvl-P5-GHN" eventType="touchUpInside" id="yC8-L8-5va"/>
+                                                </connections>
+                                            </button>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirmation Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nhU-7z-1PJ">
+                                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <variation key="widthClass=compact" fixedFrame="YES">
+                                                    <rect key="frame" x="76" y="308" width="249" height="30"/>
+                                                </variation>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b4Z-lV-Xqu">
+                                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <state key="normal" title="Reset for New Client">
+                                                    <color key="titleColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <variation key="widthClass=compact" fixedFrame="YES">
+                                                    <rect key="frame" x="76" y="468" width="249" height="38"/>
+                                                </variation>
+                                                <connections>
+                                                    <action selector="pressedResetPasswordForNewClientButton" destination="gvl-P5-GHN" eventType="touchUpInside" id="h7k-es-pRV"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -589,8 +597,9 @@
                                                 <exclude reference="PCx-Qh-PLW"/>
                                                 <exclude reference="Py4-wd-1nf"/>
                                                 <exclude reference="6Uc-5O-Y2m"/>
-                                                <exclude reference="b4Z-lV-Xqu"/>
                                                 <exclude reference="OvD-L3-kFH"/>
+                                                <exclude reference="nhU-7z-1PJ"/>
+                                                <exclude reference="b4Z-lV-Xqu"/>
                                             </mask>
                                             <mask key="constraints">
                                                 <exclude reference="V2C-U2-EPB"/>
@@ -607,8 +616,9 @@
                                                 <include reference="PCx-Qh-PLW"/>
                                                 <include reference="Py4-wd-1nf"/>
                                                 <include reference="6Uc-5O-Y2m"/>
-                                                <include reference="b4Z-lV-Xqu"/>
                                                 <include reference="OvD-L3-kFH"/>
+                                                <include reference="nhU-7z-1PJ"/>
+                                                <include reference="b4Z-lV-Xqu"/>
                                             </mask>
                                             <mask key="constraints">
                                                 <include reference="V2C-U2-EPB"/>
@@ -697,6 +707,7 @@
                     </view>
                     <connections>
                         <outlet property="clientNameField" destination="PCx-Qh-PLW" id="cH0-h7-ITb"/>
+                        <outlet property="confirmationPasswordField" destination="nhU-7z-1PJ" id="3bX-sU-U0n"/>
                         <outlet property="emailUsernameField" destination="9RZ-h5-aAN" id="j9y-VP-KZE"/>
                         <outlet property="passwordField" destination="Uh0-Ar-KD3" id="r3T-Zv-PWG"/>
                         <outlet property="resetCodeField" destination="Py4-wd-1nf" id="avv-Zo-zCM"/>
