@@ -1,6 +1,8 @@
 #import "RTResetPasswordWireframe.h"
 #import "RTResetPasswordViewController.h"
+
 #import "RTLoginWireframe.h"
+#import "RTApplicationWireframe.h"
 
 @interface RTResetPasswordWireframe ()
 
@@ -23,15 +25,17 @@
 }
 
 - (void)presentResetPasswordEmailInterface {
-    
+    [self.applicationWireframe navigateToViewController:self.viewController];
 }
 
 - (void)presentResetPasswordInterface {
-    
+    if (![self.applicationWireframe isVisibleViewController:self.viewController]) {
+        [self.applicationWireframe navigateToViewController:self.viewController];
+    }
 }
 
 - (void)presentLoginInterface {
-    
+    [self.loginWireframe presentLoginInterface];
 }
 
 @end

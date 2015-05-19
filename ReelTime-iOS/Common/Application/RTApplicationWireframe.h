@@ -20,4 +20,6 @@
 
 - (void)navigateToViewController:(UIViewController *)viewController;
 
+- (BOOL)isVisibleViewController:(UIViewController *)viewController;
+
 @end

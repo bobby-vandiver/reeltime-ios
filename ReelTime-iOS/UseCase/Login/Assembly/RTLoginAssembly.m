@@ -6,6 +6,7 @@
 #import "RTAccountRegistrationAssembly.h"
 #import "RTDeviceRegistrationAssembly.h"
 
+#import "RTResetPasswordAssembly.h"
 #import "RTApplicationAssembly.h"
 
 #import "RTLoginWireframe.h"
@@ -23,8 +24,7 @@
                           [initializer injectParameterWith:[self loginViewController]];
                           [initializer injectParameterWith:[self.accountRegistrationAssembly accountRegistrationWireframe]];
                           [initializer injectParameterWith:[self.deviceRegistrationAssembly deviceRegistrationWireframe]];
-                          // TODO: Inject reset password wireframe
-                          [initializer injectParameterWith:nil];
+                          [initializer injectParameterWith:[self.resetPasswordAssembly resetPasswordWireframe]];
                           [initializer injectParameterWith:[self.applicationAssembly applicationWireframe]];
         }];
     }];

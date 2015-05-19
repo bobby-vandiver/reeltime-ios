@@ -52,4 +52,8 @@
     [self.navigationController pushViewController:viewController animated:YES];
 }
 
+- (BOOL)isVisibleViewController:(UIViewController *)viewController {
+    return [self.navigationController visibleViewController] == viewController;
+}
+
 @end

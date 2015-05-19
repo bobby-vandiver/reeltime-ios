@@ -6,6 +6,7 @@
 @class RTAccountRegistrationAssembly;
 @class RTDeviceRegistrationAssembly;
 
+@class RTResetPasswordAssembly;
 @class RTApplicationAssembly;
 
 @class RTLoginWireframe;
@@ -22,6 +23,7 @@
 @property (nonatomic, strong, readonly) RTAccountRegistrationAssembly *accountRegistrationAssembly;
 @property (nonatomic, strong, readonly) RTDeviceRegistrationAssembly *deviceRegistrationAssembly;
 
+@property (nonatomic, strong, readonly) RTResetPasswordAssembly *resetPasswordAssembly;
 @property (nonatomic, strong, readonly) RTApplicationAssembly *applicationAssembly;
 
 - (RTLoginWireframe *)loginWireframe;
