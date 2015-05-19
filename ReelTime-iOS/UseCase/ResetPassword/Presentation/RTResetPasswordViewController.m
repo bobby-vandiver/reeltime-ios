@@ -2,6 +2,14 @@
 
 @implementation RTResetPasswordViewController
 
++ (instancetype)viewControllerWithPresenter:(RTResetPasswordPresenter *)presenter {
+    return nil;
+}
+
++ (NSString *)storyboardIdentifier {
+    return @"Reset Password View Controller";
+}
+
 - (void)showValidationErrorMessage:(NSString *)message
                           forField:(RTResetPasswordViewField)field {
     
@@ -15,4 +23,12 @@
     
 }
 
+- (IBAction)pressedSendResetEmailButton {
+}
+
+- (IBAction)pressedResetPasswordForRegisteredClientButton {
+}
+
+- (IBAction)pressedResetPasswordForNewClientButton {
+}
 @end

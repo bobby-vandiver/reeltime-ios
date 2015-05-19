@@ -194,7 +194,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-952.5" y="54"/>
+            <point key="canvasLocation" x="-1638" y="54"/>
         </scene>
         <!--Device Registration-->
         <scene sceneID="gII-lF-nua">
@@ -307,7 +307,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oeN-hr-V5X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-309" y="54"/>
+            <point key="canvasLocation" x="-1002" y="54"/>
         </scene>
         <!--Account Registration-->
         <scene sceneID="U7v-AF-ObX">
@@ -454,7 +454,258 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WhH-Nz-GZA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="330" y="54"/>
+            <point key="canvasLocation" x="-361.5" y="54"/>
+        </scene>
+        <!--Reset Password-->
+        <scene sceneID="bN7-Ao-z7V">
+            <objects>
+                <viewController storyboardIdentifier="Reset Password View Controller" title="Reset Password" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gvl-P5-GHN" userLabel="Reset Password" customClass="RTResetPasswordViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pP3-W0-8QS"/>
+                        <viewControllerLayoutGuide type="bottom" id="5g8-hk-Mhp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8YG-Vg-Cp3">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nb9-v3-ezT">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iry-cf-e8g" userLabel="Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send Email" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sfJ-RI-Hxq">
+                                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                                <variation key="widthClass=compact" fixedFrame="YES">
+                                                    <rect key="frame" x="152" y="24" width="97" height="34"/>
+                                                </variation>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reset Password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LOg-qh-5BX">
+                                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                                <variation key="widthClass=compact" fixedFrame="YES">
+                                                    <rect key="frame" x="121" y="203" width="159" height="21"/>
+                                                </variation>
+                                            </label>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9RZ-h5-aAN">
+                                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <variation key="widthClass=compact" fixedFrame="YES">
+                                                    <rect key="frame" x="76" y="66" width="249" height="30"/>
+                                                </variation>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ep8-r0-qjx">
+                                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <variation key="widthClass=compact" fixedFrame="YES">
+                                                    <rect key="frame" x="76" y="232" width="249" height="30"/>
+                                                </variation>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uh0-Ar-KD3">
+                                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <variation key="widthClass=compact" fixedFrame="YES">
+                                                    <rect key="frame" x="76" y="270" width="249" height="30"/>
+                                                </variation>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Client Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PCx-Qh-PLW">
+                                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <variation key="widthClass=compact" fixedFrame="YES">
+                                                    <rect key="frame" x="76" y="308" width="249" height="30"/>
+                                                </variation>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Reset Code" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Py4-wd-1nf">
+                                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <variation key="widthClass=compact" fixedFrame="YES">
+                                                    <rect key="frame" x="76" y="346" width="249" height="30"/>
+                                                </variation>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Uc-5O-Y2m">
+                                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <state key="normal" title="Reset for Registered Client">
+                                                    <color key="titleColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <variation key="widthClass=compact" fixedFrame="YES">
+                                                    <rect key="frame" x="76" y="384" width="249" height="38"/>
+                                                </variation>
+                                                <connections>
+                                                    <action selector="pressedResetPasswordForRegisteredClientButton" destination="gvl-P5-GHN" eventType="touchUpInside" id="2Tn-hN-rjV"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b4Z-lV-Xqu">
+                                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <state key="normal" title="Reset for New Client">
+                                                    <color key="titleColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <variation key="widthClass=compact" fixedFrame="YES">
+                                                    <rect key="frame" x="76" y="430" width="249" height="38"/>
+                                                </variation>
+                                                <connections>
+                                                    <action selector="pressedResetPasswordForNewClientButton" destination="gvl-P5-GHN" eventType="touchUpInside" id="h7k-es-pRV"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OvD-L3-kFH">
+                                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <state key="normal" title="Send Reset Email">
+                                                    <color key="titleColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <variation key="widthClass=compact" fixedFrame="YES">
+                                                    <rect key="frame" x="81" y="104" width="244" height="38"/>
+                                                </variation>
+                                                <connections>
+                                                    <action selector="pressedSendResetEmailButton" destination="gvl-P5-GHN" eventType="touchUpInside" id="yC8-L8-5va"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="400" id="V2C-U2-EPB"/>
+                                            <constraint firstAttribute="height" constant="600" id="ayB-Vb-ZiO"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="subviews">
+                                                <exclude reference="sfJ-RI-Hxq"/>
+                                                <exclude reference="LOg-qh-5BX"/>
+                                                <exclude reference="9RZ-h5-aAN"/>
+                                                <exclude reference="ep8-r0-qjx"/>
+                                                <exclude reference="Uh0-Ar-KD3"/>
+                                                <exclude reference="PCx-Qh-PLW"/>
+                                                <exclude reference="Py4-wd-1nf"/>
+                                                <exclude reference="6Uc-5O-Y2m"/>
+                                                <exclude reference="b4Z-lV-Xqu"/>
+                                                <exclude reference="OvD-L3-kFH"/>
+                                            </mask>
+                                            <mask key="constraints">
+                                                <exclude reference="V2C-U2-EPB"/>
+                                                <exclude reference="ayB-Vb-ZiO"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="widthClass=compact">
+                                            <mask key="subviews">
+                                                <include reference="sfJ-RI-Hxq"/>
+                                                <include reference="LOg-qh-5BX"/>
+                                                <include reference="9RZ-h5-aAN"/>
+                                                <include reference="ep8-r0-qjx"/>
+                                                <include reference="Uh0-Ar-KD3"/>
+                                                <include reference="PCx-Qh-PLW"/>
+                                                <include reference="Py4-wd-1nf"/>
+                                                <include reference="6Uc-5O-Y2m"/>
+                                                <include reference="b4Z-lV-Xqu"/>
+                                                <include reference="OvD-L3-kFH"/>
+                                            </mask>
+                                            <mask key="constraints">
+                                                <include reference="V2C-U2-EPB"/>
+                                                <include reference="ayB-Vb-ZiO"/>
+                                            </mask>
+                                        </variation>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Iry-cf-e8g" firstAttribute="centerX" secondItem="nb9-v3-ezT" secondAttribute="centerX" id="03j-UM-WbN"/>
+                                    <constraint firstItem="Iry-cf-e8g" firstAttribute="leading" secondItem="nb9-v3-ezT" secondAttribute="leading" id="2Hb-Ku-aY0"/>
+                                    <constraint firstAttribute="trailing" secondItem="Iry-cf-e8g" secondAttribute="trailing" id="BjE-Xm-HWF"/>
+                                    <constraint firstAttribute="trailing" secondItem="Iry-cf-e8g" secondAttribute="trailing" id="Bk0-Xz-hVj"/>
+                                    <constraint firstAttribute="bottom" secondItem="Iry-cf-e8g" secondAttribute="bottom" id="DsV-ab-I0l"/>
+                                    <constraint firstItem="Iry-cf-e8g" firstAttribute="top" secondItem="nb9-v3-ezT" secondAttribute="top" id="EQ4-uQ-5vz"/>
+                                    <constraint firstAttribute="bottom" secondItem="Iry-cf-e8g" secondAttribute="bottom" id="Nka-nS-7wv"/>
+                                    <constraint firstItem="Iry-cf-e8g" firstAttribute="top" secondItem="nb9-v3-ezT" secondAttribute="top" id="Tfd-ce-cED"/>
+                                    <constraint firstItem="Iry-cf-e8g" firstAttribute="centerY" secondItem="nb9-v3-ezT" secondAttribute="centerY" id="UbX-as-w8z"/>
+                                    <constraint firstAttribute="bottom" secondItem="Iry-cf-e8g" secondAttribute="bottom" id="Xa9-mV-quc"/>
+                                    <constraint firstItem="Iry-cf-e8g" firstAttribute="leading" secondItem="nb9-v3-ezT" secondAttribute="leading" id="Xde-jt-hlF"/>
+                                    <constraint firstItem="Iry-cf-e8g" firstAttribute="top" secondItem="nb9-v3-ezT" secondAttribute="top" id="Zzu-W5-WpM"/>
+                                    <constraint firstItem="Iry-cf-e8g" firstAttribute="leading" secondItem="nb9-v3-ezT" secondAttribute="leading" id="aci-yq-2IU"/>
+                                    <constraint firstItem="Iry-cf-e8g" firstAttribute="leading" secondItem="nb9-v3-ezT" secondAttribute="leading" id="gzx-mV-xk8"/>
+                                    <constraint firstAttribute="trailing" secondItem="Iry-cf-e8g" secondAttribute="trailing" id="mwS-a0-7Gv"/>
+                                    <constraint firstItem="Iry-cf-e8g" firstAttribute="top" secondItem="nb9-v3-ezT" secondAttribute="top" id="zRu-VO-c3U"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="Iry-cf-e8g"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <exclude reference="03j-UM-WbN"/>
+                                        <exclude reference="2Hb-Ku-aY0"/>
+                                        <exclude reference="BjE-Xm-HWF"/>
+                                        <exclude reference="Bk0-Xz-hVj"/>
+                                        <exclude reference="DsV-ab-I0l"/>
+                                        <exclude reference="EQ4-uQ-5vz"/>
+                                        <exclude reference="Nka-nS-7wv"/>
+                                        <exclude reference="Tfd-ce-cED"/>
+                                        <exclude reference="UbX-as-w8z"/>
+                                        <exclude reference="Xa9-mV-quc"/>
+                                        <exclude reference="Xde-jt-hlF"/>
+                                        <exclude reference="Zzu-W5-WpM"/>
+                                        <exclude reference="aci-yq-2IU"/>
+                                        <exclude reference="gzx-mV-xk8"/>
+                                        <exclude reference="mwS-a0-7Gv"/>
+                                        <exclude reference="zRu-VO-c3U"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="subviews">
+                                        <include reference="Iry-cf-e8g"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <include reference="03j-UM-WbN"/>
+                                        <include reference="2Hb-Ku-aY0"/>
+                                        <include reference="BjE-Xm-HWF"/>
+                                        <include reference="Bk0-Xz-hVj"/>
+                                        <include reference="DsV-ab-I0l"/>
+                                        <include reference="EQ4-uQ-5vz"/>
+                                        <include reference="Nka-nS-7wv"/>
+                                        <include reference="Tfd-ce-cED"/>
+                                        <include reference="UbX-as-w8z"/>
+                                        <include reference="Xa9-mV-quc"/>
+                                        <include reference="Xde-jt-hlF"/>
+                                        <include reference="Zzu-W5-WpM"/>
+                                        <include reference="aci-yq-2IU"/>
+                                        <include reference="gzx-mV-xk8"/>
+                                        <include reference="mwS-a0-7Gv"/>
+                                        <include reference="zRu-VO-c3U"/>
+                                    </mask>
+                                </variation>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="nb9-v3-ezT"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="nb9-v3-ezT"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="clientNameField" destination="PCx-Qh-PLW" id="cH0-h7-ITb"/>
+                        <outlet property="emailUsernameField" destination="9RZ-h5-aAN" id="j9y-VP-KZE"/>
+                        <outlet property="passwordField" destination="Uh0-Ar-KD3" id="r3T-Zv-PWG"/>
+                        <outlet property="resetCodeField" destination="Py4-wd-1nf" id="avv-Zo-zCM"/>
+                        <outlet property="resetUsernameField" destination="ep8-r0-qjx" id="m0z-Kl-yaW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YcK-h5-gSv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="313.5" y="54"/>
         </scene>
         <!--Newsfeed View Controller-->
         <scene sceneID="Svq-o6-pjH">
