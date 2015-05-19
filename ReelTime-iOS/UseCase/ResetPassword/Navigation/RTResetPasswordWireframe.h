@@ -1,6 +1,13 @@
-#import <Foundation/Foundation.h>
+#import "RTApplicationAwareWireframe.h"
 
-@interface RTResetPasswordWireframe : NSObject
+@class RTResetPasswordViewController;
+@class RTLoginWireframe;
+
+@interface RTResetPasswordWireframe : RTApplicationAwareWireframe
+
+- (instancetype)initWithViewController:(RTResetPasswordViewController *)viewController
+                        loginWireframe:(RTLoginWireframe *)loginWireframe
+                  applicationWireframe:(RTApplicationWireframe *)applicationWireframe;
 
 - (void)presentResetPasswordEmailInterface;
 
