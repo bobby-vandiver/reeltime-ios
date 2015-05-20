@@ -23,7 +23,7 @@
 }
 
 - (void)retrievePage:(NSUInteger)page
-            callback:(void (^)(NSArray *))callback {
+            callback:(ArrayCallback)callback {
 
     UserListCallback successCallback = ^(RTUserList *userList) {
         callback(userList.users);

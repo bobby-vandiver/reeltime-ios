@@ -24,7 +24,7 @@
 }
 
 - (void)fetchUserForUsername:(NSString *)username
-                    callback:(void (^)(RTUser *))callback {
+                    callback:(UserCallback)callback {
     
     UserCallback successCallback = ^(RTUser *user) {
         callback(user);

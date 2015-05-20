@@ -35,7 +35,7 @@
 }
 
 - (void)submitRequestForResetPasswordEmailForUsername:(NSString *)username
-                                         withCallback:(void (^)())callback {
+                                         withCallback:(NoArgsCallback)callback {
     NoArgsCallback successCallback = ^{
         callback();
     };
@@ -54,7 +54,7 @@
                        forUsername:(NSString *)username
                  clientCredentials:(RTClientCredentials *)clientCredentials
                           withCode:(NSString *)code
-                          callback:(void (^)())callback {
+                          callback:(NoArgsCallback)callback {
     
     RTUserCredentials *userCredentials = [[RTUserCredentials alloc] initWithUsername:username
                                                                             password:newPassword];
@@ -75,7 +75,7 @@
                        forUsername:(NSString *)username
                           withCode:(NSString *)code
    registerNewClientWithClientName:(NSString *)clientName
-                          callback:(void (^)(RTClientCredentials *))callback {
+                          callback:(ClientCredentialsCallback)callback {
     
     RTUserCredentials *userCredentials = [[RTUserCredentials alloc] initWithUsername:username
                                                                             password:newPassword];

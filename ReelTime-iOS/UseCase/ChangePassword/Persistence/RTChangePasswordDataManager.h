@@ -1,4 +1,5 @@
 #import <Foundation/Foundation.h>
+#import "RTCallback.h"
 
 @protocol RTChangePasswordDataManagerDelegate;
 @class RTClient;
@@ -9,6 +10,6 @@
                           client:(RTClient *)client;
 
 - (void)changePassword:(NSString *)password
-              callback:(void (^)())callback;
+              callback:(NoArgsCallback)callback;
 
 @end

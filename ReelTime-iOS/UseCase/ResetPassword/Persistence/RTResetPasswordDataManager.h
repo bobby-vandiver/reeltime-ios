@@ -1,4 +1,5 @@
 #import <Foundation/Foundation.h>
+#import "RTCallback.h"
 
 @protocol RTResetPasswordDataManagerDelegate;
 
@@ -11,18 +12,18 @@
                           client:(RTClient *)client;
 
 - (void)submitRequestForResetPasswordEmailForUsername:(NSString *)username
-                                         withCallback:(void (^)())callback;
+                                         withCallback:(NoArgsCallback)callback;
 
 - (void)resetPasswordToNewPassword:(NSString *)newPassword
                        forUsername:(NSString *)username
                  clientCredentials:(RTClientCredentials *)clientCredentials
                           withCode:(NSString *)code
-                          callback:(void (^)())callback;
+                          callback:(NoArgsCallback)callback;
 
 - (void)resetPasswordToNewPassword:(NSString *)newPassword
                        forUsername:(NSString *)username
                           withCode:(NSString *)code
    registerNewClientWithClientName:(NSString *)clientName
-                          callback:(void (^)(RTClientCredentials *clientCredentials))callback;
+                          callback:(ClientCredentialsCallback)callback;
 
 @end

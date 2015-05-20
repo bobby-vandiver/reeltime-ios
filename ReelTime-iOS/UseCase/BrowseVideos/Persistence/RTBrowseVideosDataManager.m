@@ -31,7 +31,7 @@
 }
 
 - (void)retrievePage:(NSUInteger)page
-            callback:(void (^)(NSArray *))callback {
+            callback:(ArrayCallback)callback {
     
     VideoListCallback successCallback = ^(RTVideoList *videoList) {
         [self retrieveThumbnailsForVideos:videoList.videos callback:callback];
@@ -49,7 +49,7 @@
 }
 
 - (void)retrieveThumbnailsForVideos:(NSArray *)videos
-                           callback:(void (^)(NSArray *))callback {
+                           callback:(ArrayCallback)callback {
     RTCountDownLatch *countdownLatch = [[RTCountDownLatch alloc] initWithCount:videos.count];
     
     for (RTVideo *video in videos) {

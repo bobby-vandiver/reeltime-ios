@@ -1,4 +1,5 @@
 #import <Foundation/Foundation.h>
+#import "RTCallback.h"
 
 @protocol RTDeviceRegistrationDataManagerDelegate;
 
@@ -16,10 +17,10 @@
 
 - (void)fetchClientCredentialsForClientName:(NSString *)clientName
                         withUserCredentials:(RTUserCredentials *)userCredentials
-                                   callback:(void (^)(RTClientCredentials *clientCredentials))callback;
+                                   callback:(ClientCredentialsCallback)callback;
 
 - (void)storeClientCredentials:(RTClientCredentials *)clientCredentials
                    forUsername:(NSString *)username
-                      callback:(void(^)())callback;
+                      callback:(NoArgsCallback)callback;
 
 @end

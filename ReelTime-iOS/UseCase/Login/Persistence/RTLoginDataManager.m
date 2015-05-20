@@ -49,7 +49,7 @@
 
 - (void)fetchTokenWithClientCredentials:(RTClientCredentials *)clientCredentials
                         userCredentials:(RTUserCredentials *)userCredentials
-                               callback:(void (^)(RTOAuth2Token *, NSString *))callback {
+                               callback:(TokenAndUsernameCallback)callback {
     NSString *username = userCredentials.username;
     
     id success = ^(RTOAuth2Token *token) {
@@ -82,7 +82,7 @@
 
 - (void)setLoggedInUserWithToken:(RTOAuth2Token *)token
                         username:(NSString *)username
-                        callback:(void (^)())callback {
+                        callback:(NoArgsCallback)callback {
     NSError *error;
     BOOL success = [self saveToken:token forUsername:username error:&error];
     

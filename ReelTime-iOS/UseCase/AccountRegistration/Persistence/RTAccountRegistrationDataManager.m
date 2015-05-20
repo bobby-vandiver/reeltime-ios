@@ -40,7 +40,7 @@
 }
 
 - (void)registerAccount:(RTAccountRegistration *)registration
-               callback:(void (^)(RTClientCredentials *))callback {
+               callback:(ClientCredentialsCallback)callback {
 
     id successCallback = ^(RTClientCredentials *clientCredentials) {
         callback(clientCredentials);
@@ -58,7 +58,7 @@
 
 - (void)saveClientCredentials:(RTClientCredentials *)clientCredentials
                   forUsername:(NSString *)username
-                     callback:(void (^)())callback {
+                     callback:(NoArgsCallback)callback {
     NSError *storeError;
     BOOL success = [self.clientCredentialsStore storeClientCredentials:clientCredentials
                                                            forUsername:username

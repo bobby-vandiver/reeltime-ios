@@ -1,4 +1,5 @@
 #import <Foundation/Foundation.h>
+#import "RTCallback.h"
 
 @protocol RTAccountRegistrationDataManagerDelegate;
 
@@ -15,11 +16,11 @@
           clientCredentialsStore:(RTClientCredentialsStore *)clientCredentialsStore;
 
 - (void)registerAccount:(RTAccountRegistration *)registration
-               callback:(void (^)(RTClientCredentials *clientCredentials))callback;
+               callback:(ClientCredentialsCallback)callback;
 
 // TODO: Refactor to use the RTClientCredentialsService instead
 - (void)saveClientCredentials:(RTClientCredentials *)clientCredentials
                   forUsername:(NSString *)username
-                     callback:(void (^)())callback;
+                     callback:(NoArgsCallback)callback;
 
 @end

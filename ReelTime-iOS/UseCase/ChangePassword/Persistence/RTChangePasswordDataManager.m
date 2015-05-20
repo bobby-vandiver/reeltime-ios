@@ -22,7 +22,7 @@
 }
 
 - (void)changePassword:(NSString *)password
-              callback:(void (^)())callback {
+              callback:(NoArgsCallback)callback {
 
     NoArgsCallback successCallback = ^{
         callback();

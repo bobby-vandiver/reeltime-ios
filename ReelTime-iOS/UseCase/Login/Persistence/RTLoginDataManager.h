@@ -1,4 +1,5 @@
 #import <Foundation/Foundation.h>
+#import "RTCallback.h"
 
 @protocol RTLoginDataManagerDelegate;
 
@@ -23,10 +24,10 @@
 
 - (void)fetchTokenWithClientCredentials:(RTClientCredentials *)clientCredentials
                         userCredentials:(RTUserCredentials *)userCredentials
-                               callback:(void (^)(RTOAuth2Token *token, NSString *username))callback;
+                               callback:(TokenAndUsernameCallback)callback;
 
 - (void)setLoggedInUserWithToken:(RTOAuth2Token *)token
                         username:(NSString *)username
-                        callback:(void (^)())callback;
+                        callback:(NoArgsCallback)callback;
 
 @end

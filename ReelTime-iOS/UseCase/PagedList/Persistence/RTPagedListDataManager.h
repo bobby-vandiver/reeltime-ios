@@ -1,4 +1,5 @@
 #import <Foundation/Foundation.h>
+#import "RTCallback.h"
 
 @class RTClient;
 
@@ -9,6 +10,6 @@
 - (instancetype)initWithClient:(RTClient *)client;
 
 - (void)retrievePage:(NSUInteger)page
-            callback:(void (^)(NSArray *items))callback;
+            callback:(ArrayCallback)callback;
 
 @end

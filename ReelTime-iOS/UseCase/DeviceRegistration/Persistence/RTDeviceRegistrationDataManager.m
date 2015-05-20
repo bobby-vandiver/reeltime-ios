@@ -41,7 +41,7 @@
 
 - (void)fetchClientCredentialsForClientName:(NSString *)clientName
                         withUserCredentials:(RTUserCredentials *)userCredentials
-                                   callback:(void (^)(RTClientCredentials *))callback {
+                                   callback:(ClientCredentialsCallback)callback {
 
     ClientCredentialsCallback successCallback = ^(RTClientCredentials *clientCredentials) {
         callback(clientCredentials);
@@ -60,7 +60,7 @@
 
 - (void)storeClientCredentials:(RTClientCredentials *)clientCredentials
                    forUsername:(NSString *)username
-                      callback:(void (^)())callback {
+                      callback:(NoArgsCallback)callback {
     NSError *storeError;
     BOOL success = [self.clientCredentialsStore storeClientCredentials:clientCredentials
                                                            forUsername:username

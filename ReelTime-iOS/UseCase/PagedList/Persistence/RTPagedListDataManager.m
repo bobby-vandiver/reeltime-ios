@@ -19,7 +19,7 @@
 }
 
 - (void)retrievePage:(NSUInteger)page
-            callback:(void (^)(NSArray *items))callback {
+            callback:(ArrayCallback)callback {
     [NSException raise:RTAbstractMethodException
                 format:@"Cannot invoke abstract method"];
 }

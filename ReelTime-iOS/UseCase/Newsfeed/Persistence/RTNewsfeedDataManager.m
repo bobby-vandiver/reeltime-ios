@@ -7,7 +7,7 @@
 @implementation RTNewsfeedDataManager
 
 - (void)retrievePage:(NSUInteger)page
-            callback:(void (^)(NSArray *items))callback {
+            callback:(ArrayCallback)callback {
     
     NewsfeedCallback successCallback = ^(RTNewsfeed *newsfeed) {
         callback(newsfeed.activities);

@@ -554,6 +554,7 @@
 		714DDE611B0C0E3C00D96F74 /* RTChangePasswordPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTChangePasswordPresenter.h; sourceTree = "<group>"; };
 		714DDE621B0C0E3C00D96F74 /* RTChangePasswordPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTChangePasswordPresenter.m; sourceTree = "<group>"; };
 		714DDE651B0C0F0500D96F74 /* RTChangePasswordDataManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTChangePasswordDataManagerSpec.m; sourceTree = "<group>"; };
+		714DDE671B0C136300D96F74 /* RTCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCallback.h; sourceTree = SOURCE_ROOT; };
 		715370E71A88442700D3355B /* RTActivityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTActivityCell.h; sourceTree = "<group>"; };
 		715370E81A88442700D3355B /* RTActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTActivityCell.m; sourceTree = "<group>"; };
 		715370F81A88680700D3355B /* RTArrayDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTArrayDataSource.h; sourceTree = "<group>"; };
@@ -2153,6 +2154,7 @@
 				71647BDC1A7E817000F44996 /* RTActivity.h */,
 				71647BDD1A7E817000F44996 /* RTActivity.m */,
 				711C5DE51A8D657F007652FC /* RTActivityType.h */,
+				714DDE671B0C136300D96F74 /* RTCallback.h */,
 				713D7A461A509ACC00754A06 /* RTClientCredentials.h */,
 				713D7A471A509ACC00754A06 /* RTClientCredentials.m */,
 				71647BE11A7EA68C00F44996 /* RTNewsfeed.h */,
@@ -2167,6 +2169,8 @@
 				7126980E1AA3CC8000E7066B /* RTReelList.m */,
 				713DCAA71A6C8B330032B252 /* RTServerErrors.h */,
 				713DCAA81A6C8B330032B252 /* RTServerErrors.m */,
+				7164D7261ACB6B48005D02FE /* RTThumbnail.h */,
+				7164D7271ACB6B48005D02FE /* RTThumbnail.m */,
 				71647BD61A7E7F9D00F44996 /* RTUser.h */,
 				71647BD71A7E7F9D00F44996 /* RTUser.m */,
 				71C5C0AA1A55EAE700CAAFAC /* RTUserCredentials.h */,
@@ -2177,8 +2181,6 @@
 				71647BD41A7E7EEA00F44996 /* RTVideo.m */,
 				712698101AA3CCB600E7066B /* RTVideoList.h */,
 				712698111AA3CCB600E7066B /* RTVideoList.m */,
-				7164D7261ACB6B48005D02FE /* RTThumbnail.h */,
-				7164D7271ACB6B48005D02FE /* RTThumbnail.m */,
 			);
 			name = Model;
 			path = Models;

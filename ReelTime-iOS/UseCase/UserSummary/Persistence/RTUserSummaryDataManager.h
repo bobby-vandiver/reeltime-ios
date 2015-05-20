@@ -1,4 +1,5 @@
 #import <Foundation/Foundation.h>
+#import "RTCallback.h"
 
 @protocol RTUserSummaryDataManagerDelegate;
 
@@ -11,6 +12,6 @@
                           client:(RTClient *)client;
 
 - (void)fetchUserForUsername:(NSString *)username
-                    callback:(void (^)(RTUser *user))callback;
+                    callback:(UserCallback)callback;
 
 @end
