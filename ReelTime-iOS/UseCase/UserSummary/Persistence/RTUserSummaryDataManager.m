@@ -20,16 +20,16 @@
 }
 
 - (void)fetchUserForUsername:(NSString *)username
-           userFoundCallback:(UserCallback)userFoundCallback
-        userNotFoundCallback:(NoArgsCallback)userNotFoundCallback {
+                   userFound:(UserCallback)userFound
+                userNotFound:(NoArgsCallback)userNotFound {
 
     ServerErrorsCallback failureCallback = ^(RTServerErrors *serverErrors) {
         DDLogWarn(@"Failed to find user %@ with errors %@", username, serverErrors);
-        userNotFoundCallback();
+        userNotFound();
     };
     
     [self.client userForUsername:username
-                         success:userFoundCallback
+                         success:userFound
                          failure:failureCallback];
 }
 

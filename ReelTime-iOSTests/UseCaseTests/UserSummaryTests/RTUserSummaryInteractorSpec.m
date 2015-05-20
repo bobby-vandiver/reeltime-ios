@@ -33,8 +33,8 @@ describe(@"user summary interactor", ^{
             [interactor summaryForUsername:username];
             
             [verify(dataManager) fetchUserForUsername:username
-                                    userFoundCallback:[captor capture]
-                                 userNotFoundCallback:anything()];
+                                            userFound:[captor capture]
+                                         userNotFound:anything()];
             
             [verifyCount(delegate, never()) retrievedUser:anything()];
 
@@ -50,8 +50,8 @@ describe(@"user summary interactor", ^{
             [interactor summaryForUsername:username];
             
             [verify(dataManager) fetchUserForUsername:username
-                                    userFoundCallback:anything()
-                                 userNotFoundCallback:[captor capture]];
+                                            userFound:anything()
+                                         userNotFound:[captor capture]];
             
             [verifyCount(delegate, never()) failedToRetrieveUserWithError:anything()];
             

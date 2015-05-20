@@ -9,7 +9,7 @@
 - (instancetype)initWithClient:(RTClient *)client;
 
 - (void)fetchUserForUsername:(NSString *)username
-           userFoundCallback:(UserCallback)userFoundCallback
-        userNotFoundCallback:(NoArgsCallback)userNotFoundCallback;
+                   userFound:(UserCallback)userFound
+                userNotFound:(NoArgsCallback)userNotFound;
 
 @end

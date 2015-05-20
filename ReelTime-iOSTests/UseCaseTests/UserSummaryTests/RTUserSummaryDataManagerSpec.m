@@ -24,8 +24,8 @@ describe(@"user summary data manager", ^{
             userNotFound = [RTCallbackTestExpectationFactory noArgsCallback];
 
             [dataManager fetchUserForUsername:username
-                            userFoundCallback:userFound.callback
-                         userNotFoundCallback:userNotFound.callback];
+                                    userFound:userFound.callback
+                                 userNotFound:userNotFound.callback];
         });
         
         it(@"should pass user to callback on success", ^{
