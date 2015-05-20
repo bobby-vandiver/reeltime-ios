@@ -15,6 +15,9 @@
 #import "EXPMatchers+beReel.h"
 #import "EXPMatchers+beVideo.h"
 
+#import "RTCallbackTestExpectationFactory.h"
+#import "RTCallbackTestExpectation.h"
+
 // Constants used in multiple tests
 extern NSString *const clientId;
 extern NSString *const clientSecret;

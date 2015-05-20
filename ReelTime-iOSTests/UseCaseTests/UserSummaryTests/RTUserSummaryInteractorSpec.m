@@ -33,16 +33,33 @@ describe(@"user summary interactor", ^{
             [interactor summaryForUsername:username];
             
             [verify(dataManager) fetchUserForUsername:username
-                                             callback:[captor capture]];
+                                    userFoundCallback:[captor capture]
+                                 userNotFoundCallback:anything()];
             
             [verifyCount(delegate, never()) retrievedUser:anything()];
 
             RTUser *user = [[RTUser alloc] init];
             
-            void (^callback)(RTUser *) = captor.value;
+            UserCallback callback = [captor value];
             callback(user);
             
             [verify(delegate) retrievedUser:user];
+        });
+        
+        it(@"should notify delegate when user not found", ^{
+            [interactor summaryForUsername:username];
+            
+            [verify(dataManager) fetchUserForUsername:username
+                                    userFoundCallback:anything()
+                                 userNotFoundCallback:[captor capture]];
+            
+            [verifyCount(delegate, never()) failedToRetrieveUserWithError:anything()];
+            
+            NoArgsCallback callback = [captor value];
+            callback();
+            
+            [verify(delegate) failedToRetrieveUserWithError:[captor capture]];
+            expect(captor.value).to.beError(RTUserSummaryErrorDomain, RTUserSummaryErrorUserNotFound);
         });
         
         context(@"invalid username", ^{
@@ -58,15 +75,6 @@ describe(@"user summary interactor", ^{
             it(@"should fail if username is blank", ^{
                 [interactor summaryForUsername:@""];
             });
-        });
-    });
-    
-    describe(@"user not found", ^{
-        it(@"should notify delegate", ^{
-            [interactor userNotFound];
-            
-            [verify(delegate) failedToRetrieveUserWithError:[captor capture]];
-            expect(captor.value).to.beError(RTUserSummaryErrorDomain, RTUserSummaryErrorUserNotFound);
         });
     });
 });

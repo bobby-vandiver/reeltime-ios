@@ -1,10 +1,9 @@
 #import <Foundation/Foundation.h>
-#import "RTUserSummaryDataManagerDelegate.h"
 
 @protocol RTUserSummaryInteractorDelegate;
 @class RTUserSummaryDataManager;
 
-@interface RTUserSummaryInteractor : NSObject <RTUserSummaryDataManagerDelegate>
+@interface RTUserSummaryInteractor : NSObject
 
 - (instancetype)initWithDelegate:(id<RTUserSummaryInteractorDelegate>)delegate
                      dataManager:(RTUserSummaryDataManager *)dataManager;

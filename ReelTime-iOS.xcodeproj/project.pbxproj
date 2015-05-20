@@ -164,6 +164,8 @@
 		714DDE601B0C0E1A00D96F74 /* RTChangePasswordWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 714DDE5F1B0C0E1A00D96F74 /* RTChangePasswordWireframe.m */; };
 		714DDE631B0C0E3C00D96F74 /* RTChangePasswordPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 714DDE621B0C0E3C00D96F74 /* RTChangePasswordPresenter.m */; };
 		714DDE661B0C0F0500D96F74 /* RTChangePasswordDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 714DDE651B0C0F0500D96F74 /* RTChangePasswordDataManagerSpec.m */; };
+		714DDE6D1B0C187500D96F74 /* RTCallbackTestExpectation.m in Sources */ = {isa = PBXBuildFile; fileRef = 714DDE6C1B0C187500D96F74 /* RTCallbackTestExpectation.m */; };
+		714DDE701B0C18B200D96F74 /* RTCallbackTestExpectationFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 714DDE6F1B0C18B200D96F74 /* RTCallbackTestExpectationFactory.m */; };
 		715370E91A88442700D3355B /* RTActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 715370E81A88442700D3355B /* RTActivityCell.m */; };
 		715370FA1A88680700D3355B /* RTArrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 715370F91A88680700D3355B /* RTArrayDataSource.m */; };
 		7153EDF91AED169600000D1C /* RTDeviceRegistrationDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7153EDF81AED169600000D1C /* RTDeviceRegistrationDataManager.m */; };
@@ -555,6 +557,10 @@
 		714DDE621B0C0E3C00D96F74 /* RTChangePasswordPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTChangePasswordPresenter.m; sourceTree = "<group>"; };
 		714DDE651B0C0F0500D96F74 /* RTChangePasswordDataManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTChangePasswordDataManagerSpec.m; sourceTree = "<group>"; };
 		714DDE671B0C136300D96F74 /* RTCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCallback.h; sourceTree = SOURCE_ROOT; };
+		714DDE6B1B0C187500D96F74 /* RTCallbackTestExpectation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCallbackTestExpectation.h; sourceTree = "<group>"; };
+		714DDE6C1B0C187500D96F74 /* RTCallbackTestExpectation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTCallbackTestExpectation.m; sourceTree = "<group>"; };
+		714DDE6E1B0C18B200D96F74 /* RTCallbackTestExpectationFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCallbackTestExpectationFactory.h; sourceTree = "<group>"; };
+		714DDE6F1B0C18B200D96F74 /* RTCallbackTestExpectationFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTCallbackTestExpectationFactory.m; sourceTree = "<group>"; };
 		715370E71A88442700D3355B /* RTActivityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTActivityCell.h; sourceTree = "<group>"; };
 		715370E81A88442700D3355B /* RTActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTActivityCell.m; sourceTree = "<group>"; };
 		715370F81A88680700D3355B /* RTArrayDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTArrayDataSource.h; sourceTree = "<group>"; };
@@ -590,7 +596,6 @@
 		715C540F1AD4A312009C755F /* RTUserSummaryInteractorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTUserSummaryInteractorDelegate.h; sourceTree = "<group>"; };
 		715C54101AD4A34E009C755F /* RTUserSummaryDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTUserSummaryDataManager.h; sourceTree = "<group>"; };
 		715C54111AD4A34E009C755F /* RTUserSummaryDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTUserSummaryDataManager.m; sourceTree = "<group>"; };
-		715C54131AD4A365009C755F /* RTUserSummaryDataManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTUserSummaryDataManagerDelegate.h; sourceTree = "<group>"; };
 		715C54161AD4A8AB009C755F /* RTUserSummaryDataManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTUserSummaryDataManagerSpec.m; sourceTree = "<group>"; };
 		715C54181AD4AFC3009C755F /* RTUserSummaryInteractorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTUserSummaryInteractorSpec.m; sourceTree = "<group>"; };
 		715C541A1AD4B0DC009C755F /* RTUserSummaryError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTUserSummaryError.h; sourceTree = "<group>"; };
@@ -1127,6 +1132,10 @@
 				712BE3011A75D74C00478277 /* RTTestCommon.m */,
 				7153EE0A1AED504E00000D1C /* RTServerErrorMessageToErrorCodeTestHelper.h */,
 				7153EE0B1AED504E00000D1C /* RTServerErrorMessageToErrorCodeTestHelper.m */,
+				714DDE6B1B0C187500D96F74 /* RTCallbackTestExpectation.h */,
+				714DDE6C1B0C187500D96F74 /* RTCallbackTestExpectation.m */,
+				714DDE6E1B0C18B200D96F74 /* RTCallbackTestExpectationFactory.h */,
+				714DDE6F1B0C18B200D96F74 /* RTCallbackTestExpectationFactory.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1568,7 +1577,6 @@
 			children = (
 				715C54101AD4A34E009C755F /* RTUserSummaryDataManager.h */,
 				715C54111AD4A34E009C755F /* RTUserSummaryDataManager.m */,
-				715C54131AD4A365009C755F /* RTUserSummaryDataManagerDelegate.h */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -2657,6 +2665,7 @@
 			files = (
 				712BE3021A75D74C00478277 /* EXPMatchers+beError.m in Sources */,
 				713A23921AB4EB950098CE48 /* RTBrowseVideosDataManagerSpec.m in Sources */,
+				714DDE6D1B0C187500D96F74 /* RTCallbackTestExpectation.m in Sources */,
 				7148430B1AEC145A001B885A /* RTAccountRegistrationWireframeSpec.m in Sources */,
 				711FF4C61AA23A3A00E11BDE /* RTAuthenticationAwareHTTPClientSpy.m in Sources */,
 				7144176E1AE09DF700BFA01C /* RTPagedListViewScrollHandlerSpec.m in Sources */,
@@ -2707,6 +2716,7 @@
 				7169B00B1AD1796600890983 /* RTBrowseAllVideosDataManagerDelegateSpec.m in Sources */,
 				71565A291A98EDE900AE1C43 /* RTApplicationWireframeSpec.m in Sources */,
 				713A239C1AB4F6BF0098CE48 /* RTBrowseVideosPresenterSpec.m in Sources */,
+				714DDE701B0C18B200D96F74 /* RTCallbackTestExpectationFactory.m in Sources */,
 				714843101AEC1F50001B885A /* RTLoginWireframeSpec.m in Sources */,
 				712EF86C1AD20DEC0051E28B /* RTBrowseAllUsersDataManagerDelegateSpec.m in Sources */,
 				7114DF7F1AB4BB1E003B1D2E /* RTBrowseReelsDataManagerSpec.m in Sources */,

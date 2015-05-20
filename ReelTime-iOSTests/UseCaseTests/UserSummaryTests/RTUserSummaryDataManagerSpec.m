@@ -1,8 +1,6 @@
 #import "RTTestCommon.h"
 
 #import "RTUserSummaryDataManager.h"
-#import "RTUserSummaryDataManagerDelegate.h"
-
 #import "RTClient.h"
 
 SpecBegin(RTUserSummaryDataManager)
@@ -10,30 +8,24 @@ SpecBegin(RTUserSummaryDataManager)
 describe(@"user summary data manager", ^{
     
     __block RTUserSummaryDataManager *dataManager;
-    
-    __block id<RTUserSummaryDataManagerDelegate> delegate;
     __block RTClient *client;
     
     beforeEach(^{
-        delegate = mockProtocol(@protocol(RTUserSummaryDataManagerDelegate));
         client = mock([RTClient class]);
-        
-        dataManager = [[RTUserSummaryDataManager alloc] initWithDelegate:delegate
-                                                                  client:client];
+        dataManager = [[RTUserSummaryDataManager alloc] initWithClient:client];
     });
     
     describe(@"fetching user for username", ^{
-        __block BOOL callbackExecuted;
-        
-        void (^callback)(RTUser *) = ^(RTUser *user) {
-            callbackExecuted = YES;
-        };
+        __block RTCallbackTestExpectation *userFound;
+        __block RTCallbackTestExpectation *userNotFound;
         
         beforeEach(^{
-            callbackExecuted = NO;
+            userFound = [RTCallbackTestExpectationFactory userCallback];
+            userNotFound = [RTCallbackTestExpectationFactory noArgsCallback];
 
             [dataManager fetchUserForUsername:username
-                                     callback:callback];
+                            userFoundCallback:userFound.callback
+                         userNotFoundCallback:userNotFound.callback];
         });
         
         it(@"should pass user to callback on success", ^{
@@ -43,12 +35,12 @@ describe(@"user summary data manager", ^{
                                     success:[successCaptor capture]
                                     failure:anything()];
             
-            expect(callbackExecuted).to.beFalsy();
+            [userFound expectCallbackNotExecuted];
             
             UserCallback successHandler = [successCaptor value];
             successHandler(nil);
             
-            expect(callbackExecuted).to.beTruthy();
+            [userFound expectCallbackExecuted];
         });
         
         it(@"should inform delegate when the user was not found", ^{
@@ -58,12 +50,12 @@ describe(@"user summary data manager", ^{
                                     success:anything()
                                     failure:[failureCaptor capture]];
             
-            [verifyCount(delegate, never()) userNotFound];
+            [userNotFound expectCallbackNotExecuted];
             
             ServerErrorsCallback failureHandler = [failureCaptor value];
             failureHandler(nil);
             
-            [verify(delegate) userNotFound];
+            [userNotFound expectCallbackExecuted];
         });
     });
 });

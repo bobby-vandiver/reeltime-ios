@@ -1,17 +1,15 @@
 #import <Foundation/Foundation.h>
 #import "RTCallback.h"
 
-@protocol RTUserSummaryDataManagerDelegate;
-
 @class RTClient;
 @class RTUser;
 
 @interface RTUserSummaryDataManager : NSObject
 
-- (instancetype)initWithDelegate:(id<RTUserSummaryDataManagerDelegate>)delegate
-                          client:(RTClient *)client;
+- (instancetype)initWithClient:(RTClient *)client;
 
 - (void)fetchUserForUsername:(NSString *)username
-                    callback:(UserCallback)callback;
+           userFoundCallback:(UserCallback)userFoundCallback
+        userNotFoundCallback:(NoArgsCallback)userNotFoundCallback;
 
 @end

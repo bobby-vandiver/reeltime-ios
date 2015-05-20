@@ -26,20 +26,25 @@
 
 - (void)summaryForUsername:(NSString *)username {
     if (username.length > 0) {
-        id callback = ^(RTUser *user) {
-            [self.delegate retrievedUser:user];
-        };
-        
         [self.dataManager fetchUserForUsername:username
-                                      callback:callback];
+                             userFoundCallback:[self userFound]
+                          userNotFoundCallback:[self userNotFound]];
     }
     else {
         [self notifyDelegateOfErrorWithCode:RTUserSummaryErrorMissingUsername];
     }
 }
 
-- (void)userNotFound {
-    [self notifyDelegateOfErrorWithCode:RTUserSummaryErrorUserNotFound];
+- (UserCallback)userFound {
+    return ^(RTUser *user) {
+        [self.delegate retrievedUser:user];
+    };
+}
+
+- (NoArgsCallback)userNotFound {
+    return ^{
+        [self notifyDelegateOfErrorWithCode:RTUserSummaryErrorUserNotFound];
+    };
 }
 
 - (void)notifyDelegateOfErrorWithCode:(RTUserSummaryError)code {

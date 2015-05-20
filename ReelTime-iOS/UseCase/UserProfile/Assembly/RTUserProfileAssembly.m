@@ -74,9 +74,8 @@
 
 - (RTUserSummaryDataManager *)userSummaryDataManagerForUsername:(NSString *)username {
     return [TyphoonDefinition withClass:[RTUserSummaryDataManager class] configuration:^(TyphoonDefinition *definition) {
-        [definition injectMethod:@selector(initWithDelegate:client:)
+        [definition injectMethod:@selector(initWithClient:)
                       parameters:^(TyphoonMethod *method) {
-                          [method injectParameterWith:[self userSummaryInteractorForUsername:username]];
                           [method injectParameterWith:[self.clientAssembly reelTimeClient]];
         }];
     }];
