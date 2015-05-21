@@ -2,7 +2,6 @@
 #import "RTServerErrorMessageToErrorCodeTestHelper.h"
 
 #import "RTResetPasswordDataManager.h"
-#import "RTResetPasswordDataManagerDelegate.h"
 
 #import "RTResetPasswordError.h"
 #import "RTClient.h"
@@ -15,15 +14,10 @@ SpecBegin(RTResetPasswordDataManager)
 describe(@"reset password data manager", ^{
     
     __block RTResetPasswordDataManager *dataManager;
-    __block id<RTResetPasswordDataManagerDelegate> delegate;
-
     __block RTClient *client;
     
     __block RTUserCredentials *userCredentials;
     __block RTClientCredentials *clientCredentials;
-    
-    __block BOOL callbackExecuted;
-    __block BOOL clientCredentialsCallbackExecuted;
     
     __block RTServerErrorMessageToErrorCodeTestHelper *helper;
     
@@ -31,23 +25,10 @@ describe(@"reset password data manager", ^{
     __block MKTArgumentCaptor *failureCaptor;
     
     __block MKTArgumentCaptor *userCredentialsCaptor;
-
-    NoArgsCallback callback = ^{
-        callbackExecuted = YES;
-    };
-    
-    ClientCredentialsCallback clientCredentialsCallback = ^(RTClientCredentials *credentials) {
-        clientCredentialsCallbackExecuted = YES;
-        expect(credentials.clientId).to.equal(clientId);
-        expect(credentials.clientSecret).to.equal(clientSecret);
-    };
     
     beforeEach(^{
-        client = mock([RTClient class]);
-        delegate = mockProtocol(@protocol(RTResetPasswordDataManagerDelegate));
-        
-        dataManager = [[RTResetPasswordDataManager alloc] initWithDelegate:delegate
-                                                                    client:client];
+        client = mock([RTClient class]);        
+        dataManager = [[RTResetPasswordDataManager alloc] initWithClient:client];
         
         userCredentials = [[RTUserCredentials alloc] initWithUsername:username
                                                              password:password];
@@ -55,9 +36,6 @@ describe(@"reset password data manager", ^{
         clientCredentials = [[RTClientCredentials alloc] initWithClientId:clientId
                                                              clientSecret:clientSecret];
                 
-        callbackExecuted = NO;
-        clientCredentialsCallbackExecuted = NO;
-        
         successCaptor = [[MKTArgumentCaptor alloc] init];
         failureCaptor = [[MKTArgumentCaptor alloc] init];
         
@@ -65,31 +43,37 @@ describe(@"reset password data manager", ^{
     });
     
     describe(@"requesting reset password email", ^{
+        __block RTCallbackTestExpectation *sendEmail;
+        __block RTCallbackTestExpectation *sendEmailFailed;
+        
         beforeEach(^{
+            sendEmail = [RTCallbackTestExpectationFactory noArgsCallback];
+            sendEmailFailed = [RTCallbackTestExpectationFactory arrayCallback];
+            
             [dataManager submitRequestForResetPasswordEmailForUsername:username
-                                                          withCallback:callback];
+                                                             emailSent:sendEmail.callback
+                                                           emailFailed:sendEmailFailed.callback];
             
             [verify(client) sendResetPasswordEmailForUsername:username
                                                       success:[successCaptor capture]
                                                       failure:[failureCaptor capture]];
             
-            [verifyCount(delegate, never()) submitRequestForResetPasswordEmailFailedWithErrors:anything()];
+            [sendEmailFailed expectCallbackNotExecuted];
             ServerErrorsCallback failureHandler = [failureCaptor value];
-            
-            void (^errorCaptureBlock)(MKTArgumentCaptor *) = ^(MKTArgumentCaptor *errorCaptor) {
-                [verify(delegate) submitRequestForResetPasswordEmailFailedWithErrors:[errorCaptor capture]];
-                [verify(delegate) reset];
+
+            NSArray *(^errorRetrievalBlock)() = ^{
+                return sendEmailFailed.callbackArguments;
             };
             
             helper = [[RTServerErrorMessageToErrorCodeTestHelper alloc] initForErrorDomain:RTResetPasswordErrorDomain
                                                                         withFailureHandler:failureHandler
-                                                                         errorCaptureBlock:errorCaptureBlock];
+                                                                       errorRetrievalBlock:errorRetrievalBlock];
         });
         
         it(@"should invoke callback on successful submission", ^{
             NoArgsCallback successCallback = [successCaptor value];
             successCallback();
-            expect(callbackExecuted).to.beTruthy();
+            [sendEmail expectCallbackExecuted];
         });
         
         it(@"should map server errors to domain specific errors", ^{
@@ -101,26 +85,38 @@ describe(@"reset password data manager", ^{
                                       };
             
             [helper expectForServerMessageToErrorCodeMapping:mapping];
+            [sendEmailFailed expectCallbackExecuted];
         });
     });
     
     describe(@"reset password", ^{
+        __block RTCallbackTestExpectation *resetSuccess;
+        __block RTCallbackTestExpectation *resetSuccessWithCredentials;
+        __block RTCallbackTestExpectation *resetFailure;
+
+        beforeEach(^{
+            resetSuccess = [RTCallbackTestExpectationFactory noArgsCallback];
+            resetSuccessWithCredentials = [RTCallbackTestExpectationFactory clientCredentialsCallbackForClientId:clientId
+                                                                                                    clientSecret:clientSecret];
+
+            resetFailure = [RTCallbackTestExpectationFactory arrayCallback];
+        });
+        
         void (^initTestHelper)() = ^{
             RTUserCredentials *capturedUserCredentials = [userCredentialsCaptor value];
             expect(capturedUserCredentials.username).to.equal(username);
             expect(capturedUserCredentials.password).to.equal(password);
             
-            [verifyCount(delegate, never()) failedToResetPasswordWithErrors:anything()];
+            [resetFailure expectCallbackNotExecuted];
             ServerErrorsCallback failureHandler = [failureCaptor value];
             
-            void (^errorCaptureBlock)(MKTArgumentCaptor *) = ^(MKTArgumentCaptor *errorCaptor) {
-                [verify(delegate) failedToResetPasswordWithErrors:[errorCaptor capture]];
-                [verify(delegate) reset];
+            NSArray *(^errorRetrievalBlock)() = ^{
+                return resetFailure.callbackArguments;
             };
             
             helper = [[RTServerErrorMessageToErrorCodeTestHelper alloc] initForErrorDomain:RTResetPasswordErrorDomain
                                                                         withFailureHandler:failureHandler
-                                                                         errorCaptureBlock:errorCaptureBlock];
+                                                                       errorRetrievalBlock:errorRetrievalBlock];
         };
         
         void (^testServerErrorMappings)() = ^{
@@ -146,6 +142,7 @@ describe(@"reset password data manager", ^{
                                       };
             
             [helper expectForServerMessageToErrorCodeMapping:mapping];
+            [resetFailure expectCallbackExecuted];
         };
         
         context(@"registered client", ^{
@@ -154,7 +151,8 @@ describe(@"reset password data manager", ^{
                                             forUsername:username
                                       clientCredentials:clientCredentials
                                                withCode:resetCode
-                                               callback:callback];
+                                   passwordResetSuccess:resetSuccess.callback
+                                                failure:resetFailure.callback];
                 
                 [verify(client) resetPasswordWithCode:resetCode
                                       userCredentials:[userCredentialsCaptor capture]
@@ -168,7 +166,7 @@ describe(@"reset password data manager", ^{
             it(@"should invoke callback on success", ^{
                 NoArgsCallback successCallback = [successCaptor value];
                 successCallback();
-                expect(callbackExecuted).to.beTruthy();
+                [resetSuccess expectCallbackExecuted];
             });
             
             it(@"should map server errors to domain specific errors", ^{
@@ -182,8 +180,9 @@ describe(@"reset password data manager", ^{
                                             forUsername:username
                                                withCode:resetCode
                         registerNewClientWithClientName:clientName
-                                               callback:clientCredentialsCallback];
-
+                                   passwordResetSuccess:resetSuccessWithCredentials.callback
+                                                failure:resetFailure.callback];
+                
                 [verify(client) resetPasswordWithCode:resetCode
                                       userCredentials:[userCredentialsCaptor capture]
                                            clientName:clientName
@@ -196,7 +195,7 @@ describe(@"reset password data manager", ^{
             it(@"should invoke callback on success", ^{
                 ClientCredentialsCallback successCallback = [successCaptor value];
                 successCallback(clientCredentials);
-                expect(clientCredentialsCallbackExecuted).to.beTruthy();
+                [resetSuccessWithCredentials expectCallbackExecuted];
             });
             
             it(@"should map server errors to domain specific errors", ^{

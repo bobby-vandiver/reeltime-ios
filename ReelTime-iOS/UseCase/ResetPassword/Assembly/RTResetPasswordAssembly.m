@@ -63,8 +63,7 @@
 
 - (RTResetPasswordDataManager *)resetPasswordDataManager {
     return [TyphoonDefinition withClass:[RTResetPasswordDataManager class] configuration:^(TyphoonDefinition *definition) {
-        [definition injectMethod:@selector(initWithDelegate:client:) parameters:^(TyphoonMethod *method) {
-            [method injectParameterWith:[self resetPasswordInteractor]];
+        [definition injectMethod:@selector(initWithClient:) parameters:^(TyphoonMethod *method) {
             [method injectParameterWith:[self.clientAssembly reelTimeClient]];
         }];
     }];

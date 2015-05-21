@@ -31,7 +31,7 @@
                        validator:(RTResetPasswordValidator *)validator
               currentUserService:(RTCurrentUserService *)currentUserService
         clientCredentialsService:(RTClientCredentialsService *)clientCredentialsService {
-
+    
     self = [super init];
     if (self) {
         self.delegate = delegate;
@@ -49,10 +49,22 @@
         [self.delegate resetPasswordEmailFailedWithErrors:@[error]];
     }
     else {
-        [self.dataManager submitRequestForResetPasswordEmailForUsername:username withCallback:^{
-            [self.delegate resetPasswordEmailSent];
-        }];
+        [self.dataManager submitRequestForResetPasswordEmailForUsername:username
+                                                              emailSent:[self emailSentCallback]
+                                                            emailFailed:[self emailFailedCallback]];
     }
+}
+
+- (NoArgsCallback)emailSentCallback {
+    return ^{
+        [self.delegate resetPasswordEmailSent];
+    };
+}
+
+- (ArrayCallback)emailFailedCallback {
+    return ^(NSArray *errors) {
+        [self.delegate resetPasswordEmailFailedWithErrors:errors];
+    };
 }
 
 - (void)resetPasswordForCurrentClientWithCode:(NSString *)code
@@ -66,7 +78,7 @@
         [self.delegate resetPasswordFailedWithErrors:errors];
         return;
     }
-
+    
     RTClientCredentials *clientCredentials = [self.currentUserService clientCredentialsForCurrentUser];
     
     if (!clientCredentials) {
@@ -82,9 +94,14 @@
                                      forUsername:username
                                clientCredentials:clientCredentials
                                         withCode:code
-                                        callback:^{
-                                            [self.delegate resetPasswordSucceeded];
-                                        }];
+                            passwordResetSuccess:[self currentClientResetSuccessCallback]
+                                         failure:[self resetFailureCallback]];
+}
+
+- (NoArgsCallback)currentClientResetSuccessCallback {
+    return ^{
+        [self.delegate resetPasswordSucceeded];
+    };
 }
 
 - (void)resetPasswordForNewClientWithClientName:(NSString *)clientName
@@ -100,6 +117,15 @@
         return;
     }
     
+    [self.dataManager resetPasswordToNewPassword:password
+                                     forUsername:username
+                                        withCode:code
+                 registerNewClientWithClientName:clientName
+                            passwordResetSuccess:[self newClientResetSuccessCallbackForUsername:username]
+                                         failure:[self resetFailureCallback]];
+}
+
+- (ClientCredentialsCallback)newClientResetSuccessCallbackForUsername:(NSString *)username {
     void (^savedClientCredentialsCallback)() = ^{
         [self.delegate resetPasswordSucceeded];
     };
@@ -110,27 +136,19 @@
         NSError *saveError = [RTErrorFactory resetPasswordErrorWithCode:RTResetPasswordErrorFailedToSaveClientCredentials];
         [self.delegate resetPasswordFailedWithErrors:@[saveError]];
     };
-
-    void (^callback)(RTClientCredentials *) = ^(RTClientCredentials *clientCredentials) {
+    
+    return ^(RTClientCredentials *clientCredentials) {
         [self.clientCredentialsService saveClientCredentials:clientCredentials
                                                  forUsername:username
                                                      success:savedClientCredentialsCallback
                                                      failure:failedToSaveClientCredentialsCallback];
     };
-    
-    [self.dataManager resetPasswordToNewPassword:password
-                                     forUsername:username
-                                        withCode:code
-                 registerNewClientWithClientName:clientName
-                                        callback:callback];
 }
 
-- (void)submitRequestForResetPasswordEmailFailedWithErrors:(NSArray *)errors {
-    [self.delegate resetPasswordEmailFailedWithErrors:errors];
-}
-
-- (void)failedToResetPasswordWithErrors:(NSArray *)errors {
-    [self.delegate resetPasswordFailedWithErrors:errors];
+- (ArrayCallback)resetFailureCallback {
+    return ^(NSArray *errors) {
+        [self.delegate resetPasswordFailedWithErrors:errors];
+    };
 }
 
 @end

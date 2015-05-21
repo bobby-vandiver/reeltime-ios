@@ -605,7 +605,6 @@
 		715C541F1AD4C9A7009C755F /* RTUserSummaryPresenterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTUserSummaryPresenterSpec.m; sourceTree = "<group>"; };
 		715C54211AD4D2CF009C755F /* RTUserDescriptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTUserDescriptionView.h; sourceTree = "<group>"; };
 		715E08291B0576CD0037A17E /* RTResetPasswordDataManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTResetPasswordDataManagerSpec.m; sourceTree = "<group>"; };
-		715E082B1B0577930037A17E /* RTResetPasswordDataManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTResetPasswordDataManagerDelegate.h; sourceTree = "<group>"; };
 		715E082C1B0582170037A17E /* RTResetPasswordServerErrorMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTResetPasswordServerErrorMapping.h; sourceTree = "<group>"; };
 		715E082D1B0582170037A17E /* RTResetPasswordServerErrorMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTResetPasswordServerErrorMapping.m; sourceTree = "<group>"; };
 		7160C2BE1A6F48A60045ADDA /* RTAccountRegistrationValidatorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAccountRegistrationValidatorSpec.m; sourceTree = "<group>"; };
@@ -1657,7 +1656,6 @@
 			children = (
 				716C452D1B02E65900BA9834 /* RTResetPasswordDataManager.h */,
 				716C452E1B02E65900BA9834 /* RTResetPasswordDataManager.m */,
-				715E082B1B0577930037A17E /* RTResetPasswordDataManagerDelegate.h */,
 				715E082C1B0582170037A17E /* RTResetPasswordServerErrorMapping.h */,
 				715E082D1B0582170037A17E /* RTResetPasswordServerErrorMapping.m */,
 			);

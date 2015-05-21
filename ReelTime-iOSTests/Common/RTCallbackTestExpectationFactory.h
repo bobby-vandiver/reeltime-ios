@@ -5,8 +5,13 @@
 
 @interface RTCallbackTestExpectationFactory : NSObject
 
-+ (RTCallbackTestExpectation *)noArgsCallback;
++ (RTCallbackTestExpectation *)clientCredentialsCallbackForClientId:(NSString *)clientId
+                                                       clientSecret:(NSString *)clientSecret;
 
 + (RTCallbackTestExpectation *)userCallback;
+
++ (RTCallbackTestExpectation *)noArgsCallback;
+
++ (RTCallbackTestExpectation *)arrayCallback;
 
 @end

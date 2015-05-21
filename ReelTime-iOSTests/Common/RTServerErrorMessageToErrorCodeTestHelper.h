@@ -10,7 +10,11 @@
 
 - (instancetype)initForErrorDomain:(NSString *)errorDomain
                 withFailureHandler:(void (^)(RTServerErrors *serverErrors))failureHandler
-                     errorCaptureBlock:(void (^)(MKTArgumentCaptor *errorCaptor))errorCaptureBlock;
+                 errorCaptureBlock:(void (^)(MKTArgumentCaptor *errorCaptor))errorCaptureBlock;
+
+- (instancetype)initForErrorDomain:(NSString *)errorDomain
+                withFailureHandler:(void (^)(RTServerErrors *))failureHandler
+               errorRetrievalBlock:(NSArray *(^)())errorRetrievalBlock;
 
 - (void)expectForServerMessageToErrorCodeMapping:(NSDictionary *)mapping;
 

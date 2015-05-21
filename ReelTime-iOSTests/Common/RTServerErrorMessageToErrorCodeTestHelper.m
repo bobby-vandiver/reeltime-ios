@@ -7,6 +7,7 @@
 
 @property (nonatomic, copy) void (^failureHandler)(RTServerErrors *serverErrors);
 @property (nonatomic, copy) void (^errorCaptureBlock)(MKTArgumentCaptor *errorCaptor);
+@property (nonatomic, copy) NSArray *(^errorRetrievalBlock)();
 
 @end
 
@@ -23,11 +24,33 @@
 - (instancetype)initForErrorDomain:(NSString *)errorDomain
                 withFailureHandler:(void (^)(RTServerErrors *))failureHandler
                  errorCaptureBlock:(void (^)(MKTArgumentCaptor *))errorCaptureBlock {
+
+    return [self initForErrorDomain:errorDomain
+                 withFailureHandler:failureHandler
+                  errorCaptureBlock:errorCaptureBlock
+                errorRetrievalBlock:nil];
+}
+
+- (instancetype)initForErrorDomain:(NSString *)errorDomain
+                withFailureHandler:(void (^)(RTServerErrors *))failureHandler
+               errorRetrievalBlock:(NSArray *(^)())errorRetrievalBlock {
+
+    return [self initForErrorDomain:errorDomain
+                 withFailureHandler:failureHandler
+                  errorCaptureBlock:nil
+                errorRetrievalBlock:errorRetrievalBlock];
+}
+
+- (instancetype)initForErrorDomain:(NSString *)errorDomain
+                withFailureHandler:(void (^)(RTServerErrors *))failureHandler
+                 errorCaptureBlock:(void (^)(MKTArgumentCaptor *))errorCaptureBlock
+               errorRetrievalBlock:(NSArray *(^)())errorRetrievalBlock {
     self = [super init];
     if (self) {
         self.errorDomain = errorDomain;
         self.failureHandler = failureHandler;
         self.errorCaptureBlock = errorCaptureBlock;
+        self.errorRetrievalBlock = errorRetrievalBlock;
     }
     return self;
 }
@@ -58,12 +81,20 @@
     RTServerErrors *serverErrors = [[RTServerErrors alloc] init];
     serverErrors.errors = @[message];
     
-    MKTArgumentCaptor *errorCaptor = [[MKTArgumentCaptor alloc] init];
-    
     self.failureHandler(serverErrors);
-    self.errorCaptureBlock(errorCaptor);
+
+    NSArray *capturedErrors;
     
-    NSArray *capturedErrors = [errorCaptor value];
+    if (self.errorCaptureBlock) {
+        MKTArgumentCaptor *errorCaptor = [[MKTArgumentCaptor alloc] init];
+        self.errorCaptureBlock(errorCaptor);
+        
+        capturedErrors = [errorCaptor value];
+    }
+    else {
+        capturedErrors = self.errorRetrievalBlock();
+    }
+    
     expect(capturedErrors).to.haveACountOf(1);
     
     NSError *firstError = capturedErrors[0];

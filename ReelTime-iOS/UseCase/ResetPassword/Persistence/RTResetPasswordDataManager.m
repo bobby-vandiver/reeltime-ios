@@ -1,5 +1,4 @@
 #import "RTResetPasswordDataManager.h"
-#import "RTResetPasswordDataManagerDelegate.h"
 
 #import "RTClient.h"
 
@@ -13,7 +12,6 @@
 
 @interface RTResetPasswordDataManager ()
 
-@property (weak) id<RTResetPasswordDataManagerDelegate> delegate;
 @property RTClient *client;
 @property RTServerErrorsConverter *serverErrorsConverter;
 
@@ -21,11 +19,9 @@
 
 @implementation RTResetPasswordDataManager
 
-- (instancetype)initWithDelegate:(id<RTResetPasswordDataManagerDelegate>)delegate
-                          client:(RTClient *)client {
+- (instancetype)initWithClient:(RTClient *)client {
     self = [super init];
     if (self) {
-        self.delegate = delegate;
         self.client = client;
         
         RTResetPasswordServerErrorMapping *mapping = [[RTResetPasswordServerErrorMapping alloc] init];
@@ -35,14 +31,15 @@
 }
 
 - (void)submitRequestForResetPasswordEmailForUsername:(NSString *)username
-                                         withCallback:(NoArgsCallback)callback {
+                                            emailSent:(NoArgsCallback)emailSent
+                                          emailFailed:(ArrayCallback)emailFailed {
     NoArgsCallback successCallback = ^{
-        callback();
+        emailSent();
     };
     
     ServerErrorsCallback failureCallback = ^(RTServerErrors *serverErrors) {
         NSArray *emailErrors = [self.serverErrorsConverter convertServerErrors:serverErrors];
-        [self.delegate submitRequestForResetPasswordEmailFailedWithErrors:emailErrors];
+        emailFailed(emailErrors);
     };
     
     [self.client sendResetPasswordEmailForUsername:username
@@ -54,15 +51,16 @@
                        forUsername:(NSString *)username
                  clientCredentials:(RTClientCredentials *)clientCredentials
                           withCode:(NSString *)code
-                          callback:(NoArgsCallback)callback {
+              passwordResetSuccess:(NoArgsCallback)success
+                           failure:(ArrayCallback)failure {
     
     RTUserCredentials *userCredentials = [[RTUserCredentials alloc] initWithUsername:username
                                                                             password:newPassword];
     NoArgsCallback successCallback = ^{
-        callback();
+        success();
     };
     
-    ServerErrorsCallback failureCallback = [self resetPasswordFailureCallback];
+    ServerErrorsCallback failureCallback = [self resetPasswordFailureWithCallback:failure];
     
     [self.client resetPasswordWithCode:code
                        userCredentials:userCredentials
@@ -75,16 +73,17 @@
                        forUsername:(NSString *)username
                           withCode:(NSString *)code
    registerNewClientWithClientName:(NSString *)clientName
-                          callback:(ClientCredentialsCallback)callback {
+              passwordResetSuccess:(ClientCredentialsCallback)success
+                           failure:(ArrayCallback)failure {
     
     RTUserCredentials *userCredentials = [[RTUserCredentials alloc] initWithUsername:username
                                                                             password:newPassword];
     
     ClientCredentialsCallback successCallback = ^(RTClientCredentials *clientCredentials) {
-        callback(clientCredentials);
+        success(clientCredentials);
     };
     
-    ServerErrorsCallback failureCallback = [self resetPasswordFailureCallback];
+    ServerErrorsCallback failureCallback = [self resetPasswordFailureWithCallback:failure];
     
     [self.client resetPasswordWithCode:code
                        userCredentials:userCredentials
@@ -93,10 +92,10 @@
                                failure:failureCallback];
 }
 
-- (ServerErrorsCallback)resetPasswordFailureCallback {
+- (ServerErrorsCallback)resetPasswordFailureWithCallback:(ArrayCallback)callback {
     return ^(RTServerErrors *serverErrors) {
         NSArray *resetErrors = [self.serverErrorsConverter convertServerErrors:serverErrors];
-        [self.delegate failedToResetPasswordWithErrors:resetErrors];
+        callback(resetErrors);
     };
 }
 

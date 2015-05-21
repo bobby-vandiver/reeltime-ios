@@ -78,14 +78,28 @@ describe(@"reset password interactor", ^{
         it(@"should notify delegate when email is sent", ^{
             [interactor sendResetPasswordEmailForUsername:username];
             [verify(dataManager) submitRequestForResetPasswordEmailForUsername:username
-                                                                  withCallback:[callbackCaptor capture]];
+                                                                     emailSent:[callbackCaptor capture]
+                                                                   emailFailed:anything()];
             
             [verifyCount(delegate, never()) resetPasswordEmailSent];
             
-            void (^callback)() = [callbackCaptor value];
+            NoArgsCallback callback = [callbackCaptor value];
             callback();
             
             [verify(delegate) resetPasswordEmailSent];
+        });
+        
+        it(@"should forward email errors to delegate", ^{
+            [interactor sendResetPasswordEmailForUsername:username];
+            [verify(dataManager) submitRequestForResetPasswordEmailForUsername:username
+                                                                     emailSent:anything()
+                                                                   emailFailed:[callbackCaptor capture]];
+
+            ArrayCallback callback = [callbackCaptor value];
+            NSError *error = [RTErrorFactory resetPasswordErrorWithCode:RTResetPasswordErrorEmailFailure];
+            
+            callback(@[error]);
+            expectEmailError(RTResetPasswordErrorEmailFailure);
         });
     });
     
@@ -115,6 +129,26 @@ describe(@"reset password interactor", ^{
                 expectResetError(RTResetPasswordErrorUnknownClient);
             });
             
+            it(@"should forward data manager errors to delegate", ^{
+                givenValid(YES);
+                givenClientCredentials(clientCredentials);
+                
+                [interactor resetPasswordForCurrentClientWithCode:resetCode username:username password:password confirmationPassword:password];
+                
+                [verify(dataManager) resetPasswordToNewPassword:password
+                                                    forUsername:username
+                                              clientCredentials:clientCredentials
+                                                       withCode:resetCode
+                                           passwordResetSuccess:anything()
+                                                        failure:[callbackCaptor capture]];
+                
+                ArrayCallback callback = [callbackCaptor value];
+                NSError *error = [RTErrorFactory resetPasswordErrorWithCode:RTResetPasswordErrorInvalidResetCode];
+
+                callback(@[error]);
+                expectResetError(RTResetPasswordErrorInvalidResetCode);
+            });
+
             it(@"successful reset", ^{
                 givenValid(YES);
                 givenClientCredentials(clientCredentials);
@@ -125,11 +159,12 @@ describe(@"reset password interactor", ^{
                                                     forUsername:username
                                               clientCredentials:clientCredentials
                                                        withCode:resetCode
-                                                       callback:[callbackCaptor capture]];
+                                                       passwordResetSuccess:[callbackCaptor capture]
+                                                        failure:anything()];
 
                 [verifyCount(delegate, never()) resetPasswordSucceeded];
 
-                void (^callback)() = [callbackCaptor value];
+                NoArgsCallback callback = [callbackCaptor value];
                 callback();
                 
                 [verify(delegate) resetPasswordSucceeded];
@@ -153,8 +188,12 @@ describe(@"reset password interactor", ^{
                 __block MKTArgumentCaptor *successCaptor;
                 __block MKTArgumentCaptor *failureCaptor;
                 
+                __block MKTArgumentCaptor *resetFailureCaptor;
+                
                 beforeEach(^{
                     givenValid(YES);
+                    
+                    resetFailureCaptor = [[MKTArgumentCaptor alloc] init];
                     
                     [interactor resetPasswordForNewClientWithClientName:clientName code:resetCode username:username password:password confirmationPassword:password];
                     
@@ -162,7 +201,8 @@ describe(@"reset password interactor", ^{
                                                         forUsername:username
                                                            withCode:resetCode
                                     registerNewClientWithClientName:clientName
-                                                           callback:[callbackCaptor capture]];
+                                                           passwordResetSuccess:[callbackCaptor capture]
+                                                            failure:[resetFailureCaptor capture]];
                     
                     [verifyCount(clientCredentialsService, never()) saveClientCredentials:anything()
                                                                               forUsername:anything()
@@ -171,7 +211,7 @@ describe(@"reset password interactor", ^{
                     
                     [verifyCount(delegate, never()) resetPasswordSucceeded];
                     
-                    void (^callback)(RTClientCredentials *) = [callbackCaptor value];
+                    ClientCredentialsCallback callback = [callbackCaptor value];
                     callback(clientCredentials);
                     
                     successCaptor = [[MKTArgumentCaptor alloc] init];
@@ -183,14 +223,22 @@ describe(@"reset password interactor", ^{
                                                                     failure:[failureCaptor capture]];
                 });
                 
+                it(@"should forward data manager errors to delegate", ^{
+                    ArrayCallback callback = [resetFailureCaptor value];
+                    NSError *error = [RTErrorFactory resetPasswordErrorWithCode:RTResetPasswordErrorInvalidResetCode];
+                    
+                    callback(@[error]);
+                    expectResetError(RTResetPasswordErrorInvalidResetCode);
+                });
+                
                 it(@"store new client credentials on successful reset", ^{
-                    void (^successCallback)() = [successCaptor value];
+                    NoArgsCallback successCallback = [successCaptor value];
                     successCallback();
                     [verify(delegate) resetPasswordSucceeded];
                 });
                 
                 it(@"failed to save client credentials on reset", ^{
-                    void (^failureCallback)() = [failureCaptor value];
+                    NoArgsCallback failureCallback = [failureCaptor value];
                     failureCallback();
                     expectResetError(RTResetPasswordErrorFailedToSaveClientCredentials);
                 });
@@ -199,17 +247,7 @@ describe(@"reset password interactor", ^{
     });
     
     describe(@"data manager delegate", ^{
-        it(@"should forward email errors to delegate", ^{
-            NSError *error = [RTErrorFactory resetPasswordErrorWithCode:RTResetPasswordErrorEmailFailure];
-            [interactor submitRequestForResetPasswordEmailFailedWithErrors:@[error]];
-            expectEmailError(RTResetPasswordErrorEmailFailure);
-        });
-        
-        it(@"should forward reset errors to delegate", ^{
-            NSError *error = [RTErrorFactory resetPasswordErrorWithCode:RTResetPasswordErrorInvalidResetCode];
-            [interactor failedToResetPasswordWithErrors:@[error]];
-            expectResetError(RTResetPasswordErrorInvalidResetCode);
-        });
+
     });
 });
 

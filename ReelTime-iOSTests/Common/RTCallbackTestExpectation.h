@@ -6,6 +6,8 @@ typedef void (^TestCallback)(id);
 
 @property (nonatomic, copy) TestCallback callback;
 
+@property id callbackArguments;
+
 + (instancetype)callbackTestExpectation;
 
 - (void)wasExecuted;
