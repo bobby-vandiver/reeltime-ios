@@ -1,50 +1,77 @@
 #import "RTTestCommon.h"
+#import "RTServerErrorMessageToErrorCodeTestHelper.h"
 
 #import "RTChangePasswordDataManager.h"
-#import "RTChangePasswordDataManagerDelegate.h"
-
 #import "RTClient.h"
+
+#import "RTChangePasswordError.h"
 
 SpecBegin(RTChangePasswordDataManager)
 
 describe(@"change password data manager", ^{
     
     __block RTChangePasswordDataManager *dataManager;
-    __block id<RTChangePasswordDataManagerDelegate> delegate;
-    
     __block RTClient *client;
+
+    __block RTCallbackTestExpectation *changed;
+    __block RTCallbackTestExpectation *notChanged;
+    
+    __block RTServerErrorMessageToErrorCodeTestHelper *helper;
+
+    __block MKTArgumentCaptor *successCaptor;
+    __block MKTArgumentCaptor *failureCaptor;
     
     beforeEach(^{
         client = mock([RTClient class]);
-        delegate = mockProtocol(@protocol(RTChangePasswordDataManagerDelegate));
-        dataManager = [[RTChangePasswordDataManager alloc] initWithDelegate:delegate client:client];
+        dataManager = [[RTChangePasswordDataManager alloc] initWithClient:client];
+
+        changed = [RTCallbackTestExpectationFactory noArgsCallback];
+        notChanged = [RTCallbackTestExpectationFactory arrayCallback];
+        
+        successCaptor = [[MKTArgumentCaptor alloc] init];
+        failureCaptor = [[MKTArgumentCaptor alloc] init];
     });
     
     describe(@"changing password", ^{
-        __block BOOL callbackExecuted;
-        
-        void (^callback)() = ^{
-            callbackExecuted = YES;
-        };
-        
         beforeEach(^{
-            callbackExecuted = NO;
-            [dataManager changePassword:password callback:callback];
+            [dataManager changePassword:password
+                                changed:changed.callback
+                             notChanged:notChanged.callback];
+
+            [verify(client) changePassword:password
+                                   success:[successCaptor capture]
+                                   failure:[failureCaptor capture]];
+            
+            [changed expectCallbackNotExecuted];
+            [notChanged expectCallbackNotExecuted];
+            
+            ServerErrorsCallback failureHandler = [failureCaptor value];
+            
+            NSArray *(^errorRetrievalBlock)() = ^{
+                return notChanged.callbackArguments;
+            };
+            
+            helper = [[RTServerErrorMessageToErrorCodeTestHelper alloc] initForErrorDomain:RTChangePasswordErrorDomain
+                                                                        withFailureHandler:failureHandler
+                                                                       errorRetrievalBlock:errorRetrievalBlock];
         });
         
         it(@"should invoke callback on successful change", ^{
-            MKTArgumentCaptor *successCaptor = [[MKTArgumentCaptor alloc] init];
-            
-            [verify(client) changePassword:password
-                                   success:[successCaptor capture]
-                                   failure:anything()];
-            
-            expect(callbackExecuted).to.beFalsy();
-            
             NoArgsCallback successHandler = [successCaptor value];
             successHandler();
-            
-            expect(callbackExecuted).to.beTruthy();
+            [changed expectCallbackExecuted];
+        });
+        
+        it(@"should map server errors to domain specific errors", ^{
+            NSDictionary *mapping = @{
+                                      @"[new_password] is required":
+                                          @(RTChangePasswordErrorMissingPassword),
+                                      @"[new_password] must be at least 6 characters long":
+                                          @(RTChangePasswordErrorInvalidPassword)
+                                      };
+
+            [helper expectForServerMessageToErrorCodeMapping:mapping];
+            [notChanged expectCallbackExecuted];
         });
     });
 });

@@ -1,35 +1,40 @@
 #import "RTChangePasswordDataManager.h"
-#import "RTChangePasswordDataManagerDelegate.h"
 #import "RTClient.h"
+
+#import "RTServerErrorsConverter.h"
+#import "RTChangePasswordServerErrorMapping.h"
 
 @interface RTChangePasswordDataManager ()
 
-@property (weak) id<RTChangePasswordDataManagerDelegate> delegate;
 @property RTClient *client;
+@property RTServerErrorsConverter *serverErrorsConverter;
 
 @end
 
 @implementation RTChangePasswordDataManager
 
-- (instancetype)initWithDelegate:(id<RTChangePasswordDataManagerDelegate>)delegate
-                          client:(RTClient *)client {
+- (instancetype)initWithClient:(RTClient *)client {
     self = [super init];
     if (self) {
-        self.delegate = delegate;
         self.client = client;
+        
+        RTChangePasswordServerErrorMapping *mapping = [[RTChangePasswordServerErrorMapping alloc] init];
+        self.serverErrorsConverter = [[RTServerErrorsConverter alloc] initWithMapping:mapping];
     }
     return self;
 }
 
 - (void)changePassword:(NSString *)password
-              callback:(NoArgsCallback)callback {
+               changed:(NoArgsCallback)changed
+            notChanged:(ArrayCallback)notChanged {
 
     NoArgsCallback successCallback = ^{
-        callback();
+        changed();
     };
     
     ServerErrorsCallback failureCallback = ^(RTServerErrors *serverErrors) {
-        
+        NSArray *errors = [self.serverErrorsConverter convertServerErrors:serverErrors];
+        notChanged(errors);
     };
     
     [self.client changePassword:password
