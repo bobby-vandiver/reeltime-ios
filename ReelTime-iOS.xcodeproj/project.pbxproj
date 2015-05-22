@@ -61,6 +61,7 @@
 		712698191AA3ECEB00E7066B /* reel-list-no-reels.txt in Resources */ = {isa = PBXBuildFile; fileRef = 712698181AA3ECEB00E7066B /* reel-list-no-reels.txt */; };
 		7126981B1AA3ED2200E7066B /* reel-list-one-reel.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7126981A1AA3ED2200E7066B /* reel-list-one-reel.txt */; };
 		7129C9CF1B0ECA7E0087B0E8 /* RTChangePasswordServerErrorMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 7129C9CE1B0ECA7E0087B0E8 /* RTChangePasswordServerErrorMapping.m */; };
+		7129C9D11B0ECFA40087B0E8 /* RTChangePasswordInteractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7129C9D01B0ECFA40087B0E8 /* RTChangePasswordInteractorSpec.m */; };
 		712B2BCA1AAFB17B0026258A /* RTPagedListInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 712B2BC61AAFB17B0026258A /* RTPagedListInteractor.m */; };
 		712B2BCD1AAFB2010026258A /* RTPagedListDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 712B2BCC1AAFB2010026258A /* RTPagedListDataManager.m */; };
 		712B2BD01AAFB8870026258A /* RTPagedListInteractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 712B2BCF1AAFB8870026258A /* RTPagedListInteractorSpec.m */; };
@@ -381,6 +382,7 @@
 		7126981A1AA3ED2200E7066B /* reel-list-one-reel.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "reel-list-one-reel.txt"; sourceTree = "<group>"; };
 		7129C9CD1B0ECA7E0087B0E8 /* RTChangePasswordServerErrorMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTChangePasswordServerErrorMapping.h; sourceTree = "<group>"; };
 		7129C9CE1B0ECA7E0087B0E8 /* RTChangePasswordServerErrorMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTChangePasswordServerErrorMapping.m; sourceTree = "<group>"; };
+		7129C9D01B0ECFA40087B0E8 /* RTChangePasswordInteractorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTChangePasswordInteractorSpec.m; sourceTree = "<group>"; };
 		712B2BC41AAFB17B0026258A /* RTPagedListError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTPagedListError.h; sourceTree = "<group>"; };
 		712B2BC51AAFB17B0026258A /* RTPagedListInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTPagedListInteractor.h; sourceTree = "<group>"; };
 		712B2BC61AAFB17B0026258A /* RTPagedListInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTPagedListInteractor.m; sourceTree = "<group>"; };
@@ -551,7 +553,7 @@
 		714DDE561B0C0CC600D96F74 /* RTChangePasswordDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTChangePasswordDataManager.m; sourceTree = "<group>"; };
 		714DDE591B0C0D0100D96F74 /* RTChangePasswordInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTChangePasswordInteractor.h; sourceTree = "<group>"; };
 		714DDE5A1B0C0D0100D96F74 /* RTChangePasswordInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTChangePasswordInteractor.m; sourceTree = "<group>"; };
-		714DDE5C1B0C0D1A00D96F74 /* RTChangePasswordDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTChangePasswordDelegate.h; sourceTree = "<group>"; };
+		714DDE5C1B0C0D1A00D96F74 /* RTChangePasswordInteractorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTChangePasswordInteractorDelegate.h; sourceTree = "<group>"; };
 		714DDE5D1B0C0D2E00D96F74 /* RTChangePasswordError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTChangePasswordError.h; sourceTree = "<group>"; };
 		714DDE5E1B0C0E1A00D96F74 /* RTChangePasswordWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTChangePasswordWireframe.h; sourceTree = "<group>"; };
 		714DDE5F1B0C0E1A00D96F74 /* RTChangePasswordWireframe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTChangePasswordWireframe.m; sourceTree = "<group>"; };
@@ -1468,7 +1470,7 @@
 			children = (
 				714DDE591B0C0D0100D96F74 /* RTChangePasswordInteractor.h */,
 				714DDE5A1B0C0D0100D96F74 /* RTChangePasswordInteractor.m */,
-				714DDE5C1B0C0D1A00D96F74 /* RTChangePasswordDelegate.h */,
+				714DDE5C1B0C0D1A00D96F74 /* RTChangePasswordInteractorDelegate.h */,
 				714DDE5D1B0C0D2E00D96F74 /* RTChangePasswordError.h */,
 			);
 			path = Domain;
@@ -1496,6 +1498,7 @@
 			isa = PBXGroup;
 			children = (
 				714DDE651B0C0F0500D96F74 /* RTChangePasswordDataManagerSpec.m */,
+				7129C9D01B0ECFA40087B0E8 /* RTChangePasswordInteractorSpec.m */,
 			);
 			path = ChangePasswordTests;
 			sourceTree = "<group>";
@@ -2739,6 +2742,7 @@
 				715C54201AD4C9A7009C755F /* RTUserSummaryPresenterSpec.m in Sources */,
 				71A8BA301AB1036A00B0708B /* RTPagedListDataManagerSpec.m in Sources */,
 				71073CF31A82DED800BE6E19 /* EXPMatchers+beVideo.m in Sources */,
+				7129C9D11B0ECFA40087B0E8 /* RTChangePasswordInteractorSpec.m in Sources */,
 				71C8D91F1A73485A00673F1A /* RTAccountRegistrationDataManagerSpec.m in Sources */,
 				71386E501AD34F8F009D064C /* RTBrowseUserReelsDataManagerDelegateSpec.m in Sources */,
 				71647BE81A7F185500F44996 /* RTClientDelegateSpec.m in Sources */,
