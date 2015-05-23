@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
 
 #import "RTAccountRegistrationError.h"
+#import "RTChangePasswordError.h"
 #import "RTDeviceRegistrationError.h"
 #import "RTKeyChainError.h"
 #import "RTLoginError.h"
@@ -11,6 +12,8 @@
 @interface RTErrorFactory : NSObject
 
 + (NSError *)accountRegistrationErrorWithCode:(RTAccountRegistrationError)code;
+
++ (NSError *)changePasswordErrorWithCode:(RTChangePasswordError)code;
 
 + (NSError *)deviceRegistrationErrorWithCode:(RTDeviceRegistrationError)code;
 

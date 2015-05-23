@@ -4,62 +4,65 @@
 @implementation RTErrorFactory
 
 + (NSError *)accountRegistrationErrorWithCode:(RTAccountRegistrationError)code {
-    return [NSError errorWithDomain:RTAccountRegistrationErrorDomain
-                               code:code
-                           userInfo:nil];
+    return [self errorWithDomain:RTAccountRegistrationErrorDomain code:code];
+}
+
++ (NSError *)changePasswordErrorWithCode:(RTChangePasswordError)code {
+    return [self errorWithDomain:RTChangePasswordErrorDomain code:code];
 }
 
 + (NSError *)deviceRegistrationErrorWithCode:(RTDeviceRegistrationError)code {
-    return [NSError errorWithDomain:RTDeviceRegistrationErrorDomain
-                               code:code
-                           userInfo:nil];
+    return [self errorWithDomain:RTDeviceRegistrationErrorDomain code:code];
 }
 
 + (NSError *)deviceRegistrationErrorWithCode:(RTDeviceRegistrationError)code
                                originalError:(NSError *)error {
-    return [NSError errorWithDomain:RTDeviceRegistrationErrorDomain
-                               code:code
-                           userInfo:nil
-                      originalError:error];
+    return [self errorWithDomain:RTDeviceRegistrationErrorDomain code:code originalError:error];
 }
 
 + (NSError *)keyChainErrorWithCode:(RTKeyChainError)code
                      originalError:(NSError *)error {
-    return [NSError errorWithDomain:RTKeyChainWrapperErrorDomain
-                               code:code
-                           userInfo:nil
-                      originalError:error];
+    return [self errorWithDomain:RTKeyChainWrapperErrorDomain code:code originalError:error];
 }
 
 + (NSError *)loginErrorWithCode:(RTLoginError)code {
-    return [self loginErrorWithCode:code
-                      originalError:nil];
+    return [self loginErrorWithCode:code originalError:nil];
 }
 
 + (NSError *)loginErrorWithCode:(RTLoginError)code
                   originalError:(NSError *)error {
-    return [NSError errorWithDomain:RTLoginErrorDomain
+    return [self errorWithDomain:RTLoginErrorDomain code:code originalError:error];
+}
+
++ (NSError *)pagedListErrorWithCode:(RTPagedListError)code {
+    return [self errorWithDomain:RTPagedListErrorDomain code:code];
+}
+
++ (NSError *)resetPasswordErrorWithCode:(RTResetPasswordError)code {
+    return [self errorWithDomain:RTResetPasswordErrorDomain code:code];
+}
+
++ (NSError *)userSummaryErrorWithCode:(RTUserSummaryError)code {
+    return [self errorWithDomain:RTUserSummaryErrorDomain code:code];
+}
+
++ (NSError *)errorWithDomain:(NSString *)domain
+                        code:(NSInteger)code {
+
+    return [NSError errorWithDomain:domain
+                               code:code
+                           userInfo:nil];
+}
+
++ (NSError *)errorWithDomain:(NSString *)domain
+                        code:(NSInteger)code
+               originalError:(NSError *)error {
+    
+    return [NSError errorWithDomain:domain
                                code:code
                            userInfo:nil
                       originalError:error];
 }
-
-+ (NSError *)pagedListErrorWithCode:(RTPagedListError)code {
-    return [NSError errorWithDomain:RTPagedListErrorDomain
-                               code:code
-                           userInfo:nil];
-}
-
-+ (NSError *)resetPasswordErrorWithCode:(RTResetPasswordError)code {
-    return [NSError errorWithDomain:RTResetPasswordErrorDomain
-                               code:code
-                           userInfo:nil];
-}
-
-+ (NSError *)userSummaryErrorWithCode:(RTUserSummaryError)code {
-    return [NSError errorWithDomain:RTUserSummaryErrorDomain
-                               code:code
-                           userInfo:nil];
-}
+    
 
 @end
