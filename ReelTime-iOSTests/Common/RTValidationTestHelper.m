@@ -4,6 +4,8 @@
 NSString *const USERNAME_KEY = @"username";
 NSString *const PASSWORD_KEY = @"password";
 NSString *const CONFIRMATION_PASSWORD_KEY = @"confirmationPassword";
+NSString *const EMAIL_KEY = @"email";
+NSString *const DISPLAY_NAME_KEY = @"displayName";
 NSString *const CLIENT_NAME_KEY = @"clientName";
 NSString *const RESET_CODE_KEY = @"resetCode";
 
