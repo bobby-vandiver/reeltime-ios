@@ -8,21 +8,12 @@
 SpecBegin(RTResetPasswordValidator)
 
 describe(@"reset password validator", ^{
+
     __block RTResetPasswordValidator *validator;
-
-    NSString *const CODE_KEY = @"code";
-    NSString *const USERNAME_KEY = @"username";
-    NSString *const PASSWORD_KEY = @"password";
-    NSString *const CONFIRMATION_PASSWORD_KEY = @"confirmationPassword";
-    NSString *const CLIENT_NAME_KEY = @"clientName";
-
-    void (^expectErrors)(NSArray *errors, NSArray *expectedErrorCodes) = ^(NSArray *errors, NSArray *expectedErrorCodes) {
-        expect(errors).to.haveACountOf(expectedErrorCodes.count);
-        
-        for (NSNumber *errorCode in expectedErrorCodes) {
-            NSError *expected = [RTErrorFactory resetPasswordErrorWithCode:[errorCode integerValue]];
-            expect(errors).to.contain(expected);
-        }
+    __block RTValidationTestHelper *helper;
+   
+    ErrorFactoryCallback errorFactoryCallback = ^NSError * (NSInteger errorCode) {
+        return [RTErrorFactory resetPasswordErrorWithCode:errorCode];
     };
     
     beforeEach(^{
@@ -30,50 +21,51 @@ describe(@"reset password validator", ^{
     });
     
     context(@"registered client", ^{
-        void (^expectErrorsForBadParametersForRegisteredClient)(NSDictionary *parameters, NSArray *expectedErrorCodes) =
-        ^(NSDictionary *parameters, NSArray *expectedErrorCodes) {
-            
-            NSString *codeParam = parameters[CODE_KEY];
+
+        ValidationCallback validationCallback = ^BOOL (NSDictionary *parameters, NSArray *__autoreleasing *errors) {
+            NSString *codeParam = parameters[RESET_CODE_KEY];
             NSString *usernameParam = parameters[USERNAME_KEY];
             NSString *passwordParam = parameters[PASSWORD_KEY];
             NSString *confirmationPasswordParam = parameters[CONFIRMATION_PASSWORD_KEY];
             
-            NSArray *errors;
             BOOL valid = [validator validateCode:getParameterOrDefault(codeParam, resetCode)
                                         username:getParameterOrDefault(usernameParam, username)
                                         password:getParameterOrDefault(passwordParam, password)
                             confirmationPassword:getParameterOrDefault(confirmationPasswordParam, password)
-                                          errors:&errors];
+                                          errors:errors];
             
-            expect(valid).to.beFalsy();
-            expectErrors(errors, expectedErrorCodes);
+            return valid;
         };
+        
+        beforeEach(^{
+            helper = [[RTValidationTestHelper alloc] initWithValidationCallback:validationCallback
+                                                           errorFactoryCallback:errorFactoryCallback];
+        });
         
         context(@"missing parameters", ^{
             it(@"blank code", ^{
-                expectErrorsForBadParametersForRegisteredClient(@{CODE_KEY: BLANK}, @[@(RTResetPasswordErrorMissingResetCode)]);
-                expectErrorsForBadParametersForRegisteredClient(@{CODE_KEY: [NSNull null]}, @[@(RTResetPasswordErrorMissingResetCode)]);
+                [helper expectErrorCodes:@[@(RTResetPasswordErrorMissingResetCode)] forParameters:@{RESET_CODE_KEY: BLANK}];
+                [helper expectErrorCodes:@[@(RTResetPasswordErrorMissingResetCode)] forParameters:@{RESET_CODE_KEY: null()}];
             });
             
             it(@"blank username", ^{
-                expectErrorsForBadParametersForRegisteredClient(@{USERNAME_KEY: BLANK}, @[@(RTResetPasswordErrorMissingUsername)]);
-                expectErrorsForBadParametersForRegisteredClient(@{USERNAME_KEY: [NSNull null]}, @[@(RTResetPasswordErrorMissingUsername)]);
+                [helper expectErrorCodes:@[@(RTResetPasswordErrorMissingUsername)] forParameters:@{USERNAME_KEY: BLANK}];
+                [helper expectErrorCodes:@[@(RTResetPasswordErrorMissingUsername)] forParameters:@{USERNAME_KEY: null()}];
             });
             
             it(@"blank password", ^{
-                expectErrorsForBadParametersForRegisteredClient(@{PASSWORD_KEY: BLANK}, @[@(RTResetPasswordErrorMissingPassword)]);
-                expectErrorsForBadParametersForRegisteredClient(@{PASSWORD_KEY: [NSNull null]}, @[@(RTResetPasswordErrorMissingPassword)]);
+                [helper expectErrorCodes:@[@(RTResetPasswordErrorMissingPassword)] forParameters:@{PASSWORD_KEY: BLANK}];
+                [helper expectErrorCodes:@[@(RTResetPasswordErrorMissingPassword)] forParameters:@{PASSWORD_KEY: null()}];
             });
             
             it(@"blank confirmation password", ^{
-                expectErrorsForBadParametersForRegisteredClient(@{CONFIRMATION_PASSWORD_KEY: BLANK}, @[@(RTResetPasswordErrorMissingConfirmationPassword)]);
-                
-                expectErrorsForBadParametersForRegisteredClient(@{CONFIRMATION_PASSWORD_KEY: [NSNull null]}, @[@(RTResetPasswordErrorMissingConfirmationPassword)]);
+                [helper expectErrorCodes:@[@(RTResetPasswordErrorMissingConfirmationPassword)] forParameters:@{CONFIRMATION_PASSWORD_KEY: BLANK}];
+                [helper expectErrorCodes:@[@(RTResetPasswordErrorMissingConfirmationPassword)] forParameters:@{CONFIRMATION_PASSWORD_KEY: null()}];
             });
             
             it(@"all blank", ^{
                 NSDictionary *parameters = @{
-                                             CODE_KEY: BLANK,
+                                             RESET_CODE_KEY: BLANK,
                                              USERNAME_KEY: BLANK,
                                              PASSWORD_KEY: BLANK,
                                              CONFIRMATION_PASSWORD_KEY: BLANK
@@ -86,7 +78,7 @@ describe(@"reset password validator", ^{
                                                 @(RTResetPasswordErrorMissingConfirmationPassword)
                                                 ];
                 
-                expectErrorsForBadParametersForRegisteredClient(parameters, expectedErrorCodes);
+                [helper expectErrorCodes:expectedErrorCodes forParameters:parameters];
             });
         });
         
@@ -94,90 +86,85 @@ describe(@"reset password validator", ^{
             
             describe(@"invalid password", ^{
                 it(@"matches confirmation password but is too short", ^{
-                    expectErrorsForBadParametersForRegisteredClient(@{PASSWORD_KEY: @"a", CONFIRMATION_PASSWORD_KEY: @"a"},
-                                                                    @[@(RTResetPasswordErrorInvalidPassword)]);
-                    
-                    expectErrorsForBadParametersForRegisteredClient(@{PASSWORD_KEY: @"abcde", CONFIRMATION_PASSWORD_KEY: @"abcde"},
-                                                                    @[@(RTResetPasswordErrorInvalidPassword)]);
+                    [helper expectErrorCodes:@[@(RTResetPasswordErrorInvalidPassword)] forParameters:@{PASSWORD_KEY: @"a", CONFIRMATION_PASSWORD_KEY: @"a"}];
+                    [helper expectErrorCodes:@[@(RTResetPasswordErrorInvalidPassword)] forParameters:@{PASSWORD_KEY: @"abcde", CONFIRMATION_PASSWORD_KEY: @"abcde"}];
                 });
                 
                 it(@"does not match confirmation password", ^{
-                    expectErrorsForBadParametersForRegisteredClient(@{PASSWORD_KEY: BLANK, CONFIRMATION_PASSWORD_KEY: BLANK},
-                                                                    @[@(RTResetPasswordErrorMissingPassword),
-                                                                      @(RTResetPasswordErrorMissingConfirmationPassword)]);
+                    [helper expectErrorCodes:@[@(RTResetPasswordErrorMissingPassword), @(RTResetPasswordErrorMissingConfirmationPassword)]
+                               forParameters:@{PASSWORD_KEY: BLANK, CONFIRMATION_PASSWORD_KEY: BLANK}];
                     
-                    expectErrorsForBadParametersForRegisteredClient(@{PASSWORD_KEY: BLANK, CONFIRMATION_PASSWORD_KEY: @"a"},
-                                                                    @[@(RTResetPasswordErrorMissingPassword)]);
+                    [helper expectErrorCodes:@[@(RTResetPasswordErrorMissingPassword)]
+                               forParameters:@{PASSWORD_KEY: BLANK, CONFIRMATION_PASSWORD_KEY: @"a"}];
                     
-                    expectErrorsForBadParametersForRegisteredClient(@{PASSWORD_KEY: @"a", CONFIRMATION_PASSWORD_KEY: BLANK},
-                                                                    @[@(RTResetPasswordErrorInvalidPassword),
-                                                                      @(RTResetPasswordErrorMissingConfirmationPassword)]);
+                    [helper expectErrorCodes:@[@(RTResetPasswordErrorInvalidPassword), @(RTResetPasswordErrorMissingConfirmationPassword)]
+                               forParameters:@{PASSWORD_KEY: @"a", CONFIRMATION_PASSWORD_KEY: BLANK}];
                     
-                    expectErrorsForBadParametersForRegisteredClient(@{PASSWORD_KEY: @"abcdef", CONFIRMATION_PASSWORD_KEY: BLANK},
-                                                                    @[@(RTResetPasswordErrorMissingConfirmationPassword)]);
+                    [helper expectErrorCodes:@[@(RTResetPasswordErrorMissingConfirmationPassword)]
+                               forParameters:@{PASSWORD_KEY: @"abcdef", CONFIRMATION_PASSWORD_KEY: BLANK}];
                     
-                    expectErrorsForBadParametersForRegisteredClient(@{PASSWORD_KEY: BLANK, CONFIRMATION_PASSWORD_KEY: @"abcdef"},
-                                                                    @[@(RTResetPasswordErrorMissingPassword)]);
+                    [helper expectErrorCodes:@[@(RTResetPasswordErrorMissingPassword)]
+                               forParameters:@{PASSWORD_KEY: BLANK, CONFIRMATION_PASSWORD_KEY: @"abcdef"}];
                     
-                    expectErrorsForBadParametersForRegisteredClient(@{PASSWORD_KEY: @"abcdef", CONFIRMATION_PASSWORD_KEY: @"ABCDEF"},
-                                                                    @[@(RTResetPasswordErrorConfirmationPasswordDoesNotMatch)]);
+                    [helper expectErrorCodes:@[@(RTResetPasswordErrorConfirmationPasswordDoesNotMatch)]
+                               forParameters:@{PASSWORD_KEY: @"abcdef", CONFIRMATION_PASSWORD_KEY: @"ABCDEF"}];
                 });
             });
         });
     });
     
     context(@"new client", ^{
-        void (^expectErrorsForBadParametersForNewClient)(NSDictionary *parameters, NSArray *expectedErrorCodes) =
-        ^(NSDictionary *parameters, NSArray *expectedErrorCodes) {
-            
-            NSString *codeParam = parameters[CODE_KEY];
+        
+        ValidationCallback validationCallback = ^BOOL (NSDictionary *parameters, NSArray *__autoreleasing *errors) {
+            NSString *codeParam = parameters[RESET_CODE_KEY];
             NSString *usernameParam = parameters[USERNAME_KEY];
             NSString *passwordParam = parameters[PASSWORD_KEY];
             NSString *confirmationPasswordParam = parameters[CONFIRMATION_PASSWORD_KEY];
             NSString *clientNameParam = parameters[CLIENT_NAME_KEY];
- 
-            NSArray *errors;
+            
             BOOL valid = [validator validateCode:getParameterOrDefault(codeParam, resetCode)
                                         username:getParameterOrDefault(usernameParam, username)
                                         password:getParameterOrDefault(passwordParam, password)
                             confirmationPassword:getParameterOrDefault(confirmationPasswordParam, password)
                                       clientName:getParameterOrDefault(clientNameParam, clientName)
-                                          errors:&errors];
-            
-            expect(valid).to.beFalsy();
-            expectErrors(errors, expectedErrorCodes);
+                                          errors:errors];
+            return valid;
         };
 
+        beforeEach(^{
+            helper = [[RTValidationTestHelper alloc] initWithValidationCallback:validationCallback
+                                                           errorFactoryCallback:errorFactoryCallback];
+        });
+        
         context(@"missing parameters", ^{
             it(@"blank code", ^{
-                expectErrorsForBadParametersForNewClient(@{CODE_KEY: BLANK}, @[@(RTResetPasswordErrorMissingResetCode)]);
-                expectErrorsForBadParametersForNewClient(@{CODE_KEY: [NSNull null]}, @[@(RTResetPasswordErrorMissingResetCode)]);
+                [helper expectErrorCodes:@[@(RTResetPasswordErrorMissingResetCode)] forParameters:@{RESET_CODE_KEY: BLANK}];
+                [helper expectErrorCodes:@[@(RTResetPasswordErrorMissingResetCode)] forParameters:@{RESET_CODE_KEY: null()}];
             });
             
             it(@"blank username", ^{
-                expectErrorsForBadParametersForNewClient(@{USERNAME_KEY: BLANK}, @[@(RTResetPasswordErrorMissingUsername)]);
-                expectErrorsForBadParametersForNewClient(@{USERNAME_KEY: [NSNull null]}, @[@(RTResetPasswordErrorMissingUsername)]);
+                [helper expectErrorCodes:@[@(RTResetPasswordErrorMissingUsername)] forParameters:@{USERNAME_KEY: BLANK}];
+                [helper expectErrorCodes:@[@(RTResetPasswordErrorMissingUsername)] forParameters:@{USERNAME_KEY: null()}];
             });
             
             it(@"blank password", ^{
-                expectErrorsForBadParametersForNewClient(@{PASSWORD_KEY: BLANK}, @[@(RTResetPasswordErrorMissingPassword)]);
-                expectErrorsForBadParametersForNewClient(@{PASSWORD_KEY: [NSNull null]}, @[@(RTResetPasswordErrorMissingPassword)]);
+                [helper expectErrorCodes:@[@(RTResetPasswordErrorMissingPassword)] forParameters:@{PASSWORD_KEY: BLANK}];
+                [helper expectErrorCodes:@[@(RTResetPasswordErrorMissingPassword)] forParameters:@{PASSWORD_KEY: null()}];
             });
             
             it(@"blank confirmation password", ^{
-                expectErrorsForBadParametersForNewClient(@{CONFIRMATION_PASSWORD_KEY: BLANK}, @[@(RTResetPasswordErrorMissingConfirmationPassword)]);
-                
-                expectErrorsForBadParametersForNewClient(@{CONFIRMATION_PASSWORD_KEY: [NSNull null]}, @[@(RTResetPasswordErrorMissingConfirmationPassword)]);
+                [helper expectErrorCodes:@[@(RTResetPasswordErrorMissingConfirmationPassword)] forParameters:@{CONFIRMATION_PASSWORD_KEY: BLANK}];
+                [helper expectErrorCodes:@[@(RTResetPasswordErrorMissingConfirmationPassword)] forParameters:@{CONFIRMATION_PASSWORD_KEY: null()}];
             });
             
             it(@"blank client name", ^{
-                expectErrorsForBadParametersForNewClient(@{CLIENT_NAME_KEY: BLANK}, @[@(RTResetPasswordErrorMissingClientName)]);
-                expectErrorsForBadParametersForNewClient(@{CLIENT_NAME_KEY: [NSNull null]}, @[@(RTResetPasswordErrorMissingClientName)]);
+                [helper expectErrorCodes:@[@(RTResetPasswordErrorMissingClientName)] forParameters:@{CLIENT_NAME_KEY: BLANK}];
+                [helper expectErrorCodes:@[@(RTResetPasswordErrorMissingClientName)] forParameters:@{CLIENT_NAME_KEY: null()}];
             });
             
             it(@"all blank", ^{
                 NSDictionary *parameters = @{
-                                             CODE_KEY: BLANK,
+                                             RESET_CODE_KEY: BLANK,
                                              USERNAME_KEY: BLANK,
                                              PASSWORD_KEY: BLANK,
                                              CONFIRMATION_PASSWORD_KEY: BLANK,
@@ -192,7 +179,7 @@ describe(@"reset password validator", ^{
                                                 @(RTResetPasswordErrorMissingClientName)
                                                 ];
                 
-                expectErrorsForBadParametersForNewClient(parameters, expectedErrorCodes);
+                [helper expectErrorCodes:expectedErrorCodes forParameters:parameters];
             });
         });
         
@@ -200,33 +187,28 @@ describe(@"reset password validator", ^{
             
             describe(@"invalid password", ^{
                 it(@"matches confirmation password but is too short", ^{
-                    expectErrorsForBadParametersForNewClient(@{PASSWORD_KEY: @"a", CONFIRMATION_PASSWORD_KEY: @"a"},
-                                                             @[@(RTResetPasswordErrorInvalidPassword)]);
-                    
-                    expectErrorsForBadParametersForNewClient(@{PASSWORD_KEY: @"abcde", CONFIRMATION_PASSWORD_KEY: @"abcde"},
-                                                             @[@(RTResetPasswordErrorInvalidPassword)]);
+                    [helper expectErrorCodes:@[@(RTResetPasswordErrorInvalidPassword)] forParameters:@{PASSWORD_KEY: @"a", CONFIRMATION_PASSWORD_KEY: @"a"}];
+                    [helper expectErrorCodes:@[@(RTResetPasswordErrorInvalidPassword)] forParameters:@{PASSWORD_KEY: @"abcde", CONFIRMATION_PASSWORD_KEY: @"abcde"}];
                 });
                 
                 it(@"does not match confirmation password", ^{
-                    expectErrorsForBadParametersForNewClient(@{PASSWORD_KEY: BLANK, CONFIRMATION_PASSWORD_KEY: BLANK},
-                                                             @[@(RTResetPasswordErrorMissingPassword),
-                                                               @(RTResetPasswordErrorMissingConfirmationPassword)]);
+                    [helper expectErrorCodes:@[@(RTResetPasswordErrorMissingPassword), @(RTResetPasswordErrorMissingConfirmationPassword)]
+                               forParameters:@{PASSWORD_KEY: BLANK, CONFIRMATION_PASSWORD_KEY: BLANK}];
                     
-                    expectErrorsForBadParametersForNewClient(@{PASSWORD_KEY: BLANK, CONFIRMATION_PASSWORD_KEY: @"a"},
-                                                             @[@(RTResetPasswordErrorMissingPassword)]);
+                    [helper expectErrorCodes:@[@(RTResetPasswordErrorMissingPassword)]
+                               forParameters:@{PASSWORD_KEY: BLANK, CONFIRMATION_PASSWORD_KEY: @"a"}];
                     
-                    expectErrorsForBadParametersForNewClient(@{PASSWORD_KEY: @"a", CONFIRMATION_PASSWORD_KEY: BLANK},
-                                                             @[@(RTResetPasswordErrorInvalidPassword),
-                                                               @(RTResetPasswordErrorMissingConfirmationPassword)]);
+                    [helper expectErrorCodes:@[@(RTResetPasswordErrorInvalidPassword), @(RTResetPasswordErrorMissingConfirmationPassword)]
+                               forParameters:@{PASSWORD_KEY: @"a", CONFIRMATION_PASSWORD_KEY: BLANK}];
                     
-                    expectErrorsForBadParametersForNewClient(@{PASSWORD_KEY: @"abcdef", CONFIRMATION_PASSWORD_KEY: BLANK},
-                                                             @[@(RTResetPasswordErrorMissingConfirmationPassword)]);
+                    [helper expectErrorCodes:@[@(RTResetPasswordErrorMissingConfirmationPassword)]
+                               forParameters:@{PASSWORD_KEY: @"abcdef", CONFIRMATION_PASSWORD_KEY: BLANK}];
                     
-                    expectErrorsForBadParametersForNewClient(@{PASSWORD_KEY: BLANK, CONFIRMATION_PASSWORD_KEY: @"abcdef"},
-                                                             @[@(RTResetPasswordErrorMissingPassword)]);
+                    [helper expectErrorCodes:@[@(RTResetPasswordErrorMissingPassword)]
+                               forParameters:@{PASSWORD_KEY: BLANK, CONFIRMATION_PASSWORD_KEY: @"abcdef"}];
                     
-                    expectErrorsForBadParametersForNewClient(@{PASSWORD_KEY: @"abcdef", CONFIRMATION_PASSWORD_KEY: @"ABCDEF"},
-                                                             @[@(RTResetPasswordErrorConfirmationPasswordDoesNotMatch)]);
+                    [helper expectErrorCodes:@[@(RTResetPasswordErrorConfirmationPasswordDoesNotMatch)]
+                               forParameters:@{PASSWORD_KEY: @"abcdef", CONFIRMATION_PASSWORD_KEY: @"ABCDEF"}];
                 });
             });
         });

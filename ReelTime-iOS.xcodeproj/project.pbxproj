@@ -60,6 +60,7 @@
 		712698171AA3EC4400E7066B /* single-reel.txt in Resources */ = {isa = PBXBuildFile; fileRef = 712698161AA3EC4400E7066B /* single-reel.txt */; };
 		712698191AA3ECEB00E7066B /* reel-list-no-reels.txt in Resources */ = {isa = PBXBuildFile; fileRef = 712698181AA3ECEB00E7066B /* reel-list-no-reels.txt */; };
 		7126981B1AA3ED2200E7066B /* reel-list-one-reel.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7126981A1AA3ED2200E7066B /* reel-list-one-reel.txt */; };
+		712785021B0FFF610092A69F /* RTValidationTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 712785011B0FFF610092A69F /* RTValidationTestHelper.m */; };
 		7129C9CF1B0ECA7E0087B0E8 /* RTChangePasswordServerErrorMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 7129C9CE1B0ECA7E0087B0E8 /* RTChangePasswordServerErrorMapping.m */; };
 		7129C9D11B0ECFA40087B0E8 /* RTChangePasswordInteractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7129C9D01B0ECFA40087B0E8 /* RTChangePasswordInteractorSpec.m */; };
 		712B2BCA1AAFB17B0026258A /* RTPagedListInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 712B2BC61AAFB17B0026258A /* RTPagedListInteractor.m */; };
@@ -380,6 +381,8 @@
 		712698161AA3EC4400E7066B /* single-reel.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "single-reel.txt"; sourceTree = "<group>"; };
 		712698181AA3ECEB00E7066B /* reel-list-no-reels.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "reel-list-no-reels.txt"; sourceTree = "<group>"; };
 		7126981A1AA3ED2200E7066B /* reel-list-one-reel.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "reel-list-one-reel.txt"; sourceTree = "<group>"; };
+		712785001B0FFF610092A69F /* RTValidationTestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTValidationTestHelper.h; sourceTree = "<group>"; };
+		712785011B0FFF610092A69F /* RTValidationTestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTValidationTestHelper.m; sourceTree = "<group>"; };
 		7129C9CD1B0ECA7E0087B0E8 /* RTChangePasswordServerErrorMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTChangePasswordServerErrorMapping.h; sourceTree = "<group>"; };
 		7129C9CE1B0ECA7E0087B0E8 /* RTChangePasswordServerErrorMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTChangePasswordServerErrorMapping.m; sourceTree = "<group>"; };
 		7129C9D01B0ECFA40087B0E8 /* RTChangePasswordInteractorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTChangePasswordInteractorSpec.m; sourceTree = "<group>"; };
@@ -1139,6 +1142,8 @@
 				714DDE6C1B0C187500D96F74 /* RTCallbackTestExpectation.m */,
 				714DDE6E1B0C18B200D96F74 /* RTCallbackTestExpectationFactory.h */,
 				714DDE6F1B0C18B200D96F74 /* RTCallbackTestExpectationFactory.m */,
+				712785001B0FFF610092A69F /* RTValidationTestHelper.h */,
+				712785011B0FFF610092A69F /* RTValidationTestHelper.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -2703,6 +2708,7 @@
 				7145C6231A8AF07F006A77DE /* RTReelSpec.m in Sources */,
 				71C792EC1B0AD0F7006259F8 /* RTResetPasswordWireframeSpec.m in Sources */,
 				7134C6331A9580FF0048CFCF /* RTNewsfeedViewControllerSpec.m in Sources */,
+				712785021B0FFF610092A69F /* RTValidationTestHelper.m in Sources */,
 				713BCE071A5909DA000F2D96 /* RTFakeKeyChainWrapper.m in Sources */,
 				71403D231AB3C7BC007CB8B9 /* RTBrowseUsersDataManagerSpec.m in Sources */,
 				715E082A1B0576CD0037A17E /* RTResetPasswordDataManagerSpec.m in Sources */,

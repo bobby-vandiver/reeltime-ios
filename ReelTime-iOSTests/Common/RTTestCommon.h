@@ -15,6 +15,8 @@
 #import "EXPMatchers+beReel.h"
 #import "EXPMatchers+beVideo.h"
 
+#import "RTValidationTestHelper.h"
+
 #import "RTCallbackTestExpectationFactory.h"
 #import "RTCallbackTestExpectation.h"
 
@@ -36,4 +38,5 @@ extern const NSUInteger pageNumber;
 
 extern NSString *const resetCode;
 
+extern NSNull *null();
 extern NSString *getParameterOrDefault(NSString *parameter, NSString *defaultValue);

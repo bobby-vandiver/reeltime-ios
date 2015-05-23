@@ -17,11 +17,15 @@ const NSUInteger pageNumber = 13;
 
 NSString *const resetCode = @"reset";
 
+NSNull *null() {
+    return [NSNull null];
+}
+
 NSString *getParameterOrDefault(NSString *parameter, NSString *defaultValue) {
     NSString *value;
     
     if (parameter) {
-        value = [parameter isEqual:[NSNull null]] ? nil : parameter;
+        value = [parameter isEqual:null()] ? nil : parameter;
     }
     else {
         value = defaultValue;
