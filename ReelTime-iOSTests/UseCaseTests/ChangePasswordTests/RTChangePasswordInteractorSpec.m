@@ -45,6 +45,20 @@ describe(@"change password interactor", ^{
                 callback();
                 [verify(delegate) changePasswordSucceeded];
             });
+            
+            it(@"should notify delegate of failure", ^{
+                ArrayCallback callback = [notChangedCaptor value];
+                
+                NSError *error = [RTErrorFactory changePasswordErrorWithCode:RTChangePasswordErrorInvalidPassword];
+                callback(@[error]);
+
+                MKTArgumentCaptor *captor = [[MKTArgumentCaptor alloc] init];
+                [verify(delegate) changePasswordFailedWithErrors:[captor capture]];
+                
+                NSArray *captured = [captor value];
+                expect(captured).to.haveACountOf(1);
+                expect(captured).to.contain(error);
+            });
         });
         
         context(@"missing or invalid parameters", ^{

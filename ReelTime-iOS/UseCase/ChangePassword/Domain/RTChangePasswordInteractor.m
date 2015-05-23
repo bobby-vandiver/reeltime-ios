@@ -74,7 +74,7 @@
 
 - (ArrayCallback)notChangedCallback {
     return ^(NSArray *errors) {
-
+        [self.delegate changePasswordFailedWithErrors:errors];
     };
 }
 
