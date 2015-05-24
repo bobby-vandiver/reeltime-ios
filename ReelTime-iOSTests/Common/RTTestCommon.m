@@ -5,6 +5,7 @@ NSString *const clientSecret = @"bar";
 
 NSString *const username = @"someone";
 NSString *const password = @"secret";
+NSString *const confirmationPassword = @"different";
 NSString *const email = @"someone@test.com";
 NSString *const displayName = @"Some One";
 NSString *const clientName = @"iPhone";

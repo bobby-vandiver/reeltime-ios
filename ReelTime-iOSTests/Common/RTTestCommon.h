@@ -26,6 +26,7 @@ extern NSString *const clientSecret;
 
 extern NSString *const username;
 extern NSString *const password;
+extern NSString *const confirmationPassword;
 extern NSString *const email;
 extern NSString *const displayName;
 extern NSString *const clientName;

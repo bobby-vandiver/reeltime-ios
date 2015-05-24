@@ -258,6 +258,7 @@
 		71A8BA301AB1036A00B0708B /* RTPagedListDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A8BA2F1AB1036A00B0708B /* RTPagedListDataManagerSpec.m */; };
 		71A8BA331AB104AC00B0708B /* RTException.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A8BA321AB104AC00B0708B /* RTException.m */; };
 		71AFF6941B12161A003378C5 /* RTPasswordValidationMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 71AFF6931B12161A003378C5 /* RTPasswordValidationMapping.m */; };
+		71AFF6961B122016003378C5 /* RTChangePasswordPresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71AFF6951B122016003378C5 /* RTChangePasswordPresenterSpec.m */; };
 		71B238481B042F06002DE5DA /* RTCurrentUserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B238471B042F06002DE5DA /* RTCurrentUserService.m */; };
 		71B2384B1B042F91002DE5DA /* RTClientCredentialsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B2384A1B042F91002DE5DA /* RTClientCredentialsService.m */; };
 		71B2384E1B04305E002DE5DA /* RTCurrentUserServiceSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B2384D1B04305E002DE5DA /* RTCurrentUserServiceSpec.m */; };
@@ -739,6 +740,8 @@
 		71A8BA321AB104AC00B0708B /* RTException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTException.m; sourceTree = "<group>"; };
 		71AFF6921B12161A003378C5 /* RTPasswordValidationMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTPasswordValidationMapping.h; sourceTree = "<group>"; };
 		71AFF6931B12161A003378C5 /* RTPasswordValidationMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTPasswordValidationMapping.m; sourceTree = "<group>"; };
+		71AFF6951B122016003378C5 /* RTChangePasswordPresenterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTChangePasswordPresenterSpec.m; sourceTree = "<group>"; };
+		71AFF6971B122062003378C5 /* RTChangePasswordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTChangePasswordView.h; sourceTree = "<group>"; };
 		71B004911AB36C3F00ABE1C3 /* RTUserWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTUserWireframe.h; sourceTree = "<group>"; };
 		71B004921AB36C5C00ABE1C3 /* RTReelWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTReelWireframe.h; sourceTree = "<group>"; };
 		71B004931AB36C7300ABE1C3 /* RTVideoWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTVideoWireframe.h; sourceTree = "<group>"; };
@@ -1491,6 +1494,7 @@
 			children = (
 				714DDE611B0C0E3C00D96F74 /* RTChangePasswordPresenter.h */,
 				714DDE621B0C0E3C00D96F74 /* RTChangePasswordPresenter.m */,
+				71AFF6971B122062003378C5 /* RTChangePasswordView.h */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -1509,6 +1513,7 @@
 			children = (
 				714DDE651B0C0F0500D96F74 /* RTChangePasswordDataManagerSpec.m */,
 				7129C9D01B0ECFA40087B0E8 /* RTChangePasswordInteractorSpec.m */,
+				71AFF6951B122016003378C5 /* RTChangePasswordPresenterSpec.m */,
 			);
 			path = ChangePasswordTests;
 			sourceTree = "<group>";
@@ -2715,6 +2720,7 @@
 				71C792EC1B0AD0F7006259F8 /* RTResetPasswordWireframeSpec.m in Sources */,
 				7134C6331A9580FF0048CFCF /* RTNewsfeedViewControllerSpec.m in Sources */,
 				712785021B0FFF610092A69F /* RTValidationTestHelper.m in Sources */,
+				71AFF6961B122016003378C5 /* RTChangePasswordPresenterSpec.m in Sources */,
 				713BCE071A5909DA000F2D96 /* RTFakeKeyChainWrapper.m in Sources */,
 				71403D231AB3C7BC007CB8B9 /* RTBrowseUsersDataManagerSpec.m in Sources */,
 				715E082A1B0576CD0037A17E /* RTResetPasswordDataManagerSpec.m in Sources */,
