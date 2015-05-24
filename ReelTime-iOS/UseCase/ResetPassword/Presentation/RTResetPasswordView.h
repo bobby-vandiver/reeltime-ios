@@ -1,5 +1,9 @@
 #import <Foundation/Foundation.h>
 
+#import "RTMessageView.h"
+#import "RTErrorMessageView.h"
+#import "RTFieldValidationErrorView.h"
+
 typedef NS_ENUM(NSInteger, RTResetPasswordViewField) {
     RTResetPasswordViewFieldResetCode,
     RTResetPasswordViewFieldUsername,
@@ -8,13 +12,6 @@ typedef NS_ENUM(NSInteger, RTResetPasswordViewField) {
     RTResetPasswordViewFieldClientName
 };
 
-@protocol RTResetPasswordView <NSObject>
-
-- (void)showValidationErrorMessage:(NSString *)message
-                          forField:(RTResetPasswordViewField)field;
-
-- (void)showErrorMessage:(NSString *)message;
-
-- (void)showMessage:(NSString *)message;
+@protocol RTResetPasswordView <NSObject, RTMessageView, RTErrorMessageView, RTFieldValidationErrorView>
 
 @end

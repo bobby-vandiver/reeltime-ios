@@ -1,5 +1,8 @@
 #import <Foundation/Foundation.h>
 
+#import "RTErrorMessageView.h"
+#import "RTFieldValidationErrorView.h"
+
 typedef NS_ENUM(NSInteger, RTAccountRegistrationViewField) {
     RTAccountRegistrationViewFieldUsername,
     RTAccountRegistrationViewFieldPassword,
@@ -9,11 +12,6 @@ typedef NS_ENUM(NSInteger, RTAccountRegistrationViewField) {
     RTAccountRegistrationViewFieldClientName
 };
 
-@protocol RTAccountRegistrationView <NSObject>
-
-- (void)showValidationErrorMessage:(NSString *)message
-                          forField:(RTAccountRegistrationViewField)field;
-
-- (void)showErrorMessage:(NSString *)message;
+@protocol RTAccountRegistrationView <NSObject, RTErrorMessageView, RTFieldValidationErrorView>
 
 @end

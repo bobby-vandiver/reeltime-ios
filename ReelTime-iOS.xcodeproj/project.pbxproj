@@ -743,6 +743,9 @@
 		71AFF6951B122016003378C5 /* RTChangePasswordPresenterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTChangePasswordPresenterSpec.m; sourceTree = "<group>"; };
 		71AFF6971B122062003378C5 /* RTChangePasswordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTChangePasswordView.h; sourceTree = "<group>"; };
 		71AFF6981B1232AB003378C5 /* RTTestCallbacks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTTestCallbacks.h; sourceTree = "<group>"; };
+		71AFF6991B12340D003378C5 /* RTFieldValidationErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTFieldValidationErrorView.h; sourceTree = "<group>"; };
+		71AFF69A1B123434003378C5 /* RTErrorMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTErrorMessageView.h; sourceTree = "<group>"; };
+		71AFF69B1B123489003378C5 /* RTMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMessageView.h; sourceTree = "<group>"; };
 		71B004911AB36C3F00ABE1C3 /* RTUserWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTUserWireframe.h; sourceTree = "<group>"; };
 		71B004921AB36C5C00ABE1C3 /* RTReelWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTReelWireframe.h; sourceTree = "<group>"; };
 		71B004931AB36C7300ABE1C3 /* RTVideoWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTVideoWireframe.h; sourceTree = "<group>"; };
@@ -1258,6 +1261,8 @@
 				713DE83B1B0920DF00A5BBF0 /* RTErrorCodeToErrorMessagePresenter.h */,
 				713DE83C1B0920DF00A5BBF0 /* RTErrorCodeToErrorMessagePresenter.m */,
 				713DE8401B0923C400A5BBF0 /* RTErrorCodeToErrorMessagePresenterDelelgate.h */,
+				71AFF69A1B123434003378C5 /* RTErrorMessageView.h */,
+				71AFF6991B12340D003378C5 /* RTFieldValidationErrorView.h */,
 				7138A9271AFD5002007D3878 /* RTKeyboardAwareFormViewController.h */,
 				7138A9281AFD5002007D3878 /* RTKeyboardAwareFormViewController.m */,
 				71386E581AD36C01009D064C /* RTReelDescription.h */,
@@ -1267,6 +1272,7 @@
 				715C54211AD4D2CF009C755F /* RTUserDescriptionView.h */,
 				71386E5C1AD36C01009D064C /* RTVideoDescription.h */,
 				71386E5D1AD36C01009D064C /* RTVideoDescription.m */,
+				71AFF69B1B123489003378C5 /* RTMessageView.h */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";

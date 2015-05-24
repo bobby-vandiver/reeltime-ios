@@ -44,7 +44,7 @@
 }
 
 - (void)showValidationErrorMessage:(NSString *)message
-                          forField:(RTResetPasswordViewField)field {
+                          forField:(NSInteger)field {
     [self showErrorMessage:message];
 }
 

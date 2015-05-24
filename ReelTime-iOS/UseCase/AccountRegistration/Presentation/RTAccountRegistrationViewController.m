@@ -35,7 +35,7 @@
 }
 
 - (void)showValidationErrorMessage:(NSString *)message
-                          forField:(RTAccountRegistrationViewField)field {
+                          forField:(NSInteger)field {
     [self showErrorMessage:message];
 }
 

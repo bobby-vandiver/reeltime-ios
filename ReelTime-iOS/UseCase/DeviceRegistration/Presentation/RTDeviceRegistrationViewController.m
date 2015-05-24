@@ -32,7 +32,7 @@
 }
 
 - (void)showValidationErrorMessage:(NSString *)message
-                          forField:(RTDeviceRegistrationViewField)field {
+                          forField:(NSInteger)field {
     [self showErrorMessage:message];
 }
 
