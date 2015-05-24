@@ -257,6 +257,7 @@
 		71A8BA2D1AB0F92E00B0708B /* RTPagedListPresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A8BA2C1AB0F92E00B0708B /* RTPagedListPresenterSpec.m */; };
 		71A8BA301AB1036A00B0708B /* RTPagedListDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A8BA2F1AB1036A00B0708B /* RTPagedListDataManagerSpec.m */; };
 		71A8BA331AB104AC00B0708B /* RTException.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A8BA321AB104AC00B0708B /* RTException.m */; };
+		71AFF6941B12161A003378C5 /* RTPasswordValidationMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 71AFF6931B12161A003378C5 /* RTPasswordValidationMapping.m */; };
 		71B238481B042F06002DE5DA /* RTCurrentUserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B238471B042F06002DE5DA /* RTCurrentUserService.m */; };
 		71B2384B1B042F91002DE5DA /* RTClientCredentialsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B2384A1B042F91002DE5DA /* RTClientCredentialsService.m */; };
 		71B2384E1B04305E002DE5DA /* RTCurrentUserServiceSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B2384D1B04305E002DE5DA /* RTCurrentUserServiceSpec.m */; };
@@ -736,6 +737,8 @@
 		71A8BA2F1AB1036A00B0708B /* RTPagedListDataManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTPagedListDataManagerSpec.m; sourceTree = "<group>"; };
 		71A8BA311AB1047100B0708B /* RTException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTException.h; sourceTree = "<group>"; };
 		71A8BA321AB104AC00B0708B /* RTException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTException.m; sourceTree = "<group>"; };
+		71AFF6921B12161A003378C5 /* RTPasswordValidationMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTPasswordValidationMapping.h; sourceTree = "<group>"; };
+		71AFF6931B12161A003378C5 /* RTPasswordValidationMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTPasswordValidationMapping.m; sourceTree = "<group>"; };
 		71B004911AB36C3F00ABE1C3 /* RTUserWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTUserWireframe.h; sourceTree = "<group>"; };
 		71B004921AB36C5C00ABE1C3 /* RTReelWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTReelWireframe.h; sourceTree = "<group>"; };
 		71B004931AB36C7300ABE1C3 /* RTVideoWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTVideoWireframe.h; sourceTree = "<group>"; };
@@ -1185,6 +1188,8 @@
 				713188A81A912E4D006155E6 /* RTRegexPattern.m */,
 				713DE8371B09028B00A5BBF0 /* RTValidator.h */,
 				713DE8381B09028B00A5BBF0 /* RTValidator.m */,
+				71AFF6921B12161A003378C5 /* RTPasswordValidationMapping.h */,
+				71AFF6931B12161A003378C5 /* RTPasswordValidationMapping.m */,
 			);
 			path = Validation;
 			sourceTree = "<group>";
@@ -2603,6 +2608,7 @@
 				71403D201AB3C6F1007CB8B9 /* RTBrowseUsersDataManager.m in Sources */,
 				717215911A8657770002ECC7 /* RTLoginViewController.m in Sources */,
 				71B6BA661AD036A400723941 /* RTBrowseAllWireframe.m in Sources */,
+				71AFF6941B12161A003378C5 /* RTPasswordValidationMapping.m in Sources */,
 				719B35DB1A51012E00FFD543 /* RTClientAssembly.m in Sources */,
 				71B6BA651AD036A400723941 /* RTBrowseAllAssembly.m in Sources */,
 				7157589C1A9A2D6C002859DE /* RTApplicationTabBarController.m in Sources */,

@@ -1,6 +1,8 @@
 #import "RTAccountRegistrationValidator.h"
 #import "RTAccountRegistration.h"
 
+#import "RTPasswordValidationMapping.h"
+
 #import "RTRegexPattern.h"
 #import "RTErrorFactory.h"
 
@@ -10,8 +12,10 @@
                              errors:(NSArray *__autoreleasing *)errors {
     
     return [super validateWithErrors:errors validationBlock:^(NSMutableArray *errorContainer) {
+        RTPasswordValidationMapping *mapping = [self passwordValidationMapping];
+        
         [self validateUsername:registration.username errors:errorContainer];
-        [self validatePassword:registration.password confirmationPassword:registration.confirmationPassword errors:errorContainer];
+        [self validatePassword:registration.password confirmationPassword:registration.confirmationPassword withMapping:mapping errors:errorContainer];
         
         [self validateEmail:registration.email errors:errorContainer];
         [self validateDisplayName:registration.displayName errors:errorContainer];
@@ -32,24 +36,6 @@
                     withPattern:pattern
                invalidErrorCode:RTAccountRegistrationErrorInvalidUsername
                          errors:errors];
-    }
-}
-
-- (void)validatePassword:(NSString *)password
-    confirmationPassword:(NSString *)confirmationPassword
-                  errors:(NSMutableArray *)errors {
-    if ([password length] == 0) {
-        [self addRegistrationErrorCode:RTAccountRegistrationErrorMissingPassword toErrors:errors];
-    }
-    else if ([password length] < PASSWORD_MINIMUM_LENGTH) {
-        [self addRegistrationErrorCode:RTAccountRegistrationErrorInvalidPassword toErrors:errors];
-    }
-    
-    if ([confirmationPassword length] == 0) {
-        [self addRegistrationErrorCode:RTAccountRegistrationErrorMissingConfirmationPassword toErrors:errors];
-    }
-    else if ([password length] >= PASSWORD_MINIMUM_LENGTH && ![confirmationPassword isEqualToString:password]) {
-        [self addRegistrationErrorCode:RTAccountRegistrationErrorConfirmationPasswordDoesNotMatch toErrors:errors];
     }
 }
 
@@ -102,6 +88,14 @@
                         toErrors:(NSMutableArray *)errors {
     NSError *error = [RTErrorFactory accountRegistrationErrorWithCode:code];
     [errors addObject:error];
+}
+
+- (RTPasswordValidationMapping *)passwordValidationMapping {
+    return [RTPasswordValidationMapping mappingWithErrorDomain:RTAccountRegistrationErrorDomain
+                                      missingPasswordErrorCode:RTAccountRegistrationErrorMissingPassword
+                                      invalidPasswordErrorCode:RTAccountRegistrationErrorInvalidPassword
+                          missingConfirmationPasswordErrorCode:RTAccountRegistrationErrorMissingConfirmationPassword
+                         confirmationPasswordMismatchErrorCode:RTAccountRegistrationErrorConfirmationPasswordDoesNotMatch];
 }
 
 @end

@@ -2,6 +2,8 @@
 #import "RTChangePasswordInteractorDelegate.h"
 #import "RTChangePasswordDataManager.h"
 
+#import "RTPasswordValidationMapping.h"
+
 #import "RTRegexPattern.h"
 #import "RTErrorFactory.h"
 
@@ -29,7 +31,8 @@
 
     NSArray *errors;
     BOOL valid = [super validateWithErrors:&errors validationBlock:^(NSMutableArray *errorContainer) {
-        [self validatePassword:password confirmationPassword:confirmationPassword errors:errorContainer];
+        RTPasswordValidationMapping *mapping = [self validationMapping];
+        [self validatePassword:password confirmationPassword:confirmationPassword withMapping:mapping errors:errorContainer];
     }];
     
     if (valid) {
@@ -42,28 +45,12 @@
     }
 }
 
-- (void)validatePassword:(NSString *)password
-    confirmationPassword:(NSString *)confirmationPassword
-                  errors:(NSMutableArray *)errors {
-    if ([password length] == 0) {
-        [self addErrorCode:RTChangePasswordErrorMissingPassword toErrors:errors];
-    }
-    else if ([password length] < PASSWORD_MINIMUM_LENGTH) {
-        [self addErrorCode:RTChangePasswordErrorInvalidPassword toErrors:errors];
-    }
-    
-    if ([confirmationPassword length] == 0) {
-        [self addErrorCode:RTChangePasswordErrorMissingConfirmationPassword toErrors:errors];
-    }
-    else if ([password length] >= PASSWORD_MINIMUM_LENGTH && ![confirmationPassword isEqualToString:password]) {
-        [self addErrorCode:RTChangePasswordErrorConfirmationPasswordDoesNotMatch toErrors:errors];
-    }
-}
-
-- (void)addErrorCode:(RTChangePasswordError)code
-            toErrors:(NSMutableArray *)errors {
-    NSError *error = [RTErrorFactory changePasswordErrorWithCode:code];
-    [errors addObject:error];
+- (RTPasswordValidationMapping *)validationMapping {
+    return [RTPasswordValidationMapping mappingWithErrorDomain:RTChangePasswordErrorDomain
+                                      missingPasswordErrorCode:RTChangePasswordErrorMissingPassword
+                                      invalidPasswordErrorCode:RTChangePasswordErrorInvalidPassword
+                          missingConfirmationPasswordErrorCode:RTChangePasswordErrorMissingConfirmationPassword
+                         confirmationPasswordMismatchErrorCode:RTChangePasswordErrorConfirmationPasswordDoesNotMatch];
 }
 
 - (NoArgsCallback)changedCallback {
