@@ -33,7 +33,7 @@ describe(@"change password presenter", ^{
     describe(@"password change was successful", ^{
         it(@"should present a success message", ^{
             [presenter changePasswordSucceeded];
-            [verify(view) showMessage:@"Password change succeeed"];
+            [verify(view) showMessage:@"Password change succeeded"];
         });
     });
 });
