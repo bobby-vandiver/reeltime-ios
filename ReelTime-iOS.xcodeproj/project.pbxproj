@@ -742,6 +742,7 @@
 		71AFF6931B12161A003378C5 /* RTPasswordValidationMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTPasswordValidationMapping.m; sourceTree = "<group>"; };
 		71AFF6951B122016003378C5 /* RTChangePasswordPresenterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTChangePasswordPresenterSpec.m; sourceTree = "<group>"; };
 		71AFF6971B122062003378C5 /* RTChangePasswordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTChangePasswordView.h; sourceTree = "<group>"; };
+		71AFF6981B1232AB003378C5 /* RTTestCallbacks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTTestCallbacks.h; sourceTree = "<group>"; };
 		71B004911AB36C3F00ABE1C3 /* RTUserWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTUserWireframe.h; sourceTree = "<group>"; };
 		71B004921AB36C5C00ABE1C3 /* RTReelWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTReelWireframe.h; sourceTree = "<group>"; };
 		71B004931AB36C7300ABE1C3 /* RTVideoWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTVideoWireframe.h; sourceTree = "<group>"; };
@@ -1140,14 +1141,15 @@
 				71073CF21A82DED800BE6E19 /* EXPMatchers+beVideo.m */,
 				71194C1E1A81B48000904A06 /* EXPMatchers+ErrorMessages.h */,
 				71194C1F1A81B5D300904A06 /* EXPMatchers+ErrorMessages.m */,
-				712BE3001A75D74C00478277 /* RTTestCommon.h */,
-				712BE3011A75D74C00478277 /* RTTestCommon.m */,
-				7153EE0A1AED504E00000D1C /* RTServerErrorMessageToErrorCodeTestHelper.h */,
-				7153EE0B1AED504E00000D1C /* RTServerErrorMessageToErrorCodeTestHelper.m */,
 				714DDE6B1B0C187500D96F74 /* RTCallbackTestExpectation.h */,
 				714DDE6C1B0C187500D96F74 /* RTCallbackTestExpectation.m */,
 				714DDE6E1B0C18B200D96F74 /* RTCallbackTestExpectationFactory.h */,
 				714DDE6F1B0C18B200D96F74 /* RTCallbackTestExpectationFactory.m */,
+				7153EE0A1AED504E00000D1C /* RTServerErrorMessageToErrorCodeTestHelper.h */,
+				7153EE0B1AED504E00000D1C /* RTServerErrorMessageToErrorCodeTestHelper.m */,
+				71AFF6981B1232AB003378C5 /* RTTestCallbacks.h */,
+				712BE3001A75D74C00478277 /* RTTestCommon.h */,
+				712BE3011A75D74C00478277 /* RTTestCommon.m */,
 				712785001B0FFF610092A69F /* RTValidationTestHelper.h */,
 				712785011B0FFF610092A69F /* RTValidationTestHelper.m */,
 			);

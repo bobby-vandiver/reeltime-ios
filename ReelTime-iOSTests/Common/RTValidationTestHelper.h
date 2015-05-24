@@ -1,8 +1,5 @@
 #import <Foundation/Foundation.h>
-
-typedef BOOL (^ValidationCallback)(NSDictionary *parameters, NSArray *__autoreleasing *errors);
-
-typedef NSError * (^ErrorFactoryCallback)(NSInteger errorCode);
+#import "RTTestCallbacks.h"
 
 extern NSString *const USERNAME_KEY;
 extern NSString *const PASSWORD_KEY;
