@@ -73,6 +73,7 @@
             break;
             
         default:
+            DDLogWarn(@"Unknown device registration error code %ld", (long)code);
             break;
     }
 }
