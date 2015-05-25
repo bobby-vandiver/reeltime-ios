@@ -5,6 +5,8 @@
 #import "RTChangePasswordInteractor.h"
 #import "RTChangePasswordWireframe.h"
 
+#import "RTErrorFactory.h"
+
 SpecBegin(RTChangePasswordPresenter)
 
 describe(@"change password presenter", ^{
@@ -34,6 +36,52 @@ describe(@"change password presenter", ^{
         it(@"should present a success message", ^{
             [presenter changePasswordSucceeded];
             [verify(view) showMessage:@"Password change succeeded"];
+        });
+    });
+    
+    describe(@"failure messages", ^{
+        __block RTErrorPresentationChecker *errorChecker;
+        __block RTFieldErrorPresentationChecker *fieldErrorChecker;
+        
+        ErrorFactoryCallback errorFactoryCallback = ^NSError * (NSInteger code) {
+            return [RTErrorFactory changePasswordErrorWithCode:code];
+        };
+        
+        ArrayCallback errorsCallback = ^(NSArray *errors) {
+            [presenter changePasswordFailedWithErrors:errors];
+        };
+        
+        beforeEach(^{
+            errorChecker = [[RTErrorPresentationChecker alloc] initWithView:view
+                                                             errorsCallback:errorsCallback
+                                                       errorFactoryCallback:errorFactoryCallback];
+            
+            fieldErrorChecker = [[RTFieldErrorPresentationChecker alloc] initWithView:view
+                                                                       errorsCallback:errorsCallback
+                                                                 errorFactoryCallback:errorFactoryCallback];
+        });
+        
+        it(@"missing password", ^{
+            [fieldErrorChecker verifyErrorMessage:@"Password is required"
+                              isShownForErrorCode:RTChangePasswordErrorMissingPassword
+                                            field:RTChangePasswordViewFieldPassword];
+        });
+        
+        it(@"invalid password", ^{
+            [fieldErrorChecker verifyErrorMessage:@"Password must be at least 6 characters"
+                              isShownForErrorCode:RTChangePasswordErrorInvalidPassword
+                                            field:RTChangePasswordViewFieldPassword];
+        });
+        
+        it(@"missing confirmation password", ^{
+            [fieldErrorChecker verifyErrorMessage:@"Confirmation password is required"
+                              isShownForErrorCode:RTChangePasswordErrorMissingConfirmationPassword
+                                            field:RTChangePasswordViewFieldConfirmationPassword];
+        });
+        
+        it(@"password and confirmation password do not match", ^{
+            [errorChecker verifyErrorMessage:@"Password and confirmation password must match"
+                         isShownForErrorCode:RTChangePasswordErrorConfirmationPasswordDoesNotMatch];
         });
     });
 });
