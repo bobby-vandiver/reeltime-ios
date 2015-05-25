@@ -1,7 +1,6 @@
 #import "RTChangePasswordPresenter.h"
 #import "RTChangePasswordView.h"
 #import "RTChangePasswordInteractor.h"
-#import "RTChangePasswordWireframe.h"
 
 #import "RTErrorCodeToErrorMessagePresenter.h"
 #import "RTChangePasswordErrorCodeToErrorMessageMapping.h"
@@ -13,7 +12,6 @@
 
 @property id<RTChangePasswordView> view;
 @property RTChangePasswordInteractor *interactor;
-@property RTChangePasswordWireframe *wireframe;
 @property RTErrorCodeToErrorMessagePresenter *errorPresenter;
 
 @end
@@ -21,13 +19,11 @@
 @implementation RTChangePasswordPresenter
 
 - (instancetype)initWithView:(id<RTChangePasswordView>)view
-                  interactor:(RTChangePasswordInteractor *)interactor
-                   wireframe:(RTChangePasswordWireframe *)wireframe {
+                  interactor:(RTChangePasswordInteractor *)interactor {
     self = [super init];
     if (self) {
         self.view = view;
         self.interactor = interactor;
-        self.wireframe = wireframe;
         
         RTChangePasswordErrorCodeToErrorMessageMapping *mapping = [[RTChangePasswordErrorCodeToErrorMessageMapping alloc] init];
         self.errorPresenter = [[RTErrorCodeToErrorMessagePresenter alloc] initWithDelegate:self mapping:mapping];

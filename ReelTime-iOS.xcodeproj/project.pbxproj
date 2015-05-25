@@ -167,7 +167,6 @@
 		714843101AEC1F50001B885A /* RTLoginWireframeSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7148430F1AEC1F50001B885A /* RTLoginWireframeSpec.m */; };
 		714DDE571B0C0CC600D96F74 /* RTChangePasswordDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 714DDE561B0C0CC600D96F74 /* RTChangePasswordDataManager.m */; };
 		714DDE5B1B0C0D0100D96F74 /* RTChangePasswordInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 714DDE5A1B0C0D0100D96F74 /* RTChangePasswordInteractor.m */; };
-		714DDE601B0C0E1A00D96F74 /* RTChangePasswordWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 714DDE5F1B0C0E1A00D96F74 /* RTChangePasswordWireframe.m */; };
 		714DDE631B0C0E3C00D96F74 /* RTChangePasswordPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 714DDE621B0C0E3C00D96F74 /* RTChangePasswordPresenter.m */; };
 		714DDE661B0C0F0500D96F74 /* RTChangePasswordDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 714DDE651B0C0F0500D96F74 /* RTChangePasswordDataManagerSpec.m */; };
 		714DDE6D1B0C187500D96F74 /* RTCallbackTestExpectation.m in Sources */ = {isa = PBXBuildFile; fileRef = 714DDE6C1B0C187500D96F74 /* RTCallbackTestExpectation.m */; };
@@ -569,8 +568,6 @@
 		714DDE5A1B0C0D0100D96F74 /* RTChangePasswordInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTChangePasswordInteractor.m; sourceTree = "<group>"; };
 		714DDE5C1B0C0D1A00D96F74 /* RTChangePasswordInteractorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTChangePasswordInteractorDelegate.h; sourceTree = "<group>"; };
 		714DDE5D1B0C0D2E00D96F74 /* RTChangePasswordError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTChangePasswordError.h; sourceTree = "<group>"; };
-		714DDE5E1B0C0E1A00D96F74 /* RTChangePasswordWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTChangePasswordWireframe.h; sourceTree = "<group>"; };
-		714DDE5F1B0C0E1A00D96F74 /* RTChangePasswordWireframe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTChangePasswordWireframe.m; sourceTree = "<group>"; };
 		714DDE611B0C0E3C00D96F74 /* RTChangePasswordPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTChangePasswordPresenter.h; sourceTree = "<group>"; };
 		714DDE621B0C0E3C00D96F74 /* RTChangePasswordPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTChangePasswordPresenter.m; sourceTree = "<group>"; };
 		714DDE651B0C0F0500D96F74 /* RTChangePasswordDataManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTChangePasswordDataManagerSpec.m; sourceTree = "<group>"; };
@@ -1481,7 +1478,6 @@
 			isa = PBXGroup;
 			children = (
 				714DDE521B0C0C8C00D96F74 /* Domain */,
-				714DDE541B0C0CA000D96F74 /* Navigation */,
 				714DDE511B0C0C8300D96F74 /* Persistence */,
 				714DDE531B0C0C9500D96F74 /* Presentation */,
 			);
@@ -1520,15 +1516,6 @@
 				71AFF6971B122062003378C5 /* RTChangePasswordView.h */,
 			);
 			path = Presentation;
-			sourceTree = "<group>";
-		};
-		714DDE541B0C0CA000D96F74 /* Navigation */ = {
-			isa = PBXGroup;
-			children = (
-				714DDE5E1B0C0E1A00D96F74 /* RTChangePasswordWireframe.h */,
-				714DDE5F1B0C0E1A00D96F74 /* RTChangePasswordWireframe.m */,
-			);
-			path = Navigation;
 			sourceTree = "<group>";
 		};
 		714DDE641B0C0EF000D96F74 /* ChangePasswordTests */ = {
@@ -2692,7 +2679,6 @@
 				718A0BE21A4DA87900137C49 /* main.m in Sources */,
 				71331A2D1A880A6F00912B5F /* RTNewsfeedPresenter.m in Sources */,
 				710BB5F91ACDF6EE00F724C7 /* RTCountDownLatch.m in Sources */,
-				714DDE601B0C0E1A00D96F74 /* RTChangePasswordWireframe.m in Sources */,
 				713CE1371AE3F3F4005B05C3 /* RTDeviceAssembly.m in Sources */,
 				7148430E1AEC16A2001B885A /* RTDeviceRegistrationAssembly.m in Sources */,
 				7116C0541AD982D600590DAF /* RTPagedListViewScrollHandler.m in Sources */,

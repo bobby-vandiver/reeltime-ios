@@ -3,7 +3,6 @@
 #import "RTChangePasswordPresenter.h"
 #import "RTChangePasswordView.h"
 #import "RTChangePasswordInteractor.h"
-#import "RTChangePasswordWireframe.h"
 
 #import "RTErrorFactory.h"
 
@@ -12,17 +11,15 @@ SpecBegin(RTChangePasswordPresenter)
 describe(@"change password presenter", ^{
     
     __block RTChangePasswordPresenter *presenter;
+
     __block id<RTChangePasswordView> view;
-    
     __block RTChangePasswordInteractor *interactor;
-    __block RTChangePasswordWireframe *wireframe;
     
     beforeEach(^{
-        wireframe = mock([RTChangePasswordWireframe class]);
         interactor = mock([RTChangePasswordInteractor class]);
-        
         view = mockProtocol(@protocol(RTChangePasswordView));
-        presenter = [[RTChangePasswordPresenter alloc] initWithView:view interactor:interactor wireframe:wireframe];
+
+        presenter = [[RTChangePasswordPresenter alloc] initWithView:view interactor:interactor];
     });
     
     describe(@"requesting password change", ^{

@@ -10,8 +10,7 @@
 @interface RTChangePasswordPresenter : NSObject <RTChangePasswordInteractorDelegate, RTErrorCodeToErrorMessagePresenterDelelgate>
 
 - (instancetype)initWithView:(id<RTChangePasswordView>)view
-                  interactor:(RTChangePasswordInteractor *)interactor
-                   wireframe:(RTChangePasswordWireframe *)wireframe;
+                  interactor:(RTChangePasswordInteractor *)interactor;
 
 - (void)requestedPasswordChangeWithPassword:(NSString *)password
                        confirmationPassword:(NSString *)confirmationPassword;
