@@ -36,6 +36,27 @@ describe(@"device registration presenter", ^{
     });
 
     describe(@"registration failure", ^{
+        __block RTErrorPresentationChecker *errorChecker;
+        __block RTFieldErrorPresentationChecker *fieldErrorChecker;
+
+        ArrayCallback errorsCallback = ^(NSArray *errors) {
+            [presenter deviceRegistrationFailedWithErrors:errors];
+        };
+ 
+        ErrorFactoryCallback errorFactoryCallback = ^NSError * (NSInteger code) {
+            return [RTErrorFactory deviceRegistrationErrorWithCode:code];
+        };
+        
+        beforeEach(^{
+            errorChecker = [[RTErrorPresentationChecker alloc] initWithView:view
+                                                             errorsCallback:errorsCallback
+                                                       errorFactoryCallback:errorFactoryCallback];
+
+            fieldErrorChecker = [[RTFieldErrorPresentationChecker alloc] initWithView:view
+                                                                       errorsCallback:errorsCallback
+                                                                 errorFactoryCallback:errorFactoryCallback];
+        });
+        
         it(@"should not inform view if error domain is incorrect", ^{
             NSError *error = [NSError errorWithDomain:NSInvalidArgumentException
                                                  code:0
@@ -48,57 +69,53 @@ describe(@"device registration presenter", ^{
         });
         
         it(@"should report missing username", ^{
-            NSError *error = [RTErrorFactory deviceRegistrationErrorWithCode:RTDeviceRegistrationErrorMissingUsername];
-            [presenter deviceRegistrationFailedWithErrors:@[error]];
-            
-            [verify(view) showValidationErrorMessage:@"Username is required" forField:RTDeviceRegistrationViewFieldUsername];
+            [fieldErrorChecker verifyErrorMessage:@"Username is required"
+                              isShownForErrorCode:RTDeviceRegistrationErrorMissingUsername
+                                            field:RTDeviceRegistrationViewFieldUsername];
         });
         
         it(@"should report missing password", ^{
-            NSError *error = [RTErrorFactory deviceRegistrationErrorWithCode:RTDeviceRegistrationErrorMissingPassword];
-            [presenter deviceRegistrationFailedWithErrors:@[error]];
-
-            [verify(view) showValidationErrorMessage:@"Password is required" forField:RTDeviceRegistrationViewFieldPassword];
+            [fieldErrorChecker verifyErrorMessage:@"Password is required"
+                              isShownForErrorCode:RTDeviceRegistrationErrorMissingPassword
+                                            field:RTDeviceRegistrationViewFieldPassword];
         });
         
         it(@"should report missing client name", ^{
-            NSError *error = [RTErrorFactory deviceRegistrationErrorWithCode:RTDeviceRegistrationErrorMissingClientName];
-            [presenter deviceRegistrationFailedWithErrors:@[error]];
-            
-            [verify(view) showValidationErrorMessage:@"Client name is required" forField:RTDeviceRegistrationViewFieldClientName];
+            [fieldErrorChecker verifyErrorMessage:@"Client name is required"
+                              isShownForErrorCode:RTDeviceRegistrationErrorMissingClientName
+                                            field:RTDeviceRegistrationViewFieldClientName];
         });
         
         it(@"should report all missing fields", ^{
-            NSError *missingUsername = [RTErrorFactory deviceRegistrationErrorWithCode:RTDeviceRegistrationErrorMissingUsername];
-            NSError *missingPassword = [RTErrorFactory deviceRegistrationErrorWithCode:RTDeviceRegistrationErrorMissingPassword];
-            NSError *missingClientName = [RTErrorFactory deviceRegistrationErrorWithCode:RTDeviceRegistrationErrorMissingClientName];
+            NSArray *errorCodes = @[
+                                    @(RTDeviceRegistrationErrorMissingUsername),
+                                    @(RTDeviceRegistrationErrorMissingPassword),
+                                    @(RTDeviceRegistrationErrorMissingClientName)
+                                    ];
+
+            NSDictionary *mapping = @{
+                                      @(RTDeviceRegistrationViewFieldUsername): @"Username is required",
+                                      @(RTDeviceRegistrationViewFieldPassword): @"Password is required",
+                                      @(RTDeviceRegistrationViewFieldClientName): @"Client name is required"
+                                      };
             
-            [presenter deviceRegistrationFailedWithErrors:@[missingUsername, missingPassword, missingClientName]];
-            
-            [verify(view) showValidationErrorMessage:@"Username is required" forField:RTDeviceRegistrationViewFieldUsername];
-            [verify(view) showValidationErrorMessage:@"Password is required" forField:RTDeviceRegistrationViewFieldPassword];
-            [verify(view) showValidationErrorMessage:@"Client name is required" forField:RTDeviceRegistrationViewFieldClientName];
+            [fieldErrorChecker verifyMultipleErrorMessagesAreShownForErrorCodes:errorCodes withFieldMessageMapping:mapping];
         });
         
         it(@"should report invalid credentials", ^{
-            NSError *error = [RTErrorFactory deviceRegistrationErrorWithCode:RTDeviceRegistrationErrorInvalidCredentials];
-            [presenter deviceRegistrationFailedWithErrors:@[error]];
-            
-            [verify(view) showErrorMessage:@"Invalid username or password"];
+            [errorChecker verifyErrorMessage:@"Invalid username or password"
+                         isShownForErrorCode:RTDeviceRegistrationErrorInvalidCredentials];
         });
         
         it(@"should report failure to store client credentials", ^{
-            NSError *error = [RTErrorFactory deviceRegistrationErrorWithCode:RTDeviceRegistrationErrorUnableToStoreClientCredentials];
-            [presenter deviceRegistrationFailedWithErrors:@[error]];
-            
-            [verify(view) showErrorMessage:@"This device was registered but a problem occurred while completing the registration. Please register under a different name or unregister the current device from a different device and try again."];
+            [errorChecker verifyErrorMessage:@"This device was registered but a problem occurred while completing the registration. "
+                                             @"Please register under a different name or unregister the current device from a different device and try again."
+                         isShownForErrorCode:RTDeviceRegistrationErrorUnableToStoreClientCredentials];
         });
         
         it(@"should report service unavailable", ^{
-            NSError *error = [RTErrorFactory deviceRegistrationErrorWithCode:RTDeviceRegistrationErrorServiceUnavailable];
-            [presenter deviceRegistrationFailedWithErrors:@[error]];
-            
-            [verify(view) showErrorMessage:@"Unable to register a device at this time. Please try again shortly."];
+            [errorChecker verifyErrorMessage:@"Unable to register a device at this time. Please try again shortly."
+                         isShownForErrorCode:RTDeviceRegistrationErrorServiceUnavailable];
         });
     });
     

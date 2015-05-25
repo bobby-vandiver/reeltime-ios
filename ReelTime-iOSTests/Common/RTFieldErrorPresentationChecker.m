@@ -28,10 +28,27 @@
 - (void)verifyErrorMessage:(NSString *)message
        isShownForErrorCode:(NSInteger)code
                      field:(NSInteger)field {    
-    NSError *error = self.errorFactoryCallback(code);
-    self.errorsCallback(@[error]);
+    [self verifyMultipleErrorMessagesAreShownForErrorCodes:@[@(code)]
+                                   withFieldMessageMapping:@{@(field): message}];
+}
+
+- (void)verifyMultipleErrorMessagesAreShownForErrorCodes:(NSArray *)codes
+                                 withFieldMessageMapping:(NSDictionary *)mapping {
+    NSMutableArray *errors = [NSMutableArray array];
     
-    [verify(self.view) showValidationErrorMessage:message forField:field];
+    for (NSNumber *code in codes) {
+        NSError *error = self.errorFactoryCallback([code integerValue]);
+        [errors addObject:error];
+    }
+    
+    self.errorsCallback(errors);
+    
+    for (NSNumber *key in mapping) {
+        NSString *message = mapping[key];
+        NSInteger field = [key integerValue];
+        [verify(self.view) showValidationErrorMessage:message forField:field];
+    }
+
     [verify(self.view) reset];
 }
 

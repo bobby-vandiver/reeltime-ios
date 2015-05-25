@@ -14,4 +14,7 @@
        isShownForErrorCode:(NSInteger)code
                      field:(NSInteger)field;
 
+- (void)verifyMultipleErrorMessagesAreShownForErrorCodes:(NSArray *)codes
+                                 withFieldMessageMapping:(NSDictionary *)mapping;
+
 @end
