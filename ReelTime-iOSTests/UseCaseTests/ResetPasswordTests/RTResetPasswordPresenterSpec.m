@@ -70,35 +70,50 @@ describe(@"reset password presenter", ^{
     });
     
     describe(@"reset password failure message", ^{
+        __block RTErrorPresentationChecker *emailErrorChecker;
+        __block RTFieldErrorPresentationChecker *emailFieldErrorChecker;
         
-        void (^verifyValidationErrorMessageIsShown)(NSString *message, RTResetPasswordError code, RTResetPasswordViewField field) =
-        ^(NSString *message, RTResetPasswordError code, RTResetPasswordViewField field) {
-            NSError *error = [RTErrorFactory resetPasswordErrorWithCode:code];
-            
-            [presenter resetPasswordEmailFailedWithErrors:@[error]];
-            [verify(view) showValidationErrorMessage:message forField:field];
-            
-            [verify(view) reset];
-            
-            [presenter resetPasswordFailedWithErrors:@[error]];
-            [verify(view) showValidationErrorMessage:message forField:field];
-            
-            [verify(view) reset];
+        __block RTErrorPresentationChecker *resetErrorChecker;
+        __block RTFieldErrorPresentationChecker *resetFieldErrorChecker;
+        
+        ErrorFactoryCallback errorFactoryCallback = ^NSError * (NSInteger code) {
+            return [RTErrorFactory resetPasswordErrorWithCode:code];
         };
         
-        void (^verifyErrorMessageIsShown)(NSString *message, RTResetPasswordError code) =
-        ^(NSString *message, RTResetPasswordError code) {
-            NSError *error = [RTErrorFactory resetPasswordErrorWithCode:code];
+        ArrayCallback emailErrorsCallback = ^(NSArray *errors) {
+            [presenter resetPasswordEmailFailedWithErrors:errors];
+        };
+        
+        ArrayCallback resetErrorsCallback = ^(NSArray *errors) {
+            [presenter resetPasswordFailedWithErrors:errors];
+        };
+ 
+        beforeEach(^{
+            emailErrorChecker = [[RTErrorPresentationChecker alloc] initWithView:view
+                                                                  errorsCallback:emailErrorsCallback
+                                                            errorFactoryCallback:errorFactoryCallback];
             
-            [presenter resetPasswordEmailFailedWithErrors:@[error]];
-            [verify(view) showErrorMessage:message];
-
-            [verify(view) reset];
-
-            [presenter resetPasswordFailedWithErrors:@[error]];
-            [verify(view) showErrorMessage:message];
+            emailFieldErrorChecker = [[RTFieldErrorPresentationChecker alloc] initWithView:view
+                                                                            errorsCallback:emailErrorsCallback
+                                                                      errorFactoryCallback:errorFactoryCallback];
             
-            [verify(view) reset];
+            resetErrorChecker = [[RTErrorPresentationChecker alloc] initWithView:view
+                                                                  errorsCallback:resetErrorsCallback
+                                                            errorFactoryCallback:errorFactoryCallback];
+            
+            resetFieldErrorChecker = [[RTFieldErrorPresentationChecker alloc] initWithView:view
+                                                                            errorsCallback:resetErrorsCallback
+                                                                      errorFactoryCallback:errorFactoryCallback];
+        });
+        
+        void (^verifyValidationErrorMessageIsShown)(NSString *message, RTResetPasswordError code, RTResetPasswordViewField field) = ^(NSString *message, RTResetPasswordError code, RTResetPasswordViewField field) {
+            [emailFieldErrorChecker verifyErrorMessage:message isShownForErrorCode:code field:field];
+            [resetFieldErrorChecker verifyErrorMessage:message isShownForErrorCode:code field:field];
+        };
+        
+        void (^verifyErrorMessageIsShown)(NSString *message, RTResetPasswordError code) = ^(NSString *message, RTResetPasswordError code) {
+            [emailErrorChecker verifyErrorMessage:message isShownForErrorCode:code];
+            [resetErrorChecker verifyErrorMessage:message isShownForErrorCode:code];
         };
         
         it(@"missing code", ^{

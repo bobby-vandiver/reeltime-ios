@@ -17,6 +17,9 @@
 
 #import "RTValidationTestHelper.h"
 
+#import "RTErrorPresentationChecker.h"
+#import "RTFieldErrorPresentationChecker.h"
+
 #import "RTCallbackTestExpectationFactory.h"
 #import "RTCallbackTestExpectation.h"
 
