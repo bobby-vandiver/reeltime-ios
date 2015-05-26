@@ -1,10 +1,9 @@
 #import <Foundation/Foundation.h>
-#import "RTValidator.h"
 
 @protocol RTChangePasswordInteractorDelegate;
 @class RTChangePasswordDataManager;
 
-@interface RTChangePasswordInteractor : RTValidator
+@interface RTChangePasswordInteractor : NSObject
 
 - (instancetype)initWithDelegate:(id<RTChangePasswordInteractorDelegate>)delegate
                      dataManager:(RTChangePasswordDataManager *)dataManager;

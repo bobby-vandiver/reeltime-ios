@@ -2,6 +2,7 @@
 #import "RTChangePasswordInteractorDelegate.h"
 #import "RTChangePasswordDataManager.h"
 
+#import "RTValidator.h"
 #import "RTPasswordValidationMapping.h"
 
 #import "RTRegexPattern.h"
@@ -11,6 +12,7 @@
 
 @property (weak) id<RTChangePasswordInteractorDelegate> delegate;
 @property RTChangePasswordDataManager *dataManager;
+@property RTValidator *validator;
 
 @end
 
@@ -22,6 +24,7 @@
     if (self) {
         self.delegate = delegate;
         self.dataManager = dataManager;
+        self.validator = [[RTValidator alloc] init];
     }
     return self;
 }
@@ -30,9 +33,9 @@
   confirmationPassword:(NSString *)confirmationPassword {
 
     NSArray *errors;
-    BOOL valid = [super validateWithErrors:&errors validationBlock:^(NSMutableArray *errorContainer) {
+    BOOL valid = [self.validator validateWithErrors:&errors validationBlock:^(NSMutableArray *errorContainer) {
         RTPasswordValidationMapping *mapping = [self validationMapping];
-        [self validatePassword:password confirmationPassword:confirmationPassword withMapping:mapping errors:errorContainer];
+        [self.validator validatePassword:password confirmationPassword:confirmationPassword withMapping:mapping errors:errorContainer];
     }];
     
     if (valid) {
