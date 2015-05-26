@@ -7,6 +7,10 @@
     return [self errorWithDomain:RTAccountRegistrationErrorDomain code:code];
 }
 
++ (NSError *)changeDisplayNameWithCode:(RTChangeDisplayNameError)code {
+    return [self errorWithDomain:RTChangeDisplayNameErrorDomain code:code];
+}
+
 + (NSError *)changePasswordErrorWithCode:(RTChangePasswordError)code {
     return [self errorWithDomain:RTChangePasswordErrorDomain code:code];
 }

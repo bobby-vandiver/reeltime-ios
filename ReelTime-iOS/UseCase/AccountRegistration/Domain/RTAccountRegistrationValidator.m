@@ -53,16 +53,12 @@
 }
 
 - (void)validateDisplayName:(NSString *)displayName
-                     errors:(NSMutableArray *)errors {
-    if ([displayName length] == 0) {
-        [self addRegistrationErrorCode:RTAccountRegistrationErrorMissingDisplayName toErrors:errors];
-    }
-    else {
-        [self validateParameter:displayName
-                    withPattern:DISPLAY_NAME_REGEX
-               invalidErrorCode:RTAccountRegistrationErrorInvalidDisplayName
-                         errors:errors];
-    }
+                     errors:(NSMutableArray *)errors {    
+    [self validateDisplayName:displayName
+                   withDomain:RTAccountRegistrationErrorDomain
+                  missingCode:RTAccountRegistrationErrorMissingDisplayName
+                  invalidCode:RTAccountRegistrationErrorInvalidDisplayName
+                       errors:errors];
 }
 
 - (void)validateClientName:(NSString *)clientName
@@ -76,12 +72,7 @@
               withPattern:(NSString *)pattern
          invalidErrorCode:(NSInteger)code
                    errors:(NSMutableArray *)errors {
-    NSPredicate *regexPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", pattern];
-    BOOL matches = [regexPredicate evaluateWithObject:parameter];
-
-    if (!matches) {
-        [self addRegistrationErrorCode:code toErrors:errors];
-    }
+    [self validateParameter:parameter withPattern:pattern domain:RTAccountRegistrationErrorDomain code:code errors:errors];
 }
 
 - (void)addRegistrationErrorCode:(RTAccountRegistrationError)code

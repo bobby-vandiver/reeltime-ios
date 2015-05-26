@@ -14,6 +14,7 @@
 		71073CFE1A831EAB00BE6E19 /* RTNewsfeedDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71073CFD1A831EAB00BE6E19 /* RTNewsfeedDataManagerSpec.m */; };
 		7108D7881B13D9E7000451AD /* RTChangeDisplayNameDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7108D7871B13D9E7000451AD /* RTChangeDisplayNameDataManagerSpec.m */; };
 		7108D78B1B13F96A000451AD /* RTChangeDisplayNameServerErrorMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 7108D78A1B13F96A000451AD /* RTChangeDisplayNameServerErrorMapping.m */; };
+		7108D78D1B13FBB9000451AD /* RTChangeDisplayNameInteractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7108D78C1B13FBB9000451AD /* RTChangeDisplayNameInteractorSpec.m */; };
 		710BB5F91ACDF6EE00F724C7 /* RTCountDownLatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 710BB5F81ACDF6EE00F724C7 /* RTCountDownLatch.m */; };
 		7112EF491AA915BC00BC7731 /* user-list-multiple-users.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7112EF481AA915BC00BC7731 /* user-list-multiple-users.txt */; };
 		7112EF4B1AA915CC00BC7731 /* user-list-no-users.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7112EF4A1AA915CC00BC7731 /* user-list-no-users.txt */; };
@@ -318,6 +319,7 @@
 		7108D7871B13D9E7000451AD /* RTChangeDisplayNameDataManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTChangeDisplayNameDataManagerSpec.m; sourceTree = "<group>"; };
 		7108D7891B13F96A000451AD /* RTChangeDisplayNameServerErrorMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTChangeDisplayNameServerErrorMapping.h; sourceTree = "<group>"; };
 		7108D78A1B13F96A000451AD /* RTChangeDisplayNameServerErrorMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTChangeDisplayNameServerErrorMapping.m; sourceTree = "<group>"; };
+		7108D78C1B13FBB9000451AD /* RTChangeDisplayNameInteractorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTChangeDisplayNameInteractorSpec.m; sourceTree = "<group>"; };
 		710BB5F71ACDF6EE00F724C7 /* RTCountDownLatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCountDownLatch.h; sourceTree = "<group>"; };
 		710BB5F81ACDF6EE00F724C7 /* RTCountDownLatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTCountDownLatch.m; sourceTree = "<group>"; };
 		7112EF481AA915BC00BC7731 /* user-list-multiple-users.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "user-list-multiple-users.txt"; sourceTree = "<group>"; };
@@ -875,6 +877,7 @@
 			isa = PBXGroup;
 			children = (
 				7108D7871B13D9E7000451AD /* RTChangeDisplayNameDataManagerSpec.m */,
+				7108D78C1B13FBB9000451AD /* RTChangeDisplayNameInteractorSpec.m */,
 			);
 			path = ChangeDisplayNameTests;
 			sourceTree = "<group>";
@@ -2842,6 +2845,7 @@
 				71C8D91F1A73485A00673F1A /* RTAccountRegistrationDataManagerSpec.m in Sources */,
 				71386E501AD34F8F009D064C /* RTBrowseUserReelsDataManagerDelegateSpec.m in Sources */,
 				71647BE81A7F185500F44996 /* RTClientDelegateSpec.m in Sources */,
+				7108D78D1B13FBB9000451AD /* RTChangeDisplayNameInteractorSpec.m in Sources */,
 				713CF1CF1AE28F7D003E2F89 /* RTArrayDataSourceSpec.m in Sources */,
 				71194C231A81C37900904A06 /* EXPMatchers+beReel.m in Sources */,
 				717D849A1AFF8AC40043797C /* RTDeviceRegistrationViewControllerSpec.m in Sources */,

@@ -50,6 +50,38 @@
     }
 }
 
+- (void)validateDisplayName:(NSString *)displayName
+                 withDomain:(NSString *)domain
+                missingCode:(NSInteger)missingCode
+                invalidCode:(NSInteger)invalidCode
+                     errors:(NSMutableArray *)errors {
+    
+    if (displayName.length == 0) {
+        [self addErrorWithDomain:domain code:missingCode toErrors:errors];
+    }
+    else {
+        [self validateParameter:displayName
+                    withPattern:DISPLAY_NAME_REGEX
+                         domain:domain
+                           code:invalidCode
+                         errors:errors];
+    }
+}
+
+- (void)validateParameter:(NSString *)parameter
+              withPattern:(NSString *)pattern
+                   domain:(NSString *)domain
+                     code:(NSInteger)code
+                   errors:(NSMutableArray *)errors {
+    
+    NSPredicate *regexPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", pattern];
+    BOOL matches = [regexPredicate evaluateWithObject:parameter];
+    
+    if (!matches) {
+        [self addErrorWithDomain:domain code:code toErrors:errors];
+    }
+}
+
 - (void)addErrorWithDomain:(NSString *)domain
                       code:(NSInteger)code
                   toErrors:(NSMutableArray *)errors {
