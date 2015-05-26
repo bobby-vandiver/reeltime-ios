@@ -5,7 +5,6 @@
 
 @protocol RTChangePasswordView;
 @class RTChangePasswordInteractor;
-@class RTChangePasswordWireframe;
 
 @interface RTChangePasswordPresenter : NSObject <RTChangePasswordInteractorDelegate, RTErrorCodeToErrorMessagePresenterDelelgate>
 
