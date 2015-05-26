@@ -2,10 +2,17 @@
 #import "RTChangeDisplayNameView.h"
 #import "RTChangeDisplayNameInteractor.h"
 
+#import "RTErrorCodeToErrorMessagePresenter.h"
+#import "RTChangeDisplayNameErrorCodeToErrorMessageMapping.h"
+
+#import "RTChangeDisplayNameError.h"
+#import "RTLogging.h"
+
 @interface RTChangeDisplayNamePresenter ()
 
 @property id<RTChangeDisplayNameView> view;
 @property RTChangeDisplayNameInteractor *interactor;
+@property RTErrorCodeToErrorMessagePresenter *errorPresenter;
 
 @end
 
@@ -17,6 +24,9 @@
     if (self) {
         self.view = view;
         self.interactor = interactor;
+        
+        RTChangeDisplayNameErrorCodeToErrorMessageMapping *mapping = [[RTChangeDisplayNameErrorCodeToErrorMessageMapping alloc] init];
+        self.errorPresenter = [[RTErrorCodeToErrorMessagePresenter alloc] initWithDelegate:self mapping:mapping];
     }
     return self;
 }
@@ -30,7 +40,21 @@
 }
 
 - (void)changeDisplayNameFailedWithErrors:(NSArray *)errors {
-    
+    [self.errorPresenter presentErrors:errors];
+}
+
+- (void)presentErrorMessage:(NSString *)message
+                    forCode:(NSInteger)code {
+    switch (code) {
+        case RTChangeDisplayNameErrorMissingDisplayName:
+        case RTChangeDisplayNameErrorInvalidDisplayName:
+            [self.view showValidationErrorMessage:message forField:RTChangeDisplayNameViewFieldDisplayName];
+            break;
+            
+        default:
+            DDLogWarn(@"Unknown change display name error code %ld", (long)code);
+            break;
+    }
 }
 
 @end

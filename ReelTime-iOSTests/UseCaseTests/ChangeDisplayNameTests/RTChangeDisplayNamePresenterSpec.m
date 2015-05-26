@@ -35,6 +35,36 @@ describe(@"change display name presenter", ^{
             [verify(view) showMessage:@"Display name change succeeded"];
         });
     });
+    
+    describe(@"failure messages", ^{
+        __block RTFieldErrorPresentationChecker *fieldErrorChecker;
+        
+        ErrorFactoryCallback errorFactoryCallback = ^NSError * (NSInteger code) {
+            return [RTErrorFactory changeDisplayNameWithCode:code];
+        };
+        
+        ArrayCallback errorsCallback = ^(NSArray *errors) {
+            [presenter changeDisplayNameFailedWithErrors:errors];
+        };
+        
+        beforeEach(^{
+            fieldErrorChecker = [[RTFieldErrorPresentationChecker alloc] initWithView:view
+                                                                       errorsCallback:errorsCallback
+                                                                 errorFactoryCallback:errorFactoryCallback];
+        });
+        
+        it(@"missing display name", ^{
+            [fieldErrorChecker verifyErrorMessage:@"Display name is required"
+                              isShownForErrorCode:RTChangeDisplayNameErrorMissingDisplayName
+                                            field:RTChangeDisplayNameViewFieldDisplayName];
+        });
+        
+        it(@"invalid display name", ^{
+            [fieldErrorChecker verifyErrorMessage:@"Display name must be 2-20 alphanumeric or space characters"
+                              isShownForErrorCode:RTChangeDisplayNameErrorInvalidDisplayName
+                                            field:RTChangeDisplayNameViewFieldDisplayName];
+        });
+    });
 });
 
 SpecEnd
