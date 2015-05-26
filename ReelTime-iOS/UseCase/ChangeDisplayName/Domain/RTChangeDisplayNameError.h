@@ -3,6 +3,6 @@
 extern NSString *const RTChangeDisplayNameErrorDomain;
 
 typedef NS_ENUM(NSInteger, RTChangeDisplayNameError) {
-    RTChangeDisplayNameErrorMisingDisplayName,
+    RTChangeDisplayNameErrorMissingDisplayName,
     RTChangeDisplayNameErrorInvalidDisplayName
 };
