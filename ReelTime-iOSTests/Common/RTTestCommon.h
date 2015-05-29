@@ -40,6 +40,7 @@ extern const NSUInteger reelId;
 extern const NSUInteger videoId;
 extern const NSUInteger pageNumber;
 
+extern NSString *const confirmationCode;
 extern NSString *const resetCode;
 
 extern NSNull *null();

@@ -1,4 +1,5 @@
 #import "RTAccountRegistrationError.h"
+#import "RTConfirmAccountError.h"
 #import "RTChangeDisplayNameError.h"
 #import "RTChangePasswordError.h"
 #import "RTDeviceRegistrationError.h"
@@ -9,6 +10,7 @@
 #import "RTUserSummaryError.h"
 
 NSString *const RTAccountRegistrationErrorDomain = @"in.reeltime.AccountRegistration";
+NSString *const RTConfirmAccountErrorDomain = @"in.reeltime.ConfirmAccount";
 NSString *const RTChangeDisplayNameErrorDomain = @"in.reeltime.ChangeDisplayName";
 NSString *const RTChangePasswordErrorDomain = @"in.reeltime.ChangePassword";
 NSString *const RTDeviceRegistrationErrorDomain = @"in.reeltime.DeviceRegistration";
