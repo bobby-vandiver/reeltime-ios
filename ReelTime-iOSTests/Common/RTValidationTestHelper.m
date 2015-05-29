@@ -7,6 +7,7 @@ NSString *const CONFIRMATION_PASSWORD_KEY = @"confirmationPassword";
 NSString *const EMAIL_KEY = @"email";
 NSString *const DISPLAY_NAME_KEY = @"displayName";
 NSString *const CLIENT_NAME_KEY = @"clientName";
+NSString *const CONFIRMATION_CODE_KEY = @"confirmationCode";
 NSString *const RESET_CODE_KEY = @"resetCode";
 
 @interface RTValidationTestHelper ()

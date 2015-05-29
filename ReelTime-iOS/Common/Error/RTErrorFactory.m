@@ -7,6 +7,10 @@
     return [self errorWithDomain:RTAccountRegistrationErrorDomain code:code];
 }
 
++ (NSError *)confirmAccountErrorWithCode:(RTConfirmAccountError)code {
+    return [self errorWithDomain:RTConfirmAccountErrorDomain code:code];
+}
+
 + (NSError *)changeDisplayNameWithCode:(RTChangeDisplayNameError)code {
     return [self errorWithDomain:RTChangeDisplayNameErrorDomain code:code];
 }

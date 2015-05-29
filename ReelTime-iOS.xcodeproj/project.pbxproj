@@ -98,6 +98,7 @@
 		7133EC5C1B17CE6100BC1CAE /* RTConfirmAccountInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7133EC5B1B17CE6100BC1CAE /* RTConfirmAccountInteractor.m */; };
 		7133EC621B17D03000BC1CAE /* RTConfirmAccountDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7133EC611B17D03000BC1CAE /* RTConfirmAccountDataManagerSpec.m */; };
 		7133EC651B17D82300BC1CAE /* RTConfirmAccountServerErrorMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 7133EC641B17D82300BC1CAE /* RTConfirmAccountServerErrorMapping.m */; };
+		7133EC6B1B17EC0B00BC1CAE /* RTConfirmAccountInteractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7133EC6A1B17EC0B00BC1CAE /* RTConfirmAccountInteractorSpec.m */; };
 		713470BD1A9ABFAB000CFCA3 /* RTClientSpecHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 713470BC1A9ABFAB000CFCA3 /* RTClientSpecHelper.m */; };
 		7134C62F1A95322E0048CFCF /* RTLoginViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7134C62E1A95322E0048CFCF /* RTLoginViewControllerSpec.m */; };
 		7134C6311A9537720048CFCF /* RTAccountRegistrationViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7134C6301A9537720048CFCF /* RTAccountRegistrationViewControllerSpec.m */; };
@@ -464,6 +465,7 @@
 		7133EC611B17D03000BC1CAE /* RTConfirmAccountDataManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTConfirmAccountDataManagerSpec.m; sourceTree = "<group>"; };
 		7133EC631B17D82300BC1CAE /* RTConfirmAccountServerErrorMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTConfirmAccountServerErrorMapping.h; sourceTree = "<group>"; };
 		7133EC641B17D82300BC1CAE /* RTConfirmAccountServerErrorMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTConfirmAccountServerErrorMapping.m; sourceTree = "<group>"; };
+		7133EC6A1B17EC0B00BC1CAE /* RTConfirmAccountInteractorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTConfirmAccountInteractorSpec.m; sourceTree = "<group>"; };
 		713470BB1A9ABFAB000CFCA3 /* RTClientSpecHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTClientSpecHelper.h; sourceTree = "<group>"; };
 		713470BC1A9ABFAB000CFCA3 /* RTClientSpecHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTClientSpecHelper.m; sourceTree = "<group>"; };
 		7134C62E1A95322E0048CFCF /* RTLoginViewControllerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLoginViewControllerSpec.m; sourceTree = "<group>"; };
@@ -1302,6 +1304,7 @@
 			isa = PBXGroup;
 			children = (
 				7133EC611B17D03000BC1CAE /* RTConfirmAccountDataManagerSpec.m */,
+				7133EC6A1B17EC0B00BC1CAE /* RTConfirmAccountInteractorSpec.m */,
 			);
 			path = ConfirmAccountTests;
 			sourceTree = "<group>";
@@ -2883,6 +2886,7 @@
 				7145C6231A8AF07F006A77DE /* RTReelSpec.m in Sources */,
 				71C792EC1B0AD0F7006259F8 /* RTResetPasswordWireframeSpec.m in Sources */,
 				7134C6331A9580FF0048CFCF /* RTNewsfeedViewControllerSpec.m in Sources */,
+				7133EC6B1B17EC0B00BC1CAE /* RTConfirmAccountInteractorSpec.m in Sources */,
 				712785021B0FFF610092A69F /* RTValidationTestHelper.m in Sources */,
 				71AFF6961B122016003378C5 /* RTChangePasswordPresenterSpec.m in Sources */,
 				713BCE071A5909DA000F2D96 /* RTFakeKeyChainWrapper.m in Sources */,

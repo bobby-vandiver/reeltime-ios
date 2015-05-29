@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
 
 #import "RTAccountRegistrationError.h"
+#import "RTConfirmAccountError.h"
 #import "RTChangeDisplayNameError.h"
 #import "RTChangePasswordError.h"
 #import "RTDeviceRegistrationError.h"
@@ -14,6 +15,9 @@
 
 + (NSError *)accountRegistrationErrorWithCode:(RTAccountRegistrationError)code;
 
++ (NSError *)confirmAccountErrorWithCode:(RTConfirmAccountError)code;
+
+// TODO: Fix name -- include "Error"
 + (NSError *)changeDisplayNameWithCode:(RTChangeDisplayNameError)code;
 
 + (NSError *)changePasswordErrorWithCode:(RTChangePasswordError)code;
