@@ -40,7 +40,7 @@ describe(@"change display name presenter", ^{
         __block RTFieldErrorPresentationChecker *fieldErrorChecker;
         
         ErrorFactoryCallback errorFactoryCallback = ^NSError * (NSInteger code) {
-            return [RTErrorFactory changeDisplayNameWithCode:code];
+            return [RTErrorFactory changeDisplayNameErrorWithCode:code];
         };
         
         ArrayCallback errorsCallback = ^(NSArray *errors) {

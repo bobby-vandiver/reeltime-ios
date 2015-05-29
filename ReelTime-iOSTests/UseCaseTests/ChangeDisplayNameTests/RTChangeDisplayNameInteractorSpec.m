@@ -48,7 +48,7 @@ describe(@"change display name interactor", ^{
             it(@"should notify delegate of failure", ^{
                 ArrayCallback callback = [notChangedCaptor value];
                 
-                NSError *error = [RTErrorFactory changeDisplayNameWithCode:RTChangeDisplayNameErrorInvalidDisplayName];
+                NSError *error = [RTErrorFactory changeDisplayNameErrorWithCode:RTChangeDisplayNameErrorInvalidDisplayName];
                 callback(@[error]);
                 
                 MKTArgumentCaptor *captor = [[MKTArgumentCaptor alloc] init];
@@ -80,7 +80,7 @@ describe(@"change display name interactor", ^{
             };
             
             ErrorFactoryCallback errorFactoryCallback = ^NSError * (NSInteger errorCode) {
-                return [RTErrorFactory changeDisplayNameWithCode:errorCode];
+                return [RTErrorFactory changeDisplayNameErrorWithCode:errorCode];
             };
             
             beforeEach(^{

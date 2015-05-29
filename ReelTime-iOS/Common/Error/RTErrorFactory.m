@@ -11,7 +11,7 @@
     return [self errorWithDomain:RTConfirmAccountErrorDomain code:code];
 }
 
-+ (NSError *)changeDisplayNameWithCode:(RTChangeDisplayNameError)code {
++ (NSError *)changeDisplayNameErrorWithCode:(RTChangeDisplayNameError)code {
     return [self errorWithDomain:RTChangeDisplayNameErrorDomain code:code];
 }
 

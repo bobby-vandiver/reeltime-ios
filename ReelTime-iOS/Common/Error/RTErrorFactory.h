@@ -17,8 +17,7 @@
 
 + (NSError *)confirmAccountErrorWithCode:(RTConfirmAccountError)code;
 
-// TODO: Fix name -- include "Error"
-+ (NSError *)changeDisplayNameWithCode:(RTChangeDisplayNameError)code;
++ (NSError *)changeDisplayNameErrorWithCode:(RTChangeDisplayNameError)code;
 
 + (NSError *)changePasswordErrorWithCode:(RTChangePasswordError)code;
 
