@@ -5,6 +5,7 @@ extern NSString *const API_TOKEN;
 extern NSString *const API_REGISTER_ACCOUNT;
 extern NSString *const API_REMOVE_ACCOUNT;
 
+extern NSString *const API_LIST_CLIENTS;
 extern NSString *const API_REGISTER_CLIENT;
 extern NSString *const API_REMOVE_CLIENT;
 

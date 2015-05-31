@@ -7,8 +7,9 @@ NSString *const API_TOKEN = @"oauth/token";
 API_VERSION_LATEST(API_REGISTER_ACCOUNT,               "account");
 API_VERSION_LATEST(API_REMOVE_ACCOUNT,                 "account");
 
-API_VERSION_LATEST(API_REGISTER_CLIENT,                "account/client");
-API_VERSION_LATEST(API_REMOVE_CLIENT,                  "account/client/:client_id");
+API_VERSION_LATEST(API_LIST_CLIENTS,                   "account/clients");
+API_VERSION_LATEST(API_REGISTER_CLIENT,                "account/clients");
+API_VERSION_LATEST(API_REMOVE_CLIENT,                  "account/clients/:client_id");
 
 API_VERSION_LATEST(API_CONFIRM_ACCOUNT,                "account/confirm");
 API_VERSION_LATEST(API_CONFIRM_ACCOUNT_SEND_EMAIL,     "account/confirm/email");
