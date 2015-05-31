@@ -1,5 +1,5 @@
 #import "RTNewsfeedDataManager.h"
-#import "RTClient.h"
+#import "RTAPIClient.h"
 #import "RTNewsfeed.h"
 #import "RTServerErrors.h"
 #import "RTLogging.h"

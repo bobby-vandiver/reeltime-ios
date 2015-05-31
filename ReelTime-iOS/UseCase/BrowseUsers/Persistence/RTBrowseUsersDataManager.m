@@ -1,6 +1,6 @@
 #import "RTBrowseUsersDataManager.h"
 #import "RTBrowseUsersDataManagerDelegate.h"
-#import "RTClient.h"
+#import "RTAPIClient.h"
 
 #import "RTUserList.h"
 #import "RTLogging.h"
@@ -14,7 +14,7 @@
 @implementation RTBrowseUsersDataManager
 
 - (instancetype)initWithDelegate:(id<RTBrowseUsersDataManagerDelegate>)delegate
-                          client:(RTClient *)client {
+                          client:(RTAPIClient *)client {
     self = [super initWithClient:client];
     if (self) {
         self.delegate = delegate;

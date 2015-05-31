@@ -1,12 +1,12 @@
 #import <Foundation/Foundation.h>
 #import "RTCallback.h"
 
-@class RTClient;
+@class RTAPIClient;
 @class RTClientCredentials;
 
 @interface RTResetPasswordDataManager : NSObject
 
-- (instancetype)initWithClient:(RTClient *)client;
+- (instancetype)initWithClient:(RTAPIClient *)client;
 
 - (void)submitRequestForResetPasswordEmailForUsername:(NSString *)username
                                             emailSent:(NoArgsCallback)emailSent

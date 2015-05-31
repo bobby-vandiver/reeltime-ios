@@ -1,16 +1,16 @@
 #import "RTPagedListDataManager.h"
-#import "RTClient.h"
+#import "RTAPIClient.h"
 #import "RTException.h"
 
 @interface RTPagedListDataManager ()
 
-@property (readwrite) RTClient *client;
+@property (readwrite) RTAPIClient *client;
 
 @end
 
 @implementation RTPagedListDataManager
 
-- (instancetype)initWithClient:(RTClient *)client {
+- (instancetype)initWithClient:(RTAPIClient *)client {
     self = [super init];
     if (self) {
         self.client = client;

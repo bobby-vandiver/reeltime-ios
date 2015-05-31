@@ -8,10 +8,10 @@ describe(@"browse all reels data manager delegate", ^{
     
     __block RTBrowseAllReelsDataManagerDelegate *delegate;
     
-    __block RTClient *client;
+    __block RTAPIClient *client;
     
     beforeEach(^{
-        client = mock([RTClient class]);
+        client = mock([RTAPIClient class]);
         delegate = [[RTBrowseAllReelsDataManagerDelegate alloc] init];
     });
     

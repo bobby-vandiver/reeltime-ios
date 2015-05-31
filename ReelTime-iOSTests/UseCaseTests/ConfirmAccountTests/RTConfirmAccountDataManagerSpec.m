@@ -4,14 +4,14 @@
 #import "RTConfirmAccountDataManager.h"
 
 #import "RTConfirmAccountError.h"
-#import "RTClient.h"
+#import "RTAPIClient.h"
 
 SpecBegin(RTConfirmAccountDataManager)
 
 describe(@"confirm account data manager", ^{
     
     __block RTConfirmAccountDataManager *dataManager;
-    __block RTClient *client;
+    __block RTAPIClient *client;
     
     __block RTServerErrorMessageToErrorCodeTestHelper *helper;
     
@@ -19,7 +19,7 @@ describe(@"confirm account data manager", ^{
     __block MKTArgumentCaptor *failureCaptor;
     
     beforeEach(^{
-        client = mock([RTClient class]);
+        client = mock([RTAPIClient class]);
         dataManager = [[RTConfirmAccountDataManager alloc] initWithClient:client];
         
         successCaptor = [[MKTArgumentCaptor alloc] init];

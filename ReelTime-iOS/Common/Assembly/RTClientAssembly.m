@@ -1,7 +1,7 @@
 #import "RTClientAssembly.h"
 #import "RTSecureStoreAssembly.h"
 
-#import "RTClient.h"
+#import "RTAPIClient.h"
 #import "RTAuthenticationAwareHTTPClientDelegate.h"
 #import "RTClientAdditionalConfiguration.h"
 #import "RTAuthenticationAwareHTTPClient.h"
@@ -13,8 +13,8 @@
 
 @implementation RTClientAssembly
 
-- (RTClient *)reelTimeClient {
-    return [TyphoonDefinition withClass:[RTClient class] configuration:^(TyphoonDefinition *definition) {
+- (RTAPIClient *)reelTimeClient {
+    return [TyphoonDefinition withClass:[RTAPIClient class] configuration:^(TyphoonDefinition *definition) {
         [definition useInitializer:@selector(initWithHttpClient:pathFormatter:)
                         parameters:^(TyphoonMethod *initializer) {
                             [initializer injectParameterWith:[self authenticationAwareHTTPClient]];

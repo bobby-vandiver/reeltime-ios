@@ -1,7 +1,7 @@
 #import "RTTestCommon.h"
 #import "RTClientSpecHelper.h"
 
-#import "RTClient.h"
+#import "RTAPIClient.h"
 #import "RTAuthenticationAwareHTTPClientDelegate.h"
 #import "RTClientAssembly.h"
 
@@ -72,7 +72,7 @@ static NSString *const SUCCESSFUL_OK_WITH_VIDEOS_LIST_MULTIPLE_VIDEOS = @"video-
 
 describe(@"ReelTime Client", ^{
     
-    __block RTClient *client;
+    __block RTAPIClient *client;
     __block RTAuthenticationAwareHTTPClientDelegate *delegate;
     
     __block RTAuthenticationAwareHTTPClientSpy *httpClient;

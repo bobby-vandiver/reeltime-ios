@@ -1,5 +1,5 @@
 #import "RTConfirmAccountDataManager.h"
-#import "RTClient.h"
+#import "RTAPIClient.h"
 
 #import "RTServerErrors.h"
 #import "RTServerErrorsConverter.h"
@@ -8,14 +8,14 @@
 
 @interface RTConfirmAccountDataManager ()
 
-@property RTClient *client;
+@property RTAPIClient *client;
 @property RTServerErrorsConverter *serverErrorsConverter;
 
 @end
 
 @implementation RTConfirmAccountDataManager
 
-- (instancetype)initWithClient:(RTClient *)client {
+- (instancetype)initWithClient:(RTAPIClient *)client {
     self = [super init];
     if (self) {
         self.client = client;

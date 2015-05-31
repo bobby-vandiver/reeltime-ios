@@ -1,12 +1,12 @@
 #import <Foundation/Foundation.h>
 #import "RTCallback.h"
 
-@class RTClient;
+@class RTAPIClient;
 @class RTUser;
 
 @interface RTUserSummaryDataManager : NSObject
 
-- (instancetype)initWithClient:(RTClient *)client;
+- (instancetype)initWithClient:(RTAPIClient *)client;
 
 - (void)fetchUserForUsername:(NSString *)username
                    userFound:(UserCallback)userFound

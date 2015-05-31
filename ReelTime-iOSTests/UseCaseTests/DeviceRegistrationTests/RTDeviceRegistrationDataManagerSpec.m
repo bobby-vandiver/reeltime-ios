@@ -4,7 +4,7 @@
 #import "RTDeviceRegistrationDataManager.h"
 #import "RTDeviceRegistrationDataManagerDelegate.h"
 
-#import "RTClient.h"
+#import "RTAPIClient.h"
 #import "RTClientCredentialsStore.h"
 
 #import "RTServerErrorsConverter.h"
@@ -22,7 +22,7 @@ describe(@"device registration data manager", ^{
     __block RTDeviceRegistrationDataManager *dataManager;
     __block id<RTDeviceRegistrationDataManagerDelegate> delegate;
     
-    __block RTClient *client;
+    __block RTAPIClient *client;
     __block RTClientCredentialsStore *clientCredentialsStore;
     
     __block RTUserCredentials *userCredentials;
@@ -30,7 +30,7 @@ describe(@"device registration data manager", ^{
     
     beforeEach(^{
         clientCredentialsStore = mock([RTClientCredentialsStore class]);
-        client = mock([RTClient class]);
+        client = mock([RTAPIClient class]);
         
         delegate = mockProtocol(@protocol(RTDeviceRegistrationDataManagerDelegate));
         dataManager = [[RTDeviceRegistrationDataManager alloc] initWithDelegate:delegate

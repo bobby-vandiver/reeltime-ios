@@ -1,7 +1,7 @@
 #import "RTTestCommon.h"
 
 #import "RTNewsfeedDataManager.h"
-#import "RTClient.h"
+#import "RTAPIClient.h"
 
 #import "RTNewsfeed.h"
 #import "RTActivity.h"
@@ -12,10 +12,10 @@ describe(@"newsfeed data manager", ^{
     
     __block RTNewsfeedDataManager *dataManager;
     
-    __block RTClient *client;
+    __block RTAPIClient *client;
     
     beforeEach(^{
-        client = mock([RTClient class]);
+        client = mock([RTAPIClient class]);
         dataManager = [[RTNewsfeedDataManager alloc] initWithClient:client];
     });
     

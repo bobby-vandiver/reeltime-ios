@@ -1,13 +1,13 @@
 #import <Foundation/Foundation.h>
 #import "RTCallback.h"
 
-@class RTClient;
+@class RTAPIClient;
 
 @interface RTPagedListDataManager : NSObject
 
-@property (readonly) RTClient *client;
+@property (readonly) RTAPIClient *client;
 
-- (instancetype)initWithClient:(RTClient *)client;
+- (instancetype)initWithClient:(RTAPIClient *)client;
 
 - (void)retrievePage:(NSUInteger)page
             callback:(ArrayCallback)callback;

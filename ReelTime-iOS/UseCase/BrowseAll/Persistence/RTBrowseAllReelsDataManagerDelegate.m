@@ -3,7 +3,7 @@
 @implementation RTBrowseAllReelsDataManagerDelegate
 
 - (void)listReelsPage:(NSUInteger)page
-           withClient:(RTClient *)client
+           withClient:(RTAPIClient *)client
               success:(ReelListCallback)success
               failure:(ServerErrorsCallback)failure {
     

@@ -2,7 +2,7 @@
 
 #import "RTBrowseReelsDataManager.h"
 #import "RTBrowseReelsDataManagerDelegate.h"
-#import "RTClient.h"
+#import "RTAPIClient.h"
 
 #import "RTReelList.h"
 #import "RTReel.h"
@@ -14,11 +14,11 @@ describe(@"browse reels data manager", ^{
     __block RTBrowseReelsDataManager *dataManager;
     
     __block id<RTBrowseReelsDataManagerDelegate> delegate;
-    __block RTClient *client;
+    __block RTAPIClient *client;
     
     beforeEach(^{
         delegate = mockProtocol(@protocol(RTBrowseReelsDataManagerDelegate));
-        client = mock([RTClient class]);
+        client = mock([RTAPIClient class]);
         dataManager = [[RTBrowseReelsDataManager alloc] initWithDelegate:delegate client:client];
     });
     

@@ -1,7 +1,7 @@
 #import "RTTestCommon.h"
 
 #import "RTPagedListDataManager.h"
-#import "RTClient.h"
+#import "RTAPIClient.h"
 #import "RTException.h"
 
 SpecBegin(RTPagedListDataManager)
@@ -11,7 +11,7 @@ describe(@"paged list data manager", ^{
     __block RTPagedListDataManager *dataManager;
     
     beforeEach(^{
-        RTClient *client = mock([RTClient class]);
+        RTAPIClient *client = mock([RTAPIClient class]);
         dataManager = [[RTPagedListDataManager alloc] initWithClient:client];
     });
     

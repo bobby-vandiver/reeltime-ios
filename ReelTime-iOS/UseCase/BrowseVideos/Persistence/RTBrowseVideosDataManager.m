@@ -1,7 +1,7 @@
 #import "RTBrowseVideosDataManager.h"
 #import "RTBrowseVideosDataManagerDelegate.h"
 
-#import "RTClient.h"
+#import "RTAPIClient.h"
 #import "RTThumbnailSupport.h"
 
 #import "RTVideo.h"
@@ -21,7 +21,7 @@
 
 - (instancetype)initWithDelegate:(id<RTBrowseVideosDataManagerDelegate>)delegate
                 thumbnailSupport:(RTThumbnailSupport *)thumbnailSupport
-                          client:(RTClient *)client {
+                          client:(RTAPIClient *)client {
     self = [super initWithClient:client];
     if (self) {
         self.delegate = delegate;

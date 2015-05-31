@@ -1,7 +1,7 @@
 #import "RTLoginDataManager.h"
 #import "RTLoginDataManagerDelegate.h"
 
-#import "RTClient.h"
+#import "RTAPIClient.h"
 #import "RTClientCredentialsStore.h"
 
 #import "RTOAuth2TokenStore.h"
@@ -18,7 +18,7 @@
 @interface RTLoginDataManager ()
 
 @property (weak) id<RTLoginDataManagerDelegate> delegate;
-@property RTClient *client;
+@property RTAPIClient *client;
 @property RTClientCredentialsStore *clientCredentialsStore;
 @property RTOAuth2TokenStore *tokenStore;
 @property RTCurrentUserStore *currentUserStore;
@@ -28,7 +28,7 @@
 @implementation RTLoginDataManager
 
 - (instancetype)initWithDelegate:(id<RTLoginDataManagerDelegate>)delegate
-                          client:(RTClient *)client
+                          client:(RTAPIClient *)client
           clientCredentialsStore:(RTClientCredentialsStore *)clientCredentialsStore
                       tokenStore:(RTOAuth2TokenStore *)tokenStore
                 currentUserStore:(RTCurrentUserStore *)currentUserStore {

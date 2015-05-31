@@ -1,19 +1,19 @@
 #import "RTChangePasswordDataManager.h"
-#import "RTClient.h"
+#import "RTAPIClient.h"
 
 #import "RTServerErrorsConverter.h"
 #import "RTChangePasswordServerErrorMapping.h"
 
 @interface RTChangePasswordDataManager ()
 
-@property RTClient *client;
+@property RTAPIClient *client;
 @property RTServerErrorsConverter *serverErrorsConverter;
 
 @end
 
 @implementation RTChangePasswordDataManager
 
-- (instancetype)initWithClient:(RTClient *)client {
+- (instancetype)initWithClient:(RTAPIClient *)client {
     self = [super init];
     if (self) {
         self.client = client;

@@ -1,4 +1,4 @@
-#import "RTClient.h"
+#import "RTAPIClient.h"
 #import "RTRestAPI.h"
 
 #import "RTAuthenticationAwareHTTPClient.h"
@@ -20,14 +20,14 @@
 
 static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read reels-write users-read users-write videos-read videos-write";
 
-@interface RTClient ()
+@interface RTAPIClient ()
 
 @property RTAuthenticationAwareHTTPClient *httpClient;
 @property RTEndpointPathFormatter *pathFormatter;
 
 @end
 
-@implementation RTClient
+@implementation RTAPIClient
 
 - (instancetype)initWithHttpClient:(RTAuthenticationAwareHTTPClient *)httpClient
                      pathFormatter:(RTEndpointPathFormatter *)pathFormatter {

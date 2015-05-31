@@ -1,10 +1,10 @@
 #import <Foundation/Foundation.h>
-#import "RTClient.h"
+#import "RTAPIClient.h"
 
 @protocol RTBrowseUsersDataManagerDelegate <NSObject>
 
 - (void)listUsersPage:(NSUInteger)page
-           withClient:(RTClient *)client
+           withClient:(RTAPIClient *)client
               success:(UserListCallback)success
               failure:(ServerErrorsCallback)failure;
 

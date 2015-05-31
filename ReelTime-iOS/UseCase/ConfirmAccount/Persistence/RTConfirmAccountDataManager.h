@@ -1,11 +1,11 @@
 #import <Foundation/Foundation.h>
 #import "RTCallback.h"
 
-@class RTClient;
+@class RTAPIClient;
 
 @interface RTConfirmAccountDataManager : NSObject
 
-- (instancetype)initWithClient:(RTClient *)client;
+- (instancetype)initWithClient:(RTAPIClient *)client;
 
 - (void)submitRequestForConfirmationEmailWithEmailSent:(NoArgsCallback)emailSent
                                            emailFailed:(ArrayCallback)emailFailed;

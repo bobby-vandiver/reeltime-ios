@@ -1,7 +1,7 @@
 #import "RTDeviceRegistrationDataManager.h"
 #import "RTDeviceRegistrationDataManagerDelegate.h"
 
-#import "RTClient.h"
+#import "RTAPIClient.h"
 #import "RTClientCredentialsStore.h"
 
 #import "RTDeviceRegistrationServerErrorMapping.h"
@@ -15,7 +15,7 @@
 @interface RTDeviceRegistrationDataManager ()
 
 @property (weak) id<RTDeviceRegistrationDataManagerDelegate> delegate;
-@property RTClient *client;
+@property RTAPIClient *client;
 
 @property RTServerErrorsConverter *serverErrorsConverter;
 @property RTClientCredentialsStore *clientCredentialsStore;
@@ -25,7 +25,7 @@
 @implementation RTDeviceRegistrationDataManager
 
 - (instancetype)initWithDelegate:(id<RTDeviceRegistrationDataManagerDelegate>)delegate
-                          client:(RTClient *)client
+                          client:(RTAPIClient *)client
           clientCredentialsStore:(RTClientCredentialsStore *)clientCredentialsStore {
     self = [super init];
     if (self) {

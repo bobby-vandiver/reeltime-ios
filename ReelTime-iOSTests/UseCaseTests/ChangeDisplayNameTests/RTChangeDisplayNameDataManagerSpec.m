@@ -2,7 +2,7 @@
 #import "RTServerErrorMessageToErrorCodeTestHelper.h"
 
 #import "RTChangeDisplayNameDataManager.h"
-#import "RTClient.h"
+#import "RTAPIClient.h"
 
 #import "RTChangeDisplayNameError.h"
 
@@ -11,7 +11,7 @@ SpecBegin(RTChangeDisplayNameDataManager)
 describe(@"change display name data manager", ^{
     
     __block RTChangeDisplayNameDataManager *dataManager;
-    __block RTClient *client;
+    __block RTAPIClient *client;
     
     __block RTCallbackTestExpectation *changed;
     __block RTCallbackTestExpectation *notChanged;
@@ -22,7 +22,7 @@ describe(@"change display name data manager", ^{
     __block MKTArgumentCaptor *failureCaptor;
     
     beforeEach(^{
-        client = mock([RTClient class]);
+        client = mock([RTAPIClient class]);
         dataManager =  [[RTChangeDisplayNameDataManager alloc] initWithClient:client];
         
         changed = [RTCallbackTestExpectationFactory noArgsCallback];

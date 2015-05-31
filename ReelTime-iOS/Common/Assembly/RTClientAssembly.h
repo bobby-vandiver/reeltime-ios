@@ -2,7 +2,7 @@
 
 @class RTSecureStoreAssembly;
 
-@class RTClient;
+@class RTAPIClient;
 @class RTAuthenticationAwareHTTPClient;
 @class RTAuthenticationAwareHTTPClientDelegate;
 @class RKObjectManager;
@@ -12,7 +12,7 @@
 
 @property (nonatomic, strong, readonly) RTSecureStoreAssembly *secureStoreAssembly;
 
-- (RTClient *)reelTimeClient;
+- (RTAPIClient *)reelTimeClient;
 
 - (RTAuthenticationAwareHTTPClient *)authenticationAwareHTTPClient;
 

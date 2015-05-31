@@ -4,7 +4,7 @@
 #import "RTAccountRegistrationDataManager.h"
 #import "RTAccountRegistrationDataManagerDelegate.h"
 
-#import "RTClient.h"
+#import "RTAPIClient.h"
 #import "RTClientCredentialsStore.h"
 
 #import "RTAccountRegistration.h"
@@ -20,7 +20,7 @@ describe(@"account registration data manager", ^{
     __block RTAccountRegistrationDataManager *dataManager;
     __block id<RTAccountRegistrationDataManagerDelegate> delegate;
     
-    __block RTClient *client;
+    __block RTAPIClient *client;
     __block RTClientCredentialsStore *clientCredentialsStore;
    
     __block MKTArgumentCaptor *errorCaptor;
@@ -30,7 +30,7 @@ describe(@"account registration data manager", ^{
     beforeEach(^{
         delegate = mockProtocol(@protocol(RTAccountRegistrationDataManagerDelegate));
         
-        client = mock([RTClient class]);
+        client = mock([RTAPIClient class]);
         clientCredentialsStore = mock([RTClientCredentialsStore class]);
         
         dataManager = [[RTAccountRegistrationDataManager alloc] initWithDelegate:delegate

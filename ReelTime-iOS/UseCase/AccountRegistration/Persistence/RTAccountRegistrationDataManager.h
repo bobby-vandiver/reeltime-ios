@@ -3,7 +3,7 @@
 
 @protocol RTAccountRegistrationDataManagerDelegate;
 
-@class RTClient;
+@class RTAPIClient;
 @class RTClientCredentialsStore;
 
 @class RTAccountRegistration;
@@ -12,7 +12,7 @@
 @interface RTAccountRegistrationDataManager : NSObject
 
 - (instancetype)initWithDelegate:(id<RTAccountRegistrationDataManagerDelegate>)delegate
-                          client:(RTClient *)client
+                          client:(RTAPIClient *)client
           clientCredentialsStore:(RTClientCredentialsStore *)clientCredentialsStore;
 
 - (void)registerAccount:(RTAccountRegistration *)registration

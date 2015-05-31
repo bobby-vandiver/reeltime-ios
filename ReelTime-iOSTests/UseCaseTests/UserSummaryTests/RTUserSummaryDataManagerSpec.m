@@ -1,17 +1,17 @@
 #import "RTTestCommon.h"
 
 #import "RTUserSummaryDataManager.h"
-#import "RTClient.h"
+#import "RTAPIClient.h"
 
 SpecBegin(RTUserSummaryDataManager)
 
 describe(@"user summary data manager", ^{
     
     __block RTUserSummaryDataManager *dataManager;
-    __block RTClient *client;
+    __block RTAPIClient *client;
     
     beforeEach(^{
-        client = mock([RTClient class]);
+        client = mock([RTAPIClient class]);
         dataManager = [[RTUserSummaryDataManager alloc] initWithClient:client];
     });
     

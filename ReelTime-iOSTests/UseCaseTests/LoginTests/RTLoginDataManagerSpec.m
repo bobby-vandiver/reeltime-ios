@@ -3,7 +3,7 @@
 #import "RTLoginDataManager.h"
 #import "RTLoginDataManagerDelegate.h"
 
-#import "RTClient.h"
+#import "RTAPIClient.h"
 #import "RTClientCredentialsStore.h"
 #import "RTOAuth2TokenStore.h"
 #import "RTCurrentUserStore.h"
@@ -23,7 +23,7 @@ describe(@"login data manager", ^{
     __block RTLoginDataManager *dataManager;
     __block id<RTLoginDataManagerDelegate> delegate;
     
-    __block RTClient *client;
+    __block RTAPIClient *client;
     __block RTClientCredentialsStore *clientCredentialsStore;
 
     __block RTOAuth2TokenStore *tokenStore;
@@ -38,7 +38,7 @@ describe(@"login data manager", ^{
     beforeEach(^{
         delegate = mockProtocol(@protocol(RTLoginDataManagerDelegate));
 
-        client = mock([RTClient class]);
+        client = mock([RTAPIClient class]);
         clientCredentialsStore = mock([RTClientCredentialsStore class]);
         
         tokenStore = mock([RTOAuth2TokenStore class]);

@@ -3,7 +3,7 @@
 @implementation RTBrowseAllVideosDataManagerDelegate
 
 - (void)listVideosPage:(NSUInteger)page
-            withClient:(RTClient *)client
+            withClient:(RTAPIClient *)client
                success:(VideoListCallback)success
                failure:(ServerErrorsCallback)failure {
     

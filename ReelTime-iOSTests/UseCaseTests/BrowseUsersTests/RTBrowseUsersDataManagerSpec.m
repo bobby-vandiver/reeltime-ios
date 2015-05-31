@@ -2,7 +2,7 @@
 
 #import "RTBrowseUsersDataManager.h"
 #import "RTBrowseUsersDataManagerDelegate.h"
-#import "RTClient.h"
+#import "RTAPIClient.h"
 
 #import "RTUserList.h"
 #import "RTUser.h"
@@ -14,11 +14,11 @@ describe(@"browse users data manager", ^{
     __block RTBrowseUsersDataManager *dataManager;
     
     __block id<RTBrowseUsersDataManagerDelegate> delegate;
-    __block RTClient *client;
+    __block RTAPIClient *client;
     
     beforeEach(^{
         delegate = mockProtocol(@protocol(RTBrowseUsersDataManagerDelegate));
-        client = mock([RTClient class]);
+        client = mock([RTAPIClient class]);
         dataManager = [[RTBrowseUsersDataManager alloc] initWithDelegate:delegate client:client];
     });
     

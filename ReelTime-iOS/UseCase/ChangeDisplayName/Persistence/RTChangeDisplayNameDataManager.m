@@ -1,19 +1,19 @@
 #import "RTChangeDisplayNameDataManager.h"
-#import "RTClient.h"
+#import "RTAPIClient.h"
 
 #import "RTServerErrorsConverter.h"
 #import "RTChangeDisplayNameServerErrorMapping.h"
 
 @interface RTChangeDisplayNameDataManager ()
 
-@property RTClient *client;
+@property RTAPIClient *client;
 @property RTServerErrorsConverter *serverErrorsConverter;
 
 @end
 
 @implementation RTChangeDisplayNameDataManager
 
-- (instancetype)initWithClient:(RTClient *)client {
+- (instancetype)initWithClient:(RTAPIClient *)client {
     self = [super init];
     if (self) {
         self.client = client;

@@ -7,6 +7,6 @@
 
 - (instancetype)initWithDelegate:(id<RTBrowseVideosDataManagerDelegate>)delegate
                 thumbnailSupport:(RTThumbnailSupport *)thumbnailSupport
-                          client:(RTClient *)client;
+                          client:(RTAPIClient *)client;
 
 @end

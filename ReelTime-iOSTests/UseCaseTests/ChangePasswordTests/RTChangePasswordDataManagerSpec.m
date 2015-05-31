@@ -2,7 +2,7 @@
 #import "RTServerErrorMessageToErrorCodeTestHelper.h"
 
 #import "RTChangePasswordDataManager.h"
-#import "RTClient.h"
+#import "RTAPIClient.h"
 
 #import "RTChangePasswordError.h"
 
@@ -11,7 +11,7 @@ SpecBegin(RTChangePasswordDataManager)
 describe(@"change password data manager", ^{
     
     __block RTChangePasswordDataManager *dataManager;
-    __block RTClient *client;
+    __block RTAPIClient *client;
 
     __block RTCallbackTestExpectation *changed;
     __block RTCallbackTestExpectation *notChanged;
@@ -22,7 +22,7 @@ describe(@"change password data manager", ^{
     __block MKTArgumentCaptor *failureCaptor;
     
     beforeEach(^{
-        client = mock([RTClient class]);
+        client = mock([RTAPIClient class]);
         dataManager = [[RTChangePasswordDataManager alloc] initWithClient:client];
 
         changed = [RTCallbackTestExpectationFactory noArgsCallback];

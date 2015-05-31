@@ -1,6 +1,6 @@
 #import "RTBrowseReelsDataManager.h"
 #import "RTBrowseReelsDataManagerDelegate.h"
-#import "RTClient.h"
+#import "RTAPIClient.h"
 
 #import "RTReelList.h"
 #import "RTLogging.h"
@@ -14,7 +14,7 @@
 @implementation RTBrowseReelsDataManager
 
 - (instancetype)initWithDelegate:(id<RTBrowseReelsDataManagerDelegate>)delegate
-                          client:(RTClient *)client {
+                          client:(RTAPIClient *)client {
     self = [super initWithClient:client];
     if (self) {
         self.delegate = delegate;

@@ -1,17 +1,17 @@
 #import "RTUserSummaryDataManager.h"
 
-#import "RTClient.h"
+#import "RTAPIClient.h"
 #import "RTLogging.h"
 
 @interface RTUserSummaryDataManager ()
 
-@property RTClient *client;
+@property RTAPIClient *client;
 
 @end
 
 @implementation RTUserSummaryDataManager
 
-- (instancetype)initWithClient:(RTClient *)client {
+- (instancetype)initWithClient:(RTAPIClient *)client {
     self = [super init];
     if (self) {
         self.client = client;

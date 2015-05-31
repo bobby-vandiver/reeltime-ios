@@ -3,7 +3,7 @@
 
 @protocol RTLoginDataManagerDelegate;
 
-@class RTClient;
+@class RTAPIClient;
 @class RTClientCredentialsStore;
 @class RTOAuth2TokenStore;
 @class RTCurrentUserStore;
@@ -15,7 +15,7 @@
 @interface RTLoginDataManager : NSObject
 
 - (instancetype)initWithDelegate:(id<RTLoginDataManagerDelegate>)delegate
-                          client:(RTClient *)client
+                          client:(RTAPIClient *)client
           clientCredentialsStore:(RTClientCredentialsStore *)clientCredentialsStore
                       tokenStore:(RTOAuth2TokenStore *)tokenStore
                 currentUserStore:(RTCurrentUserStore *)currentUserStore;

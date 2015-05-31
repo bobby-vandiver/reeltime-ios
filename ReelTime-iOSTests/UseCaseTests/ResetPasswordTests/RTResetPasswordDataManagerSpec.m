@@ -4,7 +4,7 @@
 #import "RTResetPasswordDataManager.h"
 
 #import "RTResetPasswordError.h"
-#import "RTClient.h"
+#import "RTAPIClient.h"
 
 #import "RTUserCredentials.h"
 #import "RTClientCredentials.h"
@@ -14,7 +14,7 @@ SpecBegin(RTResetPasswordDataManager)
 describe(@"reset password data manager", ^{
     
     __block RTResetPasswordDataManager *dataManager;
-    __block RTClient *client;
+    __block RTAPIClient *client;
     
     __block RTUserCredentials *userCredentials;
     __block RTClientCredentials *clientCredentials;
@@ -27,7 +27,7 @@ describe(@"reset password data manager", ^{
     __block MKTArgumentCaptor *userCredentialsCaptor;
     
     beforeEach(^{
-        client = mock([RTClient class]);        
+        client = mock([RTAPIClient class]);        
         dataManager = [[RTResetPasswordDataManager alloc] initWithClient:client];
         
         userCredentials = [[RTUserCredentials alloc] initWithUsername:username

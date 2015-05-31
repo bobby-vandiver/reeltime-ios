@@ -3,7 +3,7 @@
 #import "RTBrowseVideosDataManager.h"
 #import "RTBrowseVideosDataManagerDelegate.h"
 
-#import "RTClient.h"
+#import "RTAPIClient.h"
 #import "RTThumbnailSupport.h"
 
 #import "RTVideo.h"
@@ -25,13 +25,13 @@ describe(@"browse videos data manager", ^{
     __block id<RTBrowseVideosDataManagerDelegate> delegate;
 
     __block RTThumbnailSupport *thumbnailSupport;
-    __block RTClient *client;
+    __block RTAPIClient *client;
     
     beforeEach(^{
         delegate = mockProtocol(@protocol(RTBrowseVideosDataManagerDelegate));
         
         thumbnailSupport = mock([RTThumbnailSupport class]);
-        client = mock([RTClient class]);
+        client = mock([RTAPIClient class]);
 
         dataManager = [[RTBrowseVideosDataManager alloc] initWithDelegate:delegate
                                                          thumbnailSupport:thumbnailSupport

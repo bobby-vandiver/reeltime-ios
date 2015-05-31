@@ -137,7 +137,7 @@
 		713CF1DE1AE34CE1003E2F89 /* RTThumbnailSupportSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 713CF1DD1AE34CE1003E2F89 /* RTThumbnailSupportSpec.m */; };
 		713D7A451A509AC000754A06 /* RTClientCredentialsStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 713D7A441A509AC000754A06 /* RTClientCredentialsStore.m */; };
 		713D7A481A509ACC00754A06 /* RTClientCredentials.m in Sources */ = {isa = PBXBuildFile; fileRef = 713D7A471A509ACC00754A06 /* RTClientCredentials.m */; };
-		713D7A4C1A50A33300754A06 /* RTClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 713D7A4B1A50A33300754A06 /* RTClient.m */; };
+		713D7A4C1A50A33300754A06 /* RTAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 713D7A4B1A50A33300754A06 /* RTAPIClient.m */; };
 		713DBD581B134E4D00CB4796 /* RTChangePasswordErrorCodeToErrorMessageMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 713DBD571B134E4D00CB4796 /* RTChangePasswordErrorCodeToErrorMessageMapping.m */; };
 		713DBD5B1B134F8700CB4796 /* RTFieldErrorPresentationChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 713DBD5A1B134F8700CB4796 /* RTFieldErrorPresentationChecker.m */; };
 		713DBD5E1B13529200CB4796 /* RTErrorPresentationChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 713DBD5D1B13529200CB4796 /* RTErrorPresentationChecker.m */; };
@@ -528,8 +528,8 @@
 		713D7A441A509AC000754A06 /* RTClientCredentialsStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTClientCredentialsStore.m; path = "ReelTime-iOS/Common/Store/RTClientCredentialsStore.m"; sourceTree = SOURCE_ROOT; };
 		713D7A461A509ACC00754A06 /* RTClientCredentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTClientCredentials.h; path = "ReelTime-iOS/Common/Model/RTClientCredentials.h"; sourceTree = SOURCE_ROOT; };
 		713D7A471A509ACC00754A06 /* RTClientCredentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTClientCredentials.m; path = "ReelTime-iOS/Common/Model/RTClientCredentials.m"; sourceTree = SOURCE_ROOT; };
-		713D7A4A1A50A33300754A06 /* RTClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTClient.h; sourceTree = "<group>"; };
-		713D7A4B1A50A33300754A06 /* RTClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTClient.m; sourceTree = "<group>"; };
+		713D7A4A1A50A33300754A06 /* RTAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTAPIClient.h; sourceTree = "<group>"; };
+		713D7A4B1A50A33300754A06 /* RTAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAPIClient.m; sourceTree = "<group>"; };
 		713DBD561B134E4D00CB4796 /* RTChangePasswordErrorCodeToErrorMessageMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTChangePasswordErrorCodeToErrorMessageMapping.h; sourceTree = "<group>"; };
 		713DBD571B134E4D00CB4796 /* RTChangePasswordErrorCodeToErrorMessageMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTChangePasswordErrorCodeToErrorMessageMapping.m; sourceTree = "<group>"; };
 		713DBD591B134F8700CB4796 /* RTFieldErrorPresentationChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTFieldErrorPresentationChecker.h; sourceTree = "<group>"; };
@@ -1454,8 +1454,8 @@
 				715555A61A9ED1F40091F432 /* RTAuthenticationAwareHTTPClient.m */,
 				71647BE41A7F17CC00F44996 /* RTAuthenticationAwareHTTPClientDelegate.h */,
 				71647BE51A7F17CD00F44996 /* RTAuthenticationAwareHTTPClientDelegate.m */,
-				713D7A4A1A50A33300754A06 /* RTClient.h */,
-				713D7A4B1A50A33300754A06 /* RTClient.m */,
+				713D7A4A1A50A33300754A06 /* RTAPIClient.h */,
+				713D7A4B1A50A33300754A06 /* RTAPIClient.m */,
 				712EA2C31A9C1B4600AFCA15 /* RTClientAdditionalConfiguration.h */,
 				712EA2C41A9C1B4600AFCA15 /* RTClientAdditionalConfiguration.m */,
 				7157589D1A9A3B93002859DE /* RTEndpointPathFormatter.h */,
@@ -2728,7 +2728,7 @@
 				71073CF61A83060700BE6E19 /* RKObjectManager+IncludeHeaders.m in Sources */,
 				7164D7281ACB6B48005D02FE /* RTThumbnail.m in Sources */,
 				7116908F1A6AB3970031578E /* RTSecurityAssembly.m in Sources */,
-				713D7A4C1A50A33300754A06 /* RTClient.m in Sources */,
+				713D7A4C1A50A33300754A06 /* RTAPIClient.m in Sources */,
 				711FF4CB1AA2657200E11BDE /* RKResponseDescriptor+SingleStatusCode.m in Sources */,
 				719B35E31A51150E00FFD543 /* RTErrorConstants.m in Sources */,
 				717A4B781A534EBD004C2BC1 /* RTResponseDescriptorFactory.m in Sources */,

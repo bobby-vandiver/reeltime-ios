@@ -5,6 +5,6 @@
 @interface RTBrowseUsersDataManager : RTPagedListDataManager
 
 - (instancetype)initWithDelegate:(id<RTBrowseUsersDataManagerDelegate>)delegate
-                          client:(RTClient *)client;
+                          client:(RTAPIClient *)client;
 
 @end

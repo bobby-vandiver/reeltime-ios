@@ -1,7 +1,7 @@
 #import <Foundation/Foundation.h>
 #import "RTCallback.h"
 
-@interface RTClient : NSObject
+@interface RTAPIClient : NSObject
 
 - (instancetype)initWithHttpClient:(RTAuthenticationAwareHTTPClient *)httpClient
                      pathFormatter:(RTEndpointPathFormatter *)pathFormatter;
