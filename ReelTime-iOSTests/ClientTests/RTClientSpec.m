@@ -21,6 +21,9 @@
 #import "RTNewsfeed.h"
 #import "RTActivity.h"
 
+#import "RTClient.h"
+#import "RTClientList.h"
+
 #import "RTUser.h"
 #import "RTUserList.h"
 
@@ -57,6 +60,10 @@ static NSString *const SERVICE_UNAVAILABLE_WITH_ERRORS_FILENAME = @"service-unav
 static NSString *const SUCCESSFUL_CREATED_CLIENT_CREDENTIALS_FILENAME = @"successful-created-client-credentials";
 static NSString *const SUCCESSFUL_CREATED_WITH_NO_BODY_FILENAME = @"successful-created-with-no-body";
 static NSString *const SUCCESSFUL_OK_WITH_NO_BODY_FILENAME = @"successful-ok-with-no-body";
+
+static NSString *const SUCCESSFUL_OK_WITH_CLIENTS_LIST_EMPTY = @"client-list-no-clients";
+static NSString *const SUCCESSFUL_OK_WITH_CLIENTS_LIST_ONE_CLIENT = @"client-list-one-client";
+static NSString *const SUCCESSFUL_OK_WITH_CLIENTS_LIST_MULTIPLE_CLIENTS = @"client-list-multiple-clients";
 
 static NSString *const SUCCESSFUL_OK_WITH_REELS_LIST_EMPTY = @"reel-list-no-reels";
 static NSString *const SUCCESSFUL_OK_WITH_REELS_LIST_ONE_REEL = @"reel-list-one-reel";
@@ -170,6 +177,51 @@ describe(@"ReelTime Client", ^{
             RTClientCredentials *clientCredentials = (RTClientCredentials *)obj;
             expect(clientCredentials.clientId).to.equal(@"5bdee758-cf71-4cd5-9bd9-aded45ce9964");
             expect(clientCredentials.clientSecret).to.equal(@"g70mC9ZbpKa6p6R1tJPVWTm55BWHnSkmCv27F=oSI6");
+
+            done();
+        };
+    };
+    
+    SuccessCallback (^shouldReceiveEmptyClientListInSuccessfulResponse)(DoneCallback) = ^SuccessCallback(DoneCallback done) {
+        return ^(id obj) {
+            expect(obj).to.beKindOf([RTClientList class]);
+            
+            RTClientList *clientList = (RTClientList *)obj;
+            expect(clientList.clients).to.haveACountOf(0);
+            
+            done();
+        };
+    };
+    
+    SuccessCallback (^shouldReceiveClientListWithOneClientInSuccessfulResponse)(DoneCallback) = ^SuccessCallback(DoneCallback done) {
+        return ^(id obj) {
+            expect(obj).to.beKindOf([RTClientList class]);
+            
+            RTClientList *clientList = (RTClientList *)obj;
+            expect(clientList.clients).to.haveACountOf(1);
+            
+            RTClient *first = clientList.clients[0];
+            expect(first.clientId).to.equal(@"cid1");
+            expect(first.clientName).to.equal(@"cname1");
+            
+            done();
+        };
+    };
+    
+    SuccessCallback (^shouldReceiveClientListWithMultipleClientsInSuccessfulResponse)(DoneCallback) = ^SuccessCallback(DoneCallback done) {
+        return ^(id obj) {
+            expect(obj).to.beKindOf([RTClientList class]);
+            
+            RTClientList *clientList = (RTClientList *)obj;
+            expect(clientList.clients).to.haveACountOf(2);
+            
+            RTClient *first = clientList.clients[0];
+            expect(first.clientId).to.equal(@"cid1");
+            expect(first.clientName).to.equal(@"cname1");
+            
+            RTClient *second = clientList.clients[1];
+            expect(second.clientId).to.equal(@"cid2");
+            expect(second.clientName).to.equal(@"cname2");
 
             done();
         };
@@ -679,6 +731,67 @@ describe(@"ReelTime Client", ^{
                 waitUntil(^(DoneCallback done) {
                     [client removeAccountWithSuccess:shouldNotExecuteSuccessCallback(done)
                                              failure:shouldExecuteFailureCallbackWithMessage(FORBIDDEN_ERROR_MESSAGE, done)];
+                });
+            });
+        });
+        
+        describe(@"list clients", ^{
+            __block NSRegularExpression *listClientsUrlRegex;
+            
+            beforeEach(^{
+                listClientsUrlRegex = [helper createUrlRegexForEndpoint:API_LIST_CLIENTS];
+            });
+            
+            afterEach(^{
+                expect(httpClient.lastParameters.allKeys).to.haveCountOf(1);
+                expect(httpClient.lastParameters[@"page"]).to.equal(pageNumber);
+            });
+            
+            it(@"is successful and has no clients", ^{
+                [helper stubAuthenticatedRequestWithMethod:GET
+                                                  urlRegex:listClientsUrlRegex
+                                       rawResponseFilename:SUCCESSFUL_OK_WITH_CLIENTS_LIST_EMPTY];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client listClientsPage:pageNumber
+                                    success:shouldReceiveEmptyClientListInSuccessfulResponse(done)
+                                    failure:shouldNotExecuteFailureCallback(done)];
+                });
+            });
+            
+            it(@"is successful and has one client", ^{
+                [helper stubAuthenticatedRequestWithMethod:GET
+                                                  urlRegex:listClientsUrlRegex
+                                       rawResponseFilename:SUCCESSFUL_OK_WITH_CLIENTS_LIST_ONE_CLIENT];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client listClientsPage:pageNumber
+                                    success:shouldReceiveClientListWithOneClientInSuccessfulResponse(done)
+                                    failure:shouldNotExecuteFailureCallback(done)];
+                });
+            });
+            
+            it(@"is successful and has multiple clients", ^{
+                [helper stubAuthenticatedRequestWithMethod:GET
+                                                  urlRegex:listClientsUrlRegex
+                                       rawResponseFilename:SUCCESSFUL_OK_WITH_CLIENTS_LIST_MULTIPLE_CLIENTS];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client listClientsPage:pageNumber
+                                    success:shouldReceiveClientListWithMultipleClientsInSuccessfulResponse(done)
+                                    failure:shouldNotExecuteFailureCallback(done)];
+                });
+            });
+            
+            it(@"fails due to bad request", ^{
+                [helper stubAuthenticatedRequestWithMethod:GET
+                                                  urlRegex:listClientsUrlRegex
+                                       rawResponseFilename:BAD_REQUEST_WITH_ERRORS_FILENAME];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client listClientsPage:pageNumber
+                                    success:shouldNotExecuteSuccessCallback(done)
+                                    failure:shouldExecuteFailureCallbackWithMessage(BAD_REQUEST_ERROR_MESSAGE, done)];
                 });
             });
         });

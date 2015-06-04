@@ -11,6 +11,10 @@
 
 + (RKMapping *)clientCredentialsMapping;
 
++ (RKMapping *)clientMapping;
+
++ (RKMapping *)clientListMapping;
+
 + (RKMapping *)userMapping;
 
 + (RKMapping *)userListMapping;

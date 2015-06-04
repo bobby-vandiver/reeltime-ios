@@ -264,6 +264,11 @@
 		718A0BF01A4DA87900137C49 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 718A0BEE1A4DA87900137C49 /* LaunchScreen.xib */; };
 		718BC4C41ACB7F8E00C1257F /* RTImagePNGSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 718BC4C31ACB7F8E00C1257F /* RTImagePNGSerialization.m */; };
 		718CFFCA1A6C007C00B418F9 /* RTAccountRegistration.m in Sources */ = {isa = PBXBuildFile; fileRef = 718CFFC91A6C007C00B418F9 /* RTAccountRegistration.m */; };
+		718F43F21B20C79800732ACE /* RTClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 718F43F11B20C79800732ACE /* RTClient.m */; };
+		718F43F51B20CCAF00732ACE /* RTClientList.m in Sources */ = {isa = PBXBuildFile; fileRef = 718F43F41B20CCAF00732ACE /* RTClientList.m */; };
+		718F43FA1B20D21000732ACE /* client-list-multiple-clients.txt in Resources */ = {isa = PBXBuildFile; fileRef = 718F43F71B20D21000732ACE /* client-list-multiple-clients.txt */; };
+		718F43FB1B20D21000732ACE /* client-list-no-clients.txt in Resources */ = {isa = PBXBuildFile; fileRef = 718F43F81B20D21000732ACE /* client-list-no-clients.txt */; };
+		718F43FC1B20D21000732ACE /* client-list-one-client.txt in Resources */ = {isa = PBXBuildFile; fileRef = 718F43F91B20D21000732ACE /* client-list-one-client.txt */; };
 		7190DABA1A5CC55D00BDCE4C /* RTCurrentUserStoreSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7190DAB91A5CC55D00BDCE4C /* RTCurrentUserStoreSpec.m */; };
 		7196FBF91B07F80000E13359 /* RTResetPasswordInteractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7196FBF81B07F80000E13359 /* RTResetPasswordInteractorSpec.m */; };
 		719B35DB1A51012E00FFD543 /* RTClientAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 719B35DA1A51012E00FFD543 /* RTClientAssembly.m */; };
@@ -771,6 +776,13 @@
 		718BC4C31ACB7F8E00C1257F /* RTImagePNGSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTImagePNGSerialization.m; sourceTree = "<group>"; };
 		718CFFC81A6C007C00B418F9 /* RTAccountRegistration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTAccountRegistration.h; path = "ReelTime-iOS/Common/Model/RTAccountRegistration.h"; sourceTree = SOURCE_ROOT; };
 		718CFFC91A6C007C00B418F9 /* RTAccountRegistration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTAccountRegistration.m; path = "ReelTime-iOS/Common/Model/RTAccountRegistration.m"; sourceTree = SOURCE_ROOT; };
+		718F43F01B20C79800732ACE /* RTClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTClient.h; path = "ReelTime-iOS/Common/Model/RTClient.h"; sourceTree = SOURCE_ROOT; };
+		718F43F11B20C79800732ACE /* RTClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTClient.m; path = "ReelTime-iOS/Common/Model/RTClient.m"; sourceTree = SOURCE_ROOT; };
+		718F43F31B20CCAF00732ACE /* RTClientList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTClientList.h; path = "ReelTime-iOS/Common/Model/RTClientList.h"; sourceTree = SOURCE_ROOT; };
+		718F43F41B20CCAF00732ACE /* RTClientList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTClientList.m; path = "ReelTime-iOS/Common/Model/RTClientList.m"; sourceTree = SOURCE_ROOT; };
+		718F43F71B20D21000732ACE /* client-list-multiple-clients.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "client-list-multiple-clients.txt"; sourceTree = "<group>"; };
+		718F43F81B20D21000732ACE /* client-list-no-clients.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "client-list-no-clients.txt"; sourceTree = "<group>"; };
+		718F43F91B20D21000732ACE /* client-list-one-client.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "client-list-one-client.txt"; sourceTree = "<group>"; };
 		7190DAB91A5CC55D00BDCE4C /* RTCurrentUserStoreSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTCurrentUserStoreSpec.m; sourceTree = "<group>"; };
 		7196FBF81B07F80000E13359 /* RTResetPasswordInteractorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTResetPasswordInteractorSpec.m; sourceTree = "<group>"; };
 		719B35D91A51012E00FFD543 /* RTClientAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTClientAssembly.h; sourceTree = "<group>"; };
@@ -2029,6 +2041,7 @@
 		717215C01A865C8E0002ECC7 /* ServerJSONResponses */ = {
 			isa = PBXGroup;
 			children = (
+				718F43F61B20D21000732ACE /* Client */,
 				711FF4B51AA20CEC00E11BDE /* CommonResponses */,
 				717215C51A865C8E0002ECC7 /* Newsfeed */,
 				712698131AA3EC0900E7066B /* Reel */,
@@ -2159,6 +2172,16 @@
 				718A0BFA1A4DA87900137C49 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		718F43F61B20D21000732ACE /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				718F43F71B20D21000732ACE /* client-list-multiple-clients.txt */,
+				718F43F81B20D21000732ACE /* client-list-no-clients.txt */,
+				718F43F91B20D21000732ACE /* client-list-one-client.txt */,
+			);
+			path = Client;
 			sourceTree = "<group>";
 		};
 		71921C031A54E1490003A42F /* FakeObjects */ = {
@@ -2333,8 +2356,12 @@
 				71647BDD1A7E817000F44996 /* RTActivity.m */,
 				711C5DE51A8D657F007652FC /* RTActivityType.h */,
 				714DDE671B0C136300D96F74 /* RTCallback.h */,
+				718F43F01B20C79800732ACE /* RTClient.h */,
+				718F43F11B20C79800732ACE /* RTClient.m */,
 				713D7A461A509ACC00754A06 /* RTClientCredentials.h */,
 				713D7A471A509ACC00754A06 /* RTClientCredentials.m */,
+				718F43F31B20CCAF00732ACE /* RTClientList.h */,
+				718F43F41B20CCAF00732ACE /* RTClientList.m */,
 				71647BE11A7EA68C00F44996 /* RTNewsfeed.h */,
 				71647BE21A7EA68C00F44996 /* RTNewsfeed.m */,
 				71C5C0A41A55EAE700CAAFAC /* RTOAuth2Token.h */,
@@ -2601,13 +2628,16 @@
 				711FF4BA1AA20CEC00E11BDE /* bad-request-with-errors.txt in Resources */,
 				712D5A221AA7FB720041DD24 /* not-found-with-errors.txt in Resources */,
 				7112EF491AA915BC00BC7731 /* user-list-multiple-users.txt in Resources */,
+				718F43FB1B20D21000732ACE /* client-list-no-clients.txt in Resources */,
 				712698191AA3ECEB00E7066B /* reel-list-no-reels.txt in Resources */,
+				718F43FC1B20D21000732ACE /* client-list-one-client.txt in Resources */,
 				717215D31A865C8E0002ECC7 /* token-bad-client-credentials.txt in Resources */,
 				711FF4BD1AA20CEC00E11BDE /* successful-ok-with-no-body.txt in Resources */,
 				717215D11A865C8E0002ECC7 /* newsfeed-no-activities.txt in Resources */,
 				717215D51A865C8E0002ECC7 /* token-successful.txt in Resources */,
 				7112EF571AA9395300BC7731 /* video-list-no-videos.txt in Resources */,
 				717215D21A865C8E0002ECC7 /* newsfeed-one-activity.txt in Resources */,
+				718F43FA1B20D21000732ACE /* client-list-multiple-clients.txt in Resources */,
 				711FF4BF1AA20D2600E11BDE /* successful-created-with-no-body.txt in Resources */,
 				711FF4BB1AA20CEC00E11BDE /* server-internal-error.txt in Resources */,
 				712698171AA3EC4400E7066B /* single-reel.txt in Resources */,
@@ -2722,6 +2752,7 @@
 				714843031AEC108D001B885A /* RTDeviceRegistrationWireframe.m in Sources */,
 				71386E601AD36C01009D064C /* RTVideoDescription.m in Sources */,
 				713DE8461B0926E100A5BBF0 /* RTAccountRegistrationErrorCodeToErrorMessageMapping.m in Sources */,
+				718F43F51B20CCAF00732ACE /* RTClientList.m in Sources */,
 				713CF1D31AE2A4E6003E2F89 /* RTThumbnailSupport.m in Sources */,
 				717D926D1A5B722300EAB6BF /* NSError+RTError.m in Sources */,
 				717215A41A86590D0002ECC7 /* RTAccountRegistrationValidator.m in Sources */,
@@ -2790,6 +2821,7 @@
 				718BC4C41ACB7F8E00C1257F /* RTImagePNGSerialization.m in Sources */,
 				714DDE5B1B0C0D0100D96F74 /* RTChangePasswordInteractor.m in Sources */,
 				71331A301A880B0100912B5F /* RTNewsfeedWireframe.m in Sources */,
+				718F43F21B20C79800732ACE /* RTClient.m in Sources */,
 				717970041AB7B92E00A0B9B5 /* UITableView+LastVisible.m in Sources */,
 				7129C9CF1B0ECA7E0087B0E8 /* RTChangePasswordServerErrorMapping.m in Sources */,
 				713DE84F1B092B4C00A5BBF0 /* RTResetPasswordErrorCodeToErrorMessageMapping.m in Sources */,

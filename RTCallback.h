@@ -14,6 +14,9 @@
 @class RTAccountRegistration;
 @class RTNewsfeed;
 
+@class RTClient;
+@class RTClientList;
+
 @class RTReel;
 @class RTReelList;
 
@@ -34,6 +37,9 @@ typedef void (^TokenErrorCallback)(RTOAuth2TokenError *tokenError);
 
 typedef void (^ClientCredentialsCallback)(RTClientCredentials *clientCredentials);
 typedef void (^NewsfeedCallback)(RTNewsfeed *newsfeed);
+
+typedef void (^ClientCallback)(RTClient *client);
+typedef void (^ClientListCallback)(RTClientList *clientList);
 
 typedef void (^ReelCallback)(RTReel *reel);
 typedef void (^ReelListCallback)(RTReelList *reelList);

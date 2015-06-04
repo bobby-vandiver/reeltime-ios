@@ -18,6 +18,10 @@
 - (void)removeAccountWithSuccess:(NoArgsCallback)success
                          failure:(NoArgsCallback)failure;
 
+- (void)listClientsPage:(NSUInteger)page
+                success:(ClientListCallback)success
+                failure:(ServerErrorsCallback)failure;
+
 - (void)registerClientWithClientName:(NSString *)clientName
                      userCredentials:(RTUserCredentials *)userCredentials
                              success:(ClientCredentialsCallback)success

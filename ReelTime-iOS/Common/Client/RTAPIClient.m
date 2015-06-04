@@ -83,6 +83,16 @@ static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read 
                                         failure:failure];
 }
 
+- (void)listClientsPage:(NSUInteger)page
+                success:(ClientListCallback)success
+                failure:(ServerErrorsCallback)failure {
+    NSDictionary *parameters = [self parametersWithPage:page];
+    [self.httpClient authenticatedGetForPath:API_LIST_CLIENTS
+                              withParameters:parameters
+                                     success:success
+                                     failure:failure];
+}
+
 - (void)registerClientWithClientName:(NSString *)clientName
                      userCredentials:(RTUserCredentials *)userCredentials
                              success:(ClientCredentialsCallback)success

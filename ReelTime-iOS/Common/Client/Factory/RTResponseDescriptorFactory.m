@@ -50,6 +50,19 @@
                                       statusCode:403];
 }
 
++ (RKResponseDescriptor *)listClientsDescriptor {
+    return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory clientListMapping]
+                                                        method:RKRequestMethodGET
+                                                   pathPattern:API_LIST_CLIENTS
+                                                    statusCode:200];
+}
+
++ (RKResponseDescriptor *)listClientsErrorDescriptor {
+    return [self serverErrorsDescriptorForMethod:RKRequestMethodGET
+                                            path:API_LIST_CLIENTS
+                                      statusCode:400];
+}
+
 + (RKResponseDescriptor *)clientRegistrationDescriptor {
     return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory clientCredentialsMapping]
                                                         method:RKRequestMethodPOST

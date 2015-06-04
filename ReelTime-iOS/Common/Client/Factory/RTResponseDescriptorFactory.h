@@ -12,6 +12,9 @@
 + (RKResponseDescriptor *)accountRemovalDescriptor;
 + (RKResponseDescriptor *)accountRemovalErrorDescriptor;
 
++ (RKResponseDescriptor *)listClientsDescriptor;
++ (RKResponseDescriptor *)listClientsErrorDescriptor;
+
 + (RKResponseDescriptor *)clientRegistrationDescriptor;
 + (RKResponseDescriptor *)clientRegistrationErrorDescriptor;
 

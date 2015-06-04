@@ -6,6 +6,9 @@
 #import "RTServerErrors.h"
 #import "RTClientCredentials.h"
 
+#import "RTClient.h"
+#import "RTClientList.h"
+
 #import "RTUser.h"
 #import "RTUserList.h"
 
@@ -55,6 +58,24 @@
                                                   @"client_id":         @"clientId",
                                                   @"client_secret":     @"clientSecret"
                                                   }];
+    return mapping;
+}
+
++ (RKMapping *)clientMapping {
+    RKObjectMapping *mapping = [RKObjectMapping mappingForClass:[RTClient class]];
+    [mapping addAttributeMappingsFromDictionary:@{
+                                                  @"client_id":         @"clientId",
+                                                  @"client_name":       @"clientName"
+                                                  }];
+    return mapping;
+}
+
++ (RKMapping *)clientListMapping {
+    RKObjectMapping *mapping = [RKObjectMapping mappingForClass:[RTClientList class]];
+    RKRelationshipMapping *clientMapping = [RKRelationshipMapping relationshipMappingFromKeyPath:@"clients"
+                                                                                       toKeyPath:@"clients"
+                                                                                     withMapping:[self clientMapping]];
+    [mapping addPropertyMapping:clientMapping];
     return mapping;
 }
 

@@ -7,6 +7,9 @@
 #import "RTServerErrors.h"
 #import "RTClientCredentials.h"
 
+#import "RTClient.h"
+#import "RTClientList.h"
+
 #import "RTUser.h"
 #import "RTUserList.h"
 
@@ -25,6 +28,16 @@ SpecBegin(RTRestAPIMappingFactory)
 
 describe(@"API Mapping", ^{
 
+    __block NSDictionary *clientResponse1 = @{
+                                              @"client_id": @"cid1",
+                                              @"client_name": @"client1"
+                                              };
+    
+    __block NSDictionary *clientResponse2 = @{
+                                              @"client_id": @"cid2",
+                                              @"client_name": @"client2"
+                                              };
+   
     __block NSDictionary *userResponse1 = @{
                                            @"username": @"someone",
                                            @"display_name": @"some display",
@@ -171,6 +184,96 @@ describe(@"API Mapping", ^{
                                                                                                      ]]];
         [mappingTest performMapping];
         [mappingTest verify];
+    });
+    
+    it(@"client", ^{
+        RKMapping *mapping = [RTRestAPIMappingFactory clientMapping];
+        NSDictionary *response = @{
+                                   @"client_id": @"5bdee758-cf71-4cd5-9bd9-aded45ce9964",
+                                   @"client_name": @"iPhone 6"
+                                   };
+        
+        RTClient *client = [[RTClient alloc] init];
+        RKMappingTest *mappingTest = [RKMappingTest testForMapping:mapping
+                                                      sourceObject:response
+                                                 destinationObject:client];
+        
+        [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:@"client_id"
+                                                                                destinationKeyPath:@"clientId"
+                                                                                             value:@"5bdee758-cf71-4cd5-9bd9-aded45ce9964"]];
+        
+        [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:@"client_name"
+                                                                                destinationKeyPath:@"clientName"
+                                                                                             value:@"iPhone 6"]];
+        
+        [mappingTest performMapping];
+        [mappingTest verify];
+    });
+    
+    describe(@"clietn list", ^{
+        it(@"no clients in list", ^{
+            RKMapping *mapping = [RTRestAPIMappingFactory clientListMapping];
+            NSDictionary *response = @{@"clients": @[]};
+            
+            RTClientList *clientList = [[RTClientList alloc] init];
+            RKMappingTest *mappingTest = [RKMappingTest testForMapping:mapping
+                                                          sourceObject:response
+                                                     destinationObject:clientList];
+            
+            [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:@"clients"
+                                                                                    destinationKeyPath:@"clients"
+                                                                                                 value:@[]]];
+            [mappingTest performMapping];
+            [mappingTest verify];
+        });
+        
+        it(@"has one client in list", ^{
+            RKMapping *mapping = [RTRestAPIMappingFactory clientListMapping];
+            NSDictionary *response = @{@"clients": @[clientResponse1]};
+            
+            RTClientList *clientList = [[RTClientList alloc] init];
+            RKMappingTest *mappingTest = [RKMappingTest testForMapping:mapping
+                                                          sourceObject:response
+                                                     destinationObject:clientList];
+            
+            [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:@"clients"
+                                                                                    destinationKeyPath:@"clients"]];
+            
+            [mappingTest performMapping];
+            [mappingTest verify];
+            
+            expect(clientList.clients).to.haveCountOf(1);
+            
+            RTClient *first = clientList.clients[0];
+            expect(first.clientId).to.equal(clientResponse1[@"client_id"]);
+            expect(first.clientName).to.equal(clientResponse1[@"client_name"]);
+        });
+        
+        it(@"has multiple users in list", ^{
+            RKMapping *mapping = [RTRestAPIMappingFactory clientListMapping];
+            NSDictionary *response = @{@"clients": @[clientResponse1, clientResponse2]};
+            
+            RTClientList *clientList = [[RTClientList alloc] init];
+            RKMappingTest *mappingTest = [RKMappingTest testForMapping:mapping
+                                                          sourceObject:response
+                                                     destinationObject:clientList];
+            
+            [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:@"clients"
+                                                                                    destinationKeyPath:@"clients"]];
+            
+            [mappingTest performMapping];
+            [mappingTest verify];
+            
+            expect(clientList.clients).to.haveCountOf(2);
+            
+            RTClient *first = clientList.clients[0];
+            expect(first.clientId).to.equal(clientResponse1[@"client_id"]);
+            expect(first.clientName).to.equal(clientResponse1[@"client_name"]);
+            
+            RTClient *second = clientList.clients[1];
+            expect(second.clientId).to.equal(clientResponse2[@"client_id"]);
+            expect(second.clientName).to.equal(clientResponse2[@"client_name"]);
+        });
     });
     
     it(@"client credentials", ^{
