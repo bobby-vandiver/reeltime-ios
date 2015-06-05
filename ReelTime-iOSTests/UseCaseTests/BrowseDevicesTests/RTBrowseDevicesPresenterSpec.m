@@ -1,32 +1,32 @@
 #import "RTTestCommon.h"
 
-#import "RTBrowseClientsPresenter.h"
+#import "RTBrowseDevicesPresenter.h"
 
-#import "RTBrowseClientsView.h"
+#import "RTBrowseDevicesView.h"
 #import "RTPagedListInteractor.h"
 
 #import "RTClient.h"
 #import "RTClientDescription.h"
 
-SpecBegin(RTBrowseClientsPresenter)
+SpecBegin(RTBrowseDevicesPresenter)
 
 describe(@"browse clients presenter", ^{
 
-    __block RTBrowseClientsPresenter *presenter;
+    __block RTBrowseDevicesPresenter *presenter;
     
-    __block id<RTBrowseClientsView> view;
+    __block id<RTBrowseDevicesView> view;
     __block RTPagedListInteractor *interactor;
     
     beforeEach(^{
-        view = mockProtocol(@protocol(RTBrowseClientsView));
+        view = mockProtocol(@protocol(RTBrowseDevicesView));
         interactor = mock([RTPagedListInteractor class]);
         
-        presenter = [[RTBrowseClientsPresenter alloc] initWithView:view
+        presenter = [[RTBrowseDevicesPresenter alloc] initWithView:view
                                                         interactor:interactor];
     });
     
     describe(@"list reset", ^{
-        it(@"should notify view th currently displayed descriptions should be removed", ^{
+        it(@"should notify view that currently displayed descriptions should be removed", ^{
             [presenter clearPresentedItems];
             [verify(view) clearClientDescriptions];
         });

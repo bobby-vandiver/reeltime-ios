@@ -1,10 +1,10 @@
-#import "RTBrowseClientsDataManager.h"
+#import "RTBrowseDevicesDataManager.h"
 #import "RTAPIClient.h"
 
 #import "RTClientList.h"
 #import "RTLogging.h"
 
-@implementation RTBrowseClientsDataManager
+@implementation RTBrowseDevicesDataManager
 
 - (void)retrievePage:(NSUInteger)page
             callback:(ArrayCallback)callback {

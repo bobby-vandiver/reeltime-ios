@@ -163,9 +163,7 @@
 		71427E1F1A8C100200E2C53F /* RTActivitySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71427E1E1A8C100200E2C53F /* RTActivitySpec.m */; };
 		714350561ACCC87E000C8B63 /* RTThumbnailSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 714350551ACCC87E000C8B63 /* RTThumbnailSpec.m */; };
 		7144176E1AE09DF700BFA01C /* RTPagedListViewScrollHandlerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7144176D1AE09DF700BFA01C /* RTPagedListViewScrollHandlerSpec.m */; };
-		714553ED1B21263500525212 /* RTBrowseClientsPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 714553EC1B21263500525212 /* RTBrowseClientsPresenter.m */; };
 		714553F11B2128F200525212 /* RTClientDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 714553F01B2128F200525212 /* RTClientDescription.m */; };
-		714553F31B212AFF00525212 /* RTBrowseClientsPresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 714553F21B212AFF00525212 /* RTBrowseClientsPresenterSpec.m */; };
 		7145C6211A8AE645006A77DE /* RTUserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7145C6201A8AE645006A77DE /* RTUserSpec.m */; };
 		7145C6231A8AF07F006A77DE /* RTReelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7145C6221A8AF07F006A77DE /* RTReelSpec.m */; };
 		7145DF5D1AAC0356006BC157 /* small.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 7145DF5C1AAC0356006BC157 /* small.mp4 */; };
@@ -196,8 +194,6 @@
 		715555A71A9ED1F40091F432 /* RTAuthenticationAwareHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 715555A61A9ED1F40091F432 /* RTAuthenticationAwareHTTPClient.m */; };
 		71565A261A98ED5900AE1C43 /* RTApplicationWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 71565A251A98ED5900AE1C43 /* RTApplicationWireframe.m */; };
 		71565A291A98EDE900AE1C43 /* RTApplicationWireframeSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71565A281A98EDE900AE1C43 /* RTApplicationWireframeSpec.m */; };
-		715739F71B2103480050705D /* RTBrowseClientsDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 715739F61B2103480050705D /* RTBrowseClientsDataManager.m */; };
-		715739FA1B2103E20050705D /* RTBrowseClientsDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 715739F91B2103E20050705D /* RTBrowseClientsDataManagerSpec.m */; };
 		7157589C1A9A2D6C002859DE /* RTApplicationTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7157589B1A9A2D6C002859DE /* RTApplicationTabBarController.m */; };
 		7157589F1A9A3B93002859DE /* RTEndpointPathFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7157589E1A9A3B93002859DE /* RTEndpointPathFormatter.m */; };
 		715A32A11AAA64800008F9CF /* accepted-video.txt in Resources */ = {isa = PBXBuildFile; fileRef = 715A32A01AAA64800008F9CF /* accepted-video.txt */; };
@@ -252,6 +248,10 @@
 		717215D31A865C8E0002ECC7 /* token-bad-client-credentials.txt in Resources */ = {isa = PBXBuildFile; fileRef = 717215CA1A865C8E0002ECC7 /* token-bad-client-credentials.txt */; };
 		717215D41A865C8E0002ECC7 /* token-bad-user-credentials.txt in Resources */ = {isa = PBXBuildFile; fileRef = 717215CB1A865C8E0002ECC7 /* token-bad-user-credentials.txt */; };
 		717215D51A865C8E0002ECC7 /* token-successful.txt in Resources */ = {isa = PBXBuildFile; fileRef = 717215CC1A865C8E0002ECC7 /* token-successful.txt */; };
+		7178962E1B22698600E4F571 /* RTBrowseDevicesDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 717896291B22698600E4F571 /* RTBrowseDevicesDataManager.m */; };
+		7178962F1B22698600E4F571 /* RTBrowseDevicesPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7178962C1B22698600E4F571 /* RTBrowseDevicesPresenter.m */; };
+		717896331B226B8C00E4F571 /* RTBrowseDevicesDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 717896311B226B8C00E4F571 /* RTBrowseDevicesDataManagerSpec.m */; };
+		717896341B226B8C00E4F571 /* RTBrowseDevicesPresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 717896321B226B8C00E4F571 /* RTBrowseDevicesPresenterSpec.m */; };
 		717970041AB7B92E00A0B9B5 /* UITableView+LastVisible.m in Sources */ = {isa = PBXBuildFile; fileRef = 717970031AB7B92E00A0B9B5 /* UITableView+LastVisible.m */; };
 		717970071AB7C60D00A0B9B5 /* RTPagedListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 717970061AB7C60D00A0B9B5 /* RTPagedListViewController.m */; };
 		717970091AB7C83800A0B9B5 /* RTPagedListViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 717970081AB7C83800A0B9B5 /* RTPagedListViewControllerSpec.m */; };
@@ -587,12 +587,8 @@
 		71427E1E1A8C100200E2C53F /* RTActivitySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTActivitySpec.m; sourceTree = "<group>"; };
 		714350551ACCC87E000C8B63 /* RTThumbnailSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTThumbnailSpec.m; sourceTree = "<group>"; };
 		7144176D1AE09DF700BFA01C /* RTPagedListViewScrollHandlerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTPagedListViewScrollHandlerSpec.m; sourceTree = "<group>"; };
-		714553EB1B21263500525212 /* RTBrowseClientsPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseClientsPresenter.h; sourceTree = "<group>"; };
-		714553EC1B21263500525212 /* RTBrowseClientsPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseClientsPresenter.m; sourceTree = "<group>"; };
-		714553EE1B21275000525212 /* RTBrowseClientsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseClientsView.h; sourceTree = "<group>"; };
 		714553EF1B2128F200525212 /* RTClientDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTClientDescription.h; sourceTree = "<group>"; };
 		714553F01B2128F200525212 /* RTClientDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTClientDescription.m; sourceTree = "<group>"; };
-		714553F21B212AFF00525212 /* RTBrowseClientsPresenterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseClientsPresenterSpec.m; sourceTree = "<group>"; };
 		7145C6201A8AE645006A77DE /* RTUserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTUserSpec.m; sourceTree = "<group>"; };
 		7145C6221A8AF07F006A77DE /* RTReelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTReelSpec.m; sourceTree = "<group>"; };
 		7145DF5C1AAC0356006BC157 /* small.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = small.mp4; sourceTree = "<group>"; };
@@ -650,9 +646,6 @@
 		71565A241A98ED5900AE1C43 /* RTApplicationWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTApplicationWireframe.h; sourceTree = "<group>"; };
 		71565A251A98ED5900AE1C43 /* RTApplicationWireframe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTApplicationWireframe.m; sourceTree = "<group>"; };
 		71565A281A98EDE900AE1C43 /* RTApplicationWireframeSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTApplicationWireframeSpec.m; sourceTree = "<group>"; };
-		715739F51B2103480050705D /* RTBrowseClientsDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseClientsDataManager.h; sourceTree = "<group>"; };
-		715739F61B2103480050705D /* RTBrowseClientsDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseClientsDataManager.m; sourceTree = "<group>"; };
-		715739F91B2103E20050705D /* RTBrowseClientsDataManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseClientsDataManagerSpec.m; sourceTree = "<group>"; };
 		7157589A1A9A2D6C002859DE /* RTApplicationTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTApplicationTabBarController.h; sourceTree = "<group>"; };
 		7157589B1A9A2D6C002859DE /* RTApplicationTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTApplicationTabBarController.m; sourceTree = "<group>"; };
 		7157589D1A9A3B93002859DE /* RTEndpointPathFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTEndpointPathFormatter.h; sourceTree = "<group>"; };
@@ -759,6 +752,13 @@
 		717215CA1A865C8E0002ECC7 /* token-bad-client-credentials.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "token-bad-client-credentials.txt"; sourceTree = "<group>"; };
 		717215CB1A865C8E0002ECC7 /* token-bad-user-credentials.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "token-bad-user-credentials.txt"; sourceTree = "<group>"; };
 		717215CC1A865C8E0002ECC7 /* token-successful.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "token-successful.txt"; sourceTree = "<group>"; };
+		717896281B22698600E4F571 /* RTBrowseDevicesDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseDevicesDataManager.h; sourceTree = "<group>"; };
+		717896291B22698600E4F571 /* RTBrowseDevicesDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseDevicesDataManager.m; sourceTree = "<group>"; };
+		7178962B1B22698600E4F571 /* RTBrowseDevicesPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseDevicesPresenter.h; sourceTree = "<group>"; };
+		7178962C1B22698600E4F571 /* RTBrowseDevicesPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseDevicesPresenter.m; sourceTree = "<group>"; };
+		7178962D1B22698600E4F571 /* RTBrowseDevicesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseDevicesView.h; sourceTree = "<group>"; };
+		717896311B226B8C00E4F571 /* RTBrowseDevicesDataManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseDevicesDataManagerSpec.m; sourceTree = "<group>"; };
+		717896321B226B8C00E4F571 /* RTBrowseDevicesPresenterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseDevicesPresenterSpec.m; sourceTree = "<group>"; };
 		717970021AB7B90E00A0B9B5 /* UITableView+LastVisible.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+LastVisible.h"; sourceTree = "<group>"; };
 		717970031AB7B92E00A0B9B5 /* UITableView+LastVisible.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+LastVisible.m"; sourceTree = "<group>"; };
 		717970051AB7C60D00A0B9B5 /* RTPagedListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTPagedListViewController.h; sourceTree = "<group>"; };
@@ -1760,43 +1760,6 @@
 			path = ApplicationTests;
 			sourceTree = "<group>";
 		};
-		715739F21B2102B00050705D /* BrowseClients */ = {
-			isa = PBXGroup;
-			children = (
-				715739F31B2102F50050705D /* Persistence */,
-				715739F41B2103030050705D /* Presentation */,
-			);
-			path = BrowseClients;
-			sourceTree = "<group>";
-		};
-		715739F31B2102F50050705D /* Persistence */ = {
-			isa = PBXGroup;
-			children = (
-				715739F51B2103480050705D /* RTBrowseClientsDataManager.h */,
-				715739F61B2103480050705D /* RTBrowseClientsDataManager.m */,
-			);
-			path = Persistence;
-			sourceTree = "<group>";
-		};
-		715739F41B2103030050705D /* Presentation */ = {
-			isa = PBXGroup;
-			children = (
-				714553EB1B21263500525212 /* RTBrowseClientsPresenter.h */,
-				714553EC1B21263500525212 /* RTBrowseClientsPresenter.m */,
-				714553EE1B21275000525212 /* RTBrowseClientsView.h */,
-			);
-			path = Presentation;
-			sourceTree = "<group>";
-		};
-		715739F81B2103CD0050705D /* BrowseClientsTests */ = {
-			isa = PBXGroup;
-			children = (
-				715739F91B2103E20050705D /* RTBrowseClientsDataManagerSpec.m */,
-				714553F21B212AFF00525212 /* RTBrowseClientsPresenterSpec.m */,
-			);
-			path = BrowseClientsTests;
-			sourceTree = "<group>";
-		};
 		715C54091AD4A1C7009C755F /* Domain */ = {
 			isa = PBXGroup;
 			children = (
@@ -2124,6 +2087,43 @@
 				717215CC1A865C8E0002ECC7 /* token-successful.txt */,
 			);
 			path = Token;
+			sourceTree = "<group>";
+		};
+		717896261B22698600E4F571 /* BrowseDevices */ = {
+			isa = PBXGroup;
+			children = (
+				717896271B22698600E4F571 /* Persistence */,
+				7178962A1B22698600E4F571 /* Presentation */,
+			);
+			path = BrowseDevices;
+			sourceTree = "<group>";
+		};
+		717896271B22698600E4F571 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				717896281B22698600E4F571 /* RTBrowseDevicesDataManager.h */,
+				717896291B22698600E4F571 /* RTBrowseDevicesDataManager.m */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		7178962A1B22698600E4F571 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				7178962B1B22698600E4F571 /* RTBrowseDevicesPresenter.h */,
+				7178962C1B22698600E4F571 /* RTBrowseDevicesPresenter.m */,
+				7178962D1B22698600E4F571 /* RTBrowseDevicesView.h */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		717896301B226B8C00E4F571 /* BrowseDevicesTests */ = {
+			isa = PBXGroup;
+			children = (
+				717896311B226B8C00E4F571 /* RTBrowseDevicesDataManagerSpec.m */,
+				717896321B226B8C00E4F571 /* RTBrowseDevicesPresenterSpec.m */,
+			);
+			path = BrowseDevicesTests;
 			sourceTree = "<group>";
 		};
 		717A4B751A534E7B004C2BC1 /* Factory */ = {
@@ -2473,7 +2473,7 @@
 			children = (
 				71166E131A6C36C800EAE5BA /* AccountRegistration */,
 				71B6BA561AD036A400723941 /* BrowseAll */,
-				715739F21B2102B00050705D /* BrowseClients */,
+				717896261B22698600E4F571 /* BrowseDevices */,
 				7114DF771AB4B97B003B1D2E /* BrowseReels */,
 				71403D1C1AB3C687007CB8B9 /* BrowseUsers */,
 				713A238B1AB4EB260098CE48 /* BrowseVideos */,
@@ -2508,7 +2508,7 @@
 			children = (
 				71166E101A6C2F3900EAE5BA /* AccountRegistrationTests */,
 				71B6BA6A1AD038FD00723941 /* BrowseAllTests */,
-				715739F81B2103CD0050705D /* BrowseClientsTests */,
+				717896301B226B8C00E4F571 /* BrowseDevicesTests */,
 				7114DF7D1AB4B9EA003B1D2E /* BrowseReelsTests */,
 				71403D211AB3C775007CB8B9 /* BrowseUsersTests */,
 				713A23901AB4EB7C0098CE48 /* BrowseVideosTests */,
@@ -2813,10 +2813,10 @@
 				717D926D1A5B722300EAB6BF /* NSError+RTError.m in Sources */,
 				717215A41A86590D0002ECC7 /* RTAccountRegistrationValidator.m in Sources */,
 				71073CF61A83060700BE6E19 /* RKObjectManager+IncludeHeaders.m in Sources */,
+				7178962F1B22698600E4F571 /* RTBrowseDevicesPresenter.m in Sources */,
 				7164D7281ACB6B48005D02FE /* RTThumbnail.m in Sources */,
 				7116908F1A6AB3970031578E /* RTSecurityAssembly.m in Sources */,
 				713D7A4C1A50A33300754A06 /* RTAPIClient.m in Sources */,
-				715739F71B2103480050705D /* RTBrowseClientsDataManager.m in Sources */,
 				711FF4CB1AA2657200E11BDE /* RKResponseDescriptor+SingleStatusCode.m in Sources */,
 				719B35E31A51150E00FFD543 /* RTErrorConstants.m in Sources */,
 				717A4B781A534EBD004C2BC1 /* RTResponseDescriptorFactory.m in Sources */,
@@ -2856,6 +2856,7 @@
 				713CF1DC1AE2AD53003E2F89 /* RTDeviceHardware.m in Sources */,
 				713DBD6A1B136E6900CB4796 /* RTChangeDisplayNameDataManager.m in Sources */,
 				711690A21A6B00210031578E /* RTApplicationAssembly.m in Sources */,
+				7178962E1B22698600E4F571 /* RTBrowseDevicesDataManager.m in Sources */,
 				712CA1501AE5E2EE005185F0 /* RTNoOpReelWireframe.m in Sources */,
 				71C5C0AF1A55EAE700CAAFAC /* RTUserCredentials.m in Sources */,
 				715C54121AD4A34E009C755F /* RTUserSummaryDataManager.m in Sources */,
@@ -2883,7 +2884,6 @@
 				7129C9CF1B0ECA7E0087B0E8 /* RTChangePasswordServerErrorMapping.m in Sources */,
 				713DE84F1B092B4C00A5BBF0 /* RTResetPasswordErrorCodeToErrorMessageMapping.m in Sources */,
 				71C5C0AC1A55EAE700CAAFAC /* RTOAuth2Token.m in Sources */,
-				714553ED1B21263500525212 /* RTBrowseClientsPresenter.m in Sources */,
 				716973EB1B151E79006F2788 /* RTChangeDisplayNameErrorCodeToErrorMessageMapping.m in Sources */,
 				717215BF1A865B7B0002ECC7 /* RTNewsfeedDataManager.m in Sources */,
 				719B35DE1A51140900FFD543 /* RTRestAPI.m in Sources */,
@@ -3011,7 +3011,7 @@
 				711C5DE41A8D5BA9007652FC /* RTStringWithEmbeddedLinksSpec.m in Sources */,
 				7196FBF91B07F80000E13359 /* RTResetPasswordInteractorSpec.m in Sources */,
 				7153EE0F1AED7E2C00000D1C /* RTDeviceRegistrationInteractorSpec.m in Sources */,
-				715739FA1B2103E20050705D /* RTBrowseClientsDataManagerSpec.m in Sources */,
+				717896331B226B8C00E4F571 /* RTBrowseDevicesDataManagerSpec.m in Sources */,
 				71194C201A81B5D300904A06 /* EXPMatchers+ErrorMessages.m in Sources */,
 				71403D2D1AB3D18C007CB8B9 /* RTBrowseUsersPresenterSpec.m in Sources */,
 				7190DABA1A5CC55D00BDCE4C /* RTCurrentUserStoreSpec.m in Sources */,
@@ -3025,7 +3025,7 @@
 				71386E501AD34F8F009D064C /* RTBrowseUserReelsDataManagerDelegateSpec.m in Sources */,
 				71647BE81A7F185500F44996 /* RTClientDelegateSpec.m in Sources */,
 				7108D78D1B13FBB9000451AD /* RTChangeDisplayNameInteractorSpec.m in Sources */,
-				714553F31B212AFF00525212 /* RTBrowseClientsPresenterSpec.m in Sources */,
+				717896341B226B8C00E4F571 /* RTBrowseDevicesPresenterSpec.m in Sources */,
 				713CF1CF1AE28F7D003E2F89 /* RTArrayDataSourceSpec.m in Sources */,
 				71194C231A81C37900904A06 /* EXPMatchers+beReel.m in Sources */,
 				717D849A1AFF8AC40043797C /* RTDeviceRegistrationViewControllerSpec.m in Sources */,

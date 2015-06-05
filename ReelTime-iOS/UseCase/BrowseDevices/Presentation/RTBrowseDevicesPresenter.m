@@ -1,18 +1,18 @@
-#import "RTBrowseClientsPresenter.h"
-#import "RTBrowseClientsView.h"
+#import "RTBrowseDevicesPresenter.h"
+#import "RTBrowseDevicesView.h"
 
 #import "RTClient.h"
 #import "RTClientDescription.h"
 
-@interface RTBrowseClientsPresenter ()
+@interface RTBrowseDevicesPresenter ()
 
-@property id<RTBrowseClientsView> view;
+@property id<RTBrowseDevicesView> view;
 
 @end
 
-@implementation RTBrowseClientsPresenter
+@implementation RTBrowseDevicesPresenter
 
-- (instancetype)initWithView:(id<RTBrowseClientsView>)view
+- (instancetype)initWithView:(id<RTBrowseDevicesView>)view
                   interactor:(RTPagedListInteractor *)interactor {
     self = [super initWithDelegate:self interactor:interactor];
     if (self) {

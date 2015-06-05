@@ -2,7 +2,7 @@
 
 @class RTClientDescription;
 
-@protocol RTBrowseClientsView <NSObject>
+@protocol RTBrowseDevicesView <NSObject>
 
 - (void)showClientDescription:(RTClientDescription *)description;
 

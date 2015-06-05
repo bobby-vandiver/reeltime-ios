@@ -1,16 +1,16 @@
 #import "RTTestCommon.h"
 
-#import "RTBrowseClientsDataManager.h"
+#import "RTBrowseDevicesDataManager.h"
 #import "RTAPIClient.h"
 
 #import "RTClient.h"
 #import "RTClientList.h"
 
-SpecBegin(RTBrowseClientsDataManager)
+SpecBegin(RTBrowseDevicesDataManager)
 
-describe(@"browse clients data manager", ^{
+describe(@"browse devices data manager", ^{
     
-    __block RTBrowseClientsDataManager *dataManager;
+    __block RTBrowseDevicesDataManager *dataManager;
     __block RTAPIClient *client;
     
     __block MKTArgumentCaptor *successCaptor;
@@ -18,7 +18,7 @@ describe(@"browse clients data manager", ^{
     
     beforeEach(^{
         client = mock([RTAPIClient class]);
-        dataManager = [[RTBrowseClientsDataManager alloc] initWithClient:client];
+        dataManager = [[RTBrowseDevicesDataManager alloc] initWithClient:client];
         
         successCaptor = [[MKTArgumentCaptor alloc] init];
         failureCaptor = [[MKTArgumentCaptor alloc] init];
