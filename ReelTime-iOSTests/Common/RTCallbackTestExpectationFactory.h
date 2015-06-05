@@ -8,7 +8,11 @@
 + (RTCallbackTestExpectation *)clientCredentialsCallbackForClientId:(NSString *)clientId
                                                        clientSecret:(NSString *)clientSecret;
 
++ (RTCallbackTestExpectation *)clientListCallback;
+
 + (RTCallbackTestExpectation *)userCallback;
+
++ (RTCallbackTestExpectation *)serverErrorsCallback;
 
 + (RTCallbackTestExpectation *)noArgsCallback;
 

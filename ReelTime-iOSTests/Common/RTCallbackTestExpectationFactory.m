@@ -21,37 +21,33 @@
     return expectation;
 }
 
++ (RTCallbackTestExpectation *)clientListCallback {
+    return [self createCallback];
+}
+
 + (RTCallbackTestExpectation *)userCallback {
-    RTCallbackTestExpectation *expectation = [RTCallbackTestExpectation callbackTestExpectation];
-    
-    __weak RTCallbackTestExpectation *weak = expectation;
-    
-    expectation.callback = ^(RTUser *user) {
-        [weak wasExecuted];
-    };
-    
-    return expectation;
+    return [self createCallback];
+}
+
++ (RTCallbackTestExpectation *)serverErrorsCallback {
+    return [self createCallback];
 }
 
 + (RTCallbackTestExpectation *)noArgsCallback {
-    RTCallbackTestExpectation *expectation = [RTCallbackTestExpectation callbackTestExpectation];
-    
-    __weak RTCallbackTestExpectation *weak = expectation;
-    
-    expectation.callback = ^(id ignored) {
-        [weak wasExecuted];
-    };
-    
-    return expectation;
+    return [self createCallback];
 }
 
 + (RTCallbackTestExpectation *)arrayCallback {
+    return [self createCallback];
+}
+
++ (RTCallbackTestExpectation *)createCallback {
     RTCallbackTestExpectation *expectation = [RTCallbackTestExpectation callbackTestExpectation];
     
     __weak RTCallbackTestExpectation *weak = expectation;
     
-    expectation.callback = ^(NSArray *items) {
-        weak.callbackArguments = items;
+    expectation.callback = ^(id args) {
+        weak.callbackArguments = args;
         [weak wasExecuted];
     };
     

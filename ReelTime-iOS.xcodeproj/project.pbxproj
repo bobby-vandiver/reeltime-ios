@@ -193,6 +193,8 @@
 		715555A71A9ED1F40091F432 /* RTAuthenticationAwareHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 715555A61A9ED1F40091F432 /* RTAuthenticationAwareHTTPClient.m */; };
 		71565A261A98ED5900AE1C43 /* RTApplicationWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 71565A251A98ED5900AE1C43 /* RTApplicationWireframe.m */; };
 		71565A291A98EDE900AE1C43 /* RTApplicationWireframeSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71565A281A98EDE900AE1C43 /* RTApplicationWireframeSpec.m */; };
+		715739F71B2103480050705D /* RTBrowseClientsDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 715739F61B2103480050705D /* RTBrowseClientsDataManager.m */; };
+		715739FA1B2103E20050705D /* RTBrowseClientsDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 715739F91B2103E20050705D /* RTBrowseClientsDataManagerSpec.m */; };
 		7157589C1A9A2D6C002859DE /* RTApplicationTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7157589B1A9A2D6C002859DE /* RTApplicationTabBarController.m */; };
 		7157589F1A9A3B93002859DE /* RTEndpointPathFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7157589E1A9A3B93002859DE /* RTEndpointPathFormatter.m */; };
 		715A32A11AAA64800008F9CF /* accepted-video.txt in Resources */ = {isa = PBXBuildFile; fileRef = 715A32A01AAA64800008F9CF /* accepted-video.txt */; };
@@ -639,6 +641,9 @@
 		71565A241A98ED5900AE1C43 /* RTApplicationWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTApplicationWireframe.h; sourceTree = "<group>"; };
 		71565A251A98ED5900AE1C43 /* RTApplicationWireframe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTApplicationWireframe.m; sourceTree = "<group>"; };
 		71565A281A98EDE900AE1C43 /* RTApplicationWireframeSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTApplicationWireframeSpec.m; sourceTree = "<group>"; };
+		715739F51B2103480050705D /* RTBrowseClientsDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseClientsDataManager.h; sourceTree = "<group>"; };
+		715739F61B2103480050705D /* RTBrowseClientsDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseClientsDataManager.m; sourceTree = "<group>"; };
+		715739F91B2103E20050705D /* RTBrowseClientsDataManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseClientsDataManagerSpec.m; sourceTree = "<group>"; };
 		7157589A1A9A2D6C002859DE /* RTApplicationTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTApplicationTabBarController.h; sourceTree = "<group>"; };
 		7157589B1A9A2D6C002859DE /* RTApplicationTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTApplicationTabBarController.m; sourceTree = "<group>"; };
 		7157589D1A9A3B93002859DE /* RTEndpointPathFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTEndpointPathFormatter.h; sourceTree = "<group>"; };
@@ -1744,6 +1749,39 @@
 			path = ApplicationTests;
 			sourceTree = "<group>";
 		};
+		715739F21B2102B00050705D /* BrowseClients */ = {
+			isa = PBXGroup;
+			children = (
+				715739F31B2102F50050705D /* Persistence */,
+				715739F41B2103030050705D /* Presentation */,
+			);
+			path = BrowseClients;
+			sourceTree = "<group>";
+		};
+		715739F31B2102F50050705D /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				715739F51B2103480050705D /* RTBrowseClientsDataManager.h */,
+				715739F61B2103480050705D /* RTBrowseClientsDataManager.m */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		715739F41B2103030050705D /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		715739F81B2103CD0050705D /* BrowseClientsTests */ = {
+			isa = PBXGroup;
+			children = (
+				715739F91B2103E20050705D /* RTBrowseClientsDataManagerSpec.m */,
+			);
+			path = BrowseClientsTests;
+			sourceTree = "<group>";
+		};
 		715C54091AD4A1C7009C755F /* Domain */ = {
 			isa = PBXGroup;
 			children = (
@@ -2420,6 +2458,7 @@
 			children = (
 				71166E131A6C36C800EAE5BA /* AccountRegistration */,
 				71B6BA561AD036A400723941 /* BrowseAll */,
+				715739F21B2102B00050705D /* BrowseClients */,
 				7114DF771AB4B97B003B1D2E /* BrowseReels */,
 				71403D1C1AB3C687007CB8B9 /* BrowseUsers */,
 				713A238B1AB4EB260098CE48 /* BrowseVideos */,
@@ -2454,6 +2493,7 @@
 			children = (
 				71166E101A6C2F3900EAE5BA /* AccountRegistrationTests */,
 				71B6BA6A1AD038FD00723941 /* BrowseAllTests */,
+				715739F81B2103CD0050705D /* BrowseClientsTests */,
 				7114DF7D1AB4B9EA003B1D2E /* BrowseReelsTests */,
 				71403D211AB3C775007CB8B9 /* BrowseUsersTests */,
 				713A23901AB4EB7C0098CE48 /* BrowseVideosTests */,
@@ -2760,6 +2800,7 @@
 				7164D7281ACB6B48005D02FE /* RTThumbnail.m in Sources */,
 				7116908F1A6AB3970031578E /* RTSecurityAssembly.m in Sources */,
 				713D7A4C1A50A33300754A06 /* RTAPIClient.m in Sources */,
+				715739F71B2103480050705D /* RTBrowseClientsDataManager.m in Sources */,
 				711FF4CB1AA2657200E11BDE /* RKResponseDescriptor+SingleStatusCode.m in Sources */,
 				719B35E31A51150E00FFD543 /* RTErrorConstants.m in Sources */,
 				717A4B781A534EBD004C2BC1 /* RTResponseDescriptorFactory.m in Sources */,
@@ -2953,6 +2994,7 @@
 				711C5DE41A8D5BA9007652FC /* RTStringWithEmbeddedLinksSpec.m in Sources */,
 				7196FBF91B07F80000E13359 /* RTResetPasswordInteractorSpec.m in Sources */,
 				7153EE0F1AED7E2C00000D1C /* RTDeviceRegistrationInteractorSpec.m in Sources */,
+				715739FA1B2103E20050705D /* RTBrowseClientsDataManagerSpec.m in Sources */,
 				71194C201A81B5D300904A06 /* EXPMatchers+ErrorMessages.m in Sources */,
 				71403D2D1AB3D18C007CB8B9 /* RTBrowseUsersPresenterSpec.m in Sources */,
 				7190DABA1A5CC55D00BDCE4C /* RTCurrentUserStoreSpec.m in Sources */,
