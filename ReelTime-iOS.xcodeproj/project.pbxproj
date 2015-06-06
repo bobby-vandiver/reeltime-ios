@@ -615,7 +615,7 @@
 		714DDE611B0C0E3C00D96F74 /* RTChangePasswordPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTChangePasswordPresenter.h; sourceTree = "<group>"; };
 		714DDE621B0C0E3C00D96F74 /* RTChangePasswordPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTChangePasswordPresenter.m; sourceTree = "<group>"; };
 		714DDE651B0C0F0500D96F74 /* RTChangePasswordDataManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTChangePasswordDataManagerSpec.m; sourceTree = "<group>"; };
-		714DDE671B0C136300D96F74 /* RTCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCallback.h; sourceTree = SOURCE_ROOT; };
+		714DDE671B0C136300D96F74 /* RTCallbacks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCallbacks.h; sourceTree = SOURCE_ROOT; };
 		714DDE6B1B0C187500D96F74 /* RTCallbackTestExpectation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCallbackTestExpectation.h; sourceTree = "<group>"; };
 		714DDE6C1B0C187500D96F74 /* RTCallbackTestExpectation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTCallbackTestExpectation.m; sourceTree = "<group>"; };
 		715370E71A88442700D3355B /* RTActivityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTActivityCell.h; sourceTree = "<group>"; };
@@ -2403,7 +2403,7 @@
 				71647BDC1A7E817000F44996 /* RTActivity.h */,
 				71647BDD1A7E817000F44996 /* RTActivity.m */,
 				711C5DE51A8D657F007652FC /* RTActivityType.h */,
-				714DDE671B0C136300D96F74 /* RTCallback.h */,
+				714DDE671B0C136300D96F74 /* RTCallbacks.h */,
 				718F43F01B20C79800732ACE /* RTClient.h */,
 				718F43F11B20C79800732ACE /* RTClient.m */,
 				713D7A461A509ACC00754A06 /* RTClientCredentials.h */,
