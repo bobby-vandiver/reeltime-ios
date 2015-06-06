@@ -9,6 +9,31 @@
 
 @implementation RTCallbackTestExpectation
 
++ (instancetype)argsCallbackTextExpectation {
+    RTCallbackTestExpectation *expectation = [self callbackTestExpectation];
+    
+    __weak RTCallbackTestExpectation *weakExpectation = expectation;
+    
+    expectation.argsCallback = ^(id args) {
+        weakExpectation.callbackArguments = args;
+        [weakExpectation wasExecuted];
+    };
+    
+    return expectation;
+}
+
++ (instancetype)noArgsCallbackTestExpectation {
+    RTCallbackTestExpectation *expectation = [self callbackTestExpectation];
+    
+    __weak RTCallbackTestExpectation *weakExpectation = expectation;
+    
+    expectation.noArgsCallback = ^{
+        [weakExpectation wasExecuted];
+    };
+    
+    return expectation;
+}
+
 + (instancetype)callbackTestExpectation {
     return [[RTCallbackTestExpectation alloc] init];
 }

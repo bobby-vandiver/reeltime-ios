@@ -19,8 +19,8 @@
 
 - (void)saveClientCredentials:(RTClientCredentials *)clientCredentials
                   forUsername:(NSString *)username
-                      success:(void (^)())success
-                      failure:(void (^)(NSError *))failure {
+                      success:(NoArgsCallback)success
+                      failure:(ErrorCallback)failure {
     NSError *error;
     BOOL successful = [self.clientCredentialsStore storeClientCredentials:clientCredentials
                                                               forUsername:username

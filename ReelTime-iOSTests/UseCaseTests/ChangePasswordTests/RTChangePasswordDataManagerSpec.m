@@ -25,8 +25,8 @@ describe(@"change password data manager", ^{
         client = mock([RTAPIClient class]);
         dataManager = [[RTChangePasswordDataManager alloc] initWithClient:client];
 
-        changed = [RTCallbackTestExpectationFactory noArgsCallback];
-        notChanged = [RTCallbackTestExpectationFactory arrayCallback];
+        changed = [RTCallbackTestExpectation noArgsCallbackTestExpectation];
+        notChanged = [RTCallbackTestExpectation argsCallbackTextExpectation];
         
         successCaptor = [[MKTArgumentCaptor alloc] init];
         failureCaptor = [[MKTArgumentCaptor alloc] init];
@@ -35,8 +35,8 @@ describe(@"change password data manager", ^{
     describe(@"changing password", ^{
         beforeEach(^{
             [dataManager changePassword:password
-                                changed:changed.callback
-                             notChanged:notChanged.callback];
+                                changed:changed.noArgsCallback
+                             notChanged:notChanged.argsCallback];
 
             [verify(client) changePassword:password
                                    success:[successCaptor capture]

@@ -31,11 +31,11 @@ describe(@"confirm account data manager", ^{
         __block RTCallbackTestExpectation *sendEmailFailed;
         
         beforeEach(^{
-            sendEmail = [RTCallbackTestExpectationFactory noArgsCallback];
-            sendEmailFailed = [RTCallbackTestExpectationFactory arrayCallback];
+            sendEmail = [RTCallbackTestExpectation noArgsCallbackTestExpectation];
+            sendEmailFailed = [RTCallbackTestExpectation argsCallbackTextExpectation];
             
-            [dataManager submitRequestForConfirmationEmailWithEmailSent:sendEmail.callback
-                                                            emailFailed:sendEmailFailed.callback];
+            [dataManager submitRequestForConfirmationEmailWithEmailSent:sendEmail.noArgsCallback
+                                                            emailFailed:sendEmailFailed.argsCallback];
             
             [verify(client) sendAccountConfirmationEmailWithSuccess:[successCaptor capture]
                                                             failure:[failureCaptor capture]];
@@ -76,12 +76,12 @@ describe(@"confirm account data manager", ^{
         __block RTCallbackTestExpectation *confirmationFailure;
         
         beforeEach(^{
-            confirmationSuccess = [RTCallbackTestExpectationFactory noArgsCallback];
-            confirmationFailure = [RTCallbackTestExpectationFactory arrayCallback];
+            confirmationSuccess = [RTCallbackTestExpectation noArgsCallbackTestExpectation];
+            confirmationFailure = [RTCallbackTestExpectation argsCallbackTextExpectation];
             
             [dataManager confirmAccountWithCode:confirmationCode
-                            confirmationSuccess:confirmationSuccess.callback
-                                        failure:confirmationFailure.callback];
+                            confirmationSuccess:confirmationSuccess.noArgsCallback
+                                        failure:confirmationFailure.argsCallback];
             
             [verify(client) confirmAccountWithCode:confirmationCode
                                            success:[successCaptor capture]

@@ -1,4 +1,5 @@
 #import <Foundation/Foundation.h>
+#import "RTCallback.h"
 
 @class RTClientCredentials;
 @class RTClientCredentialsStore;
@@ -9,7 +10,7 @@
 
 - (void)saveClientCredentials:(RTClientCredentials *)clientCredentials
                   forUsername:(NSString *)username
-                      success:(void (^)())success
-                      failure:(void (^)(NSError *error))failure;
+                      success:(NoArgsCallback)success
+                      failure:(ErrorCallback)failure;
 
 @end

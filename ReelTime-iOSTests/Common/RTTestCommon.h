@@ -20,7 +20,6 @@
 #import "RTErrorPresentationChecker.h"
 #import "RTFieldErrorPresentationChecker.h"
 
-#import "RTCallbackTestExpectationFactory.h"
 #import "RTCallbackTestExpectation.h"
 
 // Constants used in multiple tests

@@ -53,3 +53,4 @@ typedef void (^VideoListCallback)(RTVideoList *videoList);
 typedef void (^ThumbnailCallback)(RTThumbnail *thumbnail);
 
 typedef void (^ArrayCallback)(NSArray *items);
+typedef void (^ErrorCallback)(NSError *error);

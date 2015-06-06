@@ -20,12 +20,12 @@ describe(@"user summary data manager", ^{
         __block RTCallbackTestExpectation *userNotFound;
         
         beforeEach(^{
-            userFound = [RTCallbackTestExpectationFactory userCallback];
-            userNotFound = [RTCallbackTestExpectationFactory noArgsCallback];
+            userFound = [RTCallbackTestExpectation argsCallbackTextExpectation];
+            userNotFound = [RTCallbackTestExpectation noArgsCallbackTestExpectation];
 
             [dataManager fetchUserForUsername:username
-                                    userFound:userFound.callback
-                                 userNotFound:userNotFound.callback];
+                                    userFound:userFound.argsCallback
+                                 userNotFound:userNotFound.noArgsCallback];
         });
         
         it(@"should pass user to callback on success", ^{

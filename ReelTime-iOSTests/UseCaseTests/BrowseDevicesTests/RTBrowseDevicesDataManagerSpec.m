@@ -28,8 +28,8 @@ describe(@"browse devices data manager", ^{
         __block RTCallbackTestExpectation *pageRetrieved;
         
         beforeEach(^{
-            pageRetrieved = [RTCallbackTestExpectationFactory arrayCallback];
-            [dataManager retrievePage:pageNumber callback:pageRetrieved.callback];
+            pageRetrieved = [RTCallbackTestExpectation argsCallbackTextExpectation];
+            [dataManager retrievePage:pageNumber callback:pageRetrieved.argsCallback];
  
             [verify(client) listClientsPage:pageNumber
                                     success:[successCaptor capture]

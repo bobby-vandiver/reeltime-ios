@@ -47,12 +47,12 @@ describe(@"reset password data manager", ^{
         __block RTCallbackTestExpectation *sendEmailFailed;
         
         beforeEach(^{
-            sendEmail = [RTCallbackTestExpectationFactory noArgsCallback];
-            sendEmailFailed = [RTCallbackTestExpectationFactory arrayCallback];
+            sendEmail = [RTCallbackTestExpectation noArgsCallbackTestExpectation];
+            sendEmailFailed = [RTCallbackTestExpectation argsCallbackTextExpectation];
             
             [dataManager submitRequestForResetPasswordEmailForUsername:username
-                                                             emailSent:sendEmail.callback
-                                                           emailFailed:sendEmailFailed.callback];
+                                                             emailSent:sendEmail.noArgsCallback
+                                                           emailFailed:sendEmailFailed.argsCallback];
             
             [verify(client) sendResetPasswordEmailForUsername:username
                                                       success:[successCaptor capture]
@@ -95,11 +95,10 @@ describe(@"reset password data manager", ^{
         __block RTCallbackTestExpectation *resetFailure;
 
         beforeEach(^{
-            resetSuccess = [RTCallbackTestExpectationFactory noArgsCallback];
-            resetSuccessWithCredentials = [RTCallbackTestExpectationFactory clientCredentialsCallbackForClientId:clientId
-                                                                                                    clientSecret:clientSecret];
+            resetSuccess = [RTCallbackTestExpectation noArgsCallbackTestExpectation];
+            resetSuccessWithCredentials = [RTCallbackTestExpectation argsCallbackTextExpectation];
 
-            resetFailure = [RTCallbackTestExpectationFactory arrayCallback];
+            resetFailure = [RTCallbackTestExpectation argsCallbackTextExpectation];
         });
         
         void (^initTestHelper)() = ^{
@@ -151,8 +150,8 @@ describe(@"reset password data manager", ^{
                                             forUsername:username
                                       clientCredentials:clientCredentials
                                                withCode:resetCode
-                                   passwordResetSuccess:resetSuccess.callback
-                                                failure:resetFailure.callback];
+                                   passwordResetSuccess:resetSuccess.noArgsCallback
+                                                failure:resetFailure.argsCallback];
                 
                 [verify(client) resetPasswordWithCode:resetCode
                                       userCredentials:[userCredentialsCaptor capture]
@@ -180,8 +179,8 @@ describe(@"reset password data manager", ^{
                                             forUsername:username
                                                withCode:resetCode
                         registerNewClientWithClientName:clientName
-                                   passwordResetSuccess:resetSuccessWithCredentials.callback
-                                                failure:resetFailure.callback];
+                                   passwordResetSuccess:resetSuccessWithCredentials.argsCallback
+                                                failure:resetFailure.argsCallback];
                 
                 [verify(client) resetPasswordWithCode:resetCode
                                       userCredentials:[userCredentialsCaptor capture]
@@ -195,7 +194,13 @@ describe(@"reset password data manager", ^{
             it(@"should invoke callback on success", ^{
                 ClientCredentialsCallback successCallback = [successCaptor value];
                 successCallback(clientCredentials);
+
                 [resetSuccessWithCredentials expectCallbackExecuted];
+                expect(resetSuccessWithCredentials.callbackArguments).to.beAnInstanceOf([RTClientCredentials class]);
+                
+                RTClientCredentials *credentials = resetSuccessWithCredentials.callbackArguments;
+                expect(credentials.clientId).to.equal(clientId);
+                expect(credentials.clientSecret).to.equal(clientSecret);
             });
             
             it(@"should map server errors to domain specific errors", ^{

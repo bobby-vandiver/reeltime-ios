@@ -238,16 +238,14 @@ describe(@"reset password interactor", ^{
                 });
                 
                 it(@"failed to save client credentials on reset", ^{
-                    NoArgsCallback failureCallback = [failureCaptor value];
-                    failureCallback();
+                    ErrorCallback failureCallback = [failureCaptor value];
+                    NSError *error = [RTErrorFactory resetPasswordErrorWithCode:RTResetPasswordErrorFailedToSaveClientCredentials];
+
+                    failureCallback(error);
                     expectResetError(RTResetPasswordErrorFailedToSaveClientCredentials);
                 });
             });
         });
-    });
-    
-    describe(@"data manager delegate", ^{
-
     });
 });
 

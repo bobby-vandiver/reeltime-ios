@@ -25,8 +25,8 @@ describe(@"change display name data manager", ^{
         client = mock([RTAPIClient class]);
         dataManager =  [[RTChangeDisplayNameDataManager alloc] initWithClient:client];
         
-        changed = [RTCallbackTestExpectationFactory noArgsCallback];
-        notChanged = [RTCallbackTestExpectationFactory arrayCallback];
+        changed = [RTCallbackTestExpectation noArgsCallbackTestExpectation];
+        notChanged = [RTCallbackTestExpectation argsCallbackTextExpectation];
         
         successCaptor = [[MKTArgumentCaptor alloc] init];
         failureCaptor = [[MKTArgumentCaptor alloc] init];
@@ -35,8 +35,8 @@ describe(@"change display name data manager", ^{
     describe(@"changing display name", ^{
         beforeEach(^{
             [dataManager changeDisplayName:displayName
-                                   changed:changed.callback
-                                notChanged:notChanged.callback];
+                                   changed:changed.noArgsCallback
+                                notChanged:notChanged.argsCallback];
             
             [verify(client) changeDisplayName:displayName
                                       success:[successCaptor capture]

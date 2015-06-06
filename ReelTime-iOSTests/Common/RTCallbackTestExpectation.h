@@ -1,14 +1,18 @@
 #import <Foundation/Foundation.h>
 
-typedef void (^TestCallback)(id);
+typedef void (^TestArgsCallback)(id);
+typedef void (^TestNoArgsCallback)();
 
 @interface RTCallbackTestExpectation : NSObject
 
-@property (nonatomic, copy) TestCallback callback;
+@property (nonatomic, copy) TestArgsCallback argsCallback;
+@property (nonatomic, copy) TestNoArgsCallback noArgsCallback;
 
 @property id callbackArguments;
 
-+ (instancetype)callbackTestExpectation;
++ (instancetype)noArgsCallbackTestExpectation;
+
++ (instancetype)argsCallbackTextExpectation;
 
 - (void)wasExecuted;
 
