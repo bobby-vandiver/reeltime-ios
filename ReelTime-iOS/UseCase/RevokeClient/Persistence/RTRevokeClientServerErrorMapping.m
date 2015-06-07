@@ -9,7 +9,8 @@
 
 - (NSDictionary *)errorMessageToErrorCodeMapping {
     return @{
-             @"[client_id] is required": @(RTRevokeClientErrorMissingClientId)
+             @"[client_id] is required": @(RTRevokeClientErrorMissingClientId),
+             @"Requested client was not found": @(RTRevokeClientErrorUnknownClient)
              };
 }
 

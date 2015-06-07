@@ -65,7 +65,9 @@ describe(@"revoke client data manager", ^{
         it(@"should map server errors to domain specific errors", ^{
             NSDictionary *mapping = @{
                                       @"[client_id] is required":
-                                          @(RTRevokeClientErrorMissingClientId)
+                                          @(RTRevokeClientErrorMissingClientId),
+                                      @"Requested client was not found":
+                                          @(RTRevokeClientErrorUnknownClient)
                                       };
             
             [helper expectForServerMessageToErrorCodeMapping:mapping];
