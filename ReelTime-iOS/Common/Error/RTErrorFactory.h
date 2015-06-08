@@ -9,6 +9,7 @@
 #import "RTLoginError.h"
 #import "RTPagedListError.h"
 #import "RTResetPasswordError.h"
+#import "RTRevokeClientError.h"
 #import "RTUserSummaryError.h"
 
 @interface RTErrorFactory : NSObject
@@ -37,6 +38,8 @@
 + (NSError *)pagedListErrorWithCode:(RTPagedListError)code;
 
 + (NSError *)resetPasswordErrorWithCode:(RTResetPasswordError)code;
+
++ (NSError *)revokeClientErrorWithCode:(RTRevokeClientError)code;
 
 + (NSError *)userSummaryErrorWithCode:(RTUserSummaryError)code;
 

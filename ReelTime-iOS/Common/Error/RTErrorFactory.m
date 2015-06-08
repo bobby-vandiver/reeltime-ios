@@ -50,6 +50,10 @@
     return [self errorWithDomain:RTResetPasswordErrorDomain code:code];
 }
 
++ (NSError *)revokeClientErrorWithCode:(RTRevokeClientError)code {
+    return [self errorWithDomain:RTRevokeClientErrorDomain code:code];
+}
+
 + (NSError *)userSummaryErrorWithCode:(RTUserSummaryError)code {
     return [self errorWithDomain:RTUserSummaryErrorDomain code:code];
 }
