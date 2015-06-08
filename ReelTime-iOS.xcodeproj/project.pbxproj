@@ -66,6 +66,8 @@
 		7126981B1AA3ED2200E7066B /* reel-list-one-reel.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7126981A1AA3ED2200E7066B /* reel-list-one-reel.txt */; };
 		712785021B0FFF610092A69F /* RTValidationTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 712785011B0FFF610092A69F /* RTValidationTestHelper.m */; };
 		7129691B1B250C53007916FD /* RTRevokeClientInteractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7129691A1B250C53007916FD /* RTRevokeClientInteractorSpec.m */; };
+		7129691E1B2523EB007916FD /* RTRevokeClientPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7129691D1B2523EB007916FD /* RTRevokeClientPresenter.m */; };
+		712969221B252594007916FD /* RTRevokeClientPresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 712969211B252594007916FD /* RTRevokeClientPresenterSpec.m */; };
 		7129C9CF1B0ECA7E0087B0E8 /* RTChangePasswordServerErrorMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 7129C9CE1B0ECA7E0087B0E8 /* RTChangePasswordServerErrorMapping.m */; };
 		7129C9D11B0ECFA40087B0E8 /* RTChangePasswordInteractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7129C9D01B0ECFA40087B0E8 /* RTChangePasswordInteractorSpec.m */; };
 		712B2BCA1AAFB17B0026258A /* RTPagedListInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 712B2BC61AAFB17B0026258A /* RTPagedListInteractor.m */; };
@@ -422,6 +424,10 @@
 		712785011B0FFF610092A69F /* RTValidationTestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTValidationTestHelper.m; sourceTree = "<group>"; };
 		712969191B250AAE007916FD /* RTRevokeClientInteractorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTRevokeClientInteractorDelegate.h; sourceTree = "<group>"; };
 		7129691A1B250C53007916FD /* RTRevokeClientInteractorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTRevokeClientInteractorSpec.m; sourceTree = "<group>"; };
+		7129691C1B2523EB007916FD /* RTRevokeClientPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTRevokeClientPresenter.h; sourceTree = "<group>"; };
+		7129691D1B2523EB007916FD /* RTRevokeClientPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTRevokeClientPresenter.m; sourceTree = "<group>"; };
+		7129691F1B252443007916FD /* RTRevokeClientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTRevokeClientView.h; sourceTree = "<group>"; };
+		712969211B252594007916FD /* RTRevokeClientPresenterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTRevokeClientPresenterSpec.m; sourceTree = "<group>"; };
 		7129C9CD1B0ECA7E0087B0E8 /* RTChangePasswordServerErrorMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTChangePasswordServerErrorMapping.h; sourceTree = "<group>"; };
 		7129C9CE1B0ECA7E0087B0E8 /* RTChangePasswordServerErrorMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTChangePasswordServerErrorMapping.m; sourceTree = "<group>"; };
 		7129C9D01B0ECFA40087B0E8 /* RTChangePasswordInteractorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTChangePasswordInteractorSpec.m; sourceTree = "<group>"; };
@@ -1003,6 +1009,9 @@
 		7114B7AD1B24C2960096F814 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				7129691C1B2523EB007916FD /* RTRevokeClientPresenter.h */,
+				7129691D1B2523EB007916FD /* RTRevokeClientPresenter.m */,
+				7129691F1B252443007916FD /* RTRevokeClientView.h */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -1399,6 +1408,7 @@
 			children = (
 				7134F1FB1B24C601001EBF4E /* RTRevokeClientDataManagerSpec.m */,
 				7129691A1B250C53007916FD /* RTRevokeClientInteractorSpec.m */,
+				712969211B252594007916FD /* RTRevokeClientPresenterSpec.m */,
 			);
 			path = RevokeClientTests;
 			sourceTree = "<group>";
@@ -2833,6 +2843,7 @@
 				7172159B1A8659050002ECC7 /* RTAccountRegistrationAssembly.m in Sources */,
 				7138A9291AFD5002007D3878 /* RTKeyboardAwareFormViewController.m in Sources */,
 				713DE84C1B092A0000A5BBF0 /* RTResetPasswordWireframe.m in Sources */,
+				7129691E1B2523EB007916FD /* RTRevokeClientPresenter.m in Sources */,
 				7136A53F1AA3652C0059DF43 /* RTUserList.m in Sources */,
 				7133EC5C1B17CE6100BC1CAE /* RTConfirmAccountInteractor.m in Sources */,
 				71C5C0B21A55EB3900CAAFAC /* RTOAuth2TokenStore.m in Sources */,
@@ -3049,6 +3060,7 @@
 				7170C86D1A59A98600C460BB /* RTKeyChainWrapperSpec.m in Sources */,
 				714843091AEC12C7001B885A /* RTDeviceRegistrationWireframeSpec.m in Sources */,
 				714DDE661B0C0F0500D96F74 /* RTChangePasswordDataManagerSpec.m in Sources */,
+				712969221B252594007916FD /* RTRevokeClientPresenterSpec.m in Sources */,
 				717A4B801A535942004C2BC1 /* RTClientSpec.m in Sources */,
 				713BCE041A5908E4000F2D96 /* RTOAuth2TokenStoreSpec.m in Sources */,
 				7153EDFB1AED171D00000D1C /* RTDeviceRegistrationDataManagerSpec.m in Sources */,
