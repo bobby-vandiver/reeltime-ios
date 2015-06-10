@@ -38,7 +38,7 @@
     
     if (valid) {
         [self.dataManager revokeClientWithClientId:clientId
-                                 revocationSuccees:[self revocationSuccessCallback]
+                                 revocationSuccees:[self revocationSuccessCallbackForClientId:clientId]
                                            failure:[self revocationFailureCallback]];
     }
     else {
@@ -54,9 +54,9 @@
     }
 }
 
-- (NoArgsCallback)revocationSuccessCallback {
+- (NoArgsCallback)revocationSuccessCallbackForClientId:(NSString *)clientId {
     return ^{
-        [self.delegate clientRevocationSucceeded];
+        [self.delegate clientRevocationSucceededForClientWithClientId:clientId];
     };
 }
 

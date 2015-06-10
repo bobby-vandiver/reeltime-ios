@@ -43,7 +43,7 @@ describe(@"revoke client interactor", ^{
             it(@"should notify delegate of success", ^{
                 NoArgsCallback callback = [successCaptor value];
                 callback();
-                [verify(delegate) clientRevocationSucceeded];
+                [verify(delegate) clientRevocationSucceededForClientWithClientId:clientId];
             });
             
             it(@"should notify delegate of failure", ^{

@@ -31,7 +31,7 @@
     [self.revokeClientInteractor revokeClientWithClientId:clientId];
 }
 
-- (void)clientRevocationSucceeded {
+- (void)clientRevocationSucceededForClientWithClientId:(NSString *)clientId {
     
 }
 

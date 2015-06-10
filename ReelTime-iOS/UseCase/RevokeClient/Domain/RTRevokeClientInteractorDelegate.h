@@ -2,7 +2,7 @@
 
 @protocol RTRevokeClientInteractorDelegate <NSObject>
 
-- (void)clientRevocationSucceeded;
+- (void)clientRevocationSucceededForClientWithClientId:(NSString *)clientId;
 
 - (void)clientRevocationFailedWithErrors:(NSArray *)errors;
 
