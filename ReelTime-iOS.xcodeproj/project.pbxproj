@@ -16,6 +16,8 @@
 		7108D78B1B13F96A000451AD /* RTChangeDisplayNameServerErrorMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 7108D78A1B13F96A000451AD /* RTChangeDisplayNameServerErrorMapping.m */; };
 		7108D78D1B13FBB9000451AD /* RTChangeDisplayNameInteractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7108D78C1B13FBB9000451AD /* RTChangeDisplayNameInteractorSpec.m */; };
 		710BB5F91ACDF6EE00F724C7 /* RTCountDownLatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 710BB5F81ACDF6EE00F724C7 /* RTCountDownLatch.m */; };
+		710C0A371B27BD66006209F4 /* RTManageDevicesPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 710C0A361B27BD66006209F4 /* RTManageDevicesPresenter.m */; };
+		710C0A3B1B27C00D006209F4 /* RTManageDevicesPresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 710C0A3A1B27C00D006209F4 /* RTManageDevicesPresenterSpec.m */; };
 		7112EF491AA915BC00BC7731 /* user-list-multiple-users.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7112EF481AA915BC00BC7731 /* user-list-multiple-users.txt */; };
 		7112EF4B1AA915CC00BC7731 /* user-list-no-users.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7112EF4A1AA915CC00BC7731 /* user-list-no-users.txt */; };
 		7112EF4D1AA915EF00BC7731 /* user-list-one-user.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7112EF4C1AA915EF00BC7731 /* user-list-one-user.txt */; };
@@ -66,8 +68,6 @@
 		7126981B1AA3ED2200E7066B /* reel-list-one-reel.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7126981A1AA3ED2200E7066B /* reel-list-one-reel.txt */; };
 		712785021B0FFF610092A69F /* RTValidationTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 712785011B0FFF610092A69F /* RTValidationTestHelper.m */; };
 		7129691B1B250C53007916FD /* RTRevokeClientInteractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7129691A1B250C53007916FD /* RTRevokeClientInteractorSpec.m */; };
-		7129691E1B2523EB007916FD /* RTRevokeClientPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7129691D1B2523EB007916FD /* RTRevokeClientPresenter.m */; };
-		712969221B252594007916FD /* RTRevokeClientPresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 712969211B252594007916FD /* RTRevokeClientPresenterSpec.m */; };
 		7129C9CF1B0ECA7E0087B0E8 /* RTChangePasswordServerErrorMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 7129C9CE1B0ECA7E0087B0E8 /* RTChangePasswordServerErrorMapping.m */; };
 		7129C9D11B0ECFA40087B0E8 /* RTChangePasswordInteractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7129C9D01B0ECFA40087B0E8 /* RTChangePasswordInteractorSpec.m */; };
 		712B2BCA1AAFB17B0026258A /* RTPagedListInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 712B2BC61AAFB17B0026258A /* RTPagedListInteractor.m */; };
@@ -255,9 +255,7 @@
 		717215D41A865C8E0002ECC7 /* token-bad-user-credentials.txt in Resources */ = {isa = PBXBuildFile; fileRef = 717215CB1A865C8E0002ECC7 /* token-bad-user-credentials.txt */; };
 		717215D51A865C8E0002ECC7 /* token-successful.txt in Resources */ = {isa = PBXBuildFile; fileRef = 717215CC1A865C8E0002ECC7 /* token-successful.txt */; };
 		7178962E1B22698600E4F571 /* RTBrowseDevicesDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 717896291B22698600E4F571 /* RTBrowseDevicesDataManager.m */; };
-		7178962F1B22698600E4F571 /* RTBrowseDevicesPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7178962C1B22698600E4F571 /* RTBrowseDevicesPresenter.m */; };
 		717896331B226B8C00E4F571 /* RTBrowseDevicesDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 717896311B226B8C00E4F571 /* RTBrowseDevicesDataManagerSpec.m */; };
-		717896341B226B8C00E4F571 /* RTBrowseDevicesPresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 717896321B226B8C00E4F571 /* RTBrowseDevicesPresenterSpec.m */; };
 		717970041AB7B92E00A0B9B5 /* UITableView+LastVisible.m in Sources */ = {isa = PBXBuildFile; fileRef = 717970031AB7B92E00A0B9B5 /* UITableView+LastVisible.m */; };
 		717970071AB7C60D00A0B9B5 /* RTPagedListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 717970061AB7C60D00A0B9B5 /* RTPagedListViewController.m */; };
 		717970091AB7C83800A0B9B5 /* RTPagedListViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 717970081AB7C83800A0B9B5 /* RTPagedListViewControllerSpec.m */; };
@@ -346,6 +344,10 @@
 		7108D78C1B13FBB9000451AD /* RTChangeDisplayNameInteractorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTChangeDisplayNameInteractorSpec.m; sourceTree = "<group>"; };
 		710BB5F71ACDF6EE00F724C7 /* RTCountDownLatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCountDownLatch.h; sourceTree = "<group>"; };
 		710BB5F81ACDF6EE00F724C7 /* RTCountDownLatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTCountDownLatch.m; sourceTree = "<group>"; };
+		710C0A351B27BD66006209F4 /* RTManageDevicesPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTManageDevicesPresenter.h; sourceTree = "<group>"; };
+		710C0A361B27BD66006209F4 /* RTManageDevicesPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTManageDevicesPresenter.m; sourceTree = "<group>"; };
+		710C0A381B27BDC6006209F4 /* RTManageDevicesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTManageDevicesView.h; sourceTree = "<group>"; };
+		710C0A3A1B27C00D006209F4 /* RTManageDevicesPresenterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTManageDevicesPresenterSpec.m; sourceTree = "<group>"; };
 		7112EF481AA915BC00BC7731 /* user-list-multiple-users.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "user-list-multiple-users.txt"; sourceTree = "<group>"; };
 		7112EF4A1AA915CC00BC7731 /* user-list-no-users.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "user-list-no-users.txt"; sourceTree = "<group>"; };
 		7112EF4C1AA915EF00BC7731 /* user-list-one-user.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "user-list-one-user.txt"; sourceTree = "<group>"; };
@@ -424,10 +426,6 @@
 		712785011B0FFF610092A69F /* RTValidationTestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTValidationTestHelper.m; sourceTree = "<group>"; };
 		712969191B250AAE007916FD /* RTRevokeClientInteractorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTRevokeClientInteractorDelegate.h; sourceTree = "<group>"; };
 		7129691A1B250C53007916FD /* RTRevokeClientInteractorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTRevokeClientInteractorSpec.m; sourceTree = "<group>"; };
-		7129691C1B2523EB007916FD /* RTRevokeClientPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTRevokeClientPresenter.h; sourceTree = "<group>"; };
-		7129691D1B2523EB007916FD /* RTRevokeClientPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTRevokeClientPresenter.m; sourceTree = "<group>"; };
-		7129691F1B252443007916FD /* RTRevokeClientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTRevokeClientView.h; sourceTree = "<group>"; };
-		712969211B252594007916FD /* RTRevokeClientPresenterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTRevokeClientPresenterSpec.m; sourceTree = "<group>"; };
 		7129C9CD1B0ECA7E0087B0E8 /* RTChangePasswordServerErrorMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTChangePasswordServerErrorMapping.h; sourceTree = "<group>"; };
 		7129C9CE1B0ECA7E0087B0E8 /* RTChangePasswordServerErrorMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTChangePasswordServerErrorMapping.m; sourceTree = "<group>"; };
 		7129C9D01B0ECFA40087B0E8 /* RTChangePasswordInteractorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTChangePasswordInteractorSpec.m; sourceTree = "<group>"; };
@@ -772,11 +770,7 @@
 		717215CC1A865C8E0002ECC7 /* token-successful.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "token-successful.txt"; sourceTree = "<group>"; };
 		717896281B22698600E4F571 /* RTBrowseDevicesDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseDevicesDataManager.h; sourceTree = "<group>"; };
 		717896291B22698600E4F571 /* RTBrowseDevicesDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseDevicesDataManager.m; sourceTree = "<group>"; };
-		7178962B1B22698600E4F571 /* RTBrowseDevicesPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseDevicesPresenter.h; sourceTree = "<group>"; };
-		7178962C1B22698600E4F571 /* RTBrowseDevicesPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseDevicesPresenter.m; sourceTree = "<group>"; };
-		7178962D1B22698600E4F571 /* RTBrowseDevicesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseDevicesView.h; sourceTree = "<group>"; };
 		717896311B226B8C00E4F571 /* RTBrowseDevicesDataManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseDevicesDataManagerSpec.m; sourceTree = "<group>"; };
-		717896321B226B8C00E4F571 /* RTBrowseDevicesPresenterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseDevicesPresenterSpec.m; sourceTree = "<group>"; };
 		717970021AB7B90E00A0B9B5 /* UITableView+LastVisible.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+LastVisible.h"; sourceTree = "<group>"; };
 		717970031AB7B92E00A0B9B5 /* UITableView+LastVisible.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+LastVisible.m"; sourceTree = "<group>"; };
 		717970051AB7C60D00A0B9B5 /* RTPagedListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTPagedListViewController.h; sourceTree = "<group>"; };
@@ -962,6 +956,32 @@
 			path = Concurrency;
 			sourceTree = "<group>";
 		};
+		710C0A331B27BCA9006209F4 /* ManageDevices */ = {
+			isa = PBXGroup;
+			children = (
+				710C0A341B27BD19006209F4 /* Presentation */,
+			);
+			path = ManageDevices;
+			sourceTree = "<group>";
+		};
+		710C0A341B27BD19006209F4 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				710C0A351B27BD66006209F4 /* RTManageDevicesPresenter.h */,
+				710C0A361B27BD66006209F4 /* RTManageDevicesPresenter.m */,
+				710C0A381B27BDC6006209F4 /* RTManageDevicesView.h */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		710C0A391B27BFF5006209F4 /* ManageDevicesTests */ = {
+			isa = PBXGroup;
+			children = (
+				710C0A3A1B27C00D006209F4 /* RTManageDevicesPresenterSpec.m */,
+			);
+			path = ManageDevicesTests;
+			sourceTree = "<group>";
+		};
 		7112EF471AA9157800BC7731 /* User */ = {
 			isa = PBXGroup;
 			children = (
@@ -989,7 +1009,6 @@
 			isa = PBXGroup;
 			children = (
 				7114B7AE1B24C29E0096F814 /* Domain */,
-				7114B7AD1B24C2960096F814 /* Presentation */,
 				7114B7AC1B24C28D0096F814 /* Persistence */,
 			);
 			path = RevokeClient;
@@ -1004,16 +1023,6 @@
 				7134F1FE1B24CAEB001EBF4E /* RTRevokeClientServerErrorMapping.m */,
 			);
 			path = Persistence;
-			sourceTree = "<group>";
-		};
-		7114B7AD1B24C2960096F814 /* Presentation */ = {
-			isa = PBXGroup;
-			children = (
-				7129691C1B2523EB007916FD /* RTRevokeClientPresenter.h */,
-				7129691D1B2523EB007916FD /* RTRevokeClientPresenter.m */,
-				7129691F1B252443007916FD /* RTRevokeClientView.h */,
-			);
-			path = Presentation;
 			sourceTree = "<group>";
 		};
 		7114B7AE1B24C29E0096F814 /* Domain */ = {
@@ -1408,7 +1417,6 @@
 			children = (
 				7134F1FB1B24C601001EBF4E /* RTRevokeClientDataManagerSpec.m */,
 				7129691A1B250C53007916FD /* RTRevokeClientInteractorSpec.m */,
-				712969211B252594007916FD /* RTRevokeClientPresenterSpec.m */,
 			);
 			path = RevokeClientTests;
 			sourceTree = "<group>";
@@ -2161,7 +2169,6 @@
 			isa = PBXGroup;
 			children = (
 				717896271B22698600E4F571 /* Persistence */,
-				7178962A1B22698600E4F571 /* Presentation */,
 			);
 			path = BrowseDevices;
 			sourceTree = "<group>";
@@ -2175,21 +2182,10 @@
 			path = Persistence;
 			sourceTree = "<group>";
 		};
-		7178962A1B22698600E4F571 /* Presentation */ = {
-			isa = PBXGroup;
-			children = (
-				7178962B1B22698600E4F571 /* RTBrowseDevicesPresenter.h */,
-				7178962C1B22698600E4F571 /* RTBrowseDevicesPresenter.m */,
-				7178962D1B22698600E4F571 /* RTBrowseDevicesView.h */,
-			);
-			path = Presentation;
-			sourceTree = "<group>";
-		};
 		717896301B226B8C00E4F571 /* BrowseDevicesTests */ = {
 			isa = PBXGroup;
 			children = (
 				717896311B226B8C00E4F571 /* RTBrowseDevicesDataManagerSpec.m */,
-				717896321B226B8C00E4F571 /* RTBrowseDevicesPresenterSpec.m */,
 			);
 			path = BrowseDevicesTests;
 			sourceTree = "<group>";
@@ -2550,6 +2546,7 @@
 				7133EC531B17CC8300BC1CAE /* ConfirmAccount */,
 				714842FD1AEC1011001B885A /* DeviceRegistration */,
 				71D9478B1A4FC70B00401963 /* Login */,
+				710C0A331B27BCA9006209F4 /* ManageDevices */,
 				71073CF71A831BEF00BE6E19 /* Newsfeed */,
 				712B2BC21AAFB17B0026258A /* PagedList */,
 				716C45211B02E05400BA9834 /* ResetPassword */,
@@ -2586,6 +2583,7 @@
 				7133EC601B17D00B00BC1CAE /* ConfirmAccountTests */,
 				714843071AEC129F001B885A /* DeviceRegistrationTests */,
 				71D947961A4FCB2900401963 /* LoginTests */,
+				710C0A391B27BFF5006209F4 /* ManageDevicesTests */,
 				71073CFC1A831E6600BE6E19 /* NewsfeedTests */,
 				712B2BCE1AAFB86B0026258A /* PagedListTests */,
 				716C45271B02E06900BA9834 /* ResetPasswordTests */,
@@ -2843,7 +2841,6 @@
 				7172159B1A8659050002ECC7 /* RTAccountRegistrationAssembly.m in Sources */,
 				7138A9291AFD5002007D3878 /* RTKeyboardAwareFormViewController.m in Sources */,
 				713DE84C1B092A0000A5BBF0 /* RTResetPasswordWireframe.m in Sources */,
-				7129691E1B2523EB007916FD /* RTRevokeClientPresenter.m in Sources */,
 				7136A53F1AA3652C0059DF43 /* RTUserList.m in Sources */,
 				7133EC5C1B17CE6100BC1CAE /* RTConfirmAccountInteractor.m in Sources */,
 				71C5C0B21A55EB3900CAAFAC /* RTOAuth2TokenStore.m in Sources */,
@@ -2866,6 +2863,7 @@
 				713188A91A912E4D006155E6 /* RTRegexPattern.m in Sources */,
 				711C5DE01A8D5B4F007652FC /* RTEmbeddedURL.m in Sources */,
 				717D92761A5B925700EAB6BF /* RTCurrentUserStore.m in Sources */,
+				710C0A371B27BD66006209F4 /* RTManageDevicesPresenter.m in Sources */,
 				71386E531AD352CA009D064C /* RTBrowseReelVideosDataManagerDelegate.m in Sources */,
 				715555A71A9ED1F40091F432 /* RTAuthenticationAwareHTTPClient.m in Sources */,
 				7114DF861AB4C157003B1D2E /* RTBrowseReelsPresenter.m in Sources */,
@@ -2885,7 +2883,6 @@
 				717D926D1A5B722300EAB6BF /* NSError+RTError.m in Sources */,
 				717215A41A86590D0002ECC7 /* RTAccountRegistrationValidator.m in Sources */,
 				71073CF61A83060700BE6E19 /* RKObjectManager+IncludeHeaders.m in Sources */,
-				7178962F1B22698600E4F571 /* RTBrowseDevicesPresenter.m in Sources */,
 				7164D7281ACB6B48005D02FE /* RTThumbnail.m in Sources */,
 				7116908F1A6AB3970031578E /* RTSecurityAssembly.m in Sources */,
 				713D7A4C1A50A33300754A06 /* RTAPIClient.m in Sources */,
@@ -3021,6 +3018,7 @@
 				71C792EA1B0AC164006259F8 /* RTResetPasswordViewControllerSpec.m in Sources */,
 				71B6BA6E1AD038FD00723941 /* RTBrowseAllViewControllerSpec.m in Sources */,
 				7133EC621B17D03000BC1CAE /* RTConfirmAccountDataManagerSpec.m in Sources */,
+				710C0A3B1B27C00D006209F4 /* RTManageDevicesPresenterSpec.m in Sources */,
 				716973E71B1518A5006F2788 /* RTChangeDisplayNamePresenterSpec.m in Sources */,
 				712410CF1ABDC58200B1FF75 /* UITableView+LastVisibleSpec.m in Sources */,
 				713CF1DE1AE34CE1003E2F89 /* RTThumbnailSupportSpec.m in Sources */,
@@ -3060,7 +3058,6 @@
 				7170C86D1A59A98600C460BB /* RTKeyChainWrapperSpec.m in Sources */,
 				714843091AEC12C7001B885A /* RTDeviceRegistrationWireframeSpec.m in Sources */,
 				714DDE661B0C0F0500D96F74 /* RTChangePasswordDataManagerSpec.m in Sources */,
-				712969221B252594007916FD /* RTRevokeClientPresenterSpec.m in Sources */,
 				717A4B801A535942004C2BC1 /* RTClientSpec.m in Sources */,
 				713BCE041A5908E4000F2D96 /* RTOAuth2TokenStoreSpec.m in Sources */,
 				7153EDFB1AED171D00000D1C /* RTDeviceRegistrationDataManagerSpec.m in Sources */,
@@ -3101,7 +3098,6 @@
 				71386E501AD34F8F009D064C /* RTBrowseUserReelsDataManagerDelegateSpec.m in Sources */,
 				71647BE81A7F185500F44996 /* RTClientDelegateSpec.m in Sources */,
 				7108D78D1B13FBB9000451AD /* RTChangeDisplayNameInteractorSpec.m in Sources */,
-				717896341B226B8C00E4F571 /* RTBrowseDevicesPresenterSpec.m in Sources */,
 				713CF1CF1AE28F7D003E2F89 /* RTArrayDataSourceSpec.m in Sources */,
 				71194C231A81C37900904A06 /* EXPMatchers+beReel.m in Sources */,
 				717D849A1AFF8AC40043797C /* RTDeviceRegistrationViewControllerSpec.m in Sources */,

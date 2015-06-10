@@ -2,10 +2,12 @@
 
 @class RTClientDescription;
 
-@protocol RTBrowseDevicesView <NSObject>
+@protocol RTManageDevicesView <NSObject>
 
 - (void)showClientDescription:(RTClientDescription *)description;
 
 - (void)clearClientDescriptions;
+
+- (void)clearClientDescriptionForClientId:(NSString *)clientId;
 
 @end
