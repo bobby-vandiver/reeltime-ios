@@ -63,6 +63,20 @@ describe(@"manage devices presenter", ^{
         });
     });
     
+    describe(@"revocation succss", ^{
+        it(@"should remove associated item", ^{
+            RTClient *client = [[RTClient alloc] initWithClientId:clientId clientName:clientName];
+            
+            [presenter retrievedItems:@[client]];
+            expect(presenter.items).to.haveACountOf(1);
+
+            [presenter clientRevocationSucceededForClientWithClientId:clientId];
+            
+            [verify(view) clearClientDescriptionForClientId:clientId];
+            expect(presenter.items).to.haveACountOf(0);
+        });
+    });
+    
     describe(@"revocation failure", ^{
         __block RTErrorPresentationChecker *errorChecker;
         
@@ -80,9 +94,18 @@ describe(@"manage devices presenter", ^{
                                                        errorFactoryCallback:errorFactoryCallback];
         });
         
-        it(@"unknown client has associated description removed", ^{
+        it(@"unknown client has associated item removed", ^{
+            RTClient *client = [[RTClient alloc] initWithClientId:clientId clientName:clientName];
+
+            [presenter retrievedItems:@[client]];
+            expect(presenter.items).to.haveACountOf(1);
+            
             [errorChecker verifyErrorMessage:@"Cannot revoke an unknown client"
-                         isShownForErrorCode:RTRevokeClientErrorUnknownClient];
+                         isShownForErrorCode:RTRevokeClientErrorUnknownClient
+                                   resetView:NO];
+            
+            [verify(view) clearClientDescriptionForClientId:clientId];
+            expect(presenter.items).to.haveACountOf(0);
         });
         
         it(@"missing client id", ^{

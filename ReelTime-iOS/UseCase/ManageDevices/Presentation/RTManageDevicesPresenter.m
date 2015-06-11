@@ -35,7 +35,7 @@
 }
 
 - (void)clientRevocationSucceededForClientWithClientId:(NSString *)clientId {
-    
+    [self removeClientWithClientId:clientId];
 }
 
 - (void)clientRevocationFailedForClientWithClientId:(NSString *)clientId
@@ -43,10 +43,26 @@
     for (NSError *error in errors) {
         if ([error.domain isEqual:RTRevokeClientErrorDomain] && error.code == RTRevokeClientErrorUnknownClient) {
             [self.view showErrorMessage:@"Cannot revoke an unknown client"];
+            [self removeClientWithClientId:clientId];
         }
         else {
             DDLogWarn(@"Unexpected client revocation error: %@", error);
         }
+    }
+}
+
+- (void)removeClientWithClientId:(NSString *)clientId {
+    NSIndexSet *indexes = [self.items indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+        if ([obj isKindOfClass:[RTClient class]]) {
+            RTClient *client = (RTClient *)obj;
+            return [client.clientId isEqual:clientId];
+        }
+        return NO;
+    }];
+    
+    if (indexes.count > 0) {
+        [self.items removeObjectsAtIndexes:indexes];
+        [self.view clearClientDescriptionForClientId:clientId];
     }
 }
 

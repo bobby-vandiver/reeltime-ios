@@ -27,10 +27,22 @@
 
 - (void)verifyErrorMessage:(NSString *)message
        isShownForErrorCode:(NSInteger)code {
+
+    [self verifyErrorMessage:message
+         isShownForErrorCode:code
+                   resetView:YES];
+}
+
+- (void)verifyErrorMessage:(NSString *)message
+       isShownForErrorCode:(NSInteger)code
+                 resetView:(BOOL)resetView {
+
     [self executeErrorsCallbackWithErrorCode:code];
-    
     [verify(self.view) showErrorMessage:message];
-    [verify(self.view) reset];
+    
+    if (resetView) {
+        [verify(self.view) reset];
+    }
 }
 
 - (void)verifyNoErrorMessageIsShownForErrorCode:(NSInteger)code {

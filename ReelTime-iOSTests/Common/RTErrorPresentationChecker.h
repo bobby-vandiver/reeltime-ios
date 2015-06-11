@@ -13,6 +13,10 @@
 - (void)verifyErrorMessage:(NSString *)message
        isShownForErrorCode:(NSInteger)code;
 
+- (void)verifyErrorMessage:(NSString *)message
+       isShownForErrorCode:(NSInteger)code
+                 resetView:(BOOL)resetView;
+
 - (void)verifyNoErrorMessageIsShownForErrorCode:(NSInteger)code;
 
 @end

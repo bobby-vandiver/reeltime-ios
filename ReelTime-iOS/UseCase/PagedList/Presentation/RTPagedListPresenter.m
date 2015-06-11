@@ -10,7 +10,6 @@ static const NSUInteger INITIAL_PAGE_NUMBER = 1;
 @property RTPagedListInteractor *interactor;
 
 @property NSUInteger nextPage;
-@property NSMutableArray *items;
 
 @property BOOL canRequestNextPage;
 @property BOOL requestInProgress;
