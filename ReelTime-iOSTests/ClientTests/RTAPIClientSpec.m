@@ -43,7 +43,7 @@
 #import <RestKit/RestKit.h>
 #import <Nocilla/Nocilla.h>
 
-SpecBegin(RTClient)
+SpecBegin(RTAPIClient)
 
 static NSString *const BAD_REQUEST_ERROR_MESSAGE = @"Bad Request";
 static NSString *const NOT_FOUND_ERROR_MESSAGE = @"Not Found";

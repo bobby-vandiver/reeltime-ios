@@ -8,4 +8,6 @@
 - (instancetype)initWithClientId:(NSString *)clientId
                       clientName:(NSString *)clientName;
 
+- (BOOL)isEqualToClient:(RTClient *)client;
+
 @end
