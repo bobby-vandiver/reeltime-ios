@@ -13,4 +13,6 @@
 - (void)verifyErrorMessage:(NSString *)message
        isShownForErrorCode:(NSInteger)code;
 
+- (void)verifyNoErrorMessageIsShownForErrorCode:(NSInteger)code;
+
 @end

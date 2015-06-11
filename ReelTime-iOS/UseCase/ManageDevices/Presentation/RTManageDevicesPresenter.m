@@ -6,6 +6,9 @@
 #import "RTClient.h"
 #import "RTClientDescription.h"
 
+#import "RTRevokeClientError.h"
+#import "RTLogging.h"
+
 @interface RTManageDevicesPresenter ()
 
 @property id<RTManageDevicesView> view;
@@ -35,8 +38,16 @@
     
 }
 
-- (void)clientRevocationFailedWithErrors:(NSArray *)errors {
-    
+- (void)clientRevocationFailedForClientWithClientId:(NSString *)clientId
+                                             errors:(NSArray *)errors {
+    for (NSError *error in errors) {
+        if ([error.domain isEqual:RTRevokeClientErrorDomain] && error.code == RTRevokeClientErrorUnknownClient) {
+            [self.view showErrorMessage:@"Cannot revoke an unknown client"];
+        }
+        else {
+            DDLogWarn(@"Unexpected client revocation error: %@", error);
+        }
+    }
 }
 
 - (void)clearPresentedItems {

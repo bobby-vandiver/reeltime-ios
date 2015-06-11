@@ -53,8 +53,8 @@ describe(@"revoke client interactor", ^{
                 callback(@[error]);
                 
                 MKTArgumentCaptor *captor = [[MKTArgumentCaptor alloc] init];
-                [verify(delegate) clientRevocationFailedWithErrors:[captor capture]];
-                
+                [verify(delegate) clientRevocationFailedForClientWithClientId:clientId errors:[captor capture]];
+
                 NSArray *captured = [captor value];
                 expect(captured).to.haveACountOf(1);
                 expect(captured).to.contain(error);
@@ -70,7 +70,7 @@ describe(@"revoke client interactor", ^{
                 [interactor revokeClientWithClientId:getParameterOrDefault(clientIdParam, clientId)];
                 
                 MKTArgumentCaptor *errorCaptor = [[MKTArgumentCaptor alloc] init];
-                [verify(delegate) clientRevocationFailedWithErrors:[errorCaptor capture]];
+                [verify(delegate) clientRevocationFailedForClientWithClientId:anything() errors:[errorCaptor capture]];
                 
                 [verify(delegate) reset];
                 

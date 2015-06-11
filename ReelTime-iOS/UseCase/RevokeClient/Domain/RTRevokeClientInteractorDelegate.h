@@ -4,6 +4,7 @@
 
 - (void)clientRevocationSucceededForClientWithClientId:(NSString *)clientId;
 
-- (void)clientRevocationFailedWithErrors:(NSArray *)errors;
+- (void)clientRevocationFailedForClientWithClientId:(NSString *)clientId
+                                             errors:(NSArray *)errors;
 
 @end

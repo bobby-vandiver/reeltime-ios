@@ -27,11 +27,22 @@
 
 - (void)verifyErrorMessage:(NSString *)message
        isShownForErrorCode:(NSInteger)code {
-    NSError *error = self.errorFactoryCallback(code);
-    self.errorsCallback(@[error]);
+    [self executeErrorsCallbackWithErrorCode:code];
     
     [verify(self.view) showErrorMessage:message];
     [verify(self.view) reset];
+}
+
+- (void)verifyNoErrorMessageIsShownForErrorCode:(NSInteger)code {
+    [self executeErrorsCallbackWithErrorCode:code];
+
+    [verifyCount(self.view, never()) showErrorMessage:anything()];
+    [verify(self.view) reset];
+}
+
+- (void)executeErrorsCallbackWithErrorCode:(NSInteger)code {
+    NSError *error = self.errorFactoryCallback(code);
+    self.errorsCallback(@[error]);
 }
 
 @end

@@ -9,6 +9,8 @@
 #import "RTClient.h"
 #import "RTClientDescription.h"
 
+#import "RTErrorFactory.h"
+
 SpecBegin(RTManageDevicesPresenter)
 
 describe(@"manage devices presenter", ^{
@@ -58,6 +60,33 @@ describe(@"manage devices presenter", ^{
         it(@"should pass client id to interactor", ^{
             [presenter requestedRevocationForClientWithClientId:clientId];
             [verify(revokeClientInteractor) revokeClientWithClientId:clientId];
+        });
+    });
+    
+    describe(@"revocation failure", ^{
+        __block RTErrorPresentationChecker *errorChecker;
+        
+        ErrorFactoryCallback errorFactoryCallback = ^NSError * (NSInteger code) {
+            return [RTErrorFactory revokeClientErrorWithCode:code];
+        };
+        
+        ArrayCallback errorsCallback = ^(NSArray *errors) {
+            [presenter clientRevocationFailedForClientWithClientId:clientId errors:errors];
+        };
+        
+        beforeEach(^{
+            errorChecker = [[RTErrorPresentationChecker alloc] initWithView:view
+                                                             errorsCallback:errorsCallback
+                                                       errorFactoryCallback:errorFactoryCallback];
+        });
+        
+        it(@"unknown client has associated description removed", ^{
+            [errorChecker verifyErrorMessage:@"Cannot revoke an unknown client"
+                         isShownForErrorCode:RTRevokeClientErrorUnknownClient];
+        });
+        
+        it(@"missing client id", ^{
+            [errorChecker verifyNoErrorMessageIsShownForErrorCode:RTRevokeClientErrorMissingClientId];
         });
     });
 });

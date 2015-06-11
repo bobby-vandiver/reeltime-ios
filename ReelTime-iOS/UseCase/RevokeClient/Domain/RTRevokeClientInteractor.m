@@ -39,10 +39,10 @@
     if (valid) {
         [self.dataManager revokeClientWithClientId:clientId
                                  revocationSuccees:[self revocationSuccessCallbackForClientId:clientId]
-                                           failure:[self revocationFailureCallback]];
+                                           failure:[self revocationFailureCallbackForClientId:clientId]];
     }
     else {
-        [self.delegate clientRevocationFailedWithErrors:errors];
+        [self.delegate clientRevocationFailedForClientWithClientId:clientId errors:errors];
     }
 }
 
@@ -60,9 +60,9 @@
     };
 }
 
-- (ArrayCallback)revocationFailureCallback {
+- (ArrayCallback)revocationFailureCallbackForClientId:(NSString *)clientId {
     return ^(NSArray *errors) {
-        [self.delegate clientRevocationFailedWithErrors:errors];
+        [self.delegate clientRevocationFailedForClientWithClientId:clientId errors:errors];
     };
 }
 
