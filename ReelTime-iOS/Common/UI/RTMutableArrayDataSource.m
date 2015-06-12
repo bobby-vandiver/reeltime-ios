@@ -21,6 +21,13 @@
     [self.mutableItems addObject:item];
 }
 
+- (void)removeItemsPassingTest:(MatchItemTest)matchItemTest {
+    NSIndexSet *indexSet = [self.mutableItems indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+        return matchItemTest(obj);
+    }];    
+    [self.mutableItems removeObjectsAtIndexes:indexSet];
+}
+
 - (void)removeAllItems {
     [self.mutableItems removeAllObjects];
 }
