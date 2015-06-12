@@ -8,7 +8,6 @@
 @class RTBrowseUsersPresenter;
 @class RTBrowseReelsPresenter;
 @class RTBrowseVideosPresenter;
-@class RTArrayDataSource;
 
 @interface RTBrowseAllViewController : RTPagedListViewController <RTBrowseUsersView, RTBrowseReelsView, RTBrowseVideosView, RTStoryboardViewController>
 

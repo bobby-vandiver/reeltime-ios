@@ -87,6 +87,7 @@
 		7130FD8C1A67593D00AE2ACD /* boxxy.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7130FD891A67593D00AE2ACD /* boxxy.jpg */; };
 		7130FD8D1A67593D00AE2ACD /* maddox.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7130FD8A1A67593D00AE2ACD /* maddox.jpg */; };
 		7130FD8E1A67593D00AE2ACD /* boogie2988-rage.png in Resources */ = {isa = PBXBuildFile; fileRef = 7130FD8B1A67593D00AE2ACD /* boogie2988-rage.png */; };
+		713163F21B2A59F9000DC48C /* RTManageDevicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 713163F11B2A59F9000DC48C /* RTManageDevicesViewController.m */; };
 		713188A21A9125FF006155E6 /* NSURL+RTURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 713188A11A9125FF006155E6 /* NSURL+RTURL.m */; };
 		713188A41A912734006155E6 /* NSURL+RTURLSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 713188A31A912734006155E6 /* NSURL+RTURLSpec.m */; };
 		713188A91A912E4D006155E6 /* RTRegexPattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 713188A81A912E4D006155E6 /* RTRegexPattern.m */; };
@@ -459,6 +460,8 @@
 		7130FD891A67593D00AE2ACD /* boxxy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = boxxy.jpg; sourceTree = "<group>"; };
 		7130FD8A1A67593D00AE2ACD /* maddox.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = maddox.jpg; sourceTree = "<group>"; };
 		7130FD8B1A67593D00AE2ACD /* boogie2988-rage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boogie2988-rage.png"; sourceTree = "<group>"; };
+		713163F01B2A59F9000DC48C /* RTManageDevicesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTManageDevicesViewController.h; sourceTree = "<group>"; };
+		713163F11B2A59F9000DC48C /* RTManageDevicesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTManageDevicesViewController.m; sourceTree = "<group>"; };
 		713188A01A9125E2006155E6 /* NSURL+RTURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+RTURL.h"; sourceTree = "<group>"; };
 		713188A11A9125FF006155E6 /* NSURL+RTURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+RTURL.m"; sourceTree = "<group>"; };
 		713188A31A912734006155E6 /* NSURL+RTURLSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+RTURLSpec.m"; sourceTree = "<group>"; };
@@ -972,6 +975,8 @@
 				710C0A351B27BD66006209F4 /* RTManageDevicesPresenter.h */,
 				710C0A361B27BD66006209F4 /* RTManageDevicesPresenter.m */,
 				710C0A381B27BDC6006209F4 /* RTManageDevicesView.h */,
+				713163F01B2A59F9000DC48C /* RTManageDevicesViewController.h */,
+				713163F11B2A59F9000DC48C /* RTManageDevicesViewController.m */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -2894,6 +2899,7 @@
 				717A4B781A534EBD004C2BC1 /* RTResponseDescriptorFactory.m in Sources */,
 				71A8BA331AB104AC00B0708B /* RTException.m in Sources */,
 				713A238F1AB4EB520098CE48 /* RTBrowseVideosDataManager.m in Sources */,
+				713163F21B2A59F9000DC48C /* RTManageDevicesViewController.m in Sources */,
 				7163D7561ADAF20F009F30EF /* RTUserReelCell.m in Sources */,
 				7126980F1AA3CC8000E7066B /* RTReelList.m in Sources */,
 				71C792E51B0AB025006259F8 /* RTResetPasswordViewController.m in Sources */,
