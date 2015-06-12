@@ -38,7 +38,7 @@ describe(@"login wireframe", ^{
     });
     
     describe(@"presenting login", ^{
-        it(@"should install view controller as the root of the application-level navigation contoller", ^{
+        it(@"should install view controller as the root of the application-level navigation controller", ^{
             [wireframe presentLoginInterface];
             [verify(applicationWireframe) presentNavigationRootViewController:viewController];
         });
