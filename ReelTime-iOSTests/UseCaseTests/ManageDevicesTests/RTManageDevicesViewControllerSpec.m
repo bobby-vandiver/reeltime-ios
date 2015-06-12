@@ -53,7 +53,14 @@ describe(@"manage devices view controller", ^{
     
     describe(@"when client description is deleted", ^{
         it(@"should request removal of client", ^{
-            // TODO!
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+            [viewController showClientDescription:clientDescription1];
+            
+            [viewController.devicesDataSource tableView:tableView
+                                     commitEditingStyle:UITableViewCellEditingStyleDelete
+                                      forRowAtIndexPath:indexPath];
+            
+            [verify(presenter) requestedRevocationForClientWithClientId:clientId];
         });
     });
     

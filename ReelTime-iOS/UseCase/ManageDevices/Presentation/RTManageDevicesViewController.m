@@ -26,20 +26,25 @@ static NSString *const DeviceCellIdentifier = @"DeviceCell";
     
     if (controller) {
         controller.devicesPresenter = presenter;
-        controller.devicesDataSource = [self createDataSource];
+        controller.devicesDataSource = [self createDataSourceWithPresenter:presenter];
     }
     return controller;
 }
 
-+ (RTMutableArrayDataSource *)createDataSource {
++ (RTMutableArrayDataSource *)createDataSourceWithPresenter:(RTManageDevicesPresenter *)presenter {
     
     ConfigureCellBlock configureCellBlock = ^(UITableViewCell *cell, RTClientDescription *description) {
         cell.textLabel.text = [NSString stringWithFormat:@"%@ :: %@", description.clientId, description.clientName];
     };
     
+    OnDeleteCellBlock onDeleteCellBlock = ^(UITableViewCell *cell, RTClientDescription *description) {
+        [presenter requestedRevocationForClientWithClientId:description.clientId];
+    };
+    
     return [RTMutableArrayDataSource rowMajorArrayWithItems:@[]
                                              cellIdentifier:DeviceCellIdentifier
-                                         configureCellBlock:configureCellBlock];
+                                         configureCellBlock:configureCellBlock
+                                          onDeleteCellBlock:onDeleteCellBlock];
 }
 
 + (NSString *)storyboardIdentifier {
