@@ -5,6 +5,7 @@
 // https://github.com/raphaeloliveira/ArrayDataSource
 
 typedef void (^ConfigureCellBlock)(id cell, id object);
+typedef BOOL (^MatchItemTest)(id item);
 
 @interface RTArrayDataSource : NSObject <UITableViewDataSource, UICollectionViewDataSource>
 
@@ -21,5 +22,7 @@ typedef void (^ConfigureCellBlock)(id cell, id object);
                         configureCellBlock:(ConfigureCellBlock)configureCellBlock;
 
 - (id)itemAtIndex:(NSUInteger)index;
+
+- (id)itemPassingTest:(MatchItemTest)matchItemTest;
 
 @end

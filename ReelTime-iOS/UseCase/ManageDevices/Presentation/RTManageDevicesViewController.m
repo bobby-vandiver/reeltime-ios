@@ -46,6 +46,11 @@ static NSString *const DeviceCellIdentifier = @"DeviceCell";
     return @"Manage Devices View Controller";
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self.tableView setAllowsMultipleSelectionDuringEditing:NO];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.presenter requestedNextPage];
@@ -79,10 +84,15 @@ static NSString *const DeviceCellIdentifier = @"DeviceCell";
 }
 
 - (void)clearClientDescriptionForClientId:(NSString *)clientId {
-    [self.devicesDataSource removeItemsPassingTest:^BOOL(RTClientDescription *description) {
-        return [description.clientId isEqual:clientId];
-    }];
+    MatchItemTest matchTest = [self matchTestForClientDescriptionByClientId:clientId];
+    [self.devicesDataSource removeItemsPassingTest:matchTest];
     [self.tableView reloadData];
+}
+
+- (MatchItemTest)matchTestForClientDescriptionByClientId:(NSString *)clientId {
+    return ^BOOL(RTClientDescription *description) {
+        return [description.clientId isEqual:clientId];
+    };
 }
 
 @end

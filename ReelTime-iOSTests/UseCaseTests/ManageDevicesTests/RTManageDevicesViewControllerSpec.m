@@ -37,10 +37,23 @@ describe(@"manage devices view controller", ^{
         expect(viewController.devicesDataSource.items).to.haveACountOf(0);
     });
     
+    describe(@"when view did load", ^{
+        it(@"should disallow multiple selections in editing", ^{
+            [viewController viewDidLoad];
+            [verify(tableView) setAllowsMultipleSelectionDuringEditing:NO];
+        });
+    });
+    
     describe(@"when view will appear", ^{
         it(@"should load the first page of clients", ^{
             [viewController viewWillAppear:anything()];
             [verify(presenter) requestedNextPage];
+        });
+    });
+    
+    describe(@"when client description is deleted", ^{
+        it(@"should request removal of client", ^{
+            // TODO!
         });
     });
     
@@ -83,6 +96,14 @@ describe(@"manage devices view controller", ^{
 
                     expect(viewController.devicesDataSource.items).to.haveACountOf(1);
                     expect(viewController.devicesDataSource.items).to.contain(clientDescription1);
+                });
+                
+                it(@"should not remove anything when the client id is unknown", ^{
+                    [viewController clearClientDescriptionForClientId:@"unknown"];
+                    
+                    expect(viewController.devicesDataSource.items).to.haveACountOf(2);
+                    expect(viewController.devicesDataSource.items).to.contain(clientDescription1);
+                    expect(viewController.devicesDataSource.items).to.contain(clientDescription2);
                 });
             });
         });

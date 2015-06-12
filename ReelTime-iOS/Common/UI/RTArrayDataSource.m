@@ -49,6 +49,14 @@
     return [self.items objectAtIndex:index];
 }
 
+- (id)itemPassingTest:(MatchItemTest)matchItemTest {
+    NSIndexSet *indexes = [self.items indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+        return matchItemTest(obj);
+    }];
+
+    return indexes.count > 0 ? [self.items objectsAtIndexes:indexes][0] : nil;
+}
+
 #pragma mark - UITableViewDataSource Methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
