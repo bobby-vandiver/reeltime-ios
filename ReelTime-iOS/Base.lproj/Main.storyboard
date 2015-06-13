@@ -921,6 +921,108 @@
             </objects>
             <point key="canvasLocation" x="2280" y="54"/>
         </scene>
+        <!--Change Password View Controller-->
+        <scene sceneID="WGy-Rw-xsd">
+            <objects>
+                <viewController storyboardIdentifier="Change Password View Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4U6-xu-b8t" userLabel="Change Password View Controller" customClass="RTChangePasswordViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fFX-q7-WBs"/>
+                        <viewControllerLayoutGuide type="bottom" id="WPe-FC-Ueu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="g98-oh-pQ9">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K3M-cP-rZP">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SLc-nI-Wwq" userLabel="Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                        <subviews>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Om-nI-TLG" userLabel="Password Field">
+                                                <rect key="frame" x="156" y="3" width="164" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                <variation key="widthClass=compact" fixedFrame="YES">
+                                                    <rect key="frame" x="118" y="247" width="164" height="30"/>
+                                                </variation>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zsN-RY-L5o" userLabel="Confirm Password Field">
+                                                <rect key="frame" x="155" y="3" width="167" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                <variation key="widthClass=compact" fixedFrame="YES">
+                                                    <rect key="frame" x="118" y="285" width="167" height="30"/>
+                                                </variation>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D3l-yQ-aV7">
+                                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <state key="normal" title="Save">
+                                                    <color key="titleColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <variation key="widthClass=compact" fixedFrame="YES">
+                                                    <rect key="frame" x="118" y="323" width="164" height="30"/>
+                                                </variation>
+                                                <connections>
+                                                    <action selector="pressedSaveButton" destination="4U6-xu-b8t" eventType="touchUpInside" id="swt-Qc-Xc4"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <variation key="default">
+                                            <mask key="subviews">
+                                                <exclude reference="0Om-nI-TLG"/>
+                                                <exclude reference="zsN-RY-L5o"/>
+                                                <exclude reference="D3l-yQ-aV7"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="widthClass=compact" fixedFrame="YES">
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
+                                            <mask key="subviews">
+                                                <include reference="0Om-nI-TLG"/>
+                                                <include reference="zsN-RY-L5o"/>
+                                                <include reference="D3l-yQ-aV7"/>
+                                            </mask>
+                                        </variation>
+                                    </view>
+                                </subviews>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="SLc-nI-Wwq"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
+                                    <mask key="subviews">
+                                        <include reference="SLc-nI-Wwq"/>
+                                    </mask>
+                                </variation>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="K3M-cP-rZP"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="K3M-cP-rZP"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="changePasswordFormScrollView" destination="K3M-cP-rZP" id="Z4I-Sm-hDf"/>
+                        <outlet property="confirmationPasswordField" destination="zsN-RY-L5o" id="wkY-zp-DMf"/>
+                        <outlet property="passwordField" destination="0Om-nI-TLG" id="bUP-jY-iTG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HSH-ZH-ffz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2971.5" y="54"/>
+        </scene>
         <!--Manage Devices View Controller-->
         <scene sceneID="Gfc-Uv-ylZ">
             <objects>
@@ -967,7 +1069,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rkZ-Ra-QDP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2941.5" y="54"/>
+            <point key="canvasLocation" x="2971.5" y="724"/>
         </scene>
     </scenes>
 </document>
