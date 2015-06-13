@@ -76,6 +76,10 @@
 		7129691B1B250C53007916FD /* RTRevokeClientInteractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7129691A1B250C53007916FD /* RTRevokeClientInteractorSpec.m */; };
 		7129C9CF1B0ECA7E0087B0E8 /* RTChangePasswordServerErrorMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 7129C9CE1B0ECA7E0087B0E8 /* RTChangePasswordServerErrorMapping.m */; };
 		7129C9D11B0ECFA40087B0E8 /* RTChangePasswordInteractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7129C9D01B0ECFA40087B0E8 /* RTChangePasswordInteractorSpec.m */; };
+		712AAB011B2C688500E7AE4E /* RTChangeDisplayNameWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 712AAB001B2C688500E7AE4E /* RTChangeDisplayNameWireframe.m */; };
+		712AAB041B2C68E700E7AE4E /* RTChangeDisplayNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 712AAB031B2C68E700E7AE4E /* RTChangeDisplayNameViewController.m */; };
+		712AAB061B2C695100E7AE4E /* RTChangeDisplayNameWireframeSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 712AAB051B2C695100E7AE4E /* RTChangeDisplayNameWireframeSpec.m */; };
+		712AAB081B2C6E4900E7AE4E /* RTChangeDisplayNameViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 712AAB071B2C6E4900E7AE4E /* RTChangeDisplayNameViewControllerSpec.m */; };
 		712B2BCA1AAFB17B0026258A /* RTPagedListInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 712B2BC61AAFB17B0026258A /* RTPagedListInteractor.m */; };
 		712B2BCD1AAFB2010026258A /* RTPagedListDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 712B2BCC1AAFB2010026258A /* RTPagedListDataManager.m */; };
 		712B2BD01AAFB8870026258A /* RTPagedListInteractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 712B2BCF1AAFB8870026258A /* RTPagedListInteractorSpec.m */; };
@@ -450,6 +454,12 @@
 		7129C9CD1B0ECA7E0087B0E8 /* RTChangePasswordServerErrorMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTChangePasswordServerErrorMapping.h; sourceTree = "<group>"; };
 		7129C9CE1B0ECA7E0087B0E8 /* RTChangePasswordServerErrorMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTChangePasswordServerErrorMapping.m; sourceTree = "<group>"; };
 		7129C9D01B0ECFA40087B0E8 /* RTChangePasswordInteractorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTChangePasswordInteractorSpec.m; sourceTree = "<group>"; };
+		712AAAFF1B2C688500E7AE4E /* RTChangeDisplayNameWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTChangeDisplayNameWireframe.h; sourceTree = "<group>"; };
+		712AAB001B2C688500E7AE4E /* RTChangeDisplayNameWireframe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTChangeDisplayNameWireframe.m; sourceTree = "<group>"; };
+		712AAB021B2C68E700E7AE4E /* RTChangeDisplayNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTChangeDisplayNameViewController.h; sourceTree = "<group>"; };
+		712AAB031B2C68E700E7AE4E /* RTChangeDisplayNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTChangeDisplayNameViewController.m; sourceTree = "<group>"; };
+		712AAB051B2C695100E7AE4E /* RTChangeDisplayNameWireframeSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTChangeDisplayNameWireframeSpec.m; sourceTree = "<group>"; };
+		712AAB071B2C6E4900E7AE4E /* RTChangeDisplayNameViewControllerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTChangeDisplayNameViewControllerSpec.m; sourceTree = "<group>"; };
 		712B2BC41AAFB17B0026258A /* RTPagedListError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTPagedListError.h; sourceTree = "<group>"; };
 		712B2BC51AAFB17B0026258A /* RTPagedListInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTPagedListInteractor.h; sourceTree = "<group>"; };
 		712B2BC61AAFB17B0026258A /* RTPagedListInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTPagedListInteractor.m; sourceTree = "<group>"; };
@@ -996,6 +1006,8 @@
 				7108D7871B13D9E7000451AD /* RTChangeDisplayNameDataManagerSpec.m */,
 				7108D78C1B13FBB9000451AD /* RTChangeDisplayNameInteractorSpec.m */,
 				716973E61B1518A5006F2788 /* RTChangeDisplayNamePresenterSpec.m */,
+				712AAB051B2C695100E7AE4E /* RTChangeDisplayNameWireframeSpec.m */,
+				712AAB071B2C6E4900E7AE4E /* RTChangeDisplayNameViewControllerSpec.m */,
 			);
 			path = ChangeDisplayNameTests;
 			sourceTree = "<group>";
@@ -1285,6 +1297,15 @@
 				712698161AA3EC4400E7066B /* single-reel.txt */,
 			);
 			path = Reel;
+			sourceTree = "<group>";
+		};
+		712AAAFE1B2C685F00E7AE4E /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				712AAAFF1B2C688500E7AE4E /* RTChangeDisplayNameWireframe.h */,
+				712AAB001B2C688500E7AE4E /* RTChangeDisplayNameWireframe.m */,
+			);
+			path = Navigation;
 			sourceTree = "<group>";
 		};
 		712B2BC21AAFB17B0026258A /* PagedList */ = {
@@ -1638,6 +1659,7 @@
 			isa = PBXGroup;
 			children = (
 				713DBD601B136D9200CB4796 /* Domain */,
+				712AAAFE1B2C685F00E7AE4E /* Navigation */,
 				713DBD611B136D9C00CB4796 /* Persistence */,
 				713DBD621B136DA800CB4796 /* Presentation */,
 			);
@@ -1674,6 +1696,8 @@
 				716973E31B151822006F2788 /* RTChangeDisplayNamePresenter.h */,
 				716973E41B151822006F2788 /* RTChangeDisplayNamePresenter.m */,
 				716973E81B1518F4006F2788 /* RTChangeDisplayNameView.h */,
+				712AAB021B2C68E700E7AE4E /* RTChangeDisplayNameViewController.h */,
+				712AAB031B2C68E700E7AE4E /* RTChangeDisplayNameViewController.m */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -2914,6 +2938,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				712AAB041B2C68E700E7AE4E /* RTChangeDisplayNameViewController.m in Sources */,
 				71386E5E1AD36C01009D064C /* RTReelDescription.m in Sources */,
 				7172159B1A8659050002ECC7 /* RTAccountRegistrationAssembly.m in Sources */,
 				71053AAC1B2BAF8A008C800C /* RTChangePasswordViewController.m in Sources */,
@@ -2922,6 +2947,7 @@
 				7136A53F1AA3652C0059DF43 /* RTUserList.m in Sources */,
 				7133EC5C1B17CE6100BC1CAE /* RTConfirmAccountInteractor.m in Sources */,
 				71C5C0B21A55EB3900CAAFAC /* RTOAuth2TokenStore.m in Sources */,
+				712AAB011B2C688500E7AE4E /* RTChangeDisplayNameWireframe.m in Sources */,
 				71B6BA671AD036A400723941 /* RTBrowseAllReelsDataManagerDelegate.m in Sources */,
 				71565A261A98ED5900AE1C43 /* RTApplicationWireframe.m in Sources */,
 				713DE8391B09028B00A5BBF0 /* RTValidator.m in Sources */,
@@ -3116,6 +3142,7 @@
 				714350561ACCC87E000C8B63 /* RTThumbnailSpec.m in Sources */,
 				71B238501B043934002DE5DA /* RTClientCredentialsServiceSpec.m in Sources */,
 				71053AAE1B2BB2AD008C800C /* RTChangePasswordViewControllerSpec.m in Sources */,
+				712AAB061B2C695100E7AE4E /* RTChangeDisplayNameWireframeSpec.m in Sources */,
 				71C5C09D1A55B29700CAAFAC /* RTLoginPresenterSpec.m in Sources */,
 				7153EE0C1AED504E00000D1C /* RTServerErrorMessageToErrorCodeTestHelper.m in Sources */,
 				7114DF761AB4B401003B1D2E /* RTServerErrorsSpec.m in Sources */,
@@ -3182,6 +3209,7 @@
 				7129C9D11B0ECFA40087B0E8 /* RTChangePasswordInteractorSpec.m in Sources */,
 				713DBD5E1B13529200CB4796 /* RTErrorPresentationChecker.m in Sources */,
 				71C8D91F1A73485A00673F1A /* RTAccountRegistrationDataManagerSpec.m in Sources */,
+				712AAB081B2C6E4900E7AE4E /* RTChangeDisplayNameViewControllerSpec.m in Sources */,
 				71386E501AD34F8F009D064C /* RTBrowseUserReelsDataManagerDelegateSpec.m in Sources */,
 				71647BE81A7F185500F44996 /* RTClientDelegateSpec.m in Sources */,
 				7108D78D1B13FBB9000451AD /* RTChangeDisplayNameInteractorSpec.m in Sources */,
