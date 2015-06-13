@@ -1,14 +1,17 @@
 #import <Foundation/Foundation.h>
 
+@class RTAccountSettingsViewController;
+
 @class RTChangeDisplayNameWireframe;
 @class RTChangePasswordWireframe;
 @class RTManageDevicesWireframe;
 
 @interface RTAccountSettingsWireframe : NSObject
 
-- (instancetype)initWithChangeDisplayNameWireframe:(RTChangeDisplayNameWireframe *)changeDisplayNameWireframe
-                           changePasswordWireframe:(RTChangePasswordWireframe *)changePasswordWireframe
-                            manageDevicesWireframe:(RTManageDevicesWireframe *)manageDevicesWireframe;
+- (instancetype)initWithViewController:(RTAccountSettingsViewController *)viewController
+            changeDisplayNameWireframe:(RTChangeDisplayNameWireframe *)changeDisplayNameWireframe
+               changePasswordWireframe:(RTChangePasswordWireframe *)changePasswordWireframe
+                manageDevicesWireframe:(RTManageDevicesWireframe *)manageDevicesWireframe;
 
 - (void)presentChangeDisplayNameInterface;
 
