@@ -14,6 +14,7 @@
 		71053AAE1B2BB2AD008C800C /* RTChangePasswordViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71053AAD1B2BB2AD008C800C /* RTChangePasswordViewControllerSpec.m */; };
 		71053AB21B2BBBAD008C800C /* RTChangePasswordWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 71053AB11B2BBBAD008C800C /* RTChangePasswordWireframe.m */; };
 		71053AB41B2BBC68008C800C /* RTChangePasswordWireframeSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71053AB31B2BBC68008C800C /* RTChangePasswordWireframeSpec.m */; };
+		71053AB81B2BBF38008C800C /* RTChangePasswordAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 71053AB71B2BBF38008C800C /* RTChangePasswordAssembly.m */; };
 		71073CF31A82DED800BE6E19 /* EXPMatchers+beVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 71073CF21A82DED800BE6E19 /* EXPMatchers+beVideo.m */; };
 		71073CF61A83060700BE6E19 /* RKObjectManager+IncludeHeaders.m in Sources */ = {isa = PBXBuildFile; fileRef = 71073CF51A83060700BE6E19 /* RKObjectManager+IncludeHeaders.m */; };
 		71073CFE1A831EAB00BE6E19 /* RTNewsfeedDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71073CFD1A831EAB00BE6E19 /* RTNewsfeedDataManagerSpec.m */; };
@@ -351,6 +352,8 @@
 		71053AB01B2BBBAD008C800C /* RTChangePasswordWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTChangePasswordWireframe.h; sourceTree = "<group>"; };
 		71053AB11B2BBBAD008C800C /* RTChangePasswordWireframe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTChangePasswordWireframe.m; sourceTree = "<group>"; };
 		71053AB31B2BBC68008C800C /* RTChangePasswordWireframeSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTChangePasswordWireframeSpec.m; sourceTree = "<group>"; };
+		71053AB61B2BBF38008C800C /* RTChangePasswordAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTChangePasswordAssembly.h; sourceTree = "<group>"; };
+		71053AB71B2BBF38008C800C /* RTChangePasswordAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTChangePasswordAssembly.m; sourceTree = "<group>"; };
 		71073CF11A82DEC200BE6E19 /* EXPMatchers+beVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+beVideo.h"; sourceTree = "<group>"; };
 		71073CF21A82DED800BE6E19 /* EXPMatchers+beVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EXPMatchers+beVideo.m"; sourceTree = "<group>"; };
 		71073CF41A83060700BE6E19 /* RKObjectManager+IncludeHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RKObjectManager+IncludeHeaders.h"; sourceTree = "<group>"; };
@@ -953,6 +956,15 @@
 				71053AB11B2BBBAD008C800C /* RTChangePasswordWireframe.m */,
 			);
 			path = Navigation;
+			sourceTree = "<group>";
+		};
+		71053AB51B2BBF23008C800C /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				71053AB61B2BBF38008C800C /* RTChangePasswordAssembly.h */,
+				71053AB71B2BBF38008C800C /* RTChangePasswordAssembly.m */,
+			);
+			path = Assembly;
 			sourceTree = "<group>";
 		};
 		71073CF71A831BEF00BE6E19 /* Newsfeed */ = {
@@ -1772,6 +1784,7 @@
 		714DDE501B0C0C6F00D96F74 /* ChangePassword */ = {
 			isa = PBXGroup;
 			children = (
+				71053AB51B2BBF23008C800C /* Assembly */,
 				714DDE521B0C0C8C00D96F74 /* Domain */,
 				71053AAF1B2BBB93008C800C /* Navigation */,
 				714DDE511B0C0C8300D96F74 /* Persistence */,
@@ -3007,6 +3020,7 @@
 				7157589C1A9A2D6C002859DE /* RTApplicationTabBarController.m in Sources */,
 				71C792E21B0AAF1D006259F8 /* RTResetPasswordAssembly.m in Sources */,
 				717215861A8657660002ECC7 /* RTLoginWireframe.m in Sources */,
+				71053AB81B2BBF38008C800C /* RTChangePasswordAssembly.m in Sources */,
 				71647BD51A7E7EEA00F44996 /* RTVideo.m in Sources */,
 				713229DE1A8FBD9600DE900A /* RTNewsfeedMessageSource.m in Sources */,
 				7137F4E61AEEF7C000B50DBA /* RTDeviceRegistrationPresenter.m in Sources */,
