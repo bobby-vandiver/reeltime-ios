@@ -20,6 +20,13 @@ describe(@"confirm account view controller", ^{
         viewController.confirmationCodeField = confirmationCodeField;
     });
     
+    describe(@"when the send email button is pressed", ^{
+        it(@"should notify the presenter to send the email", ^{
+            [viewController pressedSendEmailButton];
+            [verify(presenter) requestedConfirmationEmail];
+        });
+    });
+    
     describe(@"when the confirm button is pressed", ^{
         it(@"should pass the confirmation code to the presenter", ^{
             viewController.confirmationCodeField.text = confirmationCode;

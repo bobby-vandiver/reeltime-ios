@@ -25,6 +25,10 @@
     return @"Confirm Account View Controller";
 }
 
+- (IBAction)pressedSendEmailButton {
+    [self.presenter requestedConfirmationEmail];
+}
+
 - (IBAction)pressedConfirmButton {
     [self.presenter requestedConfirmationWithCode:self.confirmationCodeField.text];
 }

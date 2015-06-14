@@ -11,6 +11,8 @@
 
 + (instancetype)viewControllerWithPresenter:(RTConfirmAccountPresenter *)presenter;
 
+- (IBAction)pressedSendEmailButton;
+
 - (IBAction)pressedConfirmButton;
 
 @end
