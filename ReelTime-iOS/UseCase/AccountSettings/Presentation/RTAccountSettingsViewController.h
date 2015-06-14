@@ -3,7 +3,7 @@
 
 @class RTAccountSettingsPresenter;
 
-@interface RTAccountSettingsViewController : UIViewController <RTStoryboardViewController>
+@interface RTAccountSettingsViewController : UITableViewController <RTStoryboardViewController>
 
 + (instancetype)viewControllerWithPresenter:(RTAccountSettingsPresenter *)presenter;
 
