@@ -1249,6 +1249,95 @@
             </objects>
             <point key="canvasLocation" x="3619.5" y="54"/>
         </scene>
+        <!--Confirm Account View Controller-->
+        <scene sceneID="M1N-jU-tiv">
+            <objects>
+                <viewController storyboardIdentifier="Confirm Account View Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="06X-7S-XgA" userLabel="Confirm Account View Controller" customClass="RTConfirmAccountViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="OQu-Yp-IVj"/>
+                        <viewControllerLayoutGuide type="bottom" id="8GE-a4-Bfk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="CNy-cB-Dqd">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kkn-bQ-7db">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2n1-7V-grC">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SNS-db-SGY">
+                                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <state key="normal" title="Confirm">
+                                                    <color key="titleColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <variation key="widthClass=compact" fixedFrame="YES">
+                                                    <rect key="frame" x="103" y="323" width="195" height="30"/>
+                                                </variation>
+                                                <connections>
+                                                    <action selector="pressedConfirmButton" destination="06X-7S-XgA" eventType="touchUpInside" id="5nP-gd-bVZ"/>
+                                                </connections>
+                                            </button>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirmation Code" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zp3-6R-UAa">
+                                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <variation key="widthClass=compact" fixedFrame="YES">
+                                                    <rect key="frame" x="103" y="285" width="195" height="30"/>
+                                                </variation>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <variation key="default">
+                                            <mask key="subviews">
+                                                <exclude reference="SNS-db-SGY"/>
+                                                <exclude reference="Zp3-6R-UAa"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="widthClass=compact" fixedFrame="YES">
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
+                                            <mask key="subviews">
+                                                <include reference="SNS-db-SGY"/>
+                                                <include reference="Zp3-6R-UAa"/>
+                                            </mask>
+                                        </variation>
+                                    </view>
+                                </subviews>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="2n1-7V-grC"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
+                                    <mask key="subviews">
+                                        <include reference="2n1-7V-grC"/>
+                                    </mask>
+                                </variation>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="kkn-bQ-7db"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="kkn-bQ-7db"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="confirmationCodeField" destination="Zp3-6R-UAa" id="IkU-uA-j0o"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TJh-8F-Qhl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3619.5" y="714"/>
+        </scene>
         <!--Manage Devices View Controller-->
         <scene sceneID="Gfc-Uv-ylZ">
             <objects>
@@ -1295,7 +1384,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rkZ-Ra-QDP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3619.5" y="722"/>
+            <point key="canvasLocation" x="3619.5" y="1372"/>
         </scene>
     </scenes>
 </document>
