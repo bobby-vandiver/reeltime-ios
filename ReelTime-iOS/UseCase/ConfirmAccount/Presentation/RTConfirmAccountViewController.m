@@ -26,6 +26,7 @@
 }
 
 - (IBAction)pressedConfirmButton {
+    [self.presenter requestedConfirmationWithCode:self.confirmationCodeField.text];
 }
 
 - (void)showMessage:(NSString *)message {
