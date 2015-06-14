@@ -68,6 +68,7 @@
 		7124363D1ADDE35B00D39A95 /* RTSynchronizedMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 7124363C1ADDE35B00D39A95 /* RTSynchronizedMutableArray.m */; };
 		712441581B2DC81300752901 /* RTConfirmAccountPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 712441571B2DC81300752901 /* RTConfirmAccountPresenter.m */; };
 		7124415B1B2DC8FE00752901 /* RTConfirmAccountPresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7124415A1B2DC8FE00752901 /* RTConfirmAccountPresenterSpec.m */; };
+		7124415E1B2DDA3D00752901 /* RTConfirmAccountErrorCodeToErrorMessageMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 7124415D1B2DDA3D00752901 /* RTConfirmAccountErrorCodeToErrorMessageMapping.m */; };
 		7126980F1AA3CC8000E7066B /* RTReelList.m in Sources */ = {isa = PBXBuildFile; fileRef = 7126980E1AA3CC8000E7066B /* RTReelList.m */; };
 		712698121AA3CCB600E7066B /* RTVideoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 712698111AA3CCB600E7066B /* RTVideoList.m */; };
 		712698151AA3EC3800E7066B /* reel-list-multiple-reels.txt in Resources */ = {isa = PBXBuildFile; fileRef = 712698141AA3EC3800E7066B /* reel-list-multiple-reels.txt */; };
@@ -451,6 +452,8 @@
 		712441571B2DC81300752901 /* RTConfirmAccountPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTConfirmAccountPresenter.m; sourceTree = "<group>"; };
 		712441591B2DC82E00752901 /* RTConfirmAccountView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTConfirmAccountView.h; sourceTree = "<group>"; };
 		7124415A1B2DC8FE00752901 /* RTConfirmAccountPresenterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTConfirmAccountPresenterSpec.m; sourceTree = "<group>"; };
+		7124415C1B2DDA3D00752901 /* RTConfirmAccountErrorCodeToErrorMessageMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTConfirmAccountErrorCodeToErrorMessageMapping.h; sourceTree = "<group>"; };
+		7124415D1B2DDA3D00752901 /* RTConfirmAccountErrorCodeToErrorMessageMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTConfirmAccountErrorCodeToErrorMessageMapping.m; sourceTree = "<group>"; };
 		7126980D1AA3CC8000E7066B /* RTReelList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTReelList.h; path = "ReelTime-iOS/Common/Model/RTReelList.h"; sourceTree = SOURCE_ROOT; };
 		7126980E1AA3CC8000E7066B /* RTReelList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTReelList.m; path = "ReelTime-iOS/Common/Model/RTReelList.m"; sourceTree = SOURCE_ROOT; };
 		712698101AA3CCB600E7066B /* RTVideoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTVideoList.h; path = "ReelTime-iOS/Common/Model/RTVideoList.h"; sourceTree = SOURCE_ROOT; };
@@ -1541,6 +1544,8 @@
 		7133EC561B17CCD700BC1CAE /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				7124415C1B2DDA3D00752901 /* RTConfirmAccountErrorCodeToErrorMessageMapping.h */,
+				7124415D1B2DDA3D00752901 /* RTConfirmAccountErrorCodeToErrorMessageMapping.m */,
 				712441561B2DC81300752901 /* RTConfirmAccountPresenter.h */,
 				712441571B2DC81300752901 /* RTConfirmAccountPresenter.m */,
 				712441591B2DC82E00752901 /* RTConfirmAccountView.h */,
@@ -3093,6 +3098,7 @@
 				717215B11A8659230002ECC7 /* RTAccountRegistrationPresenter.m in Sources */,
 				7134F1FF1B24CAEB001EBF4E /* RTRevokeClientServerErrorMapping.m in Sources */,
 				712B2BCD1AAFB2010026258A /* RTPagedListDataManager.m in Sources */,
+				7124415E1B2DDA3D00752901 /* RTConfirmAccountErrorCodeToErrorMessageMapping.m in Sources */,
 				713DE83D1B0920DF00A5BBF0 /* RTErrorCodeToErrorMessagePresenter.m in Sources */,
 				7153EE091AED3CD900000D1C /* RTAccountRegistrationServerErrorMapping.m in Sources */,
 				712698121AA3CCB600E7066B /* RTVideoList.m in Sources */,

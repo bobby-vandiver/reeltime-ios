@@ -2,7 +2,12 @@
 
 #import "RTMessageView.h"
 #import "RTErrorMessageView.h"
+#import "RTFieldValidationErrorView.h"
 
-@protocol RTConfirmAccountView <NSObject, RTMessageView, RTErrorMessageView>
+typedef NS_ENUM(NSInteger, RTConfirmAccountViewField) {
+    RTConfirmAccountViewFieldConfirmationCode
+};
+
+@protocol RTConfirmAccountView <NSObject, RTMessageView, RTErrorMessageView, RTFieldValidationErrorView>
 
 @end

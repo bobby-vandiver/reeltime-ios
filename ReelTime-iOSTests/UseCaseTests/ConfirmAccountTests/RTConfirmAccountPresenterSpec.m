@@ -16,6 +16,7 @@ describe(@"confirm account presenter", ^{
     __block RTConfirmAccountInteractor *interactor;
 
     __block RTErrorPresentationChecker *errorChecker;
+    __block RTFieldErrorPresentationChecker *fieldErrorChecker;
     
     ErrorFactoryCallback errorFactoryCallback = ^NSError * (NSInteger code) {
         return [RTErrorFactory confirmAccountErrorWithCode:code];
@@ -43,6 +44,16 @@ describe(@"confirm account presenter", ^{
             [presenter requestedConfirmationEmail];
             [verify(interactor) sendConfirmationEmail];
         });
+        
+        it(@"email was sent", ^{
+            [presenter confirmationEmailSent];
+            [verify(view) showMessage:@"Please check your email for the confirmation code"];
+        });
+        
+        it(@"unable to send email", ^{
+            [errorChecker verifyErrorMessage:@"Unable to send confirmation email"
+                         isShownForErrorCode:RTConfirmAccountErrorEmailFailure];
+        });
     });
     
     describe(@"requesting confirmation", ^{
@@ -54,11 +65,31 @@ describe(@"confirm account presenter", ^{
             errorChecker = [[RTErrorPresentationChecker alloc] initWithView:view
                                                              errorsCallback:errorsCallback
                                                        errorFactoryCallback:errorFactoryCallback];
+            
+            fieldErrorChecker = [[RTFieldErrorPresentationChecker alloc] initWithView:view
+                                                                       errorsCallback:errorsCallback
+                                                                 errorFactoryCallback:errorFactoryCallback];
         });
         
         it(@"should pass code to interactor", ^{
             [presenter requestedConfirmationWithCode:confirmationCode];
             [verify(interactor) confirmAccountWithCode:confirmationCode];
+        });
+        
+        it(@"account confirmed", ^{
+            [presenter confirmAccountSucceeded];
+            [verify(view) showMessage:@"Your account has been confirmed"];
+        });
+        
+        it(@"missing confirmation code", ^{
+            [fieldErrorChecker verifyErrorMessage:@"Confirmation code is required"
+                              isShownForErrorCode:RTConfirmAccountErrorMissingConfirmationCode
+                                            field:RTConfirmAccountViewFieldConfirmationCode];
+        });
+        
+        it(@"invalid confirmation code", ^{
+            [errorChecker verifyErrorMessage:@"Confirmation code is invalid"
+                         isShownForErrorCode:RTConfirmAccountErrorInvalidConfirmationCode];
         });
     });
 });
