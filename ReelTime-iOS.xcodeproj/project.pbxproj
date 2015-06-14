@@ -66,6 +66,8 @@
 		71201F8C1A96B7CD003F2831 /* RTNewsfeedAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 71201F8B1A96B7CD003F2831 /* RTNewsfeedAssembly.m */; };
 		712410CF1ABDC58200B1FF75 /* UITableView+LastVisibleSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 712410CE1ABDC58200B1FF75 /* UITableView+LastVisibleSpec.m */; };
 		7124363D1ADDE35B00D39A95 /* RTSynchronizedMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 7124363C1ADDE35B00D39A95 /* RTSynchronizedMutableArray.m */; };
+		712441581B2DC81300752901 /* RTConfirmAccountPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 712441571B2DC81300752901 /* RTConfirmAccountPresenter.m */; };
+		7124415B1B2DC8FE00752901 /* RTConfirmAccountPresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7124415A1B2DC8FE00752901 /* RTConfirmAccountPresenterSpec.m */; };
 		7126980F1AA3CC8000E7066B /* RTReelList.m in Sources */ = {isa = PBXBuildFile; fileRef = 7126980E1AA3CC8000E7066B /* RTReelList.m */; };
 		712698121AA3CCB600E7066B /* RTVideoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 712698111AA3CCB600E7066B /* RTVideoList.m */; };
 		712698151AA3EC3800E7066B /* reel-list-multiple-reels.txt in Resources */ = {isa = PBXBuildFile; fileRef = 712698141AA3EC3800E7066B /* reel-list-multiple-reels.txt */; };
@@ -445,6 +447,10 @@
 		712410CE1ABDC58200B1FF75 /* UITableView+LastVisibleSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+LastVisibleSpec.m"; sourceTree = "<group>"; };
 		7124363B1ADDE35B00D39A95 /* RTSynchronizedMutableArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTSynchronizedMutableArray.h; sourceTree = "<group>"; };
 		7124363C1ADDE35B00D39A95 /* RTSynchronizedMutableArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTSynchronizedMutableArray.m; sourceTree = "<group>"; };
+		712441561B2DC81300752901 /* RTConfirmAccountPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTConfirmAccountPresenter.h; sourceTree = "<group>"; };
+		712441571B2DC81300752901 /* RTConfirmAccountPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTConfirmAccountPresenter.m; sourceTree = "<group>"; };
+		712441591B2DC82E00752901 /* RTConfirmAccountView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTConfirmAccountView.h; sourceTree = "<group>"; };
+		7124415A1B2DC8FE00752901 /* RTConfirmAccountPresenterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTConfirmAccountPresenterSpec.m; sourceTree = "<group>"; };
 		7126980D1AA3CC8000E7066B /* RTReelList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTReelList.h; path = "ReelTime-iOS/Common/Model/RTReelList.h"; sourceTree = SOURCE_ROOT; };
 		7126980E1AA3CC8000E7066B /* RTReelList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTReelList.m; path = "ReelTime-iOS/Common/Model/RTReelList.m"; sourceTree = SOURCE_ROOT; };
 		712698101AA3CCB600E7066B /* RTVideoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTVideoList.h; path = "ReelTime-iOS/Common/Model/RTVideoList.h"; sourceTree = SOURCE_ROOT; };
@@ -1535,6 +1541,9 @@
 		7133EC561B17CCD700BC1CAE /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				712441561B2DC81300752901 /* RTConfirmAccountPresenter.h */,
+				712441571B2DC81300752901 /* RTConfirmAccountPresenter.m */,
+				712441591B2DC82E00752901 /* RTConfirmAccountView.h */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -1544,6 +1553,7 @@
 			children = (
 				7133EC611B17D03000BC1CAE /* RTConfirmAccountDataManagerSpec.m */,
 				7133EC6A1B17EC0B00BC1CAE /* RTConfirmAccountInteractorSpec.m */,
+				7124415A1B2DC8FE00752901 /* RTConfirmAccountPresenterSpec.m */,
 			);
 			path = ConfirmAccountTests;
 			sourceTree = "<group>";
@@ -3011,6 +3021,7 @@
 				7138A9291AFD5002007D3878 /* RTKeyboardAwareFormViewController.m in Sources */,
 				713DE84C1B092A0000A5BBF0 /* RTResetPasswordWireframe.m in Sources */,
 				7136A53F1AA3652C0059DF43 /* RTUserList.m in Sources */,
+				712441581B2DC81300752901 /* RTConfirmAccountPresenter.m in Sources */,
 				7133EC5C1B17CE6100BC1CAE /* RTConfirmAccountInteractor.m in Sources */,
 				71C5C0B21A55EB3900CAAFAC /* RTOAuth2TokenStore.m in Sources */,
 				712AAB111B2CB16D00E7AE4E /* RTAccountSettingsPresenter.m in Sources */,
@@ -3273,6 +3284,7 @@
 				717896331B226B8C00E4F571 /* RTBrowseDevicesDataManagerSpec.m in Sources */,
 				71194C201A81B5D300904A06 /* EXPMatchers+ErrorMessages.m in Sources */,
 				71403D2D1AB3D18C007CB8B9 /* RTBrowseUsersPresenterSpec.m in Sources */,
+				7124415B1B2DC8FE00752901 /* RTConfirmAccountPresenterSpec.m in Sources */,
 				7190DABA1A5CC55D00BDCE4C /* RTCurrentUserStoreSpec.m in Sources */,
 				71073CFE1A831EAB00BE6E19 /* RTNewsfeedDataManagerSpec.m in Sources */,
 				715C54201AD4C9A7009C755F /* RTUserSummaryPresenterSpec.m in Sources */,
