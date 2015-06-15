@@ -73,6 +73,7 @@
 		712441631B2DE3DD00752901 /* RTConfirmAccountViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 712441621B2DE3DD00752901 /* RTConfirmAccountViewControllerSpec.m */; };
 		712441671B2DE75E00752901 /* RTConfirmAccountWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 712441661B2DE75E00752901 /* RTConfirmAccountWireframe.m */; };
 		712441691B2DE7CD00752901 /* RTConfirmAccountWireframeSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 712441681B2DE7CD00752901 /* RTConfirmAccountWireframeSpec.m */; };
+		7124416D1B2DEA8400752901 /* RTConfirmAccountAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 7124416C1B2DEA8400752901 /* RTConfirmAccountAssembly.m */; };
 		7126980F1AA3CC8000E7066B /* RTReelList.m in Sources */ = {isa = PBXBuildFile; fileRef = 7126980E1AA3CC8000E7066B /* RTReelList.m */; };
 		712698121AA3CCB600E7066B /* RTVideoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 712698111AA3CCB600E7066B /* RTVideoList.m */; };
 		712698151AA3EC3800E7066B /* reel-list-multiple-reels.txt in Resources */ = {isa = PBXBuildFile; fileRef = 712698141AA3EC3800E7066B /* reel-list-multiple-reels.txt */; };
@@ -464,6 +465,8 @@
 		712441651B2DE75E00752901 /* RTConfirmAccountWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTConfirmAccountWireframe.h; sourceTree = "<group>"; };
 		712441661B2DE75E00752901 /* RTConfirmAccountWireframe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTConfirmAccountWireframe.m; sourceTree = "<group>"; };
 		712441681B2DE7CD00752901 /* RTConfirmAccountWireframeSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTConfirmAccountWireframeSpec.m; sourceTree = "<group>"; };
+		7124416B1B2DEA8400752901 /* RTConfirmAccountAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTConfirmAccountAssembly.h; sourceTree = "<group>"; };
+		7124416C1B2DEA8400752901 /* RTConfirmAccountAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTConfirmAccountAssembly.m; sourceTree = "<group>"; };
 		7126980D1AA3CC8000E7066B /* RTReelList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTReelList.h; path = "ReelTime-iOS/Common/Model/RTReelList.h"; sourceTree = SOURCE_ROOT; };
 		7126980E1AA3CC8000E7066B /* RTReelList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTReelList.m; path = "ReelTime-iOS/Common/Model/RTReelList.m"; sourceTree = SOURCE_ROOT; };
 		712698101AA3CCB600E7066B /* RTVideoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTVideoList.h; path = "ReelTime-iOS/Common/Model/RTVideoList.h"; sourceTree = SOURCE_ROOT; };
@@ -1331,6 +1334,15 @@
 			path = Navigation;
 			sourceTree = "<group>";
 		};
+		7124416A1B2DEA5D00752901 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				7124416B1B2DEA8400752901 /* RTConfirmAccountAssembly.h */,
+				7124416C1B2DEA8400752901 /* RTConfirmAccountAssembly.m */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
 		712698131AA3EC0900E7066B /* Reel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1531,8 +1543,9 @@
 		7133EC531B17CC8300BC1CAE /* ConfirmAccount */ = {
 			isa = PBXGroup;
 			children = (
-				712441641B2DE74F00752901 /* Navigation */,
+				7124416A1B2DEA5D00752901 /* Assembly */,
 				7133EC551B17CCAD00BC1CAE /* Domain */,
+				712441641B2DE74F00752901 /* Navigation */,
 				7133EC541B17CC9F00BC1CAE /* Persistence */,
 				7133EC561B17CCD700BC1CAE /* Presentation */,
 			);
@@ -3089,6 +3102,7 @@
 				712AAB0C1B2C9B0F00E7AE4E /* RTChangeDisplayNameAssembly.m in Sources */,
 				71053AA91B2B9FD9008C800C /* RTManageDevicesAssembly.m in Sources */,
 				713CF1D61AE2A5F7003E2F89 /* RTDeviceInformation.m in Sources */,
+				7124416D1B2DEA8400752901 /* RTConfirmAccountAssembly.m in Sources */,
 				715C541D1AD4C7B6009C755F /* RTUserSummaryPresenter.m in Sources */,
 				71053AB21B2BBBAD008C800C /* RTChangePasswordWireframe.m in Sources */,
 				714843031AEC108D001B885A /* RTDeviceRegistrationWireframe.m in Sources */,
