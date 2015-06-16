@@ -25,6 +25,10 @@
     [self.wireframe presentChangePasswordInterface];
 }
 
+- (void)requestedAccountConfirmation {
+    [self.wireframe presentConfirmAccountInterface];
+}
+
 - (void)requestedDeviceManagement {
     [self.wireframe presentManageDevicesInterface];
 }

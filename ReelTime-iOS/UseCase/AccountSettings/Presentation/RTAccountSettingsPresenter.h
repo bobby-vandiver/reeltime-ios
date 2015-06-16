@@ -10,6 +10,8 @@
 
 - (void)requestedPasswordChange;
 
+- (void)requestedAccountConfirmation;
+
 - (void)requestedDeviceManagement;
 
 @end

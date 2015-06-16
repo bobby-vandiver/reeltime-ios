@@ -29,6 +29,13 @@ describe(@"account settings presenter", ^{
         });
     });
     
+    describe(@"requested account confirmation", ^{
+        it(@"should route to the confirm account interface", ^{
+            [presenter requestedAccountConfirmation];
+            [verify(wireframe) presentConfirmAccountInterface];
+        });
+    });
+    
     describe(@"requested device management", ^{
         it(@"should route to the device management interface", ^{
             [presenter requestedDeviceManagement];
