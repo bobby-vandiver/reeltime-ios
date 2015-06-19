@@ -719,10 +719,10 @@
             </objects>
             <point key="canvasLocation" x="313.5" y="54"/>
         </scene>
-        <!--Newsfeed View Controller-->
+        <!--Newsfeed-->
         <scene sceneID="Svq-o6-pjH">
             <objects>
-                <viewController storyboardIdentifier="Newsfeed View Controller" title="Newsfeed View Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bkw-Ev-sDD" customClass="RTNewsfeedViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Newsfeed View Controller" title="Newsfeed" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bkw-Ev-sDD" customClass="RTNewsfeedViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vbt-Y5-mlP"/>
                         <viewControllerLayoutGuide type="bottom" id="Rz0-9T-ZPt"/>
@@ -737,10 +737,10 @@
             </objects>
             <point key="canvasLocation" x="970.5" y="54"/>
         </scene>
-        <!--Browse All View Controller-->
+        <!--Browse-->
         <scene sceneID="JBE-W5-Bds">
             <objects>
-                <viewController storyboardIdentifier="Browse View Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="I7q-7u-SIm" customClass="RTBrowseAllViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Browse View Controller" title="Browse" useStoryboardIdentifierAsRestorationIdentifier="YES" id="I7q-7u-SIm" customClass="RTBrowseAllViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="O7Q-z3-pzh"/>
                         <viewControllerLayoutGuide type="bottom" id="ooW-hr-Koz"/>
@@ -861,7 +861,7 @@
         <!--User Profile View Controller-->
         <scene sceneID="qi7-yX-nBU">
             <objects>
-                <viewController storyboardIdentifier="User Profile View Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3xW-WF-kgG" userLabel="User Profile View Controller" customClass="RTUserProfileViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="User Profile View Controller" title="Profile" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3xW-WF-kgG" userLabel="User Profile View Controller" customClass="RTUserProfileViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9Hc-xQ-wqD"/>
                         <viewControllerLayoutGuide type="bottom" id="URe-cE-7tQ"/>
@@ -924,7 +924,7 @@
         <!--Account Settings View Controller-->
         <scene sceneID="JU6-cV-7qs">
             <objects>
-                <tableViewController storyboardIdentifier="Account Settings View Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3tj-18-OjB" userLabel="Account Settings View Controller" customClass="RTAccountSettingsViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Account Settings View Controller" title="Account Settings" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3tj-18-OjB" userLabel="Account Settings View Controller" customClass="RTAccountSettingsViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="PXZ-VD-Vy9">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1060,7 +1060,7 @@
         <!--Change Display Name View Controller-->
         <scene sceneID="xKz-Wc-Yay">
             <objects>
-                <viewController storyboardIdentifier="Change Display Name View Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="53D-qw-p1E" userLabel="Change Display Name View Controller" customClass="RTChangeDisplayNameViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Change Display Name View Controller" title="Change Display Name" useStoryboardIdentifierAsRestorationIdentifier="YES" id="53D-qw-p1E" userLabel="Change Display Name View Controller" customClass="RTChangeDisplayNameViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hVN-ay-zhB"/>
                         <viewControllerLayoutGuide type="bottom" id="WbV-Nn-e0s"/>
@@ -1151,7 +1151,7 @@
         <!--Change Password View Controller-->
         <scene sceneID="WGy-Rw-xsd">
             <objects>
-                <viewController storyboardIdentifier="Change Password View Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4U6-xu-b8t" userLabel="Change Password View Controller" customClass="RTChangePasswordViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Change Password View Controller" title="Change Password" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4U6-xu-b8t" userLabel="Change Password View Controller" customClass="RTChangePasswordViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fFX-q7-WBs"/>
                         <viewControllerLayoutGuide type="bottom" id="WPe-FC-Ueu"/>
@@ -1253,7 +1253,7 @@
         <!--Confirm Account View Controller-->
         <scene sceneID="M1N-jU-tiv">
             <objects>
-                <viewController storyboardIdentifier="Confirm Account View Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="06X-7S-XgA" userLabel="Confirm Account View Controller" customClass="RTConfirmAccountViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Confirm Account View Controller" title="Confirm Account" useStoryboardIdentifierAsRestorationIdentifier="YES" id="06X-7S-XgA" userLabel="Confirm Account View Controller" customClass="RTConfirmAccountViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="OQu-Yp-IVj"/>
                         <viewControllerLayoutGuide type="bottom" id="8GE-a4-Bfk"/>
