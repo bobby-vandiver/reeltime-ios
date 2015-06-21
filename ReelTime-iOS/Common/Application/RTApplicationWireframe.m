@@ -48,7 +48,15 @@
 }
 
 - (void)navigateToViewController:(UIViewController *)viewController {
-    [self.navigationController pushViewController:viewController animated:YES];
+    BOOL onTabBarManagedScreen = (self.window.rootViewController == self.tabBarController);
+    
+    if (onTabBarManagedScreen) {
+        UINavigationController *tabNavController = (UINavigationController *) self.tabBarController.selectedViewController;
+        [tabNavController pushViewController:viewController animated:YES];
+    }
+    else {
+        [self.navigationController pushViewController:viewController animated:YES];
+    }
 }
 
 - (BOOL)isVisibleViewController:(UIViewController *)viewController {
