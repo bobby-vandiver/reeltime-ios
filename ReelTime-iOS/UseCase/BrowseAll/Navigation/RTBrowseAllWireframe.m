@@ -1,6 +1,8 @@
 #import "RTBrowseAllWireframe.h"
 
 #import "RTBrowseAllViewController.h"
+#import "RTApplicationWireframe.h"
+
 #import "RTLogging.h"
 
 #import "RTUserProfileAssembly.h"
@@ -14,8 +16,10 @@
 
 @implementation RTBrowseAllWireframe
 
-- (instancetype)initWithViewController:(RTBrowseAllViewController *)viewController {
-    self = [super init];
+- (instancetype)initWithViewController:(RTBrowseAllViewController *)viewController
+                  applicationWireframe:(RTApplicationWireframe *)applicationWireframe {
+
+    self = [super initWithApplicationWireframe:applicationWireframe];
     if (self) {
         self.viewController = viewController;
     }
@@ -26,9 +30,7 @@
     
     RTUserProfileViewController *userProfileViewController = [self.userProfileAssembly userProfileViewControllerForUsername:username];
     
-    [self.viewController presentViewController:userProfileViewController animated:YES completion:^{
-        DDLogDebug(@"presenting user profile view controller completed");
-    }];
+    [self.applicationWireframe navigateToViewController:userProfileViewController];
 }
 
 - (void)presentReelForReelId:(NSNumber *)reelId

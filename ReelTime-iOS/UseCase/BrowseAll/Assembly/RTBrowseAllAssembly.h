@@ -1,5 +1,6 @@
 #import <Typhoon/Typhoon.h>
 
+@class RTApplicationAssembly;
 @class RTClientAssembly;
 @class RTDeviceAssembly;
 @class RTUserProfileAssembly;
@@ -23,6 +24,7 @@
 
 @interface RTBrowseAllAssembly : TyphoonAssembly
 
+@property (nonatomic, strong, readonly) RTApplicationAssembly *applicationAssembly;
 @property (nonatomic, strong, readonly) RTClientAssembly *clientAssembly;
 @property (nonatomic, strong, readonly) RTDeviceAssembly *deviceAssembly;
 @property (nonatomic, strong, readonly) RTUserProfileAssembly *userProfileAssembly;

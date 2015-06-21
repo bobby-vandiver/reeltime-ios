@@ -1,5 +1,6 @@
 #import "RTBrowseAllAssembly.h"
 
+#import "RTApplicationAssembly.h"
 #import "RTClientAssembly.h"
 #import "RTDeviceAssembly.h"
 #import "RTUserProfileAssembly.h"
@@ -28,9 +29,10 @@
 
 - (RTBrowseAllWireframe *)browseAllWireframe {
     return [TyphoonDefinition withClass:[RTBrowseAllWireframe class] configuration:^(TyphoonDefinition *definition) {
-        [definition injectMethod:@selector(initWithViewController:)
+        [definition injectMethod:@selector(initWithViewController:applicationWireframe:)
                       parameters:^(TyphoonMethod *method) {
                           [method injectParameterWith:[self browseAllViewController]];
+                          [method injectParameterWith:[self.applicationAssembly applicationWireframe]];
         }];
         
         [definition injectProperty:@selector(userProfileAssembly) with:self.userProfileAssembly];

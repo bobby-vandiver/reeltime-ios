@@ -42,8 +42,8 @@
 
 - (void)presentPostLoginInterface {
     DDLogDebug(@"Login succeeded");
-
     // TODO: Present record video interface when available
+    [self.applicationWireframe presentTabBarManagedScreen];
 }
 
 - (void)presentDeviceRegistrationInterface {

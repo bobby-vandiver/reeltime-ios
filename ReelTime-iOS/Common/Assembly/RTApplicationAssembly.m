@@ -58,12 +58,14 @@
 }
 
 - (NSArray *)applicationTabBarViewControllers {
-    NSArray *controllers = @[[self.newsfeedAssembly newsfeedViewController], [self sampleController]];
+    NSArray *controllers = @[
+                             [self.newsfeedAssembly newsfeedViewController],
+                             [self.browseAllAssembly browseAllViewController]
+                             ];
     
     return [TyphoonDefinition withClass:[NSMutableArray class] configuration:^(TyphoonDefinition *definition) {
-        [definition useInitializer:@selector(initWithArray:)
-                        parameters:^(TyphoonMethod *initializer) {
-                            [initializer injectParameterWith:controllers];
+        [definition useInitializer:@selector(initWithArray:) parameters:^(TyphoonMethod *initializer) {
+            [initializer injectParameterWith:controllers];
         }];
     }];
 }
