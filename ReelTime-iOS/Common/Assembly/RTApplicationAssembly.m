@@ -62,22 +62,19 @@
 
 - (NSArray *)applicationTabBarViewControllers {
     return [TyphoonDefinition withClass:[NSMutableArray class] configuration:^(TyphoonDefinition *definition) {
+        [definition useInitializer:@selector(array)];
 
         RTNewsfeedViewController *newsfeedViewController = [self.newsfeedAssembly newsfeedViewController];
         RTBrowseAllViewController *browseAllViewController = [self.browseAllAssembly browseAllViewController];
         
-        [definition useInitializer:@selector(array)];
-
-        [definition injectMethod:@selector(insertObject:atIndex:) parameters:^(TyphoonMethod *method) {
+        [definition injectMethod:@selector(addObject:) parameters:^(TyphoonMethod *method) {
             UIViewController *vc = [self navigationControllerWithRootViewController:newsfeedViewController];
             [method injectParameterWith:vc];
-            [method injectParameterWith:@(0)];
         }];
         
-        [definition injectMethod:@selector(insertObject:atIndex:) parameters:^(TyphoonMethod *method) {
+        [definition injectMethod:@selector(addObject:) parameters:^(TyphoonMethod *method) {
             UIViewController *vc = [self navigationControllerWithRootViewController:browseAllViewController];
             [method injectParameterWith:vc];
-            [method injectParameterWith:@(1)];
         }];
     }];
 }
