@@ -3,32 +3,35 @@
 #import "RTBrowseAllViewController.h"
 #import "RTApplicationWireframe.h"
 
-#import "RTLogging.h"
-
-#import "RTUserProfileAssembly.h"
 #import "RTUserProfileViewController.h"
+#import "RTUserProfileViewControllerFactory.h"
+
+#import "RTLogging.h"
 
 @interface RTBrowseAllWireframe ()
 
 @property RTBrowseAllViewController *viewController;
+@property id<RTUserProfileViewControllerFactory> userProfileViewControllerFactory;
 
 @end
 
 @implementation RTBrowseAllWireframe
 
 - (instancetype)initWithViewController:(RTBrowseAllViewController *)viewController
-                  applicationWireframe:(RTApplicationWireframe *)applicationWireframe {
+                  applicationWireframe:(RTApplicationWireframe *)applicationWireframe
+      userProfileViewControllerFactory:(id<RTUserProfileViewControllerFactory>)userProfileViewControllerFactory {
 
     self = [super initWithApplicationWireframe:applicationWireframe];
     if (self) {
         self.viewController = viewController;
+        self.userProfileViewControllerFactory = userProfileViewControllerFactory;
     }
     return self;
 }
 
 - (void)presentUserForUsername:(NSString *)username {
     
-    RTUserProfileViewController *userProfileViewController = [self.userProfileAssembly userProfileViewControllerForUsername:username];
+    RTUserProfileViewController *userProfileViewController = [self.userProfileViewControllerFactory userProfileViewControllerForUsername:username];
     
     [self.applicationWireframe navigateToViewController:userProfileViewController];
 }
