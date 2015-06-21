@@ -103,7 +103,14 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
 }
 
 - (void)showUserDescription:(RTUserDescription *)description {
-    DDLogDebug(@"received user description for username = %@", description.username);
+    self.usernameLabel.text = [NSString stringWithFormat:@"Username: %@", description.username];
+    self.displayNameLabel.text = [NSString stringWithFormat:@"Display name: %@", description.displayName];
+    
+    self.subscribersLabel.text = [NSString stringWithFormat:@"Subscribers: %@", description.numberOfFollowers];
+    self.subscribedToLabel.text = [NSString stringWithFormat:@"Subscribed to: %@", description.numberOfFollowees];
+    
+    self.reelsCreatedLabel.text = [NSString stringWithFormat:@"Reels Created: %@", description.numberOfReelsOwned];
+    self.reelsFollowingLabel.text = [NSString stringWithFormat:@"Reels Following: %@", description.numberOfAudienceMemberships];
 }
 
 - (void)showUserNotFoundMessage:(NSString *)message {

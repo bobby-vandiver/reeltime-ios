@@ -10,6 +10,7 @@
 #import "RTVideoWireframe.h"
 #import "RTThumbnailSupport.h"
 
+#import "RTUserDescription.h"
 #import "RTReelDescription.h"
 #import "RTUserReelCell.h"
 
@@ -32,12 +33,19 @@ describe(@"user profile view controller", ^{
     __block id<RTVideoWireframe> reelVideosWireframe;
     
     __block RTThumbnailSupport *thumbnailSupport;
+
+    __block UILabel *usernameLabel;
+    __block UILabel *displayNameLabel;
     
+    __block UILabel *subscribersLabel;
+    __block UILabel *subscribedToLabel;
+    
+    __block UILabel *reelsCreatedLabel;
+    __block UILabel *reelsFollowingLabel;
+ 
     __block UITableView *tableView;
     
     beforeEach(^{
-        tableView = mock([UITableView class]);
-        
         userPresenter = mock([RTUserSummaryPresenter class]);
         reelsPresenter = mock([RTBrowseReelsPresenter class]);
         
@@ -52,7 +60,27 @@ describe(@"user profile view controller", ^{
                                                      reelVideosPresenterFactory:reelVideosPresenterFactory
                                                             reelVideosWireframe:reelVideosWireframe
                                                                thumbnailSupport:thumbnailSupport];
+        
+        usernameLabel = [[UILabel alloc] init];
+        displayNameLabel = [[UILabel alloc] init];
+        
+        subscribersLabel = [[UILabel alloc] init];
+        subscribedToLabel = [[UILabel alloc] init];
+        
+        reelsCreatedLabel = [[UILabel alloc] init];
+        reelsFollowingLabel = [[UILabel alloc] init];
 
+        tableView = mock([UITableView class]);
+        
+        viewController.usernameLabel = usernameLabel;
+        viewController.displayNameLabel = displayNameLabel;
+        
+        viewController.subscribersLabel = subscribersLabel;
+        viewController.subscribedToLabel = subscribedToLabel;
+        
+        viewController.reelsCreatedLabel = reelsCreatedLabel;
+        viewController.reelsFollowingLabel = reelsFollowingLabel;
+        
         viewController.reelsListTableView = tableView;
     });
     
@@ -85,6 +113,36 @@ describe(@"user profile view controller", ^{
             
             CGFloat height = [viewController tableView:tableView heightForRowAtIndexPath:0];
             expect(height).to.equal(400);
+        });
+    });
+    
+    context(@"user description required", ^{
+        __block RTUserDescription *description;
+        
+        beforeEach(^{
+            description = [RTUserDescription userDescriptionWithForUsername:@"foo"
+                                                            withDisplayName:@"bar"
+                                                          numberOfFollowers:@(1)
+                                                          numberOfFollowees:@(2)
+                                                         numberOfReelsOwned:@(3)
+                                                numberOfAudienceMemberships:@(4)];
+        });
+        
+        describe(@"show user description", ^{
+            beforeEach(^{
+                [viewController showUserDescription:description];
+            });
+            
+            it(@"should update labels with user info", ^{
+                expect(viewController.usernameLabel.text).equal(@"Username: foo");
+                expect(viewController.displayNameLabel.text).equal(@"Display name: bar");
+                
+                expect(viewController.subscribersLabel.text).equal(@"Subscribers: 1");
+                expect(viewController.subscribedToLabel.text).equal(@"Subscribed to: 2");
+                
+                expect(viewController.reelsCreatedLabel.text).equal(@"Reels Created: 3");
+                expect(viewController.reelsFollowingLabel.text).equal(@"Reels Following: 4");
+            });
         });
     });
 

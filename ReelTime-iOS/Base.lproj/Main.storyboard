@@ -1197,7 +1197,13 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="displayNameLabel" destination="1UD-Lx-YC7" id="fPr-c6-aP4"/>
+                        <outlet property="reelsCreatedLabel" destination="yw4-fj-Bdd" id="qKU-4y-wE5"/>
+                        <outlet property="reelsFollowingLabel" destination="yLm-Uo-dCs" id="pmA-za-iXU"/>
                         <outlet property="reelsListTableView" destination="gXl-zo-sPy" id="L7Q-sO-kQH"/>
+                        <outlet property="subscribedToLabel" destination="SII-V7-bVC" id="cBZ-Wl-37n"/>
+                        <outlet property="subscribersLabel" destination="OWN-gb-7L1" id="N0h-nb-04a"/>
+                        <outlet property="usernameLabel" destination="PcB-Aa-X8w" id="Yoe-XC-KwN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jDC-4d-Nid" userLabel="First Responder" sceneMemberID="firstResponder"/>

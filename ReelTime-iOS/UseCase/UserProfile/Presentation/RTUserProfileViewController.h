@@ -15,6 +15,15 @@
 
 @interface RTUserProfileViewController : RTPagedListViewController <RTUserSummaryView, RTBrowseReelsView, RTStoryboardViewController>
 
+@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *displayNameLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *subscribersLabel;
+@property (weak, nonatomic) IBOutlet UILabel *subscribedToLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *reelsCreatedLabel;
+@property (weak, nonatomic) IBOutlet UILabel *reelsFollowingLabel;
+
 @property (weak, nonatomic) IBOutlet UITableView *reelsListTableView;
 
 + (instancetype)viewControllerForUsername:(NSString *)username
