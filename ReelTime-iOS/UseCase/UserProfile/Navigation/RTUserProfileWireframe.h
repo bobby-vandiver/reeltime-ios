@@ -1,11 +1,16 @@
-#import <Foundation/Foundation.h>
-
-#import "RTVideoWireframe.h"
+#import "RTApplicationAwareWireframe.h"
 
 @class RTUserProfileViewController;
+@class RTAccountSettingsWireframe;
 
-@interface RTUserProfileWireframe : NSObject <RTVideoWireframe>
+@interface RTUserProfileWireframe : RTApplicationAwareWireframe
 
-- (instancetype)initWithViewController:(RTUserProfileViewController *)viewController;
+- (instancetype)initWithViewController:(RTUserProfileViewController *)viewController
+              accountSettingsWireframe:(RTAccountSettingsWireframe *)accountSettingsWireframe
+                  applicationWireframe:(RTApplicationWireframe *)applicationWireframe;
+
+- (void)presentUserProfileInterfaceForUsername:(NSString *)username;
+
+- (void)presentAccountSettingsInterface;
 
 @end

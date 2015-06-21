@@ -35,6 +35,10 @@
     return self;
 }
 
+- (void)presentAccountSettingsInterface {
+    
+}
+
 - (void)presentChangeDisplayNameInterface {
     
 }

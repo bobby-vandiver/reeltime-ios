@@ -15,6 +15,8 @@
                confirmAccountWireframe:(RTConfirmAccountWireframe *)confirmAccountWireframe
                 manageDevicesWireframe:(RTManageDevicesWireframe *)manageDevicesWireframe;
 
+- (void)presentAccountSettingsInterface;
+
 - (void)presentChangeDisplayNameInterface;
 
 - (void)presentChangePasswordInterface;

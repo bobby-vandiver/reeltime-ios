@@ -342,6 +342,9 @@
 		71C7D4151A7406A6006B84AC /* RTServerErrorsConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C7D4141A7406A6006B84AC /* RTServerErrorsConverter.m */; };
 		71C8D91F1A73485A00673F1A /* RTAccountRegistrationDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C8D91E1A73485A00673F1A /* RTAccountRegistrationDataManagerSpec.m */; };
 		71D947981A4FCB5600401963 /* RTLoginInteractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D947971A4FCB5600401963 /* RTLoginInteractorSpec.m */; };
+		71F384D01B3772C8002BC9A0 /* RTUserProfilePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F384CF1B3772C8002BC9A0 /* RTUserProfilePresenter.m */; };
+		71F384D21B37742A002BC9A0 /* RTUserProfileWireframeSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F384D11B37742A002BC9A0 /* RTUserProfileWireframeSpec.m */; };
+		71F384D61B37761B002BC9A0 /* RTAccountSettingsAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F384D51B37761B002BC9A0 /* RTAccountSettingsAssembly.m */; };
 		BCBE070F3639F3393A1BF1A9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2682314A72FFBF85E182F6FE /* libPods.a */; };
 		F5855EE53AD6BF2CC0D24A71 /* libPods-ReelTime-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DFC463C3A66781E8DEEE7436 /* libPods-ReelTime-iOS.a */; };
 /* End PBXBuildFile section */
@@ -949,6 +952,11 @@
 		71C7D4141A7406A6006B84AC /* RTServerErrorsConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTServerErrorsConverter.m; sourceTree = "<group>"; };
 		71C8D91E1A73485A00673F1A /* RTAccountRegistrationDataManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAccountRegistrationDataManagerSpec.m; sourceTree = "<group>"; };
 		71D947971A4FCB5600401963 /* RTLoginInteractorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLoginInteractorSpec.m; sourceTree = "<group>"; };
+		71F384CE1B3772C8002BC9A0 /* RTUserProfilePresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTUserProfilePresenter.h; sourceTree = "<group>"; };
+		71F384CF1B3772C8002BC9A0 /* RTUserProfilePresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTUserProfilePresenter.m; sourceTree = "<group>"; };
+		71F384D11B37742A002BC9A0 /* RTUserProfileWireframeSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTUserProfileWireframeSpec.m; sourceTree = "<group>"; };
+		71F384D41B37761B002BC9A0 /* RTAccountSettingsAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTAccountSettingsAssembly.h; sourceTree = "<group>"; };
+		71F384D51B37761B002BC9A0 /* RTAccountSettingsAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAccountSettingsAssembly.m; sourceTree = "<group>"; };
 		7EE6C896A75E4BC2F37AB869 /* Pods-ReelTime-iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelTime-iOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReelTime-iOSTests/Pods-ReelTime-iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9F10A54522F42FAE4C712E1A /* Pods-ReelTime-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelTime-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReelTime-iOS/Pods-ReelTime-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		A29C600554F5BB4A5E37291D /* Pods-ReelTime-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelTime-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReelTime-iOS/Pods-ReelTime-iOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -1231,6 +1239,8 @@
 		7116C0551AD9898100590DAF /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				71F384CE1B3772C8002BC9A0 /* RTUserProfilePresenter.h */,
+				71F384CF1B3772C8002BC9A0 /* RTUserProfilePresenter.m */,
 				7116C0561AD9899A00590DAF /* RTUserProfileViewController.h */,
 				7116C0571AD9899A00590DAF /* RTUserProfileViewController.m */,
 				7163D7541ADAF20F009F30EF /* RTUserReelCell.h */,
@@ -1376,6 +1386,7 @@
 		712AAB0D1B2CB0EE00E7AE4E /* AccountSettings */ = {
 			isa = PBXGroup;
 			children = (
+				71F384D31B377604002BC9A0 /* Assembly */,
 				712AAB151B2CB3BD00E7AE4E /* Navigation */,
 				712AAB0E1B2CB14C00E7AE4E /* Presentation */,
 			);
@@ -1647,6 +1658,7 @@
 				71386E4F1AD34F8F009D064C /* RTBrowseUserReelsDataManagerDelegateSpec.m */,
 				71386E541AD3531E009D064C /* RTBrowseReelVideosDataManagerDelegateSpec.m */,
 				7116C0591AD98E2000590DAF /* RTUserProfileViewControllerSpec.m */,
+				71F384D11B37742A002BC9A0 /* RTUserProfileWireframeSpec.m */,
 			);
 			path = UserProfileTests;
 			sourceTree = "<group>";
@@ -2825,6 +2837,15 @@
 			path = LoginTests;
 			sourceTree = "<group>";
 		};
+		71F384D31B377604002BC9A0 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				71F384D41B37761B002BC9A0 /* RTAccountSettingsAssembly.h */,
+				71F384D51B37761B002BC9A0 /* RTAccountSettingsAssembly.m */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
 		9771AF0E969811E0EBA02423 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -3130,6 +3151,7 @@
 				7108D78B1B13F96A000451AD /* RTChangeDisplayNameServerErrorMapping.m in Sources */,
 				717215B21A8659230002ECC7 /* RTAccountRegistrationViewController.m in Sources */,
 				71C5C0AD1A55EAE700CAAFAC /* RTOAuth2TokenError.m in Sources */,
+				71F384D61B37761B002BC9A0 /* RTAccountSettingsAssembly.m in Sources */,
 				713CE13A1AE420FE005B05C3 /* UICollectionView+LastVisible.m in Sources */,
 				714DDE571B0C0CC600D96F74 /* RTChangePasswordDataManager.m in Sources */,
 				714842F31AEBC49A001B885A /* RTApplicationWireframeContainer.m in Sources */,
@@ -3179,6 +3201,7 @@
 				71201F8C1A96B7CD003F2831 /* RTNewsfeedAssembly.m in Sources */,
 				71647BD81A7E7F9D00F44996 /* RTUser.m in Sources */,
 				71647BE61A7F17CD00F44996 /* RTAuthenticationAwareHTTPClientDelegate.m in Sources */,
+				71F384D01B3772C8002BC9A0 /* RTUserProfilePresenter.m in Sources */,
 				718BC4C41ACB7F8E00C1257F /* RTImagePNGSerialization.m in Sources */,
 				714DDE5B1B0C0D0100D96F74 /* RTChangePasswordInteractor.m in Sources */,
 				71331A301A880B0100912B5F /* RTNewsfeedWireframe.m in Sources */,
@@ -3307,6 +3330,7 @@
 				71D947981A4FCB5600401963 /* RTLoginInteractorSpec.m in Sources */,
 				71427E1F1A8C100200E2C53F /* RTActivitySpec.m in Sources */,
 				712B2BD01AAFB8870026258A /* RTPagedListInteractorSpec.m in Sources */,
+				71F384D21B37742A002BC9A0 /* RTUserProfileWireframeSpec.m in Sources */,
 				717970091AB7C83800A0B9B5 /* RTPagedListViewControllerSpec.m in Sources */,
 				7169B00B1AD1796600890983 /* RTBrowseAllVideosDataManagerDelegateSpec.m in Sources */,
 				71565A291A98EDE900AE1C43 /* RTApplicationWireframeSpec.m in Sources */,

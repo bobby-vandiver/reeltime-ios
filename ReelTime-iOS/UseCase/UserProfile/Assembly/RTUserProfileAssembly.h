@@ -6,6 +6,9 @@
 @class RTClientAssembly;
 @class RTDeviceAssembly;
 
+@class RTAccountSettingsAssembly;
+@class RTApplicationAssembly;
+
 @class RTUserProfileWireframe;
 @class RTUserProfileViewController;
 
@@ -32,6 +35,9 @@
 
 @property (nonatomic, strong, readonly) RTClientAssembly *clientAssembly;
 @property (nonatomic, strong, readonly) RTDeviceAssembly *deviceAssembly;
+
+@property (nonatomic, strong, readonly) RTAccountSettingsAssembly *accountSettingsAssembly;
+@property (nonatomic, strong, readonly) RTApplicationAssembly *applicationAssembly;
 
 - (RTUserProfileWireframe *)userProfileWireframeForUsername:(NSString *)username;
 

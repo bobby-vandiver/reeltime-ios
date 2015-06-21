@@ -1,29 +1,36 @@
 #import "RTUserProfileWireframe.h"
 #import "RTUserProfileViewController.h"
 
+#import "RTAccountSettingsWireframe.h"
+#import "RTApplicationWireframe.h"
+
 @interface RTUserProfileWireframe ()
 
 @property RTUserProfileViewController *viewController;
+@property RTAccountSettingsWireframe *accountSettingsWireframe;
 
 @end
 
 @implementation RTUserProfileWireframe
 
-- (instancetype)initWithViewController:(RTUserProfileViewController *)viewController {
-    self = [super init];
+- (instancetype)initWithViewController:(RTUserProfileViewController *)viewController
+              accountSettingsWireframe:(RTAccountSettingsWireframe *)accountSettingsWireframe
+                  applicationWireframe:(RTApplicationWireframe *)applicationWireframe {
+
+    self = [super initWithApplicationWireframe:applicationWireframe];
     if (self) {
         self.viewController = viewController;
+        self.accountSettingsWireframe = accountSettingsWireframe;
     }
     return self;
 }
 
-- (void)presentVideoForVideoId:(NSNumber *)videoId {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Present Video Details"
-                                                        message:[NSString stringWithFormat:@"Video ID: %@", videoId]
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-    [alertView show];
+- (void)presentUserProfileInterfaceForUsername:(NSString *)username {
+    
+}
+
+- (void)presentAccountSettingsInterface {
+    [self.accountSettingsWireframe presentAccountSettingsInterface];
 }
 
 @end

@@ -3,6 +3,9 @@
 #import "RTClientAssembly.h"
 #import "RTDeviceAssembly.h"
 
+#import "RTAccountSettingsAssembly.h"
+#import "RTApplicationAssembly.h"
+
 #import "RTUserProfileWireframe.h"
 #import "RTUserProfileViewController.h"
 
@@ -31,9 +34,11 @@
 
 - (RTUserProfileWireframe *)userProfileWireframeForUsername:(NSString *)username {
     return [TyphoonDefinition withClass:[RTUserProfileWireframe class] configuration:^(TyphoonDefinition *definition) {
-        [definition injectMethod:@selector(initWithViewController:)
+        [definition injectMethod:@selector(initWithViewController:accountSettingsWireframe:applicationWireframe:)
                       parameters:^(TyphoonMethod *method) {
                           [method injectParameterWith:[self userProfileViewControllerForUsername:username]];
+                          [method injectParameterWith:[self.accountSettingsAssembly accountSettingsWireframe]];
+                          [method injectParameterWith:[self.applicationAssembly applicationWireframe]];
         }];
     }];
 }
