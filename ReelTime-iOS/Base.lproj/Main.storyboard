@@ -1359,7 +1359,7 @@
         <!--Manage Devices View Controller-->
         <scene sceneID="Gfc-Uv-ylZ">
             <objects>
-                <viewController storyboardIdentifier="Manage Devices View Controller" id="180-Dq-mVr" userLabel="Manage Devices View Controller" customClass="RTManageDevicesViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Manage Devices View Controller" title="Manage Devices" id="180-Dq-mVr" userLabel="Manage Devices View Controller" customClass="RTManageDevicesViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="das-ju-ev4"/>
                         <viewControllerLayoutGuide type="bottom" id="iQ2-Pq-Rcj"/>
