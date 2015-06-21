@@ -5,7 +5,6 @@
 #import "RTApplicationWireframeContainer.h"
 
 #import "RTLoginWireframe.h"
-
 #import "RTBrowseAllViewController.h"
 
 @interface RTApplicationWireframe ()

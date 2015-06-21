@@ -6,6 +6,9 @@
 
 #import "RTApplicationWireframeContainer.h"
 
+#import "RTNewsfeedViewController.h"
+#import "RTBrowseAllViewController.h"
+
 @implementation RTApplicationAssembly
 
 - (RTAppDelegate *)appDelegate {
@@ -58,21 +61,32 @@
 }
 
 - (NSArray *)applicationTabBarViewControllers {
-    NSArray *controllers = @[
-                             [self.newsfeedAssembly newsfeedViewController],
-                             [self.browseAllAssembly browseAllViewController]
-                             ];
-    
     return [TyphoonDefinition withClass:[NSMutableArray class] configuration:^(TyphoonDefinition *definition) {
-        [definition useInitializer:@selector(initWithArray:) parameters:^(TyphoonMethod *initializer) {
-            [initializer injectParameterWith:controllers];
+
+        RTNewsfeedViewController *newsfeedViewController = [self.newsfeedAssembly newsfeedViewController];
+        RTBrowseAllViewController *browseAllViewController = [self.browseAllAssembly browseAllViewController];
+        
+        [definition useInitializer:@selector(array)];
+
+        [definition injectMethod:@selector(insertObject:atIndex:) parameters:^(TyphoonMethod *method) {
+            UIViewController *vc = [self navigationControllerWithRootViewController:newsfeedViewController];
+            [method injectParameterWith:vc];
+            [method injectParameterWith:@(0)];
+        }];
+        
+        [definition injectMethod:@selector(insertObject:atIndex:) parameters:^(TyphoonMethod *method) {
+            UIViewController *vc = [self navigationControllerWithRootViewController:browseAllViewController];
+            [method injectParameterWith:vc];
+            [method injectParameterWith:@(1)];
         }];
     }];
 }
 
-- (UIViewController *)sampleController {
-    return [TyphoonDefinition withClass:[UIViewController class] configuration:^(TyphoonDefinition *definition) {
-        [definition injectProperty:@selector(title) with:@"sample"];
+- (UIViewController *)navigationControllerWithRootViewController:(UIViewController *)viewController {
+    return [TyphoonDefinition withClass:[UINavigationController class] configuration:^(TyphoonDefinition *definition) {
+        [definition injectMethod:@selector(initWithRootViewController:) parameters:^(TyphoonMethod *method) {
+            [method injectParameterWith:viewController];
+        }];
     }];
 }
 
