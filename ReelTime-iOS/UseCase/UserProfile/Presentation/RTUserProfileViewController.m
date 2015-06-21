@@ -102,6 +102,11 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
     return self.reelsPresenter;
 }
 
+- (IBAction)pressedSettingsButton {
+    DDLogDebug(@"pressed settings button!");
+}
+
+
 - (void)showUserDescription:(RTUserDescription *)description {
     self.usernameLabel.text = [NSString stringWithFormat:@"Username: %@", description.username];
     self.displayNameLabel.text = [NSString stringWithFormat:@"Display name: %@", description.displayName];

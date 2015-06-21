@@ -43,6 +43,7 @@ describe(@"user profile view controller", ^{
     __block UILabel *reelsCreatedLabel;
     __block UILabel *reelsFollowingLabel;
  
+    __block UIButton *settingsButton;
     __block UITableView *tableView;
     
     beforeEach(^{
@@ -70,6 +71,7 @@ describe(@"user profile view controller", ^{
         reelsCreatedLabel = [[UILabel alloc] init];
         reelsFollowingLabel = [[UILabel alloc] init];
 
+        settingsButton = settingsButton;
         tableView = mock([UITableView class]);
         
         viewController.usernameLabel = usernameLabel;
@@ -81,6 +83,7 @@ describe(@"user profile view controller", ^{
         viewController.reelsCreatedLabel = reelsCreatedLabel;
         viewController.reelsFollowingLabel = reelsFollowingLabel;
         
+        viewController.settingsButton = settingsButton;
         viewController.reelsListTableView = tableView;
     });
     

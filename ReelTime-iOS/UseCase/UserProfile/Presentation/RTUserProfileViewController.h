@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *reelsCreatedLabel;
 @property (weak, nonatomic) IBOutlet UILabel *reelsFollowingLabel;
 
+@property (weak, nonatomic) IBOutlet UIButton *settingsButton;
 @property (weak, nonatomic) IBOutlet UITableView *reelsListTableView;
 
 + (instancetype)viewControllerForUsername:(NSString *)username
@@ -32,5 +33,7 @@
                reelVideosPresenterFactory:(id<RTBrowseReelVideosPresenterFactory>)reelVideosPresenterFactory
                       reelVideosWireframe:(id<RTVideoWireframe>)reelVideosWireframe
                          thumbnailSupport:(RTThumbnailSupport *)thumbnailSupport;
+
+- (IBAction)pressedSettingsButton;
 
 @end
