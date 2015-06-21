@@ -9,8 +9,6 @@
               accountSettingsWireframe:(RTAccountSettingsWireframe *)accountSettingsWireframe
                   applicationWireframe:(RTApplicationWireframe *)applicationWireframe;
 
-- (void)presentUserProfileInterfaceForUsername:(NSString *)username;
-
 - (void)presentAccountSettingsInterface;
 
 @end

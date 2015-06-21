@@ -4,8 +4,10 @@
 #import "RTBrowseReelsView.h"
 #import "RTStoryboardViewController.h"
 
+@class RTUserProfilePresenter;
 @class RTUserSummaryPresenter;
 @class RTBrowseReelsPresenter;
+
 @class RTThumbnailSupport;
 
 @protocol RTBrowseReelVideosPresenterFactory;
@@ -28,7 +30,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *reelsListTableView;
 
 + (instancetype)viewControllerForUsername:(NSString *)username
-                        withUserPresenter:(RTUserSummaryPresenter *)userPresenter
+                 withUserProfilePresenter:(RTUserProfilePresenter *)userProfilePresenter
+                     userSummaryPresenter:(RTUserSummaryPresenter *)userSummaryPresenter
                            reelsPresenter:(RTBrowseReelsPresenter *)reelsPresenter
                reelVideosPresenterFactory:(id<RTBrowseReelVideosPresenterFactory>)reelVideosPresenterFactory
                       reelVideosWireframe:(id<RTVideoWireframe>)reelVideosWireframe

@@ -11,6 +11,7 @@
 
 @class RTUserProfileWireframe;
 @class RTUserProfileViewController;
+@class RTUserProfilePresenter;
 
 @class RTUserSummaryPresenter;
 @class RTUserSummaryInteractor;
@@ -42,6 +43,8 @@
 - (RTUserProfileWireframe *)userProfileWireframeForUsername:(NSString *)username;
 
 - (RTUserProfileViewController *)userProfileViewControllerForUsername:(NSString *)username;
+
+- (RTUserProfilePresenter *)userProfilePresenterForUsername:(NSString *)username;
 
 - (RTUserSummaryPresenter *)userSummaryPresenterForUsername:(NSString *)username;
 

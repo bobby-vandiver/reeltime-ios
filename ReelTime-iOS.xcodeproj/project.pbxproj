@@ -345,6 +345,7 @@
 		71F384D01B3772C8002BC9A0 /* RTUserProfilePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F384CF1B3772C8002BC9A0 /* RTUserProfilePresenter.m */; };
 		71F384D21B37742A002BC9A0 /* RTUserProfileWireframeSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F384D11B37742A002BC9A0 /* RTUserProfileWireframeSpec.m */; };
 		71F384D61B37761B002BC9A0 /* RTAccountSettingsAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F384D51B37761B002BC9A0 /* RTAccountSettingsAssembly.m */; };
+		71F384D81B377FAC002BC9A0 /* RTUserProfilePresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F384D71B377FAC002BC9A0 /* RTUserProfilePresenterSpec.m */; };
 		BCBE070F3639F3393A1BF1A9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2682314A72FFBF85E182F6FE /* libPods.a */; };
 		F5855EE53AD6BF2CC0D24A71 /* libPods-ReelTime-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DFC463C3A66781E8DEEE7436 /* libPods-ReelTime-iOS.a */; };
 /* End PBXBuildFile section */
@@ -957,6 +958,7 @@
 		71F384D11B37742A002BC9A0 /* RTUserProfileWireframeSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTUserProfileWireframeSpec.m; sourceTree = "<group>"; };
 		71F384D41B37761B002BC9A0 /* RTAccountSettingsAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTAccountSettingsAssembly.h; sourceTree = "<group>"; };
 		71F384D51B37761B002BC9A0 /* RTAccountSettingsAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAccountSettingsAssembly.m; sourceTree = "<group>"; };
+		71F384D71B377FAC002BC9A0 /* RTUserProfilePresenterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTUserProfilePresenterSpec.m; sourceTree = "<group>"; };
 		7EE6C896A75E4BC2F37AB869 /* Pods-ReelTime-iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelTime-iOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReelTime-iOSTests/Pods-ReelTime-iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9F10A54522F42FAE4C712E1A /* Pods-ReelTime-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelTime-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReelTime-iOS/Pods-ReelTime-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		A29C600554F5BB4A5E37291D /* Pods-ReelTime-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelTime-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReelTime-iOS/Pods-ReelTime-iOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -1659,6 +1661,7 @@
 				71386E541AD3531E009D064C /* RTBrowseReelVideosDataManagerDelegateSpec.m */,
 				7116C0591AD98E2000590DAF /* RTUserProfileViewControllerSpec.m */,
 				71F384D11B37742A002BC9A0 /* RTUserProfileWireframeSpec.m */,
+				71F384D71B377FAC002BC9A0 /* RTUserProfilePresenterSpec.m */,
 			);
 			path = UserProfileTests;
 			sourceTree = "<group>";
@@ -3347,6 +3350,7 @@
 				713229E01A8FC45400DE900A /* RTNewsfeedMessageSourceSpec.m in Sources */,
 				713DE8511B092FDD00A5BBF0 /* RTResetPasswordPresenterSpec.m in Sources */,
 				71408D181B29198200339352 /* RTClientSpec.m in Sources */,
+				71F384D81B377FAC002BC9A0 /* RTUserProfilePresenterSpec.m in Sources */,
 				71B2384E1B04305E002DE5DA /* RTCurrentUserServiceSpec.m in Sources */,
 				7145C6211A8AE645006A77DE /* RTUserSpec.m in Sources */,
 				711C5DE41A8D5BA9007652FC /* RTStringWithEmbeddedLinksSpec.m in Sources */,

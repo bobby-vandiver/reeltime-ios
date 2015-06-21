@@ -25,10 +25,6 @@
     return self;
 }
 
-- (void)presentUserProfileInterfaceForUsername:(NSString *)username {
-    
-}
-
 - (void)presentAccountSettingsInterface {
     [self.accountSettingsWireframe presentAccountSettingsInterface];
 }

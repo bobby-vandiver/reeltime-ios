@@ -1,4 +1,5 @@
 #import "RTUserProfileViewController.h"
+#import "RTUserProfilePresenter.h"
 
 #import "RTUserSummaryPresenter.h"
 #import "RTBrowseReelsPresenter.h"
@@ -26,7 +27,9 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
 @interface RTUserProfileViewController ()
 
 @property (copy) NSString *username;
-@property RTUserSummaryPresenter *userPresenter;
+
+@property RTUserProfilePresenter *userProfilePresenter;
+@property RTUserSummaryPresenter *userSummaryPresenter;
 
 @property RTBrowseReelsPresenter *reelsPresenter;
 @property RTMutableArrayDataSource *reelsDataSource;
@@ -41,7 +44,8 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
 @implementation RTUserProfileViewController
 
 + (instancetype)viewControllerForUsername:(NSString *)username
-                        withUserPresenter:(RTUserSummaryPresenter *)userPresenter
+                 withUserProfilePresenter:(RTUserProfilePresenter *)userProfilePresenter
+                     userSummaryPresenter:(RTUserSummaryPresenter *)userSummaryPresenter
                            reelsPresenter:(RTBrowseReelsPresenter *)reelsPresenter
                reelVideosPresenterFactory:(id<RTBrowseReelVideosPresenterFactory>)reelVideosPresenterFactory
                       reelVideosWireframe:(id<RTVideoWireframe>)reelVideosWireframe
@@ -52,7 +56,8 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
     
     if (controller) {
         controller.username = username;
-        controller.userPresenter = userPresenter;
+        controller.userProfilePresenter = userProfilePresenter;
+        controller.userSummaryPresenter = userSummaryPresenter;
         controller.reelsPresenter = reelsPresenter;
         controller.reelVideosPresenterFactory = reelVideosPresenterFactory;
         controller.reelVideosWireframe = reelVideosWireframe;
@@ -90,7 +95,7 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    [self.userPresenter requestedSummaryForUsername:self.username];
+    [self.userSummaryPresenter requestedSummaryForUsername:self.username];
     [self.reelsPresenter requestedNextPage];
 }
 
@@ -103,9 +108,8 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
 }
 
 - (IBAction)pressedSettingsButton {
-    DDLogDebug(@"pressed settings button!");
+    [self.userProfilePresenter requestedAccountSettings];
 }
-
 
 - (void)showUserDescription:(RTUserDescription *)description {
     self.usernameLabel.text = [NSString stringWithFormat:@"Username: %@", description.username];

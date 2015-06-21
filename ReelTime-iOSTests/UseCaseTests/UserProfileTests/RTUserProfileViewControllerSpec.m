@@ -3,6 +3,7 @@
 #import "RTUserProfileViewController.h"
 #import "RTArrayDataSource.h"
 
+#import "RTUserProfilePresenter.h"
 #import "RTUserSummaryPresenter.h"
 #import "RTBrowseReelsPresenter.h"
 #import "RTBrowseVideosPresenter.h"
@@ -26,7 +27,8 @@ describe(@"user profile view controller", ^{
     
     __block RTUserProfileViewController *viewController;
     
-    __block RTUserSummaryPresenter *userPresenter;
+    __block RTUserProfilePresenter *userProfilePresenter;
+    __block RTUserSummaryPresenter *userSummaryPresenter;
     __block RTBrowseReelsPresenter *reelsPresenter;
     
     __block id<RTBrowseReelVideosPresenterFactory> reelVideosPresenterFactory;
@@ -47,7 +49,8 @@ describe(@"user profile view controller", ^{
     __block UITableView *tableView;
     
     beforeEach(^{
-        userPresenter = mock([RTUserSummaryPresenter class]);
+        userProfilePresenter = mock([RTUserProfilePresenter class]);
+        userSummaryPresenter = mock([RTUserSummaryPresenter class]);
         reelsPresenter = mock([RTBrowseReelsPresenter class]);
         
         reelVideosPresenterFactory = mockProtocol(@protocol(RTBrowseReelVideosPresenterFactory));
@@ -56,7 +59,8 @@ describe(@"user profile view controller", ^{
         thumbnailSupport = mock([RTThumbnailSupport class]);
 
         viewController = [RTUserProfileViewController viewControllerForUsername:username
-                                                              withUserPresenter:userPresenter
+                                                       withUserProfilePresenter:userProfilePresenter
+                                                           userSummaryPresenter:userSummaryPresenter
                                                                  reelsPresenter:reelsPresenter
                                                      reelVideosPresenterFactory:reelVideosPresenterFactory
                                                             reelVideosWireframe:reelVideosWireframe
@@ -100,7 +104,7 @@ describe(@"user profile view controller", ^{
         });
 
         it(@"should request the user's summary", ^{
-            [verify(userPresenter) requestedSummaryForUsername:username];
+            [verify(userSummaryPresenter) requestedSummaryForUsername:username];
         });
         
         it(@"should request the first page of reels", ^{
@@ -116,6 +120,13 @@ describe(@"user profile view controller", ^{
             
             CGFloat height = [viewController tableView:tableView heightForRowAtIndexPath:0];
             expect(height).to.equal(400);
+        });
+    });
+    
+    describe(@"pressing settings button", ^{
+        it(@"should request settings", ^{
+            [viewController pressedSettingsButton];
+            [verify(userProfilePresenter) requestedAccountSettings];
         });
     });
     

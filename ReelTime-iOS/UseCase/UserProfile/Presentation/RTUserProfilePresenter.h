@@ -1,7 +1,11 @@
 #import <Foundation/Foundation.h>
 
+@class RTUserProfileWireframe;
+
 @interface RTUserProfilePresenter : NSObject
 
-//- (void)presentUserForUsername:(NSString *)username;
+- (instancetype)initWithWireframe:(RTUserProfileWireframe *)wireframe;
+
+- (void)requestedAccountSettings;
 
 @end
