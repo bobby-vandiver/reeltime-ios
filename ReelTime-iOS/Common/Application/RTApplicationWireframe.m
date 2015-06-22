@@ -48,7 +48,7 @@
 }
 
 - (void)navigateToViewController:(UIViewController *)viewController {
-    BOOL onTabBarManagedScreen = [self.window.rootViewController isKindOfClass:[UITabBarController class]];
+    BOOL onTabBarManagedScreen = (self.window.rootViewController == self.tabBarController);
     
     if (onTabBarManagedScreen) {
         UINavigationController *tabNavController = (UINavigationController *) self.tabBarController.selectedViewController;

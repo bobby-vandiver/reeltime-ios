@@ -32,6 +32,8 @@
 
 - (RTApplicationWireframe *)applicationWireframe {
     return [TyphoonDefinition withClass:[RTApplicationWireframe class] configuration:^(TyphoonDefinition *definition) {
+        definition.scope = TyphoonScopeSingleton;
+        
         [definition injectMethod:@selector(initWithWindow:navigationController:tabBarController:wireframeContainer:)
                       parameters:^(TyphoonMethod *initializer) {
                           [initializer injectParameterWith:[self mainWindow]];
