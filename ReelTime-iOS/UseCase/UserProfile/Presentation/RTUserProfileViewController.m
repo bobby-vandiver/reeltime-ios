@@ -5,7 +5,9 @@
 #import "RTBrowseReelsPresenter.h"
 
 #import "RTBrowseReelVideosPresenterFactory.h"
+
 #import "RTThumbnailSupport.h"
+#import "RTCurrentUserService.h"
 
 #import "RTArrayDataSource.h"
 #import "RTMutableArrayDataSource.h"
@@ -13,8 +15,6 @@
 #import "RTStoryboardViewControllerFactory.h"
 
 #import "RTUserDescription.h"
-
-#import "RTUserProfileAssembly.h"
 #import "RTBrowseVideosPresenter.h"
 
 #import "RTUserReelCell.h"
@@ -38,6 +38,7 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
 @property id<RTVideoWireframe> reelVideosWireframe;
 
 @property RTThumbnailSupport *thumbnailSupport;
+@property RTCurrentUserService *currentUserService;
 
 @end
 
@@ -49,7 +50,8 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
                            reelsPresenter:(RTBrowseReelsPresenter *)reelsPresenter
                reelVideosPresenterFactory:(id<RTBrowseReelVideosPresenterFactory>)reelVideosPresenterFactory
                       reelVideosWireframe:(id<RTVideoWireframe>)reelVideosWireframe
-                         thumbnailSupport:(RTThumbnailSupport *)thumbnailSupport {
+                         thumbnailSupport:(RTThumbnailSupport *)thumbnailSupport
+                       currentUserService:(RTCurrentUserService *)currentUserService {
 
     NSString *identifier = [RTUserProfileViewController storyboardIdentifier];
     RTUserProfileViewController *controller = [RTStoryboardViewControllerFactory viewControllerWithStoryboardIdentifier:identifier];
@@ -62,6 +64,7 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
         controller.reelVideosPresenterFactory = reelVideosPresenterFactory;
         controller.reelVideosWireframe = reelVideosWireframe;
         controller.thumbnailSupport = thumbnailSupport;
+        controller.currentUserService = currentUserService;
     }
     
     [controller createDataSource];
@@ -112,6 +115,8 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
 }
 
 - (void)showUserDescription:(RTUserDescription *)description {
+    [self setSettingsButtonVisibilityForUsername:description.username];
+
     self.usernameLabel.text = [NSString stringWithFormat:@"Username: %@", description.username];
     self.displayNameLabel.text = [NSString stringWithFormat:@"Display name: %@", description.displayName];
     
@@ -120,6 +125,13 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
     
     self.reelsCreatedLabel.text = [NSString stringWithFormat:@"Reels Created: %@", description.numberOfReelsOwned];
     self.reelsFollowingLabel.text = [NSString stringWithFormat:@"Reels Following: %@", description.numberOfAudienceMemberships];
+}
+
+- (void)setSettingsButtonVisibilityForUsername:(NSString *)username {
+    NSString *currentUsername = [self.currentUserService currentUsername];
+
+    BOOL profileIsForCurrentUser = [currentUsername isEqual:username];
+    self.settingsButton.hidden = !profileIsForCurrentUser;
 }
 
 - (void)showUserNotFoundMessage:(NSString *)message {

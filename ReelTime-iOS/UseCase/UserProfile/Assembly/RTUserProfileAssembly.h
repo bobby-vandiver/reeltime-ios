@@ -5,6 +5,7 @@
 
 @class RTClientAssembly;
 @class RTDeviceAssembly;
+@class RTServiceAssembly;
 
 @class RTAccountSettingsAssembly;
 @class RTApplicationAssembly;
@@ -36,6 +37,7 @@
 
 @property (nonatomic, strong, readonly) RTClientAssembly *clientAssembly;
 @property (nonatomic, strong, readonly) RTDeviceAssembly *deviceAssembly;
+@property (nonatomic, strong, readonly) RTServiceAssembly *serviceAssembly;
 
 @property (nonatomic, strong, readonly) RTAccountSettingsAssembly *accountSettingsAssembly;
 @property (nonatomic, strong, readonly) RTApplicationAssembly *applicationAssembly;

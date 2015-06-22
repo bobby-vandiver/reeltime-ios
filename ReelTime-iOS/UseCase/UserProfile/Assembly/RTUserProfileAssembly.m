@@ -2,6 +2,7 @@
 
 #import "RTClientAssembly.h"
 #import "RTDeviceAssembly.h"
+#import "RTServiceAssembly.h"
 
 #import "RTAccountSettingsAssembly.h"
 #import "RTApplicationAssembly.h"
@@ -46,7 +47,7 @@
 
 - (RTUserProfileViewController *)userProfileViewControllerForUsername:(NSString *)username {
     return [TyphoonDefinition withClass:[RTUserProfileViewController class] configuration:^(TyphoonDefinition *definition) {
-        [definition useInitializer:@selector(viewControllerForUsername:withUserProfilePresenter:userSummaryPresenter:reelsPresenter:reelVideosPresenterFactory:reelVideosWireframe:thumbnailSupport:)
+        [definition useInitializer:@selector(viewControllerForUsername:withUserProfilePresenter:userSummaryPresenter:reelsPresenter:reelVideosPresenterFactory:reelVideosWireframe:thumbnailSupport:currentUserService:)
                         parameters:^(TyphoonMethod *initializer) {
                             [initializer injectParameterWith:username];
                             [initializer injectParameterWith:[self userProfilePresenterForUsername:username]];
@@ -55,6 +56,7 @@
                             [initializer injectParameterWith:self];
                             [initializer injectParameterWith:[self userProfileWireframeForUsername:username]];
                             [initializer injectParameterWith:[self.deviceAssembly thumbnailSupport]];
+                            [initializer injectParameterWith:[self.serviceAssembly currentUserService]];
         }];
     }];
 }

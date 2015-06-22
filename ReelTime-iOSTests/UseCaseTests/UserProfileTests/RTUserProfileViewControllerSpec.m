@@ -10,6 +10,7 @@
 #import "RTBrowseReelVideosPresenterFactory.h"
 #import "RTVideoWireframe.h"
 #import "RTThumbnailSupport.h"
+#import "RTCurrentUserService.h"
 
 #import "RTUserDescription.h"
 #import "RTReelDescription.h"
@@ -35,6 +36,7 @@ describe(@"user profile view controller", ^{
     __block id<RTVideoWireframe> reelVideosWireframe;
     
     __block RTThumbnailSupport *thumbnailSupport;
+    __block RTCurrentUserService *currentUserService;
 
     __block UILabel *usernameLabel;
     __block UILabel *displayNameLabel;
@@ -57,14 +59,16 @@ describe(@"user profile view controller", ^{
         reelVideosWireframe = mockProtocol(@protocol(RTVideoWireframe));
         
         thumbnailSupport = mock([RTThumbnailSupport class]);
-
+        currentUserService = mock([RTCurrentUserService class]);
+ 
         viewController = [RTUserProfileViewController viewControllerForUsername:username
                                                        withUserProfilePresenter:userProfilePresenter
                                                            userSummaryPresenter:userSummaryPresenter
                                                                  reelsPresenter:reelsPresenter
                                                      reelVideosPresenterFactory:reelVideosPresenterFactory
                                                             reelVideosWireframe:reelVideosWireframe
-                                                               thumbnailSupport:thumbnailSupport];
+                                                               thumbnailSupport:thumbnailSupport
+                                                             currentUserService:currentUserService];
         
         usernameLabel = [[UILabel alloc] init];
         displayNameLabel = [[UILabel alloc] init];
@@ -75,7 +79,9 @@ describe(@"user profile view controller", ^{
         reelsCreatedLabel = [[UILabel alloc] init];
         reelsFollowingLabel = [[UILabel alloc] init];
 
-        settingsButton = settingsButton;
+        settingsButton = [[UIButton alloc] init];
+        settingsButton.hidden = YES;
+
         tableView = mock([UITableView class]);
         
         viewController.usernameLabel = usernameLabel;
@@ -142,7 +148,7 @@ describe(@"user profile view controller", ^{
                                                 numberOfAudienceMemberships:@(4)];
         });
         
-        describe(@"show user description", ^{
+        describe(@"show user summary", ^{
             beforeEach(^{
                 [viewController showUserDescription:description];
             });
@@ -156,6 +162,28 @@ describe(@"user profile view controller", ^{
                 
                 expect(viewController.reelsCreatedLabel.text).equal(@"Reels Created: 3");
                 expect(viewController.reelsFollowingLabel.text).equal(@"Reels Following: 4");
+            });
+        });
+
+        context(@"profile is for currently logged in user", ^{
+            beforeEach(^{
+                [given([currentUserService currentUsername]) willReturn:@"foo"];
+                [viewController showUserDescription:description];
+            });
+            
+            it(@"should display settings button", ^{
+                expect(viewController.settingsButton.hidden).to.beFalsy();
+            });
+        });
+        
+        context(@"profile is not for currently logged in user", ^{
+            beforeEach(^{
+                [given([currentUserService currentUsername]) willReturn:@"notFoo"];
+                [viewController showUserDescription:description];
+            });
+        
+            it(@"should display settings button", ^{
+                expect(viewController.settingsButton.hidden).to.beTruthy();
             });
         });
     });

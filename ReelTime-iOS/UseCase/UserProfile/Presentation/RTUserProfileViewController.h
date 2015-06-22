@@ -9,11 +9,10 @@
 @class RTBrowseReelsPresenter;
 
 @class RTThumbnailSupport;
+@class RTCurrentUserService;
 
 @protocol RTBrowseReelVideosPresenterFactory;
 @protocol RTVideoWireframe;
-
-@class RTArrayDataSource;
 
 @interface RTUserProfileViewController : RTPagedListViewController <RTUserSummaryView, RTBrowseReelsView, RTStoryboardViewController>
 
@@ -35,7 +34,8 @@
                            reelsPresenter:(RTBrowseReelsPresenter *)reelsPresenter
                reelVideosPresenterFactory:(id<RTBrowseReelVideosPresenterFactory>)reelVideosPresenterFactory
                       reelVideosWireframe:(id<RTVideoWireframe>)reelVideosWireframe
-                         thumbnailSupport:(RTThumbnailSupport *)thumbnailSupport;
+                         thumbnailSupport:(RTThumbnailSupport *)thumbnailSupport
+                       currentUserService:(RTCurrentUserService *)currentUserService;
 
 - (IBAction)pressedSettingsButton;
 
