@@ -6,6 +6,8 @@
 #import "RTConfirmAccountWireframe.h"
 #import "RTManageDevicesWireframe.h"
 
+#import "RTApplicationWireframe.h"
+
 @interface RTAccountSettingsWireframe ()
 
 @property RTAccountSettingsViewController *viewController;
@@ -23,8 +25,10 @@
             changeDisplayNameWireframe:(RTChangeDisplayNameWireframe *)changeDisplayNameWireframe
                changePasswordWireframe:(RTChangePasswordWireframe *)changePasswordWireframe
                confirmAccountWireframe:(RTConfirmAccountWireframe *)confirmAccountWireframe
-                manageDevicesWireframe:(RTManageDevicesWireframe *)manageDevicesWireframe {
-    self = [super init];
+                manageDevicesWireframe:(RTManageDevicesWireframe *)manageDevicesWireframe
+                  applicationWireframe:(RTApplicationWireframe *)applicationWireframe {
+
+    self = [super initWithApplicationWireframe:applicationWireframe];
     if (self) {
         self.viewController = viewController;
         self.changeDisplayNameWireframe = changeDisplayNameWireframe;
@@ -36,23 +40,23 @@
 }
 
 - (void)presentAccountSettingsInterface {
-    
+    [self.applicationWireframe navigateToViewController:self.viewController];
 }
 
 - (void)presentChangeDisplayNameInterface {
-    
+    [self.changeDisplayNameWireframe presentChangeDisplayNameInterface];
 }
 
 - (void)presentChangePasswordInterface {
-    
+    [self.changePasswordWireframe presentChangePasswordInterface];
 }
 
 - (void)presentConfirmAccountInterface {
-    
+    [self.confirmAccountWireframe presentConfirmAccountInterface];
 }
 
 - (void)presentManageDevicesInterface {
-    
+    [self.manageDevicesWireframe presentManageDevicesInterface];
 }
 
 @end
