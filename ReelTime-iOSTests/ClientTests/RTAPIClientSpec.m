@@ -367,7 +367,7 @@ describe(@"ReelTime Client", ^{
             expect(httpClient.lastParameters[@"password"]).to.equal(password);
             expect(httpClient.lastParameters[@"client_id"]).to.equal(clientId);
             expect(httpClient.lastParameters[@"client_secret"]).to.equal(clientSecret);
-            expect(httpClient.lastParameters[@"scope"]).to.equal(@"audiences-read audiences-write reels-read reels-write users-read users-write videos-read videos-write");
+            expect(httpClient.lastParameters[@"scope"]).to.equal(@"account-read account-write audiences-read audiences-write reels-read reels-write users-read users-write videos-read videos-write");
         });
         
         it(@"fails due to bad client credentials", ^{

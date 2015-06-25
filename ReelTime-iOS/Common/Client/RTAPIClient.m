@@ -18,7 +18,7 @@
 
 #import <RestKit/RestKit.h>
 
-static NSString *const ALL_SCOPES = @"audiences-read audiences-write reels-read reels-write users-read users-write videos-read videos-write";
+static NSString *const ALL_SCOPES = @"account-read account-write audiences-read audiences-write reels-read reels-write users-read users-write videos-read videos-write";
 
 @interface RTAPIClient ()
 
