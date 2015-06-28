@@ -24,6 +24,18 @@ describe(@"change password view controller", ^{
         viewController.confirmationPasswordField = confirmationPasswordField;
     });
     
+    describe(@"when view will appear", ^{
+        it(@"should reset fields", ^{
+            passwordField.text = password;
+            confirmationPasswordField.text = confirmationPassword;
+            
+            [viewController viewWillAppear:anything()];
+            
+            expect(passwordField.text).to.equal(BLANK);
+            expect(confirmationPasswordField.text).to.equal(BLANK);
+        });
+    });
+    
     describe(@"when save button is pressed", ^{
         it(@"should request password change for the supplied information", ^{
             viewController.passwordField.text = password;

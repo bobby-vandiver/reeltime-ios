@@ -32,6 +32,13 @@
     self.confirmationPasswordField.delegate = self;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    self.passwordField.text = @"";
+    self.confirmationPasswordField.text = @"";
+}
+
 - (UIScrollView *)scrollView {
     return self.changePasswordFormScrollView;
 }

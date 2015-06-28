@@ -25,6 +25,12 @@
     return @"Confirm Account View Controller";
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    self.confirmationCodeField.text = @"";
+}
+
 - (IBAction)pressedSendEmailButton {
     [self.presenter requestedConfirmationEmail];
 }

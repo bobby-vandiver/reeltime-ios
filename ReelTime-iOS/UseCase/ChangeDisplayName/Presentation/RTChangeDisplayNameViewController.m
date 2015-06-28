@@ -25,6 +25,12 @@
     return @"Change Display Name View Controller";
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    self.displayNameField.text = @"";
+}
+
 - (IBAction)pressedSaveButton {
     [self.presenter requestedDisplayNameChangeWithDisplayName:self.displayNameField.text];
 }

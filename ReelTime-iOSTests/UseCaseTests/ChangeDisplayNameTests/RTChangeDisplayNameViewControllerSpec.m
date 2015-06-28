@@ -20,6 +20,15 @@ describe(@"change display name view controller", ^{
         viewController.displayNameField = displayNameField;
     });
     
+    describe(@"when view will appear", ^{
+        it(@"should reset fields", ^{
+            displayNameField.text = displayName;
+
+            [viewController viewWillAppear:anything()];
+            expect(displayNameField.text).to.equal(BLANK);
+        });
+    });
+    
     describe(@"when save button is pressed", ^{
         it(@"should request display name change with new name", ^{
             viewController.displayNameField.text = displayName;

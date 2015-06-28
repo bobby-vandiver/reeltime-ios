@@ -20,6 +20,15 @@ describe(@"confirm account view controller", ^{
         viewController.confirmationCodeField = confirmationCodeField;
     });
     
+    describe(@"when view will appear", ^{
+        it(@"should reset fields", ^{
+            confirmationCodeField.text = confirmationCode;
+            
+            [viewController viewWillAppear:anything()];
+            expect(confirmationCodeField.text).to.equal(BLANK);
+        });
+    });
+    
     describe(@"when the send email button is pressed", ^{
         it(@"should notify the presenter to send the email", ^{
             [viewController pressedSendEmailButton];
