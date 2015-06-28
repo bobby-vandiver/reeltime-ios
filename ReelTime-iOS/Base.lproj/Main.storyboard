@@ -1248,19 +1248,31 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
-                                                    <variation key="widthClass=compact" fixedFrame="YES">
-                                                        <rect key="frame" x="22" y="12" width="337" height="21"/>
-                                                    </variation>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Jtr-8M-zyG" firstAttribute="top" secondItem="Jui-mX-kqS" secondAttribute="topMargin" constant="4" id="5PL-QL-3Dn"/>
+                                                <constraint firstItem="Jtr-8M-zyG" firstAttribute="leading" secondItem="Jui-mX-kqS" secondAttribute="leadingMargin" constant="14" id="RAE-oY-Wwu"/>
+                                                <constraint firstItem="Jtr-8M-zyG" firstAttribute="trailing" secondItem="Jui-mX-kqS" secondAttribute="trailingMargin" id="fmf-Yt-3c1"/>
+                                            </constraints>
                                             <variation key="default">
                                                 <mask key="subviews">
                                                     <exclude reference="Jtr-8M-zyG"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <exclude reference="5PL-QL-3Dn"/>
+                                                    <exclude reference="RAE-oY-Wwu"/>
+                                                    <exclude reference="fmf-Yt-3c1"/>
                                                 </mask>
                                             </variation>
                                             <variation key="widthClass=compact">
                                                 <mask key="subviews">
                                                     <include reference="Jtr-8M-zyG"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <include reference="5PL-QL-3Dn"/>
+                                                    <include reference="RAE-oY-Wwu"/>
+                                                    <include reference="fmf-Yt-3c1"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -1275,19 +1287,31 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
-                                                    <variation key="widthClass=compact" fixedFrame="YES">
-                                                        <rect key="frame" x="22" y="11" width="337" height="21"/>
-                                                    </variation>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="r9i-oJ-mgq" firstAttribute="leading" secondItem="Oeu-2E-TN4" secondAttribute="leadingMargin" constant="14" id="b0h-wd-pwN"/>
+                                                <constraint firstItem="r9i-oJ-mgq" firstAttribute="centerY" secondItem="Oeu-2E-TN4" secondAttribute="centerY" id="ob6-CK-NQa"/>
+                                                <constraint firstItem="r9i-oJ-mgq" firstAttribute="trailing" secondItem="Oeu-2E-TN4" secondAttribute="trailingMargin" id="s9p-ug-EiO"/>
+                                            </constraints>
                                             <variation key="default">
                                                 <mask key="subviews">
                                                     <exclude reference="r9i-oJ-mgq"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <exclude reference="b0h-wd-pwN"/>
+                                                    <exclude reference="ob6-CK-NQa"/>
+                                                    <exclude reference="s9p-ug-EiO"/>
                                                 </mask>
                                             </variation>
                                             <variation key="widthClass=compact">
                                                 <mask key="subviews">
                                                     <include reference="r9i-oJ-mgq"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <include reference="b0h-wd-pwN"/>
+                                                    <include reference="ob6-CK-NQa"/>
+                                                    <include reference="s9p-ug-EiO"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -1306,19 +1330,31 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
-                                                    <variation key="widthClass=compact" fixedFrame="YES">
-                                                        <rect key="frame" x="30" y="11" width="337" height="21"/>
-                                                    </variation>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="cI6-X0-dni" firstAttribute="leading" secondItem="jYT-6y-a72" secondAttribute="leadingMargin" constant="22" id="8cD-dx-QRD"/>
+                                                <constraint firstItem="cI6-X0-dni" firstAttribute="centerY" secondItem="jYT-6y-a72" secondAttribute="centerY" id="l7X-1B-bJV"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="cI6-X0-dni" secondAttribute="trailing" constant="-8" id="rI1-3z-9Bw"/>
+                                            </constraints>
                                             <variation key="default">
                                                 <mask key="subviews">
                                                     <exclude reference="cI6-X0-dni"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <exclude reference="8cD-dx-QRD"/>
+                                                    <exclude reference="l7X-1B-bJV"/>
+                                                    <exclude reference="rI1-3z-9Bw"/>
                                                 </mask>
                                             </variation>
                                             <variation key="widthClass=compact">
                                                 <mask key="subviews">
                                                     <include reference="cI6-X0-dni"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <include reference="8cD-dx-QRD"/>
+                                                    <include reference="l7X-1B-bJV"/>
+                                                    <include reference="rI1-3z-9Bw"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -1333,19 +1369,31 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
-                                                    <variation key="widthClass=compact" fixedFrame="YES">
-                                                        <rect key="frame" x="30" y="11" width="337" height="21"/>
-                                                    </variation>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="4Ev-L4-3xk" secondAttribute="trailing" constant="-8" id="7RU-RH-o1s"/>
+                                                <constraint firstItem="4Ev-L4-3xk" firstAttribute="leading" secondItem="PSk-xZ-CsQ" secondAttribute="leadingMargin" constant="22" id="NLq-Dm-k8m"/>
+                                                <constraint firstItem="4Ev-L4-3xk" firstAttribute="centerY" secondItem="PSk-xZ-CsQ" secondAttribute="centerY" id="vRL-SW-PGg"/>
+                                            </constraints>
                                             <variation key="default">
                                                 <mask key="subviews">
                                                     <exclude reference="4Ev-L4-3xk"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <exclude reference="7RU-RH-o1s"/>
+                                                    <exclude reference="NLq-Dm-k8m"/>
+                                                    <exclude reference="vRL-SW-PGg"/>
                                                 </mask>
                                             </variation>
                                             <variation key="widthClass=compact">
                                                 <mask key="subviews">
                                                     <include reference="4Ev-L4-3xk"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <include reference="7RU-RH-o1s"/>
+                                                    <include reference="NLq-Dm-k8m"/>
+                                                    <include reference="vRL-SW-PGg"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
