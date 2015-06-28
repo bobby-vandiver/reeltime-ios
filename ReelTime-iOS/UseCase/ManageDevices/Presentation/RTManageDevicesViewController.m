@@ -34,7 +34,7 @@ static NSString *const DeviceCellIdentifier = @"DeviceCell";
 + (RTMutableArrayDataSource *)createDataSourceWithPresenter:(RTManageDevicesPresenter *)presenter {
     
     ConfigureCellBlock configureCellBlock = ^(UITableViewCell *cell, RTClientDescription *description) {
-        cell.textLabel.text = [NSString stringWithFormat:@"%@ :: %@", description.clientId, description.clientName];
+        cell.textLabel.text = description.clientName;
     };
     
     OnDeleteCellBlock onDeleteCellBlock = ^(UITableViewCell *cell, RTClientDescription *description) {
