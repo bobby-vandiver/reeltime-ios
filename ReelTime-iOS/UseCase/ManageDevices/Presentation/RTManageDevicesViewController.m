@@ -53,6 +53,7 @@ static NSString *const DeviceCellIdentifier = @"DeviceCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.tableView setDataSource:self.devicesDataSource];
     [self.tableView setAllowsMultipleSelectionDuringEditing:NO];
 }
 

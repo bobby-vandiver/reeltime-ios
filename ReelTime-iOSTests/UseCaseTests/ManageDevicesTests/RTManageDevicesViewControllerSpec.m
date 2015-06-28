@@ -38,8 +38,15 @@ describe(@"manage devices view controller", ^{
     });
     
     describe(@"when view did load", ^{
-        it(@"should disallow multiple selections in editing", ^{
+        beforeEach(^{
             [viewController viewDidLoad];
+        });
+        
+        it(@"should use devices data source for the table", ^{
+            [verify(tableView) setDataSource:viewController.devicesDataSource];
+        });
+        
+        it(@"should disallow multiple selections in editing", ^{
             [verify(tableView) setAllowsMultipleSelectionDuringEditing:NO];
         });
     });
