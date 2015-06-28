@@ -27,6 +27,20 @@ describe(@"device registration view controller", ^{
         viewController.clientNameField = clientNameField;
     });
     
+    describe(@"when view will appear", ^{
+        it(@"should reset fields", ^{
+            usernameField.text = username;
+            passwordField.text = password;
+            clientNameField.text = clientName;
+            
+            [viewController viewWillAppear:anything()];
+
+            expect(usernameField.text).to.equal(BLANK);
+            expect(passwordField.text).to.equal(BLANK);
+            expect(clientNameField.text).to.equal(BLANK);
+        });
+    });
+    
     describe(@"when register button is pressed", ^{
         it(@"should request device registration for the supplied information", ^{
             viewController.usernameField.text = username;

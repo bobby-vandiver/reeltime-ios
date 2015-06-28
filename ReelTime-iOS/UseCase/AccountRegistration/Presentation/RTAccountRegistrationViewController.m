@@ -59,6 +59,17 @@
     self.clientNameField.delegate = self;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    self.usernameField.text = @"";
+    self.passwordField.text = @"";
+    self.confirmationPasswordField.text = @"";
+    self.emailField.text = @"";
+    self.displayNameField.text = @"";
+    self.clientNameField.text = @"";
+}
+
 - (UIScrollView *)scrollView {
     return self.accountRegistrationFormScrollView;
 }

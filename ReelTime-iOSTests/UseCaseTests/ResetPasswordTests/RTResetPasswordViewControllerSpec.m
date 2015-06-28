@@ -42,6 +42,30 @@ describe(@"reset password view controller", ^{
         viewController.resetCodeField = resetCodeField;
     });
     
+    describe(@"when view will appear", ^{
+        it(@"should reset fields", ^{
+            emailUsernameField.text = username;
+            resetUsernameField.text = username;
+
+            passwordField.text = password;
+            confirmationPasswordField.text = confirmationPassword;
+            
+            clientNameField.text = clientName;
+            resetCodeField.text = resetCode;
+            
+            [viewController viewWillAppear:anything()];
+
+            expect(emailUsernameField.text).to.equal(BLANK);
+            expect(resetUsernameField.text).to.equal(BLANK);
+            
+            expect(passwordField.text).to.equal(BLANK);
+            expect(confirmationPasswordField.text).to.equal(BLANK);
+            
+            expect(clientNameField.text).to.equal(BLANK);
+            expect(resetCodeField.text).to.equal(BLANK);
+        });
+    });
+    
     describe(@"pressing send email button", ^{
         it(@"should request reset password email", ^{
             emailUsernameField.text = username;

@@ -24,6 +24,18 @@ describe(@"login view controller", ^{
         viewController.passwordField = passwordField;
     });
     
+    describe(@"when view will appear", ^{
+        it(@"should reset fields", ^{
+            usernameField.text = username;
+            passwordField.text = password;
+            
+            [viewController viewWillAppear:anything()];
+
+            expect(usernameField.text).to.equal(BLANK);
+            expect(passwordField.text).to.equal(BLANK);
+        });
+    });
+    
     describe(@"when login button is pressed", ^{
         it(@"should request login for the supplied username and password fields", ^{
             viewController.usernameField.text = username;

@@ -36,9 +36,27 @@ describe(@"account registration view controller", ^{
         viewController.clientNameField = clientNameField;
     });
     
-    describe(@"when register button is pressed", ^{
-        NSString *confirmationPassword = [NSString stringWithFormat:@"%@a", password];
+    describe(@"when view will appear", ^{
+        it(@"should reset fields", ^{
+            usernameField.text = username;
+            passwordField.text = password;
+            confirmationPasswordField.text = confirmationPassword;
+            emailField.text = email;
+            displayNameField.text = displayName;
+            clientNameField.text = clientName;
+            
+            [viewController viewWillAppear:anything()];
 
+            expect(usernameField.text).to.equal(BLANK);
+            expect(passwordField.text).to.equal(BLANK);
+            expect(confirmationPasswordField.text).to.equal(BLANK);
+            expect(emailField.text).to.equal(BLANK);
+            expect(displayNameField.text).to.equal(BLANK);
+            expect(clientNameField.text).to.equal(BLANK);
+        });
+    });
+    
+    describe(@"when register button is pressed", ^{
         it(@"should request account registration", ^{
             usernameField.text = username;
             passwordField.text = password;

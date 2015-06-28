@@ -64,6 +64,13 @@
     self.passwordField.delegate = self;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    self.usernameField.text = @"";
+    self.passwordField.text = @"";
+}
+
 - (UIScrollView *)scrollView {
     return self.loginFormScrollView;
 }

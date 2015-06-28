@@ -69,18 +69,28 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSArray *fields = @[
-                        self.emailUsernameField,
-                        self.resetUsernameField,
-                        self.passwordField,
-                        self.confirmationPasswordField,
-                        self.resetCodeField,
-                        self.clientNameField
-                        ];
-    
-    for (UITextField *textField in fields) {
+    for (UITextField *textField in [self fields]) {
         textField.delegate = self;
     }
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    for (UITextField *textField in [self fields]) {
+        textField.text = @"";
+    }
+}
+
+- (NSArray *)fields {
+    return @[
+             self.emailUsernameField,
+             self.resetUsernameField,
+             self.passwordField,
+             self.confirmationPasswordField,
+             self.resetCodeField,
+             self.clientNameField
+             ];
 }
 
 @end
