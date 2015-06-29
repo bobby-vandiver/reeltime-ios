@@ -5,6 +5,9 @@
 #import "RTRevokeClientInteractorDelegate.h"
 #import "RTRevokeClientDataManager.h"
 
+#import "RTCurrentUserService.h"
+#import "RTClientCredentials.h"
+
 #import "RTRevokeClientError.h"
 #import "RTErrorFactory.h"
 
@@ -13,19 +16,23 @@ SpecBegin(RTRevokeClientInteractor)
 describe(@"revoke client interactor", ^{
 
     __block RTRevokeClientInteractor *interactor;
-
     __block id<RTRevokeClientInteractorDelegate> delegate;
-    __block RTRevokeClientDataManager *dataManager;
     
+    __block RTRevokeClientDataManager *dataManager;
+    __block RTCurrentUserService *currentUserService;
+ 
     __block MKTArgumentCaptor *successCaptor;
     __block MKTArgumentCaptor *failureCaptor;
 
     beforeEach(^{
         delegate = mockProtocol(@protocol(RTRevokeClientInteractorDelegate));
+
         dataManager = mock([RTRevokeClientDataManager class]);
+        currentUserService = mock([RTCurrentUserService class]);
         
         interactor = [[RTRevokeClientInteractor alloc] initWithDelegate:delegate
-                                                            dataManager:dataManager];
+                                                            dataManager:dataManager
+                                                     currentUserService:currentUserService];
         
         successCaptor = [[MKTArgumentCaptor alloc] init];
         failureCaptor = [[MKTArgumentCaptor alloc] init];
@@ -40,10 +47,25 @@ describe(@"revoke client interactor", ^{
                                                       failure:[failureCaptor capture]];
             });
             
-            it(@"should notify delegate of success", ^{
+            it(@"should notify delegate of success -- revoked client is the current client", ^{
+                RTClientCredentials *clientCredentials = [[RTClientCredentials alloc] initWithClientId:clientId
+                                                                                          clientSecret:anything()];
+                [given([currentUserService clientCredentialsForCurrentUser]) willReturn:clientCredentials];
+                
                 NoArgsCallback callback = [successCaptor value];
                 callback();
-                [verify(delegate) clientRevocationSucceededForClientWithClientId:clientId];
+                [verify(delegate) clientRevocationSucceededForClientWithClientId:clientId currentClient:YES];
+            });
+            
+            it(@"should notify delegate of success -- revoked client is not the current client", ^{
+                NSString *differentClientId = [clientId stringByAppendingString:@"a"];
+                RTClientCredentials *clientCredentials = [[RTClientCredentials alloc] initWithClientId:differentClientId
+                                                                                          clientSecret:anything()];
+                [given([currentUserService clientCredentialsForCurrentUser]) willReturn:clientCredentials];
+                
+                NoArgsCallback callback = [successCaptor value];
+                callback();
+                [verify(delegate) clientRevocationSucceededForClientWithClientId:clientId currentClient:NO];
             });
             
             it(@"should notify delegate of failure", ^{

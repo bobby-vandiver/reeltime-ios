@@ -25,4 +25,8 @@
     [self.applicationWireframe navigateToViewController:self.viewController];
 }
 
+- (void)presentLoginInterface {
+    
+}
+
 @end

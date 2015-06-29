@@ -3,15 +3,20 @@
 #import "RTRevokeClientInteractorDelegate.h"
 #import "RTRevokeClientDataManager.h"
 
+#import "RTCurrentUserService.h"
 #import "RTValidator.h"
 
 #import "RTRevokeClientError.h"
 #import "RTErrorFactory.h"
 
+#import "RTClientCredentials.h"
+
 @interface RTRevokeClientInteractor ()
 
 @property id<RTRevokeClientInteractorDelegate> delegate;
 @property RTRevokeClientDataManager *dataManager;
+
+@property RTCurrentUserService *currentUserService;
 @property RTValidator *validator;
 
 @end
@@ -19,11 +24,13 @@
 @implementation RTRevokeClientInteractor
 
 - (instancetype)initWithDelegate:(id<RTRevokeClientInteractorDelegate>)delegate
-                     dataManager:(RTRevokeClientDataManager *)dataManager {
+                     dataManager:(RTRevokeClientDataManager *)dataManager
+              currentUserService:(RTCurrentUserService *)currentUserService {
     self = [super init];
     if (self) {
         self.delegate = delegate;
         self.dataManager = dataManager;
+        self.currentUserService = currentUserService;
         self.validator = [[RTValidator alloc] init];
     }
     return self;
@@ -56,7 +63,9 @@
 
 - (NoArgsCallback)revocationSuccessCallbackForClientId:(NSString *)clientId {
     return ^{
-        [self.delegate clientRevocationSucceededForClientWithClientId:clientId];
+        RTClientCredentials *clientCredentials = [self.currentUserService clientCredentialsForCurrentUser];
+        BOOL currentClient = [clientCredentials.clientId isEqual:clientId];
+        [self.delegate clientRevocationSucceededForClientWithClientId:clientId currentClient:currentClient];
     };
 }
 

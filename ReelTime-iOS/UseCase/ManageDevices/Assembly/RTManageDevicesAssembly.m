@@ -36,9 +36,10 @@
 
 - (RTManageDevicesPresenter *)manageDevicesPresenter {
     return [TyphoonDefinition withClass:[RTManageDevicesPresenter class] configuration:^(TyphoonDefinition *definition) {
-        [definition injectMethod:@selector(initWithView:browseDevicesInteractor:revokeClientInteractor:)
+        [definition injectMethod:@selector(initWithView:wireframe:browseDevicesInteractor:revokeClientInteractor:)
                       parameters:^(TyphoonMethod *method) {
                           [method injectParameterWith:[self manageDevicesViewController]];
+                          [method injectParameterWith:[self manageDevicesWireframe]];
                           [method injectParameterWith:[self browseDevicesInteractor]];
                           [method injectParameterWith:[self revokeClientInteractor]];
         }];

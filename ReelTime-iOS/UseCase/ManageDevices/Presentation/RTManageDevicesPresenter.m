@@ -1,6 +1,8 @@
 #import "RTManageDevicesPresenter.h"
 
 #import "RTManageDevicesView.h"
+#import "RTManageDevicesWireframe.h"
+
 #import "RTRevokeClientInteractor.h"
 
 #import "RTClient.h"
@@ -12,6 +14,7 @@
 @interface RTManageDevicesPresenter ()
 
 @property id<RTManageDevicesView> view;
+@property RTManageDevicesWireframe *wireframe;
 @property RTRevokeClientInteractor *revokeClientInteractor;
 
 @end
@@ -19,12 +22,14 @@
 @implementation RTManageDevicesPresenter
 
 - (instancetype)initWithView:(id<RTManageDevicesView>)view
+                   wireframe:(RTManageDevicesWireframe *)wireframe
      browseDevicesInteractor:(RTPagedListInteractor *)browseDeviceInteractor
       revokeClientInteractor:(RTRevokeClientInteractor *)revokeClientInteractor {
 
     self = [super initWithDelegate:self interactor:browseDeviceInteractor];
     if (self) {
         self.view = view;
+        self.wireframe = wireframe;
         self.revokeClientInteractor = revokeClientInteractor;
     }
     return self;
@@ -34,8 +39,13 @@
     [self.revokeClientInteractor revokeClientWithClientId:clientId];
 }
 
-- (void)clientRevocationSucceededForClientWithClientId:(NSString *)clientId {
+- (void)clientRevocationSucceededForClientWithClientId:(NSString *)clientId
+                                         currentClient:(BOOL)currentClient {
     [self removeClientWithClientId:clientId];
+    
+    if (currentClient) {
+        [self.wireframe presentLoginInterface];
+    }
 }
 
 - (void)clientRevocationFailedForClientWithClientId:(NSString *)clientId

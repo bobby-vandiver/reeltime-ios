@@ -10,4 +10,6 @@
 
 - (void)presentManageDevicesInterface;
 
+- (void)presentLoginInterface;
+
 @end

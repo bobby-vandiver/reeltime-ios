@@ -1,7 +1,9 @@
 #import "RTTestCommon.h"
 
 #import "RTManageDevicesPresenter.h"
+
 #import "RTManageDevicesView.h"
+#import "RTManageDevicesWireframe.h"
 
 #import "RTPagedListInteractor.h"
 #import "RTRevokeClientInteractor.h"
@@ -16,18 +18,22 @@ SpecBegin(RTManageDevicesPresenter)
 describe(@"manage devices presenter", ^{
     
     __block RTManageDevicesPresenter *presenter;
+
     __block id<RTManageDevicesView> view;
+    __block RTManageDevicesWireframe *wireframe;
     
     __block RTPagedListInteractor *browseDevicesInteractor;
     __block RTRevokeClientInteractor *revokeClientInteractor;
 
     beforeEach(^{
         view = mockProtocol(@protocol(RTManageDevicesView));
+        wireframe = mock([RTManageDevicesWireframe class]);
         
         browseDevicesInteractor = mock([RTPagedListInteractor class]);
         revokeClientInteractor = mock([RTRevokeClientInteractor class]);
         
         presenter = [[RTManageDevicesPresenter alloc] initWithView:view
+                                                         wireframe:wireframe
                                            browseDevicesInteractor:browseDevicesInteractor
                                             revokeClientInteractor:revokeClientInteractor];
     });
@@ -63,17 +69,27 @@ describe(@"manage devices presenter", ^{
         });
     });
     
-    describe(@"revocation succss", ^{
-        it(@"should remove associated item", ^{
+    describe(@"revocation success", ^{
+        beforeEach(^{
             RTClient *client = [[RTClient alloc] initWithClientId:clientId clientName:clientName];
             
             [presenter retrievedItems:@[client]];
             expect(presenter.items).to.haveACountOf(1);
-
-            [presenter clientRevocationSucceededForClientWithClientId:clientId];
-            
+        });
+        
+        afterEach(^{
             [verify(view) clearClientDescriptionForClientId:clientId];
             expect(presenter.items).to.haveACountOf(0);
+        });
+        
+        it(@"should just remove the client when it is not the current client", ^{
+            [presenter clientRevocationSucceededForClientWithClientId:clientId currentClient:NO];
+            [verifyCount(wireframe, never()) presentLoginInterface];
+        });
+        
+        it(@"should redirect to login screen when current client is revoked", ^{
+            [presenter clientRevocationSucceededForClientWithClientId:clientId currentClient:YES];
+            [verify(wireframe) presentLoginInterface];
         });
     });
     
