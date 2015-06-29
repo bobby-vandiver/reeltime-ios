@@ -47,9 +47,7 @@
     [self.mutableItems removeAllObjects];
 }
 
-- (void)tableView:(UITableView *)tableView
-commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
-forRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (self.onDeleteCellBlock && editingStyle == UITableViewCellEditingStyleDelete) {
         NSInteger idx = indexPath.row;

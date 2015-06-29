@@ -167,4 +167,8 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
     return self.thumbnailSupport.dimensions.height;
 }
 
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewCellEditingStyleNone;
+}
+
 @end
