@@ -1,6 +1,9 @@
 #import "RTManageDevicesAssembly.h"
 
 #import "RTClientAssembly.h"
+#import "RTServiceAssembly.h"
+
+#import "RTLoginAssembly.h"
 #import "RTApplicationAssembly.h"
 
 #import "RTManageDevicesWireframe.h"
@@ -17,9 +20,10 @@
 
 - (RTManageDevicesWireframe *)manageDevicesWireframe {
     return [TyphoonDefinition withClass:[RTManageDevicesWireframe class] configuration:^(TyphoonDefinition *definition) {
-        [definition injectMethod:@selector(initWithViewController:applicationWireframe:)
+        [definition injectMethod:@selector(initWithViewController:loginWireframe:applicationWireframe:)
                       parameters:^(TyphoonMethod *method) {
                           [method injectParameterWith:[self manageDevicesViewController]];
+                          [method injectParameterWith:[self.loginAssembly loginWireframe]];
                           [method injectParameterWith:[self.applicationAssembly applicationWireframe]];
         }];
     }];
@@ -65,9 +69,10 @@
 
 - (RTRevokeClientInteractor *)revokeClientInteractor {
     return [TyphoonDefinition withClass:[RTRevokeClientInteractor class] configuration:^(TyphoonDefinition *definition) {
-        [definition injectMethod:@selector(initWithDelegate:dataManager:) parameters:^(TyphoonMethod *method) {
+        [definition injectMethod:@selector(initWithDelegate:dataManager:currentUserService:) parameters:^(TyphoonMethod *method) {
             [method injectParameterWith:[self manageDevicesPresenter]];
             [method injectParameterWith:[self revokeClientDataManager]];
+            [method injectParameterWith:[self.serviceAssembly currentUserService]];
         }];
     }];
 }

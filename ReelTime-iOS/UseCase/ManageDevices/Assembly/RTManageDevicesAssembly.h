@@ -1,6 +1,9 @@
 #import "TyphoonAssembly.h"
 
 @class RTClientAssembly;
+@class RTServiceAssembly;
+
+@class RTLoginAssembly;
 @class RTApplicationAssembly;
 
 @class RTManageDevicesWireframe;
@@ -16,6 +19,9 @@
 @interface RTManageDevicesAssembly : TyphoonAssembly
 
 @property (nonatomic, strong, readonly) RTClientAssembly *clientAssembly;
+@property (nonatomic, strong, readonly) RTServiceAssembly *serviceAssembly;
+
+@property (nonatomic, strong, readonly) RTLoginAssembly *loginAssembly;
 @property (nonatomic, strong, readonly) RTApplicationAssembly *applicationAssembly;
 
 - (RTManageDevicesWireframe *)manageDevicesWireframe;
