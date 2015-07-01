@@ -1,39 +1,35 @@
 #import "RTBrowseAllWireframe.h"
-
 #import "RTBrowseAllViewController.h"
+
+#import "RTUserProfileWireframe.h"
 #import "RTApplicationWireframe.h"
 
 #import "RTUserProfileViewController.h"
-#import "RTUserProfileViewControllerFactory.h"
-
 #import "RTLogging.h"
 
 @interface RTBrowseAllWireframe ()
 
 @property RTBrowseAllViewController *viewController;
-@property id<RTUserProfileViewControllerFactory> userProfileViewControllerFactory;
+@property RTUserProfileWireframe *userProfileWireframe;
 
 @end
 
 @implementation RTBrowseAllWireframe
 
 - (instancetype)initWithViewController:(RTBrowseAllViewController *)viewController
-                  applicationWireframe:(RTApplicationWireframe *)applicationWireframe
-      userProfileViewControllerFactory:(id<RTUserProfileViewControllerFactory>)userProfileViewControllerFactory {
+                  userProfileWireframe:(RTUserProfileWireframe *)userProfileWireframe
+                  applicationWireframe:(RTApplicationWireframe *)applicationWireframe {
 
     self = [super initWithApplicationWireframe:applicationWireframe];
     if (self) {
         self.viewController = viewController;
-        self.userProfileViewControllerFactory = userProfileViewControllerFactory;
+        self.userProfileWireframe = userProfileWireframe;
     }
     return self;
 }
 
 - (void)presentUserForUsername:(NSString *)username {
-    
-    RTUserProfileViewController *userProfileViewController = [self.userProfileViewControllerFactory userProfileViewControllerForUsername:username];
-    
-    [self.applicationWireframe navigateToViewController:userProfileViewController];
+    [self.userProfileWireframe presentUserForUsername:username];
 }
 
 - (void)presentReelForReelId:(NSNumber *)reelId

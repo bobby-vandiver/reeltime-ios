@@ -29,11 +29,10 @@
 
 - (RTBrowseAllWireframe *)browseAllWireframe {
     return [TyphoonDefinition withClass:[RTBrowseAllWireframe class] configuration:^(TyphoonDefinition *definition) {
-        [definition injectMethod:@selector(initWithViewController:applicationWireframe:userProfileViewControllerFactory:)
+        [definition injectMethod:@selector(initWithViewController:userProfileWireframe:applicationWireframe:)
                       parameters:^(TyphoonMethod *method) {
                           [method injectParameterWith:[self browseAllViewController]];
                           [method injectParameterWith:[self.applicationAssembly applicationWireframe]];
-                          [method injectParameterWith:[self userProfileAssembly]];
         }];
     }];
 }

@@ -5,13 +5,13 @@
 #import "RTVideoWireframe.h"
 
 @class RTBrowseAllViewController;
+@class RTUserProfileWireframe;
 @class RTApplicationWireframe;
-@protocol RTUserProfileViewControllerFactory;
 
 @interface RTBrowseAllWireframe : RTApplicationAwareWireframe <RTUserWireframe, RTReelWireframe, RTVideoWireframe>
 
 - (instancetype)initWithViewController:(RTBrowseAllViewController *)viewController
-                  applicationWireframe:(RTApplicationWireframe *)applicationWireframe
-      userProfileViewControllerFactory:(id<RTUserProfileViewControllerFactory>)userProfileViewControllerFactory;
+                  userProfileWireframe:(RTUserProfileWireframe *)userProfileWireframe
+                  applicationWireframe:(RTApplicationWireframe *)applicationWireframe;
 
 @end
