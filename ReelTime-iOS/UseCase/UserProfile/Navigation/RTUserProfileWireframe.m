@@ -8,22 +8,19 @@
 
 @interface RTUserProfileWireframe ()
 
-@property RTUserProfileViewController *viewController;
-@property RTAccountSettingsWireframe *accountSettingsWireframe;
 @property id<RTUserProfileViewControllerFactory> userProfileViewControllerFactory;
+@property RTAccountSettingsWireframe *accountSettingsWireframe;
 
 @end
 
 @implementation RTUserProfileWireframe
 
-- (instancetype)initWithViewController:(RTUserProfileViewController *)viewController
-              accountSettingsWireframe:(RTAccountSettingsWireframe *)accountSettingsWireframe
-                  applicationWireframe:(RTApplicationWireframe *)applicationWireframe
-      userProfileViewControllerFactory:(id<RTUserProfileViewControllerFactory>)userProfileViewControllerFactory {
+- (instancetype)initWithUserProfileViewControllerFactory:(id<RTUserProfileViewControllerFactory>)userProfileViewControllerFactory
+                                accountSettingsWireframe:(RTAccountSettingsWireframe *)accountSettingsWireframe
+                                    applicationWireframe:(RTApplicationWireframe *)applicationWireframe {
 
     self = [super initWithApplicationWireframe:applicationWireframe];
     if (self) {
-        self.viewController = viewController;
         self.accountSettingsWireframe = accountSettingsWireframe;
         self.userProfileViewControllerFactory = userProfileViewControllerFactory;
     }

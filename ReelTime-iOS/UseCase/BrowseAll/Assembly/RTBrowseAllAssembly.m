@@ -32,6 +32,7 @@
         [definition injectMethod:@selector(initWithViewController:userProfileWireframe:applicationWireframe:)
                       parameters:^(TyphoonMethod *method) {
                           [method injectParameterWith:[self browseAllViewController]];
+                          [method injectParameterWith:[self.userProfileAssembly userProfileWireframe]];
                           [method injectParameterWith:[self.applicationAssembly applicationWireframe]];
         }];
     }];

@@ -42,11 +42,11 @@
 @property (nonatomic, strong, readonly) RTAccountSettingsAssembly *accountSettingsAssembly;
 @property (nonatomic, strong, readonly) RTApplicationAssembly *applicationAssembly;
 
-- (RTUserProfileWireframe *)userProfileWireframeForUsername:(NSString *)username;
+- (RTUserProfileWireframe *)userProfileWireframe;
 
 - (RTUserProfileViewController *)userProfileViewControllerForUsername:(NSString *)username;
 
-- (RTUserProfilePresenter *)userProfilePresenterForUsername:(NSString *)username;
+- (RTUserProfilePresenter *)userProfilePresenter;
 
 - (RTUserSummaryPresenter *)userSummaryPresenterForUsername:(NSString *)username;
 

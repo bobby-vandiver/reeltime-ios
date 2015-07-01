@@ -1,16 +1,14 @@
 #import "RTApplicationAwareWireframe.h"
 #import "RTUserWireframe.h"
 
-@class RTUserProfileViewController;
-@class RTAccountSettingsWireframe;
 @protocol RTUserProfileViewControllerFactory;
+@class RTAccountSettingsWireframe;
 
 @interface RTUserProfileWireframe : RTApplicationAwareWireframe <RTUserWireframe>
 
-- (instancetype)initWithViewController:(RTUserProfileViewController *)viewController
-              accountSettingsWireframe:(RTAccountSettingsWireframe *)accountSettingsWireframe
-                  applicationWireframe:(RTApplicationWireframe *)applicationWireframe
-      userProfileViewControllerFactory:(id<RTUserProfileViewControllerFactory>)userProfileViewControllerFactory;
+- (instancetype)initWithUserProfileViewControllerFactory:(id<RTUserProfileViewControllerFactory>)userProfileViewControllerFactory
+                                accountSettingsWireframe:(RTAccountSettingsWireframe *)accountSettingsWireframe
+                                    applicationWireframe:(RTApplicationWireframe *)applicationWireframe;
 
 - (void)presentAccountSettingsInterface;
 

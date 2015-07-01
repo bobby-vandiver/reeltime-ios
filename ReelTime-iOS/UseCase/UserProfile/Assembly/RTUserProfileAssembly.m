@@ -34,11 +34,11 @@
 
 @implementation RTUserProfileAssembly
 
-- (RTUserProfileWireframe *)userProfileWireframeForUsername:(NSString *)username {
+- (RTUserProfileWireframe *)userProfileWireframe {
     return [TyphoonDefinition withClass:[RTUserProfileWireframe class] configuration:^(TyphoonDefinition *definition) {
-        [definition injectMethod:@selector(initWithViewController:accountSettingsWireframe:applicationWireframe:)
+        [definition injectMethod:@selector(initWithUserProfileViewControllerFactory:accountSettingsWireframe:applicationWireframe:)
                       parameters:^(TyphoonMethod *method) {
-                          [method injectParameterWith:[self userProfileViewControllerForUsername:username]];
+                          [method injectParameterWith:self];
                           [method injectParameterWith:[self.accountSettingsAssembly accountSettingsWireframe]];
                           [method injectParameterWith:[self.applicationAssembly applicationWireframe]];
         }];
@@ -50,21 +50,21 @@
         [definition useInitializer:@selector(viewControllerForUsername:withUserProfilePresenter:userSummaryPresenter:reelsPresenter:reelVideosPresenterFactory:reelVideosWireframe:thumbnailSupport:currentUserService:)
                         parameters:^(TyphoonMethod *initializer) {
                             [initializer injectParameterWith:username];
-                            [initializer injectParameterWith:[self userProfilePresenterForUsername:username]];
+                            [initializer injectParameterWith:[self userProfilePresenter]];
                             [initializer injectParameterWith:[self userSummaryPresenterForUsername:username]];
                             [initializer injectParameterWith:[self browseUserReelsPresenterForUsername:username]];
                             [initializer injectParameterWith:self];
-                            [initializer injectParameterWith:[self userProfileWireframeForUsername:username]];
+                            [initializer injectParameterWith:[self userProfileWireframe]];
                             [initializer injectParameterWith:[self.deviceAssembly thumbnailSupport]];
                             [initializer injectParameterWith:[self.serviceAssembly currentUserService]];
         }];
     }];
 }
 
-- (RTUserProfilePresenter *)userProfilePresenterForUsername:(NSString *)username {
+- (RTUserProfilePresenter *)userProfilePresenter {
     return [TyphoonDefinition withClass:[RTUserProfilePresenter class] configuration:^(TyphoonDefinition *definition) {
         [definition injectMethod:@selector(initWithWireframe:) parameters:^(TyphoonMethod *method) {
-            [method injectParameterWith:[self userProfileWireframeForUsername:username]];
+            [method injectParameterWith:[self userProfileWireframe]];
         }];
     }];
 }
