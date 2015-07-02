@@ -65,9 +65,9 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
         controller.reelVideosWireframe = reelVideosWireframe;
         controller.thumbnailSupport = thumbnailSupport;
         controller.currentUserService = currentUserService;
+        [controller createDataSource];
     }
     
-    [controller createDataSource];
     return controller;
 }
 
