@@ -97,6 +97,16 @@ describe(@"user profile view controller", ^{
         viewController.reelsListTableView = tableView;
     });
     
+    describe(@"required properties", ^{
+        it(@"should use reels list table view", ^{
+            expect(viewController.tableView).to.equal(tableView);
+        });
+        
+        it(@"should use reels presenter", ^{
+            expect(viewController.presenter).to.equal(reelsPresenter);
+        });
+    });
+    
     describe(@"when view did load", ^{
         it(@"should use reels data source for the table", ^{
             [viewController viewDidLoad];

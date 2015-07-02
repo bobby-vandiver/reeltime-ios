@@ -100,6 +100,12 @@ describe(@"browse all view controller", ^{
         });
     });
     
+    describe(@"required properties", ^{
+        it(@"should use browse list table view", ^{
+            expect(viewController.tableView).to.equal(tableView);
+        });
+    });
+    
     describe(@"presenter should reflect current active list", ^{
         it(@"should return users presenter", ^{
             [viewController makeUsersListActive];

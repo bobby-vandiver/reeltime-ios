@@ -37,6 +37,16 @@ describe(@"manage devices view controller", ^{
         expect(viewController.devicesDataSource.items).to.haveACountOf(0);
     });
     
+    describe(@"required properties", ^{
+        it(@"should use clients list table view", ^{
+            expect(viewController.tableView).to.equal(tableView);
+        });
+        
+        it(@"should use manage devices presenter", ^{
+            expect(viewController.presenter).to.equal(presenter);
+        });
+    });
+    
     describe(@"when view did load", ^{
         beforeEach(^{
             [viewController viewDidLoad];
