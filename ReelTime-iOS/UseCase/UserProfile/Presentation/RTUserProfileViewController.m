@@ -25,8 +25,12 @@
 
 #import "RTLogging.h"
 
+static NSString *const UserReelHeaderNibName = @"RTUserReelHeaderView";
+static NSString *const UserReelFooterNibName = @"RTUserReelFooterView";
+
 static NSString *const UserReelHeaderIdentifier = @"UserReelHeader";
 static NSString *const UserReelFooterIdentifier = @"UserReelFooter";
+
 static NSString *const UserReelCellIdentifier = @"UserReelCell";
 
 @interface RTUserProfileViewController ()
@@ -99,8 +103,12 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
     
     [self.tableView setDataSource:self.reelsDataSource];
     [self.tableView setDelegate:self];
+
     
-    [self.tableView registerClass:[RTUserReelHeaderView class] forHeaderFooterViewReuseIdentifier:UserReelHeaderIdentifier];
+    UINib *sectionHeaderNib = [UINib nibWithNibName:UserReelHeaderNibName bundle:nil];
+    [self.tableView registerNib:sectionHeaderNib forHeaderFooterViewReuseIdentifier:UserReelHeaderIdentifier];
+    
+//    [self.tableView registerClass:[RTUserReelHeaderView class] forHeaderFooterViewReuseIdentifier:UserReelHeaderIdentifier];
     [self.tableView registerClass:[RTUserReelFooterView class] forHeaderFooterViewReuseIdentifier:UserReelFooterIdentifier];
 }
 
@@ -160,10 +168,12 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
 #pragma mark - UITableViewDelegate Methods (WIP)
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    RTReelDescription *description = [self.reelsDataSource itemAtIndex:section];
 
+    RTReelDescription *description = [self.reelsDataSource itemAtIndex:section];
     RTUserReelHeaderView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:UserReelHeaderIdentifier];
-    header.textLabel.text = description.name;
+
+    header.reelNameLabel.text = description.name;
+    header.videoCountLabel.text = [NSString stringWithFormat:@"%@ Videos", description.numberOfVideos];
 
     return header;
 }

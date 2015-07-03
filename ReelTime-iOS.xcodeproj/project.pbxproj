@@ -301,6 +301,7 @@
 		717D92761A5B925700EAB6BF /* RTCurrentUserStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 717D92751A5B925700EAB6BF /* RTCurrentUserStore.m */; };
 		71868CA81B470D7600CF0B3B /* RTUserReelHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 71868CA71B470D7600CF0B3B /* RTUserReelHeaderView.m */; };
 		71868CAB1B470DD400CF0B3B /* RTUserReelFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 71868CAA1B470DD400CF0B3B /* RTUserReelFooterView.m */; };
+		71868CAF1B47155B00CF0B3B /* RTUserReelHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 71868CAE1B47155B00CF0B3B /* RTUserReelHeaderView.xib */; };
 		718A0BE21A4DA87900137C49 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 718A0BE11A4DA87900137C49 /* main.m */; };
 		718A0BE51A4DA87900137C49 /* RTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 718A0BE41A4DA87900137C49 /* RTAppDelegate.m */; };
 		718A0BEB1A4DA87900137C49 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 718A0BE91A4DA87900137C49 /* Main.storyboard */; };
@@ -890,6 +891,7 @@
 		71868CA71B470D7600CF0B3B /* RTUserReelHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTUserReelHeaderView.m; sourceTree = "<group>"; };
 		71868CA91B470DD400CF0B3B /* RTUserReelFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTUserReelFooterView.h; sourceTree = "<group>"; };
 		71868CAA1B470DD400CF0B3B /* RTUserReelFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTUserReelFooterView.m; sourceTree = "<group>"; };
+		71868CAE1B47155B00CF0B3B /* RTUserReelHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RTUserReelHeaderView.xib; sourceTree = "<group>"; };
 		7188580B1A782A3300B9C0DC /* RTStoryboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTStoryboardViewController.h; sourceTree = "<group>"; };
 		718A0BDC1A4DA87900137C49 /* ReelTime-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ReelTime-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		718A0BE01A4DA87900137C49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1271,6 +1273,7 @@
 		7116C0551AD9898100590DAF /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				71868CAE1B47155B00CF0B3B /* RTUserReelHeaderView.xib */,
 				71F384CE1B3772C8002BC9A0 /* RTUserProfilePresenter.h */,
 				71F384CF1B3772C8002BC9A0 /* RTUserProfilePresenter.m */,
 				7116C0561AD9899A00590DAF /* RTUserProfileViewController.h */,
@@ -3054,6 +3057,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71868CAF1B47155B00CF0B3B /* RTUserReelHeaderView.xib in Resources */,
 				7130FD8E1A67593D00AE2ACD /* boogie2988-rage.png in Resources */,
 				718A0BEB1A4DA87900137C49 /* Main.storyboard in Resources */,
 				7134C63A1A9588D50048CFCF /* JoinReelAudienceIcon.png in Resources */,
