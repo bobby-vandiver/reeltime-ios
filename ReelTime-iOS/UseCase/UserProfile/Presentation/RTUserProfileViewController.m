@@ -104,12 +104,11 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
     [self.tableView setDataSource:self.reelsDataSource];
     [self.tableView setDelegate:self];
 
-    
     UINib *sectionHeaderNib = [UINib nibWithNibName:UserReelHeaderNibName bundle:nil];
     [self.tableView registerNib:sectionHeaderNib forHeaderFooterViewReuseIdentifier:UserReelHeaderIdentifier];
     
-//    [self.tableView registerClass:[RTUserReelHeaderView class] forHeaderFooterViewReuseIdentifier:UserReelHeaderIdentifier];
-    [self.tableView registerClass:[RTUserReelFooterView class] forHeaderFooterViewReuseIdentifier:UserReelFooterIdentifier];
+    UINib *sectionFooterNib = [UINib nibWithNibName:UserReelFooterNibName bundle:nil];
+    [self.tableView registerNib:sectionFooterNib forHeaderFooterViewReuseIdentifier:UserReelFooterIdentifier];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -179,10 +178,15 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    RTReelDescription *description = [self.reelsDataSource itemAtIndex:section];
 
+    RTReelDescription *description = [self.reelsDataSource itemAtIndex:section];
     RTUserReelFooterView *footer = [tableView dequeueReusableHeaderFooterViewWithIdentifier:UserReelFooterIdentifier];
-    footer.textLabel.text = [NSString stringWithFormat:@"%@ Followers", description.audienceSize];
+    
+    NSString *followReelTitle = @"Follow Reel";
+    NSString *listAudienceTitle = [NSString stringWithFormat:@"%@ Followers", description.audienceSize];
+
+    [footer.followReelButton setTitle:followReelTitle forState:UIControlStateNormal];
+    [footer.listAudienceButton setTitle:listAudienceTitle forState:UIControlStateNormal];
     
     return footer;
 }
