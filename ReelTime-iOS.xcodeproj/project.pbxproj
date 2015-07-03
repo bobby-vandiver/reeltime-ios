@@ -250,6 +250,8 @@
 		7164A3BD1B45B4C30006FE2E /* RTBrowseAudienceMembersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7164A3BC1B45B4C30006FE2E /* RTBrowseAudienceMembersViewController.m */; };
 		7164A3BF1B45BD620006FE2E /* RTBrowseAudienceMembersViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7164A3BE1B45BD620006FE2E /* RTBrowseAudienceMembersViewControllerSpec.m */; };
 		7164A3C21B45C9710006FE2E /* RTAudienceMemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7164A3C11B45C9710006FE2E /* RTAudienceMemberCell.m */; };
+		7164A3C61B4613B50006FE2E /* RTBrowseAudienceMembersWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 7164A3C51B4613B50006FE2E /* RTBrowseAudienceMembersWireframe.m */; };
+		7164A3CA1B4618340006FE2E /* RTBrowseAudienceMembersWireframeSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7164A3C91B4618340006FE2E /* RTBrowseAudienceMembersWireframeSpec.m */; };
 		7164D7281ACB6B48005D02FE /* RTThumbnail.m in Sources */ = {isa = PBXBuildFile; fileRef = 7164D7271ACB6B48005D02FE /* RTThumbnail.m */; };
 		7164D72A1ACB7568005D02FE /* small.png in Resources */ = {isa = PBXBuildFile; fileRef = 7164D7291ACB7568005D02FE /* small.png */; };
 		7164D72D1ACB775B005D02FE /* thumbnail.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7164D72C1ACB775B005D02FE /* thumbnail.txt */; };
@@ -788,6 +790,10 @@
 		7164A3BE1B45BD620006FE2E /* RTBrowseAudienceMembersViewControllerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseAudienceMembersViewControllerSpec.m; sourceTree = "<group>"; };
 		7164A3C01B45C9710006FE2E /* RTAudienceMemberCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTAudienceMemberCell.h; sourceTree = "<group>"; };
 		7164A3C11B45C9710006FE2E /* RTAudienceMemberCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAudienceMemberCell.m; sourceTree = "<group>"; };
+		7164A3C41B4613B50006FE2E /* RTBrowseAudienceMembersWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseAudienceMembersWireframe.h; sourceTree = "<group>"; };
+		7164A3C51B4613B50006FE2E /* RTBrowseAudienceMembersWireframe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseAudienceMembersWireframe.m; sourceTree = "<group>"; };
+		7164A3C81B4617150006FE2E /* RTBrowseAudienceMembersViewControllerFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseAudienceMembersViewControllerFactory.h; sourceTree = "<group>"; };
+		7164A3C91B4618340006FE2E /* RTBrowseAudienceMembersWireframeSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseAudienceMembersWireframeSpec.m; sourceTree = "<group>"; };
 		7164D7261ACB6B48005D02FE /* RTThumbnail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTThumbnail.h; path = "ReelTime-iOS/Common/Model/RTThumbnail.h"; sourceTree = SOURCE_ROOT; };
 		7164D7271ACB6B48005D02FE /* RTThumbnail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTThumbnail.m; path = "ReelTime-iOS/Common/Model/RTThumbnail.m"; sourceTree = SOURCE_ROOT; };
 		7164D7291ACB7568005D02FE /* small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = small.png; sourceTree = "<group>"; };
@@ -2126,6 +2132,23 @@
 			path = Presentation;
 			sourceTree = "<group>";
 		};
+		7164A3C31B46139E0006FE2E /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				7164A3C41B4613B50006FE2E /* RTBrowseAudienceMembersWireframe.h */,
+				7164A3C51B4613B50006FE2E /* RTBrowseAudienceMembersWireframe.m */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		7164A3C71B4617000006FE2E /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				7164A3C81B4617150006FE2E /* RTBrowseAudienceMembersViewControllerFactory.h */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
 		7164D72B1ACB771E005D02FE /* Thumbnail */ = {
 			isa = PBXGroup;
 			children = (
@@ -2608,6 +2631,8 @@
 		71A4622C1B435272000DD7B9 /* BrowseAudienceMembers */ = {
 			isa = PBXGroup;
 			children = (
+				7164A3C71B4617000006FE2E /* Assembly */,
+				7164A3C31B46139E0006FE2E /* Navigation */,
 				71A4622D1B435287000DD7B9 /* Persistence */,
 				7164A3B41B45B4350006FE2E /* Presentation */,
 			);
@@ -2628,6 +2653,7 @@
 			children = (
 				71A462321B43535F000DD7B9 /* RTBrowseAudienceMembersDataManagerDelegateSpec.m */,
 				7164A3BE1B45BD620006FE2E /* RTBrowseAudienceMembersViewControllerSpec.m */,
+				7164A3C91B4618340006FE2E /* RTBrowseAudienceMembersWireframeSpec.m */,
 			);
 			path = BrowseAudienceMembersTests;
 			sourceTree = "<group>";
@@ -3145,6 +3171,7 @@
 				7136A53F1AA3652C0059DF43 /* RTUserList.m in Sources */,
 				7164A3BD1B45B4C30006FE2E /* RTBrowseAudienceMembersViewController.m in Sources */,
 				712441581B2DC81300752901 /* RTConfirmAccountPresenter.m in Sources */,
+				7164A3C61B4613B50006FE2E /* RTBrowseAudienceMembersWireframe.m in Sources */,
 				7133EC5C1B17CE6100BC1CAE /* RTConfirmAccountInteractor.m in Sources */,
 				71C5C0B21A55EB3900CAAFAC /* RTOAuth2TokenStore.m in Sources */,
 				712AAB111B2CB16D00E7AE4E /* RTAccountSettingsPresenter.m in Sources */,
@@ -3364,6 +3391,7 @@
 				712AAB141B2CB24F00E7AE4E /* RTAccountSettingsPresenterSpec.m in Sources */,
 				7116C05A1AD98E2000590DAF /* RTUserProfileViewControllerSpec.m in Sources */,
 				7134C6311A9537720048CFCF /* RTAccountRegistrationViewControllerSpec.m in Sources */,
+				7164A3CA1B4618340006FE2E /* RTBrowseAudienceMembersWireframeSpec.m in Sources */,
 				7169F1761A5F6CDD00E161C4 /* RTLoginDataManagerSpec.m in Sources */,
 				7108D7881B13D9E7000451AD /* RTChangeDisplayNameDataManagerSpec.m in Sources */,
 				713470BD1A9ABFAB000CFCA3 /* RTClientSpecHelper.m in Sources */,
