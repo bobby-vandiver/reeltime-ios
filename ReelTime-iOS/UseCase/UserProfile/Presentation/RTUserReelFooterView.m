@@ -1,14 +1,14 @@
 #import "RTUserReelFooterView.h"
-#import "RTLogging.h"
+#import "RTUserReelFooterViewDelegate.h"
 
 @implementation RTUserReelFooterView
 
 - (IBAction)pressedFollowReelButton {
-    DDLogDebug(@"pressed follow reel button");
+    [self.delegate footerView:self didPressFollowReelButton:self.followReelButton forReelId:self.reelId];
 }
 
 - (IBAction)pressedListAudienceButton {
-    DDLogDebug(@"pressed list audience button");
+    [self.delegate footerView:self didPressListAudienceButton:self.listAudienceButton forReelId:self.reelId];
 }
 
 @end
