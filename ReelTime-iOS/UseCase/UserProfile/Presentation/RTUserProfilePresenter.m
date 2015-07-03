@@ -21,4 +21,8 @@
     [self.wireframe presentAccountSettingsInterface];
 }
 
+- (void)requestedAudienceMembersForReelId:(NSNumber *)reelId {
+    [self.wireframe presentAudienceMembersForReelId:reelId];
+}
+
 @end

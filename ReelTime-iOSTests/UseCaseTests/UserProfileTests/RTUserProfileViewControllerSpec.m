@@ -12,6 +12,9 @@
 #import "RTThumbnailSupport.h"
 #import "RTCurrentUserService.h"
 
+#import "RTUserReelHeaderView.h"
+#import "RTUserReelFooterView.h"
+
 #import "RTUserDescription.h"
 #import "RTReelDescription.h"
 #import "RTUserReelCell.h"
@@ -19,6 +22,13 @@
 @interface RTUserProfileViewController (Test)
 
 @property RTArrayDataSource *reelsDataSource;
+
+@end
+
+@interface RTReelDescription (Test)
+
+@property (readwrite) NSNumber *audienceSize;
+@property (readwrite) NSNumber *numberOfVideos;
 
 @end
 
@@ -146,6 +156,19 @@ describe(@"user profile view controller", ^{
         });
     });
     
+    describe(@"pressing follow reel button", ^{
+        it(@"should request reel is followed", ^{
+            // TODO!
+        });
+    });
+    
+    describe(@"pressing list audience button", ^{
+        it(@"should present audience members for specified reel", ^{
+            [viewController footerView:anything() didPressListAudienceButton:anything() forReelId:@(reelId)];
+            [verify(userProfilePresenter) requestedAudienceMembersForReelId:@(reelId)];
+        });
+    });
+    
     context(@"user description required", ^{
         __block RTUserDescription *description;
         
@@ -202,7 +225,12 @@ describe(@"user profile view controller", ^{
         __block RTReelDescription *description;
         
         beforeEach(^{
-            description = mock([RTReelDescription class]);
+            description = [RTReelDescription reelDescriptionWithName:@"buzz"
+                                                           forReelId:@(reelId)
+                                                        audienceSize:@(1)
+                                                      numberOfVideos:@(2)
+                                                       ownerUsername:username];
+            
             expect(viewController.reelsDataSource.items).to.haveCountOf(0);
         });
         
@@ -262,6 +290,110 @@ describe(@"user profile view controller", ^{
             it(@"should inject videos presenter configured for user and reel", ^{
                 viewController.reelsDataSource.configureCellBlock(cell, description);
                 [verify(cell) configureWithVideosPresenter:videosPresenter];
+            });
+        });
+        
+        context(@"data source contains reel description", ^{
+            beforeEach(^{
+                viewController.reelsDataSource.items = @[description];
+            });
+            
+            describe(@"reel header", ^{
+                __block RTUserReelHeaderView *headerView;
+                
+                __block UILabel *reelNameLabel;
+                __block UILabel *videoCountLabel;
+                
+                beforeEach(^{
+                    reelNameLabel = [[UILabel alloc] init];
+                    videoCountLabel = [[UILabel alloc] init];
+                    
+                    headerView = [[RTUserReelHeaderView alloc] init];
+                    headerView.reelNameLabel = reelNameLabel;
+                    headerView.videoCountLabel = videoCountLabel;
+                    
+                    [given([tableView dequeueReusableHeaderFooterViewWithIdentifier:@"UserReelHeader"]) willReturn:headerView];
+                });
+                
+                it(@"should return header view", ^{
+                    UIView *view = [viewController tableView:tableView viewForHeaderInSection:0];
+                    expect(view).to.beIdenticalTo(headerView);
+                });
+                
+                it(@"should set the reel name label based on description", ^{
+                    [viewController tableView:tableView viewForHeaderInSection:0];
+                    expect(headerView.reelNameLabel.text).to.equal(@"buzz");
+                });
+                
+                it(@"zero videos", ^{
+                    description.numberOfVideos = @(0);
+                    
+                    [viewController tableView:tableView viewForHeaderInSection:0];
+                    expect(headerView.videoCountLabel.text).to.equal(@"0 Videos");
+                });
+                
+                it(@"one video", ^{
+                    description.numberOfVideos = @(1);
+                    
+                    [viewController tableView:tableView viewForHeaderInSection:0];
+                    expect(headerView.videoCountLabel.text).to.equal(@"1 Video");
+                });
+                
+                it(@"multiple videos", ^{
+                    description.numberOfVideos = @(2);
+                    
+                    [viewController tableView:tableView viewForHeaderInSection:0];
+                    expect(headerView.videoCountLabel.text).to.equal(@"2 Videos");
+                });
+            });
+
+            describe(@"reel footer", ^{
+                __block RTUserReelFooterView *footerView;
+                
+                __block UIButton *followReelButton;
+                __block UIButton *listAudienceButton;
+ 
+                beforeEach(^{
+                    followReelButton = [[UIButton alloc] init];
+                    listAudienceButton = [[UIButton alloc] init];
+
+                    footerView = [[RTUserReelFooterView alloc] init];
+                    footerView.followReelButton = followReelButton;
+                    footerView.listAudienceButton = listAudienceButton;
+                    
+                    [given([tableView dequeueReusableHeaderFooterViewWithIdentifier:@"UserReelFooter"]) willReturn:footerView];
+                });
+                
+                it(@"should set properties that do not depend on description", ^{
+                    UIView *view = [viewController tableView:tableView viewForFooterInSection:0];
+                    expect(view).to.beIdenticalTo(footerView);
+                    
+                    expect(footerView.delegate).to.equal(viewController);
+                    expect(footerView.reelId).to.equal(@(reelId));
+                    
+                    expect(footerView.followReelButton.titleLabel.text).to.equal(@"Follow Reel");
+                });
+                
+                it(@"zero followers", ^{
+                    description.audienceSize = @(0);
+                    
+                    [viewController tableView: tableView viewForFooterInSection:0];
+                    expect(footerView.listAudienceButton.titleLabel.text).to.equal(@"0 Followers");
+                });
+                
+                it(@"one follower", ^{
+                    description.audienceSize = @(1);
+
+                    [viewController tableView:tableView viewForFooterInSection:0];
+                    expect(footerView.listAudienceButton.titleLabel.text).to.equal(@"1 Follower");
+                });
+                
+                it(@"multiple followers", ^{
+                    description.audienceSize = @(2);
+                    
+                    [viewController tableView:tableView viewForFooterInSection:0];
+                    expect(footerView.listAudienceButton.titleLabel.text).to.equal(@"2 Followers");
+                });
             });
         });
     });

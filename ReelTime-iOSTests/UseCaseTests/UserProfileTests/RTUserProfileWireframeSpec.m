@@ -6,6 +6,8 @@
 #import "RTUserProfileViewControllerFactory.h"
 
 #import "RTAccountSettingsWireframe.h"
+#import "RTBrowseAudienceMembersWireframe.h"
+
 #import "RTApplicationWireframe.h"
 
 SpecBegin(RTUserProfileWireframe)
@@ -18,6 +20,8 @@ describe(@"user profile wireframe", ^{
     __block id<RTUserProfileViewControllerFactory> viewControllerFactory;
     
     __block RTAccountSettingsWireframe *accountSettingsWireframe;
+    __block RTBrowseAudienceMembersWireframe *browseAudienceMembersWireframe;
+    
     __block RTApplicationWireframe *applicationWireframe;
     
     beforeEach(^{
@@ -25,10 +29,13 @@ describe(@"user profile wireframe", ^{
         viewControllerFactory = mockProtocol(@protocol(RTUserProfileViewControllerFactory));
 
         accountSettingsWireframe = mock([RTAccountSettingsWireframe class]);
+        browseAudienceMembersWireframe = mock([RTBrowseAudienceMembersWireframe class]);
+        
         applicationWireframe = mock([RTApplicationWireframe class]);
         
         wireframe = [[RTUserProfileWireframe alloc] initWithUserProfileViewControllerFactory:viewControllerFactory
                                                                     accountSettingsWireframe:accountSettingsWireframe
+                                                              browseAudienceMembersWireframe:browseAudienceMembersWireframe
                                                                         applicationWireframe:applicationWireframe];
     });
     
@@ -36,6 +43,13 @@ describe(@"user profile wireframe", ^{
         it(@"should delegate to account setting wireframe", ^{
             [wireframe presentAccountSettingsInterface];
             [verify(accountSettingsWireframe) presentAccountSettingsInterface];
+        });
+    });
+    
+    describe(@"presenting audience members for reel", ^{
+        it(@"should delegate to browse audience members wireframe", ^{
+            [wireframe presentAudienceMembersForReelId:@(reelId)];
+            [verify(browseAudienceMembersWireframe) presentAudienceMembersForReelId:@(reelId)];
         });
     });
 });

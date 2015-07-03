@@ -5,6 +5,7 @@
 #import "RTServiceAssembly.h"
 
 #import "RTAccountSettingsAssembly.h"
+#import "RTBrowseAudienceMembersAssembly.h"
 #import "RTApplicationAssembly.h"
 
 #import "RTUserProfileWireframe.h"
@@ -36,10 +37,11 @@
 
 - (RTUserProfileWireframe *)userProfileWireframe {
     return [TyphoonDefinition withClass:[RTUserProfileWireframe class] configuration:^(TyphoonDefinition *definition) {
-        [definition injectMethod:@selector(initWithUserProfileViewControllerFactory:accountSettingsWireframe:applicationWireframe:)
+        [definition injectMethod:@selector(initWithUserProfileViewControllerFactory:accountSettingsWireframe:browseAudienceMembersWireframe:applicationWireframe:)
                       parameters:^(TyphoonMethod *method) {
                           [method injectParameterWith:self];
                           [method injectParameterWith:[self.accountSettingsAssembly accountSettingsWireframe]];
+                          [method injectParameterWith:[self.browseAudienceMembersAssembly browseAudienceMembersWireframe]];
                           [method injectParameterWith:[self.applicationAssembly applicationWireframe]];
         }];
     }];

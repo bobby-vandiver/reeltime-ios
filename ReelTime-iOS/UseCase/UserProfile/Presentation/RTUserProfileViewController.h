@@ -1,4 +1,5 @@
 #import "RTPagedListViewController.h"
+#import "RTUserReelFooterViewDelegate.h"
 
 #import "RTUserSummaryView.h"
 #import "RTBrowseReelsView.h"
@@ -14,7 +15,7 @@
 @protocol RTBrowseReelVideosPresenterFactory;
 @protocol RTVideoWireframe;
 
-@interface RTUserProfileViewController : RTPagedListViewController <RTUserSummaryView, RTBrowseReelsView, RTStoryboardViewController>
+@interface RTUserProfileViewController : RTPagedListViewController <RTUserSummaryView, RTBrowseReelsView, RTUserReelFooterViewDelegate, RTStoryboardViewController>
 
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *displayNameLabel;

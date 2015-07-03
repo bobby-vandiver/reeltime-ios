@@ -8,4 +8,6 @@
 
 - (void)requestedAccountSettings;
 
+- (void)requestedAudienceMembersForReelId:(NSNumber *)reelId;
+
 @end

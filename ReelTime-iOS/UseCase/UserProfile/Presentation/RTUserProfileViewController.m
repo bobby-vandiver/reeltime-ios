@@ -86,10 +86,11 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
 
 - (void)createDataSource {
     ConfigureCellBlock configBlock = ^(RTUserReelCell *cell, RTReelDescription *description) {
-        RTBrowseVideosPresenter *videosPresenter = [self.reelVideosPresenterFactory browseReelVideosPresenterForReelId:description.reelId
-                                                                                                              username:self.username
-                                                                                                                  view:cell
-                                                                                                             wireframe:self.reelVideosWireframe];
+        RTBrowseVideosPresenter *videosPresenter =
+            [self.reelVideosPresenterFactory browseReelVideosPresenterForReelId:description.reelId
+                                                                       username:self.username
+                                                                           view:cell
+                                                                      wireframe:self.reelVideosWireframe];
         [cell configureWithVideosPresenter:videosPresenter];
     };
     
@@ -164,15 +165,18 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
     [self.tableView reloadData];
 }
 
-#pragma mark - UITableViewDelegate Methods (WIP)
+#pragma mark - UITableViewDelegate Methods
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 
     RTReelDescription *description = [self.reelsDataSource itemAtIndex:section];
     RTUserReelHeaderView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:UserReelHeaderIdentifier];
+    
+    BOOL hasZeroOrMoreThanOneVideo = ![description.numberOfVideos isEqualToNumber:@(1)];
 
     header.reelNameLabel.text = description.name;
-    header.videoCountLabel.text = [NSString stringWithFormat:@"%@ Videos", description.numberOfVideos];
+    header.videoCountLabel.text = [NSString stringWithFormat:@"%@ Video%@", description.numberOfVideos,
+                                   (hasZeroOrMoreThanOneVideo ? @"s" : @"")];
 
     return header;
 }
@@ -182,8 +186,14 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
     RTReelDescription *description = [self.reelsDataSource itemAtIndex:section];
     RTUserReelFooterView *footer = [tableView dequeueReusableHeaderFooterViewWithIdentifier:UserReelFooterIdentifier];
     
+    footer.delegate = self;
+    footer.reelId = description.reelId;
+
+    BOOL hasZeroOrMoreThanOneMember = ![description.audienceSize isEqualToNumber:@(1)];
+    
     NSString *followReelTitle = @"Follow Reel";
-    NSString *listAudienceTitle = [NSString stringWithFormat:@"%@ Followers", description.audienceSize];
+    NSString *listAudienceTitle = [NSString stringWithFormat:@"%@ Follower%@", description.audienceSize,
+                                   (hasZeroOrMoreThanOneMember ? @"s" : @"")];
 
     [footer.followReelButton setTitle:followReelTitle forState:UIControlStateNormal];
     [footer.listAudienceButton setTitle:listAudienceTitle forState:UIControlStateNormal];
@@ -205,6 +215,16 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
     return UITableViewCellEditingStyleNone;
+}
+
+#pragma mark - RTUserReelFooterViewDelegate Methods
+
+- (void)footerView:(RTUserReelFooterView *)footerView didPressFollowReelButton:(UIButton *)button forReelId:(NSNumber *)reelId {
+    DDLogDebug(@"pressed follow reel button");
+}
+
+- (void)footerView:(RTUserReelFooterView *)footerView didPressListAudienceButton:(UIButton *)button forReelId:(NSNumber *)reelId {
+    [self.userProfilePresenter requestedAudienceMembersForReelId:reelId];
 }
 
 @end

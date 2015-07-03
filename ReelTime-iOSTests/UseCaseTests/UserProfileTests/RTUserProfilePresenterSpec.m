@@ -21,6 +21,13 @@ describe(@"user profile presenter", ^{
             [verify(wireframe) presentAccountSettingsInterface];
         });
     });
+    
+    describe(@"requesting audience members", ^{
+        it(@"should present audience members for reel", ^{
+            [presenter requestedAudienceMembersForReelId:@(reelId)];
+            [verify(wireframe) presentAudienceMembersForReelId:@(reelId)];
+        });
+    });
 });
 
 SpecEnd

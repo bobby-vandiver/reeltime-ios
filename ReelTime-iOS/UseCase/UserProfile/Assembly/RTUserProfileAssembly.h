@@ -8,6 +8,7 @@
 @class RTServiceAssembly;
 
 @class RTAccountSettingsAssembly;
+@class RTBrowseAudienceMembersAssembly;
 @class RTApplicationAssembly;
 
 @class RTUserProfileWireframe;
@@ -40,6 +41,7 @@
 @property (nonatomic, strong, readonly) RTServiceAssembly *serviceAssembly;
 
 @property (nonatomic, strong, readonly) RTAccountSettingsAssembly *accountSettingsAssembly;
+@property (nonatomic, strong, readonly) RTBrowseAudienceMembersAssembly *browseAudienceMembersAssembly;
 @property (nonatomic, strong, readonly) RTApplicationAssembly *applicationAssembly;
 
 - (RTUserProfileWireframe *)userProfileWireframe;
