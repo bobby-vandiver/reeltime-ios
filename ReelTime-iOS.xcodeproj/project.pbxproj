@@ -252,6 +252,7 @@
 		7164A3C21B45C9710006FE2E /* RTAudienceMemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7164A3C11B45C9710006FE2E /* RTAudienceMemberCell.m */; };
 		7164A3C61B4613B50006FE2E /* RTBrowseAudienceMembersWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 7164A3C51B4613B50006FE2E /* RTBrowseAudienceMembersWireframe.m */; };
 		7164A3CA1B4618340006FE2E /* RTBrowseAudienceMembersWireframeSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7164A3C91B4618340006FE2E /* RTBrowseAudienceMembersWireframeSpec.m */; };
+		7164A3CD1B461D230006FE2E /* RTBrowseAudienceMembersAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 7164A3CC1B461D230006FE2E /* RTBrowseAudienceMembersAssembly.m */; };
 		7164D7281ACB6B48005D02FE /* RTThumbnail.m in Sources */ = {isa = PBXBuildFile; fileRef = 7164D7271ACB6B48005D02FE /* RTThumbnail.m */; };
 		7164D72A1ACB7568005D02FE /* small.png in Resources */ = {isa = PBXBuildFile; fileRef = 7164D7291ACB7568005D02FE /* small.png */; };
 		7164D72D1ACB775B005D02FE /* thumbnail.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7164D72C1ACB775B005D02FE /* thumbnail.txt */; };
@@ -794,6 +795,8 @@
 		7164A3C51B4613B50006FE2E /* RTBrowseAudienceMembersWireframe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseAudienceMembersWireframe.m; sourceTree = "<group>"; };
 		7164A3C81B4617150006FE2E /* RTBrowseAudienceMembersViewControllerFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseAudienceMembersViewControllerFactory.h; sourceTree = "<group>"; };
 		7164A3C91B4618340006FE2E /* RTBrowseAudienceMembersWireframeSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseAudienceMembersWireframeSpec.m; sourceTree = "<group>"; };
+		7164A3CB1B461D230006FE2E /* RTBrowseAudienceMembersAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseAudienceMembersAssembly.h; sourceTree = "<group>"; };
+		7164A3CC1B461D230006FE2E /* RTBrowseAudienceMembersAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseAudienceMembersAssembly.m; sourceTree = "<group>"; };
 		7164D7261ACB6B48005D02FE /* RTThumbnail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTThumbnail.h; path = "ReelTime-iOS/Common/Model/RTThumbnail.h"; sourceTree = SOURCE_ROOT; };
 		7164D7271ACB6B48005D02FE /* RTThumbnail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTThumbnail.m; path = "ReelTime-iOS/Common/Model/RTThumbnail.m"; sourceTree = SOURCE_ROOT; };
 		7164D7291ACB7568005D02FE /* small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = small.png; sourceTree = "<group>"; };
@@ -2145,6 +2148,8 @@
 			isa = PBXGroup;
 			children = (
 				7164A3C81B4617150006FE2E /* RTBrowseAudienceMembersViewControllerFactory.h */,
+				7164A3CB1B461D230006FE2E /* RTBrowseAudienceMembersAssembly.h */,
+				7164A3CC1B461D230006FE2E /* RTBrowseAudienceMembersAssembly.m */,
 			);
 			path = Assembly;
 			sourceTree = "<group>";
@@ -3213,6 +3218,7 @@
 				713CF1D61AE2A5F7003E2F89 /* RTDeviceInformation.m in Sources */,
 				7124416D1B2DEA8400752901 /* RTConfirmAccountAssembly.m in Sources */,
 				715C541D1AD4C7B6009C755F /* RTUserSummaryPresenter.m in Sources */,
+				7164A3CD1B461D230006FE2E /* RTBrowseAudienceMembersAssembly.m in Sources */,
 				71053AB21B2BBBAD008C800C /* RTChangePasswordWireframe.m in Sources */,
 				714843031AEC108D001B885A /* RTDeviceRegistrationWireframe.m in Sources */,
 				71386E601AD36C01009D064C /* RTVideoDescription.m in Sources */,
