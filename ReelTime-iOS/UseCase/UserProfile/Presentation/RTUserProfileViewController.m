@@ -17,11 +17,16 @@
 #import "RTUserDescription.h"
 #import "RTBrowseVideosPresenter.h"
 
+#import "RTUserReelHeaderView.h"
+#import "RTUserReelFooterView.h"
+
 #import "RTUserReelCell.h"
 #import "RTReelDescription.h"
 
 #import "RTLogging.h"
 
+static NSString *const UserReelHeaderIdentifier = @"UserReelHeader";
+static NSString *const UserReelFooterIdentifier = @"UserReelFooter";
 static NSString *const UserReelCellIdentifier = @"UserReelCell";
 
 @interface RTUserProfileViewController ()
@@ -91,8 +96,12 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self.tableView setDataSource:self.reelsDataSource];
     [self.tableView setDelegate:self];
+    
+    [self.tableView registerClass:[RTUserReelHeaderView class] forHeaderFooterViewReuseIdentifier:UserReelHeaderIdentifier];
+    [self.tableView registerClass:[RTUserReelFooterView class] forHeaderFooterViewReuseIdentifier:UserReelFooterIdentifier];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -152,14 +161,27 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     RTReelDescription *description = [self.reelsDataSource itemAtIndex:section];
+
+    RTUserReelHeaderView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:UserReelHeaderIdentifier];
+    header.textLabel.text = description.name;
+
+    return header;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    RTReelDescription *description = [self.reelsDataSource itemAtIndex:section];
+
+    RTUserReelFooterView *footer = [tableView dequeueReusableHeaderFooterViewWithIdentifier:UserReelFooterIdentifier];
+    footer.textLabel.text = [NSString stringWithFormat:@"%@ Followers", description.audienceSize];
     
-    UILabel *label = [[UILabel alloc] init];
-    label.text = description.name;
-    
-    return label;
+    return footer;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 50;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 50;
 }
 
