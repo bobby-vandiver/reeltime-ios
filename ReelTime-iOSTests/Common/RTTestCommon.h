@@ -42,5 +42,8 @@ extern const NSUInteger pageNumber;
 extern NSString *const confirmationCode;
 extern NSString *const resetCode;
 
+extern NSString *const accessToken;
+extern NSString *const refreshToken;
+
 extern NSNull *null();
 extern NSString *getParameterOrDefault(NSString *parameter, NSString *defaultValue);

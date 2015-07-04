@@ -19,6 +19,9 @@ const NSUInteger pageNumber = 13;
 NSString *const confirmationCode = @"confirm";
 NSString *const resetCode = @"reset";
 
+NSString *const accessToken = @"access";
+NSString *const refreshToken = @"refresh";
+
 NSNull *null() {
     return [NSNull null];
 }
