@@ -44,6 +44,7 @@
 + (RKResponseDescriptor *)newsfeedErrorDescriptor;
 
 + (RKResponseDescriptor *)revokeAccessTokenDescriptor;
++ (RKResponseDescriptor *)revokeAccessTokenErrorDescriptor;
 
 + (RKResponseDescriptor *)listReelsDescriptor;
 + (RKResponseDescriptor *)listReelsErrorDescriptor;

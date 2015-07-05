@@ -160,6 +160,7 @@ describe(@"ReelTime Client", ^{
     
     FailureCallback (^shouldExecuteFailureCallbackWithMessage)(NSString *, DoneCallback) = ^FailureCallback(NSString *expectedError, DoneCallback done) {
         return ^(id obj) {
+            DDLogDebug(@"obj = %@", obj);
             expect(obj).to.beKindOf([RTServerErrors class]);
             
             RTServerErrors *serverErrors = (RTServerErrors *)obj;
@@ -1091,13 +1092,16 @@ describe(@"ReelTime Client", ^{
             __block NSRegularExpression *revokeAccessTokenUrlRegex;
             
             beforeEach(^{
-                NSDictionary *pathParams = @{@":access_token": ACCESS_TOKEN};
-                revokeAccessTokenUrlRegex = [helper createUrlRegexForEndpoint:API_REMOVE_TOKEN
-                                                               withParameters:pathParams];
+                revokeAccessTokenUrlRegex = [helper createUrlRegexForEndpoint:API_REMOVE_TOKEN];
+            });
+            
+            afterEach(^{
+                expect(httpClient.lastParameters.allKeys).to.haveCountOf(1);
+                expect(httpClient.lastParameters[@"access_token"]).to.equal(ACCESS_TOKEN);
             });
             
             it(@"is successful", ^{
-                [helper stubAuthenticatedRequestWithMethod:DELETE
+                [helper stubAuthenticatedRequestWithMethod:POST
                                                   urlRegex:revokeAccessTokenUrlRegex
                                        rawResponseFilename:SUCCESSFUL_OK_WITH_NO_BODY_FILENAME];
                 
@@ -1105,6 +1109,18 @@ describe(@"ReelTime Client", ^{
                     [client revokeAccessToken:ACCESS_TOKEN
                                       success:shouldExecuteSuccessCallback(done)
                                       failure:shouldNotExecuteFailureCallback(done)];
+                });
+            });
+            
+            it(@"fails due to bad request", ^{
+                [helper stubAuthenticatedRequestWithMethod:POST
+                                                  urlRegex:revokeAccessTokenUrlRegex
+                                       rawResponseFilename:BAD_REQUEST_WITH_ERRORS_FILENAME];
+                
+                waitUntil(^(DoneCallback done) {
+                    [client revokeAccessToken:ACCESS_TOKEN
+                                      success:shouldNotExecuteSuccessCallback(done)
+                                      failure:shouldExecuteFailureCallbackWithMessage(BAD_REQUEST_ERROR_MESSAGE, done)];
                 });
             });
         });

@@ -21,6 +21,7 @@
 #import "RTFieldErrorPresentationChecker.h"
 
 #import "RTCallbackTestExpectation.h"
+#import "RTLogging.h"
 
 // Constants used in multiple tests
 extern NSString *const clientId;

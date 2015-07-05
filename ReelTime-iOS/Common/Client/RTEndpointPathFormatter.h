@@ -6,9 +6,6 @@
             withClientId:(NSString *)clientId;
 
 - (NSString *)formatPath:(NSString *)path
-         withAccessToken:(NSString *)accessToken;
-
-- (NSString *)formatPath:(NSString *)path
             withUsername:(NSString *)username;
 
 - (NSString *)formatPath:(NSString *)path

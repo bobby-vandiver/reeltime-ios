@@ -218,11 +218,11 @@ static NSString *const ALL_SCOPES = @"account-read account-write audiences-read 
 - (void)revokeAccessToken:(NSString *)token
                   success:(NoArgsCallback)success
                   failure:(ServerErrorsCallback)failure {
-    NSString *path = [self.pathFormatter formatPath:API_REMOVE_TOKEN withAccessToken:token];
-    [self.httpClient authenticatedDeleteForPath:path
-                                 withParameters:nil
-                                        success:success
-                                        failure:failure];
+    NSDictionary *parameters = @{@"access_token": token};
+    [self.httpClient authenticatedPostForPath:API_REMOVE_TOKEN
+                               withParameters:parameters
+                                      success:success
+                                      failure:failure];
 }
 
 - (void)listReelsPage:(NSUInteger)page

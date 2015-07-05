@@ -197,6 +197,12 @@
                                         statusCode:200];
 }
 
++ (RKResponseDescriptor *)revokeAccessTokenErrorDescriptor {
+    return [self serverErrorsDescriptorForMethod:RKRequestMethodDELETE
+                                            path:API_REMOVE_TOKEN
+                                      statusCode:400];
+}
+
 + (RKResponseDescriptor *)listReelsDescriptor {
     return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory reelListMapping]
                                                         method:RKRequestMethodGET

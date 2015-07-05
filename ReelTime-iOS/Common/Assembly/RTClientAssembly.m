@@ -86,6 +86,7 @@
                                           [RTResponseDescriptorFactory newsfeedDescriptor],
                                           [RTResponseDescriptorFactory newsfeedErrorDescriptor],
                                           [RTResponseDescriptorFactory revokeAccessTokenDescriptor],
+                                          [RTResponseDescriptorFactory revokeAccessTokenErrorDescriptor],
                                           [RTResponseDescriptorFactory listReelsDescriptor],
                                           [RTResponseDescriptorFactory listReelsErrorDescriptor],
                                           [RTResponseDescriptorFactory addReelDescriptor],
