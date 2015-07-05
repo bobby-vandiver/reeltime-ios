@@ -24,6 +24,7 @@
 		710BB5F91ACDF6EE00F724C7 /* RTCountDownLatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 710BB5F81ACDF6EE00F724C7 /* RTCountDownLatch.m */; };
 		710C0A371B27BD66006209F4 /* RTManageDevicesPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 710C0A361B27BD66006209F4 /* RTManageDevicesPresenter.m */; };
 		710C0A3B1B27C00D006209F4 /* RTManageDevicesPresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 710C0A3A1B27C00D006209F4 /* RTManageDevicesPresenterSpec.m */; };
+		710D84311B49BA82000FCFFF /* RTClientSpecCallbackExpectation.m in Sources */ = {isa = PBXBuildFile; fileRef = 710D84301B49BA82000FCFFF /* RTClientSpecCallbackExpectation.m */; };
 		7112EF491AA915BC00BC7731 /* user-list-multiple-users.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7112EF481AA915BC00BC7731 /* user-list-multiple-users.txt */; };
 		7112EF4B1AA915CC00BC7731 /* user-list-no-users.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7112EF4A1AA915CC00BC7731 /* user-list-no-users.txt */; };
 		7112EF4D1AA915EF00BC7731 /* user-list-one-user.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7112EF4C1AA915EF00BC7731 /* user-list-one-user.txt */; };
@@ -407,6 +408,8 @@
 		710C0A361B27BD66006209F4 /* RTManageDevicesPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTManageDevicesPresenter.m; sourceTree = "<group>"; };
 		710C0A381B27BDC6006209F4 /* RTManageDevicesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTManageDevicesView.h; sourceTree = "<group>"; };
 		710C0A3A1B27C00D006209F4 /* RTManageDevicesPresenterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTManageDevicesPresenterSpec.m; sourceTree = "<group>"; };
+		710D842F1B49BA82000FCFFF /* RTClientSpecCallbackExpectation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTClientSpecCallbackExpectation.h; sourceTree = "<group>"; };
+		710D84301B49BA82000FCFFF /* RTClientSpecCallbackExpectation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTClientSpecCallbackExpectation.m; sourceTree = "<group>"; };
 		7112EF481AA915BC00BC7731 /* user-list-multiple-users.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "user-list-multiple-users.txt"; sourceTree = "<group>"; };
 		7112EF4A1AA915CC00BC7731 /* user-list-no-users.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "user-list-no-users.txt"; sourceTree = "<group>"; };
 		7112EF4C1AA915EF00BC7731 /* user-list-one-user.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "user-list-one-user.txt"; sourceTree = "<group>"; };
@@ -2543,13 +2546,15 @@
 		717A4B7C1A53503B004C2BC1 /* ClientTests */ = {
 			isa = PBXGroup;
 			children = (
-				717A4B7D1A53503B004C2BC1 /* RTRestAPIMappingFactorySpec.m */,
 				717A4B7F1A535942004C2BC1 /* RTAPIClientSpec.m */,
-				71647BE71A7F185500F44996 /* RTClientDelegateSpec.m */,
-				713470BB1A9ABFAB000CFCA3 /* RTClientSpecHelper.h */,
-				713470BC1A9ABFAB000CFCA3 /* RTClientSpecHelper.m */,
 				711FF4C41AA23A3A00E11BDE /* RTAuthenticationAwareHTTPClientSpy.h */,
 				711FF4C51AA23A3A00E11BDE /* RTAuthenticationAwareHTTPClientSpy.m */,
+				71647BE71A7F185500F44996 /* RTClientDelegateSpec.m */,
+				710D842F1B49BA82000FCFFF /* RTClientSpecCallbackExpectation.h */,
+				710D84301B49BA82000FCFFF /* RTClientSpecCallbackExpectation.m */,
+				713470BB1A9ABFAB000CFCA3 /* RTClientSpecHelper.h */,
+				713470BC1A9ABFAB000CFCA3 /* RTClientSpecHelper.m */,
+				717A4B7D1A53503B004C2BC1 /* RTRestAPIMappingFactorySpec.m */,
 			);
 			path = ClientTests;
 			sourceTree = "<group>";
@@ -3517,6 +3522,7 @@
 				71F384D81B377FAC002BC9A0 /* RTUserProfilePresenterSpec.m in Sources */,
 				71B2384E1B04305E002DE5DA /* RTCurrentUserServiceSpec.m in Sources */,
 				7145C6211A8AE645006A77DE /* RTUserSpec.m in Sources */,
+				710D84311B49BA82000FCFFF /* RTClientSpecCallbackExpectation.m in Sources */,
 				711C5DE41A8D5BA9007652FC /* RTStringWithEmbeddedLinksSpec.m in Sources */,
 				7129691B1B250C53007916FD /* RTRevokeClientInteractorSpec.m in Sources */,
 				7196FBF91B07F80000E13359 /* RTResetPasswordInteractorSpec.m in Sources */,
