@@ -7,6 +7,7 @@
 #import "RTDeviceRegistrationError.h"
 #import "RTKeyChainError.h"
 #import "RTLoginError.h"
+#import "RTLogoutError.h"
 #import "RTPagedListError.h"
 #import "RTResetPasswordError.h"
 #import "RTRevokeClientError.h"
@@ -34,6 +35,11 @@
 
 + (NSError *)loginErrorWithCode:(RTLoginError)code
                   originalError:(NSError *)error;
+
++ (NSError *)logoutErrorWithCode:(RTLogoutError)code;
+
++ (NSError *)logoutErrorWithCode:(RTLogoutError)code
+                   originalError:(NSError *)error;
 
 + (NSError *)pagedListErrorWithCode:(RTPagedListError)code;
 

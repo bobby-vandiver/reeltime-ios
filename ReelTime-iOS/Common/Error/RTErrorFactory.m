@@ -42,6 +42,15 @@
     return [self errorWithDomain:RTLoginErrorDomain code:code originalError:error];
 }
 
++ (NSError *)logoutErrorWithCode:(RTLogoutError)code {
+    return [self logoutErrorWithCode:code originalError:nil];
+}
+
++ (NSError *)logoutErrorWithCode:(RTLogoutError)code
+                   originalError:(NSError *)error {
+    return [self errorWithDomain:RTLogoutErrorDomain code:code originalError:error];
+}
+
 + (NSError *)pagedListErrorWithCode:(RTPagedListError)code {
     return [self errorWithDomain:RTPagedListErrorDomain code:code];
 }

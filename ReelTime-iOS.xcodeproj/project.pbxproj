@@ -410,6 +410,7 @@
 		710C0A3A1B27C00D006209F4 /* RTManageDevicesPresenterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTManageDevicesPresenterSpec.m; sourceTree = "<group>"; };
 		710D842F1B49BA82000FCFFF /* RTClientSpecCallbackExpectation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTClientSpecCallbackExpectation.h; sourceTree = "<group>"; };
 		710D84301B49BA82000FCFFF /* RTClientSpecCallbackExpectation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTClientSpecCallbackExpectation.m; sourceTree = "<group>"; };
+		710D84321B49CA2C000FCFFF /* RTLogoutError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLogoutError.h; sourceTree = "<group>"; };
 		7112EF481AA915BC00BC7731 /* user-list-multiple-users.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "user-list-multiple-users.txt"; sourceTree = "<group>"; };
 		7112EF4A1AA915CC00BC7731 /* user-list-no-users.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "user-list-no-users.txt"; sourceTree = "<group>"; };
 		7112EF4C1AA915EF00BC7731 /* user-list-one-user.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "user-list-one-user.txt"; sourceTree = "<group>"; };
@@ -2174,6 +2175,7 @@
 		716231BD1B48431700458C4C /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				710D84321B49CA2C000FCFFF /* RTLogoutError.h */,
 			);
 			path = Domain;
 			sourceTree = "<group>";

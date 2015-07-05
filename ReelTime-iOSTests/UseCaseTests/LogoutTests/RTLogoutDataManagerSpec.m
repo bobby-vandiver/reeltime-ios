@@ -8,6 +8,7 @@
 #import "RTCurrentUserStore.h"
 
 #import "RTOAuth2Token.h"
+#import "RTLogoutError.h"
 
 SpecBegin(RTLogoutDataManager)
 
@@ -72,6 +73,9 @@ describe(@"logout data manager", ^{
                 
                 [dataManager revokeCurrentTokenWithSuccess:anything() failure:revocationFailure.argsCallback];
                 [revocationFailure expectCallbackExecuted];
+                
+                NSError *error = revocationFailure.callbackArguments;
+                expect(error).to.beError(RTLogoutErrorDomain, RTLogoutErrorCurrentUsernameNotFound);
             });
             
             it(@"token not found", ^{
@@ -80,6 +84,9 @@ describe(@"logout data manager", ^{
                 
                 [dataManager revokeCurrentTokenWithSuccess:anything() failure:revocationFailure.argsCallback];
                 [revocationFailure expectCallbackExecuted];
+                
+                NSError *error = revocationFailure.callbackArguments;
+                expect(error).to.beError(RTLogoutErrorDomain, RTLogoutErrorMissingAccessToken);
             });
         });
 

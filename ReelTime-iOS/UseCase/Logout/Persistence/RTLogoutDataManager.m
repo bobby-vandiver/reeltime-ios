@@ -5,6 +5,7 @@
 #import "RTCurrentUserStore.h"
 
 #import "RTOAuth2Token.h"
+#import "RTErrorFactory.h"
 
 @interface RTLogoutDataManager ()
 
@@ -36,7 +37,9 @@
     NSString *username = [self.currentUserStore loadCurrentUsernameWithError:&loadUsernameError];
 
     if (!username) {
-        failure(loadUsernameError);
+        NSError *error = [RTErrorFactory logoutErrorWithCode:RTLogoutErrorCurrentUsernameNotFound
+                                               originalError:loadUsernameError];
+        failure(error);
         return;
     }
     
@@ -44,7 +47,9 @@
     RTOAuth2Token *token = [self.tokenStore loadTokenForUsername:username error:&loadTokenError];
     
     if (!token) {
-        failure(loadTokenError);
+        NSError *error = [RTErrorFactory logoutErrorWithCode:RTLogoutErrorMissingAccessToken
+                                               originalError:loadTokenError];
+        failure(error);
         return;
     }
     
