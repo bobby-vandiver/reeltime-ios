@@ -3,12 +3,14 @@
 #import "RTClientSpecHelper.h"
 #import "RTClientSpecCallbackExpectation.h"
 
-#import "RTAPIClient.h"
-#import "RTAuthenticationAwareHTTPClientDelegate.h"
 #import "RTClientAssembly.h"
+
+#import "RTAPIClient.h"
+#import "RTRestAPI.h"
 
 #import "RTAuthenticationAwareHTTPClient.h"
 #import "RTAuthenticationAwareHTTPClientSpy.h"
+#import "RTAuthenticationAwareHTTPClientDelegate.h"
 
 #import "RTClientCredentials.h"
 #import "RTUserCredentials.h"
@@ -17,27 +19,12 @@
 #import "RTOAuth2TokenError.h"
 
 #import "RTServerErrors.h"
-
 #import "RTAccountRegistration.h"
 
 #import "RTNewsfeed.h"
 #import "RTActivity.h"
 
-#import "RTClient.h"
-#import "RTClientList.h"
-
-#import "RTUser.h"
-#import "RTUserList.h"
-
-#import "RTReel.h"
-#import "RTReelList.h"
-
-#import "RTVideo.h"
-#import "RTVideoList.h"
-
 #import "RTThumbnail.h"
-
-#import "RTRestAPI.h"
 
 #import <Typhoon/Typhoon.h>
 #import <Typhoon/TyphoonPatcher.h>
@@ -860,8 +847,7 @@ describe(@"ReelTime Client", ^{
                 });
             });
             
-            // TODO: Fix
-            xit(@"fails due to bad request", ^{
+            it(@"fails due to bad request", ^{
                 [helper stubAuthenticatedRequestWithMethod:POST
                                                   urlRegex:revokeAccessTokenUrlRegex
                                        rawResponseFilename:BAD_REQUEST_WITH_ERRORS_FILENAME];

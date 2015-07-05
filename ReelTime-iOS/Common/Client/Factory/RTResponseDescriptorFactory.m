@@ -192,13 +192,13 @@
 }
 
 + (RKResponseDescriptor *)revokeAccessTokenDescriptor {
-    return [self noResponseBodyDescriptorForMethod:RKRequestMethodDELETE
+    return [self noResponseBodyDescriptorForMethod:RKRequestMethodPOST
                                               path:API_REMOVE_TOKEN
                                         statusCode:200];
 }
 
 + (RKResponseDescriptor *)revokeAccessTokenErrorDescriptor {
-    return [self serverErrorsDescriptorForMethod:RKRequestMethodDELETE
+    return [self serverErrorsDescriptorForMethod:RKRequestMethodPOST
                                             path:API_REMOVE_TOKEN
                                       statusCode:400];
 }
