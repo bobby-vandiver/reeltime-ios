@@ -4,6 +4,8 @@
 #import "RTOAuth2TokenStore.h"
 #import "RTCurrentUserStore.h"
 
+#import "RTOAuth2Token.h"
+
 @interface RTLogoutDataManager ()
 
 @property RTAPIClient *client;
@@ -33,8 +35,30 @@
     NSError *loadUsernameError;
     NSString *username = [self.currentUserStore loadCurrentUsernameWithError:&loadUsernameError];
 
-    failure(loadUsernameError);
+    if (!username) {
+        failure(loadUsernameError);
+        return;
+    }
     
+    NSError *loadTokenError;
+    RTOAuth2Token *token = [self.tokenStore loadTokenForUsername:username error:&loadTokenError];
+    
+    if (!token) {
+        failure(loadTokenError);
+        return;
+    }
+    
+    NoArgsCallback successCallback = ^{
+        success();
+    };
+    
+    ServerErrorsCallback failureCallback = ^(RTServerErrors *serverErrors) {
+        
+    };
+    
+    [self.client revokeAccessToken:token.accessToken
+                           success:successCallback
+                           failure:failureCallback];
 }
 
 - (void)removeLocalCredentialsWithSuccess:(NoArgsCallback)success

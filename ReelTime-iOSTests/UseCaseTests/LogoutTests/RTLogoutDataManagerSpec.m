@@ -61,12 +61,46 @@ describe(@"logout data manager", ^{
             [revocationSuccess expectCallbackNotExecuted];
             [revocationFailure expectCallbackNotExecuted];
         });
+        
+        context(@"local credentials are not present", ^{
+            afterEach(^{
+                [verifyCount(client, never()) revokeAccessToken:anything() success:anything() failure:anything()];
+            });
+            
+            it(@"current username not found", ^{
+                [loadCurrentUsernameMethodCall willReturn:nil];
+                
+                [dataManager revokeCurrentTokenWithSuccess:anything() failure:revocationFailure.argsCallback];
+                [revocationFailure expectCallbackExecuted];
+            });
+            
+            it(@"token not found", ^{
+                [loadCurrentUsernameMethodCall willReturn:username];
+                [loadTokenForUsernameMethodCall willReturn:nil];
+                
+                [dataManager revokeCurrentTokenWithSuccess:anything() failure:revocationFailure.argsCallback];
+                [revocationFailure expectCallbackExecuted];
+            });
+        });
 
-        it(@"current username not found", ^{
-            [loadTokenForUsernameMethodCall willReturn:nil];
-
-            [dataManager revokeCurrentTokenWithSuccess:anything() failure:revocationFailure.argsCallback];
-            [revocationFailure expectCallbackExecuted];
+        context(@"local credentials are found", ^{
+            beforeEach(^{
+                [loadCurrentUsernameMethodCall willReturn:username];
+                [loadTokenForUsernameMethodCall willReturn:token];
+                
+                [dataManager revokeCurrentTokenWithSuccess:revocationSuccess.noArgsCallback
+                                                   failure:revocationFailure.argsCallback];
+                
+                [verify(client) revokeAccessToken:accessToken
+                                          success:[successCaptor capture]
+                                          failure:[failureCaptor capture]];
+            });
+            
+            it(@"token revocation success", ^{
+                NoArgsCallback successHandler = [successCaptor value];
+                successHandler();
+                [revocationSuccess expectCallbackExecuted];
+            });
         });
     });
 });
