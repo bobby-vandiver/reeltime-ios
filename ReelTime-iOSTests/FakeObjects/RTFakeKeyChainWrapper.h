@@ -9,4 +9,7 @@
            forKey:(NSString *)key
             error:(NSError *__autoreleasing *)error;
 
+- (BOOL)removeObjectForKey:(NSString *)key
+                     error:(NSError *__autoreleasing *)error;
+
 @end

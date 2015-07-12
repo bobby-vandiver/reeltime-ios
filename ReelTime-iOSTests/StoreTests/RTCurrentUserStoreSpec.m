@@ -27,6 +27,17 @@ describe(@"current user store", ^{
         NSString *username = [store loadCurrentUsernameWithError:nil];
         expect(username).to.equal(@"someone");
     });
+    
+    it(@"should remove current username", ^{
+        BOOL stored = [store storeCurrentUsername:@"someone" error:nil];
+        expect(stored).to.beTruthy();
+        
+        BOOL removed = [store removeCurrentUsernameWithError:nil];
+        expect(removed).to.beTruthy();
+        
+        NSString *username = [store loadCurrentUsernameWithError:nil];
+        expect(username).to.beNil();
+    });
 });
 
 SpecEnd

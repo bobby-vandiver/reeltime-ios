@@ -24,14 +24,11 @@ static NSString *const KEY = @"current-username";
 
 - (BOOL)storeCurrentUsername:(NSString *)username
                        error:(NSError *__autoreleasing *)error {
-    return [self.keyChainWrapper setObject:username
-                                    forKey:KEY
-                                     error:error];
+    return [self.keyChainWrapper setObject:username forKey:KEY error:error];
 }
 
 - (BOOL)removeCurrentUsernameWithError:(NSError *__autoreleasing *)error {
-    // TODO: Implement!
-    return YES;
+    return [self.keyChainWrapper removeObjectForKey:KEY error:error];
 }
 
 @end

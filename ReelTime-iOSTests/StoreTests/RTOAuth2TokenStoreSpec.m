@@ -21,6 +21,13 @@ describe(@"token store", ^{
         store = [[RTOAuth2TokenStore alloc] initWithKeyChainWrapper:keyChainWrapper];
     });
     
+    context(@"tokens do not exist in store", ^{
+        it(@"should not find token when the user does not have one", ^{
+            RTOAuth2Token *token = [store loadTokenForUsername:username error:nil];
+            expect(token).to.beNil();
+        });
+    });
+    
     context(@"tokens exist in store", ^{
         beforeEach(^{
             RTOAuth2Token *token = [[RTOAuth2Token alloc] init];
@@ -32,11 +39,6 @@ describe(@"token store", ^{
             
             [store storeToken:token forUsername:username error:nil];
         });
-        
-        it(@"should not find token when the user does not have one", ^{
-            RTOAuth2Token *token = [store loadTokenForUsername:username error:nil];
-            expect(token).to.beNil;
-        });
 
         it(@"should find token when the user has one", ^{
             RTOAuth2Token *token = [store loadTokenForUsername:username error:nil];
@@ -46,6 +48,14 @@ describe(@"token store", ^{
             expect(token.tokenType).to.equal(tokenType);
             expect(token.expiresIn).to.equal(expiresIn);
             expect(token.scope).to.equal(scope);
+        });
+        
+        it(@"should remove token when user has one", ^{
+            BOOL removed = [store removeTokenForUsername:username error:nil];
+            expect(removed).to.beTruthy();
+            
+            RTOAuth2Token *token = [store loadTokenForUsername:username error:nil];
+            expect(token).to.beNil();
         });
     });
 });

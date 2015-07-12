@@ -32,8 +32,8 @@
 
 - (BOOL)removeTokenForUsername:(NSString *)username
                          error:(NSError *__autoreleasing *)error {
-    // TODO: Implement!
-    return YES;
+    return [self.keyChainWrapper removeObjectForKey:[self generateKeyForUsername:username]
+                                              error:error];
 }
 
 - (NSString *)generateKeyForUsername:(NSString *)username {

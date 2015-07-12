@@ -32,4 +32,11 @@
     [self.items setObject:encodedData forKey:key];
     return YES;
 }
+
+- (BOOL)removeObjectForKey:(NSString *)key
+                     error:(NSError *__autoreleasing *)error {
+    [self.items removeObjectForKey:key];
+    return YES;
+}
+
 @end
