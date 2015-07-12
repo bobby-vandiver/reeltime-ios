@@ -10,6 +10,8 @@
 #import "RTOAuth2Token.h"
 #import "RTLogoutError.h"
 
+#import "RTServerErrors.h"
+
 SpecBegin(RTLogoutDataManager)
 
 describe(@"logout data manager", ^{
@@ -107,6 +109,28 @@ describe(@"logout data manager", ^{
                 NoArgsCallback successHandler = [successCaptor value];
                 successHandler();
                 [revocationSuccess expectCallbackExecuted];
+            });
+
+            it(@"token revocation failure due to missing access token", ^{
+                RTServerErrors *serverErrors = [[RTServerErrors alloc] init];
+                serverErrors.errors = @[@"[access_token] is required"];
+                
+                ServerErrorsCallback failureHandler = [failureCaptor value];
+                failureHandler(serverErrors);
+                
+                [revocationFailure expectCallbackExecuted];
+                expect(revocationFailure.callbackArguments).to.beError(RTLogoutErrorDomain, RTLogoutErrorMissingAccessToken);
+            });
+            
+            it(@"unexpected token revocation failure", ^{
+                RTServerErrors *serverErrors = [[RTServerErrors alloc] init];
+                serverErrors.errors = @[@"unexpected error"];
+                
+                ServerErrorsCallback failureHandler = [failureCaptor value];
+                failureHandler(serverErrors);
+                
+                [revocationFailure expectCallbackExecuted];
+                expect(revocationFailure.callbackArguments).to.beError(RTLogoutErrorDomain, RTLogoutErrorUnknownRevocationError);
             });
         });
     });

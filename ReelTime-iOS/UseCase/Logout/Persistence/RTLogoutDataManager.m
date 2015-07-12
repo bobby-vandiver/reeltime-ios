@@ -7,6 +7,9 @@
 #import "RTOAuth2Token.h"
 #import "RTErrorFactory.h"
 
+#import "RTServerErrors.h"
+#import "RTLogging.h"
+
 @interface RTLogoutDataManager ()
 
 @property RTAPIClient *client;
@@ -58,7 +61,17 @@
     };
     
     ServerErrorsCallback failureCallback = ^(RTServerErrors *serverErrors) {
+        NSError *error;
         
+        if ([serverErrors.errors[0] isEqual:@"[access_token] is required"]) {
+            error = [RTErrorFactory logoutErrorWithCode:RTLogoutErrorMissingAccessToken];
+        }
+        else {
+            DDLogWarn(@"Unknown revocation error(s): %@", serverErrors);
+            error = [RTErrorFactory logoutErrorWithCode:RTLogoutErrorUnknownRevocationError];
+        }
+        
+        failure(error);
     };
     
     [self.client revokeAccessToken:token.accessToken
