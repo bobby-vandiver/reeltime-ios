@@ -63,14 +63,14 @@ describe(@"change display name data manager", ^{
         });
         
         it(@"should map server errors to domain specific errors", ^{
-            NSDictionary *mappng = @{
+            NSDictionary *mapping = @{
                                      @"[new_display_name] is required":
                                          @(RTChangeDisplayNameErrorMissingDisplayName),
                                      @"[new_display_name] must be 2-20 alphanumeric or space characters long":
                                          @(RTChangeDisplayNameErrorInvalidDisplayName)
                                      };
             
-            [helper expectForServerMessageToErrorCodeMapping:mappng];
+            [helper expectForServerMessageToErrorCodeMapping:mapping];
             [notChanged expectCallbackExecuted];
         });
     });
