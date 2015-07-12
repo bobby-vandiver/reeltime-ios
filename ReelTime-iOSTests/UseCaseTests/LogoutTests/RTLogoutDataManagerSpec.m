@@ -24,7 +24,7 @@ describe(@"logout data manager", ^{
     
     __block MKTArgumentCaptor *successCaptor;
     __block MKTArgumentCaptor *failureCaptor;
-    
+
     beforeEach(^{
         client = mock([RTAPIClient class]);
 
@@ -39,28 +39,39 @@ describe(@"logout data manager", ^{
         failureCaptor = [[MKTArgumentCaptor alloc] init];
     });
     
+    void (^stubLoadCurrentUsername)(NSString *) = ^(NSString *username) {
+        [[given([currentUserStore loadCurrentUsernameWithError:nil])
+          withMatcher:anything() forArgument:0] willReturn:username];
+    };
+    
+    void (^stubRemoveCurrentUsername)(BOOL) = ^(BOOL removed) {
+        [[given([currentUserStore removeCurrentUsernameWithError:nil])
+          withMatcher:anything() forArgument:0] willReturnBool:removed];
+    };
+    
+    void (^stubLoadTokenForUsername)(NSString *, RTOAuth2Token *) = ^(NSString *username, RTOAuth2Token *token) {
+        [[given([tokenStore loadTokenForUsername:username error:nil])
+          withMatcher:anything() forArgument:1] willReturn:token];
+    };
+    
+    void (^stubRemoveTokenForUsername)(NSString *, BOOL) = ^(NSString *username, BOOL removed) {
+        [[given([tokenStore removeTokenForUsername:username error:nil])
+          withMatcher:anything() forArgument:1] willReturnBool:removed];
+    };
+    
     describe(@"revoking current token", ^{
         __block RTCallbackTestExpectation *revocationSuccess;
         __block RTCallbackTestExpectation *revocationFailure;
 
         __block RTOAuth2Token *token;
-        
-        __block id loadCurrentUsernameMethodCall;
-        __block id loadTokenForUsernameMethodCall;
-        
+
         beforeEach(^{
             revocationSuccess = [RTCallbackTestExpectation noArgsCallbackTestExpectation];
             revocationFailure = [RTCallbackTestExpectation argsCallbackTextExpectation];
 
-            loadCurrentUsernameMethodCall = [given([currentUserStore loadCurrentUsernameWithError:nil])
-                                             withMatcher:anything() forArgument:0];
-
-            loadTokenForUsernameMethodCall = [given([tokenStore loadTokenForUsername:username error:nil])
-                                              withMatcher:anything() forArgument:1];
-
             token = [[RTOAuth2Token alloc] init];
             token.accessToken = accessToken;
-
+            
             [revocationSuccess expectCallbackNotExecuted];
             [revocationFailure expectCallbackNotExecuted];
         });
@@ -71,7 +82,7 @@ describe(@"logout data manager", ^{
             });
             
             it(@"current username not found", ^{
-                [loadCurrentUsernameMethodCall willReturn:nil];
+                stubLoadCurrentUsername(nil);
                 
                 [dataManager revokeCurrentTokenWithSuccess:anything() failure:revocationFailure.argsCallback];
                 [revocationFailure expectCallbackExecuted];
@@ -81,8 +92,8 @@ describe(@"logout data manager", ^{
             });
             
             it(@"token not found", ^{
-                [loadCurrentUsernameMethodCall willReturn:username];
-                [loadTokenForUsernameMethodCall willReturn:nil];
+                stubLoadCurrentUsername(username);
+                stubLoadTokenForUsername(username, nil);
                 
                 [dataManager revokeCurrentTokenWithSuccess:anything() failure:revocationFailure.argsCallback];
                 [revocationFailure expectCallbackExecuted];
@@ -94,8 +105,8 @@ describe(@"logout data manager", ^{
 
         context(@"local credentials are found", ^{
             beforeEach(^{
-                [loadCurrentUsernameMethodCall willReturn:username];
-                [loadTokenForUsernameMethodCall willReturn:token];
+                stubLoadCurrentUsername(username);
+                stubLoadTokenForUsername(username, token);
                 
                 [dataManager revokeCurrentTokenWithSuccess:revocationSuccess.noArgsCallback
                                                    failure:revocationFailure.argsCallback];
@@ -132,6 +143,60 @@ describe(@"logout data manager", ^{
                 [revocationFailure expectCallbackExecuted];
                 expect(revocationFailure.callbackArguments).to.beError(RTLogoutErrorDomain, RTLogoutErrorUnknownRevocationError);
             });
+        });
+    });
+    
+    describe(@"removing local credentials", ^{
+        __block RTCallbackTestExpectation *credentialsRemoved;
+        __block RTCallbackTestExpectation *credentialsNotRemoved;
+        
+        beforeEach(^{
+            credentialsRemoved = [RTCallbackTestExpectation noArgsCallbackTestExpectation];
+            credentialsNotRemoved = [RTCallbackTestExpectation argsCallbackTextExpectation];
+        });
+        
+        it(@"current username not found", ^{
+            stubLoadCurrentUsername(nil);
+            
+            [dataManager removeLocalCredentialsWithSuccess:anything() failure:credentialsNotRemoved.argsCallback];
+            [credentialsNotRemoved expectCallbackExecuted];
+            
+            NSError *error = credentialsNotRemoved.callbackArguments;
+            expect(error).to.beError(RTLogoutErrorDomain, RTLogoutErrorCurrentUsernameNotFound);
+        });
+        
+        it(@"failed to remove token", ^{
+            stubLoadCurrentUsername(username);
+            stubRemoveTokenForUsername(username, NO);
+            
+            [dataManager removeLocalCredentialsWithSuccess:anything() failure:credentialsNotRemoved.argsCallback];
+            [credentialsNotRemoved expectCallbackExecuted];
+            
+            NSError *error = credentialsNotRemoved.callbackArguments;
+            expect(error).to.beError(RTLogoutErrorDomain, RTLogoutErrorFailedToRemoveStoredToken);
+        });
+        
+        it(@"failed to remove current username", ^{
+            stubLoadCurrentUsername(username);
+
+            stubRemoveTokenForUsername(username, YES);
+            stubRemoveCurrentUsername(NO);
+            
+            [dataManager removeLocalCredentialsWithSuccess:anything() failure:credentialsNotRemoved.argsCallback];
+            [credentialsNotRemoved expectCallbackExecuted];
+            
+            NSError *error = credentialsNotRemoved.callbackArguments;
+            expect(error).to.beError(RTLogoutErrorDomain, RTLogoutErrorFailedToResetCurrentUser);
+        });
+        
+        it(@"successfully removed local credentials", ^{
+            stubLoadCurrentUsername(username);
+
+            stubRemoveTokenForUsername(username, YES);
+            stubRemoveCurrentUsername(YES);
+
+            [dataManager removeLocalCredentialsWithSuccess:credentialsRemoved.noArgsCallback failure:anything()];
+            [credentialsRemoved expectCallbackExecuted];
         });
     });
 });

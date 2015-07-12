@@ -81,7 +81,38 @@
 
 - (void)removeLocalCredentialsWithSuccess:(NoArgsCallback)success
                                   failure:(ErrorCallback)failure {
+
+    NSError *loadUsernameError;
+    NSString *username = [self.currentUserStore loadCurrentUsernameWithError:&loadUsernameError];
     
+    if (!username) {
+        NSError *error = [RTErrorFactory logoutErrorWithCode:RTLogoutErrorCurrentUsernameNotFound
+                                               originalError:loadUsernameError];
+        failure(error);
+        return;
+    }
+    
+    NSError *removeTokenError;
+    BOOL removedToken = [self.tokenStore removeTokenForUsername:username error:&removeTokenError];
+    
+    if (!removedToken) {
+        NSError *error = [RTErrorFactory logoutErrorWithCode:RTLogoutErrorFailedToRemoveStoredToken
+                                               originalError:removeTokenError];
+        failure(error);
+        return;
+    }
+    
+    NSError *removeCurrentUserError;
+    BOOL removedCurrentUser = [self.currentUserStore removeCurrentUsernameWithError:&removeCurrentUserError];
+    
+    if (!removedCurrentUser) {
+        NSError *error = [RTErrorFactory logoutErrorWithCode:RTLogoutErrorFailedToResetCurrentUser
+                                               originalError:removeCurrentUserError];
+        failure(error);
+        return;
+    }
+    
+    success();
 }
 
 @end

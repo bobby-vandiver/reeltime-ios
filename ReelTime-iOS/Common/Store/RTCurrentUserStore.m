@@ -29,4 +29,9 @@ static NSString *const KEY = @"current-username";
                                      error:error];
 }
 
+- (BOOL)removeCurrentUsernameWithError:(NSError *__autoreleasing *)error {
+    // TODO: Implement!
+    return YES;
+}
+
 @end

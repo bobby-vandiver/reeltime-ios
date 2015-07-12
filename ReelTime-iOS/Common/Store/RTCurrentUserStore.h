@@ -11,4 +11,6 @@
 - (BOOL)storeCurrentUsername:(NSString *)username
                        error:(NSError *__autoreleasing *)error;
 
+- (BOOL)removeCurrentUsernameWithError:(NSError *__autoreleasing *)error;
+
 @end
