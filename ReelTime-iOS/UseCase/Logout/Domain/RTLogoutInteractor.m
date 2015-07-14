@@ -3,6 +3,8 @@
 #import "RTLogoutInteractorDelegate.h"
 #import "RTLogoutDataManager.h"
 
+#import "RTLogging.h"
+
 @interface RTLogoutInteractor ()
 
 @property id<RTLogoutInteractorDelegate> delegate;
@@ -23,7 +25,35 @@
 }
 
 - (void)logout {
+    [self.dataManager revokeCurrentTokenWithSuccess:[self tokenRevocationSuccess]
+                                            failure:[self tokenRevocationFailure]];
+}
 
+- (NoArgsCallback)tokenRevocationSuccess {
+    return ^{
+        [self.dataManager removeLocalCredentialsWithSuccess:[self removeLocalCredentialsSuccess]
+                                                    failure:[self removeLocalCredentialsFailure]];
+    };
+}
+
+- (ErrorCallback)tokenRevocationFailure {
+    return ^(NSError *error) {
+        DDLogWarn(@"Token revocation failed: %@", error);
+        [self.delegate logoutFailed];
+    };
+}
+
+- (NoArgsCallback)removeLocalCredentialsSuccess {
+    return ^{
+        [self.delegate logoutSucceeded];
+    };
+}
+
+- (ErrorCallback)removeLocalCredentialsFailure {
+    return ^(NSError *error) {
+        DDLogWarn(@"Failed to remove local credentials: %@", error);
+        [self.delegate logoutFailed];
+    };
 }
 
 @end
