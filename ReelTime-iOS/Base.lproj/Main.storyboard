@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="13F1077" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="13F1096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
@@ -874,6 +874,7 @@
                         <viewControllerLayoutGuide type="bottom" id="xC8-q5-MiP"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="nud-jB-k32">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="6eS-NL-fEx">
@@ -1448,6 +1449,51 @@
                                                     <include reference="7RU-RH-o1s"/>
                                                     <include reference="NLq-Dm-k8m"/>
                                                     <include reference="vRL-SW-PGg"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection id="4f6-1j-WPQ">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="qgF-G9-zsj">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qgF-G9-zsj" id="GH5-Ye-Wb0">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logout" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sRb-gI-fod">
+                                                    <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="sRb-gI-fod" secondAttribute="trailing" constant="-8" id="TSe-uE-R04">
+                                                    <variation key="widthClass=compact" constant="25"/>
+                                                </constraint>
+                                                <constraint firstItem="sRb-gI-fod" firstAttribute="centerY" secondItem="GH5-Ye-Wb0" secondAttribute="centerY" id="a7b-Ag-w2Y"/>
+                                                <constraint firstItem="sRb-gI-fod" firstAttribute="leading" secondItem="GH5-Ye-Wb0" secondAttribute="leadingMargin" constant="22" id="rhF-Aa-074"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="subviews">
+                                                    <exclude reference="sRb-gI-fod"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <exclude reference="rhF-Aa-074"/>
+                                                    <exclude reference="a7b-Ag-w2Y"/>
+                                                    <exclude reference="TSe-uE-R04"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="widthClass=compact">
+                                                <mask key="subviews">
+                                                    <include reference="sRb-gI-fod"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <include reference="rhF-Aa-074"/>
+                                                    <include reference="a7b-Ag-w2Y"/>
+                                                    <include reference="TSe-uE-R04"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>

@@ -3,16 +3,23 @@
 #import "RTAccountSettingsPresenter.h"
 #import "RTAccountSettingsWireframe.h"
 
+#import "RTLogoutPresenter.h"
+
 SpecBegin(RTAccountSettingsPresenter)
 
 describe(@"account settings presenter", ^{
     
     __block RTAccountSettingsPresenter *presenter;
     __block RTAccountSettingsWireframe *wireframe;
+    
+    __block RTLogoutPresenter *logoutPresenter;
 
     beforeEach(^{
         wireframe = mock([RTAccountSettingsWireframe class]);
-        presenter = [[RTAccountSettingsPresenter alloc] initWithWireframe:wireframe];
+        logoutPresenter = mock([RTLogoutPresenter class]);
+        
+        presenter = [[RTAccountSettingsPresenter alloc] initWithWireframe:wireframe
+                                                          logoutPresenter:logoutPresenter];
     });
     
     describe(@"requested display name change", ^{
@@ -40,6 +47,13 @@ describe(@"account settings presenter", ^{
         it(@"should route to the device management interface", ^{
             [presenter requestedDeviceManagement];
             [verify(wireframe) presentManageDevicesInterface];
+        });
+    });
+    
+    describe(@"requested logout", ^{
+        it(@"should delegate to logout presenter", ^{
+            [presenter requestedLogout];
+            [verify(logoutPresenter) requestedLogout];
         });
     });
 });

@@ -15,6 +15,9 @@ static const NSInteger ConfirmAccountRow = 0;
 static const NSInteger ManageDevicesSection = 1;
 static const NSInteger ManageDevicesRow = 1;
 
+static const NSInteger LogoutSection = 2;
+static const NSInteger LogoutRow = 0;
+
 @interface RTAccountSettingsViewController ()
 
 @property RTAccountSettingsPresenter *presenter;
@@ -53,6 +56,18 @@ static const NSInteger ManageDevicesRow = 1;
     else if (section == ManageDevicesSection && row == ManageDevicesRow) {
         [self.presenter requestedDeviceManagement];
     }
+    else if (section == LogoutSection && row == LogoutRow) {
+        [self.presenter requestedLogout];
+    }
+}
+
+- (void)showErrorMessage:(NSString *)message {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                        message:message
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+    [alertView show];
 }
 
 @end

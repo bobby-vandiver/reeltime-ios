@@ -48,6 +48,13 @@ describe(@"account settings view controller", ^{
             [viewController tableView:tableView didSelectRowAtIndexPath:path];
             [verify(presenter) requestedDeviceManagement];
         });
+        
+        it(@"logout", ^{
+            NSIndexPath *path = [NSIndexPath indexPathForRow:0 inSection:2];
+            
+            [viewController tableView:tableView didSelectRowAtIndexPath:path];
+            [verify(presenter) requestedLogout];
+        });
     });
 });
 

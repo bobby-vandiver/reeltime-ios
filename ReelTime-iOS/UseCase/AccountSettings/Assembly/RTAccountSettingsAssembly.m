@@ -38,8 +38,9 @@
 
 - (RTAccountSettingsPresenter *)accountSettingsPresenter {
     return [TyphoonDefinition withClass:[RTAccountSettingsPresenter class] configuration:^(TyphoonDefinition *definition) {
-        [definition injectMethod:@selector(initWithWireframe:) parameters:^(TyphoonMethod *method) {
+        [definition injectMethod:@selector(initWithWireframe:logoutPresenter:) parameters:^(TyphoonMethod *method) {
             [method injectParameterWith:[self accountSettingsWireframe]];
+            [method injectParameterWith:nil];
         }];
     }];
 }

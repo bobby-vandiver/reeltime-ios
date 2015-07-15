@@ -1,10 +1,12 @@
 #import <Foundation/Foundation.h>
 
 @class RTAccountSettingsWireframe;
+@class RTLogoutPresenter;
 
 @interface RTAccountSettingsPresenter : NSObject
 
-- (instancetype)initWithWireframe:(RTAccountSettingsWireframe *)wireframe;
+- (instancetype)initWithWireframe:(RTAccountSettingsWireframe *)wireframe
+                  logoutPresenter:(RTLogoutPresenter *)logoutPresenter;
 
 - (void)requestedDisplayNameChange;
 
@@ -13,5 +15,7 @@
 - (void)requestedAccountConfirmation;
 
 - (void)requestedDeviceManagement;
+
+- (void)requestedLogout;
 
 @end
