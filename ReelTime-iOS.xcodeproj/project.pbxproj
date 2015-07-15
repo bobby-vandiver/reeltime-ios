@@ -347,6 +347,10 @@
 		71B6BA691AD036A400723941 /* RTBrowseAllViewDataSourceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B6BA641AD036A400723941 /* RTBrowseAllViewDataSourceFactory.m */; };
 		71B6BA6D1AD038FD00723941 /* RTBrowseAllReelsDataManagerDelegateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B6BA6B1AD038FD00723941 /* RTBrowseAllReelsDataManagerDelegateSpec.m */; };
 		71B6BA6E1AD038FD00723941 /* RTBrowseAllViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B6BA6C1AD038FD00723941 /* RTBrowseAllViewControllerSpec.m */; };
+		71BF08381B55E40900B61504 /* RTLogoutWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 71BF08371B55E40900B61504 /* RTLogoutWireframe.m */; };
+		71BF083E1B55E58600B61504 /* RTLogoutWireframeSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71BF083D1B55E58600B61504 /* RTLogoutWireframeSpec.m */; };
+		71BF08411B55ECCC00B61504 /* RTLogoutPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 71BF08401B55ECCC00B61504 /* RTLogoutPresenter.m */; };
+		71BF08441B55ED1300B61504 /* RTLogoutPresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71BF08431B55ED1300B61504 /* RTLogoutPresenterSpec.m */; };
 		71C5C09D1A55B29700CAAFAC /* RTLoginPresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C5C09C1A55B29700CAAFAC /* RTLoginPresenterSpec.m */; };
 		71C5C0AC1A55EAE700CAAFAC /* RTOAuth2Token.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C5C0A51A55EAE700CAAFAC /* RTOAuth2Token.m */; };
 		71C5C0AD1A55EAE700CAAFAC /* RTOAuth2TokenError.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C5C0A71A55EAE700CAAFAC /* RTOAuth2TokenError.m */; };
@@ -983,6 +987,13 @@
 		71B6BA641AD036A400723941 /* RTBrowseAllViewDataSourceFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseAllViewDataSourceFactory.m; sourceTree = "<group>"; };
 		71B6BA6B1AD038FD00723941 /* RTBrowseAllReelsDataManagerDelegateSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseAllReelsDataManagerDelegateSpec.m; sourceTree = "<group>"; };
 		71B6BA6C1AD038FD00723941 /* RTBrowseAllViewControllerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseAllViewControllerSpec.m; sourceTree = "<group>"; };
+		71BF08361B55E40900B61504 /* RTLogoutWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLogoutWireframe.h; sourceTree = "<group>"; };
+		71BF08371B55E40900B61504 /* RTLogoutWireframe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLogoutWireframe.m; sourceTree = "<group>"; };
+		71BF083D1B55E58600B61504 /* RTLogoutWireframeSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLogoutWireframeSpec.m; sourceTree = "<group>"; };
+		71BF083F1B55ECCC00B61504 /* RTLogoutPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLogoutPresenter.h; sourceTree = "<group>"; };
+		71BF08401B55ECCC00B61504 /* RTLogoutPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLogoutPresenter.m; sourceTree = "<group>"; };
+		71BF08421B55ECE400B61504 /* RTLogoutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLogoutView.h; sourceTree = "<group>"; };
+		71BF08431B55ED1300B61504 /* RTLogoutPresenterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLogoutPresenterSpec.m; sourceTree = "<group>"; };
 		71C5C09C1A55B29700CAAFAC /* RTLoginPresenterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLoginPresenterSpec.m; sourceTree = "<group>"; };
 		71C5C0A41A55EAE700CAAFAC /* RTOAuth2Token.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTOAuth2Token.h; path = "ReelTime-iOS/Common/Model/RTOAuth2Token.h"; sourceTree = SOURCE_ROOT; };
 		71C5C0A51A55EAE700CAAFAC /* RTOAuth2Token.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTOAuth2Token.m; path = "ReelTime-iOS/Common/Model/RTOAuth2Token.m"; sourceTree = SOURCE_ROOT; };
@@ -2164,7 +2175,9 @@
 			isa = PBXGroup;
 			children = (
 				716231BD1B48431700458C4C /* Domain */,
+				71BF08351B55E3DB00B61504 /* Navigation */,
 				716231BC1B48430A00458C4C /* Persistence */,
+				71BF08391B55E44F00B61504 /* Presentation */,
 			);
 			path = Logout;
 			sourceTree = "<group>";
@@ -2194,6 +2207,8 @@
 			children = (
 				716231C21B48739600458C4C /* RTLogoutDataManagerSpec.m */,
 				7162E8281B52CF8D00F96BAD /* RTLogoutInteractorSpec.m */,
+				71BF083D1B55E58600B61504 /* RTLogoutWireframeSpec.m */,
+				71BF08431B55ED1300B61504 /* RTLogoutPresenterSpec.m */,
 			);
 			path = LogoutTests;
 			sourceTree = "<group>";
@@ -2833,6 +2848,25 @@
 			path = BrowseAllTests;
 			sourceTree = "<group>";
 		};
+		71BF08351B55E3DB00B61504 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				71BF08361B55E40900B61504 /* RTLogoutWireframe.h */,
+				71BF08371B55E40900B61504 /* RTLogoutWireframe.m */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		71BF08391B55E44F00B61504 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				71BF083F1B55ECCC00B61504 /* RTLogoutPresenter.h */,
+				71BF08401B55ECCC00B61504 /* RTLogoutPresenter.m */,
+				71BF08421B55ECE400B61504 /* RTLogoutView.h */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
 		71D9477E1A4FB37E00401963 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -3371,6 +3405,7 @@
 				717215861A8657660002ECC7 /* RTLoginWireframe.m in Sources */,
 				71053AB81B2BBF38008C800C /* RTChangePasswordAssembly.m in Sources */,
 				71647BD51A7E7EEA00F44996 /* RTVideo.m in Sources */,
+				71BF08411B55ECCC00B61504 /* RTLogoutPresenter.m in Sources */,
 				713229DE1A8FBD9600DE900A /* RTNewsfeedMessageSource.m in Sources */,
 				7137F4E61AEEF7C000B50DBA /* RTDeviceRegistrationPresenter.m in Sources */,
 				71403D2B1AB3D078007CB8B9 /* RTBrowseUsersPresenter.m in Sources */,
@@ -3418,6 +3453,7 @@
 				713DE8431B09253800A5BBF0 /* RTDeviceRegistrationErrorCodeToErrorMessageMapping.m in Sources */,
 				714842FC1AEC0086001B885A /* RTApplicationAwareWireframe.m in Sources */,
 				7114B7B11B24C2BF0096F814 /* RTRevokeClientDataManager.m in Sources */,
+				71BF08381B55E40900B61504 /* RTLogoutWireframe.m in Sources */,
 				7116909C1A6AEBDA0031578E /* RTStoryboardViewControllerFactory.m in Sources */,
 				7170C8691A59926E00C460BB /* RTErrorFactory.m in Sources */,
 				71647BDE1A7E817000F44996 /* RTActivity.m in Sources */,
@@ -3533,6 +3569,7 @@
 				713DE8511B092FDD00A5BBF0 /* RTResetPasswordPresenterSpec.m in Sources */,
 				716231C31B48739600458C4C /* RTLogoutDataManagerSpec.m in Sources */,
 				71408D181B29198200339352 /* RTClientSpec.m in Sources */,
+				71BF08441B55ED1300B61504 /* RTLogoutPresenterSpec.m in Sources */,
 				71F384D81B377FAC002BC9A0 /* RTUserProfilePresenterSpec.m in Sources */,
 				71B2384E1B04305E002DE5DA /* RTCurrentUserServiceSpec.m in Sources */,
 				7145C6211A8AE645006A77DE /* RTUserSpec.m in Sources */,
@@ -3550,6 +3587,7 @@
 				715C54201AD4C9A7009C755F /* RTUserSummaryPresenterSpec.m in Sources */,
 				71A8BA301AB1036A00B0708B /* RTPagedListDataManagerSpec.m in Sources */,
 				71073CF31A82DED800BE6E19 /* EXPMatchers+beVideo.m in Sources */,
+				71BF083E1B55E58600B61504 /* RTLogoutWireframeSpec.m in Sources */,
 				7129C9D11B0ECFA40087B0E8 /* RTChangePasswordInteractorSpec.m in Sources */,
 				713DBD5E1B13529200CB4796 /* RTErrorPresentationChecker.m in Sources */,
 				71C8D91F1A73485A00673F1A /* RTAccountRegistrationDataManagerSpec.m in Sources */,
