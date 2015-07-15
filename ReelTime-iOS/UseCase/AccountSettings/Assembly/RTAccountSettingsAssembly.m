@@ -6,6 +6,7 @@
 #import "RTConfirmAccountAssembly.h"
 #import "RTManageDevicesAssembly.h"
 
+#import "RTLogoutAssembly.h"
 #import "RTApplicationAssembly.h"
 
 #import "RTAccountSettingsWireframe.h"
@@ -40,7 +41,7 @@
     return [TyphoonDefinition withClass:[RTAccountSettingsPresenter class] configuration:^(TyphoonDefinition *definition) {
         [definition injectMethod:@selector(initWithWireframe:logoutPresenter:) parameters:^(TyphoonMethod *method) {
             [method injectParameterWith:[self accountSettingsWireframe]];
-            [method injectParameterWith:nil];
+            [method injectParameterWith:[self.logoutAssembly logoutPresenter]];
         }];
     }];
 }

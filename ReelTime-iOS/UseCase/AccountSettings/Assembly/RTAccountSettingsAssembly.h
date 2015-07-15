@@ -6,6 +6,7 @@
 @class RTConfirmAccountAssembly;
 @class RTManageDevicesAssembly;
 
+@class RTLogoutAssembly;
 @class RTApplicationAssembly;
 
 @class RTAccountSettingsWireframe;
@@ -20,6 +21,7 @@
 @property (nonatomic, strong, readonly) RTConfirmAccountAssembly *confirmAccountAssembly;
 @property (nonatomic, strong, readonly) RTManageDevicesAssembly *manageDevicesAssembly;
 
+@property (nonatomic, strong, readonly) RTLogoutAssembly *logoutAssembly;
 @property (nonatomic, strong, readonly) RTApplicationAssembly *applicationAssembly;
 
 - (RTAccountSettingsWireframe *)accountSettingsWireframe;

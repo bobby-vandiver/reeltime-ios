@@ -4,6 +4,7 @@
 <dict>
 	<key>TyphoonInitialAssemblies</key>
 	<array>
+		<string>RTLogoutAssembly</string>
 		<string>RTBrowseAudienceMembersAssembly</string>
 		<string>RTAccountSettingsAssembly</string>
 		<string>RTConfirmAccountAssembly</string>
