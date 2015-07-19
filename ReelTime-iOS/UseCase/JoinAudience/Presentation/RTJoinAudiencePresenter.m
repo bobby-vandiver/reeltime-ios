@@ -2,6 +2,7 @@
 
 #import "RTJoinAudienceView.h"
 #import "RTJoinAudienceInteractor.h"
+#import "RTJoinAudienceError.h"
 
 @interface RTJoinAudiencePresenter ()
 
@@ -27,12 +28,27 @@
 }
 
 - (void)joinAudienceSucceedForReelId:(NSNumber *)reelId {
-    
+    [self.view showAudienceAsJoinedForReelId:reelId];
 }
 
 - (void)joinAudienceFailedForReelId:(NSNumber *)reelId
                           withError:(NSError *)error {
+
+    NSString *const unknownErrorMessage = @"Unknown error occurred while joining audience. Please try again.";
     
+    if ([error.domain isEqual:RTJoinAudienceErrorDomain]) {
+        NSInteger code = error.code;
+        
+        if (code == RTJoinAudienceErrorReelNotFound) {
+            [self.view showErrorMessage:@"Cannot join audience of an unknown reel!"];
+        }
+        else if (code == RTJoinAudienceErrorUnknownError) {
+            [self.view showErrorMessage:unknownErrorMessage];
+        }
+    }
+    else {
+        [self.view showErrorMessage:unknownErrorMessage];
+    }
 }
 
 @end

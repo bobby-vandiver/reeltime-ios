@@ -3,5 +3,6 @@
 
 @protocol RTJoinAudienceView <NSObject, RTErrorMessageView>
 
+- (void)showAudienceAsJoinedForReelId:(NSNumber *)reelId;
 
 @end
