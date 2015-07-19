@@ -372,6 +372,8 @@
 		71C7D0F11B5C484000BDDA4F /* RTLeaveAudienceDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C7D0F01B5C484000BDDA4F /* RTLeaveAudienceDataManagerSpec.m */; };
 		71C7D0F41B5C4C9400BDDA4F /* RTLeaveAudienceInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C7D0F31B5C4C9400BDDA4F /* RTLeaveAudienceInteractor.m */; };
 		71C7D0F71B5C4D2F00BDDA4F /* RTLeaveAudienceInteractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C7D0F61B5C4D2F00BDDA4F /* RTLeaveAudienceInteractorSpec.m */; };
+		71C7D0FA1B5C525600BDDA4F /* RTLeaveAudiencePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C7D0F91B5C525600BDDA4F /* RTLeaveAudiencePresenter.m */; };
+		71C7D0FD1B5C52F600BDDA4F /* RTLeaveAudiencePresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C7D0FC1B5C52F600BDDA4F /* RTLeaveAudiencePresenterSpec.m */; };
 		71C7D4151A7406A6006B84AC /* RTServerErrorsConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C7D4141A7406A6006B84AC /* RTServerErrorsConverter.m */; };
 		71C8D91F1A73485A00673F1A /* RTAccountRegistrationDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C8D91E1A73485A00673F1A /* RTAccountRegistrationDataManagerSpec.m */; };
 		71D947981A4FCB5600401963 /* RTLoginInteractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D947971A4FCB5600401963 /* RTLoginInteractorSpec.m */; };
@@ -1044,6 +1046,10 @@
 		71C7D0F31B5C4C9400BDDA4F /* RTLeaveAudienceInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLeaveAudienceInteractor.m; sourceTree = "<group>"; };
 		71C7D0F51B5C4CB200BDDA4F /* RTLeaveAudienceInteractorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLeaveAudienceInteractorDelegate.h; sourceTree = "<group>"; };
 		71C7D0F61B5C4D2F00BDDA4F /* RTLeaveAudienceInteractorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLeaveAudienceInteractorSpec.m; sourceTree = "<group>"; };
+		71C7D0F81B5C525600BDDA4F /* RTLeaveAudiencePresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLeaveAudiencePresenter.h; sourceTree = "<group>"; };
+		71C7D0F91B5C525600BDDA4F /* RTLeaveAudiencePresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLeaveAudiencePresenter.m; sourceTree = "<group>"; };
+		71C7D0FB1B5C527300BDDA4F /* RTLeaveAudienceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLeaveAudienceView.h; sourceTree = "<group>"; };
+		71C7D0FC1B5C52F600BDDA4F /* RTLeaveAudiencePresenterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLeaveAudiencePresenterSpec.m; sourceTree = "<group>"; };
 		71C7D4131A7406A6006B84AC /* RTServerErrorsConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTServerErrorsConverter.h; sourceTree = "<group>"; };
 		71C7D4141A7406A6006B84AC /* RTServerErrorsConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTServerErrorsConverter.m; sourceTree = "<group>"; };
 		71C8D91E1A73485A00673F1A /* RTAccountRegistrationDataManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAccountRegistrationDataManagerSpec.m; sourceTree = "<group>"; };
@@ -2993,6 +2999,9 @@
 		71C7D0EA1B5C476400BDDA4F /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				71C7D0F81B5C525600BDDA4F /* RTLeaveAudiencePresenter.h */,
+				71C7D0F91B5C525600BDDA4F /* RTLeaveAudiencePresenter.m */,
+				71C7D0FB1B5C527300BDDA4F /* RTLeaveAudienceView.h */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -3002,6 +3011,7 @@
 			children = (
 				71C7D0F01B5C484000BDDA4F /* RTLeaveAudienceDataManagerSpec.m */,
 				71C7D0F61B5C4D2F00BDDA4F /* RTLeaveAudienceInteractorSpec.m */,
+				71C7D0FC1B5C52F600BDDA4F /* RTLeaveAudiencePresenterSpec.m */,
 			);
 			path = LeaveAudienceTests;
 			sourceTree = "<group>";
@@ -3424,6 +3434,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71C7D0FA1B5C525600BDDA4F /* RTLeaveAudiencePresenter.m in Sources */,
 				712AAB041B2C68E700E7AE4E /* RTChangeDisplayNameViewController.m in Sources */,
 				71386E5E1AD36C01009D064C /* RTReelDescription.m in Sources */,
 				7172159B1A8659050002ECC7 /* RTAccountRegistrationAssembly.m in Sources */,
@@ -3676,6 +3687,7 @@
 				713470BD1A9ABFAB000CFCA3 /* RTClientSpecHelper.m in Sources */,
 				713DBD5B1B134F8700CB4796 /* RTFieldErrorPresentationChecker.m in Sources */,
 				7137F4E91AEEFA8A00B50DBA /* RTDeviceRegistrationPresenterSpec.m in Sources */,
+				71C7D0FD1B5C52F600BDDA4F /* RTLeaveAudiencePresenterSpec.m in Sources */,
 				7117C0801A8998DF00EC0152 /* RTVideoSpec.m in Sources */,
 				713DCAAB1A6C9D1C0032B252 /* RTAccountRegistrationInteractorSpec.m in Sources */,
 				7114DF881AB4C38C003B1D2E /* RTBrowseReelsPresenterSpec.m in Sources */,
