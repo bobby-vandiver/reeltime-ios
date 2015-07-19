@@ -13,14 +13,17 @@ describe(@"user", ^{
     
     NSNumber *numberOfReelsOwned = @(5);
     NSNumber *numberOfAudienceMemberships = @(6);
-    
+
+    NSNumber *currentUserIsFollowing = @(YES);
+ 
     beforeEach(^{
         user = [[RTUser alloc] initWithUsername:username
                                     displayName:displayName
                               numberOfFollowers:numberOfFollowers
                               numberOfFollowees:numberOfFollowees
                              numberOfReelsOwned:numberOfReelsOwned
-                    numberOfAudienceMemberships:numberOfAudienceMemberships];
+                    numberOfAudienceMemberships:numberOfAudienceMemberships
+                         currentUserIsFollowing:currentUserIsFollowing];
     });
     
     describe(@"isEqual for user with non-user", ^{
@@ -54,7 +57,8 @@ describe(@"user", ^{
                                                numberOfFollowers:[numberOfFollowers copy]
                                                numberOfFollowees:[numberOfFollowees copy]
                                               numberOfReelsOwned:[numberOfReelsOwned copy]
-                                     numberOfAudienceMemberships:[numberOfAudienceMemberships copy]];
+                                     numberOfAudienceMemberships:[numberOfAudienceMemberships copy]
+                                          currentUserIsFollowing:[currentUserIsFollowing copy]];
                 
                 BOOL equal = [user isEqual:other];
                 expect(equal).to.beTruthy();
@@ -65,18 +69,19 @@ describe(@"user", ^{
         });
         
         describe(@"users are not equal", ^{
-            void (^expectNotEqual)(NSString *, NSString *, NSNumber *, NSNumber *, NSNumber *, NSNumber *) = ^(NSString *otherUsername,
-                                                                                       NSString *otherDisplayName,
-                                                                                       NSNumber *otherNumberOfFollowers,
-                                                                                       NSNumber *otherNumberOfFollowees,
-                                                                                                               NSNumber *otherNumberOfReelsOwned,
-                                                                                                               NSNumber *otherNumberOfAudienceMemberships) {
+            void (^expectNotEqual)(NSString *, NSString *, NSNumber *, NSNumber *, NSNumber *, NSNumber *, NSNumber *) =
+            
+            ^(NSString *otherUsername, NSString *otherDisplayName, NSNumber *otherNumberOfFollowers,
+              NSNumber *otherNumberOfFollowees, NSNumber *otherNumberOfReelsOwned, NSNumber *otherNumberOfAudienceMemberships,
+              NSNumber *otherCurrentUserIsFollowing) {
+                
                 RTUser *other = [[RTUser alloc] initWithUsername:otherUsername
                                                      displayName:otherDisplayName
                                                numberOfFollowers:otherNumberOfFollowers
                                                numberOfFollowees:otherNumberOfFollowees
                                               numberOfReelsOwned:otherNumberOfReelsOwned
-                                     numberOfAudienceMemberships:otherNumberOfAudienceMemberships];
+                                     numberOfAudienceMemberships:otherNumberOfAudienceMemberships
+                                          currentUserIsFollowing:otherCurrentUserIsFollowing];
                 
                 BOOL equal = [user isEqual:other];
                 expect(equal).to.beFalsy();
@@ -88,13 +93,15 @@ describe(@"user", ^{
             it(@"different username", ^{
                 expectNotEqual([NSString stringWithFormat:@"%@a", username], [displayName copy],
                                [numberOfFollowers copy], [numberOfFollowees copy],
-                               [numberOfReelsOwned copy], [numberOfAudienceMemberships copy]);
+                               [numberOfReelsOwned copy], [numberOfAudienceMemberships copy],
+                               [currentUserIsFollowing copy]);
             });
             
             it(@"nil username", ^{
                 expectNotEqual(nil, [displayName copy],
                                [numberOfFollowers copy], [numberOfFollowees copy],
-                               [numberOfReelsOwned copy], [numberOfAudienceMemberships copy]);
+                               [numberOfReelsOwned copy], [numberOfAudienceMemberships copy],
+                               [currentUserIsFollowing copy]);
             });
             
             it(@"both have nil username", ^{
@@ -103,14 +110,16 @@ describe(@"user", ^{
                                               numberOfFollowers:numberOfFollowers
                                               numberOfFollowees:numberOfFollowees
                                              numberOfReelsOwned:numberOfReelsOwned
-                                    numberOfAudienceMemberships:numberOfAudienceMemberships];
+                                    numberOfAudienceMemberships:numberOfAudienceMemberships
+                                         currentUserIsFollowing:currentUserIsFollowing];
                 
                 RTUser *right = [[RTUser alloc] initWithUsername:nil
                                                      displayName:[displayName copy]
                                                numberOfFollowers:[numberOfFollowers copy]
                                                numberOfFollowees:[numberOfFollowees copy]
                                               numberOfReelsOwned:[numberOfReelsOwned copy]
-                                     numberOfAudienceMemberships:[numberOfAudienceMemberships copy]];
+                                     numberOfAudienceMemberships:[numberOfAudienceMemberships copy]
+                                          currentUserIsFollowing:[currentUserIsFollowing copy]];
                 
                 BOOL equal = [left isEqual:right];
                 expect(equal).to.beFalsy();

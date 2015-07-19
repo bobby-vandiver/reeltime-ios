@@ -42,7 +42,8 @@ describe(@"browse users data manager", ^{
                                           numberOfFollowers:@(12)
                                           numberOfFollowees:@(34)
                                          numberOfReelsOwned:@(56)
-                                numberOfAudienceMemberships:@(78)];
+                                numberOfAudienceMemberships:@(78)
+                                     currentUserIsFollowing:@(YES)];
             
             RTUserList *userList = [[RTUserList alloc] init];
             userList.users = @[user];
@@ -64,7 +65,7 @@ describe(@"browse users data manager", ^{
             expect(callbackUsers).toNot.beNil();
             expect(callbackUsers).to.haveCountOf(1);
             
-            expect(callbackUsers[0]).to.beUser(username, displayName, @(12), @(34), @(56), @(78));
+            expect(callbackUsers[0]).to.beUser(username, displayName, @(12), @(34), @(56), @(78), @(YES));
         });
         
         it(@"should pass empty list to callback on failure", ^{

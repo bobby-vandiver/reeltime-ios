@@ -43,7 +43,8 @@ describe(@"browse users presenter", ^{
                                           numberOfFollowers:@(1)
                                           numberOfFollowees:@(2)
                                          numberOfReelsOwned:@(3)
-                                numberOfAudienceMemberships:@(4)];
+                                numberOfAudienceMemberships:@(4)
+                                     currentUserIsFollowing:@(YES)];
             
             [presenter presentItem:user];
             

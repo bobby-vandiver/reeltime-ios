@@ -5,7 +5,8 @@
 
 EXPMatcherImplementationBegin(beUser, (NSString *expectedUsername, NSString *expectedDisplayName,
                                        NSNumber *expectedNumberOfFollowers, NSNumber *expectedNumberOfFollowees,
-                                       NSNumber *expectedNumberOfReelsOwned, NSNumber *expectedNumberOfAudienceMemberships)) {
+                                       NSNumber *expectedNumberOfReelsOwned, NSNumber *expectedNumberOfAudienceMemberships,
+                                       NSNumber *expectedCurrentUserIsFollowing)) {
     BOOL actualIsNil = (actual == nil);
     BOOL actualIsUser = [actual isKindOfClass:[RTUser class]];
     
@@ -17,7 +18,9 @@ EXPMatcherImplementationBegin(beUser, (NSString *expectedUsername, NSString *exp
     
     BOOL expectedNumberOfReelsOwnedIsNil = (expectedNumberOfReelsOwned == nil);
     BOOL expectedNumberOfAudienceMembershipsIsNil = (expectedNumberOfAudienceMemberships == nil);
-    
+
+    BOOL expectedCurrentUserIsFollowingIsNil = (expectedCurrentUserIsFollowing == nil);
+
     __block RTUser *actualUser;
     
     __block NSString *actualUsername;
@@ -29,6 +32,8 @@ EXPMatcherImplementationBegin(beUser, (NSString *expectedUsername, NSString *exp
     __block NSNumber *actualNumberOfReelsOwned;
     __block NSNumber *actualNumberOfAudienceMemberships;
     
+    __block NSNumber *actualCurrentUserIsFollowing;
+    
     __block BOOL sameUsername;
     __block BOOL sameDisplayName;
 
@@ -37,11 +42,14 @@ EXPMatcherImplementationBegin(beUser, (NSString *expectedUsername, NSString *exp
     
     __block BOOL sameNumberOfReelsOwned;
     __block BOOL sameNumberOfAudienceMemberships;
+    
+    __block BOOL sameCurrentUserIsFollowing;
 
     prerequisite(^BOOL {
         return !(actualIsNil || expectedUsernameIsNil || expectedDisplayNameIsNil ||
                  expectedNumberOfFollowersIsNil || expectedNumberOfFolloweesIsNil ||
-                 expectedNumberOfReelsOwnedIsNil || expectedNumberOfAudienceMembershipsIsNil);
+                 expectedNumberOfReelsOwnedIsNil || expectedNumberOfAudienceMembershipsIsNil ||
+                 expectedCurrentUserIsFollowingIsNil);
     });
     
     match(^BOOL {
@@ -59,6 +67,8 @@ EXPMatcherImplementationBegin(beUser, (NSString *expectedUsername, NSString *exp
         actualNumberOfReelsOwned = actualUser.numberOfReelsOwned;
         actualNumberOfAudienceMemberships = actualUser.numberOfAudienceMemberships;
         
+        actualCurrentUserIsFollowing = actualUser.currentUserIsFollowing;
+        
         sameUsername = [actualUsername isEqualToString:expectedUsername];
         sameDisplayName = [actualDisplayName isEqualToString:expectedDisplayName];
         
@@ -68,9 +78,12 @@ EXPMatcherImplementationBegin(beUser, (NSString *expectedUsername, NSString *exp
         sameNumberOfReelsOwned = [actualNumberOfReelsOwned isEqualToNumber:expectedNumberOfReelsOwned];
         sameNumberOfAudienceMemberships = [actualNumberOfAudienceMemberships isEqualToNumber:expectedNumberOfAudienceMemberships];
         
+        sameCurrentUserIsFollowing = (actualCurrentUserIsFollowing.boolValue == expectedCurrentUserIsFollowing.boolValue);
+        
         return (sameUsername && sameDisplayName &&
                 sameNumberOfFollowers && sameNumberOfFollowees &&
-                sameNumberOfReelsOwned && sameNumberOfAudienceMemberships);
+                sameNumberOfReelsOwned && sameNumberOfAudienceMemberships &&
+                sameCurrentUserIsFollowing);
     });
     
     failureMessageForTo(^NSString * {
@@ -92,6 +105,9 @@ EXPMatcherImplementationBegin(beUser, (NSString *expectedUsername, NSString *exp
         if (expectedNumberOfReelsOwnedIsNil) {
             return expectedValueIsNil(@"number of reels owned");
         }
+        if (expectedCurrentUserIsFollowingIsNil) {
+            return expectedValueIsNil(@"current user is following");
+        }
         if (!actualIsUser) {
             return actualIsNotClass([actual class], [RTUser class]);
         }
@@ -110,7 +126,11 @@ EXPMatcherImplementationBegin(beUser, (NSString *expectedUsername, NSString *exp
         if (!sameNumberOfReelsOwned) {
             return actualIsNotExpected(@"number of reels owned", actualNumberOfReelsOwned, expectedNumberOfReelsOwned);
         }
-        return actualIsNotExpected(@"number of audience memberships", actualNumberOfAudienceMemberships, expectedNumberOfAudienceMemberships);
+        if (!sameNumberOfAudienceMemberships) {
+            actualIsNotExpected(@"number of audience memberships",
+                                actualNumberOfAudienceMemberships, expectedNumberOfAudienceMemberships);
+        }
+        return actualIsNotExpected(@"current user is following", actualCurrentUserIsFollowing, expectedCurrentUserIsFollowing);
     });
     
     failureMessageForNotTo(^NSString * {
@@ -128,6 +148,9 @@ EXPMatcherImplementationBegin(beUser, (NSString *expectedUsername, NSString *exp
         }
         if (expectedNumberOfFolloweesIsNil) {
             return expectedValueIsNil(@"number of followees");
+        }
+        if (expectedCurrentUserIsFollowingIsNil) {
+            return expectedValueIsNil(@"current user is following");
         }
         if (actualIsUser) {
             return actualIsClass([actual class], [RTUser class]);
@@ -147,6 +170,10 @@ EXPMatcherImplementationBegin(beUser, (NSString *expectedUsername, NSString *exp
         if (!sameNumberOfReelsOwned) {
             return actualIsExpected(@"number of reels owned", actualNumberOfReelsOwned, expectedNumberOfReelsOwned);
         }
-        return actualIsExpected(@"number of audience memberships", actualNumberOfAudienceMemberships, expectedNumberOfAudienceMemberships);    });
+        if (!sameCurrentUserIsFollowing) {
+            actualIsExpected(@"number of audience memberships", actualNumberOfAudienceMemberships, expectedNumberOfAudienceMemberships);
+        }
+        return actualIsExpected(@"current user is following", actualCurrentUserIsFollowing, expectedCurrentUserIsFollowing);
+    });
 }
 EXPMatcherImplementationEnd

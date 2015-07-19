@@ -46,7 +46,8 @@ describe(@"newsfeed presenter", ^{
         
         user = [[RTUser alloc] initWithUsername:username displayName:displayName
                               numberOfFollowers:@(1) numberOfFollowees:@(2)
-                             numberOfReelsOwned:@(3) numberOfAudienceMemberships:@(4)];
+                             numberOfReelsOwned:@(3) numberOfAudienceMemberships:@(4)
+                         currentUserIsFollowing:@(YES)];
         
         reel = [[RTReel alloc] initWithReelId:@(1) name:@"reel" audienceSize:@(2) numberOfVideos:@(3) owner:nil];
         

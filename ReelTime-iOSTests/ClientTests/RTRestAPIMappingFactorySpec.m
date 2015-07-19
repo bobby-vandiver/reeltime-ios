@@ -44,7 +44,8 @@ describe(@"API Mapping", ^{
                                            @"follower_count": @(42),
                                            @"followee_count": @(87),
                                            @"reel_count": @(34),
-                                           @"audience_membership_count": @(19)
+                                           @"audience_membership_count": @(19),
+                                           @"current_user_is_following": @(YES)
                                            };
     
     __block NSDictionary *userResponse2 = @{
@@ -53,7 +54,8 @@ describe(@"API Mapping", ^{
                                             @"follower_count": @(51),
                                             @"followee_count": @(98),
                                             @"reel_count": @(26),
-                                            @"audience_membership_count": @(83)
+                                            @"audience_membership_count": @(83),
+                                            @"current_user_is_following": @(NO)
                                             };
     
     __block NSDictionary *reelResponse1 = @{
@@ -61,7 +63,8 @@ describe(@"API Mapping", ^{
                                            @"name": @"some reel",
                                            @"audience_size": @(2),
                                            @"video_count": @(20),
-                                           @"owner": userResponse1
+                                           @"owner": userResponse1/*,
+                                           @"current_user_is_an_audience_member": @(YES)*/
                                            };
 
     __block NSDictionary *reelResponse2 = @{
@@ -69,7 +72,8 @@ describe(@"API Mapping", ^{
                                             @"name": @"any reel",
                                             @"audience_size": @(3),
                                             @"video_count": @(81),
-                                            @"owner": userResponse2
+                                            @"owner": userResponse2/*,
+                                            @"current_user_is_an_audience_member": @(NO)*/
                                             };
 
     __block NSDictionary *videoResponse1 = @{
@@ -210,7 +214,7 @@ describe(@"API Mapping", ^{
         [mappingTest verify];
     });
     
-    describe(@"clietn list", ^{
+    describe(@"client list", ^{
         it(@"no clients in list", ^{
             RKMapping *mapping = [RTRestAPIMappingFactory clientListMapping];
             NSDictionary *response = @{@"clients": @[]};
@@ -332,6 +336,10 @@ describe(@"API Mapping", ^{
                                                                                 destinationKeyPath:@"numberOfAudienceMemberships"
                                                                                              value:@(19)]];
         
+        [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:@"current_user_is_following"
+                                                                                destinationKeyPath:@"currentUserIsFollowing"
+                                                                                             value:@(YES)]];
+        
         [mappingTest performMapping];
         [mappingTest verify];
     });
@@ -373,7 +381,8 @@ describe(@"API Mapping", ^{
             RTUser *first = userList.users[0];
             expect(first).to.beUser(userResponse1[@"username"], userResponse1[@"display_name"],
                                     userResponse1[@"follower_count"], userResponse1[@"followee_count"],
-                                    userResponse1[@"reel_count"], userResponse1[@"audience_membership_count"]);
+                                    userResponse1[@"reel_count"], userResponse1[@"audience_membership_count"],
+                                    userResponse1[@"current_user_is_following"]);
         });
         
         it(@"has multiple users in list", ^{
@@ -396,12 +405,14 @@ describe(@"API Mapping", ^{
             RTUser *first = userList.users[0];
             expect(first).to.beUser(userResponse1[@"username"], userResponse1[@"display_name"],
                                     userResponse1[@"follower_count"], userResponse1[@"followee_count"],
-                                    userResponse1[@"reel_count"], userResponse1[@"audience_membership_count"]);
+                                    userResponse1[@"reel_count"], userResponse1[@"audience_membership_count"],
+                                    userResponse1[@"current_user_is_following"]);
 
             RTUser *second = userList.users[1];
             expect(second).to.beUser(userResponse2[@"username"], userResponse2[@"display_name"],
                                      userResponse2[@"follower_count"], userResponse2[@"followee_count"],
-                                     userResponse2[@"reel_count"], userResponse2[@"audience_membership_count"]);
+                                     userResponse2[@"reel_count"], userResponse2[@"audience_membership_count"],
+                                     userResponse2[@"current_user_is_following"]);
         });
     });
     
@@ -478,7 +489,8 @@ describe(@"API Mapping", ^{
             
             expect(first.owner).to.beUser(userResponse1[@"username"], userResponse1[@"display_name"],
                                           userResponse1[@"follower_count"], userResponse1[@"followee_count"],
-                                          userResponse1[@"reel_count"], userResponse1[@"audience_membership_count"]);
+                                          userResponse1[@"reel_count"], userResponse1[@"audience_membership_count"],
+                                          userResponse1[@"current_user_is_following"]);
         });
         
         it(@"has multiple reels in list", ^{
@@ -504,7 +516,8 @@ describe(@"API Mapping", ^{
 
             expect(first.owner).to.beUser(userResponse1[@"username"], userResponse1[@"display_name"],
                                           userResponse1[@"follower_count"], userResponse1[@"followee_count"],
-                                          userResponse1[@"reel_count"], userResponse1[@"audience_membership_count"]);
+                                          userResponse1[@"reel_count"], userResponse1[@"audience_membership_count"],
+                                          userResponse1[@"current_user_is_following"]);
             
             RTReel *second = reelList.reels[1];
             expect(second).to.beReel(reelResponse2[@"reel_id"], reelResponse2[@"name"],
@@ -512,7 +525,8 @@ describe(@"API Mapping", ^{
 
             expect(second.owner).to.beUser(userResponse2[@"username"], userResponse2[@"display_name"],
                                            userResponse2[@"follower_count"], userResponse2[@"followee_count"],
-                                           userResponse2[@"reel_count"], userResponse2[@"audience_membership_count"]);
+                                           userResponse2[@"reel_count"], userResponse2[@"audience_membership_count"],
+                                           userResponse2[@"current_user_is_following"]);
         });
     });
 

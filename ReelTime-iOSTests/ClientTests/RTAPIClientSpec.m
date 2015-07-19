@@ -753,7 +753,7 @@ describe(@"ReelTime Client", ^{
                                      expect(activity.type).to.equal(RTActivityTypeCreateReel);
                                      
                                      RTUser *user = activity.user;
-                                     expect(user).to.beUser(@"someone", @"some display", @(1), @(2), @(3), @(4));
+                                     expect(user).to.beUser(@"someone", @"some display", @(1), @(2), @(3), @(4), @(YES));
                                      
                                      RTReel *reel = activity.reel;
                                      expect(reel).to.beReel(@(34), @"some reel", @(901), @(23));
@@ -778,7 +778,7 @@ describe(@"ReelTime Client", ^{
                                      expect(activity.type).to.equal(RTActivityTypeCreateReel);
                                      
                                      RTUser *user = activity.user;
-                                     expect(user).to.beUser(@"someone", @"some display", @(1), @(2), @(3), @(4));
+                                     expect(user).to.beUser(@"someone", @"some display", @(1), @(2), @(3), @(4), @(YES));
                                      
                                      RTReel *reel = activity.reel;
                                      expect(reel).to.beReel(@(34), @"some reel", @(901), @(23));
@@ -787,7 +787,7 @@ describe(@"ReelTime Client", ^{
                                      expect(activity.type).to.equal(RTActivityTypeJoinReelAudience);
                                      
                                      user = activity.user;
-                                     expect(user).to.beUser(@"anyone", @"any display", @(6), @(8), @(10), @(12));
+                                     expect(user).to.beUser(@"anyone", @"any display", @(6), @(8), @(10), @(12), @(YES));
                                      
                                      reel = activity.reel;
                                      expect(reel).to.beReel(@(34), @"some reel", @(901), @(23));
@@ -796,7 +796,7 @@ describe(@"ReelTime Client", ^{
                                      expect(activity.type).to.equal(RTActivityTypeAddVideoToReel);
                                      
                                      user = activity.user;
-                                     expect(user).to.beUser(@"someone", @"some display", @(1), @(2), @(3), @(4));
+                                     expect(user).to.beUser(@"someone", @"some display", @(1), @(2), @(3), @(4), @(YES));
                                      
                                      reel = activity.reel;
                                      expect(reel).to.beReel(@(34), @"some reel", @(901), @(23));
@@ -1493,7 +1493,7 @@ describe(@"ReelTime Client", ^{
                     waitUntil(^(DoneCallback done) {
                         [client userForUsername:username
                                         success:^(RTUser *user) {
-                                            expect(user).to.beUser(@"alone", @"all alone", @(123), @(95), @(42), @(31));
+                                            expect(user).to.beUser(@"alone", @"all alone", @(123), @(95), @(42), @(31), @(YES));
                                             done();
                                         }
                                         failure:callbacks.shouldNotExecuteFailureCallback(done)];

@@ -45,7 +45,8 @@ describe(@"browse reels presenter", ^{
                                            numberOfFollowers:@(1)
                                            numberOfFollowees:@(2)
                                           numberOfReelsOwned:@(5)
-                                 numberOfAudienceMemberships:@(6)];
+                                 numberOfAudienceMemberships:@(6)
+                                      currentUserIsFollowing:@(YES)];
             
             RTReel *reel = [[RTReel alloc] initWithReelId:@(reelId)
                                                      name:@"something"

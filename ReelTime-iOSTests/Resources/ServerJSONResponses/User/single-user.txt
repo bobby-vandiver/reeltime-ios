@@ -10,5 +10,6 @@ Date: Sun, 22 Feb 2015 17:55:58 GMT
     "follower_count": 123,
     "followee_count": 95,
     "reel_count": 42,
-    "audience_membership_count": 31
+    "audience_membership_count": 31,
+    "current_user_is_following":true
 }

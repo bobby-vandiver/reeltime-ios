@@ -12,7 +12,8 @@ Date: Sun, 22 Feb 2015 17:55:58 GMT
             "follower_count": 31,
             "followee_count": 941,
             "reel_count": 52,
-            "audience_membership_count": 27
+            "audience_membership_count": 27,
+            "current_user_is_following":true
         },
         {
             "username": "second",
@@ -20,7 +21,8 @@ Date: Sun, 22 Feb 2015 17:55:58 GMT
             "follower_count": 74,
             "followee_count": 4019,
             "reel_count": 510,
-            "audience_membership_count": 213
+            "audience_membership_count": 213,
+            "current_user_is_following":true
         }
     ]
 }

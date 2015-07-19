@@ -231,7 +231,7 @@ NSString *const SUCCESSFUL_OK_WITH_VIDEOS_LIST_MULTIPLE_VIDEOS = @"video-list-mu
             expect(userList.users).to.haveCountOf(1);
             
             RTUser *first = userList.users[0];
-            expect(first).to.beUser(@"first", @"the first", @(31), @(941), @(52), @(27));
+            expect(first).to.beUser(@"first", @"the first", @(31), @(941), @(52), @(27), @(YES));
             
             done();
         };
@@ -247,10 +247,10 @@ NSString *const SUCCESSFUL_OK_WITH_VIDEOS_LIST_MULTIPLE_VIDEOS = @"video-list-mu
             expect(userList.users).to.haveCountOf(2);
             
             RTUser *first = userList.users[0];
-            expect(first).to.beUser(@"first", @"the first", @(31), @(941), @(52), @(27));
+            expect(first).to.beUser(@"first", @"the first", @(31), @(941), @(52), @(27), @(YES));
             
             RTUser *second = userList.users[1];
-            expect(second).to.beUser(@"second", @"the second", @(74), @(4019), @(510), @(213));
+            expect(second).to.beUser(@"second", @"the second", @(74), @(4019), @(510), @(213), @(YES));
             
             done();
         };

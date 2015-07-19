@@ -7,7 +7,8 @@
                numberOfFollowers:(NSNumber *)numberOfFollowers
                numberOfFollowees:(NSNumber *)numberOfFollowees
               numberOfReelsOwned:(NSNumber *)numberOfReelsOwned
-     numberOfAudienceMemberships:(NSNumber *)numberOfAudienceMemberships {
+     numberOfAudienceMemberships:(NSNumber *)numberOfAudienceMemberships
+          currentUserIsFollowing:(NSNumber *)currentUserIsFollowing {
     self = [super init];
     if (self) {
         self.username = username;
@@ -16,6 +17,7 @@
         self.numberOfFollowees = numberOfFollowees;
         self.numberOfReelsOwned = numberOfReelsOwned;
         self.numberOfAudienceMemberships = numberOfAudienceMemberships;
+        self.currentUserIsFollowing = currentUserIsFollowing;
     }
     return self;
 }

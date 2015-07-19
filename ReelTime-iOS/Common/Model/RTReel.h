@@ -12,6 +12,8 @@
 
 @property (nonatomic) RTUser *owner;
 
+//@property (nonatomic, copy) NSNumber *currentUserIsAnAudienceMember;
+
 - (instancetype)initWithReelId:(NSNumber *)reelId
                           name:(NSString *)name
                   audienceSize:(NSNumber *)audienceSize

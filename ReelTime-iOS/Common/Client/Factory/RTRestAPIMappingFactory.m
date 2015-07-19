@@ -87,7 +87,8 @@
                                                   @"follower_count":                @"numberOfFollowers",
                                                   @"followee_count":                @"numberOfFollowees",
                                                   @"reel_count":                    @"numberOfReelsOwned",
-                                                  @"audience_membership_count":     @"numberOfAudienceMemberships"
+                                                  @"audience_membership_count":     @"numberOfAudienceMemberships",
+                                                  @"current_user_is_following":     @"currentUserIsFollowing"
                                                   }];
     return mapping;
 }

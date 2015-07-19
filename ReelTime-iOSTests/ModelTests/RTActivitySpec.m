@@ -40,15 +40,18 @@ describe(@"activity", ^{
     beforeEach(^{
         user = [[RTUser alloc] initWithUsername:username displayName:displayName
                               numberOfFollowers:@(1) numberOfFollowees:@(2)
-                             numberOfReelsOwned:@(3) numberOfAudienceMemberships:@(4)];
+                             numberOfReelsOwned:@(3) numberOfAudienceMemberships:@(4)
+                         currentUserIsFollowing:@(YES)];
 
         identicalUser = [[RTUser alloc] initWithUsername:[username copy] displayName:[displayName copy]
                                        numberOfFollowers:@(1) numberOfFollowees:@(2)
-                                      numberOfReelsOwned:@(3) numberOfAudienceMemberships:@(4)];
+                                      numberOfReelsOwned:@(3) numberOfAudienceMemberships:@(4)
+                                  currentUserIsFollowing:@(YES)];
         
         differentUser = [[RTUser alloc] initWithUsername:@"different" displayName:displayName
                                        numberOfFollowers:@(1) numberOfFollowees:@(2)
-                                      numberOfReelsOwned:@(3) numberOfAudienceMemberships:@(4)];
+                                      numberOfReelsOwned:@(3) numberOfAudienceMemberships:@(4)
+                                  currentUserIsFollowing:@(YES)];
         
         expect(user).to.equal(identicalUser);
         expect(user).toNot.equal(differentUser);
