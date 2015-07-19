@@ -27,7 +27,7 @@ describe(@"join audience interactor", ^{
     
     describe(@"joining audience", ^{
         
-        context(@"client not invoked", ^{
+        context(@"invalid reel id", ^{
             it(@"should treat invalid reel id as an unknown reel", ^{
                 MKTArgumentCaptor *captor = [[MKTArgumentCaptor alloc] init];
 
@@ -38,7 +38,7 @@ describe(@"join audience interactor", ^{
             });
         });
         
-        context(@"client invoked", ^{
+        context(@"valid reel id", ^{
             __block MKTArgumentCaptor *successCaptor;
             __block MKTArgumentCaptor *failureCaptor;
             
