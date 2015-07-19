@@ -366,6 +366,7 @@
 		71C7D0D41B5C2EEB00BDDA4F /* RTJoinAudienceDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C7D0D31B5C2EEB00BDDA4F /* RTJoinAudienceDataManagerSpec.m */; };
 		71C7D0DB1B5C389400BDDA4F /* RTJoinAudienceInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C7D0DA1B5C389400BDDA4F /* RTJoinAudienceInteractor.m */; };
 		71C7D0DF1B5C391300BDDA4F /* RTJoinAudienceInteractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C7D0DE1B5C391300BDDA4F /* RTJoinAudienceInteractorSpec.m */; };
+		71C7D0E31B5C3D8900BDDA4F /* RTJoinAudiencePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C7D0E21B5C3D8900BDDA4F /* RTJoinAudiencePresenter.m */; };
 		71C7D4151A7406A6006B84AC /* RTServerErrorsConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C7D4141A7406A6006B84AC /* RTServerErrorsConverter.m */; };
 		71C8D91F1A73485A00673F1A /* RTAccountRegistrationDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C8D91E1A73485A00673F1A /* RTAccountRegistrationDataManagerSpec.m */; };
 		71D947981A4FCB5600401963 /* RTLoginInteractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D947971A4FCB5600401963 /* RTLoginInteractorSpec.m */; };
@@ -1026,6 +1027,9 @@
 		71C7D0DA1B5C389400BDDA4F /* RTJoinAudienceInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTJoinAudienceInteractor.m; sourceTree = "<group>"; };
 		71C7D0DC1B5C38AE00BDDA4F /* RTJoinAudienceInteractorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTJoinAudienceInteractorDelegate.h; sourceTree = "<group>"; };
 		71C7D0DE1B5C391300BDDA4F /* RTJoinAudienceInteractorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTJoinAudienceInteractorSpec.m; sourceTree = "<group>"; };
+		71C7D0E11B5C3D8900BDDA4F /* RTJoinAudiencePresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTJoinAudiencePresenter.h; sourceTree = "<group>"; };
+		71C7D0E21B5C3D8900BDDA4F /* RTJoinAudiencePresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTJoinAudiencePresenter.m; sourceTree = "<group>"; };
+		71C7D0E41B5C3DAA00BDDA4F /* RTJoinAudienceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTJoinAudienceView.h; sourceTree = "<group>"; };
 		71C7D4131A7406A6006B84AC /* RTServerErrorsConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTServerErrorsConverter.h; sourceTree = "<group>"; };
 		71C7D4141A7406A6006B84AC /* RTServerErrorsConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTServerErrorsConverter.m; sourceTree = "<group>"; };
 		71C8D91E1A73485A00673F1A /* RTAccountRegistrationDataManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAccountRegistrationDataManagerSpec.m; sourceTree = "<group>"; };
@@ -2897,6 +2901,7 @@
 			children = (
 				71C7D0D51B5C338500BDDA4F /* Domain */,
 				71C7D0CE1B5C2E7E00BDDA4F /* Persistence */,
+				71C7D0E01B5C3D7200BDDA4F /* Presentation */,
 			);
 			path = JoinAudience;
 			sourceTree = "<group>";
@@ -2928,6 +2933,16 @@
 				71C7D0DC1B5C38AE00BDDA4F /* RTJoinAudienceInteractorDelegate.h */,
 			);
 			path = Domain;
+			sourceTree = "<group>";
+		};
+		71C7D0E01B5C3D7200BDDA4F /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				71C7D0E11B5C3D8900BDDA4F /* RTJoinAudiencePresenter.h */,
+				71C7D0E21B5C3D8900BDDA4F /* RTJoinAudiencePresenter.m */,
+				71C7D0E41B5C3DAA00BDDA4F /* RTJoinAudienceView.h */,
+			);
+			path = Presentation;
 			sourceTree = "<group>";
 		};
 		71D9477E1A4FB37E00401963 /* Common */ = {
@@ -3378,6 +3393,7 @@
 				711C5DE11A8D5B4F007652FC /* RTStringWithEmbeddedLinks.m in Sources */,
 				713188A91A912E4D006155E6 /* RTRegexPattern.m in Sources */,
 				712441611B2DE09800752901 /* RTConfirmAccountViewController.m in Sources */,
+				71C7D0E31B5C3D8900BDDA4F /* RTJoinAudiencePresenter.m in Sources */,
 				711C5DE01A8D5B4F007652FC /* RTEmbeddedURL.m in Sources */,
 				712AAB1B1B2CBAB200E7AE4E /* RTAccountSettingsViewController.m in Sources */,
 				717D92761A5B925700EAB6BF /* RTCurrentUserStore.m in Sources */,
