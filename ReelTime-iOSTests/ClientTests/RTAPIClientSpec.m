@@ -756,7 +756,7 @@ describe(@"ReelTime Client", ^{
                                      expect(user).to.beUser(@"someone", @"some display", @(1), @(2), @(3), @(4), @(YES));
                                      
                                      RTReel *reel = activity.reel;
-                                     expect(reel).to.beReel(@(34), @"some reel", @(901), @(23));
+                                     expect(reel).to.beReel(@(34), @"some reel", @(901), @(23), @(YES));
                                      
                                      done();
                                  }
@@ -781,7 +781,7 @@ describe(@"ReelTime Client", ^{
                                      expect(user).to.beUser(@"someone", @"some display", @(1), @(2), @(3), @(4), @(YES));
                                      
                                      RTReel *reel = activity.reel;
-                                     expect(reel).to.beReel(@(34), @"some reel", @(901), @(23));
+                                     expect(reel).to.beReel(@(34), @"some reel", @(901), @(23), @(YES));
                                      
                                      activity = [newsfeed.activities objectAtIndex:1];
                                      expect(activity.type).to.equal(RTActivityTypeJoinReelAudience);
@@ -790,7 +790,7 @@ describe(@"ReelTime Client", ^{
                                      expect(user).to.beUser(@"anyone", @"any display", @(6), @(8), @(10), @(12), @(YES));
                                      
                                      reel = activity.reel;
-                                     expect(reel).to.beReel(@(34), @"some reel", @(901), @(23));
+                                     expect(reel).to.beReel(@(34), @"some reel", @(901), @(23), @(YES));
                                      
                                      activity = [newsfeed.activities objectAtIndex:2];
                                      expect(activity.type).to.equal(RTActivityTypeAddVideoToReel);
@@ -799,7 +799,7 @@ describe(@"ReelTime Client", ^{
                                      expect(user).to.beUser(@"someone", @"some display", @(1), @(2), @(3), @(4), @(YES));
                                      
                                      reel = activity.reel;
-                                     expect(reel).to.beReel(@(34), @"some reel", @(901), @(23));
+                                     expect(reel).to.beReel(@(34), @"some reel", @(901), @(23), @(YES));
                                      
                                      RTVideo *video = activity.video;
                                      expect(video).to.beVideo(@(5), @"some video");
@@ -942,7 +942,7 @@ describe(@"ReelTime Client", ^{
                 waitUntil(^(DoneCallback done) {
                     [client addReelWithName:reelName
                                     success:^(RTReel *reel) {
-                                        expect(reel).to.beReel(@(749), @"created reel", @(12), @(56));
+                                        expect(reel).to.beReel(@(749), @"created reel", @(12), @(56), @(YES));
                                         done();
                                     }
                                     failure:callbacks.shouldNotExecuteFailureCallback(done)];
@@ -990,7 +990,7 @@ describe(@"ReelTime Client", ^{
                     waitUntil(^(DoneCallback done) {
                         [client reelForReelId:reelId
                                       success:^(RTReel *reel) {
-                                          expect(reel).to.beReel(@(738), @"single reel", @(41), @(123));
+                                          expect(reel).to.beReel(@(738), @"single reel", @(41), @(123), @(YES));
                                           done();
                                       }
                                       failure:callbacks.shouldNotExecuteFailureCallback(done)];

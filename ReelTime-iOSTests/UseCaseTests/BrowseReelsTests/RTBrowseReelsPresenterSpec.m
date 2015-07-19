@@ -52,6 +52,7 @@ describe(@"browse reels presenter", ^{
                                                      name:@"something"
                                              audienceSize:@(4)
                                            numberOfVideos:@(3)
+                            currentUserIsAnAudienceMember:@(YES)
                                                     owner:owner];
 
             [presenter presentItem:reel];

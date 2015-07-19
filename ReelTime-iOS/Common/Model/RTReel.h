@@ -10,14 +10,14 @@
 @property (nonatomic, copy) NSNumber *audienceSize;
 @property (nonatomic, copy) NSNumber *numberOfVideos;
 
+@property (nonatomic, copy) NSNumber *currentUserIsAnAudienceMember;
 @property (nonatomic) RTUser *owner;
-
-//@property (nonatomic, copy) NSNumber *currentUserIsAnAudienceMember;
 
 - (instancetype)initWithReelId:(NSNumber *)reelId
                           name:(NSString *)name
                   audienceSize:(NSNumber *)audienceSize
                 numberOfVideos:(NSNumber *)numberOfVideos
+ currentUserIsAnAudienceMember:(NSNumber *)currentUserIsAnAudienceMember
                          owner:(RTUser *)owner;
 
 - (BOOL)isEqualToReel:(RTReel *)reel;

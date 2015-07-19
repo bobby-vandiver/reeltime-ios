@@ -49,7 +49,7 @@ describe(@"newsfeed presenter", ^{
                              numberOfReelsOwned:@(3) numberOfAudienceMemberships:@(4)
                          currentUserIsFollowing:@(YES)];
         
-        reel = [[RTReel alloc] initWithReelId:@(1) name:@"reel" audienceSize:@(2) numberOfVideos:@(3) owner:nil];
+        reel = [[RTReel alloc] initWithReelId:@(1) name:@"reel" audienceSize:@(2) numberOfVideos:@(3) currentUserIsAnAudienceMember:@(YES) owner:nil];
         
         RTThumbnail *thumbnail = mock([RTThumbnail class]);
         video = [[RTVideo alloc] initWithVideoId:@(1) title:@"title" thumbnail:thumbnail];

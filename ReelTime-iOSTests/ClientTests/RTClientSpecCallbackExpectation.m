@@ -183,7 +183,7 @@ NSString *const SUCCESSFUL_OK_WITH_VIDEOS_LIST_MULTIPLE_VIDEOS = @"video-list-mu
             expect(reelList.reels).to.haveCountOf(1);
             
             RTReel *first = reelList.reels[0];
-            expect(first).to.beReel(@(759), @"some reel", @(0), @(1));
+            expect(first).to.beReel(@(759), @"some reel", @(0), @(1), @(YES));
             
             done();
         };
@@ -199,10 +199,10 @@ NSString *const SUCCESSFUL_OK_WITH_VIDEOS_LIST_MULTIPLE_VIDEOS = @"video-list-mu
             expect(reelList.reels).to.haveCountOf(2);
             
             RTReel *first = reelList.reels[0];
-            expect(first).to.beReel(@(759), @"some reel", @(0), @(1));
+            expect(first).to.beReel(@(759), @"some reel", @(0), @(1), @(YES));
             
             RTReel *second = reelList.reels[1];
-            expect(second).to.beReel(@(758), @"any reel", @(41), @(30));
+            expect(second).to.beReel(@(758), @"any reel", @(41), @(30), @(YES));
             
             done();
         };

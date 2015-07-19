@@ -41,6 +41,7 @@ describe(@"browse reels data manager", ^{
                                                      name:@"something"
                                              audienceSize:@(1)
                                            numberOfVideos:@(32)
+                            currentUserIsAnAudienceMember:@(YES)
                                                     owner:nil];
 
             RTReelList *reelList = [[RTReelList alloc] init];
@@ -63,7 +64,7 @@ describe(@"browse reels data manager", ^{
             expect(callbackReels).toNot.beNil();
             expect(callbackReels).to.haveCountOf(1);
             
-            expect(callbackReels[0]).to.beReel(@(133), @"something", @(1), @(32));
+            expect(callbackReels[0]).to.beReel(@(133), @"something", @(1), @(32), @(YES));
         });
         
         it(@"should pass empty list to callback on failure", ^{

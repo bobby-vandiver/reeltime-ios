@@ -11,6 +11,7 @@ Date: Sun, 22 Feb 2015 17:55:58 GMT
             "name": "some reel",
             "audience_size": 0,
             "video_count": 1,
+            "current_user_is_an_audience_member":true,
             "owner":{
                 "username": "the first",
                 "display_name": "the one",
@@ -23,6 +24,7 @@ Date: Sun, 22 Feb 2015 17:55:58 GMT
             "name": "any reel",
             "audience_size": 41,
             "video_count": 30,
+            "current_user_is_an_audience_member":true,
             "owner":{
                 "username": "the second",
                 "display_name": "the two",

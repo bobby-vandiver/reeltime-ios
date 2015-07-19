@@ -9,6 +9,7 @@ Date: Sun, 22 Feb 2015 17:55:41 GMT
     "name":"single reel",
     "audience_size":41,
     "video_count":123,
+    "current_user_is_an_audience_member":true,
     "owner":{
         "username": "singular",
         "display_name": "the only",

@@ -16,7 +16,8 @@ Date: Sun, 22 Feb 2015 17:55:58 GMT
                 "display_name": "the one",
                 "follower_count": 123,
                 "followee_count": 95
-            }
+            },
+            "current_user_is_an_audience_member":true
         }
     ]
 }

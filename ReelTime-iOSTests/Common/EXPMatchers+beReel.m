@@ -4,7 +4,8 @@
 #import "RTReel.h"
 
 EXPMatcherImplementationBegin(beReel, (NSNumber *expectedReelId, NSString *expectedName,
-                                       NSNumber *expectedAudienceSize, NSNumber *expectedNumberOfVideos)) {
+                                       NSNumber *expectedAudienceSize, NSNumber *expectedNumberOfVideos,
+                                       NSNumber *expectedCurrentUserIsAnAudienceMember)) {
     BOOL actualIsNil = (actual == nil);
     BOOL actualIsReel = [actual isKindOfClass:[RTReel class]];
     
@@ -14,6 +15,8 @@ EXPMatcherImplementationBegin(beReel, (NSNumber *expectedReelId, NSString *expec
     BOOL expectedAudienceSizeIsNil = (expectedAudienceSize == nil);
     BOOL expectedNumberOfVideosIsNil = (expectedNumberOfVideos == nil);
     
+    BOOL expectedCurrentUserIsAnAudienceMemberIsNil = (expectedCurrentUserIsAnAudienceMember == nil);
+    
     __block RTReel *actualReel;
     
     __block NSNumber *actualReelId;
@@ -22,15 +25,20 @@ EXPMatcherImplementationBegin(beReel, (NSNumber *expectedReelId, NSString *expec
     __block NSNumber *actualAudienceSize;
     __block NSNumber *actualNumberOfVideos;
     
+    __block NSNumber *actualCurrentUserIsAnAudienceMember;
+    
     __block BOOL sameReelId;
     __block BOOL sameName;
     
     __block BOOL sameAudienceSize;
     __block BOOL sameNumberOfVideos;
     
+    __block BOOL sameCurrentUserIsAnAudienceMember;
+    
     prerequisite(^BOOL {
         return !(actualIsNil || expectedReelIdIsNil || expectedNameIsNil ||
-                 expectedAudienceSizeIsNil || expectedNumberOfVideosIsNil);
+                 expectedAudienceSizeIsNil || expectedNumberOfVideosIsNil ||
+                 expectedCurrentUserIsAnAudienceMemberIsNil);
     });
     
     match(^BOOL {
@@ -45,13 +53,17 @@ EXPMatcherImplementationBegin(beReel, (NSNumber *expectedReelId, NSString *expec
         actualAudienceSize = actualReel.audienceSize;
         actualNumberOfVideos = actualReel.numberOfVideos;
         
+        actualCurrentUserIsAnAudienceMember = actualReel.currentUserIsAnAudienceMember;
+        
         sameReelId = [actualReelId isEqualToNumber:expectedReelId];
         sameName = [actualName isEqualToString:expectedName];
         
         sameAudienceSize = [actualAudienceSize isEqualToNumber:expectedAudienceSize];
         sameNumberOfVideos = [actualNumberOfVideos isEqualToNumber:expectedNumberOfVideos];
 
-        return (sameReelId && sameName && sameAudienceSize && sameNumberOfVideos);
+        sameCurrentUserIsAnAudienceMember = (actualCurrentUserIsAnAudienceMember.boolValue == expectedCurrentUserIsAnAudienceMember.boolValue);
+
+        return (sameReelId && sameName && sameAudienceSize && sameNumberOfVideos && sameCurrentUserIsAnAudienceMember);
     });
     
     failureMessageForTo(^NSString * {
@@ -70,6 +82,9 @@ EXPMatcherImplementationBegin(beReel, (NSNumber *expectedReelId, NSString *expec
         if (expectedNumberOfVideosIsNil) {
             return expectedValueIsNil(@"number of videos");
         }
+        if (expectedCurrentUserIsAnAudienceMemberIsNil) {
+            return expectedValueIsNil(@"current user is an audience member");
+        }
         if (!actualIsReel) {
             return actualIsNotClass([actual class], [RTReel class]);
         }
@@ -82,7 +97,10 @@ EXPMatcherImplementationBegin(beReel, (NSNumber *expectedReelId, NSString *expec
         if (!sameAudienceSize) {
             return actualIsNotExpected(@"audience size", actualAudienceSize, expectedAudienceSize);
         }
-        return actualIsNotExpected(@"number of videos", actualNumberOfVideos, expectedNumberOfVideos);
+        if (!sameNumberOfVideos) {
+            actualIsNotExpected(@"number of videos", actualNumberOfVideos, expectedNumberOfVideos);
+        }
+        return actualIsNotExpected(@"current user is an audience member", actualCurrentUserIsAnAudienceMember, expectedCurrentUserIsAnAudienceMember);
     });
     
     failureMessageForNotTo(^NSString * {
@@ -101,6 +119,9 @@ EXPMatcherImplementationBegin(beReel, (NSNumber *expectedReelId, NSString *expec
         if (expectedNumberOfVideosIsNil) {
             return expectedValueIsNil(@"number of videos");
         }
+        if (expectedCurrentUserIsAnAudienceMemberIsNil) {
+            return expectedValueIsNil(@"current user is an audience member");
+        }
         if (actualIsReel) {
             return actualIsClass([actual class], [RTReel class]);
         }
@@ -113,7 +134,10 @@ EXPMatcherImplementationBegin(beReel, (NSNumber *expectedReelId, NSString *expec
         if (sameAudienceSize) {
             return actualIsExpected(@"audience size", actualAudienceSize, expectedAudienceSize);
         }
-        return actualIsExpected(@"number of videos", actualNumberOfVideos, expectedNumberOfVideos);
+        if (sameNumberOfVideos) {
+            actualIsExpected(@"number of videos", actualNumberOfVideos, expectedNumberOfVideos);
+        }
+        return actualIsExpected(@"current user is an audience member", actualCurrentUserIsAnAudienceMember, expectedCurrentUserIsAnAudienceMember);
     });
 }
 EXPMatcherImplementationEnd

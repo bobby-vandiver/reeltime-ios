@@ -9,6 +9,7 @@ Date: Sun, 22 Feb 2015 17:55:41 GMT
     "name":"created reel",
     "audience_size":12,
     "video_count":56,
+    "current_user_is_an_audience_member":true,
     "owner":{
         "username": "someone",
         "display_name": "the one",

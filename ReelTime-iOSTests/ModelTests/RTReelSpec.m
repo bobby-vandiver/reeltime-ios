@@ -13,12 +13,15 @@ describe(@"reel", ^{
     
     NSNumber *audienceSize = @(63);
     NSNumber *numberOfVideos = @(81);
+    
+    NSNumber *currentUserIsAnAudienceMember = @(YES);
 
     beforeEach(^{
         reel = [[RTReel alloc] initWithReelId:reelId
                                          name:name
                                  audienceSize:audienceSize
                                numberOfVideos:numberOfVideos
+                currentUserIsAnAudienceMember:currentUserIsAnAudienceMember
                                         owner:nil];
     });
     
@@ -52,6 +55,7 @@ describe(@"reel", ^{
                                                           name:[name copy]
                                                   audienceSize:[audienceSize copy]
                                                 numberOfVideos:[numberOfVideos copy]
+                                 currentUserIsAnAudienceMember:[currentUserIsAnAudienceMember copy]
                                                          owner:nil];
                 
                 BOOL equal = [reel isEqual:other];
@@ -63,14 +67,16 @@ describe(@"reel", ^{
         });
         
         describe(@"reels are not equal", ^{
-            void (^expectNotEqual)(NSNumber *, NSString *, NSNumber *, NSNumber *) = ^(NSNumber *otherReelId,
-                                                                                       NSString *otherName,
-                                                                                       NSNumber *otherAudienceSize,
-                                                                                       NSNumber *otherNumberOfVideos) {
+            void (^expectNotEqual)(NSNumber *, NSString *, NSNumber *, NSNumber *, NSNumber *) =
+
+            ^(NSNumber *otherReelId, NSString *otherName, NSNumber *otherAudienceSize,
+              NSNumber *otherNumberOfVideos, NSNumber *otherCurrentUserIsAnAudienceMember) {
+                
                 RTReel *other = [[RTReel alloc] initWithReelId:otherReelId
                                                           name:otherName
                                                   audienceSize:otherAudienceSize
                                                 numberOfVideos:otherNumberOfVideos
+                                 currentUserIsAnAudienceMember:otherCurrentUserIsAnAudienceMember
                                                          owner:nil];
                 
                 BOOL equal = [reel isEqual:other];
@@ -82,12 +88,14 @@ describe(@"reel", ^{
             
             it(@"different reel id", ^{
                 expectNotEqual(@([reelId intValue] + 1), [name copy],
-                               [audienceSize copy], [numberOfVideos copy]);
+                               [audienceSize copy], [numberOfVideos copy],
+                               [currentUserIsAnAudienceMember copy]);
             });
             
             it(@"nil reel id", ^{
                 expectNotEqual(nil, [name copy],
-                               [audienceSize copy], [numberOfVideos copy]);
+                               [audienceSize copy], [numberOfVideos copy],
+                               [currentUserIsAnAudienceMember copy]);
             });
             
             it(@"both have nil reel id", ^{
@@ -95,12 +103,14 @@ describe(@"reel", ^{
                                                          name:name
                                                  audienceSize:audienceSize
                                                numberOfVideos:numberOfVideos
+                                currentUserIsAnAudienceMember:currentUserIsAnAudienceMember
                                                         owner:nil];
 
                 RTReel *right = [[RTReel alloc] initWithReelId:nil
                                                           name:[name copy]
                                                   audienceSize:[audienceSize copy]
                                                 numberOfVideos:[numberOfVideos copy]
+                                 currentUserIsAnAudienceMember:[currentUserIsAnAudienceMember copy]
                                                          owner:nil];
                 
                 BOOL equal = [left isEqual:right];

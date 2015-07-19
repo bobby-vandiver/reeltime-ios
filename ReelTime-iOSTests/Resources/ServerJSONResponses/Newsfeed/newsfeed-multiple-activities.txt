@@ -21,7 +21,8 @@ Date: Sun, 11 Jan 2015 15:05:38 GMT
                 "reel_id":34,
                 "name":"some reel",
                 "audience_size":901,
-                "video_count":23
+                "video_count":23,
+                "current_user_is_an_audience_member":true
             }
         },
         {
@@ -39,7 +40,8 @@ Date: Sun, 11 Jan 2015 15:05:38 GMT
                 "reel_id":34,
                 "name":"some reel",
                 "audience_size":901,
-                "video_count":23
+                "video_count":23,
+                "current_user_is_an_audience_member":true
             }
         },
         {
@@ -57,7 +59,8 @@ Date: Sun, 11 Jan 2015 15:05:38 GMT
                 "reel_id":34,
                 "name":"some reel",
                 "audience_size":901,
-                "video_count":23
+                "video_count":23,
+                "current_user_is_an_audience_member":true
             },
             "video":{
                 "video_id":5,

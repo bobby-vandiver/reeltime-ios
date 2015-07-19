@@ -105,10 +105,11 @@
 + (RKMapping *)reelMapping {
     RKObjectMapping *mapping = [RKObjectMapping mappingForClass:[RTReel class]];
     [mapping addAttributeMappingsFromDictionary:@{
-                                                  @"reel_id":           @"reelId",
-                                                  @"name":              @"name",
-                                                  @"audience_size":     @"audienceSize",
-                                                  @"video_count":       @"numberOfVideos"
+                                                  @"reel_id":                               @"reelId",
+                                                  @"name":                                  @"name",
+                                                  @"audience_size":                         @"audienceSize",
+                                                  @"video_count":                           @"numberOfVideos",
+                                                  @"current_user_is_an_audience_member":    @"currentUserIsAnAudienceMember"
                                                   }];
     
     RKRelationshipMapping *userMapping = [RKRelationshipMapping relationshipMappingFromKeyPath:@"owner"

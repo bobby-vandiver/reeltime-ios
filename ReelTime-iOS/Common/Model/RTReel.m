@@ -6,6 +6,7 @@
                           name:(NSString *)name
                   audienceSize:(NSNumber *)audienceSize
                 numberOfVideos:(NSNumber *)numberOfVideos
+ currentUserIsAnAudienceMember:(NSNumber *)currentUserIsAnAudienceMember
                          owner:(RTUser *)owner {
     self = [super init];
     if (self) {
@@ -13,6 +14,7 @@
         self.name = name;
         self.audienceSize = audienceSize;
         self.numberOfVideos = numberOfVideos;
+        self.currentUserIsAnAudienceMember = currentUserIsAnAudienceMember;
         self.owner = owner;
     }
     return self;

@@ -63,8 +63,8 @@ describe(@"API Mapping", ^{
                                            @"name": @"some reel",
                                            @"audience_size": @(2),
                                            @"video_count": @(20),
-                                           @"owner": userResponse1/*,
-                                           @"current_user_is_an_audience_member": @(YES)*/
+                                           @"owner": userResponse1,
+                                           @"current_user_is_an_audience_member": @(YES)
                                            };
 
     __block NSDictionary *reelResponse2 = @{
@@ -72,8 +72,8 @@ describe(@"API Mapping", ^{
                                             @"name": @"any reel",
                                             @"audience_size": @(3),
                                             @"video_count": @(81),
-                                            @"owner": userResponse2/*,
-                                            @"current_user_is_an_audience_member": @(NO)*/
+                                            @"owner": userResponse2,
+                                            @"current_user_is_an_audience_member": @(NO)
                                             };
 
     __block NSDictionary *videoResponse1 = @{
@@ -439,6 +439,10 @@ describe(@"API Mapping", ^{
         [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:@"video_count"
                                                                                 destinationKeyPath:@"numberOfVideos"
                                                                                              value:@(20)]];
+
+        [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:@"current_user_is_an_audience_member"
+                                                                                destinationKeyPath:@"currentUserIsAnAudienceMember"
+                                                                                             value:@(YES)]];
         
         RKMapping *userMapping = [RTRestAPIMappingFactory userMapping];
         [mappingTest addExpectation:[RKPropertyMappingTestExpectation expectationWithSourceKeyPath:@"owner"
@@ -485,7 +489,8 @@ describe(@"API Mapping", ^{
             
             RTReel *first = reelList.reels[0];
             expect(first).to.beReel(reelResponse1[@"reel_id"], reelResponse1[@"name"],
-                                    reelResponse1[@"audience_size"], reelResponse1[@"video_count"]);
+                                    reelResponse1[@"audience_size"], reelResponse1[@"video_count"],
+                                    reelResponse1[@"current_user_is_an_audience_member"]);
             
             expect(first.owner).to.beUser(userResponse1[@"username"], userResponse1[@"display_name"],
                                           userResponse1[@"follower_count"], userResponse1[@"followee_count"],
@@ -512,7 +517,8 @@ describe(@"API Mapping", ^{
             
             RTReel *first = reelList.reels[0];
             expect(first).to.beReel(reelResponse1[@"reel_id"], reelResponse1[@"name"],
-                                    reelResponse1[@"audience_size"], reelResponse1[@"video_count"]);
+                                    reelResponse1[@"audience_size"], reelResponse1[@"video_count"],
+                                    reelResponse1[@"current_user_is_an_audience_member"]);
 
             expect(first.owner).to.beUser(userResponse1[@"username"], userResponse1[@"display_name"],
                                           userResponse1[@"follower_count"], userResponse1[@"followee_count"],
@@ -521,7 +527,8 @@ describe(@"API Mapping", ^{
             
             RTReel *second = reelList.reels[1];
             expect(second).to.beReel(reelResponse2[@"reel_id"], reelResponse2[@"name"],
-                                    reelResponse2[@"audience_size"], reelResponse2[@"video_count"]);
+                                     reelResponse2[@"audience_size"], reelResponse2[@"video_count"],
+                                     reelResponse2[@"current_user_is_an_audience_member"]);
 
             expect(second.owner).to.beUser(userResponse2[@"username"], userResponse2[@"display_name"],
                                            userResponse2[@"follower_count"], userResponse2[@"followee_count"],
