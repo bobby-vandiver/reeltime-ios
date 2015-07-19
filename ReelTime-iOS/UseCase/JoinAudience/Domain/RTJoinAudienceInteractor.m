@@ -3,6 +3,9 @@
 #import "RTJoinAudienceInteractorDelegate.h"
 #import "RTJoinAudienceDataManager.h"
 
+#import "RTJoinAudienceError.h"
+#import "RTErrorFactory.h"
+
 @interface RTJoinAudienceInteractor ()
 
 @property id<RTJoinAudienceInteractorDelegate> delegate;
@@ -23,9 +26,15 @@
 }
 
 - (void)joinAudienceForReelId:(NSNumber *)reelId {
-    [self.dataManager requestAudienceMembershipForReelId:reelId
-                                             joinSuccess:[self joinAudienceSuccessCallbackForReelId:reelId]
-                                             joinFailure:[self joinAudienceFailureCallbackForReelId:reelId]];
+    if (reelId != nil) {
+        [self.dataManager requestAudienceMembershipForReelId:reelId
+                                                 joinSuccess:[self joinAudienceSuccessCallbackForReelId:reelId]
+                                                 joinFailure:[self joinAudienceFailureCallbackForReelId:reelId]];
+    }
+    else {
+        NSError *error = [RTErrorFactory joinAudienceErrorWithCode:RTJoinAudienceErrorReelNotFound];
+        [self.delegate joinAudienceFailedForReelId:reelId withError:error];
+    }
 }
 
 - (NoArgsCallback)joinAudienceSuccessCallbackForReelId:(NSNumber *)reelId {

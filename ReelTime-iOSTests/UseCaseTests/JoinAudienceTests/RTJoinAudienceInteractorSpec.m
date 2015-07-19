@@ -26,32 +26,46 @@ describe(@"join audience interactor", ^{
     });
     
     describe(@"joining audience", ^{
-        __block MKTArgumentCaptor *successCaptor;
-        __block MKTArgumentCaptor *failureCaptor;
         
-        beforeEach(^{
-            successCaptor = [[MKTArgumentCaptor alloc] init];
-            failureCaptor = [[MKTArgumentCaptor alloc] init];
-            
-            [interactor joinAudienceForReelId:@(reelId)];
-            [verify(dataManager) requestAudienceMembershipForReelId:@(reelId)
-                                                        joinSuccess:[successCaptor capture]
-                                                        joinFailure:[failureCaptor capture]];
+        context(@"client not invoked", ^{
+            it(@"should treat invalid reel id as an unknown reel", ^{
+                MKTArgumentCaptor *captor = [[MKTArgumentCaptor alloc] init];
+
+                [interactor joinAudienceForReelId:nil];
+                [verify(delegate) joinAudienceFailedForReelId:nil withError:[captor capture]];
+                
+                expect(captor.value).to.beError(RTJoinAudienceErrorDomain, RTJoinAudienceErrorReelNotFound);
+            });
         });
         
-        it(@"should notify delegate of success", ^{
-            NoArgsCallback successHandler = [successCaptor value];
-            successHandler();
-            [verify(delegate) joinAudienceSucceedForReelId:@(reelId)];
-        });
-        
-        it(@"should notify delegate of failure", ^{
-            NSError *error = [RTErrorFactory joinAudienceErrorWithCode:RTJoinAudienceErrorReelNotFound];
+        context(@"client invoked", ^{
+            __block MKTArgumentCaptor *successCaptor;
+            __block MKTArgumentCaptor *failureCaptor;
             
-            ErrorCallback failureHandler = [failureCaptor value];
-            failureHandler(error);
+            beforeEach(^{
+                successCaptor = [[MKTArgumentCaptor alloc] init];
+                failureCaptor = [[MKTArgumentCaptor alloc] init];
+                
+                [interactor joinAudienceForReelId:@(reelId)];
+                [verify(dataManager) requestAudienceMembershipForReelId:@(reelId)
+                                                            joinSuccess:[successCaptor capture]
+                                                            joinFailure:[failureCaptor capture]];
+            });
             
-            [verify(delegate) joinAudienceFailedForReelId:@(reelId) withError:error];
+            it(@"should notify delegate of success", ^{
+                NoArgsCallback successHandler = [successCaptor value];
+                successHandler();
+                [verify(delegate) joinAudienceSucceedForReelId:@(reelId)];
+            });
+            
+            it(@"should notify delegate of failure", ^{
+                NSError *error = [RTErrorFactory joinAudienceErrorWithCode:RTJoinAudienceErrorReelNotFound];
+                
+                ErrorCallback failureHandler = [failureCaptor value];
+                failureHandler(error);
+                
+                [verify(delegate) joinAudienceFailedForReelId:@(reelId) withError:error];
+            });
         });
     });
 });
