@@ -229,6 +229,7 @@ describe(@"user profile view controller", ^{
                                                            forReelId:@(reelId)
                                                         audienceSize:@(1)
                                                       numberOfVideos:@(2)
+                                       currentUserIsAnAudienceMember:@(YES)
                                                        ownerUsername:username];
             
             expect(viewController.reelsDataSource.items).to.haveCountOf(0);

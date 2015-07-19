@@ -37,6 +37,7 @@
                                                                       forReelId:reel.reelId
                                                                    audienceSize:reel.audienceSize
                                                                  numberOfVideos:reel.numberOfVideos
+                                                  currentUserIsAnAudienceMember:reel.currentUserIsAnAudienceMember
                                                                   ownerUsername:reel.owner.username];
     [self.view showReelDescription:description];
 }

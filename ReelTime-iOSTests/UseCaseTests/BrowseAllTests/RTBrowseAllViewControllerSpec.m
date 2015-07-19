@@ -75,6 +75,7 @@ describe(@"browse all view controller", ^{
                                                            forReelId:@(reelId)
                                                         audienceSize:@(1)
                                                       numberOfVideos:@(3)
+                                       currentUserIsAnAudienceMember:@(YES)
                                                        ownerUsername:username];
         
         videoDescription = [RTVideoDescription videoDescriptionWithTitle:@"text" videoId:@(videoId) thumbnailData:nil];
