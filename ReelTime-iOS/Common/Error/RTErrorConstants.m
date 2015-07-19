@@ -3,6 +3,7 @@
 #import "RTChangeDisplayNameError.h"
 #import "RTChangePasswordError.h"
 #import "RTDeviceRegistrationError.h"
+#import "RTJoinAudienceError.h"
 #import "RTLoginError.h"
 #import "RTLogoutError.h"
 #import "RTKeyChainError.h"
@@ -16,6 +17,7 @@ NSString *const RTConfirmAccountErrorDomain = @"in.reeltime.ConfirmAccount";
 NSString *const RTChangeDisplayNameErrorDomain = @"in.reeltime.ChangeDisplayName";
 NSString *const RTChangePasswordErrorDomain = @"in.reeltime.ChangePassword";
 NSString *const RTDeviceRegistrationErrorDomain = @"in.reeltime.DeviceRegistration";
+NSString *const RTJoinAudienceErrorDomain = @"in.reeltime.JoinAudience";
 NSString *const RTLoginErrorDomain = @"in.reeltime.Login";
 NSString *const RTLogoutErrorDomain = @"in.reeltime.Logout";
 NSString *const RTKeyChainWrapperErrorDomain = @"in.reeltime.KeyChainWrapper";
