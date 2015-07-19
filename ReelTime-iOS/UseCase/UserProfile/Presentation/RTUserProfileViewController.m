@@ -189,9 +189,11 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
     footer.delegate = self;
     footer.reelId = description.reelId;
 
+    BOOL currentUserIsAudienceMember = [description.currentUserIsAnAudienceMember boolValue];
     BOOL hasZeroOrMoreThanOneMember = ![description.audienceSize isEqualToNumber:@(1)];
     
-    NSString *followReelTitle = @"Follow Reel";
+    NSString *followReelTitle = currentUserIsAudienceMember ? @"Unfollow Reel" : @"Follow Reel";
+    
     NSString *listAudienceTitle = [NSString stringWithFormat:@"%@ Follower%@", description.audienceSize,
                                    (hasZeroOrMoreThanOneMember ? @"s" : @"")];
 

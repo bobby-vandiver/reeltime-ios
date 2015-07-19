@@ -29,6 +29,7 @@
 
 @property (readwrite) NSNumber *audienceSize;
 @property (readwrite) NSNumber *numberOfVideos;
+@property (readwrite) NSNumber *currentUserIsAnAudienceMember;
 
 @end
 
@@ -371,8 +372,20 @@ describe(@"user profile view controller", ^{
                     
                     expect(footerView.delegate).to.equal(viewController);
                     expect(footerView.reelId).to.equal(@(reelId));
+                });
+                
+                it(@"current user is not an audience member", ^{
+                    description.currentUserIsAnAudienceMember = @(NO);
                     
+                    [viewController tableView: tableView viewForFooterInSection:0];
                     expect(footerView.followReelButton.titleLabel.text).to.equal(@"Follow Reel");
+                });
+                
+                it(@"current user is an audience member", ^{
+                    description.currentUserIsAnAudienceMember = @(YES);
+                    
+                    [viewController tableView: tableView viewForFooterInSection:0];
+                    expect(footerView.followReelButton.titleLabel.text).to.equal(@"Unfollow Reel");
                 });
                 
                 it(@"zero followers", ^{
