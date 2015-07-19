@@ -32,6 +32,10 @@
     return [self errorWithDomain:RTJoinAudienceErrorDomain code:code];
 }
 
++ (NSError *)leaveAudienceErrorWithCode:(RTLeaveAudienceError)code {
+    return [self errorWithDomain:RTLeaveAudienceErrorDomain code:code];
+}
+
 + (NSError *)keyChainErrorWithCode:(RTKeyChainError)code
                      originalError:(NSError *)error {
     return [self errorWithDomain:RTKeyChainWrapperErrorDomain code:code originalError:error];

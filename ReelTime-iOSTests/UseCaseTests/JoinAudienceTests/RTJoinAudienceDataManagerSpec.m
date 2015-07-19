@@ -46,7 +46,7 @@ describe(@"join audience data manager", ^{
         
         
         context(@"successful join", ^{
-            it(@"invoke joined callback on success", ^{
+            it(@"should invoke joined callback on success", ^{
                 NoArgsCallback successHandler = [successCaptor value];
                 successHandler();
                 [joined expectCallbackExecuted];

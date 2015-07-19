@@ -368,6 +368,8 @@
 		71C7D0DF1B5C391300BDDA4F /* RTJoinAudienceInteractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C7D0DE1B5C391300BDDA4F /* RTJoinAudienceInteractorSpec.m */; };
 		71C7D0E31B5C3D8900BDDA4F /* RTJoinAudiencePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C7D0E21B5C3D8900BDDA4F /* RTJoinAudiencePresenter.m */; };
 		71C7D0E61B5C3FA900BDDA4F /* RTJoinAudiencePresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C7D0E51B5C3FA900BDDA4F /* RTJoinAudiencePresenterSpec.m */; };
+		71C7D0EE1B5C47A600BDDA4F /* RTLeaveAudienceDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C7D0ED1B5C47A600BDDA4F /* RTLeaveAudienceDataManager.m */; };
+		71C7D0F11B5C484000BDDA4F /* RTLeaveAudienceDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C7D0F01B5C484000BDDA4F /* RTLeaveAudienceDataManagerSpec.m */; };
 		71C7D4151A7406A6006B84AC /* RTServerErrorsConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C7D4141A7406A6006B84AC /* RTServerErrorsConverter.m */; };
 		71C8D91F1A73485A00673F1A /* RTAccountRegistrationDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C8D91E1A73485A00673F1A /* RTAccountRegistrationDataManagerSpec.m */; };
 		71D947981A4FCB5600401963 /* RTLoginInteractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D947971A4FCB5600401963 /* RTLoginInteractorSpec.m */; };
@@ -1032,6 +1034,10 @@
 		71C7D0E21B5C3D8900BDDA4F /* RTJoinAudiencePresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTJoinAudiencePresenter.m; sourceTree = "<group>"; };
 		71C7D0E41B5C3DAA00BDDA4F /* RTJoinAudienceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTJoinAudienceView.h; sourceTree = "<group>"; };
 		71C7D0E51B5C3FA900BDDA4F /* RTJoinAudiencePresenterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTJoinAudiencePresenterSpec.m; sourceTree = "<group>"; };
+		71C7D0EB1B5C477D00BDDA4F /* RTLeaveAudienceError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLeaveAudienceError.h; sourceTree = "<group>"; };
+		71C7D0EC1B5C47A600BDDA4F /* RTLeaveAudienceDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLeaveAudienceDataManager.h; sourceTree = "<group>"; };
+		71C7D0ED1B5C47A600BDDA4F /* RTLeaveAudienceDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLeaveAudienceDataManager.m; sourceTree = "<group>"; };
+		71C7D0F01B5C484000BDDA4F /* RTLeaveAudienceDataManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLeaveAudienceDataManagerSpec.m; sourceTree = "<group>"; };
 		71C7D4131A7406A6006B84AC /* RTServerErrorsConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTServerErrorsConverter.h; sourceTree = "<group>"; };
 		71C7D4141A7406A6006B84AC /* RTServerErrorsConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTServerErrorsConverter.m; sourceTree = "<group>"; };
 		71C8D91E1A73485A00673F1A /* RTAccountRegistrationDataManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAccountRegistrationDataManagerSpec.m; sourceTree = "<group>"; };
@@ -2948,6 +2954,48 @@
 			path = Presentation;
 			sourceTree = "<group>";
 		};
+		71C7D0E71B5C473700BDDA4F /* LeaveAudience */ = {
+			isa = PBXGroup;
+			children = (
+				71C7D0E91B5C475800BDDA4F /* Domain */,
+				71C7D0E81B5C474D00BDDA4F /* Persistence */,
+				71C7D0EA1B5C476400BDDA4F /* Presentation */,
+			);
+			path = LeaveAudience;
+			sourceTree = "<group>";
+		};
+		71C7D0E81B5C474D00BDDA4F /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				71C7D0EC1B5C47A600BDDA4F /* RTLeaveAudienceDataManager.h */,
+				71C7D0ED1B5C47A600BDDA4F /* RTLeaveAudienceDataManager.m */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		71C7D0E91B5C475800BDDA4F /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				71C7D0EB1B5C477D00BDDA4F /* RTLeaveAudienceError.h */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		71C7D0EA1B5C476400BDDA4F /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		71C7D0EF1B5C482B00BDDA4F /* LeaveAudienceTests */ = {
+			isa = PBXGroup;
+			children = (
+				71C7D0F01B5C484000BDDA4F /* RTLeaveAudienceDataManagerSpec.m */,
+			);
+			path = LeaveAudienceTests;
+			sourceTree = "<group>";
+		};
 		71D9477E1A4FB37E00401963 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -3056,6 +3104,7 @@
 				7133EC531B17CC8300BC1CAE /* ConfirmAccount */,
 				714842FD1AEC1011001B885A /* DeviceRegistration */,
 				71C7D0CD1B5C2E6800BDDA4F /* JoinAudience */,
+				71C7D0E71B5C473700BDDA4F /* LeaveAudience */,
 				71D9478B1A4FC70B00401963 /* Login */,
 				716231BA1B4842F300458C4C /* Logout */,
 				710C0A331B27BCA9006209F4 /* ManageDevices */,
@@ -3097,6 +3146,7 @@
 				7133EC601B17D00B00BC1CAE /* ConfirmAccountTests */,
 				714843071AEC129F001B885A /* DeviceRegistrationTests */,
 				71C7D0D21B5C2ED600BDDA4F /* JoinAudienceTests */,
+				71C7D0EF1B5C482B00BDDA4F /* LeaveAudienceTests */,
 				71D947961A4FCB2900401963 /* LoginTests */,
 				716231C11B48737C00458C4C /* LogoutTests */,
 				710C0A391B27BFF5006209F4 /* ManageDevicesTests */,
@@ -3466,6 +3516,7 @@
 				713DCAA91A6C8B330032B252 /* RTServerErrors.m in Sources */,
 				715370E91A88442700D3355B /* RTActivityCell.m in Sources */,
 				717970071AB7C60D00A0B9B5 /* RTPagedListViewController.m in Sources */,
+				71C7D0EE1B5C47A600BDDA4F /* RTLeaveAudienceDataManager.m in Sources */,
 				7153EE041AED39C500000D1C /* RTDeviceRegistrationServerErrorMapping.m in Sources */,
 				712EA2C51A9C1B4600AFCA15 /* RTClientAdditionalConfiguration.m in Sources */,
 				71399DF71ADB68C600500E6C /* RTVideoThumbnailCell.m in Sources */,
@@ -3675,6 +3726,7 @@
 				7190DABA1A5CC55D00BDCE4C /* RTCurrentUserStoreSpec.m in Sources */,
 				71073CFE1A831EAB00BE6E19 /* RTNewsfeedDataManagerSpec.m in Sources */,
 				715C54201AD4C9A7009C755F /* RTUserSummaryPresenterSpec.m in Sources */,
+				71C7D0F11B5C484000BDDA4F /* RTLeaveAudienceDataManagerSpec.m in Sources */,
 				71A8BA301AB1036A00B0708B /* RTPagedListDataManagerSpec.m in Sources */,
 				71073CF31A82DED800BE6E19 /* EXPMatchers+beVideo.m in Sources */,
 				71BF083E1B55E58600B61504 /* RTLogoutWireframeSpec.m in Sources */,

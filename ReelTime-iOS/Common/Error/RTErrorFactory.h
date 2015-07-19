@@ -6,6 +6,7 @@
 #import "RTChangePasswordError.h"
 #import "RTDeviceRegistrationError.h"
 #import "RTJoinAudienceError.h"
+#import "RTLeaveAudienceError.h"
 #import "RTKeyChainError.h"
 #import "RTLoginError.h"
 #import "RTLogoutError.h"
@@ -30,6 +31,8 @@
                                originalError:(NSError *)error;
 
 + (NSError *)joinAudienceErrorWithCode:(RTJoinAudienceError)code;
+
++ (NSError *)leaveAudienceErrorWithCode:(RTLeaveAudienceError)code;
 
 + (NSError *)keyChainErrorWithCode:(RTKeyChainError)code
                      originalError:(NSError *)error;
