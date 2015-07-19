@@ -42,7 +42,7 @@ describe(@"join audience interactor", ^{
         it(@"should notify delegate of success", ^{
             NoArgsCallback successHandler = [successCaptor value];
             successHandler();
-            [verify(delegate) joinAudienceSucceed];
+            [verify(delegate) joinAudienceSucceedForReelId:@(reelId)];
         });
         
         it(@"should notify delegate of failure", ^{
@@ -51,7 +51,7 @@ describe(@"join audience interactor", ^{
             ErrorCallback failureHandler = [failureCaptor value];
             failureHandler(error);
             
-            [verify(delegate) joinAudienceFailedWithError:error];
+            [verify(delegate) joinAudienceFailedForReelId:@(reelId) withError:error];
         });
     });
 });

@@ -24,19 +24,19 @@
 
 - (void)joinAudienceForReelId:(NSNumber *)reelId {
     [self.dataManager requestAudienceMembershipForReelId:reelId
-                                             joinSuccess:[self joinAudienceSuccessCallback]
-                                             joinFailure:[self joinAudienceFailureCallback]];
+                                             joinSuccess:[self joinAudienceSuccessCallbackForReelId:reelId]
+                                             joinFailure:[self joinAudienceFailureCallbackForReelId:reelId]];
 }
 
-- (NoArgsCallback)joinAudienceSuccessCallback {
+- (NoArgsCallback)joinAudienceSuccessCallbackForReelId:(NSNumber *)reelId {
     return ^{
-        [self.delegate joinAudienceSucceed];
+        [self.delegate joinAudienceSucceedForReelId:reelId];
     };
 }
 
-- (ErrorCallback)joinAudienceFailureCallback {
+- (ErrorCallback)joinAudienceFailureCallbackForReelId:(NSNumber *)reelId {
     return ^(NSError *error) {
-        [self.delegate joinAudienceFailedWithError:error];
+        [self.delegate joinAudienceFailedForReelId:reelId withError:error];
     };
 }
 

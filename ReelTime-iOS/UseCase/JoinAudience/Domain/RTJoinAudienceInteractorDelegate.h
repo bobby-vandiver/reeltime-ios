@@ -2,8 +2,9 @@
 
 @protocol RTJoinAudienceInteractorDelegate <NSObject>
 
-- (void)joinAudienceSucceed;
+- (void)joinAudienceSucceedForReelId:(NSNumber *)reelId;
 
-- (void)joinAudienceFailedWithError:(NSError *)error;
+- (void)joinAudienceFailedForReelId:(NSNumber *)reelId
+                          withError:(NSError *)error;
 
 @end
