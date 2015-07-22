@@ -18,4 +18,8 @@
                  currentUserIsAnAudienceMember:(NSNumber *)currentUserIsAnAudienceMember
                                  ownerUsername:(NSString *)ownerUsername;
 
+- (void)currentUserJoinedAudience;
+
+- (void)currentUserLeftAudience;
+
 @end

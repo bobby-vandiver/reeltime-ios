@@ -3,6 +3,10 @@
 
 #import "RTUserSummaryView.h"
 #import "RTBrowseReelsView.h"
+
+#import "RTJoinAudienceView.h"
+#import "RTLeaveAudienceView.h"
+
 #import "RTStoryboardViewController.h"
 
 @class RTUserProfilePresenter;
@@ -15,7 +19,7 @@
 @protocol RTBrowseReelVideosPresenterFactory;
 @protocol RTVideoWireframe;
 
-@interface RTUserProfileViewController : RTPagedListViewController <RTUserSummaryView, RTBrowseReelsView, RTUserReelFooterViewDelegate, RTStoryboardViewController>
+@interface RTUserProfileViewController : RTPagedListViewController <RTUserSummaryView, RTBrowseReelsView, RTJoinAudienceView, RTLeaveAudienceView, RTUserReelFooterViewDelegate, RTStoryboardViewController>
 
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *displayNameLabel;

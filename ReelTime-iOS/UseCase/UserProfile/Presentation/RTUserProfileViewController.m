@@ -229,4 +229,39 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
     [self.userProfilePresenter requestedAudienceMembersForReelId:reelId];
 }
 
+#pragma mark - RTErrorMessageView Methods
+
+- (void)showErrorMessage:(NSString *)message {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                        message:message
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+    [alertView show];
+}
+
+#pragma mark - RTJoinAudienceView Methods
+
+- (void)showAudienceAsJoinedForReelId:(NSNumber *)reelId {
+    RTReelDescription *description = [self reelDescriptionForReelId:reelId];
+    
+    [description currentUserJoinedAudience];
+    [self.tableView reloadData];
+}
+
+#pragma mark - RTLeaveAudienceView Methods
+
+- (void)showAudienceAsNotJoinedForReelId:(NSNumber *)reelId {
+    RTReelDescription *description = [self reelDescriptionForReelId:reelId];
+
+    [description currentUserLeftAudience];
+    [self.tableView reloadData];
+}
+
+- (RTReelDescription *)reelDescriptionForReelId:(NSNumber *)reelId {
+    return [self.reelsDataSource itemPassingTest:^BOOL(RTReelDescription *item) {
+        return [item.reelId isEqual:reelId];
+    }];
+}
+
 @end

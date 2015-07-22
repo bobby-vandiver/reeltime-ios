@@ -48,4 +48,12 @@ currentUserIsAnAudienceMember:(NSNumber *)currentUserIsAnAudienceMember
     return self;
 }
 
+- (void)currentUserJoinedAudience {
+    self.currentUserIsAnAudienceMember = @(YES);
+}
+
+- (void)currentUserLeftAudience {
+    self.currentUserIsAnAudienceMember = @(NO);
+}
+
 @end

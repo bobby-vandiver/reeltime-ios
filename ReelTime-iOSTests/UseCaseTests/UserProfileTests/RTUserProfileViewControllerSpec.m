@@ -366,47 +366,67 @@ describe(@"user profile view controller", ^{
                     [given([tableView dequeueReusableHeaderFooterViewWithIdentifier:@"UserReelFooter"]) willReturn:footerView];
                 });
                 
-                it(@"should set properties that do not depend on description", ^{
-                    UIView *view = [viewController tableView:tableView viewForFooterInSection:0];
-                    expect(view).to.beIdenticalTo(footerView);
+                describe(@"view for footer in section", ^{
+                    it(@"should set properties that do not depend on description", ^{
+                        UIView *view = [viewController tableView:tableView viewForFooterInSection:0];
+                        expect(view).to.beIdenticalTo(footerView);
+                        
+                        expect(footerView.delegate).to.equal(viewController);
+                        expect(footerView.reelId).to.equal(@(reelId));
+                    });
                     
-                    expect(footerView.delegate).to.equal(viewController);
-                    expect(footerView.reelId).to.equal(@(reelId));
+                    it(@"current user is not an audience member", ^{
+                        description.currentUserIsAnAudienceMember = @(NO);
+                        
+                        [viewController tableView: tableView viewForFooterInSection:0];
+                        expect(footerView.followReelButton.titleLabel.text).to.equal(@"Follow Reel");
+                    });
+                    
+                    it(@"current user is an audience member", ^{
+                        description.currentUserIsAnAudienceMember = @(YES);
+                        
+                        [viewController tableView: tableView viewForFooterInSection:0];
+                        expect(footerView.followReelButton.titleLabel.text).to.equal(@"Unfollow Reel");
+                    });
+                    
+                    it(@"zero followers", ^{
+                        description.audienceSize = @(0);
+                        
+                        [viewController tableView: tableView viewForFooterInSection:0];
+                        expect(footerView.listAudienceButton.titleLabel.text).to.equal(@"0 Followers");
+                    });
+                    
+                    it(@"one follower", ^{
+                        description.audienceSize = @(1);
+                        
+                        [viewController tableView:tableView viewForFooterInSection:0];
+                        expect(footerView.listAudienceButton.titleLabel.text).to.equal(@"1 Follower");
+                    });
+                    
+                    it(@"multiple followers", ^{
+                        description.audienceSize = @(2);
+                        
+                        [viewController tableView:tableView viewForFooterInSection:0];
+                        expect(footerView.listAudienceButton.titleLabel.text).to.equal(@"2 Followers");
+                    });
                 });
                 
-                it(@"current user is not an audience member", ^{
-                    description.currentUserIsAnAudienceMember = @(NO);
-                    
-                    [viewController tableView: tableView viewForFooterInSection:0];
-                    expect(footerView.followReelButton.titleLabel.text).to.equal(@"Follow Reel");
+                describe(@"join audience view", ^{
+                    it(@"should update reel description to indicate audience membership and reload table", ^{
+                        description.currentUserIsAnAudienceMember = @(NO);
+                        [viewController showAudienceAsJoinedForReelId:@(reelId)];
+                        
+                        expect(description.currentUserIsAnAudienceMember).to.beTruthy();
+                        [verify(tableView) reloadData];
+                    });
                 });
                 
-                it(@"current user is an audience member", ^{
-                    description.currentUserIsAnAudienceMember = @(YES);
+                describe(@"leave audience view", ^{
+                    description .currentUserIsAnAudienceMember = @(YES);
+                    [viewController showAudienceAsNotJoinedForReelId:@(reelId)];
                     
-                    [viewController tableView: tableView viewForFooterInSection:0];
-                    expect(footerView.followReelButton.titleLabel.text).to.equal(@"Unfollow Reel");
-                });
-                
-                it(@"zero followers", ^{
-                    description.audienceSize = @(0);
-                    
-                    [viewController tableView: tableView viewForFooterInSection:0];
-                    expect(footerView.listAudienceButton.titleLabel.text).to.equal(@"0 Followers");
-                });
-                
-                it(@"one follower", ^{
-                    description.audienceSize = @(1);
-
-                    [viewController tableView:tableView viewForFooterInSection:0];
-                    expect(footerView.listAudienceButton.titleLabel.text).to.equal(@"1 Follower");
-                });
-                
-                it(@"multiple followers", ^{
-                    description.audienceSize = @(2);
-                    
-                    [viewController tableView:tableView viewForFooterInSection:0];
-                    expect(footerView.listAudienceButton.titleLabel.text).to.equal(@"2 Followers");
+                    expect(description.currentUserIsAnAudienceMember).to.beFalsy();
+                    [verify(tableView) reloadData];
                 });
             });
         });
