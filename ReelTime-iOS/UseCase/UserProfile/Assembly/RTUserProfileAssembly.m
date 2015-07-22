@@ -33,7 +33,17 @@
 
 #import "RTVideoWireframe.h"
 
+#import "RTJoinAudiencePresenter.h"
+#import "RTJoinAudienceInteractor.h"
+#import "RTJoinAudienceDataManager.h"
+
+#import "RTLeaveAudiencePresenter.h"
+#import "RTLeaveAudienceInteractor.h"
+#import "RTLeaveAudienceDataManager.h"
+
 @implementation RTUserProfileAssembly
+
+#pragma mark - User Profile
 
 - (RTUserProfileWireframe *)userProfileWireframe {
     return [TyphoonDefinition withClass:[RTUserProfileWireframe class] configuration:^(TyphoonDefinition *definition) {
@@ -55,11 +65,8 @@
                             [initializer injectParameterWith:[self userProfilePresenter]];
                             [initializer injectParameterWith:[self userSummaryPresenterForUsername:username]];
                             [initializer injectParameterWith:[self browseUserReelsPresenterForUsername:username]];
-                            
-                            // TODO: Inject audience presenters
-                            [initializer injectParameterWith:nil];
-                            [initializer injectParameterWith:nil];
-                            
+                            [initializer injectParameterWith:[self joinAudiencePresenterForUsername:username]];
+                            [initializer injectParameterWith:[self leaveAudiencePresenterForUsername:username]];
                             [initializer injectParameterWith:self];
                             [initializer injectParameterWith:[self userProfileWireframe]];
                             [initializer injectParameterWith:[self.deviceAssembly thumbnailSupport]];
@@ -75,6 +82,8 @@
         }];
     }];
 }
+
+#pragma mark - User Summary
 
 - (RTUserSummaryPresenter *)userSummaryPresenterForUsername:(NSString *)username {
     return [TyphoonDefinition withClass:[RTUserSummaryPresenter class] configuration:^(TyphoonDefinition *definition) {
@@ -104,6 +113,8 @@
         }];
     }];
 }
+
+#pragma mark - Browse User Reels
 
 - (RTBrowseReelsPresenter *)browseUserReelsPresenterForUsername:(NSString *)username {
     return [TyphoonDefinition withClass:[RTBrowseReelsPresenter class] configuration:^(TyphoonDefinition *definition) {
@@ -148,6 +159,8 @@
 - (id<RTReelWireframe>)browseUserReelsWireframe {
     return [TyphoonDefinition withClass:[RTNoOpReelWireframe class]];
 }
+
+#pragma mark - Browse Reel Videos
 
 - (RTBrowseVideosPresenter *)browseReelVideosPresenterForReelId:(NSNumber *)reelId
                                                        username:(NSString *)username
@@ -198,5 +211,62 @@
         }];
     }];
 }
+
+#pragma mark - Join Audience
+
+- (RTJoinAudiencePresenter *)joinAudiencePresenterForUsername:(NSString *)username {
+    return [TyphoonDefinition withClass:[RTJoinAudiencePresenter class] configuration:^(TyphoonDefinition *definition) {
+        [definition injectMethod:@selector(initWithView:interactor:) parameters:^(TyphoonMethod *method) {
+            [method injectParameterWith:[self userProfileViewControllerForUsername:username]];
+            [method injectParameterWith:[self joinAudienceInteractorForUsername:username]];
+        }];
+    }];
+}
+
+- (RTJoinAudienceInteractor *)joinAudienceInteractorForUsername:(NSString *)username {
+    return [TyphoonDefinition withClass:[RTJoinAudienceInteractor class] configuration:^(TyphoonDefinition *definition) {
+        [definition injectMethod:@selector(initWithDelegate:dataManager:) parameters:^(TyphoonMethod *method) {
+            [method injectParameterWith:[self joinAudiencePresenterForUsername:username]];
+            [method injectParameterWith:[self joinAudienceDataManager]];
+        }];
+    }];
+}
+
+- (RTJoinAudienceDataManager *)joinAudienceDataManager {
+    return [TyphoonDefinition withClass:[RTJoinAudienceDataManager class] configuration:^(TyphoonDefinition *definition) {
+        [definition injectMethod:@selector(initWithClient:) parameters:^(TyphoonMethod *method) {
+            [method injectParameterWith:[self.clientAssembly reelTimeClient]];
+        }];
+    }];
+}
+
+#pragma mark - Leave Audience
+
+- (RTLeaveAudiencePresenter *)leaveAudiencePresenterForUsername:(NSString *)username {
+    return [TyphoonDefinition withClass:[RTLeaveAudiencePresenter class] configuration:^(TyphoonDefinition *definition) {
+        [definition injectMethod:@selector(initWithView:interactor:) parameters:^(TyphoonMethod *method) {
+            [method injectParameterWith:[self userProfileViewControllerForUsername:username]];
+            [method injectParameterWith:[self leaveAudienceInteractorForUsername:username]];
+        }];
+    }];
+}
+
+- (RTLeaveAudienceInteractor *)leaveAudienceInteractorForUsername:(NSString *)username {
+    return [TyphoonDefinition withClass:[RTLeaveAudienceInteractor class] configuration:^(TyphoonDefinition *definition) {
+        [definition injectMethod:@selector(initWithDelegate:dataManager:) parameters:^(TyphoonMethod *method) {
+            [method injectParameterWith:[self leaveAudiencePresenterForUsername:username]];
+            [method injectParameterWith:[self leaveAudienceDataManager]];
+        }];
+    }];
+}
+
+- (RTLeaveAudienceDataManager *)leaveAudienceDataManager {
+    return [TyphoonDefinition withClass:[RTLeaveAudienceDataManager class] configuration:^(TyphoonDefinition *definition) {
+        [definition injectMethod:@selector(initWithClient:) parameters:^(TyphoonMethod *method) {
+            [method injectParameterWith:[self.clientAssembly reelTimeClient]];
+        }];
+    }];
+}
+
 
 @end

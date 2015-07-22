@@ -34,6 +34,14 @@
 
 @protocol RTVideoWireframe;
 
+@class RTJoinAudiencePresenter;
+@class RTJoinAudienceInteractor;
+@class RTJoinAudienceDataManager;
+
+@class RTLeaveAudiencePresenter;
+@class RTLeaveAudienceInteractor;
+@class RTLeaveAudienceDataManager;
+
 @interface RTUserProfileAssembly : TyphoonAssembly <RTUserProfileViewControllerFactory, RTBrowseReelVideosPresenterFactory>
 
 @property (nonatomic, strong, readonly) RTClientAssembly *clientAssembly;
@@ -44,17 +52,23 @@
 @property (nonatomic, strong, readonly) RTBrowseAudienceMembersAssembly *browseAudienceMembersAssembly;
 @property (nonatomic, strong, readonly) RTApplicationAssembly *applicationAssembly;
 
+#pragma mark - User Profile
+
 - (RTUserProfileWireframe *)userProfileWireframe;
 
 - (RTUserProfileViewController *)userProfileViewControllerForUsername:(NSString *)username;
 
 - (RTUserProfilePresenter *)userProfilePresenter;
 
+#pragma mark - User Summary
+
 - (RTUserSummaryPresenter *)userSummaryPresenterForUsername:(NSString *)username;
 
 - (RTUserSummaryInteractor *)userSummaryInteractorForUsername:(NSString *)username;
 
 - (RTUserSummaryDataManager *)userSummaryDataManagerForUsername:(NSString *)username;
+
+#pragma mark - Browse User Reels
 
 - (RTBrowseReelsPresenter *)browseUserReelsPresenterForUsername:(NSString *)username;
 
@@ -65,6 +79,8 @@
 - (id<RTBrowseReelsDataManagerDelegate>)browseUserReelsDataManagerDelegateForUsername:(NSString *)username;
 
 - (id<RTReelWireframe>)browseUserReelsWireframe;
+
+#pragma mark - Browse Reel Videos
 
 - (RTBrowseVideosPresenter *)browseReelVideosPresenterForReelId:(NSNumber *)reelId
                                                        username:(NSString *)username
@@ -82,5 +98,21 @@
                                                           wireframe:(id<RTVideoWireframe>)wireframe;
 
 - (id<RTBrowseVideosDataManagerDelegate>)browseReelVideosDataManagerDelegateForReelId:(NSNumber *)reelId;
+
+#pragma mark - Join Audience
+
+- (RTJoinAudiencePresenter *)joinAudiencePresenterForUsername:(NSString *)username;
+
+- (RTJoinAudienceInteractor *)joinAudienceInteractorForUsername:(NSString *)username;
+
+- (RTJoinAudienceDataManager *)joinAudienceDataManager;
+
+#pragma mark - Leave Audience
+
+- (RTLeaveAudiencePresenter *)leaveAudiencePresenterForUsername:(NSString *)username;
+
+- (RTLeaveAudienceInteractor *)leaveAudienceInteractorForUsername:(NSString *)username;
+
+- (RTLeaveAudienceDataManager *)leaveAudienceDataManager;
 
 @end
