@@ -5,8 +5,13 @@
 
 #import "RTUserProfilePresenter.h"
 #import "RTUserSummaryPresenter.h"
+
 #import "RTBrowseReelsPresenter.h"
 #import "RTBrowseVideosPresenter.h"
+
+#import "RTJoinAudiencePresenter.h"
+#import "RTLeaveAudiencePresenter.h"
+
 #import "RTBrowseReelVideosPresenterFactory.h"
 #import "RTVideoWireframe.h"
 #import "RTThumbnailSupport.h"
@@ -14,7 +19,6 @@
 
 #import "RTUserReelHeaderView.h"
 #import "RTUserReelFooterView.h"
-
 #import "RTUserDescription.h"
 #import "RTReelDescription.h"
 #import "RTUserReelCell.h"
@@ -43,6 +47,9 @@ describe(@"user profile view controller", ^{
     __block RTUserSummaryPresenter *userSummaryPresenter;
     __block RTBrowseReelsPresenter *reelsPresenter;
     
+    __block RTJoinAudiencePresenter *joinAudiencePresenter;
+    __block RTLeaveAudiencePresenter *leaveAudiencePresenter;
+    
     __block id<RTBrowseReelVideosPresenterFactory> reelVideosPresenterFactory;
     __block id<RTVideoWireframe> reelVideosWireframe;
     
@@ -65,7 +72,10 @@ describe(@"user profile view controller", ^{
         userProfilePresenter = mock([RTUserProfilePresenter class]);
         userSummaryPresenter = mock([RTUserSummaryPresenter class]);
         reelsPresenter = mock([RTBrowseReelsPresenter class]);
-        
+
+        joinAudiencePresenter = mock([RTJoinAudiencePresenter class]);
+        leaveAudiencePresenter = mock([RTLeaveAudiencePresenter class]);
+ 
         reelVideosPresenterFactory = mockProtocol(@protocol(RTBrowseReelVideosPresenterFactory));
         reelVideosWireframe = mockProtocol(@protocol(RTVideoWireframe));
         
@@ -76,6 +86,8 @@ describe(@"user profile view controller", ^{
                                                        withUserProfilePresenter:userProfilePresenter
                                                            userSummaryPresenter:userSummaryPresenter
                                                                  reelsPresenter:reelsPresenter
+                                                          joinAudiencePresenter:joinAudiencePresenter
+                                                         leaveAudiencePresenter:leaveAudiencePresenter
                                                      reelVideosPresenterFactory:reelVideosPresenterFactory
                                                             reelVideosWireframe:reelVideosWireframe
                                                                thumbnailSupport:thumbnailSupport
@@ -154,12 +166,6 @@ describe(@"user profile view controller", ^{
         it(@"should request settings", ^{
             [viewController pressedSettingsButton];
             [verify(userProfilePresenter) requestedAccountSettings];
-        });
-    });
-    
-    describe(@"pressing follow reel button", ^{
-        it(@"should request reel is followed", ^{
-            // TODO!
         });
     });
     
@@ -408,6 +414,22 @@ describe(@"user profile view controller", ^{
                         
                         [viewController tableView:tableView viewForFooterInSection:0];
                         expect(footerView.listAudienceButton.titleLabel.text).to.equal(@"2 Followers");
+                    });
+                });
+                
+                describe(@"pressing follow reel button", ^{
+                    it(@"should request currently unfollowed reel is followed", ^{
+                        description.currentUserIsAnAudienceMember = @(NO);
+
+                        [viewController footerView:footerView didPressFollowReelButton:followReelButton forReelId:@(reelId)];
+                        [verify(joinAudiencePresenter) requestedAudienceMembershipForReelId:@(reelId)];
+                    });
+                    
+                    it(@"should request currently followed reel is followed", ^{
+                        description.currentUserIsAnAudienceMember = @(YES);
+                        
+                        [viewController footerView:footerView didPressFollowReelButton:followReelButton forReelId:@(reelId)];
+                        [verify(leaveAudiencePresenter) requestedAudienceMembershipLeaveForReelId:@(reelId)];
                     });
                 });
                 

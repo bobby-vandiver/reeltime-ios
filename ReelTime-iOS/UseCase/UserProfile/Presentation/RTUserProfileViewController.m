@@ -4,6 +4,9 @@
 #import "RTUserSummaryPresenter.h"
 #import "RTBrowseReelsPresenter.h"
 
+#import "RTJoinAudiencePresenter.h"
+#import "RTLeaveAudiencePresenter.h"
+
 #import "RTBrowseReelVideosPresenterFactory.h"
 
 #import "RTThumbnailSupport.h"
@@ -46,6 +49,9 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
 @property id<RTBrowseReelVideosPresenterFactory> reelVideosPresenterFactory;
 @property id<RTVideoWireframe> reelVideosWireframe;
 
+@property RTJoinAudiencePresenter *joinAudiencePresenter;
+@property RTLeaveAudiencePresenter *leaveAudiencePresenter;
+
 @property RTThumbnailSupport *thumbnailSupport;
 @property RTCurrentUserService *currentUserService;
 
@@ -57,6 +63,8 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
                  withUserProfilePresenter:(RTUserProfilePresenter *)userProfilePresenter
                      userSummaryPresenter:(RTUserSummaryPresenter *)userSummaryPresenter
                            reelsPresenter:(RTBrowseReelsPresenter *)reelsPresenter
+                    joinAudiencePresenter:(RTJoinAudiencePresenter *)joinAudiencePresenter
+                   leaveAudiencePresenter:(RTLeaveAudiencePresenter *)leaveAudiencePresenter
                reelVideosPresenterFactory:(id<RTBrowseReelVideosPresenterFactory>)reelVideosPresenterFactory
                       reelVideosWireframe:(id<RTVideoWireframe>)reelVideosWireframe
                          thumbnailSupport:(RTThumbnailSupport *)thumbnailSupport
@@ -70,6 +78,8 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
         controller.userProfilePresenter = userProfilePresenter;
         controller.userSummaryPresenter = userSummaryPresenter;
         controller.reelsPresenter = reelsPresenter;
+        controller.joinAudiencePresenter = joinAudiencePresenter;
+        controller.leaveAudiencePresenter = leaveAudiencePresenter;
         controller.reelVideosPresenterFactory = reelVideosPresenterFactory;
         controller.reelVideosWireframe = reelVideosWireframe;
         controller.thumbnailSupport = thumbnailSupport;
@@ -222,7 +232,14 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
 #pragma mark - RTUserReelFooterViewDelegate Methods
 
 - (void)footerView:(RTUserReelFooterView *)footerView didPressFollowReelButton:(UIButton *)button forReelId:(NSNumber *)reelId {
-    DDLogDebug(@"pressed follow reel button");
+    RTReelDescription *description = [self reelDescriptionForReelId:reelId];
+    
+    if ([description.currentUserIsAnAudienceMember boolValue]) {
+        [self.leaveAudiencePresenter requestedAudienceMembershipLeaveForReelId:reelId];
+    }
+    else {
+        [self.joinAudiencePresenter requestedAudienceMembershipForReelId:reelId];
+    }
 }
 
 - (void)footerView:(RTUserReelFooterView *)footerView didPressListAudienceButton:(UIButton *)button forReelId:(NSNumber *)reelId {

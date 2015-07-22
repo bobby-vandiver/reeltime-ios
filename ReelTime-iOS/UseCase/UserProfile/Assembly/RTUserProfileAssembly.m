@@ -49,12 +49,17 @@
 
 - (RTUserProfileViewController *)userProfileViewControllerForUsername:(NSString *)username {
     return [TyphoonDefinition withClass:[RTUserProfileViewController class] configuration:^(TyphoonDefinition *definition) {
-        [definition useInitializer:@selector(viewControllerForUsername:withUserProfilePresenter:userSummaryPresenter:reelsPresenter:reelVideosPresenterFactory:reelVideosWireframe:thumbnailSupport:currentUserService:)
+        [definition useInitializer:@selector(viewControllerForUsername:withUserProfilePresenter:userSummaryPresenter:reelsPresenter:joinAudiencePresenter:leaveAudiencePresenter:reelVideosPresenterFactory:reelVideosWireframe:thumbnailSupport:currentUserService:)
                         parameters:^(TyphoonMethod *initializer) {
                             [initializer injectParameterWith:username];
                             [initializer injectParameterWith:[self userProfilePresenter]];
                             [initializer injectParameterWith:[self userSummaryPresenterForUsername:username]];
                             [initializer injectParameterWith:[self browseUserReelsPresenterForUsername:username]];
+                            
+                            // TODO: Inject audience presenters
+                            [initializer injectParameterWith:nil];
+                            [initializer injectParameterWith:nil];
+                            
                             [initializer injectParameterWith:self];
                             [initializer injectParameterWith:[self userProfileWireframe]];
                             [initializer injectParameterWith:[self.deviceAssembly thumbnailSupport]];
