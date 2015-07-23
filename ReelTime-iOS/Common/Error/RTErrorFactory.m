@@ -75,6 +75,10 @@
     return [self errorWithDomain:RTRevokeClientErrorDomain code:code];
 }
 
++ (NSError *)unfollowUserErrorWithCode:(RTUnfollowUserError)code {
+    return [self errorWithDomain:RTUnfollowUserErrorDomain code:code];
+}
+
 + (NSError *)userSummaryErrorWithCode:(RTUserSummaryError)code {
     return [self errorWithDomain:RTUserSummaryErrorDomain code:code];
 }

@@ -14,6 +14,7 @@
 #import "RTPagedListError.h"
 #import "RTResetPasswordError.h"
 #import "RTRevokeClientError.h"
+#import "RTUnfollowUserError.h"
 #import "RTUserSummaryError.h"
 
 @interface RTErrorFactory : NSObject
@@ -55,6 +56,8 @@
 + (NSError *)resetPasswordErrorWithCode:(RTResetPasswordError)code;
 
 + (NSError *)revokeClientErrorWithCode:(RTRevokeClientError)code;
+
++ (NSError *)unfollowUserErrorWithCode:(RTUnfollowUserError)code;
 
 + (NSError *)userSummaryErrorWithCode:(RTUserSummaryError)code;
 
