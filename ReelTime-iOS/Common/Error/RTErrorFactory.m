@@ -28,6 +28,10 @@
     return [self errorWithDomain:RTDeviceRegistrationErrorDomain code:code originalError:error];
 }
 
++ (NSError *)followUserErrorWithCode:(RTFollowUserError)code {
+    return [self errorWithDomain:RTFollowUserErrorDomain code:code];
+}
+
 + (NSError *)joinAudienceErrorWithCode:(RTJoinAudienceError)code {
     return [self errorWithDomain:RTJoinAudienceErrorDomain code:code];
 }

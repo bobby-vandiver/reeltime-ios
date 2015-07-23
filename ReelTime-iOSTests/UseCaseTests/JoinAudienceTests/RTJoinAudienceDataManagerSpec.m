@@ -53,7 +53,7 @@ describe(@"join audience data manager", ^{
             });
         });
 
-        context(@"failied to join", ^{
+        context(@"failed to join", ^{
             it(@"reel not found", ^{
                 RTServerErrors *serverErrors = [[RTServerErrors alloc] init];
                 serverErrors.errors = @[@"Requested reel was not found"];

@@ -304,6 +304,8 @@
 		717D849A1AFF8AC40043797C /* RTDeviceRegistrationViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 717D84991AFF8AC40043797C /* RTDeviceRegistrationViewControllerSpec.m */; };
 		717D926D1A5B722300EAB6BF /* NSError+RTError.m in Sources */ = {isa = PBXBuildFile; fileRef = 717D926C1A5B722300EAB6BF /* NSError+RTError.m */; };
 		717D92761A5B925700EAB6BF /* RTCurrentUserStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 717D92751A5B925700EAB6BF /* RTCurrentUserStore.m */; };
+		71828ED41B6162EE00CA47CA /* RTFollowUserDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 71828ED31B6162EE00CA47CA /* RTFollowUserDataManager.m */; };
+		71828ED71B61638800CA47CA /* RTFollowUserDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71828ED61B61638800CA47CA /* RTFollowUserDataManagerSpec.m */; };
 		71868CA81B470D7600CF0B3B /* RTUserReelHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 71868CA71B470D7600CF0B3B /* RTUserReelHeaderView.m */; };
 		71868CAB1B470DD400CF0B3B /* RTUserReelFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 71868CAA1B470DD400CF0B3B /* RTUserReelFooterView.m */; };
 		71868CAF1B47155B00CF0B3B /* RTUserReelHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 71868CAE1B47155B00CF0B3B /* RTUserReelHeaderView.xib */; };
@@ -921,6 +923,10 @@
 		717D926C1A5B722300EAB6BF /* NSError+RTError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+RTError.m"; sourceTree = "<group>"; };
 		717D92741A5B925700EAB6BF /* RTCurrentUserStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTCurrentUserStore.h; path = "ReelTime-iOS/Common/Store/RTCurrentUserStore.h"; sourceTree = SOURCE_ROOT; };
 		717D92751A5B925700EAB6BF /* RTCurrentUserStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTCurrentUserStore.m; path = "ReelTime-iOS/Common/Store/RTCurrentUserStore.m"; sourceTree = SOURCE_ROOT; };
+		71828ED21B6162EE00CA47CA /* RTFollowUserDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTFollowUserDataManager.h; sourceTree = "<group>"; };
+		71828ED31B6162EE00CA47CA /* RTFollowUserDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTFollowUserDataManager.m; sourceTree = "<group>"; };
+		71828ED61B61638800CA47CA /* RTFollowUserDataManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTFollowUserDataManagerSpec.m; sourceTree = "<group>"; };
+		71828ED81B6163CB00CA47CA /* RTFollowUserError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTFollowUserError.h; sourceTree = "<group>"; };
 		71868CA61B470D7600CF0B3B /* RTUserReelHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTUserReelHeaderView.h; sourceTree = "<group>"; };
 		71868CA71B470D7600CF0B3B /* RTUserReelHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTUserReelHeaderView.m; sourceTree = "<group>"; };
 		71868CA91B470DD400CF0B3B /* RTUserReelFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTUserReelFooterView.h; sourceTree = "<group>"; };
@@ -2626,6 +2632,48 @@
 			path = ClientTests;
 			sourceTree = "<group>";
 		};
+		71828ECE1B6162A000CA47CA /* FollowUser */ = {
+			isa = PBXGroup;
+			children = (
+				71828ED01B6162BD00CA47CA /* Domain */,
+				71828ECF1B6162B300CA47CA /* Persistence */,
+				71828ED11B6162C700CA47CA /* Presentation */,
+			);
+			path = FollowUser;
+			sourceTree = "<group>";
+		};
+		71828ECF1B6162B300CA47CA /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				71828ED21B6162EE00CA47CA /* RTFollowUserDataManager.h */,
+				71828ED31B6162EE00CA47CA /* RTFollowUserDataManager.m */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		71828ED01B6162BD00CA47CA /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				71828ED81B6163CB00CA47CA /* RTFollowUserError.h */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		71828ED11B6162C700CA47CA /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		71828ED51B61636D00CA47CA /* FollowUserTests */ = {
+			isa = PBXGroup;
+			children = (
+				71828ED61B61638800CA47CA /* RTFollowUserDataManagerSpec.m */,
+			);
+			path = FollowUserTests;
+			sourceTree = "<group>";
+		};
 		718A0BD31A4DA87900137C49 = {
 			isa = PBXGroup;
 			children = (
@@ -3123,6 +3171,7 @@
 				714DDE501B0C0C6F00D96F74 /* ChangePassword */,
 				7133EC531B17CC8300BC1CAE /* ConfirmAccount */,
 				714842FD1AEC1011001B885A /* DeviceRegistration */,
+				71828ECE1B6162A000CA47CA /* FollowUser */,
 				71C7D0CD1B5C2E6800BDDA4F /* JoinAudience */,
 				71C7D0E71B5C473700BDDA4F /* LeaveAudience */,
 				71D9478B1A4FC70B00401963 /* Login */,
@@ -3165,6 +3214,7 @@
 				714DDE641B0C0EF000D96F74 /* ChangePasswordTests */,
 				7133EC601B17D00B00BC1CAE /* ConfirmAccountTests */,
 				714843071AEC129F001B885A /* DeviceRegistrationTests */,
+				71828ED51B61636D00CA47CA /* FollowUserTests */,
 				71C7D0D21B5C2ED600BDDA4F /* JoinAudienceTests */,
 				71C7D0EF1B5C482B00BDDA4F /* LeaveAudienceTests */,
 				71D947961A4FCB2900401963 /* LoginTests */,
@@ -3633,6 +3683,7 @@
 				71921F2D1B2B66590088D080 /* RTManageDevicesWireframe.m in Sources */,
 				712441671B2DE75E00752901 /* RTConfirmAccountWireframe.m in Sources */,
 				713A239F1AB4FF4C0098CE48 /* RTMutableArrayDataSource.m in Sources */,
+				71828ED41B6162EE00CA47CA /* RTFollowUserDataManager.m in Sources */,
 				71BF08481B56050300B61504 /* RTLogoutAssembly.m in Sources */,
 				71B238481B042F06002DE5DA /* RTCurrentUserService.m in Sources */,
 			);
@@ -3768,6 +3819,7 @@
 				71194C1D1A81AEFC00904A06 /* EXPMatchers+beUser.m in Sources */,
 				71921F2F1B2B66DD0088D080 /* RTManageDevicesWireframeSpec.m in Sources */,
 				712BE2FC1A75D74300478277 /* RTClientCredentialsStoreSpec.m in Sources */,
+				71828ED71B61638800CA47CA /* RTFollowUserDataManagerSpec.m in Sources */,
 				71386E551AD3531E009D064C /* RTBrowseReelVideosDataManagerDelegateSpec.m in Sources */,
 				7134C62F1A95322E0048CFCF /* RTLoginViewControllerSpec.m in Sources */,
 			);
