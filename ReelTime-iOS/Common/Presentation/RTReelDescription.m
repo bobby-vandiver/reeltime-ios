@@ -50,10 +50,12 @@ currentUserIsAnAudienceMember:(NSNumber *)currentUserIsAnAudienceMember
 
 - (void)currentUserJoinedAudience {
     self.currentUserIsAnAudienceMember = @(YES);
+    self.audienceSize = [NSNumber numberWithInteger:[self.audienceSize integerValue] + 1];
 }
 
 - (void)currentUserLeftAudience {
     self.currentUserIsAnAudienceMember = @(NO);
+    self.audienceSize = [NSNumber numberWithInteger:[self.audienceSize integerValue] - 1];
 }
 
 @end

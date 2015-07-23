@@ -434,21 +434,45 @@ describe(@"user profile view controller", ^{
                 });
                 
                 describe(@"join audience view", ^{
-                    it(@"should update reel description to indicate audience membership and reload table", ^{
+                    beforeEach(^{
                         description.currentUserIsAnAudienceMember = @(NO);
+                        description.audienceSize = @(0);
+
                         [viewController showAudienceAsJoinedForReelId:@(reelId)];
-                        
+                    });
+
+                    it(@"should update reel description to indicate audience membership", ^{
                         expect(description.currentUserIsAnAudienceMember).to.beTruthy();
+                    });
+                    
+                    it(@"should update reel description to indicate incremented audience size", ^{
+                        expect(description.audienceSize).to.equal(@(1));
+                    });
+                    
+                    it(@"should reload table", ^{
                         [verify(tableView) reloadData];
                     });
                 });
                 
                 describe(@"leave audience view", ^{
-                    description .currentUserIsAnAudienceMember = @(YES);
-                    [viewController showAudienceAsNotJoinedForReelId:@(reelId)];
+                    beforeEach(^{
+                        description.currentUserIsAnAudienceMember = @(YES);
+                        description.audienceSize = @(1);
+                        
+                        [viewController showAudienceAsNotJoinedForReelId:@(reelId)];
+                    });
                     
-                    expect(description.currentUserIsAnAudienceMember).to.beFalsy();
-                    [verify(tableView) reloadData];
+                    it(@"should update reel description to indicate lack of audience membership", ^{
+                        expect(description.currentUserIsAnAudienceMember).to.beFalsy();
+                    });
+                    
+                    it(@"should update reel description to indicate decremented audience size", ^{
+                        expect(description.audienceSize).to.equal(@(0));
+                    });
+                    
+                    it(@"should reload table", ^{
+                        [verify(tableView) reloadData];
+                    });
                 });
             });
         });
