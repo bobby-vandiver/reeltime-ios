@@ -232,12 +232,12 @@ describe(@"user profile view controller", ^{
         __block RTReelDescription *description;
         
         beforeEach(^{
-            description = [RTReelDescription reelDescriptionWithName:@"buzz"
+            description = [RTReelDescription reelDescriptionWithName:@"bazz"
                                                            forReelId:@(reelId)
                                                         audienceSize:@(1)
                                                       numberOfVideos:@(2)
                                        currentUserIsAnAudienceMember:@(YES)
-                                                       ownerUsername:username];
+                                                       ownerUsername:@"buzz"];
             
             expect(viewController.reelsDataSource.items).to.haveCountOf(0);
         });
@@ -330,7 +330,7 @@ describe(@"user profile view controller", ^{
                 
                 it(@"should set the reel name label based on description", ^{
                     [viewController tableView:tableView viewForHeaderInSection:0];
-                    expect(headerView.reelNameLabel.text).to.equal(@"buzz");
+                    expect(headerView.reelNameLabel.text).to.equal(@"bazz");
                 });
                 
                 it(@"zero videos", ^{
@@ -414,6 +414,28 @@ describe(@"user profile view controller", ^{
                         
                         [viewController tableView:tableView viewForFooterInSection:0];
                         expect(footerView.listAudienceButton.titleLabel.text).to.equal(@"2 Followers");
+                    });
+                    
+                    context(@"profile is for currently logged in user", ^{
+                        beforeEach(^{
+                            [given([currentUserService currentUsername]) willReturn:@"buzz"];
+                            [viewController tableView:tableView viewForFooterInSection:0];
+                        });
+                        
+                        it(@"should not display follow button", ^{
+                            expect(footerView.followReelButton.hidden).to.beTruthy();
+                        });
+                    });
+                    
+                    context(@"profile is not for currently logged in user", ^{
+                        beforeEach(^{
+                            [given([currentUserService currentUsername]) willReturn:@"notBuzz"];
+                            [viewController tableView:tableView viewForFooterInSection:0];
+                        });
+
+                        it(@"should display follow button", ^{
+                            expect(footerView.followReelButton.hidden).to.beFalsy();
+                        });
                     });
                 });
                 

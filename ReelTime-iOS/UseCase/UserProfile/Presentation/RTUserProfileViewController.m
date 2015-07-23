@@ -137,6 +137,11 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
     return self.reelsPresenter;
 }
 
+- (BOOL)currentUserHasUsername:(NSString *)username {
+    NSString *currentUsername = [self.currentUserService currentUsername];
+    return [currentUsername isEqual:username];
+}
+
 - (IBAction)pressedSettingsButton {
     [self.userProfilePresenter requestedAccountSettings];
 }
@@ -155,9 +160,7 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
 }
 
 - (void)setSettingsButtonVisibilityForUsername:(NSString *)username {
-    NSString *currentUsername = [self.currentUserService currentUsername];
-
-    BOOL profileIsForCurrentUser = [currentUsername isEqual:username];
+    BOOL profileIsForCurrentUser = [self currentUserHasUsername:username];
     self.settingsButton.hidden = !profileIsForCurrentUser;
 }
 
@@ -209,6 +212,9 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
 
     [footer.followReelButton setTitle:followReelTitle forState:UIControlStateNormal];
     [footer.listAudienceButton setTitle:listAudienceTitle forState:UIControlStateNormal];
+    
+    BOOL profileIsForCurrentUser = [self currentUserHasUsername:description.ownerUsername];
+    footer.followReelButton.hidden = profileIsForCurrentUser;
     
     return footer;
 }
