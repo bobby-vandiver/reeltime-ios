@@ -24,16 +24,31 @@
 }
 
 - (void)requestedUserUnfollowingForUsername:(NSString *)username {
-    
+    [self.interactor unfollowUserWithUsername:username];
 }
 
 - (void)unfollowUserSucceededForUsername:(NSString *)username {
-    
+    [self.view showUserAsUnfollowedForUsername:username];
 }
 
 - (void)unfollowUserFailedForUsername:(NSString *)username
                             withError:(NSError *)error {
-    
+
+    NSString *const unknownErrorMessage = @"Unknown error occurred while following user. Please try again.";
+
+    if ([error.domain isEqual:RTUnfollowUserErrorDomain]) {
+        NSInteger code = error.code;
+        
+        if (code == RTUnfollowUserErrorUserNotFound) {
+            [self.view showErrorMessage:@"Cannot unfollow an unknown user!"];
+        }
+        else if (code == RTUnfollowUserErrorUnknownError) {
+            [self.view showErrorMessage:unknownErrorMessage];
+        }
+    }
+    else {
+        [self.view showErrorMessage:unknownErrorMessage];
+    }
 }
 
 @end
