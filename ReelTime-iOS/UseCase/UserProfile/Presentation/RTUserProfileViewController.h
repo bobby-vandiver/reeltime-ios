@@ -34,7 +34,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *reelsCreatedLabel;
 @property (weak, nonatomic) IBOutlet UILabel *reelsFollowingLabel;
 
-@property (weak, nonatomic) IBOutlet UIButton *settingsButton;
+@property (weak, nonatomic) IBOutlet UIButton *settingsOrFollowUserButton;
 @property (weak, nonatomic) IBOutlet UITableView *reelsListTableView;
 
 + (instancetype)viewControllerForUsername:(NSString *)username
@@ -48,6 +48,6 @@
                          thumbnailSupport:(RTThumbnailSupport *)thumbnailSupport
                        currentUserService:(RTCurrentUserService *)currentUserService;
 
-- (IBAction)pressedSettingsButton;
+- (IBAction)pressedSettingsOrFollowUserButton;
 
 @end

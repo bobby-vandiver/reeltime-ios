@@ -142,7 +142,7 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
     return [currentUsername isEqual:username];
 }
 
-- (IBAction)pressedSettingsButton {
+- (IBAction)pressedSettingsOrFollowUserButton {
     [self.userProfilePresenter requestedAccountSettings];
 }
 
@@ -161,7 +161,7 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
 
 - (void)setSettingsButtonVisibilityForUsername:(NSString *)username {
     BOOL profileIsForCurrentUser = [self currentUserHasUsername:username];
-    self.settingsButton.hidden = !profileIsForCurrentUser;
+    self.settingsOrFollowUserButton.hidden = !profileIsForCurrentUser;
 }
 
 - (void)showUserNotFoundMessage:(NSString *)message {

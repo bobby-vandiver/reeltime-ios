@@ -65,7 +65,7 @@ describe(@"user profile view controller", ^{
     __block UILabel *reelsCreatedLabel;
     __block UILabel *reelsFollowingLabel;
  
-    __block UIButton *settingsButton;
+    __block UIButton *settingsOrFollowUserButton;
     __block UITableView *tableView;
     
     beforeEach(^{
@@ -102,9 +102,7 @@ describe(@"user profile view controller", ^{
         reelsCreatedLabel = [[UILabel alloc] init];
         reelsFollowingLabel = [[UILabel alloc] init];
 
-        settingsButton = [[UIButton alloc] init];
-        settingsButton.hidden = YES;
-
+        settingsOrFollowUserButton = [[UIButton alloc] init];
         tableView = mock([UITableView class]);
         
         viewController.usernameLabel = usernameLabel;
@@ -116,7 +114,7 @@ describe(@"user profile view controller", ^{
         viewController.reelsCreatedLabel = reelsCreatedLabel;
         viewController.reelsFollowingLabel = reelsFollowingLabel;
         
-        viewController.settingsButton = settingsButton;
+        viewController.settingsOrFollowUserButton = settingsOrFollowUserButton;
         viewController.reelsListTableView = tableView;
     });
     
@@ -159,13 +157,6 @@ describe(@"user profile view controller", ^{
             
             CGFloat height = [viewController tableView:tableView heightForRowAtIndexPath:0];
             expect(height).to.equal(400);
-        });
-    });
-    
-    describe(@"pressing settings button", ^{
-        it(@"should request settings", ^{
-            [viewController pressedSettingsButton];
-            [verify(userProfilePresenter) requestedAccountSettings];
         });
     });
     
@@ -212,18 +203,54 @@ describe(@"user profile view controller", ^{
             });
             
             it(@"should display settings button", ^{
-                expect(viewController.settingsButton.hidden).to.beFalsy();
+                expect(viewController.settingsOrFollowUserButton.titleLabel.text).to.equal(@"Settings");
+            });
+            
+            describe(@"pressing settings button", ^{
+                it(@"should request settings", ^{
+                    [viewController pressedSettingsOrFollowUserButton];
+                    [verify(userProfilePresenter) requestedAccountSettings];
+                });
             });
         });
         
         context(@"profile is not for currently logged in user", ^{
             beforeEach(^{
                 [given([currentUserService currentUsername]) willReturn:@"notFoo"];
-                [viewController showUserDescription:description];
             });
-        
-            it(@"should display settings button", ^{
-                expect(viewController.settingsButton.hidden).to.beTruthy();
+            
+            context(@"current user is following", ^{
+                beforeEach(^{
+                    // TODO: set description following
+                    [viewController showUserDescription:description];
+                });
+                
+                it(@"should display unfollow button", ^{
+                    expect(viewController.settingsOrFollowUserButton.titleLabel.text).to.equal(@"Unfollow");
+                });
+                
+                describe(@"pressing unfollow button", ^{
+                    it(@"should request unfollowing", ^{
+                        // TODO!
+                    });
+                });
+            });
+            
+            context(@"current user is not following", ^{
+                beforeEach(^{
+                    // TODO: set description not following
+                    [viewController showUserDescription:description];
+                });
+                
+                it(@"should display follow button", ^{
+                    expect(viewController.settingsOrFollowUserButton.titleLabel.text).to.equal(@"Follow");
+                });
+                
+                describe(@"pressing follow button", ^{
+                    it(@"should request following", ^{
+                        // TODO!
+                    });
+                });
             });
         });
     });
