@@ -34,6 +34,14 @@
 
 @protocol RTVideoWireframe;
 
+@class RTFollowUserPresenter;
+@class RTFollowUserInteractor;
+@class RTFollowUserDataManager;
+
+@class RTUnfollowUserPresenter;
+@class RTUnfollowUserInteractor;
+@class RTUnfollowUserDataManager;
+
 @class RTJoinAudiencePresenter;
 @class RTJoinAudienceInteractor;
 @class RTJoinAudienceDataManager;
@@ -98,6 +106,22 @@
                                                           wireframe:(id<RTVideoWireframe>)wireframe;
 
 - (id<RTBrowseVideosDataManagerDelegate>)browseReelVideosDataManagerDelegateForReelId:(NSNumber *)reelId;
+
+#pragma mark - Follow User
+
+- (RTFollowUserPresenter *)followUserPresenterForUsername:(NSString *)username;
+
+- (RTFollowUserInteractor *)followUserInteractorForUsername:(NSString *)username;
+
+- (RTFollowUserDataManager *)followUserDataManager;
+
+#pragma mark - Unfollow User
+
+- (RTUnfollowUserPresenter *)unfollowUserPresenterForUsername:(NSString *)username;
+
+- (RTUnfollowUserInteractor *)unfollowUserInteractorForUsername:(NSString *)username;
+
+- (RTUnfollowUserDataManager *)unfollowUserDataManager;
 
 #pragma mark - Join Audience
 

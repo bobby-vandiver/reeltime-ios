@@ -4,6 +4,9 @@
 #import "RTUserSummaryPresenter.h"
 #import "RTBrowseReelsPresenter.h"
 
+#import "RTFollowUserPresenter.h"
+#import "RTUnfollowUserPresenter.h"
+
 #import "RTJoinAudiencePresenter.h"
 #import "RTLeaveAudiencePresenter.h"
 
@@ -49,6 +52,9 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
 @property id<RTBrowseReelVideosPresenterFactory> reelVideosPresenterFactory;
 @property id<RTVideoWireframe> reelVideosWireframe;
 
+@property RTFollowUserPresenter *followUserPresenter;
+@property RTUnfollowUserPresenter *unfollowUserPresenter;
+
 @property RTJoinAudiencePresenter *joinAudiencePresenter;
 @property RTLeaveAudiencePresenter *leaveAudiencePresenter;
 
@@ -63,6 +69,8 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
                  withUserProfilePresenter:(RTUserProfilePresenter *)userProfilePresenter
                      userSummaryPresenter:(RTUserSummaryPresenter *)userSummaryPresenter
                            reelsPresenter:(RTBrowseReelsPresenter *)reelsPresenter
+                      followUserPresenter:(RTFollowUserPresenter *)followUserPresenter
+                    unfollowUserPresenter:(RTUnfollowUserPresenter *)unfollowUserPresenter
                     joinAudiencePresenter:(RTJoinAudiencePresenter *)joinAudiencePresenter
                    leaveAudiencePresenter:(RTLeaveAudiencePresenter *)leaveAudiencePresenter
                reelVideosPresenterFactory:(id<RTBrowseReelVideosPresenterFactory>)reelVideosPresenterFactory
@@ -78,6 +86,8 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
         controller.userProfilePresenter = userProfilePresenter;
         controller.userSummaryPresenter = userSummaryPresenter;
         controller.reelsPresenter = reelsPresenter;
+        controller.followUserPresenter = followUserPresenter;
+        controller.unfollowUserPresenter = unfollowUserPresenter;
         controller.joinAudiencePresenter = joinAudiencePresenter;
         controller.leaveAudiencePresenter = leaveAudiencePresenter;
         controller.reelVideosPresenterFactory = reelVideosPresenterFactory;
@@ -147,7 +157,11 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
 }
 
 - (void)showUserDescription:(RTUserDescription *)description {
-    [self setSettingsButtonVisibilityForUsername:description.username];
+    BOOL profileIsForCurrentUser = [self currentUserHasUsername:description.username];
+
+    if (profileIsForCurrentUser) {
+        self.settingsOrFollowUserButton.titleLabel.text = @"Settings";
+    }
 
     self.usernameLabel.text = [NSString stringWithFormat:@"Username: %@", description.username];
     self.displayNameLabel.text = [NSString stringWithFormat:@"Display name: %@", description.displayName];
@@ -159,13 +173,8 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
     self.reelsFollowingLabel.text = [NSString stringWithFormat:@"Reels Following: %@", description.numberOfAudienceMemberships];
 }
 
-- (void)setSettingsButtonVisibilityForUsername:(NSString *)username {
-    BOOL profileIsForCurrentUser = [self currentUserHasUsername:username];
-    self.settingsOrFollowUserButton.hidden = !profileIsForCurrentUser;
-}
-
 - (void)showUserNotFoundMessage:(NSString *)message {
-    
+    [self showErrorMessage:message];
 }
 
 - (void)showReelDescription:(RTReelDescription *)description {
@@ -261,6 +270,18 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
     [alertView show];
+}
+
+#pragma mark - RTFollowUserView Methods
+
+- (void)showUserAsFollowedForUsername:(NSString *)username {
+    
+}
+
+#pragma mark - RTUnfollowUserView Methods
+
+- (void)showUserAsUnfollowedForUsername:(NSString *)username {
+    
 }
 
 #pragma mark - RTJoinAudienceView Methods

@@ -33,6 +33,14 @@
 
 #import "RTVideoWireframe.h"
 
+#import "RTFollowUserPresenter.h"
+#import "RTFollowUserInteractor.h"
+#import "RTFollowUserDataManager.h"
+
+#import "RTUnfollowUserPresenter.h"
+#import "RTUnfollowUserInteractor.h"
+#import "RTUnfollowUserDataManager.h"
+
 #import "RTJoinAudiencePresenter.h"
 #import "RTJoinAudienceInteractor.h"
 #import "RTJoinAudienceDataManager.h"
@@ -59,12 +67,14 @@
 
 - (RTUserProfileViewController *)userProfileViewControllerForUsername:(NSString *)username {
     return [TyphoonDefinition withClass:[RTUserProfileViewController class] configuration:^(TyphoonDefinition *definition) {
-        [definition useInitializer:@selector(viewControllerForUsername:withUserProfilePresenter:userSummaryPresenter:reelsPresenter:joinAudiencePresenter:leaveAudiencePresenter:reelVideosPresenterFactory:reelVideosWireframe:thumbnailSupport:currentUserService:)
+        [definition useInitializer:@selector(viewControllerForUsername:withUserProfilePresenter:userSummaryPresenter:reelsPresenter:followUserPresenter:unfollowUserPresenter:joinAudiencePresenter:leaveAudiencePresenter:reelVideosPresenterFactory:reelVideosWireframe:thumbnailSupport:currentUserService:)
                         parameters:^(TyphoonMethod *initializer) {
                             [initializer injectParameterWith:username];
                             [initializer injectParameterWith:[self userProfilePresenter]];
                             [initializer injectParameterWith:[self userSummaryPresenterForUsername:username]];
                             [initializer injectParameterWith:[self browseUserReelsPresenterForUsername:username]];
+                            [initializer injectParameterWith:[self followUserPresenterForUsername:username]];
+                            [initializer injectParameterWith:[self unfollowUserPresenterForUsername:username]];
                             [initializer injectParameterWith:[self joinAudiencePresenterForUsername:username]];
                             [initializer injectParameterWith:[self leaveAudiencePresenterForUsername:username]];
                             [initializer injectParameterWith:self];
@@ -208,6 +218,62 @@
         [definition injectMethod:@selector(initWithReelId:)
                       parameters:^(TyphoonMethod *method) {
                           [method injectParameterWith:reelId];
+        }];
+    }];
+}
+
+#pragma mark - Follow User
+
+- (RTFollowUserPresenter *)followUserPresenterForUsername:(NSString *)username {
+    return [TyphoonDefinition withClass:[RTFollowUserPresenter class] configuration:^(TyphoonDefinition *definition) {
+        [definition injectMethod:@selector(initWithView:interactor:) parameters:^(TyphoonMethod *method) {
+            [method injectParameterWith:[self userProfileViewControllerForUsername:username]];
+            [method injectParameterWith:[self followUserInteractorForUsername:username]];
+        }];
+    }];
+}
+
+- (RTFollowUserInteractor *)followUserInteractorForUsername:(NSString *)username {
+    return [TyphoonDefinition withClass:[RTFollowUserInteractor class] configuration:^(TyphoonDefinition *definition) {
+        [definition injectMethod:@selector(initWithDelegate:dataManager:) parameters:^(TyphoonMethod *method) {
+            [method injectParameterWith:[self followUserPresenterForUsername:username]];
+            [method injectParameterWith:[self followUserDataManager]];
+        }];
+    }];
+}
+
+- (RTFollowUserDataManager *)followUserDataManager {
+    return [TyphoonDefinition withClass:[RTFollowUserDataManager class] configuration:^(TyphoonDefinition *definition) {
+        [definition injectMethod:@selector(initWithClient:) parameters:^(TyphoonMethod *method) {
+            [method injectParameterWith:[self.clientAssembly reelTimeClient]];
+        }];
+    }];
+}
+
+#pragma mark - Unfollow User
+
+- (RTUnfollowUserPresenter *)unfollowUserPresenterForUsername:(NSString *)username {
+    return [TyphoonDefinition withClass:[RTUnfollowUserPresenter class] configuration:^(TyphoonDefinition *definition) {
+        [definition injectMethod:@selector(initWithView:interactor:) parameters:^(TyphoonMethod *method) {
+            [method injectParameterWith:[self userProfileViewControllerForUsername:username]];
+            [method injectParameterWith:[self unfollowUserInteractorForUsername:username]];
+        }];
+    }];
+}
+
+- (RTUnfollowUserInteractor *)unfollowUserInteractorForUsername:(NSString *)username {
+    return [TyphoonDefinition withClass:[RTUnfollowUserInteractor class] configuration:^(TyphoonDefinition *definition) {
+        [definition injectMethod:@selector(initWithDelegate:dataManager:) parameters:^(TyphoonMethod *method) {
+            [method injectParameterWith:[self unfollowUserPresenterForUsername:username]];
+            [method injectParameterWith:[self unfollowUserDataManager]];
+        }];
+    }];
+}
+
+- (RTUnfollowUserDataManager *)unfollowUserDataManager {
+    return [TyphoonDefinition withClass:[RTUnfollowUserDataManager class] configuration:^(TyphoonDefinition *definition) {
+        [definition injectMethod:@selector(initWithClient:) parameters:^(TyphoonMethod *method) {
+            [method injectParameterWith:[self.clientAssembly reelTimeClient]];
         }];
     }];
 }

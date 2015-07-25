@@ -4,6 +4,9 @@
 #import "RTUserSummaryView.h"
 #import "RTBrowseReelsView.h"
 
+#import "RTFollowUserView.h"
+#import "RTUnfollowUserView.h"
+
 #import "RTJoinAudienceView.h"
 #import "RTLeaveAudienceView.h"
 
@@ -14,6 +17,9 @@
 @class RTUserSummaryPresenter;
 @class RTBrowseReelsPresenter;
 
+@class RTFollowUserPresenter;
+@class RTUnfollowUserPresenter;
+
 @class RTJoinAudiencePresenter;
 @class RTLeaveAudiencePresenter;
 
@@ -23,7 +29,7 @@
 @protocol RTBrowseReelVideosPresenterFactory;
 @protocol RTVideoWireframe;
 
-@interface RTUserProfileViewController : RTPagedListViewController <RTUserSummaryView, RTBrowseReelsView, RTJoinAudienceView, RTLeaveAudienceView, RTUserReelFooterViewDelegate, RTStoryboardViewController>
+@interface RTUserProfileViewController : RTPagedListViewController <RTUserSummaryView, RTBrowseReelsView, RTFollowUserView, RTUnfollowUserView, RTJoinAudienceView, RTLeaveAudienceView, RTUserReelFooterViewDelegate, RTStoryboardViewController>
 
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *displayNameLabel;
@@ -41,6 +47,8 @@
                  withUserProfilePresenter:(RTUserProfilePresenter *)userProfilePresenter
                      userSummaryPresenter:(RTUserSummaryPresenter *)userSummaryPresenter
                            reelsPresenter:(RTBrowseReelsPresenter *)reelsPresenter
+                      followUserPresenter:(RTFollowUserPresenter *)followUserPresenter
+                    unfollowUserPresenter:(RTUnfollowUserPresenter *)unfollowUserPresenter
                     joinAudiencePresenter:(RTJoinAudiencePresenter *)joinAudiencePresenter
                    leaveAudiencePresenter:(RTLeaveAudiencePresenter *)leaveAudiencePresenter
                reelVideosPresenterFactory:(id<RTBrowseReelVideosPresenterFactory>)reelVideosPresenterFactory
