@@ -32,6 +32,12 @@
 
 @end
 
+@interface RTUserDescription (Test)
+
+@property (readwrite) NSNumber *currentUserIsFollowing;
+
+@end
+
 @interface RTReelDescription (Test)
 
 @property (readwrite) NSNumber *audienceSize;
@@ -226,14 +232,14 @@ describe(@"user profile view controller", ^{
             });
         });
         
-        xcontext(@"profile is not for currently logged in user", ^{
+        context(@"profile is not for currently logged in user", ^{
             beforeEach(^{
                 [given([currentUserService currentUsername]) willReturn:@"notFoo"];
             });
             
             context(@"current user is following", ^{
                 beforeEach(^{
-                    // TODO: set description following
+                    description.currentUserIsFollowing = @(YES);
                     [viewController showUserDescription:description];
                 });
                 
@@ -243,14 +249,15 @@ describe(@"user profile view controller", ^{
                 
                 describe(@"pressing unfollow button", ^{
                     it(@"should request unfollowing", ^{
-                        // TODO!
+                        [viewController pressedSettingsOrFollowUserButton];
+                        [verify(unfollowUserPresenter) requestedUserUnfollowingForUsername:username];
                     });
                 });
             });
             
             context(@"current user is not following", ^{
                 beforeEach(^{
-                    // TODO: set description not following
+                    description.currentUserIsFollowing = @(NO);
                     [viewController showUserDescription:description];
                 });
                 
@@ -260,7 +267,8 @@ describe(@"user profile view controller", ^{
                 
                 describe(@"pressing follow button", ^{
                     it(@"should request following", ^{
-                        // TODO!
+                        [viewController pressedSettingsOrFollowUserButton];
+                        [verify(followUserPresenter) requestedUserFollowingForUsername:username];
                     });
                 });
             });

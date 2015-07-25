@@ -61,6 +61,9 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
 @property RTThumbnailSupport *thumbnailSupport;
 @property RTCurrentUserService *currentUserService;
 
+@property BOOL profileIsForCurrentUser;
+@property BOOL currentUserIsFollowing;
+
 @end
 
 @implementation RTUserProfileViewController
@@ -153,14 +156,28 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
 }
 
 - (IBAction)pressedSettingsOrFollowUserButton {
-    [self.userProfilePresenter requestedAccountSettings];
+    if (self.profileIsForCurrentUser) {
+        [self.userProfilePresenter requestedAccountSettings];
+    }
+    else {
+        if (self.currentUserIsFollowing) {
+            [self.unfollowUserPresenter requestedUserUnfollowingForUsername:self.username];
+        }
+        else {
+            [self.followUserPresenter requestedUserFollowingForUsername:self.username];
+        }
+    }
 }
 
 - (void)showUserDescription:(RTUserDescription *)description {
-    BOOL profileIsForCurrentUser = [self currentUserHasUsername:description.username];
+    self.profileIsForCurrentUser = [self currentUserHasUsername:description.username];
 
-    if (profileIsForCurrentUser) {
+    if (self.profileIsForCurrentUser) {
         self.settingsOrFollowUserButton.titleLabel.text = @"Settings";
+    }
+    else {
+        self.currentUserIsFollowing = [description.currentUserIsFollowing boolValue];
+        self.settingsOrFollowUserButton.titleLabel.text = self.currentUserIsFollowing ? @"Unfollow" : @"Follow";
     }
 
     self.usernameLabel.text = [NSString stringWithFormat:@"Username: %@", description.username];
