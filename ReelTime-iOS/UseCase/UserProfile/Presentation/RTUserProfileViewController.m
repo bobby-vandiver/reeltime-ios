@@ -175,7 +175,7 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
     self.profileIsForCurrentUser = [self currentUserHasUsername:description.username];
 
     if (self.profileIsForCurrentUser) {
-        self.settingsOrFollowUserButton.titleLabel.text = @"Settings";
+        [self.settingsOrFollowUserButton setTitle:@"Settings" forState:UIControlStateNormal];
     }
     else {
         self.currentUserIsFollowing = [description.currentUserIsFollowing boolValue];
@@ -195,7 +195,8 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
 }
 
 - (void)updateFollowUserButton {
-    self.settingsOrFollowUserButton.titleLabel.text = self.currentUserIsFollowing ? @"Unfollow" : @"Follow";
+    NSString *title = self.currentUserIsFollowing ? @"Unfollow" : @"Follow";
+    [self.settingsOrFollowUserButton setTitle:title forState:UIControlStateNormal];
 }
 
 - (void)updateSubscribersLabel {

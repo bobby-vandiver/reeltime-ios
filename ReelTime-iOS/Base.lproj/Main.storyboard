@@ -1125,16 +1125,13 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i6B-kr-Ujk">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i6B-kr-Ujk">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Settings/Follow">
                                             <color key="titleColor" red="0.98823529409999999" green="0.97647058819999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <variation key="widthClass=compact" fixedFrame="YES">
-                                            <rect key="frame" x="236" y="56" width="156" height="30"/>
-                                        </variation>
                                         <connections>
                                             <action selector="pressedSettingsOrFollowUserButton" destination="3xW-WF-kgG" eventType="touchUpInside" id="YdG-tC-ehv"/>
                                         </connections>
@@ -1152,11 +1149,14 @@
                                     <constraint firstItem="86H-ZO-j9H" firstAttribute="centerX" secondItem="WHv-9K-LBn" secondAttribute="centerX" id="JQf-KM-HeG"/>
                                     <constraint firstItem="86H-ZO-j9H" firstAttribute="top" secondItem="1UD-Lx-YC7" secondAttribute="bottom" constant="8" id="LsV-9E-Gkl"/>
                                     <constraint firstAttribute="bottom" secondItem="86H-ZO-j9H" secondAttribute="bottom" id="PFu-P7-7rr"/>
+                                    <constraint firstItem="86H-ZO-j9H" firstAttribute="top" secondItem="i6B-kr-Ujk" secondAttribute="bottom" constant="17" id="RXj-Bg-tzl"/>
                                     <constraint firstItem="86H-ZO-j9H" firstAttribute="leading" secondItem="WHv-9K-LBn" secondAttribute="leading" id="RoP-TW-Co3"/>
                                     <constraint firstAttribute="trailing" secondItem="86H-ZO-j9H" secondAttribute="trailing" id="V1i-d1-N07"/>
                                     <constraint firstAttribute="bottom" secondItem="86H-ZO-j9H" secondAttribute="bottom" id="V4N-Yr-gpu"/>
                                     <constraint firstItem="86H-ZO-j9H" firstAttribute="top" secondItem="1UD-Lx-YC7" secondAttribute="bottom" constant="8" symbolic="YES" id="Vbv-cY-PcZ"/>
+                                    <constraint firstItem="i6B-kr-Ujk" firstAttribute="leading" secondItem="PcB-Aa-X8w" secondAttribute="trailing" constant="8" symbolic="YES" id="Vvc-6Y-gy5"/>
                                     <constraint firstItem="86H-ZO-j9H" firstAttribute="leading" secondItem="WHv-9K-LBn" secondAttribute="leading" id="YBR-by-IJ0"/>
+                                    <constraint firstAttribute="trailing" secondItem="i6B-kr-Ujk" secondAttribute="trailing" constant="8" id="cHB-hg-QXL"/>
                                     <constraint firstItem="86H-ZO-j9H" firstAttribute="top" secondItem="WHv-9K-LBn" secondAttribute="top" constant="103" id="d7d-qL-R06"/>
                                     <constraint firstItem="1UD-Lx-YC7" firstAttribute="trailing" secondItem="PcB-Aa-X8w" secondAttribute="trailing" id="lMv-E1-R4M"/>
                                     <constraint firstAttribute="trailing" secondItem="86H-ZO-j9H" secondAttribute="trailing" id="w3l-bT-paB"/>
@@ -1182,6 +1182,7 @@
                                         <exclude reference="JQf-KM-HeG"/>
                                         <exclude reference="LsV-9E-Gkl"/>
                                         <exclude reference="PFu-P7-7rr"/>
+                                        <exclude reference="RXj-Bg-tzl"/>
                                         <exclude reference="RoP-TW-Co3"/>
                                         <exclude reference="V1i-d1-N07"/>
                                         <exclude reference="V4N-Yr-gpu"/>
@@ -1189,6 +1190,8 @@
                                         <exclude reference="YBR-by-IJ0"/>
                                         <exclude reference="d7d-qL-R06"/>
                                         <exclude reference="w3l-bT-paB"/>
+                                        <exclude reference="Vvc-6Y-gy5"/>
+                                        <exclude reference="cHB-hg-QXL"/>
                                     </mask>
                                 </variation>
                                 <variation key="widthClass=compact">
@@ -1211,6 +1214,7 @@
                                         <include reference="JQf-KM-HeG"/>
                                         <include reference="LsV-9E-Gkl"/>
                                         <include reference="PFu-P7-7rr"/>
+                                        <include reference="RXj-Bg-tzl"/>
                                         <include reference="RoP-TW-Co3"/>
                                         <include reference="V1i-d1-N07"/>
                                         <include reference="V4N-Yr-gpu"/>
@@ -1218,6 +1222,8 @@
                                         <include reference="YBR-by-IJ0"/>
                                         <include reference="d7d-qL-R06"/>
                                         <include reference="w3l-bT-paB"/>
+                                        <include reference="Vvc-6Y-gy5"/>
+                                        <include reference="cHB-hg-QXL"/>
                                     </mask>
                                 </variation>
                             </view>
