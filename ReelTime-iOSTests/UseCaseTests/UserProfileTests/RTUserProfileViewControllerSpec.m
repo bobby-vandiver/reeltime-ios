@@ -29,6 +29,7 @@
 @interface RTUserProfileViewController (Test)
 
 @property RTArrayDataSource *reelsDataSource;
+@property NSNumber *numberOfFollowers;
 
 @end
 
@@ -253,6 +254,22 @@ describe(@"user profile view controller", ^{
                         [verify(unfollowUserPresenter) requestedUserUnfollowingForUsername:username];
                     });
                 });
+                
+                describe(@"showing user as not being followed", ^{
+                    beforeEach(^{
+                        viewController.numberOfFollowers = @(1);
+                        [viewController showUserAsUnfollowedForUsername:@"notFoo"];
+                    });
+                    
+                    it(@"should change unfollow to follow", ^{
+                        expect(viewController.settingsOrFollowUserButton.titleLabel.text).to.equal(@"Follow");
+                    });
+                    
+                    it(@"should update subscribers to reflect loss of a follower", ^{
+                        expect(viewController.numberOfFollowers).to.equal(@(0));
+                        expect(viewController.subscribersLabel.text).to.equal(@"Subscribers: 0");
+                    });
+                });
             });
             
             context(@"current user is not following", ^{
@@ -269,6 +286,22 @@ describe(@"user profile view controller", ^{
                     it(@"should request following", ^{
                         [viewController pressedSettingsOrFollowUserButton];
                         [verify(followUserPresenter) requestedUserFollowingForUsername:username];
+                    });
+                });
+                
+                describe(@"showing user as being followed", ^{
+                    beforeEach(^{
+                        viewController.numberOfFollowers = @(0);
+                        [viewController showUserAsFollowedForUsername:@"notFoo"];
+                    });
+                    
+                    it(@"should change follow to unfollow", ^{
+                        expect(viewController.settingsOrFollowUserButton.titleLabel.text).to.equal(@"Unfollow");
+                    });
+                    
+                    it(@"should update subscribers to reflect new follower", ^{
+                        expect(viewController.numberOfFollowers).to.equal(@(1));
+                        expect(viewController.subscribersLabel.text).to.equal(@"Subscribers: 1");
                     });
                 });
             });

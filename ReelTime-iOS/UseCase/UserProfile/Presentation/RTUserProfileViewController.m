@@ -64,6 +64,8 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
 @property BOOL profileIsForCurrentUser;
 @property BOOL currentUserIsFollowing;
 
+@property NSNumber *numberOfFollowers;
+
 @end
 
 @implementation RTUserProfileViewController
@@ -177,17 +179,35 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
     }
     else {
         self.currentUserIsFollowing = [description.currentUserIsFollowing boolValue];
-        self.settingsOrFollowUserButton.titleLabel.text = self.currentUserIsFollowing ? @"Unfollow" : @"Follow";
+        [self updateFollowUserButton];
     }
 
     self.usernameLabel.text = [NSString stringWithFormat:@"Username: %@", description.username];
     self.displayNameLabel.text = [NSString stringWithFormat:@"Display name: %@", description.displayName];
     
-    self.subscribersLabel.text = [NSString stringWithFormat:@"Subscribers: %@", description.numberOfFollowers];
+    self.numberOfFollowers = description.numberOfFollowers;
+    [self updateSubscribersLabel];
+    
     self.subscribedToLabel.text = [NSString stringWithFormat:@"Subscribed to: %@", description.numberOfFollowees];
     
     self.reelsCreatedLabel.text = [NSString stringWithFormat:@"Reels Created: %@", description.numberOfReelsOwned];
     self.reelsFollowingLabel.text = [NSString stringWithFormat:@"Reels Following: %@", description.numberOfAudienceMemberships];
+}
+
+- (void)updateFollowUserButton {
+    self.settingsOrFollowUserButton.titleLabel.text = self.currentUserIsFollowing ? @"Unfollow" : @"Follow";
+}
+
+- (void)updateSubscribersLabel {
+    self.subscribersLabel.text = [NSString stringWithFormat:@"Subscribers: %@", self.numberOfFollowers];
+}
+
+- (void)incrementNumberOfFollowers {
+    self.numberOfFollowers = [NSNumber numberWithInteger:[self.numberOfFollowers integerValue] + 1];
+}
+
+- (void)decrementNumberOfFollowers {
+    self.numberOfFollowers = [NSNumber numberWithInteger:[self.numberOfFollowers integerValue] - 1];
 }
 
 - (void)showUserNotFoundMessage:(NSString *)message {
@@ -292,13 +312,21 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
 #pragma mark - RTFollowUserView Methods
 
 - (void)showUserAsFollowedForUsername:(NSString *)username {
+    self.currentUserIsFollowing = YES;
+    [self updateFollowUserButton];
     
+    [self incrementNumberOfFollowers];
+    [self updateSubscribersLabel];
 }
 
 #pragma mark - RTUnfollowUserView Methods
 
 - (void)showUserAsUnfollowedForUsername:(NSString *)username {
+    self.currentUserIsFollowing = NO;
+    [self updateFollowUserButton];
     
+    [self decrementNumberOfFollowers];
+    [self updateSubscribersLabel];
 }
 
 #pragma mark - RTJoinAudienceView Methods
