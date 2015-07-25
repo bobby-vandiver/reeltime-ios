@@ -11,6 +11,8 @@
 @property (readwrite, copy) NSNumber *numberOfReelsOwned;
 @property (readwrite, copy) NSNumber *numberOfAudienceMemberships;
 
+@property (readwrite, copy) NSNumber *currentUserIsFollowing;
+
 @end
 
 @implementation RTUserDescription
@@ -20,14 +22,16 @@
                                     numberOfFollowers:(NSNumber *)numberOfFollowers
                                     numberOfFollowees:(NSNumber *)numberOfFollowees
                                    numberOfReelsOwned:(NSNumber *)numberOfReelsOwned
-                          numberOfAudienceMemberships:(NSNumber *)numberOfAudienceMemberships {
+                          numberOfAudienceMemberships:(NSNumber *)numberOfAudienceMemberships
+                               currentUserIsFollowing:(NSNumber *)currentUserIsFollowing {
 
     return [[RTUserDescription alloc] initForUsername:username
                                       withDisplayName:displayName
                                     numberOfFollowers:numberOfFollowers
                                     numberOfFollowees:numberOfFollowees
                                    numberOfReelsOwned:numberOfReelsOwned
-                          numberOfAudienceMemberships:numberOfAudienceMemberships];
+                          numberOfAudienceMemberships:numberOfAudienceMemberships
+                               currentUserIsFollowing:currentUserIsFollowing];
 }
 
 - (instancetype)initForUsername:(NSString *)username
@@ -35,7 +39,8 @@
               numberOfFollowers:(NSNumber *)numberOfFollowers
               numberOfFollowees:(NSNumber *)numberOfFollowees
              numberOfReelsOwned:(NSNumber *)numberOfReelsOwned
-    numberOfAudienceMemberships:(NSNumber *)numberOfAudienceMemberships {
+    numberOfAudienceMemberships:(NSNumber *)numberOfAudienceMemberships
+         currentUserIsFollowing:(NSNumber *)currentUserIsFollowing {
     
     self = [super init];
     if (self) {
@@ -45,6 +50,7 @@
         self.numberOfFollowees = numberOfFollowees;
         self.numberOfReelsOwned = numberOfReelsOwned;
         self.numberOfAudienceMemberships = numberOfAudienceMemberships;
+        self.currentUserIsFollowing = currentUserIsFollowing;
     }
     return self;
 }

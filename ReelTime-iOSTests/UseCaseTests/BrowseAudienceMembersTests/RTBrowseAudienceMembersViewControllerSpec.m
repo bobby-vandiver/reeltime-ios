@@ -35,7 +35,8 @@ describe(@"browse audience members view controller", ^{
                                                           numberOfFollowers:@(1)
                                                           numberOfFollowees:@(2)
                                                          numberOfReelsOwned:@(3)
-                                                numberOfAudienceMemberships:@(4)];
+                                                numberOfAudienceMemberships:@(4)
+                                                     currentUserIsFollowing:@(NO)];
     });
     
     describe(@"required properties", ^{

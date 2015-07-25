@@ -11,11 +11,14 @@
 @property (readonly, copy) NSNumber *numberOfReelsOwned;
 @property (readonly, copy) NSNumber *numberOfAudienceMemberships;
 
+@property (readonly, copy) NSNumber *currentUserIsFollowing;
+
 + (RTUserDescription *)userDescriptionWithForUsername:(NSString *)username
                                       withDisplayName:(NSString *)displayName
                                     numberOfFollowers:(NSNumber *)numberOfFollowers
                                     numberOfFollowees:(NSNumber *)numberOfFollowees
                                    numberOfReelsOwned:(NSNumber *)numberOfReelsOwned
-                          numberOfAudienceMemberships:(NSNumber *)numberOfAudienceMemberships;
+                          numberOfAudienceMemberships:(NSNumber *)numberOfAudienceMemberships
+                               currentUserIsFollowing:(NSNumber *)currentUserIsFollowing;
 
 @end

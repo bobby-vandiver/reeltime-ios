@@ -38,7 +38,8 @@
                                                                      numberOfFollowers:user.numberOfFollowers
                                                                      numberOfFollowees:user.numberOfFollowees
                                                                     numberOfReelsOwned:user.numberOfReelsOwned
-                                                           numberOfAudienceMemberships:user.numberOfAudienceMemberships];
+                                                           numberOfAudienceMemberships:user.numberOfAudienceMemberships
+                                                                currentUserIsFollowing:user.currentUserIsFollowing];
     [self.view showUserDescription:description];
 }
 
