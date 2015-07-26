@@ -942,7 +942,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="QRh-yi-dkz" customClass="RTUserFolloweeCell">
+                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="UserFolloweeCell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="QRh-yi-dkz" customClass="RTUserFolloweeCell">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QRh-yi-dkz" id="Ypi-LO-6Lz">
                                             <autoresizingMask key="autoresizingMask"/>

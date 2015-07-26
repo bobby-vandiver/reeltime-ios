@@ -374,6 +374,7 @@
 		71B97DB21B6567FC0016017D /* RTBrowseUserFolloweesWireframeSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B97DB11B6567FC0016017D /* RTBrowseUserFolloweesWireframeSpec.m */; };
 		71B97DB51B656A2D0016017D /* RTUserFolloweeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B97DB41B656A2D0016017D /* RTUserFolloweeCell.m */; };
 		71B97DB71B656CA90016017D /* RTBrowseUserFolloweesViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B97DB61B656CA90016017D /* RTBrowseUserFolloweesViewControllerSpec.m */; };
+		71B97DBA1B65794E0016017D /* RTBrowseUserFolloweesAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B97DB91B65794E0016017D /* RTBrowseUserFolloweesAssembly.m */; };
 		71BF08381B55E40900B61504 /* RTLogoutWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 71BF08371B55E40900B61504 /* RTLogoutWireframe.m */; };
 		71BF083E1B55E58600B61504 /* RTLogoutWireframeSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71BF083D1B55E58600B61504 /* RTLogoutWireframeSpec.m */; };
 		71BF08411B55ECCC00B61504 /* RTLogoutPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 71BF08401B55ECCC00B61504 /* RTLogoutPresenter.m */; };
@@ -1077,6 +1078,8 @@
 		71B97DB31B656A2D0016017D /* RTUserFolloweeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTUserFolloweeCell.h; sourceTree = "<group>"; };
 		71B97DB41B656A2D0016017D /* RTUserFolloweeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTUserFolloweeCell.m; sourceTree = "<group>"; };
 		71B97DB61B656CA90016017D /* RTBrowseUserFolloweesViewControllerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseUserFolloweesViewControllerSpec.m; sourceTree = "<group>"; };
+		71B97DB81B65794E0016017D /* RTBrowseUserFolloweesAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseUserFolloweesAssembly.h; sourceTree = "<group>"; };
+		71B97DB91B65794E0016017D /* RTBrowseUserFolloweesAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseUserFolloweesAssembly.m; sourceTree = "<group>"; };
 		71BF08361B55E40900B61504 /* RTLogoutWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLogoutWireframe.h; sourceTree = "<group>"; };
 		71BF08371B55E40900B61504 /* RTLogoutWireframe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLogoutWireframe.m; sourceTree = "<group>"; };
 		71BF083D1B55E58600B61504 /* RTLogoutWireframeSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLogoutWireframeSpec.m; sourceTree = "<group>"; };
@@ -3168,6 +3171,8 @@
 			isa = PBXGroup;
 			children = (
 				71B97DAC1B6566C90016017D /* RTBrowseUserFolloweesViewControllerFactory.h */,
+				71B97DB81B65794E0016017D /* RTBrowseUserFolloweesAssembly.h */,
+				71B97DB91B65794E0016017D /* RTBrowseUserFolloweesAssembly.m */,
 			);
 			path = Assembly;
 			sourceTree = "<group>";
@@ -3878,6 +3883,7 @@
 				71053AB81B2BBF38008C800C /* RTChangePasswordAssembly.m in Sources */,
 				71647BD51A7E7EEA00F44996 /* RTVideo.m in Sources */,
 				71BF08411B55ECCC00B61504 /* RTLogoutPresenter.m in Sources */,
+				71B97DBA1B65794E0016017D /* RTBrowseUserFolloweesAssembly.m in Sources */,
 				713229DE1A8FBD9600DE900A /* RTNewsfeedMessageSource.m in Sources */,
 				7137F4E61AEEF7C000B50DBA /* RTDeviceRegistrationPresenter.m in Sources */,
 				71403D2B1AB3D078007CB8B9 /* RTBrowseUsersPresenter.m in Sources */,
