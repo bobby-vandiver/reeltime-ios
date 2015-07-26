@@ -19,6 +19,7 @@ static NSString *const AudienceMemberCellIdentifier = @"AudienceMemberCell";
 @implementation RTBrowseAudienceMembersViewController
 
 + (instancetype)viewControllerWithUsersPresenter:(RTBrowseUsersPresenter *)usersPresenter {
+    
     NSString *identifier = [RTBrowseAudienceMembersViewController storyboardIdentifier];
     RTBrowseAudienceMembersViewController *controller = [RTStoryboardViewControllerFactory viewControllerWithStoryboardIdentifier:identifier];
     
@@ -26,6 +27,7 @@ static NSString *const AudienceMemberCellIdentifier = @"AudienceMemberCell";
         controller.usersPresenter = usersPresenter;
         [controller createDataSource];
     }
+    
     return controller;
 }
 

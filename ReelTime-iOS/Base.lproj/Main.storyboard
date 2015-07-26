@@ -918,6 +918,60 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wxl-b0-faF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="2275.5" y="714"/>
+        </scene>
+        <!--User Followers-->
+        <scene sceneID="bF4-Ze-lVR">
+            <objects>
+                <viewController storyboardIdentifier="Browse User Followers View Controller" title="User Followers" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gzC-Mn-fmM" customClass="RTBrowseUserFollowersViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Uqf-QN-hEe"/>
+                        <viewControllerLayoutGuide type="bottom" id="52P-0Y-wBS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GZq-Xc-yml">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="wk9-Mc-a3f">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <label key="tableHeaderView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Followers" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cBX-ab-fGa">
+                                    <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UserFollowerCell" id="CGN-Lz-7tZ" customClass="RTUserFollowerCell">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CGN-Lz-7tZ" id="cIH-OZ-ZbK">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
+                                </variation>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="wk9-Mc-a3f"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="wk9-Mc-a3f"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="browseUserFollowersTableView" destination="wk9-Mc-a3f" id="bAP-Cq-mrc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LSE-wv-dn9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
             <point key="canvasLocation" x="2275.5" y="-610"/>
         </scene>
         <!--User Profile View Controller-->
@@ -1174,6 +1228,8 @@
                                         <exclude reference="GrX-8t-Qb6"/>
                                         <exclude reference="lMv-E1-R4M"/>
                                         <exclude reference="yLb-x4-gxN"/>
+                                        <exclude reference="Vvc-6Y-gy5"/>
+                                        <exclude reference="cHB-hg-QXL"/>
                                         <exclude reference="0ah-cW-5mV"/>
                                         <exclude reference="4mp-l2-fy5"/>
                                         <exclude reference="68j-Za-Td0"/>
@@ -1190,8 +1246,6 @@
                                         <exclude reference="YBR-by-IJ0"/>
                                         <exclude reference="d7d-qL-R06"/>
                                         <exclude reference="w3l-bT-paB"/>
-                                        <exclude reference="Vvc-6Y-gy5"/>
-                                        <exclude reference="cHB-hg-QXL"/>
                                     </mask>
                                 </variation>
                                 <variation key="widthClass=compact">
@@ -1206,6 +1260,8 @@
                                         <include reference="GrX-8t-Qb6"/>
                                         <include reference="lMv-E1-R4M"/>
                                         <include reference="yLb-x4-gxN"/>
+                                        <include reference="Vvc-6Y-gy5"/>
+                                        <include reference="cHB-hg-QXL"/>
                                         <include reference="0ah-cW-5mV"/>
                                         <include reference="4mp-l2-fy5"/>
                                         <include reference="68j-Za-Td0"/>
@@ -1222,8 +1278,6 @@
                                         <include reference="YBR-by-IJ0"/>
                                         <include reference="d7d-qL-R06"/>
                                         <include reference="w3l-bT-paB"/>
-                                        <include reference="Vvc-6Y-gy5"/>
-                                        <include reference="cHB-hg-QXL"/>
                                     </mask>
                                 </variation>
                             </view>
