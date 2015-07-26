@@ -366,6 +366,7 @@
 		71B97D961B652FDE0016017D /* RTBrowseUserFollowersWireframeSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B97D951B652FDE0016017D /* RTBrowseUserFollowersWireframeSpec.m */; };
 		71B97D991B6550570016017D /* RTUserFollowerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B97D981B6550570016017D /* RTUserFollowerCell.m */; };
 		71B97D9B1B6551900016017D /* RTBrowseUserFollowersViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B97D9A1B6551900016017D /* RTBrowseUserFollowersViewControllerSpec.m */; };
+		71B97D9E1B655D320016017D /* RTBrowseUserFollowersAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B97D9D1B655D320016017D /* RTBrowseUserFollowersAssembly.m */; };
 		71BF08381B55E40900B61504 /* RTLogoutWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 71BF08371B55E40900B61504 /* RTLogoutWireframe.m */; };
 		71BF083E1B55E58600B61504 /* RTLogoutWireframeSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71BF083D1B55E58600B61504 /* RTLogoutWireframeSpec.m */; };
 		71BF08411B55ECCC00B61504 /* RTLogoutPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 71BF08401B55ECCC00B61504 /* RTLogoutPresenter.m */; };
@@ -1055,6 +1056,8 @@
 		71B97D971B6550570016017D /* RTUserFollowerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTUserFollowerCell.h; sourceTree = "<group>"; };
 		71B97D981B6550570016017D /* RTUserFollowerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTUserFollowerCell.m; sourceTree = "<group>"; };
 		71B97D9A1B6551900016017D /* RTBrowseUserFollowersViewControllerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseUserFollowersViewControllerSpec.m; sourceTree = "<group>"; };
+		71B97D9C1B655D320016017D /* RTBrowseUserFollowersAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseUserFollowersAssembly.h; sourceTree = "<group>"; };
+		71B97D9D1B655D320016017D /* RTBrowseUserFollowersAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseUserFollowersAssembly.m; sourceTree = "<group>"; };
 		71BF08361B55E40900B61504 /* RTLogoutWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLogoutWireframe.h; sourceTree = "<group>"; };
 		71BF08371B55E40900B61504 /* RTLogoutWireframe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLogoutWireframe.m; sourceTree = "<group>"; };
 		71BF083D1B55E58600B61504 /* RTLogoutWireframeSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLogoutWireframeSpec.m; sourceTree = "<group>"; };
@@ -3086,6 +3089,8 @@
 			isa = PBXGroup;
 			children = (
 				71B97D901B652EFC0016017D /* RTBrowseUserFollowersViewControllerFactory.h */,
+				71B97D9C1B655D320016017D /* RTBrowseUserFollowersAssembly.h */,
+				71B97D9D1B655D320016017D /* RTBrowseUserFollowersAssembly.m */,
 			);
 			path = Assembly;
 			sourceTree = "<group>";
@@ -3747,6 +3752,7 @@
 				717215B11A8659230002ECC7 /* RTAccountRegistrationPresenter.m in Sources */,
 				7134F1FF1B24CAEB001EBF4E /* RTRevokeClientServerErrorMapping.m in Sources */,
 				712B2BCD1AAFB2010026258A /* RTPagedListDataManager.m in Sources */,
+				71B97D9E1B655D320016017D /* RTBrowseUserFollowersAssembly.m in Sources */,
 				7124415E1B2DDA3D00752901 /* RTConfirmAccountErrorCodeToErrorMessageMapping.m in Sources */,
 				713DE83D1B0920DF00A5BBF0 /* RTErrorCodeToErrorMessagePresenter.m in Sources */,
 				7153EE091AED3CD900000D1C /* RTAccountRegistrationServerErrorMapping.m in Sources */,
