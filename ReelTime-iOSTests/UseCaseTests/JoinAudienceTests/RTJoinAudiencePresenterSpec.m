@@ -34,7 +34,7 @@ describe(@"join audience presenter", ^{
     
     describe(@"join audience succeeded", ^{
         it(@"should show audience as joined", ^{
-            [presenter joinAudienceSucceedForReelId:@(reelId)];
+            [presenter joinAudienceSucceededForReelId:@(reelId)];
             [verify(view) showAudienceAsJoinedForReelId:@(reelId)];
         });
     });

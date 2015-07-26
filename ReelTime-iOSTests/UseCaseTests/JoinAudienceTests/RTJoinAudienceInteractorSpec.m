@@ -55,7 +55,7 @@ describe(@"join audience interactor", ^{
             it(@"should notify delegate of success", ^{
                 NoArgsCallback successHandler = [successCaptor value];
                 successHandler();
-                [verify(delegate) joinAudienceSucceedForReelId:@(reelId)];
+                [verify(delegate) joinAudienceSucceededForReelId:@(reelId)];
             });
             
             it(@"should notify delegate of failure", ^{

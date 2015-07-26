@@ -39,7 +39,7 @@
 
 - (NoArgsCallback)joinAudienceSuccessCallbackForReelId:(NSNumber *)reelId {
     return ^{
-        [self.delegate joinAudienceSucceedForReelId:reelId];
+        [self.delegate joinAudienceSucceededForReelId:reelId];
     };
 }
 

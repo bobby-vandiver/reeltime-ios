@@ -27,7 +27,7 @@
     [self.interactor joinAudienceForReelId:reelId];
 }
 
-- (void)joinAudienceSucceedForReelId:(NSNumber *)reelId {
+- (void)joinAudienceSucceededForReelId:(NSNumber *)reelId {
     [self.view showAudienceAsJoinedForReelId:reelId];
 }
 
