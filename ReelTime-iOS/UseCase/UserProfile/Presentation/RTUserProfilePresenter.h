@@ -10,4 +10,8 @@
 
 - (void)requestedAudienceMembersForReelId:(NSNumber *)reelId;
 
+- (void)requestedFollowersForUsername:(NSString *)username;
+
+- (void)requestedFolloweesForUsername:(NSString *)username;
+
 @end

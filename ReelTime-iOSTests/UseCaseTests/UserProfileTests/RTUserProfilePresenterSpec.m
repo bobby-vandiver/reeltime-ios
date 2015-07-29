@@ -28,6 +28,20 @@ describe(@"user profile presenter", ^{
             [verify(wireframe) presentAudienceMembersForReelId:@(reelId)];
         });
     });
+    
+    describe(@"requesting followers", ^{
+        it(@"should present followers for user", ^{
+            [presenter requestedFollowersForUsername:username];
+            [verify(wireframe) presentFollowersForUsername:username];
+        });
+    });
+    
+    describe(@"requesting followees", ^{
+        it(@"should present followees for user", ^{
+            [presenter requestedFolloweesForUsername:username];
+            [verify(wireframe) presentFolloweesForUsername:username];
+        });
+    });
 });
 
 SpecEnd

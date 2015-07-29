@@ -6,6 +6,10 @@
 
 #import "RTAccountSettingsAssembly.h"
 #import "RTBrowseAudienceMembersAssembly.h"
+
+#import "RTBrowseUserFollowersAssembly.h"
+#import "RTBrowseUserFolloweesAssembly.h"
+
 #import "RTApplicationAssembly.h"
 
 #import "RTUserProfileWireframe.h"
@@ -55,11 +59,13 @@
 
 - (RTUserProfileWireframe *)userProfileWireframe {
     return [TyphoonDefinition withClass:[RTUserProfileWireframe class] configuration:^(TyphoonDefinition *definition) {
-        [definition injectMethod:@selector(initWithUserProfileViewControllerFactory:accountSettingsWireframe:browseAudienceMembersWireframe:applicationWireframe:)
+        [definition injectMethod:@selector(initWithUserProfileViewControllerFactory:accountSettingsWireframe:browseAudienceMembersWireframe:browseUserFollowersWireframe:browseUserFolloweesWireframe:applicationWireframe:)
                       parameters:^(TyphoonMethod *method) {
                           [method injectParameterWith:self];
                           [method injectParameterWith:[self.accountSettingsAssembly accountSettingsWireframe]];
                           [method injectParameterWith:[self.browseAudienceMembersAssembly browseAudienceMembersWireframe]];
+                          [method injectParameterWith:[self.browseUserFollowersAssembly browseUserFollowersWireframe]];
+                          [method injectParameterWith:[self.browseUserFolloweesAssembly browseUserFolloweesWireframe]];
                           [method injectParameterWith:[self.applicationAssembly applicationWireframe]];
         }];
     }];

@@ -25,4 +25,12 @@
     [self.wireframe presentAudienceMembersForReelId:reelId];
 }
 
+- (void)requestedFollowersForUsername:(NSString *)username {
+    [self.wireframe presentFollowersForUsername:username];
+}
+
+- (void)requestedFolloweesForUsername:(NSString *)username {
+    [self.wireframe presentFolloweesForUsername:username];
+}
+
 @end

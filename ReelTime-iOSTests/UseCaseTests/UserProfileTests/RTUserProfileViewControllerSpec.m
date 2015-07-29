@@ -178,6 +178,20 @@ describe(@"user profile view controller", ^{
         });
     });
     
+    describe(@"pressing subscribers button", ^{
+        it(@"should present followers for user", ^{
+            [viewController pressedSubscribersButton];
+            [verify(userProfilePresenter) requestedFollowersForUsername:username];
+        });
+    });
+    
+    describe(@"pressings subscribed to button", ^{
+        it(@"should present followees for user", ^{
+            [viewController pressedSubscribedToButton];
+            [verify(userProfilePresenter) requestedFolloweesForUsername:username];
+        });
+    });
+    
     describe(@"pressing list audience button", ^{
         it(@"should present audience members for specified reel", ^{
             [viewController footerView:anything() didPressListAudienceButton:anything() forReelId:@(reelId)];

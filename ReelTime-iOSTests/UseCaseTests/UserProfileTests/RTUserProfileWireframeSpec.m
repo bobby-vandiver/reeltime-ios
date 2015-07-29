@@ -8,6 +8,9 @@
 #import "RTAccountSettingsWireframe.h"
 #import "RTBrowseAudienceMembersWireframe.h"
 
+#import "RTBrowseUserFollowersWireframe.h"
+#import "RTBrowseUserFolloweesWireframe.h"
+
 #import "RTApplicationWireframe.h"
 
 SpecBegin(RTUserProfileWireframe)
@@ -22,6 +25,9 @@ describe(@"user profile wireframe", ^{
     __block RTAccountSettingsWireframe *accountSettingsWireframe;
     __block RTBrowseAudienceMembersWireframe *browseAudienceMembersWireframe;
     
+    __block RTBrowseUserFollowersWireframe *browseUserFollowersWireframe;
+    __block RTBrowseUserFolloweesWireframe *browseUserFolloweesWireframe;
+    
     __block RTApplicationWireframe *applicationWireframe;
     
     beforeEach(^{
@@ -31,11 +37,16 @@ describe(@"user profile wireframe", ^{
         accountSettingsWireframe = mock([RTAccountSettingsWireframe class]);
         browseAudienceMembersWireframe = mock([RTBrowseAudienceMembersWireframe class]);
         
+        browseUserFollowersWireframe = mock([RTBrowseUserFollowersWireframe class]);
+        browseUserFolloweesWireframe = mock([RTBrowseUserFolloweesWireframe class]);
+
         applicationWireframe = mock([RTApplicationWireframe class]);
         
         wireframe = [[RTUserProfileWireframe alloc] initWithUserProfileViewControllerFactory:viewControllerFactory
                                                                     accountSettingsWireframe:accountSettingsWireframe
                                                               browseAudienceMembersWireframe:browseAudienceMembersWireframe
+                                                                browseUserFollowersWireframe:browseUserFollowersWireframe
+                                                                browseUserFolloweesWireframe:browseUserFolloweesWireframe
                                                                         applicationWireframe:applicationWireframe];
     });
     
@@ -50,6 +61,20 @@ describe(@"user profile wireframe", ^{
         it(@"should delegate to browse audience members wireframe", ^{
             [wireframe presentAudienceMembersForReelId:@(reelId)];
             [verify(browseAudienceMembersWireframe) presentAudienceMembersForReelId:@(reelId)];
+        });
+    });
+    
+    describe(@"presenting followers for user", ^{
+        it(@"should delegate to browse user followers wireframe", ^{
+            [wireframe presentFollowersForUsername:username];
+            [verify(browseUserFollowersWireframe) presentFollowersForUsername:username];
+        });
+    });
+    
+    describe(@"presenting followees for user", ^{
+        it(@"should delegate to browse user followees wireframe", ^{
+            [wireframe presentFolloweesForUsername:username];
+            [verify(browseUserFolloweesWireframe) presentFolloweesForUsername:username];
         });
     });
 });

@@ -9,6 +9,10 @@
 
 @class RTAccountSettingsAssembly;
 @class RTBrowseAudienceMembersAssembly;
+
+@class RTBrowseUserFollowersAssembly;
+@class RTBrowseUserFolloweesAssembly;
+
 @class RTApplicationAssembly;
 
 @class RTUserProfileWireframe;
@@ -58,6 +62,10 @@
 
 @property (nonatomic, strong, readonly) RTAccountSettingsAssembly *accountSettingsAssembly;
 @property (nonatomic, strong, readonly) RTBrowseAudienceMembersAssembly *browseAudienceMembersAssembly;
+
+@property (nonatomic, strong, readonly) RTBrowseUserFollowersAssembly *browseUserFollowersAssembly;
+@property (nonatomic, strong, readonly) RTBrowseUserFolloweesAssembly *browseUserFolloweesAssembly;
+
 @property (nonatomic, strong, readonly) RTApplicationAssembly *applicationAssembly;
 
 #pragma mark - User Profile

@@ -172,9 +172,11 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
 }
 
 - (IBAction)pressedSubscribersButton {
+    [self.userProfilePresenter requestedFollowersForUsername:self.username];
 }
 
 - (IBAction)pressedSubscribedToButton {
+    [self.userProfilePresenter requestedFolloweesForUsername:self.username];
 }
 
 - (void)showUserDescription:(RTUserDescription *)description {
