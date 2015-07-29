@@ -34,8 +34,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *displayNameLabel;
 
-@property (weak, nonatomic) IBOutlet UILabel *subscribersLabel;
-@property (weak, nonatomic) IBOutlet UILabel *subscribedToLabel;
+@property (weak, nonatomic) IBOutlet UIButton *subscribersButton;
+@property (weak, nonatomic) IBOutlet UIButton *subscribedToButton;
 
 @property (weak, nonatomic) IBOutlet UILabel *reelsCreatedLabel;
 @property (weak, nonatomic) IBOutlet UILabel *reelsFollowingLabel;
@@ -57,5 +57,9 @@
                        currentUserService:(RTCurrentUserService *)currentUserService;
 
 - (IBAction)pressedSettingsOrFollowUserButton;
+
+- (IBAction)pressedSubscribersButton;
+
+- (IBAction)pressedSubscribedToButton;
 
 @end

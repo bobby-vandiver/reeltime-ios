@@ -171,6 +171,12 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
     }
 }
 
+- (IBAction)pressedSubscribersButton {
+}
+
+- (IBAction)pressedSubscribedToButton {
+}
+
 - (void)showUserDescription:(RTUserDescription *)description {
     self.profileIsForCurrentUser = [self currentUserHasUsername:description.username];
 
@@ -186,9 +192,10 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
     self.displayNameLabel.text = [NSString stringWithFormat:@"Display name: %@", description.displayName];
     
     self.numberOfFollowers = description.numberOfFollowers;
-    [self updateSubscribersLabel];
+    [self updateSubscribersButton];
     
-    self.subscribedToLabel.text = [NSString stringWithFormat:@"Subscribed to: %@", description.numberOfFollowees];
+    NSString *subscribedToText = [NSString stringWithFormat:@"Subscribed to: %@", description.numberOfFollowees];
+    [self.subscribedToButton setTitle:subscribedToText forState:UIControlStateNormal];
     
     self.reelsCreatedLabel.text = [NSString stringWithFormat:@"Reels Created: %@", description.numberOfReelsOwned];
     self.reelsFollowingLabel.text = [NSString stringWithFormat:@"Reels Following: %@", description.numberOfAudienceMemberships];
@@ -199,8 +206,9 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
     [self.settingsOrFollowUserButton setTitle:title forState:UIControlStateNormal];
 }
 
-- (void)updateSubscribersLabel {
-    self.subscribersLabel.text = [NSString stringWithFormat:@"Subscribers: %@", self.numberOfFollowers];
+- (void)updateSubscribersButton {
+    NSString *subscribersText = [NSString stringWithFormat:@"Subscribers: %@", self.numberOfFollowers];
+    [self.subscribersButton setTitle:subscribersText forState:UIControlStateNormal];
 }
 
 - (void)incrementNumberOfFollowers {
@@ -317,7 +325,7 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
     [self updateFollowUserButton];
     
     [self incrementNumberOfFollowers];
-    [self updateSubscribersLabel];
+    [self updateSubscribersButton];
 }
 
 #pragma mark - RTUnfollowUserView Methods
@@ -327,7 +335,7 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
     [self updateFollowUserButton];
     
     [self decrementNumberOfFollowers];
-    [self updateSubscribersLabel];
+    [self updateSubscribersButton];
 }
 
 #pragma mark - RTJoinAudienceView Methods

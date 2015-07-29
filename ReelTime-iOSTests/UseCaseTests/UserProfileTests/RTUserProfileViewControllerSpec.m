@@ -72,8 +72,8 @@ describe(@"user profile view controller", ^{
     __block UILabel *usernameLabel;
     __block UILabel *displayNameLabel;
     
-    __block UILabel *subscribersLabel;
-    __block UILabel *subscribedToLabel;
+    __block UIButton *subscribersButton;
+    __block UIButton *subscribedToButton;
     
     __block UILabel *reelsCreatedLabel;
     __block UILabel *reelsFollowingLabel;
@@ -114,8 +114,8 @@ describe(@"user profile view controller", ^{
         usernameLabel = [[UILabel alloc] init];
         displayNameLabel = [[UILabel alloc] init];
         
-        subscribersLabel = [[UILabel alloc] init];
-        subscribedToLabel = [[UILabel alloc] init];
+        subscribersButton = [[UIButton alloc] init];
+        subscribedToButton = [[UIButton alloc] init];
         
         reelsCreatedLabel = [[UILabel alloc] init];
         reelsFollowingLabel = [[UILabel alloc] init];
@@ -126,8 +126,8 @@ describe(@"user profile view controller", ^{
         viewController.usernameLabel = usernameLabel;
         viewController.displayNameLabel = displayNameLabel;
         
-        viewController.subscribersLabel = subscribersLabel;
-        viewController.subscribedToLabel = subscribedToLabel;
+        viewController.subscribersButton = subscribersButton;
+        viewController.subscribedToButton = subscribedToButton;
         
         viewController.reelsCreatedLabel = reelsCreatedLabel;
         viewController.reelsFollowingLabel = reelsFollowingLabel;
@@ -207,8 +207,8 @@ describe(@"user profile view controller", ^{
                 expect(viewController.usernameLabel.text).equal(@"Username: foo");
                 expect(viewController.displayNameLabel.text).equal(@"Display name: bar");
                 
-                expect(viewController.subscribersLabel.text).equal(@"Subscribers: 1");
-                expect(viewController.subscribedToLabel.text).equal(@"Subscribed to: 2");
+                expect(viewController.subscribersButton.titleLabel.text).equal(@"Subscribers: 1");
+                expect(viewController.subscribedToButton.titleLabel.text).equal(@"Subscribed to: 2");
                 
                 expect(viewController.reelsCreatedLabel.text).equal(@"Reels Created: 3");
                 expect(viewController.reelsFollowingLabel.text).equal(@"Reels Following: 4");
@@ -267,7 +267,7 @@ describe(@"user profile view controller", ^{
                     
                     it(@"should update subscribers to reflect loss of a follower", ^{
                         expect(viewController.numberOfFollowers).to.equal(@(0));
-                        expect(viewController.subscribersLabel.text).to.equal(@"Subscribers: 0");
+                        expect(viewController.subscribersButton.titleLabel.text).to.equal(@"Subscribers: 0");
                     });
                 });
             });
@@ -301,7 +301,7 @@ describe(@"user profile view controller", ^{
                     
                     it(@"should update subscribers to reflect new follower", ^{
                         expect(viewController.numberOfFollowers).to.equal(@(1));
-                        expect(viewController.subscribersLabel.text).to.equal(@"Subscribers: 1");
+                        expect(viewController.subscribersButton.titleLabel.text).to.equal(@"Subscribers: 1");
                     });
                 });
             });
