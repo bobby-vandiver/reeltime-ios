@@ -6,12 +6,16 @@
 #import "RTArrayDataSource.h"
 
 #import "RTActivityCell.h"
-#import "RTActivityCell+ConfigureForRTActivityMessage.h"
-
 #import "RTActivityMessage.h"
 
 #import "RTStringWithEmbeddedLinks.h"
 #import "RTEmbeddedURL.h"
+
+@interface RTNewsfeedViewController (Test)
+
+@property RTArrayDataSource *activitiesDataSource;
+
+@end
 
 SpecBegin(RTNewsfeedViewController)
 
@@ -27,14 +31,14 @@ describe(@"newsfeed view controller", ^{
         presenter = mock([RTNewsfeedPresenter class]);
         
         viewController = [RTNewsfeedViewController viewControllerWithPresenter:presenter];
-        viewController.tableView = tableView;
+        viewController.activitiesTableView = tableView;
     });
     
     describe(@"when created from storyboard", ^{
         it(@"should have an empty data source", ^{
-            expect(viewController.tableViewDataSource).toNot.beNil();
-            expect(viewController.tableViewDataSource.items).toNot.beNil();
-            expect(viewController.tableViewDataSource.items.count).to.equal(0);
+            expect(viewController.activitiesDataSource).toNot.beNil();
+            expect(viewController.activitiesDataSource.items).toNot.beNil();
+            expect(viewController.activitiesDataSource.items.count).to.equal(0);
         });
     });
     
@@ -43,12 +47,12 @@ describe(@"newsfeed view controller", ^{
             [viewController viewDidLoad];
         });
         
-        it(@"should register custom activity cell class", ^{
-            [verify(tableView) registerClass:[RTActivityCell class] forCellReuseIdentifier:@"ActivityCell"];
-        });
+//        it(@"should register custom activity cell class", ^{
+//            [verify(tableView) registerClass:[RTActivityCell class] forCellReuseIdentifier:@"ActivityCell"];
+//        });
         
         it(@"should set up table view data source", ^{
-            [verify(tableView) setDataSource:viewController.tableViewDataSource];
+            [verify(tableView) setDataSource:viewController.activitiesDataSource];
         });
     });
     
@@ -71,22 +75,13 @@ describe(@"newsfeed view controller", ^{
             
             message = [RTActivityMessage activityMessage:stringWithLinks withType:RTActivityTypeCreateReel];
         });
-        
-        describe(@"activity cell configuration", ^{
-            it(@"should delegate to activity cell for configuration", ^{
-                RTActivityCell *cell = mock([RTActivityCell class]);
-               
-                viewController.tableViewDataSource.configureCellBlock(cell, message);
-                [verify(cell) configureForActivityMessage:message withLabelDelegate:presenter];
-            });
-        });
     
         describe(@"show message requested", ^{
             it(@"should add message to data source", ^{
                 [viewController showMessage:message];
 
-                expect(viewController.tableViewDataSource.items.count).to.equal(1);
-                expect(viewController.tableViewDataSource.items).to.contain(message);
+                expect(viewController.activitiesDataSource.items.count).to.equal(1);
+                expect(viewController.activitiesDataSource.items).to.contain(message);
             });
             
             it(@"should reload the table data", ^{
@@ -100,7 +95,7 @@ describe(@"newsfeed view controller", ^{
                 [viewController showMessage:message];
 
                 [viewController clearMessages];
-                expect(viewController.tableViewDataSource.items.count).to.equal(0);
+                expect(viewController.activitiesDataSource.items.count).to.equal(0);
             });
             
             it(@"should reload the table data", ^{

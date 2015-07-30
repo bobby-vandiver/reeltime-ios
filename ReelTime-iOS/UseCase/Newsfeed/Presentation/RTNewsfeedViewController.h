@@ -1,4 +1,4 @@
-#import <UIKit/UIKit.h>
+#import "RTPagedListViewController.h"
 
 #import "RTNewsfeedView.h"
 #import "RTStoryboardViewController.h"
@@ -6,10 +6,9 @@
 @class RTNewsfeedPresenter;
 @class RTArrayDataSource;
 
-@interface RTNewsfeedViewController : UIViewController <UITableViewDelegate, RTNewsfeedView, RTStoryboardViewController>
+@interface RTNewsfeedViewController : RTPagedListViewController <RTNewsfeedView, RTStoryboardViewController>
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (readonly) RTArrayDataSource *tableViewDataSource;
+@property (weak, nonatomic) IBOutlet UITableView *activitiesTableView;
 
 + (instancetype)viewControllerWithPresenter:(RTNewsfeedPresenter *)presenter;
 

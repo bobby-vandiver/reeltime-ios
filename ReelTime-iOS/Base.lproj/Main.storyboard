@@ -730,8 +730,53 @@
                     <view key="view" contentMode="scaleToFill" id="Q1K-RH-3vb">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="OJ0-8Y-9xh">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ActivityCell" id="Ipj-28-TXS" customClass="RTActivityCell">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ipj-28-TXS" id="cEp-gy-wOq">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="OJ0-8Y-9xh" secondAttribute="centerX" id="LpG-Sw-F79"/>
+                            <constraint firstItem="OJ0-8Y-9xh" firstAttribute="bottom" secondItem="Rz0-9T-ZPt" secondAttribute="top" id="PF5-rR-F79"/>
+                            <constraint firstItem="OJ0-8Y-9xh" firstAttribute="leading" secondItem="Q1K-RH-3vb" secondAttribute="leading" id="Vju-C5-GuC"/>
+                            <constraint firstAttribute="centerY" secondItem="OJ0-8Y-9xh" secondAttribute="centerY" id="sCN-un-MFS"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="OJ0-8Y-9xh"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="LpG-Sw-F79"/>
+                                <exclude reference="PF5-rR-F79"/>
+                                <exclude reference="Vju-C5-GuC"/>
+                                <exclude reference="sCN-un-MFS"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="OJ0-8Y-9xh"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="LpG-Sw-F79"/>
+                                <include reference="PF5-rR-F79"/>
+                                <include reference="Vju-C5-GuC"/>
+                                <include reference="sCN-un-MFS"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="activitiesTableView" destination="OJ0-8Y-9xh" id="pCn-jd-mxh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ib5-uu-Jbv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1150,20 +1195,20 @@
                                                 <exclude reference="ik9-dz-1tQ"/>
                                             </mask>
                                             <mask key="constraints">
-                                                <exclude reference="OTE-Ng-ZWH"/>
-                                                <exclude reference="eES-Bi-msw"/>
-                                                <exclude reference="wjs-qY-7TD"/>
-                                                <exclude reference="uLS-9C-p2P"/>
-                                                <exclude reference="6ZP-n1-b8E"/>
-                                                <exclude reference="JJQ-Ok-2bq"/>
-                                                <exclude reference="mMT-ZC-xEg"/>
-                                                <exclude reference="nT5-9l-gUx"/>
                                                 <exclude reference="8MF-6M-uaY"/>
                                                 <exclude reference="EwM-hb-Lx9"/>
                                                 <exclude reference="LfN-7m-2yT"/>
                                                 <exclude reference="aBI-c7-4re"/>
                                                 <exclude reference="tgi-J9-tTa"/>
                                                 <exclude reference="ufZ-EX-hcU"/>
+                                                <exclude reference="6ZP-n1-b8E"/>
+                                                <exclude reference="JJQ-Ok-2bq"/>
+                                                <exclude reference="mMT-ZC-xEg"/>
+                                                <exclude reference="nT5-9l-gUx"/>
+                                                <exclude reference="uLS-9C-p2P"/>
+                                                <exclude reference="OTE-Ng-ZWH"/>
+                                                <exclude reference="eES-Bi-msw"/>
+                                                <exclude reference="wjs-qY-7TD"/>
                                             </mask>
                                         </variation>
                                         <variation key="widthClass=compact">
@@ -1174,20 +1219,20 @@
                                                 <include reference="ik9-dz-1tQ"/>
                                             </mask>
                                             <mask key="constraints">
-                                                <include reference="OTE-Ng-ZWH"/>
-                                                <include reference="eES-Bi-msw"/>
-                                                <include reference="wjs-qY-7TD"/>
-                                                <include reference="uLS-9C-p2P"/>
-                                                <include reference="6ZP-n1-b8E"/>
-                                                <include reference="JJQ-Ok-2bq"/>
-                                                <include reference="mMT-ZC-xEg"/>
-                                                <include reference="nT5-9l-gUx"/>
                                                 <include reference="8MF-6M-uaY"/>
                                                 <include reference="EwM-hb-Lx9"/>
                                                 <include reference="LfN-7m-2yT"/>
                                                 <include reference="aBI-c7-4re"/>
                                                 <include reference="tgi-J9-tTa"/>
                                                 <include reference="ufZ-EX-hcU"/>
+                                                <include reference="6ZP-n1-b8E"/>
+                                                <include reference="JJQ-Ok-2bq"/>
+                                                <include reference="mMT-ZC-xEg"/>
+                                                <include reference="nT5-9l-gUx"/>
+                                                <include reference="uLS-9C-p2P"/>
+                                                <include reference="OTE-Ng-ZWH"/>
+                                                <include reference="eES-Bi-msw"/>
+                                                <include reference="wjs-qY-7TD"/>
                                             </mask>
                                         </variation>
                                     </view>

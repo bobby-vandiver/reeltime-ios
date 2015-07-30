@@ -9,8 +9,8 @@
 #import "RTArrayDataSource.h"
 #import "RTMutableArrayDataSource.h"
 
+#import "RTActivityMessage.h"
 #import "RTActivityCell.h"
-#import "RTActivityCell+ConfigureForRTActivityMessage.h"
 
 #import <TTTAttributedLabel/TTTAttributedLabel.h>
 
@@ -18,8 +18,8 @@ static NSString *const ActivityCellIdentifier = @"ActivityCell";
 
 @interface RTNewsfeedViewController ()
 
-@property RTNewsfeedPresenter *presenter;
-@property RTMutableArrayDataSource *dataSource;
+@property RTNewsfeedPresenter *newsfeedPresenter;
+@property RTMutableArrayDataSource *activitiesDataSource;
 
 @end
 
@@ -30,33 +30,37 @@ static NSString *const ActivityCellIdentifier = @"ActivityCell";
     RTNewsfeedViewController *controller = [RTStoryboardViewControllerFactory viewControllerWithStoryboardIdentifier:identifier];
     
     if (controller) {
-        controller.presenter = presenter;
-        controller.dataSource = [self createDataSourceWithPresenter:controller.presenter];
+        controller.newsfeedPresenter = presenter;
+        [controller createDataSource];
     }
     return controller;
-}
-
-+ (RTMutableArrayDataSource *)createDataSourceWithPresenter:(RTNewsfeedPresenter *)presenter {
-    return [RTMutableArrayDataSource rowMajorArrayWithItems:@[]
-                                             cellIdentifier:ActivityCellIdentifier
-                                         configureCellBlock:^(RTActivityCell *cell, RTActivityMessage *message) {
-                                             [cell configureForActivityMessage:message withLabelDelegate:presenter];
-                                         }];
 }
 
 + (NSString *)storyboardIdentifier {
     return @"Newsfeed View Controller";
 }
 
-- (RTArrayDataSource *)tableViewDataSource {
-    return self.dataSource;
+- (void)createDataSource {
+    ConfigureCellBlock configBlock = ^(RTActivityCell *cell, RTActivityMessage *message) {
+        cell.textLabel.text = message.message.string;
+    };
+    
+    self.activitiesDataSource = [RTMutableArrayDataSource rowMajorArrayWithItems:@[]
+                                                                  cellIdentifier:ActivityCellIdentifier
+                                                              configureCellBlock:configBlock];
+}
+
+- (RTPagedListPresenter *)presenter {
+    return self.newsfeedPresenter;
+}
+
+- (UITableView *)tableView {
+    return self.activitiesTableView;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self.tableView registerClass:[RTActivityCell class] forCellReuseIdentifier:ActivityCellIdentifier];
-    [self.tableView setDataSource:self.dataSource];
+    [self.tableView setDataSource:self.activitiesDataSource];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -65,12 +69,12 @@ static NSString *const ActivityCellIdentifier = @"ActivityCell";
 }
 
 - (void)showMessage:(RTActivityMessage *)message {
-    [self.dataSource addItem:message];
+    [self.activitiesDataSource addItem:message];
     [self.tableView reloadData];
 }
 
 - (void)clearMessages {
-    [self.dataSource removeAllItems];
+    [self.activitiesDataSource removeAllItems];
     [self.tableView reloadData];
 }
 
