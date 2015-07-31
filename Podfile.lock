@@ -40,7 +40,6 @@ PODS:
   - SOCKit (1.1)
   - Specta (0.5.0)
   - TransitionKit (2.1.1)
-  - TTTAttributedLabel (1.13.3)
   - Typhoon (2.3.4):
     - Typhoon/no-arc (= 2.3.4)
   - Typhoon/no-arc (2.3.4)
@@ -56,7 +55,6 @@ DEPENDENCIES:
   - RestKit (~> 0.24)
   - RestKit/Testing (~> 0.24)
   - Specta (~> 0.5)
-  - TTTAttributedLabel (~> 1.13)
   - Typhoon (~> 2.3)
   - UICKeyChainStore (~> 2.0)
   - UIDeviceIdentifier (from `https://github.com/squarefrog/UIDeviceIdentifier.git`)
@@ -83,7 +81,6 @@ SPEC CHECKSUMS:
   SOCKit: c7376ac262bea9115b8f749358f762522a47d392
   Specta: eb90708ed77569bbda089f8ead10bb99b8e9489e
   TransitionKit: 3a14b6acc7cf2d1dd3e454e24dbad1cfab9a1ef1
-  TTTAttributedLabel: 6f3174aef8e738f44dff97c2eb7d8184f6ab6277
   Typhoon: f2f712f549867ba69e8f1bccf46b3fb67d595838
   UICKeyChainStore: 69eb0c3a6f669bccf16ba88de3b9069b71501361
   UIDeviceIdentifier: c9ee256b8792e8e343d170f0836b4317d091153e
