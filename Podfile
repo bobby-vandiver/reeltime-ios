@@ -26,6 +26,9 @@ target 'ReelTime-iOSTests' do
     pod 'Expecta', '~> 0.4'
     pod 'OCMockito', '~> 1.4'
 
+    # OCHamcrest has a few cast warnings
+    pod 'OCHamcrest', '~> 4.1.1', :inhibit_warnings => true
+
     # Nocilla has a few conversion warnings
     pod 'Nocilla', '~> 0.9', :inhibit_warnings => true
 end

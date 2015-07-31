@@ -51,6 +51,7 @@ DEPENDENCIES:
   - Expecta (~> 0.4)
   - ISO8601DateFormatterValueTransformer (~> 0.6.0)
   - Nocilla (~> 0.9)
+  - OCHamcrest (~> 4.1.1)
   - OCMockito (~> 1.4)
   - RestKit (~> 0.24)
   - RestKit/Testing (~> 0.24)
