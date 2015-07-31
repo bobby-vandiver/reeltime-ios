@@ -10,9 +10,6 @@
 #import "RTVideo.h"
 #import "RTThumbnail.h"
 
-#import "RTStringWithEmbeddedLinks.h"
-#import "RTEmbeddedURL.h"
-
 SpecBegin(RTNewsfeedMessageSource)
 
 describe(@"newsfeed message source", ^{
@@ -22,27 +19,27 @@ describe(@"newsfeed message source", ^{
     __block RTUser *user;
     __block RTReel *reel;
     __block RTVideo *video;
-    
-    __block NSURL *userURL;
-    __block NSURL *reelURL;
-    __block NSURL *videoURL;
 
     beforeEach(^{
         messageSource = [[RTNewsfeedMessageSource alloc] init];
         
-        user = [[RTUser alloc] initWithUsername:username displayName:displayName
-                              numberOfFollowers:@(1) numberOfFollowees:@(2)
-                             numberOfReelsOwned:@(3) numberOfAudienceMemberships:@(4)
+        user = [[RTUser alloc] initWithUsername:username
+                                    displayName:displayName
+                              numberOfFollowers:@(1)
+                              numberOfFollowees:@(2)
+                             numberOfReelsOwned:@(3)
+                    numberOfAudienceMemberships:@(4)
                          currentUserIsFollowing:@(YES)];
         
-        reel = [[RTReel alloc] initWithReelId:@(1) name:@"reel" audienceSize:@(2) numberOfVideos:@(3) currentUserIsAnAudienceMember:@(YES) owner:nil];
+        reel = [[RTReel alloc] initWithReelId:@(1)
+                                         name:@"reel"
+                                 audienceSize:@(2)
+                               numberOfVideos:@(3)
+                currentUserIsAnAudienceMember:@(YES)
+                                        owner:nil];
         
         RTThumbnail *thumbnail = mock([RTThumbnail class]);
         video = [[RTVideo alloc] initWithVideoId:@(1) title:@"title" thumbnail:thumbnail];
-        
-        userURL = [NSURL URLWithString:[NSString stringWithFormat:@"reeltime://users/%@", user.username]];
-        reelURL = [NSURL URLWithString:[NSString stringWithFormat:@"reeltime://reels/%@", reel.reelId]];
-        videoURL = [NSURL URLWithString:[NSString stringWithFormat:@"reeltime://videos/%@", video.videoId]];
     });
     
     describe(@"creating activity type specific messages", ^{
@@ -53,23 +50,13 @@ describe(@"newsfeed message source", ^{
                                   user.username, reel.name];
             
             RTActivityMessage *activityMessage = [messageSource messageForActivity:activity];
+            
             expect(activityMessage.type).to.equal(RTActivityTypeCreateReel);
+            expect(activityMessage.text).to.equal(expected);
 
-            RTStringWithEmbeddedLinks *message = activityMessage.message;
-            expect(message.string).to.equal(expected);
-            expect(message.links.count).to.equal(2);
-            
-            RTEmbeddedURL *link = [message.links objectAtIndex:0];
-            expect(link.url).to.equal(userURL);
-            
-            NSString *linkText = [message.string substringWithRange:link.range];
-            expect(linkText).to.equal(user.username);
-            
-            link = [message.links objectAtIndex:1];
-            expect(link.url).to.equal(reelURL);
-            
-            linkText = [message.string substringWithRange:link.range];
-            expect(linkText).to.equal(reel.name);
+            expect(activityMessage.username).to.equal(user.username);
+            expect(activityMessage.reelId).to.equal(reel.reelId);
+            expect(activityMessage.videoId).to.beNil();
         });
         
         it(@"join reel activity", ^{
@@ -79,23 +66,13 @@ describe(@"newsfeed message source", ^{
                                   user.username, reel.name];
             
             RTActivityMessage *activityMessage = [messageSource messageForActivity:activity];
+            
             expect(activityMessage.type).to.equal(RTActivityTypeJoinReelAudience);
+            expect(activityMessage.text).to.equal(expected);
             
-            RTStringWithEmbeddedLinks *message = activityMessage.message;
-            expect(message.string).to.equal(expected);
-            expect(message.links.count).to.equal(2);
-            
-            RTEmbeddedURL *link = [message.links objectAtIndex:0];
-            expect(link.url).to.equal(userURL);
-            
-            NSString *linkText = [message.string substringWithRange:link.range];
-            expect(linkText).to.equal(user.username);
-            
-            link = [message.links objectAtIndex:1];
-            expect(link.url).to.equal(reelURL);
-            
-            linkText = [message.string substringWithRange:link.range];
-            expect(linkText).to.equal(reel.name);
+            expect(activityMessage.username).to.equal(user.username);
+            expect(activityMessage.reelId).to.equal(reel.reelId);
+            expect(activityMessage.videoId).to.beNil();
         });
         
         it(@"add video to reel activity", ^{
@@ -105,31 +82,14 @@ describe(@"newsfeed message source", ^{
                                   user.username, video.title, reel.name];
             
             RTActivityMessage *activityMessage = [messageSource messageForActivity:activity];
+            
             expect(activityMessage.type).to.equal(RTActivityTypeAddVideoToReel);
+            expect(activityMessage.text).to.equal(expected);
             
-            RTStringWithEmbeddedLinks *message = activityMessage.message;
-            expect(message.string).to.equal(expected);
-            expect(message.links.count).to.equal(3);
-            
-            RTEmbeddedURL *link = [message.links objectAtIndex:0];
-            expect(link.url).to.equal(userURL);
-            
-            NSString *linkText = [message.string substringWithRange:link.range];
-            expect(linkText).to.equal(user.username);
-            
-            link = [message.links objectAtIndex:1];
-            expect(link.url).to.equal(reelURL);
-            
-            linkText = [message.string substringWithRange:link.range];
-            expect(linkText).to.equal(reel.name);
-            
-            link = [message.links objectAtIndex:2];
-            expect(link.url).to.equal(videoURL);
-            
-            linkText = [message.string substringWithRange:link.range];
-            expect(linkText).to.equal(video.title);
+            expect(activityMessage.username).to.equal(user.username);
+            expect(activityMessage.reelId).to.equal(reel.reelId);
+            expect(activityMessage.videoId).to.equal(video.videoId);
         });
-
     });
 });
 

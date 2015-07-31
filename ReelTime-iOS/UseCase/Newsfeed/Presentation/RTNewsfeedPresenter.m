@@ -7,8 +7,6 @@
 #import "RTActivity.h"
 #import "RTActivityMessage.h"
 
-#import "NSURL+RTURL.h"
-
 @interface RTNewsfeedPresenter ()
 
 @property id<RTNewsfeedView> view;
@@ -41,21 +39,16 @@
     [self.view showMessage:message];
 }
 
-- (void)attributedLabel:(TTTAttributedLabel *)label
-   didSelectLinkWithURL:(NSURL *)url {
-    if (url.isUserURL) {
-        [self.wireframe presentUserForUsername:url.username];
-    }
-    else if (url.isReelURL) {
-        // TODO: Incorporate reel owner during refactor of newsfeed
-        [self.wireframe presentReelForReelId:url.reelId ownerUsername:@""];
-    }
-    else if (url.isVideoURL) {
-        [self.wireframe presentVideoForVideoId:url.videoId];
-    }
-    else {
-        // TODO: Log unknown URL
-    }
+- (void)requestedUserDetailsForUsername:(NSString *)username {
+    [self.wireframe presentUserForUsername:username];
+}
+
+- (void)requestedReelDetailsForReelId:(NSNumber *)reelId {
+    [self.wireframe presentReelForReelId:reelId ownerUsername:nil];
+}
+
+- (void)requestedVideoDetailsForVideoId:(NSNumber *)videoId {
+    [self.wireframe presentVideoForVideoId:videoId];
 }
 
 @end

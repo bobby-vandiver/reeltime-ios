@@ -3,16 +3,13 @@
 #import "RTNewsfeedPresenter.h"
 #import "RTStoryboardViewControllerFactory.h"
 
-#import "RTStringWithEmbeddedLinks.h"
-#import "RTActivityType.h"
-
 #import "RTArrayDataSource.h"
 #import "RTMutableArrayDataSource.h"
 
+#import "RTActivityType.h"
 #import "RTActivityMessage.h"
-#import "RTActivityCell.h"
 
-#import <TTTAttributedLabel/TTTAttributedLabel.h>
+#import "RTActivityCell.h"
 
 static NSString *const ActivityCellIdentifier = @"ActivityCell";
 
@@ -42,7 +39,7 @@ static NSString *const ActivityCellIdentifier = @"ActivityCell";
 
 - (void)createDataSource {
     ConfigureCellBlock configBlock = ^(RTActivityCell *cell, RTActivityMessage *message) {
-        cell.textLabel.text = message.message.string;
+        cell.textLabel.text = message.text;
     };
     
     self.activitiesDataSource = [RTMutableArrayDataSource rowMajorArrayWithItems:@[]

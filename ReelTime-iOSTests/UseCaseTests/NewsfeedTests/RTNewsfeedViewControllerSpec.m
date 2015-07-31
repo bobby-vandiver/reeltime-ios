@@ -8,9 +8,6 @@
 #import "RTActivityCell.h"
 #import "RTActivityMessage.h"
 
-#import "RTStringWithEmbeddedLinks.h"
-#import "RTEmbeddedURL.h"
-
 @interface RTNewsfeedViewController (Test)
 
 @property RTArrayDataSource *activitiesDataSource;
@@ -47,10 +44,6 @@ describe(@"newsfeed view controller", ^{
             [viewController viewDidLoad];
         });
         
-//        it(@"should register custom activity cell class", ^{
-//            [verify(tableView) registerClass:[RTActivityCell class] forCellReuseIdentifier:@"ActivityCell"];
-//        });
-        
         it(@"should set up table view data source", ^{
             [verify(tableView) setDataSource:viewController.activitiesDataSource];
         });
@@ -70,10 +63,11 @@ describe(@"newsfeed view controller", ^{
         __block RTActivityMessage *message;
         
         beforeEach(^{
-            RTStringWithEmbeddedLinks *stringWithLinks = [[RTStringWithEmbeddedLinks alloc] initWithString:@"this is a test"];
-            [stringWithLinks addLinkToURL:[NSURL URLWithString:@"http://test.com"] forString:@"is"];
-            
-            message = [RTActivityMessage activityMessage:stringWithLinks withType:RTActivityTypeCreateReel];
+            message = [RTActivityMessage activityMessageWithText:@"this is a test"
+                                                            type:RTActivityTypeAddVideoToReel
+                                                     forUsername:username
+                                                          reelId:@(reelId)
+                                                         videoId:@(videoId)];
         });
     
         describe(@"show message requested", ^{

@@ -1,11 +1,6 @@
 #import "RTNewsfeedMessageSource.h"
 #import "RTActivityMessage.h"
 
-#import "RTStringWithEmbeddedLinks.h"
-#import "RTEmbeddedURL.h"
-
-#import "RTURLFactory.h"
-
 #import "RTActivity.h"
 
 #import "RTUser.h"
@@ -30,21 +25,13 @@
     RTVideo *video = activity.video;
     
     NSString *text = [self textForActivity:activity];
-    RTStringWithEmbeddedLinks *message = [[RTStringWithEmbeddedLinks alloc] initWithString:text];
-    
-    NSURL *userURL = [RTURLFactory URLForUser:user];
-    [message addLinkToURL:userURL forString:user.username];
-    
-    NSURL *reelURL = [RTURLFactory URLForReel:reel];
-    [message addLinkToURL:reelURL forString:reel.name];
-    
-    if ([activity.type isEqual:@(RTActivityTypeAddVideoToReel)]) {
-        NSURL *videoURL = [RTURLFactory URLForVideo:video];
-        [message addLinkToURL:videoURL forString:video.title];
-    }
-    
     RTActivityType type = [activity.type integerValue];
-    return [RTActivityMessage activityMessage:message withType:type];
+    
+    return [RTActivityMessage activityMessageWithText:text
+                                                 type:type
+                                          forUsername:user.username
+                                               reelId:reel.reelId
+                                              videoId:video.videoId];
 }
 
 - (NSString *)textForActivity:(RTActivity *)activity {

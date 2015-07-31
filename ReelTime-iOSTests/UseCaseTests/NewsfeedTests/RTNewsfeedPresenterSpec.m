@@ -16,7 +16,6 @@
 #import "RTThumbnail.h"
 
 #import "RTActivityMessage.h"
-#import "RTURLFactory.h"
 
 SpecBegin(RTNewsfeedPresenter)
 
@@ -44,15 +43,25 @@ describe(@"newsfeed presenter", ^{
                                                     wireframe:wireframe
                                                 messageSource:messageSource];
         
-        user = [[RTUser alloc] initWithUsername:username displayName:displayName
-                              numberOfFollowers:@(1) numberOfFollowees:@(2)
-                             numberOfReelsOwned:@(3) numberOfAudienceMemberships:@(4)
+        user = [[RTUser alloc] initWithUsername:username
+                                    displayName:displayName
+                              numberOfFollowers:@(1)
+                              numberOfFollowees:@(2)
+                             numberOfReelsOwned:@(3)
+                    numberOfAudienceMemberships:@(4)
                          currentUserIsFollowing:@(YES)];
         
-        reel = [[RTReel alloc] initWithReelId:@(1) name:@"reel" audienceSize:@(2) numberOfVideos:@(3) currentUserIsAnAudienceMember:@(YES) owner:nil];
+        reel = [[RTReel alloc] initWithReelId:@(1)
+                                         name:@"reel"
+                                 audienceSize:@(2)
+                               numberOfVideos:@(3)
+                currentUserIsAnAudienceMember:@(YES)
+                                        owner:nil];
         
         RTThumbnail *thumbnail = mock([RTThumbnail class]);
-        video = [[RTVideo alloc] initWithVideoId:@(1) title:@"title" thumbnail:thumbnail];
+        video = [[RTVideo alloc] initWithVideoId:@(1)
+                                           title:@"title"
+                                       thumbnail:thumbnail];
     });
     
     describe(@"newsfeed reset", ^{
@@ -75,34 +84,19 @@ describe(@"newsfeed presenter", ^{
     });
     
     describe(@"routing to other modules", ^{
-        it(@"should present user when user link is selected", ^{
-            NSURL *url = [RTURLFactory URLForUser:user];
-
-            [presenter attributedLabel:anything() didSelectLinkWithURL:url];
+        it(@"should present user details when requested", ^{
+            [presenter requestedUserDetailsForUsername:username];
             [verify(wireframe) presentUserForUsername:user.username];
         });
         
-        it(@"should present reel when reel link is selected", ^{
-            NSURL *url = [RTURLFactory URLForReel:reel];
-            
-            [presenter attributedLabel:anything() didSelectLinkWithURL:url];
-            [verify(wireframe) presentReelForReelId:reel.reelId ownerUsername:@""];
+        it(@"should present reel details when requested", ^{
+            [presenter requestedReelDetailsForReelId:@(reelId)];
+            [verify(wireframe) presentReelForReelId:@(reelId) ownerUsername:nil];
         });
         
-        it(@"should present video when video link is selected", ^{
-            NSURL *url = [RTURLFactory URLForVideo:video];
-            
-            [presenter attributedLabel:anything() didSelectLinkWithURL:url];
-            [verify(wireframe) presentVideoForVideoId:video.videoId];
-        });
-        
-        it(@"should do nothing when unknown link is selected", ^{
-            NSURL *url = [NSURL URLWithString:@"http://something.com/"];
-            [presenter attributedLabel:anything() didSelectLinkWithURL:url];
-            
-            [verifyCount(wireframe, never()) presentUserForUsername:anything()];
-            [verifyCount(wireframe, never()) presentReelForReelId:anything() ownerUsername:anything()];
-            [verifyCount(wireframe, never()) presentVideoForVideoId:anything()];
+        it(@"should present video details when requested", ^{
+            [presenter requestedVideoDetailsForVideoId:@(videoId)];
+            [verify(wireframe) presentVideoForVideoId:@(videoId)];
         });
     });
 });
