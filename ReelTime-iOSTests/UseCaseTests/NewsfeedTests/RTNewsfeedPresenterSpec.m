@@ -90,8 +90,8 @@ describe(@"newsfeed presenter", ^{
         });
         
         it(@"should present reel details when requested", ^{
-            [presenter requestedReelDetailsForReelId:@(reelId)];
-            [verify(wireframe) presentReelForReelId:@(reelId) ownerUsername:nil];
+            [presenter requestedReelDetailsForReelId:@(reelId) ownerUsername:username];
+            [verify(wireframe) presentReelForReelId:@(reelId) ownerUsername:username];
         });
         
         it(@"should present video details when requested", ^{

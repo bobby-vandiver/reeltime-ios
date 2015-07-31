@@ -43,8 +43,9 @@
     [self.wireframe presentUserForUsername:username];
 }
 
-- (void)requestedReelDetailsForReelId:(NSNumber *)reelId {
-    [self.wireframe presentReelForReelId:reelId ownerUsername:nil];
+- (void)requestedReelDetailsForReelId:(NSNumber *)reelId
+                        ownerUsername:(NSString *)ownerUsername {
+    [self.wireframe presentReelForReelId:reelId ownerUsername:ownerUsername];
 }
 
 - (void)requestedVideoDetailsForVideoId:(NSNumber *)videoId {

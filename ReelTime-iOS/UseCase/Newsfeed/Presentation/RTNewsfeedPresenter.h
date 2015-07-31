@@ -15,7 +15,8 @@
 
 - (void)requestedUserDetailsForUsername:(NSString *)username;
 
-- (void)requestedReelDetailsForReelId:(NSNumber *)reelId;
+- (void)requestedReelDetailsForReelId:(NSNumber *)reelId
+                        ownerUsername:(NSString *)ownerUsername;
 
 - (void)requestedVideoDetailsForVideoId:(NSNumber *)videoId;
 
