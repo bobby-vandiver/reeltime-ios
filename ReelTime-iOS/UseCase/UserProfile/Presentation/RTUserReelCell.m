@@ -41,7 +41,8 @@ static NSString *const UserReelVideoCellIdentifier = @"UserReelVideoCell";
 - (void)createCollectionView {
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     
-    layout.itemSize = CGSizeMake(75, 75);
+    // TODO: Reconcile this with thumbnail support object!
+    layout.itemSize = CGSizeMake(70, 70);
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
