@@ -288,10 +288,6 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
     return self.thumbnailSupport.dimensions.height;
 }
 
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return UITableViewCellEditingStyleNone;
-}
-
 #pragma mark - RTUserReelFooterViewDelegate Methods
 
 - (void)footerView:(RTUserReelFooterView *)footerView didPressFollowReelButton:(UIButton *)button forReelId:(NSNumber *)reelId {

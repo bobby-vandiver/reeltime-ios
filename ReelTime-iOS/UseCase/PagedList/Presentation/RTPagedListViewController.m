@@ -61,4 +61,8 @@
     [self.scrollHandler handleScrollForTableView:self.tableView withPresenter:self.presenter];
 }
 
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewCellEditingStyleNone;
+}
+
 @end
