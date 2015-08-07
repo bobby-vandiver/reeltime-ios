@@ -33,7 +33,9 @@
 }
 
 - (void)addItem:(id)item {
-    [self.mutableItems addObject:item];
+    if (![self.mutableItems containsObject:item]) {
+        [self.mutableItems addObject:item];
+    }
 }
 
 - (void)removeItemsPassingTest:(MatchItemTest)matchItemTest {

@@ -28,4 +28,24 @@
     return self;
 }
 
+- (BOOL)isEqualToVideoDescription:(RTVideoDescription *)videoDescription {
+    return [self.videoId isEqual:videoDescription.videoId];
+}
+
+- (BOOL)isEqual:(id)object {
+    if (self == object) {
+        return YES;
+    }
+    
+    if (![object isKindOfClass:[RTVideoDescription class]]) {
+        return NO;
+    }
+    
+    return [self isEqualToVideoDescription:(RTVideoDescription *)object];
+}
+
+- (NSUInteger)hash {
+    return [self.videoId hash];
+}
+
 @end

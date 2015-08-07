@@ -12,4 +12,6 @@
                                           videoId:(NSNumber *)videoId
                                     thumbnailData:(NSData *)thumbnailData;
 
+- (BOOL)isEqualToVideoDescription:(RTVideoDescription *)videoDescription;
+
 @end
