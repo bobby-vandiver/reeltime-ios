@@ -8,4 +8,6 @@
 + (RTClientDescription *)clientDescriptionWithClientId:(NSString *)clientId
                                             clientName:(NSString *)clientName;
 
+- (BOOL)isEqualToClientDescription:(RTClientDescription *)clientDescription;
+
 @end

@@ -58,4 +58,24 @@ currentUserIsAnAudienceMember:(NSNumber *)currentUserIsAnAudienceMember
     self.audienceSize = [NSNumber numberWithInteger:[self.audienceSize integerValue] - 1];
 }
 
+- (BOOL)isEqualToReelDescription:(RTReelDescription *)reelDescription {
+    return [self.reelId isEqual:reelDescription.reelId];
+}
+
+- (BOOL)isEqual:(id)object {
+    if (self == object) {
+        return YES;
+    }
+    
+    if (![object isKindOfClass:[RTReelDescription class]]) {
+        return NO;
+    }
+    
+    return [self isEqualToReelDescription:(RTReelDescription *)object];
+}
+
+- (NSUInteger)hash {
+    return [self.reelId hash];
+}
+
 @end

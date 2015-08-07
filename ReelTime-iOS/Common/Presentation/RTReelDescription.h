@@ -22,4 +22,6 @@
 
 - (void)currentUserLeftAudience;
 
+- (BOOL)isEqualToReelDescription:(RTReelDescription *)reelDescription;
+
 @end

@@ -26,4 +26,24 @@
     return self;
 }
 
+- (BOOL)isEqualToClientDescription:(RTClientDescription *)clientDescription {
+    return [self.clientId isEqual:clientDescription.clientId];
+}
+
+- (BOOL)isEqual:(id)object {
+    if (self == object) {
+        return YES;
+    }
+    
+    if (![object isKindOfClass:[RTClientDescription class]]) {
+        return NO;
+    }
+    
+    return [self isEqualToClientDescription:(RTClientDescription *)object];
+}
+
+- (NSUInteger)hash {
+    return [self.clientId hash];
+}
+
 @end

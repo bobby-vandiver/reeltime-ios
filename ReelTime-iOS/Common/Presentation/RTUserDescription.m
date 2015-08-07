@@ -55,4 +55,24 @@
     return self;
 }
 
+- (BOOL)isEqualToUserDescription:(RTUserDescription *)userDescription {
+    return [self.username isEqual:userDescription.username];
+}
+
+- (BOOL)isEqual:(id)object {
+    if (self == object) {
+        return YES;
+    }
+    
+    if (![object isKindOfClass:[RTUserDescription class]]) {
+        return NO;
+    }
+    
+    return [self isEqualToUserDescription:(RTUserDescription *)object];
+}
+
+- (NSUInteger)hash {
+    return [self.username hash];
+}
+
 @end

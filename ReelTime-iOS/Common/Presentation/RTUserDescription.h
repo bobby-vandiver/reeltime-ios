@@ -21,4 +21,6 @@
                           numberOfAudienceMemberships:(NSNumber *)numberOfAudienceMemberships
                                currentUserIsFollowing:(NSNumber *)currentUserIsFollowing;
 
+- (BOOL)isEqualToUserDescription:(RTUserDescription *)userDescription;
+
 @end
