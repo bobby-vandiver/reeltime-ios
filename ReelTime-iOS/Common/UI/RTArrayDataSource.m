@@ -105,7 +105,7 @@
 - (id)configureCell:(id)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
     
     if (self.configureCellBlock) {
-        NSInteger idx = indexPath.row;
+        NSInteger idx = self.rowMajor ? indexPath.row : indexPath.section;
         NSObject *item = self.items[idx];
         self.configureCellBlock(cell, item);
     }
