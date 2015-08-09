@@ -4,23 +4,29 @@
 #import "RTClientCredentials.h"
 #import "RTClientCredentialsStore.h"
 
+#import "RTOAuth2Token.h"
+#import "RTOAuth2TokenStore.h"
+
 #import "RTLogging.h"
 
 @interface RTCurrentUserService ()
 
 @property RTCurrentUserStore *currentUserStore;
 @property RTClientCredentialsStore *clientCredentialsStore;
+@property RTOAuth2TokenStore *tokenStore;
 
 @end
 
 @implementation RTCurrentUserService
 
 - (instancetype)initWithCurrentUserStore:(RTCurrentUserStore *)currentUserStore
-                  clientCredentialsStore:(RTClientCredentialsStore *)clientCredentialsStore {
+                  clientCredentialsStore:(RTClientCredentialsStore *)clientCredentialsStore
+                              tokenStore:(RTOAuth2TokenStore *)tokenStore {
     self = [super init];
     if (self) {
         self.currentUserStore = currentUserStore;
         self.clientCredentialsStore = clientCredentialsStore;
+        self.tokenStore = tokenStore;
     }
     return self;
 }
@@ -50,6 +56,22 @@
     }
     
     return clientCredentials;
+}
+
+- (RTOAuth2Token *)tokenForCurrentUser {
+    NSString *username = [self currentUsername];
+    if (!username) {
+        return nil;
+    }
+    
+    NSError *error;
+    RTOAuth2Token *token = [self.tokenStore loadTokenForUsername:username error:&error];
+    
+    if (!token) {
+        DDLogDebug(@"Could not load token for current username: %@", error);
+    }
+    
+    return token;
 }
 
 @end

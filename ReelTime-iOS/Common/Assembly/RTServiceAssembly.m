@@ -8,9 +8,11 @@
 
 - (RTCurrentUserService *)currentUserService {
     return [TyphoonDefinition withClass:[RTCurrentUserService class] configuration:^(TyphoonDefinition *definition) {
-        [definition injectMethod:@selector(initWithCurrentUserStore:clientCredentialsStore:) parameters:^(TyphoonMethod *method) {
-            [method injectParameterWith:[self.secureStoreAssembly currentUserStore]];
-            [method injectParameterWith:[self.secureStoreAssembly clientCredentialsStore]];
+        [definition injectMethod:@selector(initWithCurrentUserStore:clientCredentialsStore:tokenStore:)
+                      parameters:^(TyphoonMethod *method) {
+                          [method injectParameterWith:[self.secureStoreAssembly currentUserStore]];
+                          [method injectParameterWith:[self.secureStoreAssembly clientCredentialsStore]];
+                          [method injectParameterWith:[self.secureStoreAssembly tokenStore]];
         }];
     }];
 }
