@@ -4,4 +4,6 @@
 
 @interface RTPlayVideoViewController : UIViewController <RTStoryboardViewController>
 
++ (instancetype)viewControllerForVideoId:(NSNumber *)videoId;
+
 @end

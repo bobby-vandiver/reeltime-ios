@@ -1019,6 +1019,23 @@
             </objects>
             <point key="canvasLocation" x="2955" y="-610"/>
         </scene>
+        <!--Play Video-->
+        <scene sceneID="jPZ-gO-CAa">
+            <objects>
+                <viewController storyboardIdentifier="Play Video View Controller" title="Play Video" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Nci-Cp-gbL" customClass="RTPlayVideoViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ccL-NJ-HIN"/>
+                        <viewControllerLayoutGuide type="bottom" id="Xns-bO-bia"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="RlA-8K-aXt">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gOV-v9-XWG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1614" y="-610"/>
+        </scene>
         <!--User Followers-->
         <scene sceneID="bF4-Ze-lVR">
             <objects>
