@@ -4,6 +4,7 @@
 <dict>
 	<key>TyphoonInitialAssemblies</key>
 	<array>
+		<string>RTPlayVideoAssembly</string>
 		<string>RTBrowseUserFolloweesAssembly</string>
 		<string>RTBrowseUserFollowersAssembly</string>
 		<string>RTLogoutAssembly</string>
