@@ -6,12 +6,14 @@
 
 @class RTBrowseAllViewController;
 @class RTUserProfileWireframe;
+@class RTPlayVideoWireframe;
 @class RTApplicationWireframe;
 
 @interface RTBrowseAllWireframe : RTApplicationAwareWireframe <RTUserWireframe, RTReelWireframe, RTVideoWireframe>
 
 - (instancetype)initWithViewController:(RTBrowseAllViewController *)viewController
                   userProfileWireframe:(RTUserProfileWireframe *)userProfileWireframe
+                    playVideoWireframe:(RTPlayVideoWireframe *)playVideoWireframe
                   applicationWireframe:(RTApplicationWireframe *)applicationWireframe;
 
 @end

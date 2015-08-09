@@ -3,6 +3,7 @@
 @class RTApplicationAssembly;
 @class RTClientAssembly;
 @class RTDeviceAssembly;
+@class RTPlayVideoAssembly;
 @class RTUserProfileAssembly;
 
 @class RTBrowseAllWireframe;
@@ -27,6 +28,7 @@
 @property (nonatomic, strong, readonly) RTApplicationAssembly *applicationAssembly;
 @property (nonatomic, strong, readonly) RTClientAssembly *clientAssembly;
 @property (nonatomic, strong, readonly) RTDeviceAssembly *deviceAssembly;
+@property (nonatomic, strong, readonly) RTPlayVideoAssembly *playVideoAssembly;
 @property (nonatomic, strong, readonly) RTUserProfileAssembly *userProfileAssembly;
 
 - (RTBrowseAllWireframe *)browseAllWireframe;

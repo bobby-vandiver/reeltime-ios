@@ -3,6 +3,7 @@
 #import "RTApplicationAssembly.h"
 #import "RTClientAssembly.h"
 #import "RTDeviceAssembly.h"
+#import "RTPlayVideoAssembly.h"
 #import "RTUserProfileAssembly.h"
 
 #import "RTBrowseAllWireframe.h"
@@ -29,10 +30,11 @@
 
 - (RTBrowseAllWireframe *)browseAllWireframe {
     return [TyphoonDefinition withClass:[RTBrowseAllWireframe class] configuration:^(TyphoonDefinition *definition) {
-        [definition injectMethod:@selector(initWithViewController:userProfileWireframe:applicationWireframe:)
+        [definition injectMethod:@selector(initWithViewController:userProfileWireframe:playVideoWireframe:applicationWireframe:)
                       parameters:^(TyphoonMethod *method) {
                           [method injectParameterWith:[self browseAllViewController]];
                           [method injectParameterWith:[self.userProfileAssembly userProfileWireframe]];
+                          [method injectParameterWith:[self.playVideoAssembly playVideoWireframe]];
                           [method injectParameterWith:[self.applicationAssembly applicationWireframe]];
         }];
     }];

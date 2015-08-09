@@ -2,6 +2,7 @@
 #import "RTBrowseAllViewController.h"
 
 #import "RTUserProfileWireframe.h"
+#import "RTPlayVideoWireframe.h"
 #import "RTApplicationWireframe.h"
 
 #import "RTUserProfileViewController.h"
@@ -10,7 +11,9 @@
 @interface RTBrowseAllWireframe ()
 
 @property RTBrowseAllViewController *viewController;
+
 @property RTUserProfileWireframe *userProfileWireframe;
+@property RTPlayVideoWireframe *playVideoWireframe;
 
 @end
 
@@ -18,12 +21,14 @@
 
 - (instancetype)initWithViewController:(RTBrowseAllViewController *)viewController
                   userProfileWireframe:(RTUserProfileWireframe *)userProfileWireframe
+                    playVideoWireframe:(RTPlayVideoWireframe *)playVideoWireframe
                   applicationWireframe:(RTApplicationWireframe *)applicationWireframe {
 
     self = [super initWithApplicationWireframe:applicationWireframe];
     if (self) {
         self.viewController = viewController;
         self.userProfileWireframe = userProfileWireframe;
+        self.playVideoWireframe = playVideoWireframe;
     }
     return self;
 }
@@ -43,12 +48,7 @@
 }
 
 - (void)presentVideoForVideoId:(NSNumber *)videoId {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Present Video Details"
-                                                        message:[NSString stringWithFormat:@"Video ID: %@", videoId]
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-    [alertView show];
+    [self.playVideoWireframe presentVideoForVideoId:videoId];
 }
 
 @end
