@@ -1,4 +1,6 @@
 #import "RTAppDelegate.h"
+#import "RTPlayVideoURLProtocol.h"
+
 #import <CocoaLumberjack/CocoaLumberjack.h>
 
 @implementation RTAppDelegate
@@ -9,6 +11,8 @@
     [DDLog addLogger:[DDASLLogger sharedInstance]];
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
     [[DDTTYLogger sharedInstance] setColorsEnabled:YES];
+    
+    [NSURLProtocol registerClass:[RTPlayVideoURLProtocol class]];
     
     [self.window makeKeyAndVisible];
     [self.applicationWireframe presentInitialScreen];
