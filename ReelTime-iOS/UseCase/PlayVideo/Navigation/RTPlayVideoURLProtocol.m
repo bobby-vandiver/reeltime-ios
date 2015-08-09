@@ -39,7 +39,10 @@ static NSString *const HandledKey = @"RTPlayVideoURLProtocolHandledKey";
 - (instancetype)initWithRequest:(NSURLRequest *)request
                  cachedResponse:(NSCachedURLResponse *)cachedResponse
                          client:(id<NSURLProtocolClient>)client {
-
+    
+    RTServiceAssembly *serviceAssembly = [RTServiceAssembly assembly];
+    self.currentUserService = [serviceAssembly currentUserService];
+ 
     return [super initWithRequest:request cachedResponse:cachedResponse client:client];
 }
 
