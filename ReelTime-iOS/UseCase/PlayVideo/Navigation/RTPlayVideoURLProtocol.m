@@ -1,8 +1,15 @@
 #import "RTPlayVideoURLProtocol.h"
 
+#import "RTServiceAssembly.h"
+#import "RTCurrentUserService.h"
+
+#import "RTOAuth2Token.h"
+#import "RTLogging.h"
+
 @interface RTPlayVideoURLProtocol () <NSURLConnectionDataDelegate>
 
 @property (nonatomic, strong) NSURLConnection *connection;
+@property RTCurrentUserService *currentUserService;
 
 @end
 
@@ -11,6 +18,13 @@ static NSString *const HandledKey = @"RTPlayVideoURLProtocolHandledKey";
 @implementation RTPlayVideoURLProtocol
 
 + (BOOL)canInitWithRequest:(NSURLRequest *)request {
+    NSURL *url = request.URL;
+    NSString *path = url.path;
+    
+    if ([path containsString:@"/api/playlists/"]) {
+        return ![NSURLProtocol propertyForKey:HandledKey inRequest:request];
+    }
+    
     return NO;
 }
 
@@ -30,11 +44,26 @@ static NSString *const HandledKey = @"RTPlayVideoURLProtocolHandledKey";
 }
 
 - (void)startLoading {
+    NSMutableURLRequest *newRequest = [self.request mutableCopy];
     
+    RTOAuth2Token *token = [self.currentUserService tokenForCurrentUser];
+    
+    if (token) {
+        // TODO: Refactor to use same code as HTTP client
+        NSString *bearerToken = [NSString stringWithFormat:@"Bearer %@", token.accessToken];
+        [newRequest setValue:bearerToken forKey:@"Authorization"];
+    }
+    else {
+        DDLogWarn(@"Missing token for streaming video!");
+    }
+    
+    [NSURLProtocol setProperty:@(YES) forKey:HandledKey inRequest:newRequest];
+    self.connection = [NSURLConnection connectionWithRequest:newRequest delegate:self];
 }
 
 - (void)stopLoading {
-    
+    [self.connection cancel];
+    self.connection = nil;
 }
 
 #pragma mark - NSURLConnectionDataDelegate Methods

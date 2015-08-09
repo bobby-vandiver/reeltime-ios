@@ -23,6 +23,7 @@
 		7108D78D1B13FBB9000451AD /* RTChangeDisplayNameInteractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7108D78C1B13FBB9000451AD /* RTChangeDisplayNameInteractorSpec.m */; };
 		710B6B711B76ED3A009318D0 /* RTPlayVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 710B6B701B76ED3A009318D0 /* RTPlayVideoViewController.m */; };
 		710B6B741B76ED91009318D0 /* RTPlayVideoURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 710B6B731B76ED91009318D0 /* RTPlayVideoURLProtocol.m */; };
+		710B6B771B76F67A009318D0 /* RTPlayVideoURLProtocolSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 710B6B761B76F67A009318D0 /* RTPlayVideoURLProtocolSpec.m */; };
 		710BB5F91ACDF6EE00F724C7 /* RTCountDownLatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 710BB5F81ACDF6EE00F724C7 /* RTCountDownLatch.m */; };
 		710C0A371B27BD66006209F4 /* RTManageDevicesPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 710C0A361B27BD66006209F4 /* RTManageDevicesPresenter.m */; };
 		710C0A3B1B27C00D006209F4 /* RTManageDevicesPresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 710C0A3A1B27C00D006209F4 /* RTManageDevicesPresenterSpec.m */; };
@@ -450,6 +451,7 @@
 		710B6B701B76ED3A009318D0 /* RTPlayVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTPlayVideoViewController.m; sourceTree = "<group>"; };
 		710B6B721B76ED91009318D0 /* RTPlayVideoURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTPlayVideoURLProtocol.h; sourceTree = "<group>"; };
 		710B6B731B76ED91009318D0 /* RTPlayVideoURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTPlayVideoURLProtocol.m; sourceTree = "<group>"; };
+		710B6B761B76F67A009318D0 /* RTPlayVideoURLProtocolSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTPlayVideoURLProtocolSpec.m; sourceTree = "<group>"; };
 		710BB5F71ACDF6EE00F724C7 /* RTCountDownLatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCountDownLatch.h; sourceTree = "<group>"; };
 		710BB5F81ACDF6EE00F724C7 /* RTCountDownLatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTCountDownLatch.m; sourceTree = "<group>"; };
 		710C0A351B27BD66006209F4 /* RTManageDevicesPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTManageDevicesPresenter.h; sourceTree = "<group>"; };
@@ -1257,6 +1259,14 @@
 				710B6B731B76ED91009318D0 /* RTPlayVideoURLProtocol.m */,
 			);
 			path = Navigation;
+			sourceTree = "<group>";
+		};
+		710B6B751B76F653009318D0 /* PlayVideoTests */ = {
+			isa = PBXGroup;
+			children = (
+				710B6B761B76F67A009318D0 /* RTPlayVideoURLProtocolSpec.m */,
+			);
+			path = PlayVideoTests;
 			sourceTree = "<group>";
 		};
 		710BB5F61ACDF69C00F724C7 /* Concurrency */ = {
@@ -3480,6 +3490,7 @@
 				710C0A391B27BFF5006209F4 /* ManageDevicesTests */,
 				71073CFC1A831E6600BE6E19 /* NewsfeedTests */,
 				712B2BCE1AAFB86B0026258A /* PagedListTests */,
+				710B6B751B76F653009318D0 /* PlayVideoTests */,
 				716C45271B02E06900BA9834 /* ResetPasswordTests */,
 				7134F1FA1B24C5EE001EBF4E /* RevokeClientTests */,
 				71828EED1B617FF300CA47CA /* UnfollowUserTests */,
@@ -3997,6 +4008,7 @@
 				71A462331B43535F000DD7B9 /* RTBrowseAudienceMembersDataManagerDelegateSpec.m in Sources */,
 				714350561ACCC87E000C8B63 /* RTThumbnailSpec.m in Sources */,
 				7162E8291B52CF8D00F96BAD /* RTLogoutInteractorSpec.m in Sources */,
+				710B6B771B76F67A009318D0 /* RTPlayVideoURLProtocolSpec.m in Sources */,
 				71B238501B043934002DE5DA /* RTClientCredentialsServiceSpec.m in Sources */,
 				71053AAE1B2BB2AD008C800C /* RTChangePasswordViewControllerSpec.m in Sources */,
 				712AAB061B2C695100E7AE4E /* RTChangeDisplayNameWireframeSpec.m in Sources */,
