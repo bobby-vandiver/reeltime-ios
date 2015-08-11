@@ -33,9 +33,9 @@
     id(*originalImp)(id, SEL, id, id) = (id (*)(id, SEL, id, id)) method_getImplementation(method);
 
     IMP adjustedImp = imp_implementationWithBlock(^id(id instance, NSString *name, NSBundle *bundle) {
-
+        [TyphoonStartup requireInitialFactory];
         id initialFactory = [TyphoonStartup initialFactory];
-
+        [TyphoonStartup releaseInitialFactory];
         if ([instance class] == [UIStoryboard class] && initialFactory && [name isEqualToString:storyboardName]) {
             return [TyphoonStoryboard storyboardWithName:name factory:initialFactory bundle:bundle];
         } else {
@@ -48,7 +48,15 @@
 
 + (NSString *)initialStoryboardName
 {
-    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"UIMainStoryboardFile"];
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+
+    NSString *defaultStoryboardName = infoDictionary[@"UIMainStoryboardFile"];
+
+    if (!defaultStoryboardName) {
+        defaultStoryboardName = infoDictionary[@"NSExtension"][@"NSExtensionMainStoryboard"];
+    }
+
+    return defaultStoryboardName;
 }
 
 @end

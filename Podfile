@@ -3,7 +3,7 @@ platform :ios, '8.0'
 target 'ReelTime-iOS', :exclusive => true do
     # Typhoon cannot be linked into the test target
     # See: https://github.com/appsquickly/Typhoon/issues/242
-    pod 'Typhoon', '~> 2.3'
+    pod 'Typhoon', '~> 3.2'
 
     pod 'UICKeyChainStore', '~> 2.0'
     pod 'CocoaLumberjack', '~> 2.0'

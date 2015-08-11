@@ -26,7 +26,6 @@
 #endif
 
 #if TARGET_OS_IPHONE
-#import <UIKit/UIKit.h>
 #define ApplicationDidFinishLaunchingNotification UIApplicationDidFinishLaunchingNotification
 #elif TARGET_OS_MAC
 #define ApplicationDidFinishLaunchingNotification NSApplicationDidFinishLaunchingNotification
@@ -37,22 +36,14 @@
 
 + (void)load
 {
-    __weak __typeof(self) weakSelf = self;
-    [[NSNotificationCenter defaultCenter]
-        addObserverForName:ApplicationDidFinishLaunchingNotification object:nil queue:[NSOperationQueue mainQueue]
-        usingBlock:^(NSNotification* note) {
-            [weakSelf releaseInitialFactory];
-        }];
-
     [self swizzleSetDelegateMethodOnApplicationClass];
 }
 
-+ (TyphoonComponentFactory*)factoryFromAppDelegate:(id)appDelegate
++ (TyphoonComponentFactory *)factoryFromAppDelegate:(id)appDelegate
 {
-    TyphoonComponentFactory* result = nil;
+    TyphoonComponentFactory *result = nil;
 
-    if ([appDelegate respondsToSelector:@selector(initialFactory)])
-    {
+    if ([appDelegate respondsToSelector:@selector(initialFactory)]) {
         result = [appDelegate initialFactory];
     }
 
@@ -61,14 +52,20 @@
 
 #pragma mark -
 
-static TyphoonComponentFactory* initialFactory;
+static TyphoonComponentFactory *initialFactory;
+static NSUInteger initialFactoryRequestCount = 0;
+static BOOL initialFactoryWasCreated = NO;
 
-+ (void)loadInitialFactory
++ (void)requireInitialFactory
 {
-    initialFactory = [TyphoonBlockComponentFactory factoryFromPlistInBundle:[NSBundle mainBundle]];
+    if (initialFactoryRequestCount == 0 && !initialFactoryWasCreated) {
+        initialFactory = [TyphoonBlockComponentFactory factoryFromPlistInBundle:[NSBundle mainBundle]];
+        initialFactoryWasCreated = YES;
+    }
+    initialFactoryRequestCount += 1;
 }
 
-+ (TyphoonComponentFactory*)initialFactory
++ (TyphoonComponentFactory *)initialFactory
 {
     return initialFactory;
 }
@@ -78,10 +75,10 @@ static TyphoonComponentFactory* initialFactory;
     SEL sel = @selector(setDelegate:);
     Method method = class_getInstanceMethod(ApplicationClass, sel);
 
-    void(* originalImp)(id, SEL, id) = (void (*)(id, SEL, id)) method_getImplementation(method);
+    void(*originalImp)(id, SEL, id) = (void (*)(id, SEL, id))method_getImplementation(method);
 
     IMP adjustedImp = imp_implementationWithBlock(^(id instance, id delegate) {
-        [self loadInitialFactory];
+        [self requireInitialFactory];
         id factoryFromDelegate = [self factoryFromAppDelegate:delegate];
         if (factoryFromDelegate && initialFactory)
         {
@@ -99,6 +96,7 @@ static TyphoonComponentFactory* initialFactory;
             [self injectInitialFactoryIntoDelegate:delegate];
             [TyphoonComponentFactory setFactoryForResolvingFromXibs:initialFactory];
         }
+        [self releaseInitialFactoryWhenApplicationDidFinishLaunching];
 
         originalImp(instance, sel, delegate);
     });
@@ -106,9 +104,22 @@ static TyphoonComponentFactory* initialFactory;
     method_setImplementation(method, adjustedImp);
 }
 
++ (void)releaseInitialFactoryWhenApplicationDidFinishLaunching
+{
+    __weak __typeof(self) weakSelf = self;
+    [[NSNotificationCenter defaultCenter]
+            addObserverForName:ApplicationDidFinishLaunchingNotification object:nil queue:[NSOperationQueue mainQueue]
+                    usingBlock:^(NSNotification* note) {
+                        [weakSelf releaseInitialFactory];
+                    }];
+}
+
 + (void)releaseInitialFactory
 {
-    initialFactory = nil;
+    initialFactoryRequestCount -= 1;
+    if (initialFactoryRequestCount == 0) {
+        initialFactory = nil;
+    }
 }
 
 #pragma mark -
@@ -116,9 +127,7 @@ static TyphoonComponentFactory* initialFactory;
 + (void)injectInitialFactoryIntoDelegate:(id)appDelegate
 {
     [initialFactory load];
-    TyphoonDefinition* definition = [[initialFactory allDefinitionsForType:[appDelegate class]] lastObject];
-    [initialFactory doInjectionEventsOn:appDelegate withDefinition:definition args:nil];
-    [initialFactory registerInstance:appDelegate asSingletonForDefinition:definition];
+    [initialFactory inject:appDelegate];
 }
 
 

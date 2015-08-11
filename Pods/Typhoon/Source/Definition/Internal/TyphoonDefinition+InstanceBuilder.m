@@ -110,12 +110,12 @@ TYPHOON_LINK_CATEGORY(TyphoonDefinition_InstanceBuilder)
     return properties;
 }
 
-- (NSSet *)injectedMethods
+- (NSOrderedSet *)injectedMethods
 {
     if (!self.parent) {
         return [_injectedMethods mutableCopy];
     }
-    NSMutableSet *methods = (NSMutableSet *)[self.parent injectedMethods];
+    NSMutableOrderedSet *methods = (NSMutableOrderedSet *)[self.parent injectedMethods];
 
     NSMutableSet *overriddenMethods = [NSMutableSet set];
     for (TyphoonMethod *parentMethod in methods) {
@@ -127,7 +127,7 @@ TYPHOON_LINK_CATEGORY(TyphoonDefinition_InstanceBuilder)
     }
 
     [methods minusSet:overriddenMethods];
-    [methods unionSet:_injectedMethods];
+    [methods unionOrderedSet:_injectedMethods];
 
     return methods;
 }
@@ -153,7 +153,14 @@ TYPHOON_LINK_CATEGORY(TyphoonDefinition_InstanceBuilder)
 
 - (void)addInjectedPropertyIfNotExists:(id <TyphoonPropertyInjection>)property
 {
-    if (![_injectedProperties containsObject:property]) {
+    BOOL isExists = NO;
+    for (id<TyphoonPropertyInjection>p in _injectedProperties) {
+        if ([[p propertyName] isEqualToString:[property propertyName]]) {
+            isExists = YES;
+            break;
+        }
+    }
+    if (!isExists) {
         [_injectedProperties addObject:property];
     }
 }

@@ -12,7 +12,6 @@
 
 #import "TyphoonAssemblyDefinitionBuilder.h"
 #import "TyphoonAssembly.h"
-#import "TyphoonDefinition.h"
 #import "OCLogTemplate.h"
 #import "TyphoonDefinition+Infrastructure.h"
 #import "TyphoonAssembly+TyphoonAssemblyFriend.h"
@@ -22,6 +21,8 @@
 #import "TyphoonSelector.h"
 #import "TyphoonInjections.h"
 #import "TyphoonUtils.h"
+#import "TyphoonRuntimeArguments.h"
+#import "TyphoonReferenceDefinition.h"
 
 #import <objc/runtime.h>
 
@@ -35,10 +36,6 @@ static void AssertArgumentType(id target, SEL selector, const char *argumentType
     NSMutableDictionary *_cachedDefinitionsForMethodName;
 }
 
-+ (instancetype)builderWithAssembly:(TyphoonAssembly *)assembly
-{
-    return [[self alloc] initWithAssembly:assembly];
-}
 
 - (instancetype)initWithAssembly:(TyphoonAssembly *)assembly
 {
@@ -153,7 +150,7 @@ static void AssertArgumentType(id target, SEL selector, const char *argumentType
 
     if (!d) {
         d = [self definitionForKey:key];
-        [self populateCacheWithDefinition:d forKey:key];
+        d = [self populateCacheWithDefinition:d forKey:key];
     }
 
     return d;
@@ -167,7 +164,7 @@ static void AssertArgumentType(id target, SEL selector, const char *argumentType
 - (id)definitionForKey:(NSString *)key
 {
     // call the user's assembly method to get it.
-    SEL sel = [TyphoonAssemblySelectorAdviser advisedSELForKey:key];
+    SEL sel = [TyphoonAssemblySelectorAdviser advisedSELForKey:key class:[_assembly assemblyClassForKey:key]];
 
     NSMethodSignature *signature = [self.assembly methodSignatureForSelector:sel];
 
@@ -208,7 +205,7 @@ static void AssertArgumentType(id target, SEL selector, const char *argumentType
     BOOL isMetaClass = CStringEquals(argumentType, "#");
 
     if (!isObject && !isBlock && !isMetaClass) {
-        [NSException raise:NSInvalidArgumentException format:@"The method '%@' in assembly '%@', contains a runtime argument of primitive type (BOOL, int, CGFloat, etc) at index %d. Runtime arguments can only be objects. Use wrappers like NSNumber or NSValue (they will be unwrapped into primitive value during injection) ", [TyphoonAssemblySelectorAdviser keyForAdvisedSEL:selector], [target class], (int)index-2];
+        [NSException raise:NSInvalidArgumentException format:@"The method '%@' in assembly '%@', contains a runtime argument of primitive type (BOOL, int, CGFloat, etc) at index %d. Runtime arguments can only be objects. Use wrappers like NSNumber or NSValue (they will be unwrapped into primitive value during injection) ", [TyphoonAssemblySelectorAdviser keyForAdvisedSEL:selector], [target class], (int)index - 2];
     }
 }
 
@@ -224,20 +221,30 @@ static id InjectionForArgumentType(const char *argumentType, NSUInteger index)
     }
 }
 
-- (void)populateCacheWithDefinition:(TyphoonDefinition *)definition forKey:(NSString *)key
+- (TyphoonDefinition *)populateCacheWithDefinition:(TyphoonDefinition *)definition forKey:(NSString *)key
 {
     if (definition && [definition isKindOfClass:[TyphoonDefinition class]]) {
-        [self setKey:key onDefinitionIfExistingKeyEmpty:definition];
-
-        [_cachedDefinitionsForMethodName setObject:definition forKey:key];
+        definition = [self definitionBySettingKey:key toDefinition:definition];
+        _cachedDefinitionsForMethodName[key] = definition;
     }
+    return definition;
 }
 
-- (void)setKey:(NSString *)key onDefinitionIfExistingKeyEmpty:(TyphoonDefinition *)definition
+- (TyphoonDefinition *)definitionBySettingKey:(NSString *)key toDefinition:(TyphoonDefinition *)definition
 {
-    if ([definition.key length] == 0) {
-        definition.key = key;
+    TyphoonDefinition *result = definition;
+
+    if ([result.key length] == 0) {
+        result.key = key;
     }
+    
+    if (result.processed && ![definition.key isEqualToString:key]) {
+        result = [TyphoonShortcutDefinition definitionWithKey:key referringTo:definition];
+    }
+
+    result.processed = YES;
+    
+    return result;
 }
 
 @end

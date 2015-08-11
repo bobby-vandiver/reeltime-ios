@@ -11,21 +11,20 @@
 
 
 #import <Foundation/Foundation.h>
+#import "TyphoonAssembly.h"
 
-@class TyphoonAssembly;
-@class TyphoonDefinition;
-@class TyphoonRuntimeArguments;
+@interface TyphoonAssembly (TyphoonAssemblyFriend)
 
-@interface TyphoonAssemblyDefinitionBuilder : NSObject
++ (BOOL)selectorIsReserved:(SEL)selector;
 
-+ (instancetype)builderWithAssembly:(TyphoonAssembly *)assembly;
+- (void)prepareForUse;
 
-- (instancetype)initWithAssembly:(TyphoonAssembly *)assembly;
+- (NSArray *)definitions;
 
-- (NSArray *)builtDefinitions;
+- (TyphoonDefinition *)definitionForKey:(NSString *)key;
 
-- (TyphoonDefinition *)builtDefinitionForKey:(NSString *)key args:(TyphoonRuntimeArguments *)args;
+- (Class)assemblyClassForKey:(NSString *)key;
 
-@property(readonly, unsafe_unretained) TyphoonAssembly *assembly;
+@property(readonly) NSSet *definitionSelectors;
 
 @end

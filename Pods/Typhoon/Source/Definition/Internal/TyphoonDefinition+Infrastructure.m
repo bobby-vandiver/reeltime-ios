@@ -21,6 +21,7 @@ TYPHOON_LINK_CATEGORY(TyphoonDefinition_Infrastructure)
 #import "TyphoonMethod+InstanceBuilder.h"
 #import "TyphoonReferenceDefinition.h"
 #import "TyphoonIntrospectionUtils.h"
+#import "TyphoonRuntimeArguments.h"
 
 @implementation TyphoonDefinition (Infrastructure)
 
@@ -39,6 +40,16 @@ TYPHOON_LINK_CATEGORY(TyphoonDefinition_Infrastructure)
     return [self withClass:[TyphoonConfigPostProcessor class] configuration:^(TyphoonDefinition *definition) {
         [definition injectMethod:@selector(useResourceWithName:) parameters:^(TyphoonMethod *method) {
             [method injectParameterWith:fileName];
+        }];
+        definition.key = [NSString stringWithFormat:@"%@-%@", NSStringFromClass(definition.class), fileName];
+    }];
+}
+
++ (instancetype)configDefinitionWithName:(NSString *)fileName bundle:(NSBundle *)fileBundle {
+    return [self withClass:[TyphoonConfigPostProcessor class] configuration:^(TyphoonDefinition *definition) {
+        [definition injectMethod:@selector(useResourceWithName:bundle:) parameters:^(TyphoonMethod *method) {
+            [method injectParameterWith:fileName];
+            [method injectParameterWith:fileBundle];
         }];
         definition.key = [NSString stringWithFormat:@"%@-%@", NSStringFromClass(definition.class), fileName];
     }];
@@ -63,7 +74,7 @@ TYPHOON_LINK_CATEGORY(TyphoonDefinition_Infrastructure)
     if (self) {
         _type = clazz;
         _injectedProperties = [[NSMutableSet alloc] init];
-        _injectedMethods = [[NSMutableSet alloc] init];
+        _injectedMethods = [[NSMutableOrderedSet alloc] init];
         _key = [key copy];
         _scope = TyphoonScopeObjectGraph;
         self.autoInjectionVisibility = TyphoonAutoInjectVisibilityDefault;
@@ -77,25 +88,37 @@ TYPHOON_LINK_CATEGORY(TyphoonDefinition_Infrastructure)
     return [self initWithClass:nil key:nil];
 }
 
-- (BOOL)matchesAutoInjectionWithType:(id)classOrProtocol includeSubclasses:(BOOL)includeSubclasses
+- (BOOL)isCandidateForInjectedClass:(Class)clazz includeSubclasses:(BOOL)includeSubclasses
 {
     BOOL result = NO;
-
-    BOOL isClass = IsClass(classOrProtocol);
-    BOOL isProtocol = IsProtocol(classOrProtocol);
-
-    if (isClass && self.autoInjectionVisibility & TyphoonAutoInjectVisibilityByClass) {
-        BOOL isSameClass = self.type == classOrProtocol;
-        BOOL isSubclass = includeSubclasses && [self.type isSubclassOfClass:classOrProtocol];
+    if (self.autoInjectionVisibility & TyphoonAutoInjectVisibilityByClass) {
+        BOOL isSameClass = self.type == clazz;
+        BOOL isSubclass = includeSubclasses && [self.type isSubclassOfClass:clazz];
         result = isSameClass || isSubclass;
     }
-    else if (isProtocol && self.autoInjectionVisibility & TyphoonAutoInjectVisibilityByProtocol) {
-        result = [self.type conformsToProtocol:classOrProtocol];
-    }
-
     return result;
 }
 
+- (BOOL)isCandidateForInjectedProtocol:(Protocol *)aProtocol
+{
+    BOOL result = NO;
+    if (self.autoInjectionVisibility & TyphoonAutoInjectVisibilityByProtocol) {
+        result = [self.type conformsToProtocol:aProtocol];
+    }
+    return result;
+
+}
+
+
+- (void)setProcessed:(BOOL)processed
+{
+    _processed = processed;
+}
+
+- (BOOL)processed
+{
+    return _processed;
+}
 
 //-------------------------------------------------------------------------------------------
 #pragma mark - Private Methods
@@ -104,6 +127,11 @@ TYPHOON_LINK_CATEGORY(TyphoonDefinition_Infrastructure)
 {
     if (_type == nil) {
         [NSException raise:NSInvalidArgumentException format:@"Property 'clazz' is required."];
+    }
+
+    BOOL hasAppropriateSuper = [_type isSubclassOfClass:[NSObject class]] || [_type isSubclassOfClass:[NSProxy class]];
+    if (!hasAppropriateSuper) {
+        [NSException raise:NSInvalidArgumentException format:@"Subclass of NSProxy or NSObject is required."];
     }
 }
 
