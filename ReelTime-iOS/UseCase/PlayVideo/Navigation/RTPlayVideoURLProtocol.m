@@ -54,7 +54,7 @@ static NSString *const HandledKey = @"RTPlayVideoURLProtocolHandledKey";
     if (token) {
         // TODO: Refactor to use same code as HTTP client
         NSString *bearerToken = [NSString stringWithFormat:@"Bearer %@", token.accessToken];
-        [newRequest setValue:bearerToken forKey:@"Authorization"];
+        [newRequest setValue:bearerToken forHTTPHeaderField:@"Authorization"];
     }
     else {
         DDLogWarn(@"Missing token for streaming video!");
