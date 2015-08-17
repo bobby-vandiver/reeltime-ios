@@ -1,6 +1,7 @@
 #import "RTPlayVideoViewController.h"
 #import "RTStoryboardViewControllerFactory.h"
 
+#import "RTPlayerView.h"
 #import <AVFoundation/AVFoundation.h>
 
 @interface RTPlayVideoViewController ()
@@ -39,10 +40,7 @@
     self.player = [AVPlayer playerWithURL:url];
     self.player.actionAtItemEnd = AVPlayerActionAtItemEndNone;
 
-    AVPlayerLayer *layer = [AVPlayerLayer playerLayerWithPlayer:self.player];
-    layer.frame = self.videoView.bounds;
-    
-    [self.videoView.layer addSublayer:layer];
+    self.playerView.player = self.player;
 }
 
 - (IBAction)pressedPlayButton {

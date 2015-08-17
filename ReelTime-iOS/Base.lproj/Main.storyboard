@@ -1091,7 +1091,7 @@
                                     <action selector="pressedPauseButton" destination="Nci-Cp-gbL" eventType="touchUpInside" id="ZEN-8j-Xt5"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lyj-56-TO5" userLabel="Video View">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lyj-56-TO5" userLabel="Player View" customClass="RTPlayerView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -1107,9 +1107,13 @@
                             <constraint firstItem="lyj-56-TO5" firstAttribute="top" secondItem="ccL-NJ-HIN" secondAttribute="bottom" constant="-20" id="k4N-Lt-q4R"/>
                             <constraint firstItem="LQB-ym-jNd" firstAttribute="baseline" secondItem="4M5-gC-feF" secondAttribute="firstBaseline" id="kWv-9k-4XJ"/>
                             <constraint firstItem="yA4-fl-QOj" firstAttribute="leading" secondItem="4M5-gC-feF" secondAttribute="trailing" constant="49" id="khP-gg-hyw"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="lyj-56-TO5" secondAttribute="trailing" constant="7" id="ni3-Nv-Va8"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="lyj-56-TO5" secondAttribute="trailing" constant="7" id="ni3-Nv-Va8">
+                                <variation key="widthClass=compact" constant="0.0"/>
+                            </constraint>
                             <constraint firstItem="LQB-ym-jNd" firstAttribute="firstBaseline" secondItem="4M5-gC-feF" secondAttribute="baseline" id="yZj-jh-Ben"/>
-                            <constraint firstItem="lyj-56-TO5" firstAttribute="leading" secondItem="RlA-8K-aXt" secondAttribute="leadingMargin" constant="-7" id="yq4-2k-EkR"/>
+                            <constraint firstItem="lyj-56-TO5" firstAttribute="leading" secondItem="RlA-8K-aXt" secondAttribute="leadingMargin" constant="-7" id="yq4-2k-EkR">
+                                <variation key="widthClass=compact" constant="0.0"/>
+                            </constraint>
                             <constraint firstItem="LQB-ym-jNd" firstAttribute="leading" secondItem="RlA-8K-aXt" secondAttribute="leadingMargin" id="ytd-cq-3LL"/>
                             <constraint firstItem="4M5-gC-feF" firstAttribute="leading" secondItem="LQB-ym-jNd" secondAttribute="trailing" constant="49" id="z8H-qR-WrU"/>
                             <constraint firstItem="yA4-fl-QOj" firstAttribute="trailing" secondItem="RlA-8K-aXt" secondAttribute="trailingMargin" id="zdV-pZ-XPP"/>
@@ -1122,9 +1126,9 @@
                                 <exclude reference="lyj-56-TO5"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="k4N-Lt-q4R"/>
-                                <exclude reference="ni3-Nv-Va8"/>
-                                <exclude reference="yq4-2k-EkR"/>
+                                <exclude reference="10e-Hl-jKr"/>
+                                <exclude reference="YeL-bI-PqN"/>
+                                <exclude reference="z8H-qR-WrU"/>
                                 <exclude reference="0no-5L-DyJ"/>
                                 <exclude reference="15u-Eh-xbl"/>
                                 <exclude reference="4kF-Px-iGw"/>
@@ -1132,11 +1136,11 @@
                                 <exclude reference="kWv-9k-4XJ"/>
                                 <exclude reference="yZj-jh-Ben"/>
                                 <exclude reference="ytd-cq-3LL"/>
-                                <exclude reference="z8H-qR-WrU"/>
                                 <exclude reference="khP-gg-hyw"/>
                                 <exclude reference="zdV-pZ-XPP"/>
-                                <exclude reference="10e-Hl-jKr"/>
-                                <exclude reference="YeL-bI-PqN"/>
+                                <exclude reference="k4N-Lt-q4R"/>
+                                <exclude reference="ni3-Nv-Va8"/>
+                                <exclude reference="yq4-2k-EkR"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -1147,9 +1151,9 @@
                                 <include reference="lyj-56-TO5"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="k4N-Lt-q4R"/>
-                                <include reference="ni3-Nv-Va8"/>
-                                <include reference="yq4-2k-EkR"/>
+                                <include reference="10e-Hl-jKr"/>
+                                <include reference="YeL-bI-PqN"/>
+                                <include reference="z8H-qR-WrU"/>
                                 <include reference="0no-5L-DyJ"/>
                                 <include reference="15u-Eh-xbl"/>
                                 <include reference="4kF-Px-iGw"/>
@@ -1157,16 +1161,16 @@
                                 <include reference="kWv-9k-4XJ"/>
                                 <include reference="yZj-jh-Ben"/>
                                 <include reference="ytd-cq-3LL"/>
-                                <include reference="z8H-qR-WrU"/>
                                 <include reference="khP-gg-hyw"/>
                                 <include reference="zdV-pZ-XPP"/>
-                                <include reference="10e-Hl-jKr"/>
-                                <include reference="YeL-bI-PqN"/>
+                                <include reference="k4N-Lt-q4R"/>
+                                <include reference="ni3-Nv-Va8"/>
+                                <include reference="yq4-2k-EkR"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="videoView" destination="lyj-56-TO5" id="lHX-uc-hnv"/>
+                        <outlet property="playerView" destination="lyj-56-TO5" id="tE0-gW-BZa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gOV-v9-XWG" userLabel="First Responder" sceneMemberID="firstResponder"/>
