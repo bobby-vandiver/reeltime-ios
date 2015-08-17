@@ -1,12 +1,12 @@
 #import "RTPlayVideoViewController.h"
 #import "RTStoryboardViewControllerFactory.h"
 
-#import <MediaPlayer/MediaPlayer.h>
+#import <AVFoundation/AVFoundation.h>
 
 @interface RTPlayVideoViewController ()
 
 @property (copy) NSNumber *videoId;
-@property (nonatomic, strong) MPMoviePlayerController *moviePlayerController;
+@property (strong, nonatomic) AVPlayer *player;
 
 @end
 
@@ -36,13 +36,14 @@
     NSString *formatted = [NSString stringWithFormat:@"http://localhost:8080/reeltime/api/playlists/%@", self.videoId];
     NSURL *url = [NSURL URLWithString:formatted];
     
-    MPMoviePlayerController *controller = [[MPMoviePlayerController alloc] initWithContentURL:url];
-    self.moviePlayerController = controller;
+    self.player = [AVPlayer playerWithURL:url];
+    self.player.actionAtItemEnd = AVPlayerActionAtItemEndNone;
+
+    AVPlayerLayer *layer = [AVPlayerLayer playerLayerWithPlayer:self.player];
+    layer.frame = self.view.bounds;
     
-    controller.view.frame = self.view.bounds;
-    
-    [self.view addSubview:controller.view];
-    [controller play];
+    [self.view.layer addSublayer:layer];
+    [self.player play];
 }
 
 @end
