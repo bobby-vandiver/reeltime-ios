@@ -2,6 +2,8 @@
 #import "RTStoryboardViewControllerFactory.h"
 
 #import "RTPlayerView.h"
+#import "RTLogging.h"
+
 #import <AVFoundation/AVFoundation.h>
 
 @interface RTPlayVideoViewController ()
@@ -41,6 +43,65 @@
     self.player.actionAtItemEnd = AVPlayerActionAtItemEndNone;
 
     self.playerView.player = self.player;
+    self.playerView.playerLayer.needsDisplayOnBoundsChange = YES;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    DDLogDebug(@"Adding observers");
+    
+    [self.player addObserver:self forKeyPath:@"status" options:0 context:NULL];
+    [self.playerView.playerLayer addObserver:self forKeyPath:@"readyForDisplay" options:0 context:NULL];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    DDLogDebug(@"Removing observers");
+    
+    [self.player removeObserver:self forKeyPath:@"status"];
+    [self.playerView.playerLayer removeObserver:self forKeyPath:@"readyForDisplay"];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context {
+    
+    BOOL objectIsPlayer = (object == self.player);
+    BOOL objectIsPlayerLayer = (object == self.playerView.playerLayer);
+
+    if (objectIsPlayer) {
+        BOOL isStatusNotification = [keyPath isEqualToString:@"status"];
+
+        if (isStatusNotification) {
+            DDLogDebug(@"Received status = %@", [self playerStatusText]);
+        }
+    }
+    else if (objectIsPlayerLayer) {
+        BOOL isReadyForDisplayNotification = [keyPath isEqualToString:@"readyForDisplay"];
+        
+        if (isReadyForDisplayNotification) {
+            DDLogDebug(@"Received readyForDisplay = %@", self.playerView.playerLayer.readyForDisplay ? @"YES" : @"NO");
+        }
+    }
+}
+
+- (NSString *)playerStatusText {
+    NSString *status = nil;
+    
+    switch (self.player.status) {
+        case AVPlayerStatusFailed:
+            status = @"AVPlayerStatusFailed";
+            break;
+            
+        case AVPlayerStatusReadyToPlay:
+            status = @"AVPlayerStatusReadyToPlay";
+            break;
+            
+        default:
+            status = @"AVPlayerStatusUnknown";
+            break;
+    }
+    
+    return status;
 }
 
 - (IBAction)pressedPlayButton {

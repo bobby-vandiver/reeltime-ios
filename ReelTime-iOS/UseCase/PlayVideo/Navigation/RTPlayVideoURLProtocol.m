@@ -6,7 +6,7 @@
 #import "RTOAuth2Token.h"
 #import "RTLogging.h"
 
-@interface RTPlayVideoURLProtocol () <NSURLConnectionDataDelegate>
+@interface RTPlayVideoURLProtocol () <NSURLConnectionDelegate, NSURLConnectionDataDelegate>
 
 @property (nonatomic, strong) NSURLConnection *connection;
 @property RTCurrentUserService *currentUserService;
@@ -62,6 +62,8 @@ static NSString *const HandledKey = @"RTPlayVideoURLProtocolHandledKey";
     
     [NSURLProtocol setProperty:@(YES) forKey:HandledKey inRequest:newRequest];
     self.connection = [NSURLConnection connectionWithRequest:newRequest delegate:self];
+    
+    DDLogDebug(@"self.connection = %@", self.connection);
 }
 
 - (void)stopLoading {
@@ -72,6 +74,11 @@ static NSString *const HandledKey = @"RTPlayVideoURLProtocolHandledKey";
 #pragma mark - NSURLConnectionDataDelegate Methods
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+    
+    // TODO: Handle server errors
+    DDLogDebug(@"status code = %ld", httpResponse.statusCode);
+    
     [self.client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageNotAllowed];
 }
 
@@ -83,7 +90,10 @@ static NSString *const HandledKey = @"RTPlayVideoURLProtocolHandledKey";
     [self.client URLProtocolDidFinishLoading:self];
 }
 
+#pragma mark - NSURLConnectionDelegate Methods
+
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    DDLogError(@"Connection failed with error = %@", error);
     [self.client URLProtocol:self didFailWithError:error];
 }
 

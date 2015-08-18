@@ -8,4 +8,6 @@
 
 @property (nonatomic) AVPlayer *player;
 
+@property (readonly) AVPlayerLayer *playerLayer;
+
 @end

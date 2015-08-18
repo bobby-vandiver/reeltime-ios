@@ -7,10 +7,14 @@
 }
 
 - (AVPlayer *)player {
-    return [(AVPlayerLayer *)[self layer] player];
+    return self.playerLayer.player;
 }
 - (void)setPlayer:(AVPlayer *)player {
-    [(AVPlayerLayer *)[self layer] setPlayer:player];
+    self.playerLayer.player = player;
+}
+
+- (AVPlayerLayer *)playerLayer {
+    return (AVPlayerLayer *)[self layer];
 }
 
 @end
