@@ -51,12 +51,17 @@
 - (void)viewWillAppear:(BOOL)animated {
     DDLogDebug(@"Adding observers");
     
+    [self.player addObserver:self forKeyPath:@"status" options:0 context:NULL];
+    [self.playerView.playerLayer addObserver:self forKeyPath:@"readyForDisplay" options:0 context:NULL];
+
     self.timeObserver = [self.player addPeriodicTimeObserverForInterval:CMTimeMake(1, 1)
                                                                   queue:dispatch_get_main_queue()
                                                              usingBlock:[self timeObserverCallback]];
     
-    [self.player addObserver:self forKeyPath:@"status" options:0 context:NULL];
-    [self.playerView.playerLayer addObserver:self forKeyPath:@"readyForDisplay" options:0 context:NULL];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(reachedEndOfVideo:)
+                                                 name:AVPlayerItemDidPlayToEndTimeNotification
+                                               object:self.player.currentItem];
 }
 
 - (void (^)(CMTime))timeObserverCallback {
@@ -74,11 +79,20 @@
     };
 }
 
+- (void)reachedEndOfVideo:(NSNotification *)notification {
+    [self seekToStart];
+}
+
 - (void)viewDidDisappear:(BOOL)animated {
     DDLogDebug(@"Removing observers");
     
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:AVPlayerItemDidPlayToEndTimeNotification
+                                                  object:self.player.currentItem];
+    
     [self.player removeTimeObserver:self.timeObserver];
     [self.player removeObserver:self forKeyPath:@"status"];
+    
     [self.playerView.playerLayer removeObserver:self forKeyPath:@"readyForDisplay"];
 }
 
@@ -133,6 +147,11 @@
     label.text = [NSString stringWithFormat:@"%f", CMTimeGetSeconds(time)];
 }
 
+- (void)seekToStart {
+    [self.player seekToTime:kCMTimeZero];
+    [self.player pause];
+}
+
 - (IBAction)pressedPlayButton {
     [self.player play];
 }
@@ -142,7 +161,7 @@
 }
 
 - (IBAction)pressedResetButton {
-    [self.player seekToTime:kCMTimeZero];
+    [self seekToStart];
 }
 
 @end
