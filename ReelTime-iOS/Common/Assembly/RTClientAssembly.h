@@ -22,4 +22,6 @@
 
 - (RTEndpointPathFormatter *)endpointPathFormatter;
 
+- (NSURL *)baseUrl;
+
 @end
