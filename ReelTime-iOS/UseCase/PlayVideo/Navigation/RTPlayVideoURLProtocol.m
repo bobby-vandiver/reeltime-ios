@@ -1,4 +1,5 @@
 #import "RTPlayVideoURLProtocol.h"
+#import "RTPlayVideoConnectionDelegate.h"
 
 #import "RTServiceAssembly.h"
 #import "RTCurrentUserService.h"
@@ -6,7 +7,7 @@
 #import "RTOAuth2Token.h"
 #import "RTLogging.h"
 
-@interface RTPlayVideoURLProtocol () <NSURLConnectionDelegate, NSURLConnectionDataDelegate>
+@interface RTPlayVideoURLProtocol ()
 
 @property (nonatomic, strong) NSURLConnection *connection;
 @property RTCurrentUserService *currentUserService;
@@ -61,40 +62,14 @@ static NSString *const HandledKey = @"RTPlayVideoURLProtocolHandledKey";
     }
     
     [NSURLProtocol setProperty:@(YES) forKey:HandledKey inRequest:newRequest];
-    self.connection = [NSURLConnection connectionWithRequest:newRequest delegate:self];
     
-    DDLogDebug(@"self.connection = %@", self.connection);
+    RTPlayVideoConnectionDelegate *delegate = [RTPlayVideoConnectionDelegate connectionDelegateForURLProtocol:self];
+    self.connection = [NSURLConnection connectionWithRequest:newRequest delegate:delegate];
 }
 
 - (void)stopLoading {
     [self.connection cancel];
     self.connection = nil;
-}
-
-#pragma mark - NSURLConnectionDataDelegate Methods
-
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-    
-    // TODO: Handle server errors
-    DDLogDebug(@"status code = %ld", httpResponse.statusCode);
-    
-    [self.client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageNotAllowed];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    [self.client URLProtocol:self didLoadData:data];
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    [self.client URLProtocolDidFinishLoading:self];
-}
-
-#pragma mark - NSURLConnectionDelegate Methods
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    DDLogError(@"Connection failed with error = %@", error);
-    [self.client URLProtocol:self didFailWithError:error];
 }
 
 @end
