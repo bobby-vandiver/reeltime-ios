@@ -1,5 +1,6 @@
 #import <UIKit/UIKit.h>
 
+@class RTPlayerFactory;
 @class RTPlayerView;
 
 #import "RTStoryboardViewController.h"
@@ -11,7 +12,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *currentTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalTimeLabel;
 
-+ (instancetype)viewControllerForVideoId:(NSNumber *)videoId;
++ (instancetype)viewControllerWithPlayerFactory:(RTPlayerFactory *)playerFactory
+                                     forVideoId:(NSNumber *)videoId;
 
 - (IBAction)pressedPlayButton;
 

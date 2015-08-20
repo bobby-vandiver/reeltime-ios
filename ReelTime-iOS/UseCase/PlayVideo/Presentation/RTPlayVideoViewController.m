@@ -1,5 +1,7 @@
 #import "RTPlayVideoViewController.h"
+
 #import "RTStoryboardViewControllerFactory.h"
+#import "RTPlayerFactory.h"
 
 #import "RTPlayerView.h"
 #import "RTLogging.h"
@@ -9,19 +11,23 @@
 @interface RTPlayVideoViewController ()
 
 @property (copy) NSNumber *videoId;
-@property (strong, nonatomic) AVPlayer *player;
+@property RTPlayerFactory *playerFactory;
 
+@property (strong, nonatomic) AVPlayer *player;
 @property id timeObserver;
 
 @end
 
 @implementation RTPlayVideoViewController
 
-+ (instancetype)viewControllerForVideoId:(NSNumber *)videoId {
++ (instancetype)viewControllerWithPlayerFactory:(RTPlayerFactory *)playerFactory
+                                     forVideoId:(NSNumber *)videoId {
+    
     NSString *identifier = [RTPlayVideoViewController storyboardIdentifier];
     RTPlayVideoViewController *controller = [RTStoryboardViewControllerFactory viewControllerWithStoryboardIdentifier:identifier];
     
     if (controller) {
+        controller.playerFactory = playerFactory;
         controller.videoId = videoId;
     }
     
@@ -34,14 +40,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setUpPlayer];
-}
 
-- (void)setUpPlayer {
-    NSString *formatted = [NSString stringWithFormat:@"http://localhost:8080/reeltime/api/playlists/%@", self.videoId];
-    NSURL *url = [NSURL URLWithString:formatted];
-    
-    self.player = [AVPlayer playerWithURL:url];
+    self.player = [self.playerFactory playerForVideoId:self.videoId];
     self.player.actionAtItemEnd = AVPlayerActionAtItemEndNone;
 
     self.playerView.player = self.player;

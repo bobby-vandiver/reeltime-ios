@@ -137,8 +137,12 @@
 
 // TODO: Make baseUrl configurable
 - (NSURL *)baseUrl {
-    return [NSURL URLWithString: @"http://localhost:8080/reeltime"];
-//    return [NSURL URLWithString: @"http://localhost:4567/"];
+    return [TyphoonDefinition withClass:[NSURL class] configuration:^(TyphoonDefinition *definition) {
+        [definition useInitializer:@selector(URLWithString:) parameters:^(TyphoonMethod *initializer) {
+//            [initializer injectParameterWith:@"http://localhost:4567/"];
+            [initializer injectParameterWith:@"http://localhost:8080/reeltime/"];
+        }];
+    }];
 }
 
 @end
