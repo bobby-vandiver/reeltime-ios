@@ -67,6 +67,10 @@
     return [self errorWithDomain:RTPagedListErrorDomain code:code];
 }
 
++ (NSError *)playVideoErrorWithCode:(RTPlayVideoError)code {
+    return [self errorWithDomain:RTPlayVideoErrorDomain code:code];
+}
+
 + (NSError *)resetPasswordErrorWithCode:(RTResetPasswordError)code {
     return [self errorWithDomain:RTResetPasswordErrorDomain code:code];
 }

@@ -63,8 +63,15 @@ static NSString *const HandledKey = @"RTPlayVideoURLProtocolHandledKey";
     
     [NSURLProtocol setProperty:@(YES) forKey:HandledKey inRequest:newRequest];
     
-    RTPlayVideoConnectionDelegate *delegate = [RTPlayVideoConnectionDelegate connectionDelegateForURLProtocol:self];
+    RTPlayVideoConnectionDelegate *delegate = [self createConnectionDelegate];
     self.connection = [NSURLConnection connectionWithRequest:newRequest delegate:delegate];
+}
+
+- (RTPlayVideoConnectionDelegate *)createConnectionDelegate {
+    // TODO: Extract videoId from request URL
+    return [RTPlayVideoConnectionDelegate connectionDelegateForURLProtocol:self
+                                                        notificationCenter:[NSNotificationCenter defaultCenter]
+                                                                   videoId:nil];
 }
 
 - (void)stopLoading {
