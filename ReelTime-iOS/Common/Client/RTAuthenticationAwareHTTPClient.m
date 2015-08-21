@@ -1,16 +1,17 @@
 #import "RTAuthenticationAwareHTTPClient.h"
-
 #import "RTAuthenticationAwareHTTPClientDelegate.h"
+
+#import "RTAuthorizationHeaderSupport.h"
 
 #import <RestKit/RestKit.h>
 #import "RKObjectManager+IncludeHeaders.h"
-
-static NSString *const AUTHORIZATION_HEADER = @"Authorization";
 
 @interface RTAuthenticationAwareHTTPClient ()
 
 @property RTAuthenticationAwareHTTPClientDelegate *delegate;
 @property RKObjectManager *objectManager;
+
+@property RTAuthorizationHeaderSupport *authorizationHeaderSupport;
 
 @end
 
@@ -22,6 +23,7 @@ static NSString *const AUTHORIZATION_HEADER = @"Authorization";
     if (self) {
         self.delegate = delegate;
         self.objectManager = objectManager;
+        self.authorizationHeaderSupport = [[RTAuthorizationHeaderSupport alloc] init];
     }
     return self;
 }
@@ -174,12 +176,9 @@ static NSString *const AUTHORIZATION_HEADER = @"Authorization";
 }
 
 - (NSDictionary *)authorizationHeader {
-    return @{AUTHORIZATION_HEADER:[self formatAccessTokenForAuthorizationHeader]};
-}
-
-- (NSString *)formatAccessTokenForAuthorizationHeader {
-    NSString *token = [self.delegate accessTokenForCurrentUser];
-    return [NSString stringWithFormat:@"Bearer %@", token];
+    NSString *accessToken = [self.delegate accessTokenForCurrentUser];
+    NSString *bearerTokenHeader = [self.authorizationHeaderSupport bearerTokenHeaderFromAccessToken:accessToken];
+    return @{RTAuthorizationHeader:bearerTokenHeader};
 }
 
 - (void (^)(RKObjectRequestOperation *, RKMappingResult *))binarySuccessHandlerWithCallback:(void (^)(id))callback {

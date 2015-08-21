@@ -4,13 +4,17 @@
 #import "RTServiceAssembly.h"
 #import "RTCurrentUserService.h"
 
+#import "RTAuthorizationHeaderSupport.h"
+
 #import "RTOAuth2Token.h"
 #import "RTLogging.h"
 
 @interface RTPlayVideoURLProtocol ()
 
 @property (nonatomic, strong) NSURLConnection *connection;
+
 @property RTCurrentUserService *currentUserService;
+@property RTAuthorizationHeaderSupport *authorizationHeaderSupport;
 
 @end
 
@@ -53,9 +57,8 @@ static NSString *const HandledKey = @"RTPlayVideoURLProtocolHandledKey";
     RTOAuth2Token *token = [self.currentUserService tokenForCurrentUser];
     
     if (token) {
-        // TODO: Refactor to use same code as HTTP client
-        NSString *bearerToken = [NSString stringWithFormat:@"Bearer %@", token.accessToken];
-        [newRequest setValue:bearerToken forHTTPHeaderField:@"Authorization"];
+        NSString *bearerToken = [self.authorizationHeaderSupport bearerTokenHeaderFromAccessToken:token.accessToken];
+        [newRequest setValue:bearerToken forHTTPHeaderField:RTAuthorizationHeader];
     }
     else {
         DDLogWarn(@"Missing token for streaming video!");
