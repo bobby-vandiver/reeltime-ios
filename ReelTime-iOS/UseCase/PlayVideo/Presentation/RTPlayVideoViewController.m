@@ -110,9 +110,25 @@ static NSString *const CurrentItemStatusKeyPath = @"currentItem.status";
         if (self.player.currentItem.status == AVPlayerItemStatusReadyToPlay) {
             [self setLabel:self.currentTimeLabel toTime:kCMTimeZero];
             [self setLabel:self.totalTimeLabel toTime:self.player.currentItem.duration];
+            
+            AVPlayerItem *item = self.player.currentItem;
+            
+            DDLogDebug(@"canPlayReverse = %@", [self stringForBool:item.canPlayReverse]);
+            
+            DDLogDebug(@"canPlayFastForward = %@", [self stringForBool:item.canPlayFastForward]);
+            DDLogDebug(@"canPlayFastReverse = %@", [self stringForBool:item.canPlayFastReverse]);
+            
+            DDLogDebug(@"canPlaySlowForward = %@", [self stringForBool:item.canPlaySlowForward]);
+            DDLogDebug(@"canPlaySlowReverse = %@", [self stringForBool:item.canPlaySlowReverse]);
+            
+            DDLogDebug(@"seekableTimeRanges = %@", item.seekableTimeRanges);
         }
         
     }
+}
+
+- (NSString *)stringForBool:(BOOL)b {
+    return b ? @"YES" : @"NO";
 }
 
 - (void)setLabel:(UILabel *)label toTime:(CMTime)time {
