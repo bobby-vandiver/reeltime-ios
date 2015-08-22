@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		5230CA4B4A7751AD6141FA30 /* libPods-ReelTime-iOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41201C1DC28A47F09019E4F1 /* libPods-ReelTime-iOSTests.a */; };
 		7102A7B51A57AB0A00DEDA83 /* RTKeyChainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7102A7B41A57AB0A00DEDA83 /* RTKeyChainWrapper.m */; };
+		7103A2BF1B87F4E200DB4B50 /* RTPlayVideoConnectionFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7103A2BE1B87F4E200DB4B50 /* RTPlayVideoConnectionFactory.m */; };
+		7103A2C21B87FD6200DB4B50 /* RTPlayVideoIdExtractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7103A2C11B87FD6200DB4B50 /* RTPlayVideoIdExtractor.m */; };
 		71053AA91B2B9FD9008C800C /* RTManageDevicesAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 71053AA81B2B9FD9008C800C /* RTManageDevicesAssembly.m */; };
 		71053AAC1B2BAF8A008C800C /* RTChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71053AAB1B2BAF8A008C800C /* RTChangePasswordViewController.m */; };
 		71053AAE1B2BB2AD008C800C /* RTChangePasswordViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71053AAD1B2BB2AD008C800C /* RTChangePasswordViewControllerSpec.m */; };
@@ -438,6 +440,10 @@
 		46C1E9F0B7F6473BE4077A89 /* Pods-ReelTime-iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelTime-iOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReelTime-iOSTests/Pods-ReelTime-iOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		7102A7B31A57AB0A00DEDA83 /* RTKeyChainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTKeyChainWrapper.h; sourceTree = "<group>"; };
 		7102A7B41A57AB0A00DEDA83 /* RTKeyChainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTKeyChainWrapper.m; sourceTree = "<group>"; };
+		7103A2BD1B87F4E200DB4B50 /* RTPlayVideoConnectionFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTPlayVideoConnectionFactory.h; sourceTree = "<group>"; };
+		7103A2BE1B87F4E200DB4B50 /* RTPlayVideoConnectionFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTPlayVideoConnectionFactory.m; sourceTree = "<group>"; };
+		7103A2C01B87FD6200DB4B50 /* RTPlayVideoIdExtractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTPlayVideoIdExtractor.h; sourceTree = "<group>"; };
+		7103A2C11B87FD6200DB4B50 /* RTPlayVideoIdExtractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTPlayVideoIdExtractor.m; sourceTree = "<group>"; };
 		71053AA71B2B9FD9008C800C /* RTManageDevicesAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTManageDevicesAssembly.h; sourceTree = "<group>"; };
 		71053AA81B2B9FD9008C800C /* RTManageDevicesAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTManageDevicesAssembly.m; sourceTree = "<group>"; };
 		71053AAA1B2BAF8A008C800C /* RTChangePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTChangePasswordViewController.h; sourceTree = "<group>"; };
@@ -3393,8 +3399,12 @@
 			children = (
 				71D886521B85601D00886940 /* RTPlayVideoConnectionDelegate.h */,
 				71D886531B85601D00886940 /* RTPlayVideoConnectionDelegate.m */,
+				7103A2BD1B87F4E200DB4B50 /* RTPlayVideoConnectionFactory.h */,
+				7103A2BE1B87F4E200DB4B50 /* RTPlayVideoConnectionFactory.m */,
 				71D886541B85601D00886940 /* RTPlayVideoURLProtocol.h */,
 				71D886551B85601D00886940 /* RTPlayVideoURLProtocol.m */,
+				7103A2C01B87FD6200DB4B50 /* RTPlayVideoIdExtractor.h */,
+				7103A2C11B87FD6200DB4B50 /* RTPlayVideoIdExtractor.m */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -3859,6 +3869,7 @@
 				7172157E1A8657540002ECC7 /* RTLoginAssembly.m in Sources */,
 				7134F1F81B24C35C001EBF4E /* RTRevokeClientInteractor.m in Sources */,
 				713EDFB21B082EA800E40683 /* RTResetPasswordValidator.m in Sources */,
+				7103A2BF1B87F4E200DB4B50 /* RTPlayVideoConnectionFactory.m in Sources */,
 				713188A91A912E4D006155E6 /* RTRegexPattern.m in Sources */,
 				712441611B2DE09800752901 /* RTConfirmAccountViewController.m in Sources */,
 				71C7D0E31B5C3D8900BDDA4F /* RTJoinAudiencePresenter.m in Sources */,
@@ -4044,6 +4055,7 @@
 				712441671B2DE75E00752901 /* RTConfirmAccountWireframe.m in Sources */,
 				713A239F1AB4FF4C0098CE48 /* RTMutableArrayDataSource.m in Sources */,
 				71361D7E1B86C93700C0CB4D /* RTAuthorizationHeaderSupport.m in Sources */,
+				7103A2C21B87FD6200DB4B50 /* RTPlayVideoIdExtractor.m in Sources */,
 				71828ED41B6162EE00CA47CA /* RTFollowUserDataManager.m in Sources */,
 				71BF08481B56050300B61504 /* RTLogoutAssembly.m in Sources */,
 				71B238481B042F06002DE5DA /* RTCurrentUserService.m in Sources */,

@@ -4,6 +4,9 @@
 #import "RTServiceAssembly.h"
 #import "RTCurrentUserService.h"
 
+#import "RTPlayVideoConnectionFactory.h"
+#import "RTPlayVideoIdExtractor.h"
+
 #import "RTAuthorizationHeaderSupport.h"
 
 #import "RTOAuth2Token.h"
@@ -14,7 +17,12 @@
 @property (nonatomic, strong) NSURLConnection *connection;
 
 @property RTCurrentUserService *currentUserService;
+
+@property RTPlayVideoConnectionFactory *connectionFactory;
+@property RTPlayVideoIdExtractor *videoIdExtractor;
+
 @property RTAuthorizationHeaderSupport *authorizationHeaderSupport;
+@property NSNotificationCenter *notificationCenter;
 
 @end
 
@@ -46,9 +54,43 @@ static NSString *const HandledKey = @"RTPlayVideoURLProtocolHandledKey";
                          client:(id<NSURLProtocolClient>)client {
     
     RTServiceAssembly *serviceAssembly = [[RTServiceAssembly assembly] activate];
-    self.currentUserService = [serviceAssembly currentUserService];
- 
-    return [super initWithRequest:request cachedResponse:cachedResponse client:client];
+    RTCurrentUserService *currentUserService = [serviceAssembly currentUserService];
+    
+    RTPlayVideoConnectionFactory *connectionFactory = [[RTPlayVideoConnectionFactory alloc] init];
+    RTPlayVideoIdExtractor *videoIdExtractor = [[RTPlayVideoIdExtractor alloc] init];
+    
+    RTAuthorizationHeaderSupport *authorizationHeaderSupport = [[RTAuthorizationHeaderSupport alloc] init];
+    
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    
+    return [self initWithRequest:request
+                  cachedResponse:cachedResponse
+                          client:client
+              currentUserService:currentUserService
+               connectionFactory:connectionFactory
+                videoIdExtractor:videoIdExtractor
+      authorizationHeaderSupport:authorizationHeaderSupport
+              notificationCenter:notificationCenter];
+}
+
+- (instancetype)initWithRequest:(NSURLRequest *)request
+                 cachedResponse:(NSCachedURLResponse *)cachedResponse
+                         client:(id<NSURLProtocolClient>)client
+             currentUserService:(RTCurrentUserService *)currentUserService
+              connectionFactory:(RTPlayVideoConnectionFactory *)connectionFactory
+               videoIdExtractor:(RTPlayVideoIdExtractor *)videoIdExtractor
+     authorizationHeaderSupport:(RTAuthorizationHeaderSupport *)authorizationHeaderSupport
+             notificationCenter:(NSNotificationCenter *)notificationCenter {
+    
+    self = [super initWithRequest:request cachedResponse:cachedResponse client:client];
+    if (self) {
+        self.currentUserService = currentUserService;
+        self.connectionFactory = connectionFactory;
+        self.videoIdExtractor = videoIdExtractor;
+        self.authorizationHeaderSupport = authorizationHeaderSupport;
+        self.notificationCenter = notificationCenter;
+    }
+    return self;
 }
 
 - (void)startLoading {
@@ -65,16 +107,13 @@ static NSString *const HandledKey = @"RTPlayVideoURLProtocolHandledKey";
     }
     
     [NSURLProtocol setProperty:@(YES) forKey:HandledKey inRequest:newRequest];
-    
-    RTPlayVideoConnectionDelegate *delegate = [self createConnectionDelegate];
-    self.connection = [NSURLConnection connectionWithRequest:newRequest delegate:delegate];
-}
 
-- (RTPlayVideoConnectionDelegate *)createConnectionDelegate {
-    // TODO: Extract videoId from request URL
-    return [RTPlayVideoConnectionDelegate connectionDelegateForURLProtocol:self
-                                                        notificationCenter:[NSNotificationCenter defaultCenter]
-                                                                   videoId:nil];
+    NSNumber *videoId = [self.videoIdExtractor videoIdFromURL:newRequest.URL];
+
+    self.connection = [self.connectionFactory connectionWithRequest:newRequest
+                                                     forURLProtocol:self
+                                                 notificationCenter:self.notificationCenter
+                                                            videoId:videoId];
 }
 
 - (void)stopLoading {

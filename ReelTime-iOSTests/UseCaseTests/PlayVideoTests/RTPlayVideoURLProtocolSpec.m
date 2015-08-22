@@ -1,28 +1,40 @@
 #import "RTTestCommon.h"
 
 #import "RTPlayVideoURLProtocol.h"
+#import "RTCurrentUserService.h"
+
+#import "RTPlayVideoConnectionFactory.h"
+#import "RTAuthorizationHeaderSupport.h"
 
 SpecBegin(RTPlayVideoURLProtocol)
 
 describe(@"play video url protocol", ^{
     
     __block RTPlayVideoURLProtocol *protocol;
+    __block id<NSURLProtocolClient> client;
     
     __block NSURLRequest *request;
     __block NSCachedURLResponse *response;
     
-    __block id<NSURLProtocolClient> protocolClient;
-    
+    __block RTCurrentUserService *currentUserService;
+
+    __block RTPlayVideoConnectionFactory *connectionDelegateFactory;
+    __block RTAuthorizationHeaderSupport *authorizationHeaderSupport;
     
     beforeEach(^{
         request = mock([NSURLRequest class]);
         response = mock([NSCachedURLResponse class]);
         
-        protocolClient = mockProtocol(@protocol(NSURLProtocolClient));
+        client = mockProtocol(@protocol(NSURLProtocolClient));
+        
+        currentUserService = mock([RTCurrentUserService class]);
+
+        connectionDelegateFactory = mock([RTPlayVideoConnectionFactory class]);
+        authorizationHeaderSupport = mock([RTAuthorizationHeaderSupport class]);
         
         protocol = [[RTPlayVideoURLProtocol alloc] initWithRequest:request
                                                     cachedResponse:response
-                                                            client:protocolClient];
+                                                            client:client];
     });
     
     describe(@"unsupported urls", ^{
