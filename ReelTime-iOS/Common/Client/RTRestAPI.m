@@ -22,6 +22,7 @@ API_VERSION_LATEST(API_RESET_PASSWORD_SEND_EMAIL,      "account/password/reset/e
 
 API_VERSION_LATEST(API_NEWSFEED,                       "newsfeed");
 
+API_VERSION_LATEST(API_PLAYLIST,                       "playlists");
 API_VERSION_LATEST(API_VARIANT_PLAYLIST,               "playlists/:video_id");
 
 API_VERSION_LATEST(API_REMOVE_TOKEN,                   "tokens/revoke");

@@ -9,7 +9,9 @@
 
 #import "RTAuthorizationHeaderSupport.h"
 
+#import "RTRestAPI.h"
 #import "RTOAuth2Token.h"
+
 #import "RTLogging.h"
 
 @interface RTPlayVideoURLProtocol ()
@@ -34,7 +36,7 @@ static NSString *const HandledKey = @"RTPlayVideoURLProtocolHandledKey";
     NSURL *url = request.URL;
     NSString *path = url.path;
     
-    if ([path containsString:@"/api/playlists/"]) {
+    if ([path containsString:API_PLAYLIST]) {
         return ![NSURLProtocol propertyForKey:HandledKey inRequest:request];
     }
     

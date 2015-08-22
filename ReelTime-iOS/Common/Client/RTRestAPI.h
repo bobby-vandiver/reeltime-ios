@@ -20,6 +20,7 @@ extern NSString *const API_RESET_PASSWORD_SEND_EMAIL;
 
 extern NSString *const API_NEWSFEED;
 
+extern NSString *const API_PLAYLIST;
 extern NSString *const API_VARIANT_PLAYLIST;
 
 extern NSString *const API_REMOVE_TOKEN;
