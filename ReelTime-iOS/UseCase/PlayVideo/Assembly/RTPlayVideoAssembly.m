@@ -21,9 +21,10 @@
 
 - (RTPlayVideoViewController *)playVideoViewControllerForVideoId:(NSNumber *)videoId {
     return [TyphoonDefinition withClass:[RTPlayVideoViewController class] configuration:^(TyphoonDefinition *definition) {
-        [definition useInitializer:@selector(viewControllerWithPlayerFactory:forVideoId:) parameters:^(TyphoonMethod *initializer) {
-            [initializer injectParameterWith:[self playerFactory]];
+        [definition useInitializer:@selector(viewControllerForVideoId:withPlayerFactory:notificationCenter:) parameters:^(TyphoonMethod *initializer) {
             [initializer injectParameterWith:videoId];
+            [initializer injectParameterWith:[self playerFactory]];
+            [initializer injectParameterWith:[NSNotificationCenter defaultCenter]];
         }];
     }];
 }

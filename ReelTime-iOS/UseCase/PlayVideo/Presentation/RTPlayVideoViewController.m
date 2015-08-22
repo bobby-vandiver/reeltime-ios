@@ -9,10 +9,14 @@
 #import <AVFoundation/AVFoundation.h>
 #import "AVPlayerItem+StatusText.h"
 
+static NSString *const CurrentItemStatusKeyPath = @"currentItem.status";
+
 @interface RTPlayVideoViewController ()
 
 @property (copy) NSNumber *videoId;
 @property RTPlayerFactory *playerFactory;
+
+@property NSNotificationCenter *notificationCenter;
 
 @property (strong, nonatomic) AVPlayer *player;
 @property id timeObserver;
@@ -21,15 +25,17 @@
 
 @implementation RTPlayVideoViewController
 
-+ (instancetype)viewControllerWithPlayerFactory:(RTPlayerFactory *)playerFactory
-                                     forVideoId:(NSNumber *)videoId {
++ (instancetype)viewControllerForVideoId:(NSNumber *)videoId
+                       withPlayerFactory:(RTPlayerFactory *)playerFactory
+                      notificationCenter:(NSNotificationCenter *)notificationCenter {
     
     NSString *identifier = [RTPlayVideoViewController storyboardIdentifier];
     RTPlayVideoViewController *controller = [RTStoryboardViewControllerFactory viewControllerWithStoryboardIdentifier:identifier];
     
     if (controller) {
-        controller.playerFactory = playerFactory;
         controller.videoId = videoId;
+        controller.playerFactory = playerFactory;
+        controller.notificationCenter = notificationCenter;
     }
     
     return controller;
@@ -52,15 +58,15 @@
 - (void)viewWillAppear:(BOOL)animated {
     DDLogDebug(@"Adding observers");
     
-    [self.player addObserver:self forKeyPath:@"currentItem.status" options:0 context:NULL];
+    [self.player addObserver:self forKeyPath:CurrentItemStatusKeyPath options:0 context:NULL];
     self.timeObserver = [self.player addPeriodicTimeObserverForInterval:CMTimeMake(1, 1)
                                                                   queue:dispatch_get_main_queue()
                                                              usingBlock:[self timeObserverCallback]];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(reachedEndOfVideo:)
-                                                 name:AVPlayerItemDidPlayToEndTimeNotification
-                                               object:self.player.currentItem];
+    [self.notificationCenter addObserver:self
+                                selector:@selector(reachedEndOfVideo:)
+                                    name:AVPlayerItemDidPlayToEndTimeNotification
+                                  object:self.player.currentItem];
 }
 
 - (void (^)(CMTime))timeObserverCallback {
@@ -85,12 +91,12 @@
 - (void)viewDidDisappear:(BOOL)animated {
     DDLogDebug(@"Removing observers");
     
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:AVPlayerItemDidPlayToEndTimeNotification
-                                                  object:self.player.currentItem];
+    [self.notificationCenter removeObserver:self
+                                       name:AVPlayerItemDidPlayToEndTimeNotification
+                                     object:self.player.currentItem];
     
     [self.player removeTimeObserver:self.timeObserver];
-    [self.player removeObserver:self forKeyPath:@"currentItem.status"];
+    [self.player removeObserver:self forKeyPath:CurrentItemStatusKeyPath];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath

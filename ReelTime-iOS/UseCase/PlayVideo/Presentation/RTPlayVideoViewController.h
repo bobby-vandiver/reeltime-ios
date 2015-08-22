@@ -12,8 +12,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *currentTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalTimeLabel;
 
-+ (instancetype)viewControllerWithPlayerFactory:(RTPlayerFactory *)playerFactory
-                                     forVideoId:(NSNumber *)videoId;
++ (instancetype)viewControllerForVideoId:(NSNumber *)videoId
+                       withPlayerFactory:(RTPlayerFactory *)playerFactory
+                      notificationCenter:(NSNotificationCenter *)notificationCenter;
 
 - (IBAction)pressedPlayButton;
 
