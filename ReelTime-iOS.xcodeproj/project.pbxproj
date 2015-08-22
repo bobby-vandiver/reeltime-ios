@@ -12,6 +12,7 @@
 		7103A2BF1B87F4E200DB4B50 /* RTPlayVideoConnectionFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7103A2BE1B87F4E200DB4B50 /* RTPlayVideoConnectionFactory.m */; };
 		7103A2C21B87FD6200DB4B50 /* RTPlayVideoIdExtractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7103A2C11B87FD6200DB4B50 /* RTPlayVideoIdExtractor.m */; };
 		7103A2C61B880CC800DB4B50 /* RTPlayVideoIdExtractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7103A2C51B880CC800DB4B50 /* RTPlayVideoIdExtractorSpec.m */; };
+		7103A2C91B88C38200DB4B50 /* AVPlayerItem+StatusText.m in Sources */ = {isa = PBXBuildFile; fileRef = 7103A2C81B88C38200DB4B50 /* AVPlayerItem+StatusText.m */; };
 		71053AA91B2B9FD9008C800C /* RTManageDevicesAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 71053AA81B2B9FD9008C800C /* RTManageDevicesAssembly.m */; };
 		71053AAC1B2BAF8A008C800C /* RTChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71053AAB1B2BAF8A008C800C /* RTChangePasswordViewController.m */; };
 		71053AAE1B2BB2AD008C800C /* RTChangePasswordViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71053AAD1B2BB2AD008C800C /* RTChangePasswordViewControllerSpec.m */; };
@@ -446,6 +447,8 @@
 		7103A2C01B87FD6200DB4B50 /* RTPlayVideoIdExtractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTPlayVideoIdExtractor.h; sourceTree = "<group>"; };
 		7103A2C11B87FD6200DB4B50 /* RTPlayVideoIdExtractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTPlayVideoIdExtractor.m; sourceTree = "<group>"; };
 		7103A2C51B880CC800DB4B50 /* RTPlayVideoIdExtractorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTPlayVideoIdExtractorSpec.m; sourceTree = "<group>"; };
+		7103A2C71B88C36F00DB4B50 /* AVPlayerItem+StatusText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AVPlayerItem+StatusText.h"; sourceTree = "<group>"; };
+		7103A2C81B88C38200DB4B50 /* AVPlayerItem+StatusText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVPlayerItem+StatusText.m"; sourceTree = "<group>"; };
 		71053AA71B2B9FD9008C800C /* RTManageDevicesAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTManageDevicesAssembly.h; sourceTree = "<group>"; };
 		71053AA81B2B9FD9008C800C /* RTManageDevicesAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTManageDevicesAssembly.m; sourceTree = "<group>"; };
 		71053AAA1B2BAF8A008C800C /* RTChangePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTChangePasswordViewController.h; sourceTree = "<group>"; };
@@ -1286,12 +1289,14 @@
 		710B6B6D1B76EA78009318D0 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				7103A2C71B88C36F00DB4B50 /* AVPlayerItem+StatusText.h */,
+				7103A2C81B88C38200DB4B50 /* AVPlayerItem+StatusText.m */,
+				71D8865B1B8572F600886940 /* RTPlayerFactory.h */,
+				71D8865C1B8572F600886940 /* RTPlayerFactory.m */,
 				7153D3DD1B82964C00A1FE29 /* RTPlayerView.h */,
 				7153D3DE1B82964C00A1FE29 /* RTPlayerView.m */,
 				710B6B6F1B76ED3A009318D0 /* RTPlayVideoViewController.h */,
 				710B6B701B76ED3A009318D0 /* RTPlayVideoViewController.m */,
-				71D8865B1B8572F600886940 /* RTPlayerFactory.h */,
-				71D8865C1B8572F600886940 /* RTPlayerFactory.m */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -3994,6 +3999,7 @@
 				71647BE61A7F17CD00F44996 /* RTAuthenticationAwareHTTPClientDelegate.m in Sources */,
 				71F384D01B3772C8002BC9A0 /* RTUserProfilePresenter.m in Sources */,
 				718BC4C41ACB7F8E00C1257F /* RTImagePNGSerialization.m in Sources */,
+				7103A2C91B88C38200DB4B50 /* AVPlayerItem+StatusText.m in Sources */,
 				714DDE5B1B0C0D0100D96F74 /* RTChangePasswordInteractor.m in Sources */,
 				71331A301A880B0100912B5F /* RTNewsfeedWireframe.m in Sources */,
 				718F43F21B20C79800732ACE /* RTClient.m in Sources */,

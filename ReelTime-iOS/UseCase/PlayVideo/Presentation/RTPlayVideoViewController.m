@@ -7,6 +7,7 @@
 #import "RTLogging.h"
 
 #import <AVFoundation/AVFoundation.h>
+#import "AVPlayerItem+StatusText.h"
 
 @interface RTPlayVideoViewController ()
 
@@ -51,9 +52,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     DDLogDebug(@"Adding observers");
     
-    [self.player addObserver:self forKeyPath:@"status" options:0 context:NULL];
-    [self.playerView.playerLayer addObserver:self forKeyPath:@"readyForDisplay" options:0 context:NULL];
-
+    [self.player addObserver:self forKeyPath:@"currentItem.status" options:0 context:NULL];
     self.timeObserver = [self.player addPeriodicTimeObserverForInterval:CMTimeMake(1, 1)
                                                                   queue:dispatch_get_main_queue()
                                                              usingBlock:[self timeObserverCallback]];
@@ -91,9 +90,7 @@
                                                   object:self.player.currentItem];
     
     [self.player removeTimeObserver:self.timeObserver];
-    [self.player removeObserver:self forKeyPath:@"status"];
-    
-    [self.playerView.playerLayer removeObserver:self forKeyPath:@"readyForDisplay"];
+    [self.player removeObserver:self forKeyPath:@"currentItem.status"];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
@@ -101,46 +98,15 @@
                         change:(NSDictionary *)change
                        context:(void *)context {
     
-    BOOL objectIsPlayer = (object == self.player);
-    BOOL objectIsPlayerLayer = (object == self.playerView.playerLayer);
-    
-    if (objectIsPlayer) {
-        BOOL isStatusNotification = [keyPath isEqualToString:@"status"];
-
-        if (isStatusNotification) {
-            DDLogDebug(@"Received status = %@", [self playerStatusText]);
-        }
-    }
-    else if (objectIsPlayerLayer) {
-        BOOL isReadyForDisplayNotification = [keyPath isEqualToString:@"readyForDisplay"];
+    if (object == self.player) {
+        DDLogDebug(@"Received status = %@", self.player.currentItem.statusText);
         
-        if (isReadyForDisplayNotification) {
-            DDLogDebug(@"Received readyForDisplay = %@", self.playerView.playerLayer.readyForDisplay ? @"YES" : @"NO");
-
+        if (self.player.currentItem.status == AVPlayerItemStatusReadyToPlay) {
             [self setLabel:self.currentTimeLabel toTime:kCMTimeZero];
             [self setLabel:self.totalTimeLabel toTime:self.player.currentItem.duration];
         }
+        
     }
-}
-
-- (NSString *)playerStatusText {
-    NSString *status = nil;
-    
-    switch (self.player.status) {
-        case AVPlayerStatusFailed:
-            status = @"AVPlayerStatusFailed";
-            break;
-            
-        case AVPlayerStatusReadyToPlay:
-            status = @"AVPlayerStatusReadyToPlay";
-            break;
-            
-        default:
-            status = @"AVPlayerStatusUnknown";
-            break;
-    }
-    
-    return status;
 }
 
 - (void)setLabel:(UILabel *)label toTime:(CMTime)time {
