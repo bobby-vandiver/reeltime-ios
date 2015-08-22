@@ -4,7 +4,16 @@
 #import "RTCurrentUserService.h"
 
 #import "RTPlayVideoConnectionFactory.h"
+#import "RTPlayVideoIdExtractor.h"
+
 #import "RTAuthorizationHeaderSupport.h"
+#import "RTOAuth2Token.h"
+
+@interface RTPlayVideoURLProtocol (Test)
+
+@property NSURLConnection *connection;
+
+@end
 
 SpecBegin(RTPlayVideoURLProtocol)
 
@@ -18,8 +27,11 @@ describe(@"play video url protocol", ^{
     
     __block RTCurrentUserService *currentUserService;
 
-    __block RTPlayVideoConnectionFactory *connectionDelegateFactory;
+    __block RTPlayVideoConnectionFactory *connectionFactory;
+    __block RTPlayVideoIdExtractor *videoIdExtractor;
+    
     __block RTAuthorizationHeaderSupport *authorizationHeaderSupport;
+    __block NSNotificationCenter *notificationCenter;
     
     beforeEach(^{
         request = mock([NSURLRequest class]);
@@ -29,12 +41,20 @@ describe(@"play video url protocol", ^{
         
         currentUserService = mock([RTCurrentUserService class]);
 
-        connectionDelegateFactory = mock([RTPlayVideoConnectionFactory class]);
+        connectionFactory = mock([RTPlayVideoConnectionFactory class]);
+        videoIdExtractor = mock([RTPlayVideoIdExtractor class]);
+        
         authorizationHeaderSupport = mock([RTAuthorizationHeaderSupport class]);
+        notificationCenter = mock([NSNotificationCenter class]);
         
         protocol = [[RTPlayVideoURLProtocol alloc] initWithRequest:request
                                                     cachedResponse:response
-                                                            client:client];
+                                                            client:client
+                                                currentUserService:currentUserService
+                                                 connectionFactory:connectionFactory
+                                                  videoIdExtractor:videoIdExtractor
+                                        authorizationHeaderSupport:authorizationHeaderSupport
+                                                notificationCenter:notificationCenter];
     });
     
     describe(@"unsupported urls", ^{
@@ -112,6 +132,79 @@ describe(@"play video url protocol", ^{
             
             expect([RTPlayVideoURLProtocol canInitWithRequest:request1]).to.beFalsy();
             expect([RTPlayVideoURLProtocol canInitWithRequest:request2]).to.beFalsy();
+        });
+    });
+    
+    describe(@"loading", ^{
+        __block NSMutableURLRequest *mutableRequest;
+        __block NSURLConnection *connection;
+        
+        beforeEach(^{
+            mutableRequest = mock([NSMutableURLRequest class]);
+            [given([request mutableCopy]) willReturn:mutableRequest];
+
+            NSURL *url = mock([NSURL class]);
+            
+            [given([mutableRequest URL]) willReturn:url];
+            [given([videoIdExtractor videoIdFromURL:url]) willReturn:@(videoId)];
+
+            connection = mock([NSURLConnection class]);
+            [given([connectionFactory connectionWithRequest:mutableRequest
+                                             forURLProtocol:protocol
+                                         notificationCenter:notificationCenter
+                                                    videoId:@(videoId)]) willReturn:connection];
+        });
+        
+        describe(@"starting", ^{
+            it(@"should extract video id and create connection", ^{
+                [protocol startLoading];
+                [verify(connectionFactory) connectionWithRequest:mutableRequest
+                                                  forURLProtocol:protocol
+                                              notificationCenter:notificationCenter
+                                                         videoId:@(videoId)];
+                
+                expect(protocol.connection).to.equal(connection);
+            });
+            
+            context(@"token found for current user", ^{
+                __block NSString *bearerTokenHeader = @"bearer";
+                
+                beforeEach(^{
+                    RTOAuth2Token *token = [[RTOAuth2Token alloc] init];
+                    token.accessToken = accessToken;
+                    
+                    [given([currentUserService tokenForCurrentUser]) willReturn:token];
+                    [given([authorizationHeaderSupport bearerTokenHeaderFromAccessToken:accessToken]) willReturn:bearerTokenHeader];
+                });
+                
+                it(@"should include bearer token in authorization header", ^{
+                    [protocol startLoading];
+                    [verify(mutableRequest) setValue:bearerTokenHeader forHTTPHeaderField:RTAuthorizationHeader];
+                });
+            });
+            
+            context(@"token not found for current user", ^{
+                beforeEach(^{
+                    [given([currentUserService tokenForCurrentUser]) willReturn:nil];
+                });
+                
+                it(@"should not include bearer token in authorization header", ^{
+                    [protocol startLoading];
+                    [verifyCount(mutableRequest, never()) setValue:anything() forHTTPHeaderField:RTAuthorizationHeader];
+                });
+            });
+        });
+
+        describe(@"stopping", ^{
+            it(@"should cancel the connection", ^{
+                [protocol startLoading];
+                [verify(connection) reset];
+                
+                [protocol stopLoading];
+                [verify(connection) cancel];
+                
+                expect(protocol.connection).to.beNil();
+            });
         });
     });
 });
