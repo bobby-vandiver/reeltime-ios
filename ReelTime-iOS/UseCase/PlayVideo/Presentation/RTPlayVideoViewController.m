@@ -123,7 +123,6 @@ static NSString *const CurrentItemStatusKeyPath = @"currentItem.status";
             
             DDLogDebug(@"seekableTimeRanges = %@", item.seekableTimeRanges);
         }
-        
     }
 }
 
@@ -150,6 +149,14 @@ static NSString *const CurrentItemStatusKeyPath = @"currentItem.status";
 
 - (IBAction)pressedResetButton {
     [self seekToStart];
+}
+
+- (IBAction)pressedRewindButton {
+    DDLogDebug(@"pressed rewind button");
+}
+
+- (IBAction)pressedForwardButton {
+    DDLogDebug(@"pressed forward button");
 }
 
 @end
