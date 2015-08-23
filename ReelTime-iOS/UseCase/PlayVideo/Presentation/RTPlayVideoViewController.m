@@ -21,6 +21,8 @@ static NSString *const CurrentItemStatusKeyPath = @"currentItem.status";
 @property (strong, nonatomic) AVPlayer *player;
 @property id timeObserver;
 
+@property BOOL seekInProgress;
+
 @end
 
 @implementation RTPlayVideoViewController
@@ -110,18 +112,6 @@ static NSString *const CurrentItemStatusKeyPath = @"currentItem.status";
         if (self.player.currentItem.status == AVPlayerItemStatusReadyToPlay) {
             [self setLabel:self.currentTimeLabel toTime:kCMTimeZero];
             [self setLabel:self.totalTimeLabel toTime:self.player.currentItem.duration];
-            
-            AVPlayerItem *item = self.player.currentItem;
-            
-            DDLogDebug(@"canPlayReverse = %@", [self stringForBool:item.canPlayReverse]);
-            
-            DDLogDebug(@"canPlayFastForward = %@", [self stringForBool:item.canPlayFastForward]);
-            DDLogDebug(@"canPlayFastReverse = %@", [self stringForBool:item.canPlayFastReverse]);
-            
-            DDLogDebug(@"canPlaySlowForward = %@", [self stringForBool:item.canPlaySlowForward]);
-            DDLogDebug(@"canPlaySlowReverse = %@", [self stringForBool:item.canPlaySlowReverse]);
-            
-            DDLogDebug(@"seekableTimeRanges = %@", item.seekableTimeRanges);
         }
     }
 }
@@ -140,7 +130,16 @@ static NSString *const CurrentItemStatusKeyPath = @"currentItem.status";
 }
 
 - (IBAction)pressedPlayButton {
-    [self.player play];
+    @synchronized(self) {
+        DDLogDebug(@"pressed play button with seekInProgress = %@", [self stringForBool:self.seekInProgress]);
+        
+        if (self.seekInProgress) {
+            self.seekInProgress = NO;
+        }
+        else {
+            [self.player play];
+        }
+    }
 }
 
 - (IBAction)pressedPauseButton {
@@ -153,6 +152,36 @@ static NSString *const CurrentItemStatusKeyPath = @"currentItem.status";
 
 - (IBAction)pressedRewindButton {
     DDLogDebug(@"pressed rewind button");
+    
+    [self rewind];
+}
+
+- (void)rewind {
+    DDLogDebug(@"start of rewind with seekInProgress = %@", [self stringForBool:self.seekInProgress]);
+
+    @synchronized(self) {
+        self.seekInProgress = YES;
+    }
+
+    CMTime oneSecond = CMTimeMake(1, 1);
+    CMTime oneSecondAgo = CMTimeSubtract(self.player.currentItem.currentTime, oneSecond);
+    
+    CMTime time = CMTimeMinimum(oneSecondAgo, kCMTimeZero);
+    BOOL seekToStart = CMTimeCompare(time, kCMTimeZero) == 0;
+ 
+    [self.player seekToTime:time completionHandler:^(BOOL finished) {
+        @synchronized(self) {
+            DDLogDebug(@"completionHandler with seekInProgress = %@", [self stringForBool:self.seekInProgress]);
+
+            if (self.seekInProgress && !seekToStart) {
+                [self rewind];
+            }
+            else {
+                self.seekInProgress = NO;
+                [self.player play];
+            }
+        }
+    }];
 }
 
 - (IBAction)pressedForwardButton {
