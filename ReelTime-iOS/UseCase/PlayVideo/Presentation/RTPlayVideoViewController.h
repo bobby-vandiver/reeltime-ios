@@ -22,8 +22,4 @@
 
 - (IBAction)pressedResetButton;
 
-- (IBAction)pressedRewindButton;
-
-- (IBAction)pressedForwardButton;
-
 @end

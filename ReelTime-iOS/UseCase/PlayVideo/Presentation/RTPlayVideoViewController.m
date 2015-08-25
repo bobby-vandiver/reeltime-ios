@@ -21,8 +21,6 @@ static NSString *const CurrentItemStatusKeyPath = @"currentItem.status";
 @property (strong, nonatomic) AVPlayer *player;
 @property id timeObserver;
 
-@property BOOL seekInProgress;
-
 @end
 
 @implementation RTPlayVideoViewController
@@ -130,16 +128,7 @@ static NSString *const CurrentItemStatusKeyPath = @"currentItem.status";
 }
 
 - (IBAction)pressedPlayButton {
-    @synchronized(self) {
-        DDLogDebug(@"pressed play button with seekInProgress = %@", [self stringForBool:self.seekInProgress]);
-        
-        if (self.seekInProgress) {
-            self.seekInProgress = NO;
-        }
-        else {
-            [self.player play];
-        }
-    }
+    [self.player play];
 }
 
 - (IBAction)pressedPauseButton {
@@ -148,44 +137,6 @@ static NSString *const CurrentItemStatusKeyPath = @"currentItem.status";
 
 - (IBAction)pressedResetButton {
     [self seekToStart];
-}
-
-- (IBAction)pressedRewindButton {
-    DDLogDebug(@"pressed rewind button");
-    
-    [self rewind];
-}
-
-- (void)rewind {
-    DDLogDebug(@"start of rewind with seekInProgress = %@", [self stringForBool:self.seekInProgress]);
-
-    @synchronized(self) {
-        self.seekInProgress = YES;
-    }
-
-    CMTime oneSecond = CMTimeMake(1, 1);
-    CMTime oneSecondAgo = CMTimeSubtract(self.player.currentItem.currentTime, oneSecond);
-    
-    CMTime time = CMTimeMinimum(oneSecondAgo, kCMTimeZero);
-    BOOL seekToStart = CMTimeCompare(time, kCMTimeZero) == 0;
- 
-    [self.player seekToTime:time completionHandler:^(BOOL finished) {
-        @synchronized(self) {
-            DDLogDebug(@"completionHandler with seekInProgress = %@", [self stringForBool:self.seekInProgress]);
-
-            if (self.seekInProgress && !seekToStart) {
-                [self rewind];
-            }
-            else {
-                self.seekInProgress = NO;
-                [self.player play];
-            }
-        }
-    }];
-}
-
-- (IBAction)pressedForwardButton {
-    DDLogDebug(@"pressed forward button");
 }
 
 @end
