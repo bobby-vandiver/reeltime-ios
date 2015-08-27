@@ -19,6 +19,8 @@
 		71053AB21B2BBBAD008C800C /* RTChangePasswordWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 71053AB11B2BBBAD008C800C /* RTChangePasswordWireframe.m */; };
 		71053AB41B2BBC68008C800C /* RTChangePasswordWireframeSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71053AB31B2BBC68008C800C /* RTChangePasswordWireframeSpec.m */; };
 		71053AB81B2BBF38008C800C /* RTChangePasswordAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 71053AB71B2BBF38008C800C /* RTChangePasswordAssembly.m */; };
+		710564A41B8E9FF300FEC81E /* RTDeleteVideoDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 710564A31B8E9FF300FEC81E /* RTDeleteVideoDataManager.m */; };
+		710564A71B8EA10000FEC81E /* RTDeleteVideoDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 710564A61B8EA10000FEC81E /* RTDeleteVideoDataManagerSpec.m */; };
 		71073CF31A82DED800BE6E19 /* EXPMatchers+beVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 71073CF21A82DED800BE6E19 /* EXPMatchers+beVideo.m */; };
 		71073CF61A83060700BE6E19 /* RKObjectManager+IncludeHeaders.m in Sources */ = {isa = PBXBuildFile; fileRef = 71073CF51A83060700BE6E19 /* RKObjectManager+IncludeHeaders.m */; };
 		71073CFE1A831EAB00BE6E19 /* RTNewsfeedDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71073CFD1A831EAB00BE6E19 /* RTNewsfeedDataManagerSpec.m */; };
@@ -459,6 +461,10 @@
 		71053AB31B2BBC68008C800C /* RTChangePasswordWireframeSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTChangePasswordWireframeSpec.m; sourceTree = "<group>"; };
 		71053AB61B2BBF38008C800C /* RTChangePasswordAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTChangePasswordAssembly.h; sourceTree = "<group>"; };
 		71053AB71B2BBF38008C800C /* RTChangePasswordAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTChangePasswordAssembly.m; sourceTree = "<group>"; };
+		710564A11B8E9EE400FEC81E /* RTDeleteVideoError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTDeleteVideoError.h; sourceTree = "<group>"; };
+		710564A21B8E9FF300FEC81E /* RTDeleteVideoDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTDeleteVideoDataManager.h; sourceTree = "<group>"; };
+		710564A31B8E9FF300FEC81E /* RTDeleteVideoDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTDeleteVideoDataManager.m; sourceTree = "<group>"; };
+		710564A61B8EA10000FEC81E /* RTDeleteVideoDataManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTDeleteVideoDataManagerSpec.m; sourceTree = "<group>"; };
 		71073CF11A82DEC200BE6E19 /* EXPMatchers+beVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+beVideo.h"; sourceTree = "<group>"; };
 		71073CF21A82DED800BE6E19 /* EXPMatchers+beVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EXPMatchers+beVideo.m"; sourceTree = "<group>"; };
 		71073CF41A83060700BE6E19 /* RKObjectManager+IncludeHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RKObjectManager+IncludeHeaders.h"; sourceTree = "<group>"; };
@@ -1238,6 +1244,40 @@
 				71053AB71B2BBF38008C800C /* RTChangePasswordAssembly.m */,
 			);
 			path = Assembly;
+			sourceTree = "<group>";
+		};
+		7105649E1B8E9E6D00FEC81E /* DeleteVideo */ = {
+			isa = PBXGroup;
+			children = (
+				710564A01B8E9ECF00FEC81E /* Domain */,
+				7105649F1B8E9E8100FEC81E /* Persistence */,
+			);
+			path = DeleteVideo;
+			sourceTree = "<group>";
+		};
+		7105649F1B8E9E8100FEC81E /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				710564A21B8E9FF300FEC81E /* RTDeleteVideoDataManager.h */,
+				710564A31B8E9FF300FEC81E /* RTDeleteVideoDataManager.m */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		710564A01B8E9ECF00FEC81E /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				710564A11B8E9EE400FEC81E /* RTDeleteVideoError.h */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		710564A51B8EA0D300FEC81E /* DeleteVideoTests */ = {
+			isa = PBXGroup;
+			children = (
+				710564A61B8EA10000FEC81E /* RTDeleteVideoDataManagerSpec.m */,
+			);
+			path = DeleteVideoTests;
 			sourceTree = "<group>";
 		};
 		71073CF71A831BEF00BE6E19 /* Newsfeed */ = {
@@ -3524,6 +3564,7 @@
 				713DBD5F1B136D7500CB4796 /* ChangeDisplayName */,
 				714DDE501B0C0C6F00D96F74 /* ChangePassword */,
 				7133EC531B17CC8300BC1CAE /* ConfirmAccount */,
+				7105649E1B8E9E6D00FEC81E /* DeleteVideo */,
 				714842FD1AEC1011001B885A /* DeviceRegistration */,
 				71828ECE1B6162A000CA47CA /* FollowUser */,
 				71C7D0CD1B5C2E6800BDDA4F /* JoinAudience */,
@@ -3571,6 +3612,7 @@
 				7108D7861B13D999000451AD /* ChangeDisplayNameTests */,
 				714DDE641B0C0EF000D96F74 /* ChangePasswordTests */,
 				7133EC601B17D00B00BC1CAE /* ConfirmAccountTests */,
+				710564A51B8EA0D300FEC81E /* DeleteVideoTests */,
 				714843071AEC129F001B885A /* DeviceRegistrationTests */,
 				71828ED51B61636D00CA47CA /* FollowUserTests */,
 				71C7D0D21B5C2ED600BDDA4F /* JoinAudienceTests */,
@@ -3891,6 +3933,7 @@
 				713188AC1A91454F006155E6 /* RTNewsfeedViewController.m in Sources */,
 				7172158A1A86576E0002ECC7 /* RTLoginDataManager.m in Sources */,
 				7162E8261B52CE9700F96BAD /* RTLogoutInteractor.m in Sources */,
+				710564A41B8E9FF300FEC81E /* RTDeleteVideoDataManager.m in Sources */,
 				71A462301B4352DC000DD7B9 /* RTBrowseAudienceMembersDataManagerDelegate.m in Sources */,
 				71828EE11B6173D300CA47CA /* RTFollowUserPresenter.m in Sources */,
 				71B6BA681AD036A400723941 /* RTBrowseAllViewController.m in Sources */,
@@ -4150,6 +4193,7 @@
 				713BCE041A5908E4000F2D96 /* RTOAuth2TokenStoreSpec.m in Sources */,
 				7153EDFB1AED171D00000D1C /* RTDeviceRegistrationDataManagerSpec.m in Sources */,
 				71AD75C71B62955000E76BFA /* RTUnfollowUserPresenterSpec.m in Sources */,
+				710564A71B8EA10000FEC81E /* RTDeleteVideoDataManagerSpec.m in Sources */,
 				713DE8321B08DB2100A5BBF0 /* RTResetPasswordValidatorSpec.m in Sources */,
 				71D947981A4FCB5600401963 /* RTLoginInteractorSpec.m in Sources */,
 				71427E1F1A8C100200E2C53F /* RTActivitySpec.m in Sources */,
