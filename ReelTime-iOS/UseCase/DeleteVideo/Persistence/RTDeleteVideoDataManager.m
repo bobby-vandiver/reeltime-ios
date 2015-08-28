@@ -1,7 +1,11 @@
 #import "RTDeleteVideoDataManager.h"
 #import "RTAPIClient.h"
 
+#import "RTServerErrors.h"
 #import "RTDeleteVideoError.h"
+
+#import "RTErrorFactory.h"
+#import "RTLogging.h"
 
 @interface RTDeleteVideoDataManager ()
 
@@ -28,7 +32,17 @@
     };
     
     ServerErrorsCallback failureCallback = ^(RTServerErrors *serverErrors) {
+        NSError *error;
         
+        if ([serverErrors.errors[0] isEqual:@"Requested video was not found"]) {
+            error = [RTErrorFactory deleteVideoErrorWithCode:RTDeleteVideoErrorVideoNotFound];
+        }
+        else {
+            DDLogWarn(@"Unknown video deletion error(s): %@", serverErrors);
+            error = [RTErrorFactory deleteVideoErrorWithCode:RTDeleteVideoErrorUnknownError];
+        }
+        
+        failure(error);
     };
     
     [self.client deleteVideoForVideoId:videoId

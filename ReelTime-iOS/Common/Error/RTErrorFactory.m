@@ -19,6 +19,10 @@
     return [self errorWithDomain:RTChangePasswordErrorDomain code:code];
 }
 
++ (NSError *)deleteVideoErrorWithCode:(RTDeleteVideoError)code {
+    return [self errorWithDomain:RTDeleteVideoErrorDomain code:code];
+}
+
 + (NSError *)deviceRegistrationErrorWithCode:(RTDeviceRegistrationError)code {
     return [self errorWithDomain:RTDeviceRegistrationErrorDomain code:code];
 }

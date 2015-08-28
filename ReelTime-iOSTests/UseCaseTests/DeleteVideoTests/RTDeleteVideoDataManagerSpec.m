@@ -51,6 +51,32 @@ describe(@"delete video data manager", ^{
                 [deleted expectCallbackExecuted];
             });
         });
+        
+        context(@"failed to delete", ^{
+            it(@"video not found", ^{
+                RTServerErrors *serverErrors = [[RTServerErrors alloc] init];
+                serverErrors.errors = @[@"Requested video was not found"];
+                
+                ServerErrorsCallback failureHandler = [failureCaptor value];
+                failureHandler(serverErrors);
+                
+                [notDeleted expectCallbackExecuted];
+                expect(notDeleted.callbackArguments).to.beError(RTDeleteVideoErrorDomain,
+                                                                RTDeleteVideoErrorVideoNotFound);
+            });
+            
+            it(@"unknown error", ^{
+                RTServerErrors *serverErrors = [[RTServerErrors alloc] init];
+                serverErrors.errors = @[@"uh oh"];
+                
+                ServerErrorsCallback failureHandler = [failureCaptor value];
+                failureHandler(serverErrors);
+                
+                [notDeleted expectCallbackExecuted];
+                expect(notDeleted.callbackArguments).to.beError(RTDeleteVideoErrorDomain,
+                                                                RTDeleteVideoErrorUnknownError);
+            });
+        });
     });
 });
 
