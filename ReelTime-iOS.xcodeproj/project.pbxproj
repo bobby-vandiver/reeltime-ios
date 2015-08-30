@@ -1204,6 +1204,7 @@
 		71F704641B9397A30067DEEA /* RTAddVideoToReelInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTAddVideoToReelInteractor.h; sourceTree = "<group>"; };
 		71F704651B9397A30067DEEA /* RTAddVideoToReelInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAddVideoToReelInteractor.m; sourceTree = "<group>"; };
 		71F704671B9398790067DEEA /* RTAddVideoToReelInteractorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAddVideoToReelInteractorSpec.m; sourceTree = "<group>"; };
+		71F7046A1B939FA80067DEEA /* RTAddVideoToReelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTAddVideoToReelView.h; sourceTree = "<group>"; };
 		7EE6C896A75E4BC2F37AB869 /* Pods-ReelTime-iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelTime-iOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReelTime-iOSTests/Pods-ReelTime-iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9F10A54522F42FAE4C712E1A /* Pods-ReelTime-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelTime-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReelTime-iOS/Pods-ReelTime-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		A29C600554F5BB4A5E37291D /* Pods-ReelTime-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelTime-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReelTime-iOS/Pods-ReelTime-iOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -3700,6 +3701,7 @@
 			children = (
 				71F7045B1B9386BF0067DEEA /* Domain */,
 				71F704591B9386480067DEEA /* Persistence */,
+				71F704691B939F600067DEEA /* Presentation */,
 			);
 			path = AddVideoToReel;
 			sourceTree = "<group>";
@@ -3731,6 +3733,14 @@
 				71F704671B9398790067DEEA /* RTAddVideoToReelInteractorSpec.m */,
 			);
 			path = AddVideoToReelTests;
+			sourceTree = "<group>";
+		};
+		71F704691B939F600067DEEA /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				71F7046A1B939FA80067DEEA /* RTAddVideoToReelView.h */,
+			);
+			path = Presentation;
 			sourceTree = "<group>";
 		};
 		9771AF0E969811E0EBA02423 /* Pods */ = {
