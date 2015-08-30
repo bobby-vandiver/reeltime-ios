@@ -67,7 +67,9 @@ describe(@"revoke client data manager", ^{
                                       @"[client_id] is required":
                                           @(RTRevokeClientErrorMissingClientId),
                                       @"Requested client was not found":
-                                          @(RTRevokeClientErrorUnknownClient)
+                                          @(RTRevokeClientErrorUnknownClient),
+                                      @"Unknown error":
+                                          @(RTRevokeClientErrorUnknownError)
                                       };
             
             [helper expectForServerMessageToErrorCodeMapping:mapping];

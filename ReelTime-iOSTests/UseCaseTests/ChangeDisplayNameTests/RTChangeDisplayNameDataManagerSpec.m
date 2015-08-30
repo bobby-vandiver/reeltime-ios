@@ -67,7 +67,9 @@ describe(@"change display name data manager", ^{
                                      @"[new_display_name] is required":
                                          @(RTChangeDisplayNameErrorMissingDisplayName),
                                      @"[new_display_name] must be 2-20 alphanumeric or space characters long":
-                                         @(RTChangeDisplayNameErrorInvalidDisplayName)
+                                         @(RTChangeDisplayNameErrorInvalidDisplayName),
+                                     @"Unknown error":
+                                         @(RTChangeDisplayNameErrorUnknownError)
                                      };
             
             [helper expectForServerMessageToErrorCodeMapping:mapping];

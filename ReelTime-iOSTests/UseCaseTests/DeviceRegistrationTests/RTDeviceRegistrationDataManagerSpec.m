@@ -109,7 +109,9 @@ describe(@"device registration data manager", ^{
                                           @"[password] is required":                @(RTDeviceRegistrationErrorMissingPassword),
                                           @"[client_name] is required":             @(RTDeviceRegistrationErrorMissingClientName),
                                           @"Invalid credentials":                   @(RTDeviceRegistrationErrorInvalidCredentials),
-                                          @"Unable to register. Please try again.": @(RTDeviceRegistrationErrorServiceUnavailable)
+                                          @"Unable to register. Please try again.": @(RTDeviceRegistrationErrorServiceUnavailable),
+                                          @"Unknown error":
+                                              @(RTDeviceRegistrationErrorUnknownError)
                                           };
                 [helper expectForServerMessageToErrorCodeMapping:mapping];
             });

@@ -63,7 +63,9 @@ describe(@"confirm account data manager", ^{
         it(@"should map server errors to domain specific errors", ^{
             NSDictionary *mapping = @{
                                       @"Unable to send account confirmation email. Please try again.":
-                                          @(RTConfirmAccountErrorEmailFailure)
+                                          @(RTConfirmAccountErrorEmailFailure),
+                                      @"Unknown error":
+                                          @(RTConfirmAccountErrorUnknownError)
                                       };
             
             [helper expectForServerMessageToErrorCodeMapping:mapping];
@@ -112,7 +114,9 @@ describe(@"confirm account data manager", ^{
                                       @"[code] is required":
                                           @(RTConfirmAccountErrorMissingConfirmationCode),
                                       @"[code] is invalid":
-                                          @(RTConfirmAccountErrorInvalidConfirmationCode)
+                                          @(RTConfirmAccountErrorInvalidConfirmationCode),
+                                      @"Unknown error":
+                                          @(RTConfirmAccountErrorUnknownError)
                                       };
             
             [helper expectForServerMessageToErrorCodeMapping:mapping];

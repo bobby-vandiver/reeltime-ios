@@ -67,7 +67,9 @@ describe(@"change password data manager", ^{
                                       @"[new_password] is required":
                                           @(RTChangePasswordErrorMissingPassword),
                                       @"[new_password] must be at least 6 characters long":
-                                          @(RTChangePasswordErrorInvalidPassword)
+                                          @(RTChangePasswordErrorInvalidPassword),
+                                      @"Unknown error":
+                                          @(RTChangePasswordErrorUnknownError)
                                       };
 
             [helper expectForServerMessageToErrorCodeMapping:mapping];

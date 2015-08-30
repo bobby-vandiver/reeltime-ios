@@ -117,7 +117,9 @@ describe(@"account registration data manager", ^{
                                           @"[display_name] must be 2-20 alphanumeric or space characters long": @(RTAccountRegistrationErrorInvalidDisplayName),
                                           @"[username] is not available":                                       @(RTAccountRegistrationErrorUsernameIsUnavailable),
                                           @"[email] is not available":                                          @(RTAccountRegistrationErrorEmailIsUnavailable),
-                                          @"Unable to register. Please try again.":                             @(RTAccountRegistrationErrorRegistrationServiceUnavailable)
+                                          @"Unable to register. Please try again.":                             @(RTAccountRegistrationErrorRegistrationServiceUnavailable),
+                                          @"Unknown error":
+                                              @(RTAccountRegistrationErrorUnknownError)
                                           };
                 
                 [helper expectForServerMessageToErrorCodeMapping:mapping];
