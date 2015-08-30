@@ -428,6 +428,8 @@
 		71F384DA1B378DBD002BC9A0 /* RTAccountSettingsWireframeSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F384D91B378DBD002BC9A0 /* RTAccountSettingsWireframeSpec.m */; };
 		71F7044F1B933E6F0067DEEA /* RTDeleteVideoPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F7044E1B933E6F0067DEEA /* RTDeleteVideoPresenter.m */; };
 		71F704511B933F210067DEEA /* RTDeleteVideoPresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F704501B933F210067DEEA /* RTDeleteVideoPresenterSpec.m */; };
+		71F7045F1B93878D0067DEEA /* RTAddVideoToReelDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F7045E1B93878D0067DEEA /* RTAddVideoToReelDataManager.m */; };
+		71F704621B9388710067DEEA /* RTAddVideoToReelDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F704611B9388710067DEEA /* RTAddVideoToReelDataManagerSpec.m */; };
 		BCBE070F3639F3393A1BF1A9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2682314A72FFBF85E182F6FE /* libPods.a */; };
 		F5855EE53AD6BF2CC0D24A71 /* libPods-ReelTime-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DFC463C3A66781E8DEEE7436 /* libPods-ReelTime-iOS.a */; };
 /* End PBXBuildFile section */
@@ -1192,6 +1194,10 @@
 		71F7044D1B933E6F0067DEEA /* RTDeleteVideoPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTDeleteVideoPresenter.h; sourceTree = "<group>"; };
 		71F7044E1B933E6F0067DEEA /* RTDeleteVideoPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTDeleteVideoPresenter.m; sourceTree = "<group>"; };
 		71F704501B933F210067DEEA /* RTDeleteVideoPresenterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTDeleteVideoPresenterSpec.m; sourceTree = "<group>"; };
+		71F7045C1B9386CB0067DEEA /* RTAddVideoToReelError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTAddVideoToReelError.h; sourceTree = "<group>"; };
+		71F7045D1B93878D0067DEEA /* RTAddVideoToReelDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTAddVideoToReelDataManager.h; sourceTree = "<group>"; };
+		71F7045E1B93878D0067DEEA /* RTAddVideoToReelDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAddVideoToReelDataManager.m; sourceTree = "<group>"; };
+		71F704611B9388710067DEEA /* RTAddVideoToReelDataManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAddVideoToReelDataManagerSpec.m; sourceTree = "<group>"; };
 		7EE6C896A75E4BC2F37AB869 /* Pods-ReelTime-iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelTime-iOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReelTime-iOSTests/Pods-ReelTime-iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9F10A54522F42FAE4C712E1A /* Pods-ReelTime-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelTime-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReelTime-iOS/Pods-ReelTime-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		A29C600554F5BB4A5E37291D /* Pods-ReelTime-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelTime-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReelTime-iOS/Pods-ReelTime-iOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -3571,6 +3577,7 @@
 			children = (
 				71166E131A6C36C800EAE5BA /* AccountRegistration */,
 				712AAB0D1B2CB0EE00E7AE4E /* AccountSettings */,
+				71F704581B93862F0067DEEA /* AddVideoToReel */,
 				71B6BA561AD036A400723941 /* BrowseAll */,
 				71A4622C1B435272000DD7B9 /* BrowseAudienceMembers */,
 				717896261B22698600E4F571 /* BrowseDevices */,
@@ -3617,6 +3624,7 @@
 		71D947951A4FCB1C00401963 /* UseCaseTests */ = {
 			isa = PBXGroup;
 			children = (
+				71F704601B9388470067DEEA /* AddVideoToReelTests */,
 				71166E101A6C2F3900EAE5BA /* AccountRegistrationTests */,
 				712AAB121B2CB23B00E7AE4E /* AccountSettings */,
 				71B6BA6A1AD038FD00723941 /* BrowseAllTests */,
@@ -3679,6 +3687,40 @@
 				71F7044C1B933E3A0067DEEA /* RTDeleteVideoView.h */,
 			);
 			path = Presentation;
+			sourceTree = "<group>";
+		};
+		71F704581B93862F0067DEEA /* AddVideoToReel */ = {
+			isa = PBXGroup;
+			children = (
+				71F7045B1B9386BF0067DEEA /* Domain */,
+				71F704591B9386480067DEEA /* Persistence */,
+			);
+			path = AddVideoToReel;
+			sourceTree = "<group>";
+		};
+		71F704591B9386480067DEEA /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				71F7045D1B93878D0067DEEA /* RTAddVideoToReelDataManager.h */,
+				71F7045E1B93878D0067DEEA /* RTAddVideoToReelDataManager.m */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		71F7045B1B9386BF0067DEEA /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				71F7045C1B9386CB0067DEEA /* RTAddVideoToReelError.h */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		71F704601B9388470067DEEA /* AddVideoToReelTests */ = {
+			isa = PBXGroup;
+			children = (
+				71F704611B9388710067DEEA /* RTAddVideoToReelDataManagerSpec.m */,
+			);
+			path = AddVideoToReelTests;
 			sourceTree = "<group>";
 		};
 		9771AF0E969811E0EBA02423 /* Pods */ = {
@@ -4016,6 +4058,7 @@
 				7134F1FF1B24CAEB001EBF4E /* RTRevokeClientServerErrorMapping.m in Sources */,
 				712B2BCD1AAFB2010026258A /* RTPagedListDataManager.m in Sources */,
 				71B97D9E1B655D320016017D /* RTBrowseUserFollowersAssembly.m in Sources */,
+				71F7045F1B93878D0067DEEA /* RTAddVideoToReelDataManager.m in Sources */,
 				7124415E1B2DDA3D00752901 /* RTConfirmAccountErrorCodeToErrorMessageMapping.m in Sources */,
 				713DE83D1B0920DF00A5BBF0 /* RTErrorCodeToErrorMessagePresenter.m in Sources */,
 				7153EE091AED3CD900000D1C /* RTAccountRegistrationServerErrorMapping.m in Sources */,
@@ -4235,6 +4278,7 @@
 				71565A291A98EDE900AE1C43 /* RTApplicationWireframeSpec.m in Sources */,
 				71868CB41B47228000CF0B3B /* RTUserReelFooterViewSpec.m in Sources */,
 				713A239C1AB4F6BF0098CE48 /* RTBrowseVideosPresenterSpec.m in Sources */,
+				71F704621B9388710067DEEA /* RTAddVideoToReelDataManagerSpec.m in Sources */,
 				714843101AEC1F50001B885A /* RTLoginWireframeSpec.m in Sources */,
 				71B97DA61B6564D10016017D /* RTBrowseUserFolloweesDataManagerDelegateSpec.m in Sources */,
 				71C7D0F71B5C4D2F00BDDA4F /* RTLeaveAudienceInteractorSpec.m in Sources */,

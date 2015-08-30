@@ -1,4 +1,5 @@
 #import "RTAccountRegistrationError.h"
+#import "RTAddVideoToReelError.h"
 #import "RTConfirmAccountError.h"
 #import "RTChangeDisplayNameError.h"
 #import "RTChangePasswordError.h"
@@ -18,6 +19,7 @@
 #import "RTUserSummaryError.h"
 
 NSString *const RTAccountRegistrationErrorDomain = @"in.reeltime.AccountRegistration";
+NSString *const RTAddVideoToReelErrorDomain = @"in.reeltime.AddVideoToReel";
 NSString *const RTConfirmAccountErrorDomain = @"in.reeltime.ConfirmAccount";
 NSString *const RTChangeDisplayNameErrorDomain = @"in.reeltime.ChangeDisplayName";
 NSString *const RTChangePasswordErrorDomain = @"in.reeltime.ChangePassword";

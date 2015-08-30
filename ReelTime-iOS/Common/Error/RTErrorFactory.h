@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
 
 #import "RTAccountRegistrationError.h"
+#import "RTAddVideoToReelError.h"
 #import "RTConfirmAccountError.h"
 #import "RTChangeDisplayNameError.h"
 #import "RTChangePasswordError.h"
@@ -22,6 +23,8 @@
 @interface RTErrorFactory : NSObject
 
 + (NSError *)accountRegistrationErrorWithCode:(RTAccountRegistrationError)code;
+
++ (NSError *)addVideoToReelErrorWithCode:(RTAddVideoToReelError)code;
 
 + (NSError *)confirmAccountErrorWithCode:(RTConfirmAccountError)code;
 

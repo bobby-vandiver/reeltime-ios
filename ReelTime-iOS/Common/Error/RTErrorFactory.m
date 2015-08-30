@@ -7,6 +7,10 @@
     return [self errorWithDomain:RTAccountRegistrationErrorDomain code:code];
 }
 
++ (NSError *)addVideoToReelErrorWithCode:(RTAddVideoToReelError)code {
+    return [self errorWithDomain:RTAddVideoToReelErrorDomain code:code];
+}
+
 + (NSError *)confirmAccountErrorWithCode:(RTConfirmAccountError)code {
     return [self errorWithDomain:RTConfirmAccountErrorDomain code:code];
 }
