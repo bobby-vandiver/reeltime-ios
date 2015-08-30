@@ -4,6 +4,8 @@
 #import "RTJoinAudienceInteractor.h"
 #import "RTJoinAudienceError.h"
 
+#import "RTLogging.h"
+
 @interface RTJoinAudiencePresenter ()
 
 @property id<RTJoinAudienceView> view;
@@ -47,6 +49,7 @@
         }
     }
     else {
+        DDLogWarn(@"Encountered an error outside the %@ domain = %@", RTJoinAudienceErrorDomain, error);
         [self.view showErrorMessage:unknownErrorMessage];
     }
 }

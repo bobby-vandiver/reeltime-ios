@@ -2,8 +2,9 @@
 
 #import "RTLeaveAudienceView.h"
 #import "RTLeaveAudienceInteractor.h"
-
 #import "RTLeaveAudienceError.h"
+
+#import "RTLogging.h"
 
 @interface RTLeaveAudiencePresenter ()
 
@@ -48,6 +49,7 @@
         }
     }
     else {
+        DDLogWarn(@"Encountered an error outside the %@ domain = %@", RTLeaveAudienceErrorDomain, error);
         [self.view showErrorMessage:unknownErrorMessage];
     }
 }

@@ -4,6 +4,8 @@
 #import "RTUnfollowUserInteractor.h"
 #import "RTUnfollowUserError.h"
 
+#import "RTLogging.h"
+
 @interface RTUnfollowUserPresenter ()
 
 @property id<RTUnfollowUserView> view;
@@ -47,6 +49,7 @@
         }
     }
     else {
+        DDLogWarn(@"Encountered an error outside the %@ domain = %@", RTUnfollowUserErrorDomain, error);
         [self.view showErrorMessage:unknownErrorMessage];
     }
 }
