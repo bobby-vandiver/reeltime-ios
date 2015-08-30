@@ -5,5 +5,6 @@ extern NSString *const RTConfirmAccountErrorDomain;
 typedef NS_ENUM(NSInteger, RTConfirmAccountError) {
     RTConfirmAccountErrorMissingConfirmationCode,
     RTConfirmAccountErrorInvalidConfirmationCode,
-    RTConfirmAccountErrorEmailFailure
+    RTConfirmAccountErrorEmailFailure,
+    RTConfirmAccountErrorUnknownError
 };

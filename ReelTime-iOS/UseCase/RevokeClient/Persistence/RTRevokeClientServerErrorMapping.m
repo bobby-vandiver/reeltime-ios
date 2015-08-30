@@ -14,4 +14,8 @@
              };
 }
 
+- (NSInteger)errorCodeForUnknownError {
+    return RTRevokeClientErrorUnknownError;
+}
+
 @end

@@ -6,4 +6,6 @@
 
 - (NSDictionary *)errorMessageToErrorCodeMapping;
 
+- (NSInteger)errorCodeForUnknownError;
+
 @end

@@ -6,5 +6,6 @@ typedef NS_ENUM(NSInteger, RTChangePasswordError) {
     RTChangePasswordErrorMissingPassword,
     RTChangePasswordErrorMissingConfirmationPassword,
     RTChangePasswordErrorInvalidPassword,
-    RTChangePasswordErrorConfirmationPasswordDoesNotMatch
+    RTChangePasswordErrorConfirmationPasswordDoesNotMatch,
+    RTChangePasswordErrorUnknownError
 };

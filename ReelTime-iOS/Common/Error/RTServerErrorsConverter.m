@@ -25,15 +25,15 @@
     for (NSString *message in serverErrors.errors) {
         NSNumber *code = [[self.mapping errorMessageToErrorCodeMapping] objectForKey:message];
         
-        if (code) {
-            NSError *error = [NSError errorWithDomain:[self.mapping errorDomain]
-                                                 code:[code integerValue]
-                                             userInfo:nil];
-            [errors addObject:error];
-        }
-        else {
+        if (!code) {
             DDLogWarn(@"Received unknown server messsage: %@", message);
+            code = @([self.mapping errorCodeForUnknownError]);
         }
+
+        NSError *error = [NSError errorWithDomain:[self.mapping errorDomain]
+                                             code:[code integerValue]
+                                         userInfo:nil];
+        [errors addObject:error];
     }
 
     return errors;

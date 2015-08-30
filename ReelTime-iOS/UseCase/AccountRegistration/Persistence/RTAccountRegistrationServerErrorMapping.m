@@ -28,4 +28,8 @@
              };
 }
 
+- (NSInteger)errorCodeForUnknownError {
+    return RTAccountRegistrationErrorUnknownError;
+}
+
 @end

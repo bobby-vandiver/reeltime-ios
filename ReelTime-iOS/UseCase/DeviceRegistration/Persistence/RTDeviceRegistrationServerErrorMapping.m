@@ -17,4 +17,8 @@
              };
 }
 
+- (NSInteger)errorCodeForUnknownError {
+    return RTDeviceRegistrationErrorUnknownError;
+}
+
 @end

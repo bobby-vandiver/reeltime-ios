@@ -4,5 +4,6 @@ extern NSString *const RTRevokeClientErrorDomain;
 
 typedef NS_ENUM(NSInteger, RTRevokeClientError) {
     RTRevokeClientErrorMissingClientId,
-    RTRevokeClientErrorUnknownClient
+    RTRevokeClientErrorUnknownClient,
+    RTRevokeClientErrorUnknownError
 };

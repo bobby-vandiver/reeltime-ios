@@ -25,7 +25,10 @@
              @"Invalid credentials": @(RTResetPasswordErrorInvalidClientCredentials),
              @"Forbidden request": @(RTResetPasswordErrorForbiddenClient)
              };
-    
+}
+
+- (NSInteger)errorCodeForUnknownError {
+    return RTResetPasswordErrorUnknownError;
 }
 
 @end

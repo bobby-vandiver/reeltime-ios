@@ -20,5 +20,7 @@ typedef NS_ENUM(NSInteger, RTAccountRegistrationError) {
     RTAccountRegistrationErrorConfirmationPasswordDoesNotMatch,
     
     RTAccountRegistrationErrorRegistrationServiceUnavailable,
-    RTAccountRegistrationErrorUnableToAssociateClientWithDevice
+    RTAccountRegistrationErrorUnableToAssociateClientWithDevice,
+    
+    RTAccountRegistrationErrorUnknownError
 };

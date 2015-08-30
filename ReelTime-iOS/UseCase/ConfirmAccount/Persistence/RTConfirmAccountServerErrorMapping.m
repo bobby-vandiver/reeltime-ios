@@ -15,4 +15,8 @@
              };
 }
 
+- (NSInteger)errorCodeForUnknownError {
+    return RTConfirmAccountErrorUnknownError;
+}
+
 @end
