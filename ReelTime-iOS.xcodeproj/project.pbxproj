@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5230CA4B4A7751AD6141FA30 /* libPods-ReelTime-iOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41201C1DC28A47F09019E4F1 /* libPods-ReelTime-iOSTests.a */; };
+		71026C4E1B92C0510072A3E0 /* RTDeleteVideoInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 71026C4D1B92C0510072A3E0 /* RTDeleteVideoInteractor.m */; };
+		71026C501B92C0EC0072A3E0 /* RTDeleteVideoInteractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71026C4F1B92C0EC0072A3E0 /* RTDeleteVideoInteractorSpec.m */; };
 		7102A7B51A57AB0A00DEDA83 /* RTKeyChainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7102A7B41A57AB0A00DEDA83 /* RTKeyChainWrapper.m */; };
 		7103A2BF1B87F4E200DB4B50 /* RTPlayVideoConnectionFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7103A2BE1B87F4E200DB4B50 /* RTPlayVideoConnectionFactory.m */; };
 		7103A2C21B87FD6200DB4B50 /* RTPlayVideoIdExtractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7103A2C11B87FD6200DB4B50 /* RTPlayVideoIdExtractor.m */; };
@@ -442,6 +444,10 @@
 		2682314A72FFBF85E182F6FE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		41201C1DC28A47F09019E4F1 /* libPods-ReelTime-iOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReelTime-iOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		46C1E9F0B7F6473BE4077A89 /* Pods-ReelTime-iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelTime-iOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReelTime-iOSTests/Pods-ReelTime-iOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		71026C4B1B92BFC00072A3E0 /* RTDeleteVideoInteractorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTDeleteVideoInteractorDelegate.h; sourceTree = "<group>"; };
+		71026C4C1B92C0510072A3E0 /* RTDeleteVideoInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTDeleteVideoInteractor.h; sourceTree = "<group>"; };
+		71026C4D1B92C0510072A3E0 /* RTDeleteVideoInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTDeleteVideoInteractor.m; sourceTree = "<group>"; };
+		71026C4F1B92C0EC0072A3E0 /* RTDeleteVideoInteractorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTDeleteVideoInteractorSpec.m; sourceTree = "<group>"; };
 		7102A7B31A57AB0A00DEDA83 /* RTKeyChainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTKeyChainWrapper.h; sourceTree = "<group>"; };
 		7102A7B41A57AB0A00DEDA83 /* RTKeyChainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTKeyChainWrapper.m; sourceTree = "<group>"; };
 		7103A2BD1B87F4E200DB4B50 /* RTPlayVideoConnectionFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTPlayVideoConnectionFactory.h; sourceTree = "<group>"; };
@@ -1268,6 +1274,9 @@
 			isa = PBXGroup;
 			children = (
 				710564A11B8E9EE400FEC81E /* RTDeleteVideoError.h */,
+				71026C4B1B92BFC00072A3E0 /* RTDeleteVideoInteractorDelegate.h */,
+				71026C4C1B92C0510072A3E0 /* RTDeleteVideoInteractor.h */,
+				71026C4D1B92C0510072A3E0 /* RTDeleteVideoInteractor.m */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -1276,6 +1285,7 @@
 			isa = PBXGroup;
 			children = (
 				710564A61B8EA10000FEC81E /* RTDeleteVideoDataManagerSpec.m */,
+				71026C4F1B92C0EC0072A3E0 /* RTDeleteVideoInteractorSpec.m */,
 			);
 			path = DeleteVideoTests;
 			sourceTree = "<group>";
@@ -4099,6 +4109,7 @@
 				713CE1371AE3F3F4005B05C3 /* RTDeviceAssembly.m in Sources */,
 				7148430E1AEC16A2001B885A /* RTDeviceRegistrationAssembly.m in Sources */,
 				7153D3DF1B82964C00A1FE29 /* RTPlayerView.m in Sources */,
+				71026C4E1B92C0510072A3E0 /* RTDeleteVideoInteractor.m in Sources */,
 				7116C0541AD982D600590DAF /* RTPagedListViewScrollHandler.m in Sources */,
 				7124363D1ADDE35B00D39A95 /* RTSynchronizedMutableArray.m in Sources */,
 				713A239A1AB4F5F80098CE48 /* RTBrowseVideosPresenter.m in Sources */,
@@ -4134,6 +4145,7 @@
 				71C792EA1B0AC164006259F8 /* RTResetPasswordViewControllerSpec.m in Sources */,
 				71C7D0D41B5C2EEB00BDDA4F /* RTJoinAudienceDataManagerSpec.m in Sources */,
 				71B6BA6E1AD038FD00723941 /* RTBrowseAllViewControllerSpec.m in Sources */,
+				71026C501B92C0EC0072A3E0 /* RTDeleteVideoInteractorSpec.m in Sources */,
 				71C7D0E61B5C3FA900BDDA4F /* RTJoinAudiencePresenterSpec.m in Sources */,
 				71B97DB21B6567FC0016017D /* RTBrowseUserFolloweesWireframeSpec.m in Sources */,
 				7133EC621B17D03000BC1CAE /* RTConfirmAccountDataManagerSpec.m in Sources */,
