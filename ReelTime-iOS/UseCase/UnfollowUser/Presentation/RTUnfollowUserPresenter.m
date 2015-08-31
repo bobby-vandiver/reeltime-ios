@@ -4,12 +4,17 @@
 #import "RTUnfollowUserInteractor.h"
 #import "RTUnfollowUserError.h"
 
+#import "RTErrorCodeToErrorMessagePresenter.h"
+#import "RTUnfollowUserErrorCodeToErrorMessageMapping.h"
+
 #import "RTLogging.h"
 
 @interface RTUnfollowUserPresenter ()
 
 @property id<RTUnfollowUserView> view;
 @property RTUnfollowUserInteractor *interactor;
+
+@property RTErrorCodeToErrorMessagePresenter *errorPresenter;
 
 @end
 
@@ -21,6 +26,9 @@
     if (self) {
         self.view = view;
         self.interactor = interactor;
+        
+        RTUnfollowUserErrorCodeToErrorMessageMapping *mapping = [[RTUnfollowUserErrorCodeToErrorMessageMapping alloc] init];
+        self.errorPresenter = [[RTErrorCodeToErrorMessagePresenter alloc] initWithDelegate:self mapping:mapping];
     }
     return self;
 }
@@ -35,23 +43,12 @@
 
 - (void)unfollowUserFailedForUsername:(NSString *)username
                             withError:(NSError *)error {
+    [self.errorPresenter presentError:error];
+}
 
-    NSString *const unknownErrorMessage = @"Unknown error occurred while following user. Please try again.";
-
-    if ([error.domain isEqual:RTUnfollowUserErrorDomain]) {
-        NSInteger code = error.code;
-        
-        if (code == RTUnfollowUserErrorUserNotFound) {
-            [self.view showErrorMessage:@"Cannot unfollow an unknown user!"];
-        }
-        else if (code == RTUnfollowUserErrorUnknownError) {
-            [self.view showErrorMessage:unknownErrorMessage];
-        }
-    }
-    else {
-        DDLogWarn(@"Encountered an error outside the %@ domain = %@", RTUnfollowUserErrorDomain, error);
-        [self.view showErrorMessage:unknownErrorMessage];
-    }
+- (void)presentErrorMessage:(NSString *)message
+                    forCode:(NSInteger)code {
+    [self.view showErrorMessage:message];
 }
 
 @end

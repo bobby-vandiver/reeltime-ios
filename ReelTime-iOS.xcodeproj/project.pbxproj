@@ -370,6 +370,7 @@
 		71B5D6BF1B93E13E00A9EC73 /* RTAddVideoToReelErrorCodeToErrorMessageMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B5D6BE1B93E13E00A9EC73 /* RTAddVideoToReelErrorCodeToErrorMessageMapping.m */; };
 		71B5D6C21B93EA9D00A9EC73 /* RTDeleteVideoErrorCodeToErrorMessageMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B5D6C11B93EA9D00A9EC73 /* RTDeleteVideoErrorCodeToErrorMessageMapping.m */; };
 		71B5D6C51B93EE2A00A9EC73 /* RTFollowUserErrorCodeToErrorMessageMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B5D6C41B93EE2A00A9EC73 /* RTFollowUserErrorCodeToErrorMessageMapping.m */; };
+		71B5D6C81B93F08300A9EC73 /* RTUnfollowUserErrorCodeToErrorMessageMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B5D6C71B93F08300A9EC73 /* RTUnfollowUserErrorCodeToErrorMessageMapping.m */; };
 		71B6BA651AD036A400723941 /* RTBrowseAllAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B6BA591AD036A400723941 /* RTBrowseAllAssembly.m */; };
 		71B6BA661AD036A400723941 /* RTBrowseAllWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B6BA5C1AD036A400723941 /* RTBrowseAllWireframe.m */; };
 		71B6BA671AD036A400723941 /* RTBrowseAllReelsDataManagerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B6BA5F1AD036A400723941 /* RTBrowseAllReelsDataManagerDelegate.m */; };
@@ -1098,6 +1099,8 @@
 		71B5D6C11B93EA9D00A9EC73 /* RTDeleteVideoErrorCodeToErrorMessageMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTDeleteVideoErrorCodeToErrorMessageMapping.m; sourceTree = "<group>"; };
 		71B5D6C31B93EE2A00A9EC73 /* RTFollowUserErrorCodeToErrorMessageMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTFollowUserErrorCodeToErrorMessageMapping.h; sourceTree = "<group>"; };
 		71B5D6C41B93EE2A00A9EC73 /* RTFollowUserErrorCodeToErrorMessageMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTFollowUserErrorCodeToErrorMessageMapping.m; sourceTree = "<group>"; };
+		71B5D6C61B93F08300A9EC73 /* RTUnfollowUserErrorCodeToErrorMessageMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTUnfollowUserErrorCodeToErrorMessageMapping.h; sourceTree = "<group>"; };
+		71B5D6C71B93F08300A9EC73 /* RTUnfollowUserErrorCodeToErrorMessageMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTUnfollowUserErrorCodeToErrorMessageMapping.m; sourceTree = "<group>"; };
 		71B6BA4F1AD01EDE00723941 /* RTBrowseReelsDataManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseReelsDataManagerDelegate.h; sourceTree = "<group>"; };
 		71B6BA581AD036A400723941 /* RTBrowseAllAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseAllAssembly.h; sourceTree = "<group>"; };
 		71B6BA591AD036A400723941 /* RTBrowseAllAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseAllAssembly.m; sourceTree = "<group>"; };
@@ -2950,9 +2953,11 @@
 		71828EE81B617F4600CA47CA /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				71828EF61B61A20000CA47CA /* RTUnfollowUserView.h */,
+				71B5D6C61B93F08300A9EC73 /* RTUnfollowUserErrorCodeToErrorMessageMapping.h */,
+				71B5D6C71B93F08300A9EC73 /* RTUnfollowUserErrorCodeToErrorMessageMapping.m */,
 				71828EF71B61A22F00CA47CA /* RTUnfollowUserPresenter.h */,
 				71828EF81B61A22F00CA47CA /* RTUnfollowUserPresenter.m */,
+				71828EF61B61A20000CA47CA /* RTUnfollowUserView.h */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -4144,6 +4149,7 @@
 				71AFF6941B12161A003378C5 /* RTPasswordValidationMapping.m in Sources */,
 				719B35DB1A51012E00FFD543 /* RTClientAssembly.m in Sources */,
 				71F704661B9397A30067DEEA /* RTAddVideoToReelInteractor.m in Sources */,
+				71B5D6C81B93F08300A9EC73 /* RTUnfollowUserErrorCodeToErrorMessageMapping.m in Sources */,
 				71B6BA651AD036A400723941 /* RTBrowseAllAssembly.m in Sources */,
 				7157589C1A9A2D6C002859DE /* RTApplicationTabBarController.m in Sources */,
 				71C792E21B0AAF1D006259F8 /* RTResetPasswordAssembly.m in Sources */,
