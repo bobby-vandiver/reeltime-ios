@@ -24,22 +24,25 @@
     return self;
 }
 
+- (void)presentError:(NSError *)error {
+    if ([error.domain isEqual:[self.mapping errorDomain]]) {
+        NSDictionary *messages = [self.mapping errorCodeToErrorMessageMapping];
+
+        NSInteger code = error.code;
+        NSString *message = messages[@(code)];
+        
+        if (message) {
+            [self.delegate presentErrorMessage:message forCode:code];
+        }
+    }
+    else {
+        DDLogWarn(@"Encountered unexpected error = %@", error);
+    }
+}
+
 - (void)presentErrors:(NSArray *)errors {
-    NSDictionary *messages = [self.mapping errorCodeToErrorMessageMapping];
-    
     for (NSError *error in errors) {
-        if ([error.domain isEqual:[self.mapping errorDomain]]) {
-            
-            NSInteger code = error.code;
-            NSString *message = messages[@(code)];
-            
-            if (message) {
-                [self.delegate presentErrorMessage:message forCode:code];
-            }
-        }
-        else {
-            DDLogWarn(@"Encountered unexpected error = %@", error);
-        }
+        [self presentError:error];
     }
 }
 
