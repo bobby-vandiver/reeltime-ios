@@ -14,15 +14,8 @@
 
 - (instancetype)initForErrorDomain:(NSString *)errorDomain
                 withFailureHandler:(void (^)(RTServerErrors *))failureHandler
-               errorRetrievalBlock:(NSArray *(^)())errorRetrievalBlock;
+               errorRetrievalBlock:(id (^)())errorRetrievalBlock;
 
 - (void)expectForServerMessageToErrorCodeMapping:(NSDictionary *)mapping;
-
-- (void)expectServerMessage:(NSString *)message
-                toMapToCode:(NSInteger)code;
-
-- (void)expectServerMessage:(NSString *)message
-              toMapToDomain:(NSString *)domain
-                       code:(NSInteger)code;
 
 @end

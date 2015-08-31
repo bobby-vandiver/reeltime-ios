@@ -1,4 +1,5 @@
 #import "RTTestCommon.h"
+#import "RTServerErrorMessageToErrorCodeTestHelper.h"
 
 #import "RTJoinAudienceDataManager.h"
 #import "RTAPIClient.h"
@@ -54,28 +55,30 @@ describe(@"join audience data manager", ^{
         });
 
         context(@"failed to join", ^{
-            it(@"reel not found", ^{
-                RTServerErrors *serverErrors = [[RTServerErrors alloc] init];
-                serverErrors.errors = @[@"Requested reel was not found"];
+            __block RTServerErrorMessageToErrorCodeTestHelper *helper;
+
+            beforeEach(^{
+                ServerErrorsCallback failureHander = [failureCaptor value];
                 
-                ServerErrorsCallback failureHandler = [failureCaptor value];
-                failureHandler(serverErrors);
+                id (^errorRetrievalBlock)() = ^{
+                    return notJoined.callbackArguments;
+                };
                 
-                [notJoined expectCallbackExecuted];
-                expect(notJoined.callbackArguments).to.beError(RTJoinAudienceErrorDomain,
-                                                               RTJoinAudienceErrorReelNotFound);
+                helper = [[RTServerErrorMessageToErrorCodeTestHelper alloc] initForErrorDomain:RTJoinAudienceErrorDomain
+                                                                            withFailureHandler:failureHander
+                                                                           errorRetrievalBlock:errorRetrievalBlock];
             });
             
-            it(@"unknown error", ^{
-                RTServerErrors *serverErrors = [[RTServerErrors alloc] init];
-                serverErrors.errors = @[@"uh oh"];
+            it(@"should map server errors to domain specific errors", ^{
+                NSDictionary *mapping = @{
+                                          @"Requested reel was not found":
+                                              @(RTJoinAudienceErrorReelNotFound),
+                                          @"uh oh":
+                                              @(RTJoinAudienceErrorUnknownError)
+                                          };
                 
-                ServerErrorsCallback failureHandler = [failureCaptor value];
-                failureHandler(serverErrors);
-                
+                [helper expectForServerMessageToErrorCodeMapping:mapping];
                 [notJoined expectCallbackExecuted];
-                expect(notJoined.callbackArguments).to.beError(RTJoinAudienceErrorDomain,
-                                                               RTJoinAudienceErrorUnknownError);
             });
         });
     });

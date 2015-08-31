@@ -7,7 +7,7 @@
 
 @property (nonatomic, copy) void (^failureHandler)(RTServerErrors *serverErrors);
 @property (nonatomic, copy) void (^errorCaptureBlock)(MKTArgumentCaptor *errorCaptor);
-@property (nonatomic, copy) NSArray *(^errorRetrievalBlock)();
+@property (nonatomic, copy) id (^errorRetrievalBlock)();
 
 @end
 
@@ -33,7 +33,7 @@
 
 - (instancetype)initForErrorDomain:(NSString *)errorDomain
                 withFailureHandler:(void (^)(RTServerErrors *))failureHandler
-               errorRetrievalBlock:(NSArray *(^)())errorRetrievalBlock {
+               errorRetrievalBlock:(id (^)())errorRetrievalBlock {
 
     return [self initForErrorDomain:errorDomain
                  withFailureHandler:failureHandler
@@ -44,7 +44,7 @@
 - (instancetype)initForErrorDomain:(NSString *)errorDomain
                 withFailureHandler:(void (^)(RTServerErrors *))failureHandler
                  errorCaptureBlock:(void (^)(MKTArgumentCaptor *))errorCaptureBlock
-               errorRetrievalBlock:(NSArray *(^)())errorRetrievalBlock {
+               errorRetrievalBlock:(id (^)())errorRetrievalBlock {
     self = [super init];
     if (self) {
         self.errorDomain = errorDomain;
@@ -83,22 +83,39 @@
     
     self.failureHandler(serverErrors);
 
-    NSArray *capturedErrors;
+    id capturedErrors;
     
     if (self.errorCaptureBlock) {
         MKTArgumentCaptor *errorCaptor = [[MKTArgumentCaptor alloc] init];
-        self.errorCaptureBlock(errorCaptor);
         
+        self.errorCaptureBlock(errorCaptor);
         capturedErrors = [errorCaptor value];
     }
     else {
         capturedErrors = self.errorRetrievalBlock();
     }
+
+    [self checkCapturedErrors:capturedErrors forDomain:domain code:code];
+}
+
+- (void)checkCapturedErrors:(id)capturedErrors
+                  forDomain:(NSString *)domain
+                       code:(NSInteger)code {
+    NSError *error;
     
-    expect(capturedErrors).to.haveACountOf(1);
+    if ([capturedErrors isKindOfClass:[NSArray class]]) {
+        expect(capturedErrors).to.haveACountOf(1);
+        error = capturedErrors[0];
+    }
+    else if ([capturedErrors isKindOfClass:[NSError class]]){
+        error = capturedErrors;
+    }
+    else {
+        NSString *message = [NSString stringWithFormat:@"Expected an NSError or NSArray but got = %@", [capturedErrors class]];
+        failure(message);
+    }
     
-    NSError *firstError = capturedErrors[0];
-    expect(firstError).to.beError(domain, code);
+    expect(error).to.beError(domain, code);
 }
 
 @end

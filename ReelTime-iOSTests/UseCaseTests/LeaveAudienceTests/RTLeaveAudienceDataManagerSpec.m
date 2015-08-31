@@ -1,4 +1,5 @@
 #import "RTTestCommon.h"
+#import "RTServerErrorMessageToErrorCodeTestHelper.h"
 
 #import "RTLeaveAudienceDataManager.h"
 #import "RTAPIClient.h"
@@ -50,30 +51,31 @@ describe(@"leave audience data manager", ^{
         });
         
         context(@"failed to leave", ^{
-            it(@"reel not found", ^{
-                RTServerErrors *serverErrors = [[RTServerErrors alloc] init];
-                serverErrors.errors = @[@"Requested reel was not found"];
-                
+            __block RTServerErrorMessageToErrorCodeTestHelper *helper;
+
+            beforeEach(^{
                 ServerErrorsCallback failureHandler = [failureCaptor value];
-                failureHandler(serverErrors);
                 
-                [notLeft expectCallbackExecuted];
-                expect(notLeft.callbackArguments).to.beError(RTLeaveAudienceErrorDomain,
-                                                             RTLeaveAudienceErrorReelNotFound);
+                id (^errorRetrievalBlock)() = ^{
+                    return notLeft.callbackArguments;
+                };
+                
+                helper = [[RTServerErrorMessageToErrorCodeTestHelper alloc] initForErrorDomain:RTLeaveAudienceErrorDomain
+                                                                            withFailureHandler:failureHandler
+                                                                           errorRetrievalBlock:errorRetrievalBlock];
             });
             
-            it(@"unknown error", ^{
-                RTServerErrors *serverErrors = [[RTServerErrors alloc] init];
-                serverErrors.errors = @[@"uh oh"];
+            it(@"should map server errors to domain specific errors", ^{
+                NSDictionary *mapping = @{
+                                          @"Requested reel was not found":
+                                              @(RTLeaveAudienceErrorReelNotFound),
+                                          @"uh oh":
+                                              @(RTLeaveAudienceErrorUnknownError)
+                                          };
                 
-                ServerErrorsCallback failureHandler = [failureCaptor value];
-                failureHandler(serverErrors);
-                
+                [helper expectForServerMessageToErrorCodeMapping:mapping];
                 [notLeft expectCallbackExecuted];
-                expect(notLeft.callbackArguments).to.beError(RTLeaveAudienceErrorDomain,
-                                                             RTLeaveAudienceErrorUnknownError);
             });
-
         });
     });
 });

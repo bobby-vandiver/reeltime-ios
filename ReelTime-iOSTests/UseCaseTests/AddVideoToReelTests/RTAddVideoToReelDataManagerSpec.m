@@ -1,4 +1,5 @@
 #import "RTTestCommon.h"
+#import "RTServerErrorMessageToErrorCodeTestHelper.h"
 
 #import "RTAddVideoToReelDataManager.h"
 #import "RTAPIClient.h"
@@ -55,52 +56,34 @@ describe(@"add video to reel data manager", ^{
         });
         
         context(@"failed to add", ^{
-            it(@"video not found", ^{
-                RTServerErrors *serverErrors = [[RTServerErrors alloc] init];
-                serverErrors.errors = @[@"Requested video was not found"];
-                
+            __block RTServerErrorMessageToErrorCodeTestHelper *helper;
+
+            beforeEach(^{
                 ServerErrorsCallback failureHandler = [failureCaptor value];
-                failureHandler(serverErrors);
                 
-                [notAdded expectCallbackExecuted];
-                expect(notAdded.callbackArguments).to.beError(RTAddVideoToReelErrorDomain,
-                                                              RTAddVideoToReelErrorVideoNotFound);
+                id (^errorRetrievalBlock)() = ^{
+                    return notAdded.callbackArguments;
+                };
+                
+                helper = [[RTServerErrorMessageToErrorCodeTestHelper alloc] initForErrorDomain:RTAddVideoToReelErrorDomain
+                                                                            withFailureHandler:failureHandler
+                                                                           errorRetrievalBlock:errorRetrievalBlock];
             });
             
-            it(@"reel not found", ^{
-                RTServerErrors *serverErrors = [[RTServerErrors alloc] init];
-                serverErrors.errors = @[@"Requested reel was not found"];
+            it(@"should map server errors to domain specific errors", ^{
+                NSDictionary *mapping = @{
+                                          @"Requested video was not found":
+                                              @(RTAddVideoToReelErrorVideoNotFound),
+                                          @"Requested reel was not found":
+                                              @(RTAddVideoToReelErrorReelNotFound),
+                                          @"Unauthorized operation requested":
+                                              @(RTAddVideoToReelErrorUnauthorized),
+                                          @"uh oh":
+                                              @(RTAddVideoToReelErrorUnknownError)
+                                          };
                 
-                ServerErrorsCallback failureHandler = [failureCaptor value];
-                failureHandler(serverErrors);
-                
+                [helper expectForServerMessageToErrorCodeMapping:mapping];
                 [notAdded expectCallbackExecuted];
-                expect(notAdded.callbackArguments).to.beError(RTAddVideoToReelErrorDomain,
-                                                              RTAddVideoToReelErrorReelNotFound);
-            });
-            
-            it(@"unauthorized request", ^{
-                RTServerErrors *serverErrors = [[RTServerErrors alloc] init];
-                serverErrors.errors = @[@"Unauthorized operation requested"];
-                
-                ServerErrorsCallback failureHandler = [failureCaptor value];
-                failureHandler(serverErrors);
-                
-                [notAdded expectCallbackExecuted];
-                expect(notAdded.callbackArguments).to.beError(RTAddVideoToReelErrorDomain,
-                                                              RTAddVideoToReelErrorUnauthorized);
-            });
-            
-            it(@"unknown error", ^{
-                RTServerErrors *serverErrors = [[RTServerErrors alloc] init];
-                serverErrors.errors = @[@"uh oh"];
-                
-                ServerErrorsCallback failureHandler = [failureCaptor value];
-                failureHandler(serverErrors);
-                
-                [notAdded expectCallbackExecuted];
-                expect(notAdded.callbackArguments).to.beError(RTAddVideoToReelErrorDomain,
-                                                              RTAddVideoToReelErrorUnknownError);
             });
         });
     });

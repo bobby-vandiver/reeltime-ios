@@ -1,4 +1,5 @@
 #import "RTTestCommon.h"
+#import "RTServerErrorMessageToErrorCodeTestHelper.h"
 
 #import "RTDeleteVideoDataManager.h"
 #import "RTAPIClient.h"
@@ -53,28 +54,30 @@ describe(@"delete video data manager", ^{
         });
         
         context(@"failed to delete", ^{
-            it(@"video not found", ^{
-                RTServerErrors *serverErrors = [[RTServerErrors alloc] init];
-                serverErrors.errors = @[@"Requested video was not found"];
-                
+            __block RTServerErrorMessageToErrorCodeTestHelper *helper;
+            
+            beforeEach(^{
                 ServerErrorsCallback failureHandler = [failureCaptor value];
-                failureHandler(serverErrors);
                 
-                [notDeleted expectCallbackExecuted];
-                expect(notDeleted.callbackArguments).to.beError(RTDeleteVideoErrorDomain,
-                                                                RTDeleteVideoErrorVideoNotFound);
+                id (^errorRetrievalBlock)() = ^{
+                    return notDeleted.callbackArguments;
+                };
+                
+                helper = [[RTServerErrorMessageToErrorCodeTestHelper alloc] initForErrorDomain:RTDeleteVideoErrorDomain
+                                                                            withFailureHandler:failureHandler
+                                                                           errorRetrievalBlock:errorRetrievalBlock];
             });
             
-            it(@"unknown error", ^{
-                RTServerErrors *serverErrors = [[RTServerErrors alloc] init];
-                serverErrors.errors = @[@"uh oh"];
+            it(@"should map server errors to domain specific errors", ^{
+                NSDictionary *mapping = @{
+                                          @"Requested video was not found":
+                                              @(RTDeleteVideoErrorVideoNotFound),
+                                          @"uh oh":
+                                              @(RTDeleteVideoErrorUnknownError)
+                                          };
                 
-                ServerErrorsCallback failureHandler = [failureCaptor value];
-                failureHandler(serverErrors);
-                
+                [helper expectForServerMessageToErrorCodeMapping:mapping];
                 [notDeleted expectCallbackExecuted];
-                expect(notDeleted.callbackArguments).to.beError(RTDeleteVideoErrorDomain,
-                                                                RTDeleteVideoErrorUnknownError);
             });
         });
     });

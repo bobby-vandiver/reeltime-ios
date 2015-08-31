@@ -1,4 +1,5 @@
 #import "RTTestCommon.h"
+#import "RTServerErrorMessageToErrorCodeTestHelper.h"
 
 #import "RTUnfollowUserDataManager.h"
 #import "RTAPIClient.h"
@@ -53,28 +54,30 @@ describe(@"unfollow user data manager", ^{
         });
         
         context(@"failed to unfollow", ^{
-            it(@"user not found", ^{
-                RTServerErrors *serverErrors = [[RTServerErrors alloc] init];
-                serverErrors.errors = @[@"Requested user was not found"];
+            __block RTServerErrorMessageToErrorCodeTestHelper *helper;
+
+            beforeEach(^{
+                ServerErrorsCallback failureHandler = [failureCaptor value];
                 
-                ServerErrorsCallback failureHandler= [failureCaptor value];
-                failureHandler(serverErrors);
+                id (^errorRetrievalBlock)() = ^{
+                    return notUnfollowed.callbackArguments;
+                };
                 
-                [notUnfollowed expectCallbackExecuted];
-                expect(notUnfollowed.callbackArguments).to.beError(RTUnfollowUserErrorDomain,
-                                                                   RTUnfollowUserErrorUserNotFound);
+                helper = [[RTServerErrorMessageToErrorCodeTestHelper alloc] initForErrorDomain:RTUnfollowUserErrorDomain
+                                                                            withFailureHandler:failureHandler
+                                                                           errorRetrievalBlock:errorRetrievalBlock];
             });
             
-            it(@"unknown error", ^{
-                RTServerErrors *serverErrors = [[RTServerErrors alloc] init];
-                serverErrors.errors = @[@"uh oh"];
+            it(@"should map server errors to domain specific errors", ^{
+                NSDictionary *mapping = @{
+                                          @"Requested user was not found":
+                                              @(RTUnfollowUserErrorUserNotFound),
+                                          @"uh oh":
+                                              @(RTUnfollowUserErrorUnknownError)
+                                          };
                 
-                ServerErrorsCallback failureHandler = [failureCaptor value];
-                failureHandler(serverErrors);
-                
+                [helper expectForServerMessageToErrorCodeMapping:mapping];
                 [notUnfollowed expectCallbackExecuted];
-                expect(notUnfollowed.callbackArguments).to.beError(RTUnfollowUserErrorDomain,
-                                                                   RTUnfollowUserErrorUnknownError);
             });
         });
     });

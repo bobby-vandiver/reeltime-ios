@@ -1,4 +1,5 @@
 #import "RTTestCommon.h"
+#import "RTServerErrorMessageToErrorCodeTestHelper.h"
 
 #import "RTFollowUserDataManager.h"
 #import "RTAPIClient.h"
@@ -53,6 +54,20 @@ describe(@"follow user data manager", ^{
         });
         
         context(@"failed to follow", ^{
+            __block RTServerErrorMessageToErrorCodeTestHelper *helper;
+
+            beforeEach(^{
+                ServerErrorsCallback failureHandler = [failureCaptor value];
+                
+                id (^errorRetrievalBlock)() = ^{
+                    return notFollowed.callbackArguments;
+                };
+                
+                helper = [[RTServerErrorMessageToErrorCodeTestHelper alloc] initForErrorDomain:RTFollowUserErrorDomain
+                                                                            withFailureHandler:failureHandler
+                                                                           errorRetrievalBlock:errorRetrievalBlock];
+            });
+            
             it(@"user not found", ^{
                 RTServerErrors *serverErrors = [[RTServerErrors alloc] init];
                 serverErrors.errors = @[@"Requested user was not found"];
@@ -75,6 +90,18 @@ describe(@"follow user data manager", ^{
                 [notFollowed expectCallbackExecuted];
                 expect(notFollowed.callbackArguments).to.beError(RTFollowUserErrorDomain,
                                                                  RTFollowUserErrorUnknownError);
+            });
+            
+            it(@"should map server errors to domain specific errors", ^{
+                NSDictionary *mapping = @{
+                                          @"Requested user was not found":
+                                              @(RTFollowUserErrorUserNotFound),
+                                          @"uh oh":
+                                              @(RTFollowUserErrorUnknownError)
+                                          };
+                
+                [helper expectForServerMessageToErrorCodeMapping:mapping];
+                [notFollowed expectCallbackExecuted];
             });
         });
     });
