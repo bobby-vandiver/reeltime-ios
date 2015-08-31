@@ -4,12 +4,17 @@
 #import "RTFollowUserInteractor.h"
 #import "RTFollowUserError.h"
 
+#import "RTErrorCodeToErrorMessagePresenter.h"
+#import "RTFollowUserErrorCodeToErrorMessageMapping.h"
+
 #import "RTLogging.h"
 
 @interface RTFollowUserPresenter ()
 
 @property id<RTFollowUserView> view;
 @property RTFollowUserInteractor *interactor;
+
+@property RTErrorCodeToErrorMessagePresenter *errorPresenter;
 
 @end
 
@@ -21,6 +26,9 @@
     if (self) {
         self.view = view;
         self.interactor = interactor;
+        
+        RTFollowUserErrorCodeToErrorMessageMapping *mapping = [[RTFollowUserErrorCodeToErrorMessageMapping alloc] init];
+        self.errorPresenter = [[RTErrorCodeToErrorMessagePresenter alloc] initWithDelegate:self mapping:mapping];
     }
     return self;
 }
@@ -35,23 +43,12 @@
 
 - (void)followUserFailedForUsername:(NSString *)username
                           withError:(NSError *)error {
+    [self.errorPresenter presentError:error];
+}
 
-    NSString *const unknownErrorMessage = @"Unknown error occurred while following user. Please try again.";
-    
-    if ([error.domain isEqual:RTFollowUserErrorDomain]) {
-        NSInteger code = error.code;
-        
-        if (code == RTFollowUserErrorUserNotFound) {
-            [self.view showErrorMessage:@"Cannot follow an unknown user!"];
-        }
-        else if (code == RTFollowUserErrorUnknownError) {
-            [self.view showErrorMessage:unknownErrorMessage];
-        }
-    }
-    else {
-        DDLogWarn(@"Encountered an error outside the %@ domain = %@", RTFollowUserErrorDomain, error);
-        [self.view showErrorMessage:unknownErrorMessage];
-    }
+- (void)presentErrorMessage:(NSString *)message
+                    forCode:(NSInteger)code {
+    [self.view showErrorMessage:message];
 }
 
 @end

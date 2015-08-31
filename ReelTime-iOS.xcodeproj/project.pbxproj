@@ -369,6 +369,7 @@
 		71B5D6BC1B93D45700A9EC73 /* RTAddVideoToReelPresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B5D6BB1B93D45700A9EC73 /* RTAddVideoToReelPresenterSpec.m */; };
 		71B5D6BF1B93E13E00A9EC73 /* RTAddVideoToReelErrorCodeToErrorMessageMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B5D6BE1B93E13E00A9EC73 /* RTAddVideoToReelErrorCodeToErrorMessageMapping.m */; };
 		71B5D6C21B93EA9D00A9EC73 /* RTDeleteVideoErrorCodeToErrorMessageMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B5D6C11B93EA9D00A9EC73 /* RTDeleteVideoErrorCodeToErrorMessageMapping.m */; };
+		71B5D6C51B93EE2A00A9EC73 /* RTFollowUserErrorCodeToErrorMessageMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B5D6C41B93EE2A00A9EC73 /* RTFollowUserErrorCodeToErrorMessageMapping.m */; };
 		71B6BA651AD036A400723941 /* RTBrowseAllAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B6BA591AD036A400723941 /* RTBrowseAllAssembly.m */; };
 		71B6BA661AD036A400723941 /* RTBrowseAllWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B6BA5C1AD036A400723941 /* RTBrowseAllWireframe.m */; };
 		71B6BA671AD036A400723941 /* RTBrowseAllReelsDataManagerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B6BA5F1AD036A400723941 /* RTBrowseAllReelsDataManagerDelegate.m */; };
@@ -1095,6 +1096,8 @@
 		71B5D6BE1B93E13E00A9EC73 /* RTAddVideoToReelErrorCodeToErrorMessageMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAddVideoToReelErrorCodeToErrorMessageMapping.m; sourceTree = "<group>"; };
 		71B5D6C01B93EA9D00A9EC73 /* RTDeleteVideoErrorCodeToErrorMessageMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTDeleteVideoErrorCodeToErrorMessageMapping.h; sourceTree = "<group>"; };
 		71B5D6C11B93EA9D00A9EC73 /* RTDeleteVideoErrorCodeToErrorMessageMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTDeleteVideoErrorCodeToErrorMessageMapping.m; sourceTree = "<group>"; };
+		71B5D6C31B93EE2A00A9EC73 /* RTFollowUserErrorCodeToErrorMessageMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTFollowUserErrorCodeToErrorMessageMapping.h; sourceTree = "<group>"; };
+		71B5D6C41B93EE2A00A9EC73 /* RTFollowUserErrorCodeToErrorMessageMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTFollowUserErrorCodeToErrorMessageMapping.m; sourceTree = "<group>"; };
 		71B6BA4F1AD01EDE00723941 /* RTBrowseReelsDataManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseReelsDataManagerDelegate.h; sourceTree = "<group>"; };
 		71B6BA581AD036A400723941 /* RTBrowseAllAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseAllAssembly.h; sourceTree = "<group>"; };
 		71B6BA591AD036A400723941 /* RTBrowseAllAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseAllAssembly.m; sourceTree = "<group>"; };
@@ -2895,6 +2898,8 @@
 		71828ED11B6162C700CA47CA /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				71B5D6C31B93EE2A00A9EC73 /* RTFollowUserErrorCodeToErrorMessageMapping.h */,
+				71B5D6C41B93EE2A00A9EC73 /* RTFollowUserErrorCodeToErrorMessageMapping.m */,
 				71828EDF1B6173D300CA47CA /* RTFollowUserPresenter.h */,
 				71828EE01B6173D300CA47CA /* RTFollowUserPresenter.m */,
 				71828EE21B6173FD00CA47CA /* RTFollowUserView.h */,
@@ -4020,6 +4025,7 @@
 				715370FA1A88680700D3355B /* RTArrayDataSource.m in Sources */,
 				71B97D941B652F280016017D /* RTBrowseUserFollowersViewController.m in Sources */,
 				718CFFCA1A6C007C00B418F9 /* RTAccountRegistration.m in Sources */,
+				71B5D6C51B93EE2A00A9EC73 /* RTFollowUserErrorCodeToErrorMessageMapping.m in Sources */,
 				716C452A1B02E09D00BA9834 /* RTResetPasswordInteractor.m in Sources */,
 				715E082E1B0582170037A17E /* RTResetPasswordServerErrorMapping.m in Sources */,
 				714842F61AEBFD95001B885A /* RTApplicationNavigationController.m in Sources */,
