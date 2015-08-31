@@ -4,12 +4,17 @@
 #import "RTJoinAudienceInteractor.h"
 #import "RTJoinAudienceError.h"
 
+#import "RTErrorCodeToErrorMessagePresenter.h"
+#import "RTJoinAudienceErrorCodeToErrorMessageMapping.h"
+
 #import "RTLogging.h"
 
 @interface RTJoinAudiencePresenter ()
 
 @property id<RTJoinAudienceView> view;
 @property RTJoinAudienceInteractor *interactor;
+
+@property RTErrorCodeToErrorMessagePresenter *errorPresenter;
 
 @end
 
@@ -21,6 +26,9 @@
     if (self) {
         self.view = view;
         self.interactor = interactor;
+        
+        RTJoinAudienceErrorCodeToErrorMessageMapping *mapping = [[RTJoinAudienceErrorCodeToErrorMessageMapping alloc] init];
+        self.errorPresenter = [[RTErrorCodeToErrorMessagePresenter alloc] initWithDelegate:self mapping:mapping];
     }
     return self;
 }
@@ -35,23 +43,12 @@
 
 - (void)joinAudienceFailedForReelId:(NSNumber *)reelId
                           withError:(NSError *)error {
+    [self.errorPresenter presentError:error];
+}
 
-    NSString *const unknownErrorMessage = @"Unknown error occurred while joining audience. Please try again.";
-    
-    if ([error.domain isEqual:RTJoinAudienceErrorDomain]) {
-        NSInteger code = error.code;
-        
-        if (code == RTJoinAudienceErrorReelNotFound) {
-            [self.view showErrorMessage:@"Cannot join audience of an unknown reel!"];
-        }
-        else if (code == RTJoinAudienceErrorUnknownError) {
-            [self.view showErrorMessage:unknownErrorMessage];
-        }
-    }
-    else {
-        DDLogWarn(@"Encountered an error outside the %@ domain = %@", RTJoinAudienceErrorDomain, error);
-        [self.view showErrorMessage:unknownErrorMessage];
-    }
+- (void)presentErrorMessage:(NSString *)message
+                    forCode:(NSInteger)code {
+    [self.view showErrorMessage:message];
 }
 
 @end
