@@ -3,6 +3,7 @@
 #import "RTConfirmAccountError.h"
 #import "RTChangeDisplayNameError.h"
 #import "RTChangePasswordError.h"
+#import "RTCreateReelError.h"
 #import "RTDeleteVideoError.h"
 #import "RTDeviceRegistrationError.h"
 #import "RTFollowUserError.h"
@@ -23,6 +24,7 @@ NSString *const RTAddVideoToReelErrorDomain = @"in.reeltime.AddVideoToReel";
 NSString *const RTConfirmAccountErrorDomain = @"in.reeltime.ConfirmAccount";
 NSString *const RTChangeDisplayNameErrorDomain = @"in.reeltime.ChangeDisplayName";
 NSString *const RTChangePasswordErrorDomain = @"in.reeltime.ChangePassword";
+NSString *const RTCreateReelErrorDomain = @"in.reeltime.CreateReel";
 NSString *const RTDeleteVideoErrorDomain = @"in.reeltime.DeleteVideo";
 NSString *const RTDeviceRegistrationErrorDomain = @"in.reeltime.DeviceRegistration";
 NSString *const RTFollowUserErrorDomain = @"in.reeltime.FollowUser";

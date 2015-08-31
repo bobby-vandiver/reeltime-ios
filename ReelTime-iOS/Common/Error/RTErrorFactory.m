@@ -23,6 +23,10 @@
     return [self errorWithDomain:RTChangePasswordErrorDomain code:code];
 }
 
++ (NSError *)createReelErrorWithCode:(RTCreateReelError)code {
+    return [self errorWithDomain:RTCreateReelErrorDomain code:code];
+}
+
 + (NSError *)deleteVideoErrorWithCode:(RTDeleteVideoError)code {
     return [self errorWithDomain:RTDeleteVideoErrorDomain code:code];
 }

@@ -5,6 +5,7 @@
 #import "RTConfirmAccountError.h"
 #import "RTChangeDisplayNameError.h"
 #import "RTChangePasswordError.h"
+#import "RTCreateReelError.h"
 #import "RTDeleteVideoError.h"
 #import "RTDeviceRegistrationError.h"
 #import "RTFollowUserError.h"
@@ -31,6 +32,8 @@
 + (NSError *)changeDisplayNameErrorWithCode:(RTChangeDisplayNameError)code;
 
 + (NSError *)changePasswordErrorWithCode:(RTChangePasswordError)code;
+
++ (NSError *)createReelErrorWithCode:(RTCreateReelError)code;
 
 + (NSError *)deleteVideoErrorWithCode:(RTDeleteVideoError)code;
 
