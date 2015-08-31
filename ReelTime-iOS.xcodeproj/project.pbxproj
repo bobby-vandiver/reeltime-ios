@@ -368,6 +368,7 @@
 		71B5D6B81B93CE1F00A9EC73 /* RTAddVideoToReelPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B5D6B71B93CE1F00A9EC73 /* RTAddVideoToReelPresenter.m */; };
 		71B5D6BC1B93D45700A9EC73 /* RTAddVideoToReelPresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B5D6BB1B93D45700A9EC73 /* RTAddVideoToReelPresenterSpec.m */; };
 		71B5D6BF1B93E13E00A9EC73 /* RTAddVideoToReelErrorCodeToErrorMessageMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B5D6BE1B93E13E00A9EC73 /* RTAddVideoToReelErrorCodeToErrorMessageMapping.m */; };
+		71B5D6C21B93EA9D00A9EC73 /* RTDeleteVideoErrorCodeToErrorMessageMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B5D6C11B93EA9D00A9EC73 /* RTDeleteVideoErrorCodeToErrorMessageMapping.m */; };
 		71B6BA651AD036A400723941 /* RTBrowseAllAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B6BA591AD036A400723941 /* RTBrowseAllAssembly.m */; };
 		71B6BA661AD036A400723941 /* RTBrowseAllWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B6BA5C1AD036A400723941 /* RTBrowseAllWireframe.m */; };
 		71B6BA671AD036A400723941 /* RTBrowseAllReelsDataManagerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B6BA5F1AD036A400723941 /* RTBrowseAllReelsDataManagerDelegate.m */; };
@@ -1092,6 +1093,8 @@
 		71B5D6BB1B93D45700A9EC73 /* RTAddVideoToReelPresenterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAddVideoToReelPresenterSpec.m; sourceTree = "<group>"; };
 		71B5D6BD1B93E13E00A9EC73 /* RTAddVideoToReelErrorCodeToErrorMessageMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTAddVideoToReelErrorCodeToErrorMessageMapping.h; sourceTree = "<group>"; };
 		71B5D6BE1B93E13E00A9EC73 /* RTAddVideoToReelErrorCodeToErrorMessageMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAddVideoToReelErrorCodeToErrorMessageMapping.m; sourceTree = "<group>"; };
+		71B5D6C01B93EA9D00A9EC73 /* RTDeleteVideoErrorCodeToErrorMessageMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTDeleteVideoErrorCodeToErrorMessageMapping.h; sourceTree = "<group>"; };
+		71B5D6C11B93EA9D00A9EC73 /* RTDeleteVideoErrorCodeToErrorMessageMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTDeleteVideoErrorCodeToErrorMessageMapping.m; sourceTree = "<group>"; };
 		71B6BA4F1AD01EDE00723941 /* RTBrowseReelsDataManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseReelsDataManagerDelegate.h; sourceTree = "<group>"; };
 		71B6BA581AD036A400723941 /* RTBrowseAllAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseAllAssembly.h; sourceTree = "<group>"; };
 		71B6BA591AD036A400723941 /* RTBrowseAllAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseAllAssembly.m; sourceTree = "<group>"; };
@@ -3697,6 +3700,8 @@
 		71F7044B1B933E210067DEEA /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				71B5D6C01B93EA9D00A9EC73 /* RTDeleteVideoErrorCodeToErrorMessageMapping.h */,
+				71B5D6C11B93EA9D00A9EC73 /* RTDeleteVideoErrorCodeToErrorMessageMapping.m */,
 				71F7044D1B933E6F0067DEEA /* RTDeleteVideoPresenter.h */,
 				71F7044E1B933E6F0067DEEA /* RTDeleteVideoPresenter.m */,
 				71F7044C1B933E3A0067DEEA /* RTDeleteVideoView.h */,
@@ -4128,6 +4133,7 @@
 				71403D201AB3C6F1007CB8B9 /* RTBrowseUsersDataManager.m in Sources */,
 				71B97DA31B65647C0016017D /* RTBrowseUserFolloweesDataManagerDelegate.m in Sources */,
 				717215911A8657770002ECC7 /* RTLoginViewController.m in Sources */,
+				71B5D6C21B93EA9D00A9EC73 /* RTDeleteVideoErrorCodeToErrorMessageMapping.m in Sources */,
 				71B6BA661AD036A400723941 /* RTBrowseAllWireframe.m in Sources */,
 				71AFF6941B12161A003378C5 /* RTPasswordValidationMapping.m in Sources */,
 				719B35DB1A51012E00FFD543 /* RTClientAssembly.m in Sources */,
