@@ -34,9 +34,20 @@
         if (message) {
             [self.delegate presentErrorMessage:message forCode:code];
         }
+        else {
+            DDLogWarn(@"No mapping found for error = %@ in domain = %@", error, [self.mapping errorDomain]);
+            [self notifyDelegateOfFailureToPresentError:error];
+        }
     }
     else {
         DDLogWarn(@"Encountered unexpected error = %@", error);
+        [self notifyDelegateOfFailureToPresentError:error];
+    }
+}
+
+- (void)notifyDelegateOfFailureToPresentError:(NSError *)error {
+    if ([self.delegate respondsToSelector:@selector(failedToPresentError:)]) {
+        [self.delegate failedToPresentError:error];
     }
 }
 

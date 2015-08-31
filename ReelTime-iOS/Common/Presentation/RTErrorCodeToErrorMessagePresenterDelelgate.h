@@ -5,4 +5,8 @@
 - (void)presentErrorMessage:(NSString *)message
                     forCode:(NSInteger)code;
 
+@optional
+
+- (void)failedToPresentError:(NSError *)error;
+
 @end

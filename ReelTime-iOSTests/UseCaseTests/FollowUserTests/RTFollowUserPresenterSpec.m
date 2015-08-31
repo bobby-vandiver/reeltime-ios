@@ -53,14 +53,6 @@ describe(@"follow user presenter", ^{
             [presenter followUserFailedForUsername:username withError:error];
             [verify(view) showErrorMessage:@"Unknown error occurred while following user. Please try again."];
         });
-        
-        // TODO
-        xit(@"general unknown error", ^{
-            NSError *error = [NSError errorWithDomain:@"unknown" code:1 userInfo:nil];
-            
-            [presenter followUserFailedForUsername:username withError:error];
-            [verify(view) showErrorMessage:@"Unknown error occurred while following user. Please try again."];
-        });
     });
 });
 

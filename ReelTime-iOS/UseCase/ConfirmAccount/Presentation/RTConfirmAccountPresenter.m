@@ -72,7 +72,6 @@
             break;
             
         default:
-            DDLogWarn(@"Unknown account confirmation error code: %ld", (long)code);
             break;
     }
 }

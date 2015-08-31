@@ -53,14 +53,6 @@ describe(@"join audience presenter", ^{
             [presenter joinAudienceFailedForReelId:@(reelId) withError:error];
             [verify(view) showErrorMessage:@"Unknown error occurred while joining audience. Please try again."];
         });
-        
-        // TODO
-        xit(@"general unknown error", ^{
-            NSError *error = [NSError errorWithDomain:@"unknown" code:1 userInfo:nil];
-            
-            [presenter joinAudienceFailedForReelId:@(reelId) withError:error];
-            [verify(view) showErrorMessage:@"Unknown error occurred while joining audience. Please try again."];
-        });
     });
 });
 

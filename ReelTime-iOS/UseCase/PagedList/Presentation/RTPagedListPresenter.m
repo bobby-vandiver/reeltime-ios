@@ -2,6 +2,8 @@
 #import "RTPagedListPresenterDelegate.h"
 #import "RTPagedListInteractor.h"
 
+#import "RTLogging.h"
+
 static const NSUInteger INITIAL_PAGE_NUMBER = 1;
 
 @interface RTPagedListPresenter ()
@@ -78,7 +80,7 @@ static const NSUInteger INITIAL_PAGE_NUMBER = 1;
 }
 
 - (void)failedToRetrieveItemsWithError:(NSError *)error {
-    // TODO: Log error or inform user if appropriate
+    DDLogWarn(@"Failed to retrieve items with error = %@", error);
 }
 
 @end

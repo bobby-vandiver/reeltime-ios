@@ -67,14 +67,6 @@ describe(@"add video to reel presenter", ^{
             [presenter addVideoToReelFailedForVideoId:@(videoId) reelId:@(reelId) withError:error];
             [verify(view) showErrorMessage:@"Unknown error occurred while adding the video to the reel. Please try again."];
         });
-        
-        // TODO
-        xit(@"general unknown error", ^{
-            NSError *error = [NSError errorWithDomain:@"unknown" code:1 userInfo:nil];
-
-            [presenter addVideoToReelFailedForVideoId:@(videoId) reelId:@(reelId) withError:error];
-            [verify(view) showErrorMessage:@"Unknown error occurred while adding the video to the reel. Please try again."];
-        });
     });
 });
 

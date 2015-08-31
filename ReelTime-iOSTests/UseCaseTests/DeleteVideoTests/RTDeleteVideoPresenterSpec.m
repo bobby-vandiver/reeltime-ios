@@ -53,14 +53,6 @@ describe(@"delete video presenter", ^{
             [presenter deleteVideoFailedForVideoId:@(videoId) withError:error];
             [verify(view) showErrorMessage:@"Unknown error occurred while deleting video. Please try again."];
         });
-        
-        // TODO
-        xit(@"general unknown error", ^{
-            NSError *error = [NSError errorWithDomain:@"unknown" code:1 userInfo:nil];
-            
-            [presenter deleteVideoFailedForVideoId:@(videoId) withError:error];
-            [verify(view) showErrorMessage:@"Unknown error occurred while deleting video. Please try again."];
-        });
     });
 });
 
