@@ -2,14 +2,14 @@
 #import "RTAPIClient.h"
 
 #import "RTServerErrors.h"
-#import "RTAddVideoToReelError.h"
+#import "RTServerErrorsConverter.h"
 
-#import "RTErrorFactory.h"
-#import "RTLogging.h"
+#import "RTAddVideoToReelServerErrorMapping.h"
 
 @interface RTAddVideoToReelDataManager ()
 
 @property RTAPIClient *client;
+@property RTServerErrorsConverter *serverErrorsConverter;
 
 @end
 
@@ -19,6 +19,9 @@
     self = [super init];
     if (self) {
         self.client = client;
+    
+        RTAddVideoToReelServerErrorMapping *mapping = [[RTAddVideoToReelServerErrorMapping alloc] init];
+        self.serverErrorsConverter = [[RTServerErrorsConverter alloc] initWithMapping:mapping];
     }
     return self;
 }
@@ -33,24 +36,7 @@
     };
     
     ServerErrorsCallback failureCallback = ^(RTServerErrors *serverErrors) {
-        NSError *error;
-
-        NSString *errorMessage = serverErrors.errors[0];
-        
-        if ([errorMessage isEqual:@"Requested video was not found"]) {
-            error = [RTErrorFactory addVideoToReelErrorWithCode:RTAddVideoToReelErrorVideoNotFound];
-        }
-        else if ([errorMessage isEqual:@"Requested reel was not found"]) {
-            error = [RTErrorFactory addVideoToReelErrorWithCode:RTAddVideoToReelErrorReelNotFound];
-        }
-        else if ([errorMessage isEqual:@"Unauthorized operation requested"]) {
-            error = [RTErrorFactory addVideoToReelErrorWithCode:RTAddVideoToReelErrorUnauthorized];
-        }
-        else {
-            DDLogWarn(@"Unknown add video to reel error(s): %@", serverErrors);
-            error = [RTErrorFactory addVideoToReelErrorWithCode:RTAddVideoToReelErrorUnknownError];
-        }
-        
+        NSError *error = [self.serverErrorsConverter convertFirstErrorFromServerErrors:serverErrors];
         failure(error);
     };
     

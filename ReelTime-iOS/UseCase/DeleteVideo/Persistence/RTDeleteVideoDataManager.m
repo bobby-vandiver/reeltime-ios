@@ -2,14 +2,14 @@
 #import "RTAPIClient.h"
 
 #import "RTServerErrors.h"
-#import "RTDeleteVideoError.h"
+#import "RTServerErrorsConverter.h"
 
-#import "RTErrorFactory.h"
-#import "RTLogging.h"
+#import "RTDeleteVideoServerErrorMapping.h"
 
 @interface RTDeleteVideoDataManager ()
 
 @property RTAPIClient *client;
+@property RTServerErrorsConverter *serverErrorsConverter;
 
 @end
 
@@ -19,6 +19,9 @@
     self = [super init];
     if (self) {
         self.client = client;
+        
+        RTDeleteVideoServerErrorMapping *mapping = [[RTDeleteVideoServerErrorMapping alloc] init];
+        self.serverErrorsConverter = [[RTServerErrorsConverter alloc] initWithMapping:mapping];
     }
     return self;
 }
@@ -32,16 +35,7 @@
     };
     
     ServerErrorsCallback failureCallback = ^(RTServerErrors *serverErrors) {
-        NSError *error;
-        
-        if ([serverErrors.errors[0] isEqual:@"Requested video was not found"]) {
-            error = [RTErrorFactory deleteVideoErrorWithCode:RTDeleteVideoErrorVideoNotFound];
-        }
-        else {
-            DDLogWarn(@"Unknown video deletion error(s): %@", serverErrors);
-            error = [RTErrorFactory deleteVideoErrorWithCode:RTDeleteVideoErrorUnknownError];
-        }
-        
+        NSError *error = [self.serverErrorsConverter convertFirstErrorFromServerErrors:serverErrors];
         failure(error);
     };
     

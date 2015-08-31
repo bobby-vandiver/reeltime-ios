@@ -2,14 +2,15 @@
 #import "RTAPIClient.h"
 
 #import "RTServerErrors.h"
-#import "RTUnfollowUserError.h"
+#import "RTServerErrorsConverter.h"
 
-#import "RTErrorFactory.h"
-#import "RTLogging.h"
+#import "RTUnfollowUserServerErrorMapping.h"
 
 @interface RTUnfollowUserDataManager ()
 
 @property RTAPIClient *client;
+@property RTServerErrorsConverter *serverErrorsConverter;
+
 
 @end
 
@@ -19,6 +20,9 @@
     self = [super init];
     if (self) {
         self.client = client;
+        
+        RTUnfollowUserServerErrorMapping *mapping = [[RTUnfollowUserServerErrorMapping alloc] init];
+        self.serverErrorsConverter = [[RTServerErrorsConverter alloc] initWithMapping:mapping];
     }
     return self;
 }
@@ -32,16 +36,7 @@
     };
     
     ServerErrorsCallback failureCallback = ^(RTServerErrors *serverErrors) {
-        NSError *error;
-        
-        if ([serverErrors.errors[0] isEqual:@"Requested user was not found"]) {
-            error = [RTErrorFactory unfollowUserErrorWithCode:RTUnfollowUserErrorUserNotFound];
-        }
-        else {
-            DDLogWarn(@"Unknown unfollow error(s): %@", serverErrors);
-            error = [RTErrorFactory unfollowUserErrorWithCode:RTUnfollowUserErrorUnknownError];
-        }
-        
+        NSError *error = [self.serverErrorsConverter convertFirstErrorFromServerErrors:serverErrors];
         failure(error);
     };
     

@@ -2,14 +2,14 @@
 #import "RTAPIClient.h"
 
 #import "RTServerErrors.h"
-#import "RTLeaveAudienceError.h"
+#import "RTServerErrorsConverter.h"
 
-#import "RTErrorFactory.h"
-#import "RTLogging.h"
+#import "RTLeaveAudienceServerErrorMapping.h"
 
 @interface RTLeaveAudienceDataManager ()
 
 @property RTAPIClient *client;
+@property RTServerErrorsConverter *serverErrorsConverter;
 
 @end
 
@@ -19,6 +19,9 @@
     self = [super init];
     if (self) {
         self.client = client;
+        
+        RTLeaveAudienceServerErrorMapping *mapping = [[RTLeaveAudienceServerErrorMapping alloc] init];
+        self.serverErrorsConverter = [[RTServerErrorsConverter alloc] initWithMapping:mapping];
     }
     return self;
 }
@@ -32,16 +35,7 @@
     };
     
     ServerErrorsCallback failureCallback = ^(RTServerErrors *serverErrors) {
-        NSError *error;
-        
-        if ([serverErrors.errors[0] isEqual:@"Requested reel was not found"]) {
-            error = [RTErrorFactory leaveAudienceErrorWithCode:RTLeaveAudienceErrorReelNotFound];
-        }
-        else {
-            DDLogWarn(@"Unknown leave error(s): %@", serverErrors);
-            error = [RTErrorFactory leaveAudienceErrorWithCode:RTLeaveAudienceErrorUnknownError];
-        }
-        
+        NSError *error = [self.serverErrorsConverter convertFirstErrorFromServerErrors:serverErrors];
         leaveFailure(error);
     };
  

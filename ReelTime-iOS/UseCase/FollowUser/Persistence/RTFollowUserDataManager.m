@@ -2,14 +2,14 @@
 #import "RTAPIClient.h"
 
 #import "RTServerErrors.h"
-#import "RTFollowUserError.h"
+#import "RTServerErrorsConverter.h"
 
-#import "RTErrorFactory.h"
-#import "RTLogging.h"
+#import "RTFollowUserServerErrorMapping.h"
 
 @interface RTFollowUserDataManager ()
 
 @property RTAPIClient *client;
+@property RTServerErrorsConverter *serverErrorsConverter;
 
 @end
 
@@ -19,6 +19,9 @@
     self = [super init];
     if (self) {
         self.client = client;
+        
+        RTFollowUserServerErrorMapping *mapping = [[RTFollowUserServerErrorMapping alloc] init];
+        self.serverErrorsConverter = [[RTServerErrorsConverter alloc] initWithMapping:mapping];
     }
     return self;
 }
@@ -32,16 +35,7 @@
     };
     
     ServerErrorsCallback failureCallback = ^(RTServerErrors *serverErrors) {
-        NSError *error;
-        
-        if ([serverErrors.errors[0] isEqual:@"Requested user was not found"]) {
-            error = [RTErrorFactory followUserErrorWithCode:RTFollowUserErrorUserNotFound];
-        }
-        else {
-            DDLogWarn(@"Unknown follow error(s): %@", serverErrors);
-            error = [RTErrorFactory followUserErrorWithCode:RTFollowUserErrorUnknownError];
-        }
-        
+        NSError *error = [self.serverErrorsConverter convertFirstErrorFromServerErrors:serverErrors];
         failure(error);
     };
     

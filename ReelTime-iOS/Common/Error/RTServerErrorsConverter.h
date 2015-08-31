@@ -7,6 +7,8 @@
 
 - (instancetype)initWithMapping:(id<RTServerErrorMessageToErrorCodeMapping>)mapping;
 
+- (NSError *)convertFirstErrorFromServerErrors:(RTServerErrors *)serverErrors;
+
 - (NSArray *)convertServerErrors:(RTServerErrors *)serverErrors;
 
 

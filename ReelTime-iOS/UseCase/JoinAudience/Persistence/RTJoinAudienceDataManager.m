@@ -2,14 +2,14 @@
 #import "RTAPIClient.h"
 
 #import "RTServerErrors.h"
-#import "RTJoinAudienceError.h"
+#import "RTServerErrorsConverter.h"
 
-#import "RTErrorFactory.h"
-#import "RTLogging.h"
+#import "RTJoinAudienceServerErrorMapping.h"
 
 @interface RTJoinAudienceDataManager ()
 
 @property RTAPIClient *client;
+@property RTServerErrorsConverter *serverErrorsConverter;
 
 @end
 
@@ -19,6 +19,9 @@
     self = [super init];
     if (self) {
         self.client = client;
+        
+        RTJoinAudienceServerErrorMapping *mapping = [[RTJoinAudienceServerErrorMapping alloc] init];
+        self.serverErrorsConverter = [[RTServerErrorsConverter alloc] initWithMapping:mapping];
     }
     return self;
 }
@@ -32,16 +35,7 @@
     };
 
     ServerErrorsCallback failureCallback = ^(RTServerErrors *serverErrors) {
-        NSError *error;
-
-        if ([serverErrors.errors[0] isEqual:@"Requested reel was not found"]) {
-            error = [RTErrorFactory joinAudienceErrorWithCode:RTJoinAudienceErrorReelNotFound];
-        }
-        else {
-            DDLogWarn(@"Unknown join error(s): %@", serverErrors);
-            error = [RTErrorFactory joinAudienceErrorWithCode:RTJoinAudienceErrorUnknownError];
-        }
-        
+        NSError *error = [self.serverErrorsConverter convertFirstErrorFromServerErrors:serverErrors];
         failure(error);
     };
     
