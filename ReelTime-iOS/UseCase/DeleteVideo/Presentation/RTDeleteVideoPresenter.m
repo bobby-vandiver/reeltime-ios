@@ -7,8 +7,6 @@
 #import "RTErrorCodeToErrorMessagePresenter.h"
 #import "RTDeleteVideoErrorCodeToErrorMessageMapping.h"
 
-#import "RTLogging.h"
-
 @interface RTDeleteVideoPresenter ()
 
 @property id<RTDeleteVideoView> view;
