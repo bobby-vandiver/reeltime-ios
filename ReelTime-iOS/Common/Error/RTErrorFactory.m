@@ -27,6 +27,10 @@
     return [self errorWithDomain:RTCreateReelErrorDomain code:code];
 }
 
++ (NSError *)deleteReelErrorWithCode:(RTDeleteReelError)code {
+    return [self errorWithDomain:RTDeleteReelErrorDomain code:code];
+}
+
 + (NSError *)deleteVideoErrorWithCode:(RTDeleteVideoError)code {
     return [self errorWithDomain:RTDeleteVideoErrorDomain code:code];
 }
