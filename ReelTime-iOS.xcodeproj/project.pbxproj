@@ -459,6 +459,9 @@
 		71FFC1C81B9686B7005803B3 /* RTDeleteReelDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71FFC1C71B9686B7005803B3 /* RTDeleteReelDataManagerSpec.m */; };
 		71FFC1CB1B969719005803B3 /* RTDeleteReelInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 71FFC1CA1B969719005803B3 /* RTDeleteReelInteractor.m */; };
 		71FFC1CE1B969844005803B3 /* RTDeleteReelInteractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71FFC1CD1B969844005803B3 /* RTDeleteReelInteractorSpec.m */; };
+		71FFC1D31B969E30005803B3 /* RTDeleteReelErrorCodeToErrorMessageMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 71FFC1D21B969E30005803B3 /* RTDeleteReelErrorCodeToErrorMessageMapping.m */; };
+		71FFC1D61B969E70005803B3 /* RTDeleteReelPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 71FFC1D51B969E70005803B3 /* RTDeleteReelPresenter.m */; };
+		71FFC1D81B969F02005803B3 /* RTDeleteReelPresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71FFC1D71B969F02005803B3 /* RTDeleteReelPresenterSpec.m */; };
 		BCBE070F3639F3393A1BF1A9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2682314A72FFBF85E182F6FE /* libPods.a */; };
 		F5855EE53AD6BF2CC0D24A71 /* libPods-ReelTime-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DFC463C3A66781E8DEEE7436 /* libPods-ReelTime-iOS.a */; };
 /* End PBXBuildFile section */
@@ -1285,6 +1288,12 @@
 		71FFC1CA1B969719005803B3 /* RTDeleteReelInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTDeleteReelInteractor.m; sourceTree = "<group>"; };
 		71FFC1CC1B969759005803B3 /* RTDeleteReelInteractorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTDeleteReelInteractorDelegate.h; sourceTree = "<group>"; };
 		71FFC1CD1B969844005803B3 /* RTDeleteReelInteractorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTDeleteReelInteractorSpec.m; sourceTree = "<group>"; };
+		71FFC1D01B969E06005803B3 /* RTDeleteReelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTDeleteReelView.h; sourceTree = "<group>"; };
+		71FFC1D11B969E30005803B3 /* RTDeleteReelErrorCodeToErrorMessageMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTDeleteReelErrorCodeToErrorMessageMapping.h; sourceTree = "<group>"; };
+		71FFC1D21B969E30005803B3 /* RTDeleteReelErrorCodeToErrorMessageMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTDeleteReelErrorCodeToErrorMessageMapping.m; sourceTree = "<group>"; };
+		71FFC1D41B969E70005803B3 /* RTDeleteReelPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTDeleteReelPresenter.h; sourceTree = "<group>"; };
+		71FFC1D51B969E70005803B3 /* RTDeleteReelPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTDeleteReelPresenter.m; sourceTree = "<group>"; };
+		71FFC1D71B969F02005803B3 /* RTDeleteReelPresenterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTDeleteReelPresenterSpec.m; sourceTree = "<group>"; };
 		7EE6C896A75E4BC2F37AB869 /* Pods-ReelTime-iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelTime-iOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReelTime-iOSTests/Pods-ReelTime-iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9F10A54522F42FAE4C712E1A /* Pods-ReelTime-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelTime-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReelTime-iOS/Pods-ReelTime-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		A29C600554F5BB4A5E37291D /* Pods-ReelTime-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelTime-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReelTime-iOS/Pods-ReelTime-iOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -3913,6 +3922,7 @@
 			children = (
 				71FFC1BE1B968581005803B3 /* Domain */,
 				71FFC1BD1B968577005803B3 /* Persistence */,
+				71FFC1CF1B969DD9005803B3 /* Presentation */,
 			);
 			path = DeleteReel;
 			sourceTree = "<group>";
@@ -3944,8 +3954,21 @@
 			children = (
 				71FFC1C71B9686B7005803B3 /* RTDeleteReelDataManagerSpec.m */,
 				71FFC1CD1B969844005803B3 /* RTDeleteReelInteractorSpec.m */,
+				71FFC1D71B969F02005803B3 /* RTDeleteReelPresenterSpec.m */,
 			);
 			path = DeleteReelTests;
+			sourceTree = "<group>";
+		};
+		71FFC1CF1B969DD9005803B3 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				71FFC1D11B969E30005803B3 /* RTDeleteReelErrorCodeToErrorMessageMapping.h */,
+				71FFC1D21B969E30005803B3 /* RTDeleteReelErrorCodeToErrorMessageMapping.m */,
+				71FFC1D41B969E70005803B3 /* RTDeleteReelPresenter.h */,
+				71FFC1D51B969E70005803B3 /* RTDeleteReelPresenter.m */,
+				71FFC1D01B969E06005803B3 /* RTDeleteReelView.h */,
+			);
+			path = Presentation;
 			sourceTree = "<group>";
 		};
 		9771AF0E969811E0EBA02423 /* Pods */ = {
@@ -4289,6 +4312,7 @@
 				717215B11A8659230002ECC7 /* RTAccountRegistrationPresenter.m in Sources */,
 				71B5D6CB1B93F1F100A9EC73 /* RTJoinAudienceErrorCodeToErrorMessageMapping.m in Sources */,
 				71B5D6D71B940A7900A9EC73 /* RTFollowUserServerErrorMapping.m in Sources */,
+				71FFC1D31B969E30005803B3 /* RTDeleteReelErrorCodeToErrorMessageMapping.m in Sources */,
 				7134F1FF1B24CAEB001EBF4E /* RTRevokeClientServerErrorMapping.m in Sources */,
 				71B5D6D11B94080900A9EC73 /* RTDeleteVideoServerErrorMapping.m in Sources */,
 				712B2BCD1AAFB2010026258A /* RTPagedListDataManager.m in Sources */,
@@ -4359,6 +4383,7 @@
 				7103A2C91B88C38200DB4B50 /* AVPlayerItem+StatusText.m in Sources */,
 				71AD867A1B94D60600AF15F3 /* RTCreateReelServerErrorMapping.m in Sources */,
 				714DDE5B1B0C0D0100D96F74 /* RTChangePasswordInteractor.m in Sources */,
+				71FFC1D61B969E70005803B3 /* RTDeleteReelPresenter.m in Sources */,
 				71331A301A880B0100912B5F /* RTNewsfeedWireframe.m in Sources */,
 				718F43F21B20C79800732ACE /* RTClient.m in Sources */,
 				717970041AB7B92E00A0B9B5 /* UITableView+LastVisible.m in Sources */,
@@ -4506,6 +4531,7 @@
 				71AFF6961B122016003378C5 /* RTChangePasswordPresenterSpec.m in Sources */,
 				713BCE071A5909DA000F2D96 /* RTFakeKeyChainWrapper.m in Sources */,
 				71403D231AB3C7BC007CB8B9 /* RTBrowseUsersDataManagerSpec.m in Sources */,
+				71FFC1D81B969F02005803B3 /* RTDeleteReelPresenterSpec.m in Sources */,
 				715E082A1B0576CD0037A17E /* RTResetPasswordDataManagerSpec.m in Sources */,
 				7170C86D1A59A98600C460BB /* RTKeyChainWrapperSpec.m in Sources */,
 				714843091AEC12C7001B885A /* RTDeviceRegistrationWireframeSpec.m in Sources */,
