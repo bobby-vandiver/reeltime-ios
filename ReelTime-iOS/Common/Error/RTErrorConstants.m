@@ -16,6 +16,7 @@
 #import "RTPagedListError.h"
 #import "RTPlayVideoError.h"
 #import "RTResetPasswordError.h"
+#import "RTRemoveVideoFromReelError.h"
 #import "RTRevokeClientError.h"
 #import "RTUnfollowUserError.h"
 #import "RTUserSummaryError.h"
@@ -37,6 +38,7 @@ NSString *const RTLogoutErrorDomain = @"in.reeltime.Logout";
 NSString *const RTKeyChainWrapperErrorDomain = @"in.reeltime.KeyChainWrapper";
 NSString *const RTPagedListErrorDomain = @"in.reeltime.PagedList";
 NSString *const RTPlayVideoErrorDomain = @"in.reeltime.PlayVideo";
+NSString *const RTRemoveVideoFromReelErrorDomain = @"in.reeltime.RemoveVideoFromReel";
 NSString *const RTResetPasswordErrorDomain = @"in.reeltime.ResetPassword";
 NSString *const RTRevokeClientErrorDomain = @"in.reeltime.RevokeClient";
 NSString *const RTUnfollowUserErrorDomain = @"in.reeltime.UnfollowUser";

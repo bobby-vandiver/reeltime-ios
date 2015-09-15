@@ -87,6 +87,10 @@
     return [self errorWithDomain:RTPlayVideoErrorDomain code:code];
 }
 
++ (NSError *)removeVideoFromReelErrorWithCode:(RTRemoveVideoFromReelError)code {
+    return [self errorWithDomain:RTRemoveVideoFromReelErrorDomain code:code];
+}
+
 + (NSError *)resetPasswordErrorWithCode:(RTResetPasswordError)code {
     return [self errorWithDomain:RTResetPasswordErrorDomain code:code];
 }
