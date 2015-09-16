@@ -46,6 +46,13 @@ describe(@"delete video presenter", ^{
             [presenter deleteVideoFailedForVideoId:@(videoId) withError:error];
             [verify(view) showErrorMessage:@"Cannot delete an unknown video!"];
         });
+
+        it(@"unauthorized", ^{
+            NSError *error = [RTErrorFactory deleteVideoErrorWithCode:RTDeleteVideoErrorUnauthorized];
+            
+            [presenter deleteVideoFailedForVideoId:@(videoId) withError:error];
+            [verify(view) showErrorMessage:@"You do not have permission for that operation."];
+        });
         
         it(@"unknown delete error", ^{
             NSError *error = [RTErrorFactory deleteVideoErrorWithCode:RTDeleteVideoErrorUnknownError];

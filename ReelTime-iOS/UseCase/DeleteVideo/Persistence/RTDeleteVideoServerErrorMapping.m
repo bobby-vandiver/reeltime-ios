@@ -9,7 +9,8 @@
 
 - (NSDictionary *)errorMessageToErrorCodeMapping {
     return @{
-             @"Requested video was not found": @(RTDeleteVideoErrorVideoNotFound)
+             @"Requested video was not found": @(RTDeleteVideoErrorVideoNotFound),
+             @"Unauthorized operation requested": @(RTDeleteVideoErrorUnauthorized)
              };
 }
 

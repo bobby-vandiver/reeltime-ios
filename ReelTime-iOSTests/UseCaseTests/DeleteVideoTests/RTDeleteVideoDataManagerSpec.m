@@ -72,6 +72,8 @@ describe(@"delete video data manager", ^{
                 NSDictionary *mapping = @{
                                           @"Requested video was not found":
                                               @(RTDeleteVideoErrorVideoNotFound),
+                                          @"Unauthorized operation requested":
+                                              @(RTDeleteVideoErrorUnauthorized),
                                           @"uh oh":
                                               @(RTDeleteVideoErrorUnknownError)
                                           };
