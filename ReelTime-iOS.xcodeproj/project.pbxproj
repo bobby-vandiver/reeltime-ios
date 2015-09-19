@@ -197,6 +197,9 @@
 		713DE84F1B092B4C00A5BBF0 /* RTResetPasswordErrorCodeToErrorMessageMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 713DE84E1B092B4C00A5BBF0 /* RTResetPasswordErrorCodeToErrorMessageMapping.m */; };
 		713DE8511B092FDD00A5BBF0 /* RTResetPasswordPresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 713DE8501B092FDD00A5BBF0 /* RTResetPasswordPresenterSpec.m */; };
 		713EDFB21B082EA800E40683 /* RTResetPasswordValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 713EDFB11B082EA800E40683 /* RTResetPasswordValidator.m */; };
+		713F4AC71BADA64B008220EC /* RTRemoveVideoFromReelPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 713F4AC61BADA64B008220EC /* RTRemoveVideoFromReelPresenter.m */; };
+		713F4ACA1BADA7DB008220EC /* RTRemoveVideoFromReelErrorCodeToErrorMessageMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 713F4AC91BADA7DB008220EC /* RTRemoveVideoFromReelErrorCodeToErrorMessageMapping.m */; };
+		713F4ACC1BADAC6A008220EC /* RTRemoveVideoFromReelPresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 713F4ACB1BADAC6A008220EC /* RTRemoveVideoFromReelPresenterSpec.m */; };
 		71403D201AB3C6F1007CB8B9 /* RTBrowseUsersDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 71403D1F1AB3C6F1007CB8B9 /* RTBrowseUsersDataManager.m */; };
 		71403D231AB3C7BC007CB8B9 /* RTBrowseUsersDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71403D221AB3C7BC007CB8B9 /* RTBrowseUsersDataManagerSpec.m */; };
 		71403D2B1AB3D078007CB8B9 /* RTBrowseUsersPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 71403D2A1AB3D078007CB8B9 /* RTBrowseUsersPresenter.m */; };
@@ -811,6 +814,12 @@
 		713DE8501B092FDD00A5BBF0 /* RTResetPasswordPresenterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTResetPasswordPresenterSpec.m; sourceTree = "<group>"; };
 		713EDFB01B082EA800E40683 /* RTResetPasswordValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTResetPasswordValidator.h; sourceTree = "<group>"; };
 		713EDFB11B082EA800E40683 /* RTResetPasswordValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTResetPasswordValidator.m; sourceTree = "<group>"; };
+		713F4AC41BADA582008220EC /* RTRemoveVideoFromReelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTRemoveVideoFromReelView.h; sourceTree = "<group>"; };
+		713F4AC51BADA64B008220EC /* RTRemoveVideoFromReelPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTRemoveVideoFromReelPresenter.h; sourceTree = "<group>"; };
+		713F4AC61BADA64B008220EC /* RTRemoveVideoFromReelPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTRemoveVideoFromReelPresenter.m; sourceTree = "<group>"; };
+		713F4AC81BADA7DB008220EC /* RTRemoveVideoFromReelErrorCodeToErrorMessageMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTRemoveVideoFromReelErrorCodeToErrorMessageMapping.h; sourceTree = "<group>"; };
+		713F4AC91BADA7DB008220EC /* RTRemoveVideoFromReelErrorCodeToErrorMessageMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTRemoveVideoFromReelErrorCodeToErrorMessageMapping.m; sourceTree = "<group>"; };
+		713F4ACB1BADAC6A008220EC /* RTRemoveVideoFromReelPresenterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTRemoveVideoFromReelPresenterSpec.m; sourceTree = "<group>"; };
 		71403D1E1AB3C6F1007CB8B9 /* RTBrowseUsersDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseUsersDataManager.h; sourceTree = "<group>"; };
 		71403D1F1AB3C6F1007CB8B9 /* RTBrowseUsersDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseUsersDataManager.m; sourceTree = "<group>"; };
 		71403D221AB3C7BC007CB8B9 /* RTBrowseUsersDataManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseUsersDataManagerSpec.m; sourceTree = "<group>"; };
@@ -2273,6 +2282,18 @@
 				716973E81B1518F4006F2788 /* RTChangeDisplayNameView.h */,
 				712AAB021B2C68E700E7AE4E /* RTChangeDisplayNameViewController.h */,
 				712AAB031B2C68E700E7AE4E /* RTChangeDisplayNameViewController.m */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		713F4AC31BADA548008220EC /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				713F4AC81BADA7DB008220EC /* RTRemoveVideoFromReelErrorCodeToErrorMessageMapping.h */,
+				713F4AC91BADA7DB008220EC /* RTRemoveVideoFromReelErrorCodeToErrorMessageMapping.m */,
+				713F4AC51BADA64B008220EC /* RTRemoveVideoFromReelPresenter.h */,
+				713F4AC61BADA64B008220EC /* RTRemoveVideoFromReelPresenter.m */,
+				713F4AC41BADA582008220EC /* RTRemoveVideoFromReelView.h */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -3937,6 +3958,7 @@
 		71F8BE861BA7AE7200A1BA18 /* RemoveVideoFromReel */ = {
 			isa = PBXGroup;
 			children = (
+				713F4AC31BADA548008220EC /* Presentation */,
 				71F8BE911BA7AF7D00A1BA18 /* Domain */,
 				71F8BE871BA7AE8600A1BA18 /* Persistence */,
 			);
@@ -3959,6 +3981,7 @@
 			children = (
 				71F8BE8F1BA7AF1200A1BA18 /* RTRemoveVideoFromReelDataManagerSpec.m */,
 				71C79BBB1BAA5DCF00C7C768 /* RTRemoveVideoFromReelInteractorSpec.m */,
+				713F4ACB1BADAC6A008220EC /* RTRemoveVideoFromReelPresenterSpec.m */,
 			);
 			path = RemoveVideoFromReelTests;
 			sourceTree = "<group>";
@@ -4313,6 +4336,7 @@
 				7172158A1A86576E0002ECC7 /* RTLoginDataManager.m in Sources */,
 				7162E8261B52CE9700F96BAD /* RTLogoutInteractor.m in Sources */,
 				710564A41B8E9FF300FEC81E /* RTDeleteVideoDataManager.m in Sources */,
+				713F4AC71BADA64B008220EC /* RTRemoveVideoFromReelPresenter.m in Sources */,
 				71A462301B4352DC000DD7B9 /* RTBrowseAudienceMembersDataManagerDelegate.m in Sources */,
 				71828EE11B6173D300CA47CA /* RTFollowUserPresenter.m in Sources */,
 				71B6BA681AD036A400723941 /* RTBrowseAllViewController.m in Sources */,
@@ -4510,6 +4534,7 @@
 				715C540E1AD4A264009C755F /* RTUserSummaryInteractor.m in Sources */,
 				71921F2D1B2B66590088D080 /* RTManageDevicesWireframe.m in Sources */,
 				712441671B2DE75E00752901 /* RTConfirmAccountWireframe.m in Sources */,
+				713F4ACA1BADA7DB008220EC /* RTRemoveVideoFromReelErrorCodeToErrorMessageMapping.m in Sources */,
 				713A239F1AB4FF4C0098CE48 /* RTMutableArrayDataSource.m in Sources */,
 				71361D7E1B86C93700C0CB4D /* RTAuthorizationHeaderSupport.m in Sources */,
 				7103A2C21B87FD6200DB4B50 /* RTPlayVideoIdExtractor.m in Sources */,
@@ -4580,6 +4605,7 @@
 				7137F4E91AEEFA8A00B50DBA /* RTDeviceRegistrationPresenterSpec.m in Sources */,
 				71C7D0FD1B5C52F600BDDA4F /* RTLeaveAudiencePresenterSpec.m in Sources */,
 				7117C0801A8998DF00EC0152 /* RTVideoSpec.m in Sources */,
+				713F4ACC1BADAC6A008220EC /* RTRemoveVideoFromReelPresenterSpec.m in Sources */,
 				713DCAAB1A6C9D1C0032B252 /* RTAccountRegistrationInteractorSpec.m in Sources */,
 				7114DF881AB4C38C003B1D2E /* RTBrowseReelsPresenterSpec.m in Sources */,
 				710B6B7E1B77105F009318D0 /* RTPlayVideoWireframeSpec.m in Sources */,
