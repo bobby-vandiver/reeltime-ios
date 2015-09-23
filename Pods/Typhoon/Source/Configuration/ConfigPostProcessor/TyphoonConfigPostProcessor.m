@@ -22,6 +22,7 @@
 #import "TyphoonPlistStyleConfiguration.h"
 #import "TyphoonInjectionByReference.h"
 #import "TyphoonRuntimeArguments.h"
+#import "OCLogTemplate.h"
 
 static NSMutableDictionary *propertyPlaceholderRegistry;
 
@@ -116,8 +117,7 @@ static NSMutableDictionary *propertyPlaceholderRegistry;
 
 - (void)useResourceWithName:(NSString *)name bundle:(NSBundle *)bundle
 {
-    [self useResource:[TyphoonBundleResource withName:name inBundle:bundle]
-        withExtension:[name pathExtension]];
+    [self useResource:[TyphoonBundleResource withName:name inBundle:bundle] withExtension:[name pathExtension]];
 }
 
 - (void)useResourceAtPath:(NSString *)path
@@ -127,6 +127,9 @@ static NSMutableDictionary *propertyPlaceholderRegistry;
 
 - (void)useResource:(id<TyphoonResource>)resource withExtension:(NSString *)typeExtension
 {
+    LogInfo("======================================================================================================");
+    LogInfo(@"CONFIG: %@", resource.description);
+    LogInfo("======================================================================================================");
     id<TyphoonConfiguration> config = _configs[typeExtension];
     [config appendResource:resource];
 }
@@ -162,10 +165,17 @@ static NSMutableDictionary *propertyPlaceholderRegistry;
 }
 
 //-------------------------------------------------------------------------------------------
+#pragma mark - Interface Methods
+//-------------------------------------------------------------------------------------------
+
+
+
+//-------------------------------------------------------------------------------------------
 #pragma mark - Protocol Methods
 //-------------------------------------------------------------------------------------------
 
-- (void)postProcessDefinition:(TyphoonDefinition *)definition replacement:(TyphoonDefinition **)definitionToReplace withFactory:(TyphoonComponentFactory *)factory
+- (void)postProcessDefinition:(TyphoonDefinition *)definition replacement:(TyphoonDefinition **)definitionToReplace
+    withFactory:(TyphoonComponentFactory *)factory
 {
     [self configureInjectionsInDefinition:definition];
     [self configureInjectionsInRuntimeArgumentsInDefinition:definition];
@@ -213,6 +223,7 @@ static NSMutableDictionary *propertyPlaceholderRegistry;
 
     return result;
 }
+
 
 @end
 

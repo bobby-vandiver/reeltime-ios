@@ -11,14 +11,14 @@ target 'ReelTime-iOS', :exclusive => true do
     pod 'UIDeviceIdentifier', :git => 'https://github.com/squarefrog/UIDeviceIdentifier.git'
     
     # RestKit uses some deprecated APIs
-    pod 'RestKit', '~> 0.24', :inhibit_warnings => true
+    pod 'RestKit', '~> 0.25', :inhibit_warnings => true
 
     # Testing module must be included in the main target
     # to avoid introducing duplicate symbols
-    pod 'RestKit/Testing', '~> 0.24', :inhibit_warnings => true
+    pod 'RestKit/Testing', '~> 0.25', :inhibit_warnings => true
     
     # RestKit dependency that uses deprecated APIs
-    pod 'ISO8601DateFormatterValueTransformer', '~> 0.6.0', :inhibit_warnings => true
+    pod 'ISO8601DateFormatterValueTransformer', '~> 0.6.1', :inhibit_warnings => true
 end
 
 target 'ReelTime-iOSTests' do
