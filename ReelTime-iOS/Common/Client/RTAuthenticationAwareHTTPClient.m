@@ -47,7 +47,7 @@ typedef void (^RKHTTPOperation)(RKSuccessCallback successCallback, RKFailureCall
         [self getForPath:path withParameters:parameters headers:headers successCallback:binarySuccessCallback failureCallback:failureCallback];
     };
     
-    [self performOperation:operation success:success failure:failure];
+    [self performOperation:operation authenticated:YES success:success failure:failure];
 }
 
 - (void)authenticatedGetForPath:(NSString *)path
@@ -60,7 +60,7 @@ typedef void (^RKHTTPOperation)(RKSuccessCallback successCallback, RKFailureCall
         [self getForPath:path withParameters:parameters headers:headers successCallback:successCallback failureCallback:failureCallback];
     };
     
-    [self performOperation:operation success:success failure:failure];
+    [self performOperation:operation authenticated:YES success:success failure:failure];
 }
 
 - (void)unauthenticatedGetForPath:(NSString *)path
@@ -72,7 +72,7 @@ typedef void (^RKHTTPOperation)(RKSuccessCallback successCallback, RKFailureCall
         [self getForPath:path withParameters:parameters headers:nil successCallback:successCallback failureCallback:failureCallback];
     };
     
-    [self performOperation:operation success:success failure:failure];
+    [self performOperation:operation authenticated:NO success:success failure:failure];
 }
 
 - (void)authenticatedPostForPath:(NSString *)path
@@ -86,7 +86,7 @@ typedef void (^RKHTTPOperation)(RKSuccessCallback successCallback, RKFailureCall
         [self postForPath:path withParameters:parameters headers:headers formDataBlock:formDataBlock successCallback:successCallback failureCallback:failureCallback];
     };
     
-    [self performOperation:operation success:success failure:failure];
+    [self performOperation:operation authenticated:YES success:success failure:failure];
 }
 
 - (void)authenticatedPostForPath:(NSString *)path
@@ -99,7 +99,7 @@ typedef void (^RKHTTPOperation)(RKSuccessCallback successCallback, RKFailureCall
         [self postForPath:path withParameters:parameters headers:headers formDataBlock:nil successCallback:successCallback failureCallback:failureCallback];
     };
     
-    [self performOperation:operation success:success failure:failure];
+    [self performOperation:operation authenticated:YES success:success failure:failure];
 }
 
 - (void)unauthenticatedPostForPath:(NSString *)path
@@ -111,7 +111,7 @@ typedef void (^RKHTTPOperation)(RKSuccessCallback successCallback, RKFailureCall
         [self postForPath:path withParameters:parameters headers:nil formDataBlock:nil successCallback:successCallback failureCallback:failureCallback];
     };
     
-    [self performOperation:operation success:success failure:failure];
+    [self performOperation:operation authenticated:NO success:success failure:failure];
 }
 
 - (void)authenticatedDeleteForPath:(NSString *)path
@@ -124,7 +124,7 @@ typedef void (^RKHTTPOperation)(RKSuccessCallback successCallback, RKFailureCall
         [self deleteForPath:path withParameters:parameters headers:headers successCallback:successCallback failureCallback:failureCallback];
     };
     
-    [self performOperation:operation success:success failure:failure];
+    [self performOperation:operation authenticated:YES success:success failure:failure];
 }
 
 - (void)getForPath:(NSString *)path
@@ -213,11 +213,12 @@ typedef void (^RKHTTPOperation)(RKSuccessCallback successCallback, RKFailureCall
 }
 
 - (void)performOperation:(RKHTTPOperation)operation
+           authenticated:(BOOL)authenticated
                  success:(SuccessCallback)success
                  failure:(FailureCallback)failure {
     
     RKSuccessCallback successCallback = [self successHandlerWithCallback:success];
-    RKFailureCallback failureCallback = [self serverFailureHandlerWithCallback:failure];
+    RKFailureCallback failureCallback = [self serverFailureHandlerWithCallback:failure forHTTPOperation:operation authenticated:authenticated];
     
     operation(successCallback, failureCallback);
 }
@@ -235,7 +236,10 @@ typedef void (^RKHTTPOperation)(RKSuccessCallback successCallback, RKFailureCall
     };
 }
 
-- (RKFailureCallback)serverFailureHandlerWithCallback:(Callback)callback {
+- (RKFailureCallback)serverFailureHandlerWithCallback:(Callback)callback
+                                     forHTTPOperation:(RKHTTPOperation)httpOperation
+                                        authenticated:(BOOL)authenticated {
+    
     return ^(RKObjectRequestOperation *operation, NSError *error) {
         id errors = [[error.userInfo objectForKey:RKObjectMapperErrorObjectsKey] firstObject];
         callback(errors);
