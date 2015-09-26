@@ -6,6 +6,8 @@
 #import <RestKit/RestKit.h>
 #import "RKObjectManager+IncludeHeaders.h"
 
+typedef void (^Callback)(id);
+
 typedef void (^RKSuccessCallback)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult);
 typedef void (^RKFailureCallback)(RKObjectRequestOperation *operation, NSError *error);
 
@@ -220,20 +222,20 @@ typedef void (^RKHTTPOperation)(RKSuccessCallback successCallback, RKFailureCall
     operation(successCallback, failureCallback);
 }
 
-- (RKSuccessCallback)binarySuccessHandlerWithCallback:(void (^)(id))callback {
+- (RKSuccessCallback)binarySuccessHandlerWithCallback:(Callback)callback {
     return ^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         callback(operation.HTTPRequestOperation.responseData);
     };
 }
 
-- (RKSuccessCallback)successHandlerWithCallback:(void (^)(id))callback {
+- (RKSuccessCallback)successHandlerWithCallback:(Callback)callback {
     return ^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         id result = [mappingResult firstObject];
         callback(result);
     };
 }
 
-- (RKFailureCallback)serverFailureHandlerWithCallback:(void (^)(id))callback {
+- (RKFailureCallback)serverFailureHandlerWithCallback:(Callback)callback {
     return ^(RKObjectRequestOperation *operation, NSError *error) {
         id errors = [[error.userInfo objectForKey:RKObjectMapperErrorObjectsKey] firstObject];
         callback(errors);
