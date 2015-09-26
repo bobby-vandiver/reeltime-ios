@@ -6,6 +6,9 @@
 #import <RestKit/RestKit.h>
 #import "RKObjectManager+IncludeHeaders.h"
 
+typedef void (^RKSuccessCallback)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult);
+typedef void (^RKFailureCallback)(RKObjectRequestOperation *operation, NSError *error);
+
 @interface RTAuthenticationAwareHTTPClient ()
 
 @property RTAuthenticationAwareHTTPClientDelegate *delegate;
@@ -44,15 +47,21 @@
                  withParameters:(NSDictionary *)parameters
                         success:(SuccessCallback)success
                         failure:(FailureCallback)failure {
-    NSDictionary *headers = [self authorizationHeader];
-    [self getForPath:path withParameters:parameters headers:headers success:success failure:failure];
+
+    [self performOperation:^{
+       NSDictionary *headers = [self authorizationHeader];
+       [self getForPath:path withParameters:parameters headers:headers success:success failure:failure];
+   }];
 }
 
 - (void)unauthenticatedGetForPath:(NSString *)path
                    withParameters:(NSDictionary *)parameters
                           success:(SuccessCallback)success
                           failure:(FailureCallback)failure {
-    [self getForPath:path withParameters:parameters headers:nil success:success failure:failure];
+
+    [self performOperation:^{
+        [self getForPath:path withParameters:parameters headers:nil success:success failure:failure];
+    }];
 }
 
 - (void)authenticatedPostForPath:(NSString *)path
@@ -60,31 +69,43 @@
                    formDataBlock:(MultipartFormDataBlock)formDataBlock
                          success:(SuccessCallback)success
                          failure:(FailureCallback)failure {
-    NSDictionary *headers = [self authorizationHeader];
-    [self postForPath:path withParameters:parameters headers:headers formDataBlock:formDataBlock success:success failure:failure];
+    
+    [self performOperation:^{
+        NSDictionary *headers = [self authorizationHeader];
+        [self postForPath:path withParameters:parameters headers:headers formDataBlock:formDataBlock success:success failure:failure];
+    }];
 }
 
 - (void)authenticatedPostForPath:(NSString *)path
                   withParameters:(NSDictionary *)parameters
                          success:(SuccessCallback)success
                          failure:(FailureCallback)failure {
-    NSDictionary *headers = [self authorizationHeader];
-    [self postForPath:path withParameters:parameters headers:headers formDataBlock:nil success:success failure:failure];
+    
+    [self performOperation:^{
+        NSDictionary *headers = [self authorizationHeader];
+        [self postForPath:path withParameters:parameters headers:headers formDataBlock:nil success:success failure:failure];
+    }];
 }
 
 - (void)unauthenticatedPostForPath:(NSString *)path
                     withParameters:(NSDictionary *)parameters
                            success:(SuccessCallback)success
                            failure:(FailureCallback)failure {
-    [self postForPath:path withParameters:parameters headers:nil formDataBlock:nil success:success failure:failure];
+    
+    [self performOperation:^{
+        [self postForPath:path withParameters:parameters headers:nil formDataBlock:nil success:success failure:failure];
+    }];
 }
 
 - (void)authenticatedDeleteForPath:(NSString *)path
                     withParameters:(NSDictionary *)parameters
                            success:(SuccessCallback)success
                            failure:(FailureCallback)failure {
-    NSDictionary *headers = [self authorizationHeader];
-    [self deleteForPath:path withParameters:parameters headers:headers success:success failure:failure];
+    
+    [self performOperation:^{
+        NSDictionary *headers = [self authorizationHeader];
+        [self deleteForPath:path withParameters:parameters headers:headers success:success failure:failure];
+    }];
 }
 
 - (void)getForPath:(NSString *)path
@@ -181,20 +202,24 @@
     return @{RTAuthorizationHeader:bearerTokenHeader};
 }
 
-- (void (^)(RKObjectRequestOperation *, RKMappingResult *))binarySuccessHandlerWithCallback:(void (^)(id))callback {
+- (void)performOperation:(void(^)())operation {
+    operation();
+}
+
+- (RKSuccessCallback)binarySuccessHandlerWithCallback:(void (^)(id))callback {
     return ^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         callback(operation.HTTPRequestOperation.responseData);
     };
 }
 
-- (void (^)(RKObjectRequestOperation *, RKMappingResult *))successHandlerWithCallback:(void (^)(id))callback {
+- (RKSuccessCallback)successHandlerWithCallback:(void (^)(id))callback {
     return ^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         id result = [mappingResult firstObject];
         callback(result);
     };
 }
 
-- (void (^)(RKObjectRequestOperation *, NSError *))serverFailureHandlerWithCallback:(void (^)(id))callback {
+- (RKFailureCallback)serverFailureHandlerWithCallback:(void (^)(id))callback {
     return ^(RKObjectRequestOperation *operation, NSError *error) {
         id errors = [[error.userInfo objectForKey:RKObjectMapperErrorObjectsKey] firstObject];
         callback(errors);
