@@ -111,7 +111,7 @@ describe(@"ReelTime Client", ^{
         it(@"fails due to bad client credentials", ^{
             [helper stubUnauthenticatedRequestWithMethod:POST
                                                 urlRegex:tokenUrlRegex
-                                     rawResponseFilename:@"token-bad-client-credentials"];
+                                     rawResponseFilename:TOKEN_ERROR_BAD_CLIENT_CREDENTIALS_FILENAME];
             
             waitUntil(^(DoneCallback done) {
                 [client tokenWithClientCredentials:clientCredentials
@@ -120,8 +120,8 @@ describe(@"ReelTime Client", ^{
                                                callbacks.shouldNotExecute(done);
                                            }
                                            failure:^(RTOAuth2TokenError *error) {
-                                               expect(error.errorCode).to.equal(@"invalid_client");
-                                               expect(error.errorDescription).to.equal(@"Bad client credentials");
+                                               expect(error.errorCode).to.equal(TOKEN_ERROR_BAD_CLIENT_CREDENTIALS_ERROR_CODE);
+                                               expect(error.errorDescription).to.equal(TOKEN_ERROR_BAD_CLIENT_CREDENTIALS_ERROR_DESCRIPTION);
                                                done();
                                            }];
             });
@@ -130,7 +130,7 @@ describe(@"ReelTime Client", ^{
         it(@"fails due to bad user credentials", ^{
             [helper stubUnauthenticatedRequestWithMethod:POST
                                                 urlRegex:tokenUrlRegex
-                                     rawResponseFilename:@"token-bad-user-credentials"];
+                                     rawResponseFilename:TOKEN_ERROR_BAD_USER_CREDENTIALS_FILENAME];
 
             waitUntil(^(DoneCallback done) {
                 [client tokenWithClientCredentials:clientCredentials
@@ -139,8 +139,8 @@ describe(@"ReelTime Client", ^{
                                                callbacks.shouldNotExecute(done);
                                            }
                                            failure:^(RTOAuth2TokenError *error) {
-                                               expect(error.errorCode).to.equal(@"invalid_grant");
-                                               expect(error.errorDescription).to.equal(@"Bad credentials");
+                                               expect(error.errorCode).to.equal(TOKEN_ERROR_BAD_USER_CREDENTIALS_ERROR_CODE);
+                                               expect(error.errorDescription).to.equal(TOKEN_ERROR_BAD_USER_CREDENTIALS_ERROR_DESCRIPTION);
                                                done();
                                            }];
             });
@@ -149,13 +149,17 @@ describe(@"ReelTime Client", ^{
         it(@"is successful and receives the token", ^{
             [helper stubUnauthenticatedRequestWithMethod:POST
                                                 urlRegex:tokenUrlRegex
-                                     rawResponseFilename:@"token-successful"];
+                                     rawResponseFilename:SUCCESSFUL_TOKEN_FILENAME];
 
             waitUntil(^(DoneCallback done) {
                 [client tokenWithClientCredentials:clientCredentials
                                    userCredentials:userCredentials
                                            success:^(RTOAuth2Token *token) {
-                                               expect(token.accessToken).to.equal(@"940a0300-ddd7-4302-873c-815a2a6b87ac");
+                                               expect(token.tokenType).to.equal(SUCCESSFUL_TOKEN_TOKEN_TYPE);
+                                               expect(token.accessToken).to.equal(SUCCESSFUL_TOKEN_ACCESS_TOKEN);
+                                               expect(token.refreshToken).to.equal(SUCCESSFUL_TOKEN_REFRESH_TOKEN);
+                                               expect(token.scope).to.equal(SUCCESSFUL_TOKEN_SCOPE);
+                                               expect(token.expiresIn).to.equal(@(SUCCESSFUL_TOKEN_EXPIRES_IN));
                                                done();
                                            }
                                            failure:^(RTOAuth2TokenError *error) {

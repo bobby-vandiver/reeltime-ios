@@ -30,4 +30,8 @@
     return token.accessToken;
 }
 
+- (void)authenticatedRequestFailedWithTokenError:(RTOAuth2TokenError *)tokenError {
+    
+}
+
 @end

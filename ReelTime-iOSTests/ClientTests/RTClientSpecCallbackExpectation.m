@@ -48,6 +48,21 @@ NSString *const SUCCESSFUL_OK_WITH_VIDEOS_LIST_EMPTY = @"video-list-no-videos";
 NSString *const SUCCESSFUL_OK_WITH_VIDEOS_LIST_ONE_VIDEO = @"video-list-one-video";
 NSString *const SUCCESSFUL_OK_WITH_VIDEOS_LIST_MULTIPLE_VIDEOS = @"video-list-multiple-videos";
 
+NSString *const TOKEN_ERROR_BAD_CLIENT_CREDENTIALS_FILENAME = @"token-bad-client-credentials";
+NSString *const TOKEN_ERROR_BAD_CLIENT_CREDENTIALS_ERROR_CODE = @"invalid_client";
+NSString *const TOKEN_ERROR_BAD_CLIENT_CREDENTIALS_ERROR_DESCRIPTION = @"Bad client credentials";
+
+NSString *const TOKEN_ERROR_BAD_USER_CREDENTIALS_FILENAME = @"token-bad-user-credentials";
+NSString *const TOKEN_ERROR_BAD_USER_CREDENTIALS_ERROR_CODE = @"invalid_grant";
+NSString *const TOKEN_ERROR_BAD_USER_CREDENTIALS_ERROR_DESCRIPTION = @"Bad credentials";
+
+NSString *const SUCCESSFUL_TOKEN_FILENAME = @"token-successful";
+NSString *const SUCCESSFUL_TOKEN_TOKEN_TYPE = @"bearer";
+NSString *const SUCCESSFUL_TOKEN_ACCESS_TOKEN = @"940a0300-ddd7-4302-873c-815a2a6b87ac";
+NSString *const SUCCESSFUL_TOKEN_REFRESH_TOKEN = @"cb9f2c52-3e74-4bd7-9327-ba29bd31cb13";
+NSString *const SUCCESSFUL_TOKEN_SCOPE = @"reels-read audiences-read videos-write users-write videos-read audiences-write users-read reels-write";
+const NSInteger SUCCESSFUL_TOKEN_EXPIRES_IN = 43163;
+
 @implementation RTClientSpecCallbackExpectation
 
 - (void (^)(DoneCallback))shouldNotExecute {
