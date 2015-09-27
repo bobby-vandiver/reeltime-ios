@@ -1,0 +1,10 @@
+HTTP/1.1 401 Unauthorized
+Server: Apache-Coyote/1.1
+Cache-Control: no-store
+Pragma: no-cache
+WWW-Authenticate: Bearer error="invalid_token", error_description="Invalid refresh token (expired): b6e15b06-29a0-4a19-a45f-b32803edaa1c"
+Content-Type: application/json;charset=UTF-8
+Transfer-Encoding: chunked
+Date: Sat, 26 Sep 2015 17:02:34 GMT
+
+{"error":"invalid_token","error_description":"Invalid refresh token (expired): b6e15b06-29a0-4a19-a45f-b32803edaa1c"}

@@ -56,6 +56,14 @@ NSString *const TOKEN_ERROR_BAD_USER_CREDENTIALS_FILENAME = @"token-bad-user-cre
 NSString *const TOKEN_ERROR_BAD_USER_CREDENTIALS_ERROR_CODE = @"invalid_grant";
 NSString *const TOKEN_ERROR_BAD_USER_CREDENTIALS_ERROR_DESCRIPTION = @"Bad credentials";
 
+NSString *const TOKEN_ERROR_EXPIRED_ACCESS_TOKEN_FILENAME = @"token-expired-access-token";
+NSString *const TOKEN_ERROR_EXPIRED_ACCESS_TOKEN_ERROR_CODE = @"invalid_token";
+NSString *const TOKEN_ERROR_EXPIRED_ACCESS_TOKEN_ERROR_DESCRIPTION = @"Access token expired: 1e08847b-13c6-47e9-bf1b-330f043c420a";
+
+NSString *const TOKEN_ERROR_EXPIRED_REFRESH_TOKEN_FILENAME = @"token-expired-refresh-token";
+NSString *const TOKEN_ERROR_EXPIRED_REFRESH_TOKEN_ERROR_CODE = @"invalid_token";
+NSString *const TOKEN_ERROR_EXPIRED_REFRESH_TOKEN_ERROR_DESCRIPTION = @"Invalid refresh token (expired): b6e15b06-29a0-4a19-a45f-b32803edaa1c";
+
 NSString *const SUCCESSFUL_TOKEN_FILENAME = @"token-successful";
 NSString *const SUCCESSFUL_TOKEN_TOKEN_TYPE = @"bearer";
 NSString *const SUCCESSFUL_TOKEN_ACCESS_TOKEN = @"940a0300-ddd7-4302-873c-815a2a6b87ac";

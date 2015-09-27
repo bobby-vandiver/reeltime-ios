@@ -1,0 +1,10 @@
+HTTP/1.1 401 Unauthorized
+Server: Apache-Coyote/1.1
+Cache-Control: no-store
+Pragma: no-cache
+WWW-Authenticate: Bearer realm="ReelTime", error="invalid_token", error_description="Access token expired: 1e08847b-13c6-47e9-bf1b-330f043c420a"
+Content-Type: application/json;charset=UTF-8
+Transfer-Encoding: chunked
+Date: Sat, 26 Sep 2015 17:01:41 GMT
+
+{"error":"invalid_token","error_description":"Access token expired: 1e08847b-13c6-47e9-bf1b-330f043c420a"}

@@ -108,6 +108,8 @@
 		712B2BCD1AAFB2010026258A /* RTPagedListDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 712B2BCC1AAFB2010026258A /* RTPagedListDataManager.m */; };
 		712B2BD01AAFB8870026258A /* RTPagedListInteractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 712B2BCF1AAFB8870026258A /* RTPagedListInteractorSpec.m */; };
 		712B2BD41AAFBEFD0026258A /* RTPagedListPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 712B2BD31AAFBEFD0026258A /* RTPagedListPresenter.m */; };
+		712BC7EF1BB797B7004D4498 /* token-expired-access-token.txt in Resources */ = {isa = PBXBuildFile; fileRef = 712BC7ED1BB797B7004D4498 /* token-expired-access-token.txt */; };
+		712BC7F01BB797B7004D4498 /* token-expired-refresh-token.txt in Resources */ = {isa = PBXBuildFile; fileRef = 712BC7EE1BB797B7004D4498 /* token-expired-refresh-token.txt */; };
 		712BE2FC1A75D74300478277 /* RTClientCredentialsStoreSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 712BE2FB1A75D74300478277 /* RTClientCredentialsStoreSpec.m */; };
 		712BE3021A75D74C00478277 /* EXPMatchers+beError.m in Sources */ = {isa = PBXBuildFile; fileRef = 712BE2FF1A75D74C00478277 /* EXPMatchers+beError.m */; };
 		712BE3031A75D74C00478277 /* RTTestCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 712BE3011A75D74C00478277 /* RTTestCommon.m */; };
@@ -656,6 +658,8 @@
 		712B2BCF1AAFB8870026258A /* RTPagedListInteractorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTPagedListInteractorSpec.m; sourceTree = "<group>"; };
 		712B2BD21AAFBEFD0026258A /* RTPagedListPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTPagedListPresenter.h; sourceTree = "<group>"; };
 		712B2BD31AAFBEFD0026258A /* RTPagedListPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTPagedListPresenter.m; sourceTree = "<group>"; };
+		712BC7ED1BB797B7004D4498 /* token-expired-access-token.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "token-expired-access-token.txt"; sourceTree = "<group>"; };
+		712BC7EE1BB797B7004D4498 /* token-expired-refresh-token.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "token-expired-refresh-token.txt"; sourceTree = "<group>"; };
 		712BE2FB1A75D74300478277 /* RTClientCredentialsStoreSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTClientCredentialsStoreSpec.m; sourceTree = "<group>"; };
 		712BE2FE1A75D74C00478277 /* EXPMatchers+beError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+beError.h"; sourceTree = "<group>"; };
 		712BE2FF1A75D74C00478277 /* EXPMatchers+beError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EXPMatchers+beError.m"; sourceTree = "<group>"; };
@@ -2931,6 +2935,8 @@
 			children = (
 				717215CA1A865C8E0002ECC7 /* token-bad-client-credentials.txt */,
 				717215CB1A865C8E0002ECC7 /* token-bad-user-credentials.txt */,
+				712BC7ED1BB797B7004D4498 /* token-expired-access-token.txt */,
+				712BC7EE1BB797B7004D4498 /* token-expired-refresh-token.txt */,
 				717215CC1A865C8E0002ECC7 /* token-successful.txt */,
 			);
 			path = Token;
@@ -4191,8 +4197,10 @@
 				715A32A11AAA64800008F9CF /* accepted-video.txt in Resources */,
 				7112EF4D1AA915EF00BC7731 /* user-list-one-user.txt in Resources */,
 				7112EF5A1AA943A900BC7731 /* forbidden-with-errors.txt in Resources */,
+				712BC7F01BB797B7004D4498 /* token-expired-refresh-token.txt in Resources */,
 				7164D72A1ACB7568005D02FE /* small.png in Resources */,
 				711FF4BC1AA20CEC00E11BDE /* service-unavailable-with-errors.txt in Resources */,
+				712BC7EF1BB797B7004D4498 /* token-expired-access-token.txt in Resources */,
 				717215D01A865C8E0002ECC7 /* newsfeed-multiple-activities.txt in Resources */,
 				7112EF4F1AA9160500BC7731 /* single-user.txt in Resources */,
 				711FF4BA1AA20CEC00E11BDE /* bad-request-with-errors.txt in Resources */,
