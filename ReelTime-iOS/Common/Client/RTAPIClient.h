@@ -11,6 +11,11 @@
                            success:(TokenCallback)success
                            failure:(TokenErrorCallback)failure;
 
+- (void)refreshToken:(RTOAuth2Token *)token
+withClientCredentials:(RTClientCredentials *)clientCredentials
+             success:(TokenCallback)success
+             failure:(TokenErrorCallback)failure;
+
 - (void)registerAccount:(RTAccountRegistration *)registration
                 success:(ClientCredentialsCallback)success
                 failure:(ServerErrorsCallback)failure;

@@ -168,6 +168,81 @@ describe(@"ReelTime Client", ^{
             });
         });
     });
+    
+    describe(@"refreshing a token", ^{
+        __block NSRegularExpression *tokenUrlRegex;
+        __block RTOAuth2Token *token;
+        
+        beforeEach(^{
+            tokenUrlRegex = [helper createUrlRegexForEndpoint:API_TOKEN];
+            
+            token = [[RTOAuth2Token alloc] init];
+            token.refreshToken = refreshToken;
+        });
+        
+        afterEach(^{
+            expect(httpClient.lastParameters.allKeys).to.haveCountOf(5);
+            expect(httpClient.lastParameters[@"grant_type"]).to.equal(@"refresh_token");
+            expect(httpClient.lastParameters[@"refresh_token"]).to.equal(refreshToken);
+            expect(httpClient.lastParameters[@"client_id"]).to.equal(clientId);
+            expect(httpClient.lastParameters[@"client_secret"]).to.equal(clientSecret);
+            expect(httpClient.lastParameters[@"scope"]).to.equal(@"account-read account-write audiences-read audiences-write reels-read reels-write users-read users-write videos-read videos-write");
+        });
+        
+        it(@"fails due to bad client credentials", ^{
+            [helper stubUnauthenticatedRequestWithMethod:POST
+                                                urlRegex:tokenUrlRegex
+                                     rawResponseFilename:TOKEN_ERROR_BAD_CLIENT_CREDENTIALS_FILENAME];
+            
+            waitUntil(^(DoneCallback done) {
+                [client refreshToken:token
+               withClientCredentials:clientCredentials
+                             success:callbacks.shouldNotExecuteSuccessCallback(done)
+                             failure:^(RTOAuth2TokenError *error) {
+                                 expect(error.errorCode).to.equal(TOKEN_ERROR_BAD_CLIENT_CREDENTIALS_ERROR_CODE);
+                                 expect(error.errorDescription).to.equal(TOKEN_ERROR_BAD_CLIENT_CREDENTIALS_ERROR_DESCRIPTION);
+                                 done();
+                             }];
+            });
+        });
+        
+        it(@"fails due to expired refresh token", ^{
+            [helper stubUnauthenticatedRequestWithMethod:POST
+                                                urlRegex:tokenUrlRegex
+                                     rawResponseFilename:TOKEN_ERROR_EXPIRED_REFRESH_TOKEN_FILENAME];
+            
+            waitUntil(^(DoneCallback done) {
+                [client refreshToken:token
+               withClientCredentials:clientCredentials
+                             success:callbacks.shouldNotExecuteSuccessCallback(done)
+                             failure:^(RTOAuth2TokenError *error) {
+                                 expect(error.errorCode).to.equal(TOKEN_ERROR_EXPIRED_REFRESH_TOKEN_ERROR_CODE);
+                                 expect(error.errorDescription).to.equal(TOKEN_ERROR_EXPIRED_REFRESH_TOKEN_ERROR_DESCRIPTION);
+                                 done();
+                             }];
+            });
+        });
+        
+        it(@"is successful and receives the token", ^{
+            [helper stubUnauthenticatedRequestWithMethod:POST
+                                                urlRegex:tokenUrlRegex
+                                     rawResponseFilename:SUCCESSFUL_TOKEN_FILENAME];
+            
+            waitUntil(^(DoneCallback done) {
+                [client refreshToken:token
+               withClientCredentials:clientCredentials
+                             success:^(RTOAuth2Token *token) {
+                                 expect(token.tokenType).to.equal(SUCCESSFUL_TOKEN_TOKEN_TYPE);
+                                 expect(token.accessToken).to.equal(SUCCESSFUL_TOKEN_ACCESS_TOKEN);
+                                 expect(token.refreshToken).to.equal(SUCCESSFUL_TOKEN_REFRESH_TOKEN);
+                                 expect(token.scope).to.equal(SUCCESSFUL_TOKEN_SCOPE);
+                                 expect(token.expiresIn).to.equal(@(SUCCESSFUL_TOKEN_EXPIRES_IN));
+                                 done();
+                             }
+                             failure:callbacks.shouldNotExecuteFailureCallback(done)];
+            });
+        });
+    });
 
     describe(@"account registration", ^{
         __block NSRegularExpression *accountRegistrationUrlRegex;
@@ -2097,7 +2172,7 @@ describe(@"ReelTime Client", ^{
                         [client thumbnailForVideoId:videoId
                                      withResolution:resolution
                                             success:callbacks.shouldNotExecuteSuccessCallback(done)
-                                            failure:callbacks.shouldExecuteFailureCallbackWithMessage(BAD_REQUEST_ERROR_MESSAGE, done)];
+                                                failure:callbacks.shouldExecuteFailureCallbackWithMessage(BAD_REQUEST_ERROR_MESSAGE, done)];
                     });
                 });
                 

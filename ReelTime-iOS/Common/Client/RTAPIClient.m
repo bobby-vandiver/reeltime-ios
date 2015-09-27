@@ -58,6 +58,25 @@ static NSString *const ALL_SCOPES = @"account-read account-write audiences-read 
                                         failure:failure];
 }
 
+- (void)refreshToken:(RTOAuth2Token *)token
+withClientCredentials:(RTClientCredentials *)clientCredentials
+             success:(TokenCallback)success
+             failure:(TokenErrorCallback)failure {
+    NSDictionary *parameters = @{
+                                 @"grant_type":      @"refresh_token",
+                                 @"refresh_token":   token.refreshToken,
+                                 @"client_id":       clientCredentials.clientId,
+                                 @"client_secret":   clientCredentials.clientSecret,
+                                 @"scope":           ALL_SCOPES
+                                 };
+    
+    [self.httpClient unauthenticatedPostForPath:API_TOKEN
+                                 withParameters:parameters
+                                        success:success
+                                        failure:failure];
+    
+}
+
 - (void)registerAccount:(RTAccountRegistration *)registration
                 success:(ClientCredentialsCallback)success
                 failure:(ServerErrorsCallback)failure {
