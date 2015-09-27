@@ -50,6 +50,11 @@
                                       statusCode:403];
 }
 
++ (RKResponseDescriptor *)accountRemovalTokenErrorDescriptor {
+    return [self tokenErrorDescriptorForMethod:RKRequestMethodDELETE
+                                          path:API_REMOVE_ACCOUNT];
+}
+
 + (RKResponseDescriptor *)listClientsDescriptor {
     return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory clientListMapping]
                                                         method:RKRequestMethodGET
@@ -553,6 +558,15 @@
                                                        path:(NSString *)path
                                                 statusCodes:(NSIndexSet *)statusCodes {
     return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory emptyMapping]
+                                                        method:method
+                                                   pathPattern:path
+                                                   statusCodes:statusCodes];
+}
+
++ (RKResponseDescriptor *)tokenErrorDescriptorForMethod:(RKRequestMethod)method
+                                                   path:(NSString *)path {
+    NSIndexSet *statusCodes = [NSIndexSet indexSetWithIndex:401];
+    return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory tokenErrorMapping]
                                                         method:method
                                                    pathPattern:path
                                                    statusCodes:statusCodes];

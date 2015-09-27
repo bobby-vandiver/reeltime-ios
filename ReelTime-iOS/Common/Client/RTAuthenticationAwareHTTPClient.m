@@ -2,6 +2,7 @@
 #import "RTAuthenticationAwareHTTPClientDelegate.h"
 
 #import "RTAuthorizationHeaderSupport.h"
+#import "RTOAuth2TokenError.h"
 
 #import <RestKit/RestKit.h>
 #import "RKObjectManager+IncludeHeaders.h"
@@ -242,7 +243,14 @@ typedef void (^RKHTTPOperation)(RKSuccessCallback successCallback, RKFailureCall
     
     return ^(RKObjectRequestOperation *operation, NSError *error) {
         id errors = [[error.userInfo objectForKey:RKObjectMapperErrorObjectsKey] firstObject];
-        callback(errors);
+        
+        if (authenticated && [errors isKindOfClass:[RTOAuth2TokenError class]]) {
+            RTOAuth2TokenError *tokenError = (RTOAuth2TokenError *)errors;
+            [self.delegate authenticatedRequestFailedWithTokenError:tokenError];
+        }
+        else {
+            callback(errors);
+        }
     };
 }
 

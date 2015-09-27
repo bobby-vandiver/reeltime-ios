@@ -11,6 +11,7 @@
 
 + (RKResponseDescriptor *)accountRemovalDescriptor;
 + (RKResponseDescriptor *)accountRemovalErrorDescriptor;
++ (RKResponseDescriptor *)accountRemovalTokenErrorDescriptor;
 
 + (RKResponseDescriptor *)listClientsDescriptor;
 + (RKResponseDescriptor *)listClientsErrorDescriptor;

@@ -64,6 +64,7 @@
                                           [RTResponseDescriptorFactory accountRegistrationErrorDescriptor],
                                           [RTResponseDescriptorFactory accountRemovalDescriptor],
                                           [RTResponseDescriptorFactory accountRemovalErrorDescriptor],
+                                          [RTResponseDescriptorFactory accountRemovalTokenErrorDescriptor],
                                           [RTResponseDescriptorFactory listClientsDescriptor],
                                           [RTResponseDescriptorFactory listClientsErrorDescriptor],
                                           [RTResponseDescriptorFactory clientRegistrationDescriptor],
