@@ -4,15 +4,10 @@
 #import "RTAuthorizationHeaderSupport.h"
 #import "RTOAuth2TokenError.h"
 
+#import "RTLogging.h"
+
 #import <RestKit/RestKit.h>
 #import "RKObjectManager+IncludeHeaders.h"
-
-typedef void (^Callback)(id);
-
-typedef void (^RKSuccessCallback)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult);
-typedef void (^RKFailureCallback)(RKObjectRequestOperation *operation, NSError *error);
-
-typedef void (^RKHTTPOperation)(RKSuccessCallback successCallback, RKFailureCallback failureCallback);
 
 @interface RTAuthenticationAwareHTTPClient ()
 

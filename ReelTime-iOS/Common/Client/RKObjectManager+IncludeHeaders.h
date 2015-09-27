@@ -1,5 +1,12 @@
 #import <RestKit/RestKit.h>
 
+typedef void (^Callback)(id);
+
+typedef void (^RKSuccessCallback)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult);
+typedef void (^RKFailureCallback)(RKObjectRequestOperation *operation, NSError *error);
+
+typedef void (^RKHTTPOperation)(RKSuccessCallback successCallback, RKFailureCallback failureCallback);
+
 @interface RKObjectManager (IncludeHeaders)
 
 - (void)getObject:(id)object

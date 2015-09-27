@@ -49,8 +49,6 @@ describe(@"ReelTime Client", ^{
     __block RTUserCredentials *userCredentials;
     __block RTClientCredentials *clientCredentials;
     
-    __block MKTArgumentCaptor *captor;
-    
     beforeAll(^{
         [[LSNocilla sharedInstance] start];
     });
@@ -83,8 +81,6 @@ describe(@"ReelTime Client", ^{
         
         [factory attachPostProcessor:patcher];
         client = [(RTClientAssembly *)factory reelTimeClient];
-        
-        captor = [[MKTArgumentCaptor alloc] init];
     });
     
     afterEach(^{
@@ -476,24 +472,6 @@ describe(@"ReelTime Client", ^{
                     [client removeAccountWithSuccess:callbacks.shouldNotExecuteSuccessCallback(done)
                                              failure:callbacks.shouldExecuteFailureCallbackWithMessage(FORBIDDEN_ERROR_MESSAGE, done)];
                 });
-            });
-            
-            xit(@"encountered a token error", ^{
-                [helper stubAuthenticatedRequestWithMethod:DELETE
-                                                  urlRegex:accountRemovalUrlRegex
-                                       rawResponseFilename:TOKEN_ERROR_EXPIRED_ACCESS_TOKEN_FILENAME];
-                
-                waitUntil(^(DoneCallback done) {
-                    [client removeAccountWithSuccess:callbacks.shouldNotExecuteSuccessCallback(done)
-                                             failure:callbacks.shouldNotExecuteFailureCallback(done)];
-                    done();
-                });
-
-                [verify(delegate) authenticatedRequestFailedWithTokenError:[captor capture]];
-
-                RTOAuth2TokenError *tokenError = (RTOAuth2TokenError *)captor.value;
-                expect(tokenError.errorCode).to.equal(TOKEN_ERROR_EXPIRED_ACCESS_TOKEN_ERROR_CODE);
-                expect(tokenError.errorDescription).to.equal(TOKEN_ERROR_EXPIRED_ACCESS_TOKEN_ERROR_DESCRIPTION);
             });
         });
         

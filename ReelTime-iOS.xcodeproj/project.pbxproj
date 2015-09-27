@@ -420,6 +420,7 @@
 		71BF08411B55ECCC00B61504 /* RTLogoutPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 71BF08401B55ECCC00B61504 /* RTLogoutPresenter.m */; };
 		71BF08441B55ED1300B61504 /* RTLogoutPresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71BF08431B55ED1300B61504 /* RTLogoutPresenterSpec.m */; };
 		71BF08481B56050300B61504 /* RTLogoutAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 71BF08471B56050300B61504 /* RTLogoutAssembly.m */; };
+		71BF64241BB83DB50039ADE6 /* RTAuthenticationAwareHTTPClientSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71BF64231BB83DB50039ADE6 /* RTAuthenticationAwareHTTPClientSpec.m */; };
 		71C5C09D1A55B29700CAAFAC /* RTLoginPresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C5C09C1A55B29700CAAFAC /* RTLoginPresenterSpec.m */; };
 		71C5C0AC1A55EAE700CAAFAC /* RTOAuth2Token.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C5C0A51A55EAE700CAAFAC /* RTOAuth2Token.m */; };
 		71C5C0AD1A55EAE700CAAFAC /* RTOAuth2TokenError.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C5C0A71A55EAE700CAAFAC /* RTOAuth2TokenError.m */; };
@@ -1225,6 +1226,7 @@
 		71BF08431B55ED1300B61504 /* RTLogoutPresenterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLogoutPresenterSpec.m; sourceTree = "<group>"; };
 		71BF08461B56050300B61504 /* RTLogoutAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLogoutAssembly.h; sourceTree = "<group>"; };
 		71BF08471B56050300B61504 /* RTLogoutAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLogoutAssembly.m; sourceTree = "<group>"; };
+		71BF64231BB83DB50039ADE6 /* RTAuthenticationAwareHTTPClientSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAuthenticationAwareHTTPClientSpec.m; sourceTree = "<group>"; };
 		71C5C09C1A55B29700CAAFAC /* RTLoginPresenterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLoginPresenterSpec.m; sourceTree = "<group>"; };
 		71C5C0A41A55EAE700CAAFAC /* RTOAuth2Token.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTOAuth2Token.h; path = "ReelTime-iOS/Common/Model/RTOAuth2Token.h"; sourceTree = SOURCE_ROOT; };
 		71C5C0A51A55EAE700CAAFAC /* RTOAuth2Token.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTOAuth2Token.m; path = "ReelTime-iOS/Common/Model/RTOAuth2Token.m"; sourceTree = SOURCE_ROOT; };
@@ -2992,6 +2994,7 @@
 				713470BB1A9ABFAB000CFCA3 /* RTClientSpecHelper.h */,
 				713470BC1A9ABFAB000CFCA3 /* RTClientSpecHelper.m */,
 				717A4B7D1A53503B004C2BC1 /* RTRestAPIMappingFactorySpec.m */,
+				71BF64231BB83DB50039ADE6 /* RTAuthenticationAwareHTTPClientSpec.m */,
 			);
 			path = ClientTests;
 			sourceTree = "<group>";
@@ -4615,6 +4618,7 @@
 				7117C0801A8998DF00EC0152 /* RTVideoSpec.m in Sources */,
 				713F4ACC1BADAC6A008220EC /* RTRemoveVideoFromReelPresenterSpec.m in Sources */,
 				713DCAAB1A6C9D1C0032B252 /* RTAccountRegistrationInteractorSpec.m in Sources */,
+				71BF64241BB83DB50039ADE6 /* RTAuthenticationAwareHTTPClientSpec.m in Sources */,
 				7114DF881AB4C38C003B1D2E /* RTBrowseReelsPresenterSpec.m in Sources */,
 				710B6B7E1B77105F009318D0 /* RTPlayVideoWireframeSpec.m in Sources */,
 				715C54191AD4AFC3009C755F /* RTUserSummaryInteractorSpec.m in Sources */,
