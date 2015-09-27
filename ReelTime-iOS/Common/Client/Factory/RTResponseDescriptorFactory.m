@@ -68,6 +68,11 @@
                                       statusCode:400];
 }
 
++ (RKResponseDescriptor *)listClientsTokenErrorDescriptor {
+    return [self tokenErrorDescriptorForMethod:RKRequestMethodGET
+                                          path:API_LIST_CLIENTS];
+}
+
 + (RKResponseDescriptor *)clientRegistrationDescriptor {
     return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory clientCredentialsMapping]
                                                         method:RKRequestMethodPOST
@@ -95,6 +100,11 @@
                                       statusCode:403];
 }
 
++ (RKResponseDescriptor *)clientRemovalTokenErrorDescriptor {
+    return [self tokenErrorDescriptorForMethod:RKRequestMethodDELETE
+                                          path:API_REMOVE_CLIENT];
+}
+
 + (RKResponseDescriptor *)accountConfirmationDescriptor {
     return [self noResponseBodyDescriptorForMethod:RKRequestMethodPOST
                                               path:API_CONFIRM_ACCOUNT
@@ -105,6 +115,11 @@
     return [self serverErrorsDescriptorForMethod:RKRequestMethodPOST
                                             path:API_CONFIRM_ACCOUNT
                                       statusCode:403];
+}
+
++ (RKResponseDescriptor *)accountConfirmationTokenErrorDescriptor {
+    return [self tokenErrorDescriptorForMethod:RKRequestMethodPOST
+                                          path:API_CONFIRM_ACCOUNT];
 }
 
 + (RKResponseDescriptor *)accountConfirmationSendEmailDescriptor {
@@ -121,6 +136,11 @@
                                      statusCodes:statusCodes];
 }
 
++ (RKResponseDescriptor *)accountConfirmationSendEmailTokenErrorDescriptor {
+    return [self tokenErrorDescriptorForMethod:RKRequestMethodPOST
+                                          path:API_CONFIRM_ACCOUNT_SEND_EMAIL];
+}
+
 + (RKResponseDescriptor *)changeDisplayNameDescriptor {
     return [self noResponseBodyDescriptorForMethod:RKRequestMethodPOST
                                               path:API_CHANGE_DISPLAY_NAME
@@ -133,6 +153,11 @@
                                       statusCode:400];
 }
 
++ (RKResponseDescriptor *)changeDisplayNameTokenErrorDescriptor {
+    return [self tokenErrorDescriptorForMethod:RKRequestMethodPOST
+                                          path:API_CHANGE_DISPLAY_NAME];
+}
+
 + (RKResponseDescriptor *)changePasswordDescriptor {
     return [self noResponseBodyDescriptorForMethod:RKRequestMethodPOST
                                               path:API_CHANGE_PASSWORD
@@ -143,6 +168,11 @@
     return [self serverErrorsDescriptorForMethod:RKRequestMethodPOST
                                             path:API_CHANGE_PASSWORD
                                       statusCode:400];
+}
+
++ (RKResponseDescriptor *)changePasswordTokenErrorDescriptor {
+    return [self tokenErrorDescriptorForMethod:RKRequestMethodPOST
+                                          path:API_CHANGE_PASSWORD];
 }
 
 + (RKResponseDescriptor *)resetPasswordForExistingClientDescriptor {
@@ -196,6 +226,11 @@
                                       statusCode:400];
 }
 
++ (RKResponseDescriptor *)newsfeedTokenErrorDescriptor {
+    return [self tokenErrorDescriptorForMethod:RKRequestMethodGET
+                                          path:API_NEWSFEED];
+}
+
 + (RKResponseDescriptor *)revokeAccessTokenDescriptor {
     return [self noResponseBodyDescriptorForMethod:RKRequestMethodPOST
                                               path:API_REMOVE_TOKEN
@@ -206,6 +241,11 @@
     return [self serverErrorsDescriptorForMethod:RKRequestMethodPOST
                                             path:API_REMOVE_TOKEN
                                       statusCode:400];
+}
+
++ (RKResponseDescriptor *)revokeAccessTokenTokenErrorDescriptor {
+    return [self tokenErrorDescriptorForMethod:RKRequestMethodPOST
+                                          path:API_REMOVE_TOKEN];
 }
 
 + (RKResponseDescriptor *)listReelsDescriptor {
@@ -221,6 +261,11 @@
                                       statusCode:400];
 }
 
++ (RKResponseDescriptor *)listReelsTokenErrorDescriptor {
+    return [self tokenErrorDescriptorForMethod:RKRequestMethodGET
+                                          path:API_LIST_REELS];
+}
+
 + (RKResponseDescriptor *)addReelDescriptor {
     return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory reelMapping]
                                                         method:RKRequestMethodPOST
@@ -232,6 +277,11 @@
     return [self serverErrorsDescriptorForMethod:RKRequestMethodPOST
                                             path:API_ADD_REEL
                                       statusCode:400];
+}
+
++ (RKResponseDescriptor *)addReelTokenErrorDescriptor {
+    return [self tokenErrorDescriptorForMethod:RKRequestMethodPOST
+                                          path:API_ADD_REEL];
 }
 
 + (RKResponseDescriptor *)getReelDescriptor {
@@ -247,6 +297,11 @@
                                       statusCode:404];
 }
 
++ (RKResponseDescriptor *)getReelTokenErrorDescriptor {
+    return [self tokenErrorDescriptorForMethod:RKRequestMethodGET
+                                          path:API_GET_REEL];
+}
+
 + (RKResponseDescriptor *)deleteReelDescriptor {
     return [self noResponseBodyDescriptorForMethod:RKRequestMethodDELETE
                                               path:API_DELETE_REEL
@@ -258,6 +313,11 @@
     return [self serverErrorsDescriptorForMethod:RKRequestMethodDELETE
                                             path:API_DELETE_REEL
                                      statusCodes:statusCodes];
+}
+
++ (RKResponseDescriptor *)deleteReelTokenErrorDescriptor {
+    return [self tokenErrorDescriptorForMethod:RKRequestMethodDELETE
+                                          path:API_DELETE_REEL];
 }
 
 + (RKResponseDescriptor *)listReelVideosDescriptor {
@@ -274,6 +334,11 @@
                                      statusCodes:statusCodes];
 }
 
++ (RKResponseDescriptor *)listReelVideosTokenErrorDescriptor {
+    return [self tokenErrorDescriptorForMethod:RKRequestMethodGET
+                                          path:API_LIST_REEL_VIDEOS];
+}
+
 + (RKResponseDescriptor *)listAudienceMembersDescriptor {
     return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory userListMapping]
                                                         method:RKRequestMethodGET
@@ -286,6 +351,11 @@
     return [self serverErrorsDescriptorForMethod:RKRequestMethodGET
                                             path:API_LIST_AUDIENCE_MEMBERS
                                      statusCodes:statusCodes];
+}
+
++ (RKResponseDescriptor *)listAudienceMembersTokenErrorDescriptor {
+    return [self tokenErrorDescriptorForMethod:RKRequestMethodGET
+                                          path:API_LIST_AUDIENCE_MEMBERS];
 }
 
 + (RKResponseDescriptor *)addVideoToReelDescriptor {
@@ -301,6 +371,11 @@
                                      statusCodes:statusCodes];
 }
 
++ (RKResponseDescriptor *)addVideoToReelTokenErrorDescriptor {
+    return [self tokenErrorDescriptorForMethod:RKRequestMethodPOST
+                                          path:API_ADD_REEL_VIDEO];
+}
+
 + (RKResponseDescriptor *)removeVideoFromReelDescriptor {
     return [self noResponseBodyDescriptorForMethod:RKRequestMethodDELETE
                                               path:API_REMOVE_REEL_VIDEO
@@ -312,6 +387,11 @@
     return [self serverErrorsDescriptorForMethod:RKRequestMethodDELETE
                                             path:API_REMOVE_REEL_VIDEO
                                      statusCodes:statusCodes];
+}
+
++ (RKResponseDescriptor *)removeVideoFromReelTokenErrorDescriptor {
+    return [self tokenErrorDescriptorForMethod:RKRequestMethodDELETE
+                                          path:API_REMOVE_REEL_VIDEO];
 }
 
 + (RKResponseDescriptor *)joinAudienceDescriptor {
@@ -327,6 +407,11 @@
                                      statusCodes:statusCodes];
 }
 
++ (RKResponseDescriptor *)joinAudienceTokenErrorDescriptor {
+    return [self tokenErrorDescriptorForMethod:RKRequestMethodPOST
+                                          path:API_ADD_AUDIENCE_MEMBER];
+}
+
 + (RKResponseDescriptor *)leaveAudienceDescriptor {
     return [self noResponseBodyDescriptorForMethod:RKRequestMethodDELETE
                                               path:API_REMOVE_AUDIENCE_MEMBER
@@ -338,6 +423,11 @@
     return [self serverErrorsDescriptorForMethod:RKRequestMethodDELETE
                                             path:API_REMOVE_AUDIENCE_MEMBER
                                      statusCodes:statusCodes];
+}
+
++ (RKResponseDescriptor *)leaveAudienceTokenErrorDescriptor {
+    return [self tokenErrorDescriptorForMethod:RKRequestMethodDELETE
+                                          path:API_REMOVE_AUDIENCE_MEMBER];
 }
 
 + (RKResponseDescriptor *)listUsersDescriptor {
@@ -353,6 +443,11 @@
                                       statusCode:400];
 }
 
++ (RKResponseDescriptor *)listUsersTokenErrorDescriptor {
+    return [self tokenErrorDescriptorForMethod:RKRequestMethodGET
+                                          path:API_LIST_USERS];
+}
+
 + (RKResponseDescriptor *)getUserDescriptor {
     return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory userMapping]
                                                         method:RKRequestMethodGET
@@ -364,6 +459,11 @@
     return [self serverErrorsDescriptorForMethod:RKRequestMethodGET
                                             path:API_GET_USER
                                       statusCode:404];
+}
+
++ (RKResponseDescriptor *)getUserTokenErrorDescriptor {
+    return [self tokenErrorDescriptorForMethod:RKRequestMethodGET
+                                          path:API_GET_USER];
 }
 
 + (RKResponseDescriptor *)listUserReelsDescriptor {
@@ -380,6 +480,11 @@
                                      statusCodes:statusCodes];
 }
 
++ (RKResponseDescriptor *)listUserReelsTokenErrorDescriptor {
+    return [self tokenErrorDescriptorForMethod:RKRequestMethodGET
+                                          path:API_LIST_USER_REELS];
+}
+
 + (RKResponseDescriptor *)followUserDescriptor {
     return [self noResponseBodyDescriptorForMethod:RKRequestMethodPOST
                                               path:API_FOLLOW_USER
@@ -391,6 +496,11 @@
     return [self serverErrorsDescriptorForMethod:RKRequestMethodPOST
                                             path:API_FOLLOW_USER
                                      statusCodes:statusCodes];
+}
+
++ (RKResponseDescriptor *)followUserTokenErrorDescriptor {
+    return [self tokenErrorDescriptorForMethod:RKRequestMethodPOST
+                                          path:API_FOLLOW_USER];
 }
 
 + (RKResponseDescriptor *)unfollowUserDescriptor {
@@ -406,6 +516,11 @@
                                      statusCodes:statusCodes];
 }
 
++ (RKResponseDescriptor *)unfollowUserTokenErrorDescriptor {
+    return [self tokenErrorDescriptorForMethod:RKRequestMethodDELETE
+                                          path:API_UNFOLLOW_USER];
+}
+
 + (RKResponseDescriptor *)listFollowersDescriptor {
     return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory userListMapping]
                                                         method:RKRequestMethodGET
@@ -417,6 +532,11 @@
     return [self serverErrorsDescriptorForMethod:RKRequestMethodGET
                                             path:API_LIST_FOLLOWERS
                                       statusCode:400];
+}
+
++ (RKResponseDescriptor *)listFollowersTokenErrorDescriptor {
+    return [self tokenErrorDescriptorForMethod:RKRequestMethodGET
+                                          path:API_LIST_FOLLOWERS];
 }
 
 + (RKResponseDescriptor *)listFolloweesDescriptor {
@@ -432,6 +552,11 @@
                                       statusCode:400];
 }
 
++ (RKResponseDescriptor *)listFolloweesTokenErrorDescriptor {
+    return [self tokenErrorDescriptorForMethod:RKRequestMethodGET
+                                          path:API_LIST_FOLLOWEES];
+}
+
 + (RKResponseDescriptor *)listVideosDescriptor {
     return [RKResponseDescriptor responseDescriptorWithMapping:[RTRestAPIMappingFactory videoListMapping]
                                                         method:RKRequestMethodGET
@@ -443,6 +568,11 @@
     return [self serverErrorsDescriptorForMethod:RKRequestMethodGET
                                             path:API_LIST_VIDEOS
                                      statusCode:400];
+}
+
++ (RKResponseDescriptor *)listVideosTokenErrorDescriptor {
+    return [self tokenErrorDescriptorForMethod:RKRequestMethodGET
+                                          path:API_LIST_VIDEOS];
 }
 
 + (RKResponseDescriptor *)addVideoDescriptor {
@@ -464,6 +594,11 @@
                                      statusCodes:statusCodes];
 }
 
++ (RKResponseDescriptor *)addVideoTokenErrorDescriptor {
+    return [self tokenErrorDescriptorForMethod:RKRequestMethodPOST
+                                          path:API_ADD_VIDEO];
+}
+
 + (RKResponseDescriptor *)getVideoDescriptor {
     NSMutableIndexSet *statusCodes = [NSMutableIndexSet indexSet];
     
@@ -482,6 +617,11 @@
                                       statusCode:404];
 }
 
++ (RKResponseDescriptor *)getVideoTokenErrorDescriptor {
+    return [self tokenErrorDescriptorForMethod:RKRequestMethodGET
+                                          path:API_GET_VIDEO];
+}
+
 + (RKResponseDescriptor *)deleteVideoDescriptor {
     return [self noResponseBodyDescriptorForMethod:RKRequestMethodDELETE
                                               path:API_DELETE_VIDEO
@@ -494,10 +634,27 @@
                                       statusCode:404];
 }
 
++ (RKResponseDescriptor *)deleteVideoTokenErrorDescriptor {
+    return [self tokenErrorDescriptorForMethod:RKRequestMethodDELETE
+                                          path:API_DELETE_VIDEO];
+}
+
 + (RKResponseDescriptor *)getThumbnailDescriptor {
     return [self noResponseBodyDescriptorForMethod:RKRequestMethodGET
                                               path:API_GET_VIDEO_THUMBNAIL
                                         statusCode:200];
+}
+
++ (RKResponseDescriptor *)getThumbnailErrorDescriptor {
+    NSIndexSet *statusCodes = [self badRequestAndNotFoundStatusCodes];
+    return [self serverErrorsDescriptorForMethod:RKRequestMethodGET
+                                            path:API_GET_VIDEO_THUMBNAIL
+                                     statusCodes:statusCodes];
+}
+
++ (RKResponseDescriptor *)getThumbnailTokenErrorDescriptor {
+    return [self tokenErrorDescriptorForMethod:RKRequestMethodGET
+                                          path:API_GET_VIDEO_THUMBNAIL];
 }
 
 + (NSIndexSet *)forbiddenAndNotFoundStatusCodes {

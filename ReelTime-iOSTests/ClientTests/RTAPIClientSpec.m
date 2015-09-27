@@ -2087,6 +2087,32 @@ describe(@"ReelTime Client", ^{
                                             failure:callbacks.shouldNotExecuteFailureCallback(done)];
                     });
                 });
+
+                it(@"fails due to bad request", ^{
+                    [helper stubAuthenticatedRequestWithMethod:GET
+                                                      urlRegex:getThumbnailUrlRegex
+                                           rawResponseFilename:BAD_REQUEST_WITH_ERRORS_FILENAME];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client thumbnailForVideoId:videoId
+                                     withResolution:resolution
+                                            success:callbacks.shouldNotExecuteSuccessCallback(done)
+                                            failure:callbacks.shouldExecuteFailureCallbackWithMessage(BAD_REQUEST_ERROR_MESSAGE, done)];
+                    });
+                });
+                
+                it(@"fails due to not found", ^{
+                    [helper stubAuthenticatedRequestWithMethod:GET
+                                                      urlRegex:getThumbnailUrlRegex
+                                           rawResponseFilename:NOT_FOUND_WITH_ERRORS_FILENAME];
+                    
+                    waitUntil(^(DoneCallback done) {
+                        [client thumbnailForVideoId:videoId
+                                     withResolution:resolution
+                                            success:callbacks.shouldNotExecuteSuccessCallback(done)
+                                            failure:callbacks.shouldExecuteFailureCallbackWithMessage(NOT_FOUND_ERROR_MESSAGE, done)];
+                    });
+                });
             });
         });
     });
