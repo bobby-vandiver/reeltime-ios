@@ -1,32 +1,26 @@
 #import "RTAuthenticationAwareHTTPClientDelegate.h"
 
-#import "RTCurrentUserStore.h"
-#import "RTOAuth2TokenStore.h"
-
+#import "RTCurrentUserService.h"
 #import "RTOAuth2Token.h"
 
 @interface RTAuthenticationAwareHTTPClientDelegate ()
 
-@property RTCurrentUserStore *currentUserStore;
-@property RTOAuth2TokenStore *tokenStore;
+@property RTCurrentUserService *currentUserService;
 
 @end
 
 @implementation RTAuthenticationAwareHTTPClientDelegate
 
-- (instancetype)initWithCurrentUserStore:(RTCurrentUserStore *)currentUserStore
-                              tokenStore:(RTOAuth2TokenStore *)tokenStore {
+- (instancetype)initWithCurrentUserService:(RTCurrentUserService *)currentUserService {
     self = [super init];
     if (self) {
-        self.currentUserStore = currentUserStore;
-        self.tokenStore = tokenStore;
+        self.currentUserService = currentUserService;
     }
     return self;
 }
 
 - (NSString *)accessTokenForCurrentUser {
-    NSString *username = [self.currentUserStore loadCurrentUsernameWithError:nil];
-    RTOAuth2Token *token = [self.tokenStore loadTokenForUsername:username error:nil];
+    RTOAuth2Token *token = [self.currentUserService tokenForCurrentUser];
     return token.accessToken;
 }
 

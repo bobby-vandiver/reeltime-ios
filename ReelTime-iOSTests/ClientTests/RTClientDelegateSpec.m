@@ -1,9 +1,7 @@
 #import "RTTestCommon.h"
 #import "RTAuthenticationAwareHTTPClientDelegate.h"
 
-#import "RTCurrentUserStore.h"
-#import "RTOAuth2TokenStore.h"
-
+#import "RTCurrentUserService.h"
 #import "RTOAuth2Token.h"
 
 SpecBegin(RTClientDelegate)
@@ -11,76 +9,30 @@ SpecBegin(RTClientDelegate)
 describe(@"client delegate", ^{
     __block RTAuthenticationAwareHTTPClientDelegate *delegate;
     
-    __block RTCurrentUserStore *currentUserStore;
-    __block RTOAuth2TokenStore *tokenStore;
+    __block RTCurrentUserService *currentUserService;
     
     beforeEach(^{
-        currentUserStore = mock([RTCurrentUserStore class]);
-        tokenStore = mock([RTOAuth2TokenStore class]);
-        
-        delegate = [[RTAuthenticationAwareHTTPClientDelegate alloc] initWithCurrentUserStore:currentUserStore
-                                                           tokenStore:tokenStore];
+        currentUserService = mock([RTCurrentUserService class]);
+        delegate = [[RTAuthenticationAwareHTTPClientDelegate alloc] initWithCurrentUserService:currentUserService];
     });
     
     describe(@"getting access token for current user", ^{
-        __block NSString *accessToken;
         __block RTOAuth2Token *token;
         
         beforeEach(^{
             token = [[RTOAuth2Token alloc] init];
             token.accessToken = @"access-token";
-            
-            accessToken = nil;
+
+            [given([currentUserService tokenForCurrentUser]) willReturn:token];
         });
 
         afterEach(^{
-            [verify(currentUserStore) loadCurrentUsernameWithError:nil];
+            [verify(currentUserService) tokenForCurrentUser];
         });
         
-        context(@"no user currently logged in", ^{
-            beforeEach(^{
-                [given([currentUserStore loadCurrentUsernameWithError:nil]) willReturn:nil];
-            });
-            
-            it(@"should return nil for access token", ^{
-                accessToken = [delegate accessTokenForCurrentUser];
-                expect(accessToken).to.beNil();
-            });
-        });
-        
-        context(@"user currently logged in", ^{
-            beforeEach(^{
-                [given([currentUserStore loadCurrentUsernameWithError:nil]) willReturn:username];
-            });
-            
-            afterEach(^{
-                [verify(tokenStore) loadTokenForUsername:username error:nil];
-            });
-            
-            context(@"token not found", ^{
-                beforeEach(^{
-                    [given([tokenStore loadTokenForUsername:username error:nil]) willReturn:nil];
-                });
-                
-                it(@"should return nil for access token", ^{
-                    accessToken = [delegate accessTokenForCurrentUser];
-                    expect(accessToken).to.beNil();
-                });
-            });
-            
-            context(@"token found", ^{                
-                beforeEach(^{
-                    RTOAuth2Token *token = [[RTOAuth2Token alloc] init];
-                    token.accessToken = @"access-token";
-                    
-                    [given([tokenStore loadTokenForUsername:username error:nil]) willReturn:token];
-                });
-                
-                it(@"should return access token", ^{
-                    accessToken = [delegate accessTokenForCurrentUser];
-                    expect(accessToken).to.equal(@"access-token");
-                });
-            });
+        it(@"should delegate to current user service to get token", ^{
+            NSString *accessToken = [delegate accessTokenForCurrentUser];
+            expect(accessToken).to.equal(@"access-token");
         });
     });
 });

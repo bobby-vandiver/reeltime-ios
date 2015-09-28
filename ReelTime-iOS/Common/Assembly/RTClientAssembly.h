@@ -1,6 +1,7 @@
 #import <Typhoon/Typhoon.h>
 
 @class RTSecureStoreAssembly;
+@class RTServiceAssembly;
 
 @class RTAPIClient;
 @class RTAuthenticationAwareHTTPClient;
@@ -11,6 +12,7 @@
 @interface RTClientAssembly : TyphoonAssembly
 
 @property (nonatomic, strong, readonly) RTSecureStoreAssembly *secureStoreAssembly;
+@property (nonatomic, strong, readonly) RTServiceAssembly *serviceAssembly;
 
 - (RTAPIClient *)reelTimeClient;
 

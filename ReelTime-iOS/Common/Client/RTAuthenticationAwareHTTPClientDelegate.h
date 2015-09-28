@@ -2,15 +2,12 @@
 
 #import "RTCallbacks.h"
 
-@class RTCurrentUserStore;
-@class RTOAuth2TokenStore;
-
+@class RTCurrentUserService;
 @class RTOAuth2TokenError;
 
 @interface RTAuthenticationAwareHTTPClientDelegate : NSObject
 
-- (instancetype)initWithCurrentUserStore:(RTCurrentUserStore *)currentUserStore
-                              tokenStore:(RTOAuth2TokenStore *)tokenStore;
+- (instancetype)initWithCurrentUserService:(RTCurrentUserService *)currentUserService;
 
 - (NSString *)accessTokenForCurrentUser;
 

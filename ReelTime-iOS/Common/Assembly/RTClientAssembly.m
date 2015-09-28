@@ -1,5 +1,7 @@
 #import "RTClientAssembly.h"
+
 #import "RTSecureStoreAssembly.h"
+#import "RTServiceAssembly.h"
 
 #import "RTAPIClient.h"
 #import "RTAuthenticationAwareHTTPClientDelegate.h"
@@ -39,10 +41,9 @@
 
 - (RTAuthenticationAwareHTTPClientDelegate *)authenticationAwareHTTPClientDelegate {
     return [TyphoonDefinition withClass:[RTAuthenticationAwareHTTPClientDelegate class] configuration:^(TyphoonDefinition *definition) {
-        [definition useInitializer:@selector(initWithCurrentUserStore:tokenStore:)
+        [definition useInitializer:@selector(initWithCurrentUserService:)
                         parameters:^(TyphoonMethod *initializer) {
-                            [initializer injectParameterWith:[self.secureStoreAssembly currentUserStore]];
-                            [initializer injectParameterWith:[self.secureStoreAssembly tokenStore]];
+                            [initializer injectParameterWith:[self.serviceAssembly currentUserService]];
                         }];
     }];
 }
