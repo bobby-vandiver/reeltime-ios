@@ -6,9 +6,9 @@
 
 #import "RTOAuth2Token.h"
 
-SpecBegin(RTClientDelegate)
+SpecBegin(RTAuthenticationAwareHTTPClientDelegate)
 
-describe(@"client delegate", ^{
+describe(@"http client delegate", ^{
     __block RTAuthenticationAwareHTTPClientDelegate *delegate;
     
     __block RTAPIClient *client;
