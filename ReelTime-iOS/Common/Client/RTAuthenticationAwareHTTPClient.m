@@ -213,27 +213,34 @@
                  success:(SuccessCallback)success
                  failure:(FailureCallback)failure {
     
-    RKSuccessCallback successCallback = [self successHandlerWithCallback:success];
-    RKFailureCallback failureCallback = [self serverFailureHandlerWithCallback:failure forHTTPOperation:operation authenticated:authenticated];
+    NoArgsCallback retryableOperation = ^{
+        RKSuccessCallback successCallback = [self successHandlerWithCallback:success];
+
+        RKFailureCallback failureCallback = [self serverFailureHandlerWithCallback:failure
+                                                             forRetryableOperation:retryableOperation
+                                                                     authenticated:authenticated];
+        
+        operation(successCallback, failureCallback);
+    };
     
-    operation(successCallback, failureCallback);
+    retryableOperation();
 }
 
-- (RKSuccessCallback)binarySuccessHandlerWithCallback:(Callback)callback {
+- (RKSuccessCallback)binarySuccessHandlerWithCallback:(ArgsCallback)callback {
     return ^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         callback(operation.HTTPRequestOperation.responseData);
     };
 }
 
-- (RKSuccessCallback)successHandlerWithCallback:(Callback)callback {
+- (RKSuccessCallback)successHandlerWithCallback:(ArgsCallback)callback {
     return ^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         id result = [mappingResult firstObject];
         callback(result);
     };
 }
 
-- (RKFailureCallback)serverFailureHandlerWithCallback:(Callback)callback
-                                     forHTTPOperation:(RKHTTPOperation)httpOperation
+- (RKFailureCallback)serverFailureHandlerWithCallback:(ArgsCallback)callback
+                                forRetryableOperation:(NoArgsCallback)retryableOperation
                                         authenticated:(BOOL)authenticated {
     
     return ^(RKObjectRequestOperation *operation, NSError *error) {
@@ -241,8 +248,9 @@
         
         if (authenticated && [errors isKindOfClass:[RTOAuth2TokenError class]]) {
             RTOAuth2TokenError *tokenError = (RTOAuth2TokenError *)errors;
+            
             [self.delegate renegotiateTokenDueToTokenError:tokenError
-                                                   success:nil
+                                                   success:retryableOperation
                                                    failure:nil];
         }
         else {

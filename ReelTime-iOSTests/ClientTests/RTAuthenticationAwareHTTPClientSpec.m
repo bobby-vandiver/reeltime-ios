@@ -1,4 +1,5 @@
 #import "RTTestCommon.h"
+#import "RTCallbackTestExpectation.h"
 
 #import "RTAuthenticationAwareHTTPClient.h"
 #import "RTAuthenticationAwareHTTPClientDelegate.h"
@@ -12,8 +13,8 @@
 
 @interface RTAuthenticationAwareHTTPClient (Test)
 
-- (RKFailureCallback)serverFailureHandlerWithCallback:(Callback)callback
-                                     forHTTPOperation:(RKHTTPOperation)httpOperation
+- (RKFailureCallback)serverFailureHandlerWithCallback:(ArgsCallback)callback
+                                forRetryableOperation:(NoArgsCallback)retryableOperation
                                         authenticated:(BOOL)authenticated;
 @end
 
@@ -40,47 +41,53 @@ describe(@"authentication aware http client", ^{
     
     
     describe(@"server failure handler", ^{
-        __block BOOL callbackExecuted;
-        __block Callback callback;
-        
-        __block BOOL httpOperationExecuted;
-        __block RKHTTPOperation httpOperation;
-        
+        __block RTCallbackTestExpectation *callback;
+        __block RTCallbackTestExpectation *retryableOperation;
+
         beforeEach(^{
-            callbackExecuted = NO;
-            callback = ^(id errors) {
-                callbackExecuted = YES;
-            };
-            
-            httpOperationExecuted = NO;
-            httpOperation = ^(RKSuccessCallback successCallback, RKFailureCallback failureCallback) {
-                httpOperationExecuted = YES;
-            };
+            callback = [RTCallbackTestExpectation argsCallbackTextExpectation];
+            retryableOperation = [RTCallbackTestExpectation argsCallbackTextExpectation];
         });
         
-        it(@"encountered a token error", ^{
-            RKFailureCallback failureCallback = [httpClient serverFailureHandlerWithCallback:callback
-                                                                            forHTTPOperation:httpOperation
-                                                                               authenticated:YES];
+        describe(@"encountered a token error", ^{
+            __block MKTArgumentCaptor *successCaptor;
+            __block MKTArgumentCaptor *failureCaptor;
             
-            RKObjectRequestOperation *operation = mock([RKObjectRequestOperation class]);
-            
-            RTOAuth2TokenError *tokenError = [[RTOAuth2TokenError alloc] initWithErrorCode:@"token_error"
-                                                                          errorDescription:@"test"];
-            
-            NSError *error = [NSError errorWithDomain:RKErrorDomain
-                                                 code:RKMappingErrorFromMappingResult
-                                             userInfo:@{ RKObjectMapperErrorObjectsKey: @[tokenError] }];
-            
-            failureCallback(operation, error);
+            beforeEach(^{
+                successCaptor = [[MKTArgumentCaptor alloc] init];
+                failureCaptor = [[MKTArgumentCaptor alloc] init];
+                
+                RKFailureCallback failureCallback = [httpClient serverFailureHandlerWithCallback:callback.argsCallback
+                                                                                forRetryableOperation:retryableOperation.argsCallback
+                                                                                   authenticated:YES];
+                
+                RKObjectRequestOperation *operation = mock([RKObjectRequestOperation class]);
+                RTOAuth2TokenError *tokenError = [[RTOAuth2TokenError alloc] initWithErrorCode:@"token_error"
+                                                                              errorDescription:@"test"];
+                NSError *error = [NSError errorWithDomain:RKErrorDomain
+                                                     code:RKMappingErrorFromMappingResult
+                                                 userInfo:@{ RKObjectMapperErrorObjectsKey: @[tokenError] }];
+                
+                failureCallback(operation, error);
+                [verify(delegate) renegotiateTokenDueToTokenError:[captor capture]
+                                                          success:[successCaptor capture]
+                                                          failure:[failureCaptor capture]];
+                
+                [callback expectCallbackNotExecuted];
+                [retryableOperation expectCallbackNotExecuted];
+            });
 
-            [verify(delegate) renegotiateTokenDueToTokenError:[captor capture]
-                                                      success:anything()
-                                                      failure:anything()];
+            it(@"should pass token error to delegate", ^{
+                RTOAuth2TokenError *captured = (RTOAuth2TokenError *)captor.value;
+                expect(captured.errorCode).to.equal(@"token_error");
+                expect(captured.errorDescription).to.equal(@"test");
+            });
             
-            RTOAuth2TokenError *captured = (RTOAuth2TokenError *)captor.value;
-            expect(captured.errorCode).to.equal(@"token_error");
-            expect(captured.errorDescription).to.equal(@"test");
+            it(@"should retry operation on successful token renegotiation", ^{
+                NoArgsCallback successHandler = [successCaptor value];
+                successHandler();
+                [retryableOperation expectCallbackExecuted];
+            });
         });
     });
 });

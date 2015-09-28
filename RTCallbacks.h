@@ -29,6 +29,8 @@
 @class RTThumbnail;
 
 typedef void (^NoArgsCallback)();
+typedef void (^ArgsCallback)(id args);
+
 typedef void (^ServerErrorsCallback)(RTServerErrors *serverErrors);
 
 typedef void (^TokenAndUsernameCallback)(RTOAuth2Token *token, NSString *username);
