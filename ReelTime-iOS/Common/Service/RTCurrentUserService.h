@@ -19,4 +19,6 @@
 
 - (RTOAuth2Token *)tokenForCurrentUser;
 
+- (BOOL)storeTokenForCurrentUser:(RTOAuth2Token *)token;
+
 @end

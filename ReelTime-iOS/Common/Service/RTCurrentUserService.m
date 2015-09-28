@@ -74,4 +74,20 @@
     return token;
 }
 
+- (BOOL)storeTokenForCurrentUser:(RTOAuth2Token *)token {
+    NSString *username = [self currentUsername];
+    if (!username) {
+        return NO;
+    }
+    
+    NSError *error;
+    BOOL success = [self.tokenStore storeToken:token forUsername:username error:&error];
+    
+    if (!success) {
+        DDLogWarn(@"Could not store token for current username: %@", error);
+    }
+    
+    return success;
+}
+
 @end

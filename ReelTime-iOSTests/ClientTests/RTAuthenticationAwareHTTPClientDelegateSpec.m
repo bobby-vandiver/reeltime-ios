@@ -65,6 +65,7 @@ describe(@"http client delegate", ^{
             successCaptor = [[MKTArgumentCaptor alloc] init];
             failureCaptor = [[MKTArgumentCaptor alloc] init];
             
+            [given([currentUserService tokenForCurrentUser]) willReturn:token];
             [given([currentUserService clientCredentialsForCurrentUser]) willReturn:clientCredentials];
         });
         
@@ -88,7 +89,25 @@ describe(@"http client delegate", ^{
                 [renegotiationFailure expectCallbackNotExecuted];
             });
 
-            // TODO: On successful renegotiation, new token should be stored
+            context(@"successfully refreshed token", ^{
+                __block NoArgsCallback successHandler;
+                
+                beforeEach(^{
+                    successHandler = [successCaptor value];
+                });
+                
+                it(@"should invoke success callback when successfully storing token", ^{
+                    [given([currentUserService storeTokenForCurrentUser:token]) willReturnBool:YES];
+                    successHandler(token);
+                    [renegotiationSuccess expectCallbackExecuted];
+                });
+                
+                it(@"should invoke failure callback when storing token fails", ^{
+                    [given([currentUserService storeTokenForCurrentUser:token]) willReturnBool:NO];
+                    successHandler(token);
+                    [renegotiationFailure expectCallbackExecuted];
+                });
+            });
         });
     });
 });

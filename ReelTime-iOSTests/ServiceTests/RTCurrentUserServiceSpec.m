@@ -65,6 +65,14 @@ describe(@"current user service", ^{
          willReturn:token];
     };
     
+    void (^givenFailedTokenStore)() = ^{
+        [[given([tokenStore storeToken:token forUsername:username error:nil]) withMatcher:anything() forArgument:2] willReturnBool:NO];
+    };
+    
+    void (^givenSuccessfulTokenStore)() = ^{
+        [[given([tokenStore storeToken:token forUsername:username error:nil]) withMatcher:anything() forArgument:2] willReturnBool:YES];
+    };
+    
     describe(@"get current username", ^{
         it(@"should return nil if there is no current user", ^{
             givenNoCurrentUser();
@@ -112,6 +120,25 @@ describe(@"current user service", ^{
             givenCurrentUser();
             givenToken();
             expect([service tokenForCurrentUser]).to.equal(token);
+        });
+    });
+    
+    describe(@"store token for current user", ^{
+        it(@"should return NO when current user not found", ^{
+            givenNoCurrentUser();
+            expect([service storeTokenForCurrentUser:token]).to.beFalsy();
+        });
+        
+        it(@"should return NO when storing token fails", ^{
+            givenCurrentUser();
+            givenFailedTokenStore();
+            expect([service storeTokenForCurrentUser:token]).to.beFalsy();
+        });
+        
+        it(@"should return YES when storing token succeeds", ^{
+            givenCurrentUser();
+            givenSuccessfulTokenStore();
+            expect([service storeTokenForCurrentUser:token]).to.beTruthy();
         });
     });
 });
