@@ -1,19 +1,24 @@
 #import "RTAuthenticationAwareHTTPClientDelegate.h"
 
+#import "RTAPIClient.h"
 #import "RTCurrentUserService.h"
+
 #import "RTOAuth2Token.h"
 
 @interface RTAuthenticationAwareHTTPClientDelegate ()
 
+@property RTAPIClient *client;
 @property RTCurrentUserService *currentUserService;
 
 @end
 
 @implementation RTAuthenticationAwareHTTPClientDelegate
 
-- (instancetype)initWithCurrentUserService:(RTCurrentUserService *)currentUserService {
+- (instancetype)initWithAPIClient:(RTAPIClient *)client
+               currentUserService:(RTCurrentUserService *)currentUserService {
     self = [super init];
     if (self) {
+        self.client = client;
         self.currentUserService = currentUserService;
     }
     return self;

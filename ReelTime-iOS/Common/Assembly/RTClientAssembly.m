@@ -17,7 +17,7 @@
 
 - (RTAPIClient *)reelTimeClient {
     return [TyphoonDefinition withClass:[RTAPIClient class] configuration:^(TyphoonDefinition *definition) {
-        [definition useInitializer:@selector(initWithHttpClient:pathFormatter:)
+        [definition injectMethod:@selector(initWithHttpClient:pathFormatter:)
                         parameters:^(TyphoonMethod *initializer) {
                             [initializer injectParameterWith:[self authenticationAwareHTTPClient]];
                             [initializer injectParameterWith:[self endpointPathFormatter]];
@@ -31,7 +31,7 @@
 
 - (RTAuthenticationAwareHTTPClient *)authenticationAwareHTTPClient {
     return [TyphoonDefinition withClass:[RTAuthenticationAwareHTTPClient class] configuration:^(TyphoonDefinition *definition) {
-        [definition useInitializer:@selector(initWithDelegate:restKitObjectManager:)
+        [definition injectMethod:@selector(initWithDelegate:restKitObjectManager:)
                         parameters:^(TyphoonMethod *initializer) {
                             [initializer injectParameterWith:[self authenticationAwareHTTPClientDelegate]];
                             [initializer injectParameterWith:[self restKitObjectManager]];
@@ -41,8 +41,9 @@
 
 - (RTAuthenticationAwareHTTPClientDelegate *)authenticationAwareHTTPClientDelegate {
     return [TyphoonDefinition withClass:[RTAuthenticationAwareHTTPClientDelegate class] configuration:^(TyphoonDefinition *definition) {
-        [definition useInitializer:@selector(initWithCurrentUserService:)
+        [definition injectMethod:@selector(initWithAPIClient:currentUserService:)
                         parameters:^(TyphoonMethod *initializer) {
+                            [initializer injectParameterWith:[self reelTimeClient]];
                             [initializer injectParameterWith:[self.serviceAssembly currentUserService]];
                         }];
     }];

@@ -1,7 +1,9 @@
 #import "RTTestCommon.h"
 #import "RTAuthenticationAwareHTTPClientDelegate.h"
 
+#import "RTAPIClient.h"
 #import "RTCurrentUserService.h"
+
 #import "RTOAuth2Token.h"
 
 SpecBegin(RTClientDelegate)
@@ -9,11 +11,15 @@ SpecBegin(RTClientDelegate)
 describe(@"client delegate", ^{
     __block RTAuthenticationAwareHTTPClientDelegate *delegate;
     
+    __block RTAPIClient *client;
     __block RTCurrentUserService *currentUserService;
     
     beforeEach(^{
+        client = mock([RTAPIClient class]);
         currentUserService = mock([RTCurrentUserService class]);
-        delegate = [[RTAuthenticationAwareHTTPClientDelegate alloc] initWithCurrentUserService:currentUserService];
+        
+        delegate = [[RTAuthenticationAwareHTTPClientDelegate alloc] initWithAPIClient:client
+                                                                   currentUserService:currentUserService];
     });
     
     describe(@"getting access token for current user", ^{
