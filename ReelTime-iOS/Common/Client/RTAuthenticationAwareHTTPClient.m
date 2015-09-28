@@ -241,7 +241,9 @@
         
         if (authenticated && [errors isKindOfClass:[RTOAuth2TokenError class]]) {
             RTOAuth2TokenError *tokenError = (RTOAuth2TokenError *)errors;
-            [self.delegate authenticatedRequestFailedWithTokenError:tokenError];
+            [self.delegate renegotiateTokenDueToTokenError:tokenError
+                                                   success:nil
+                                                   failure:nil];
         }
         else {
             callback(errors);

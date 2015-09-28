@@ -30,7 +30,9 @@
     return token.accessToken;
 }
 
-- (void)authenticatedRequestFailedWithTokenError:(RTOAuth2TokenError *)tokenError {
+- (void)renegotiateTokenDueToTokenError:(RTOAuth2TokenError *)tokenError
+                                success:(NoArgsCallback)success
+                                failure:(NoArgsCallback)failure {
     
 }
 

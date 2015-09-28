@@ -73,8 +73,10 @@ describe(@"authentication aware http client", ^{
                                              userInfo:@{ RKObjectMapperErrorObjectsKey: @[tokenError] }];
             
             failureCallback(operation, error);
-            
-            [verify(delegate) authenticatedRequestFailedWithTokenError:[captor capture]];
+
+            [verify(delegate) renegotiateTokenDueToTokenError:[captor capture]
+                                                      success:anything()
+                                                      failure:anything()];
             
             RTOAuth2TokenError *captured = (RTOAuth2TokenError *)captor.value;
             expect(captured.errorCode).to.equal(@"token_error");
