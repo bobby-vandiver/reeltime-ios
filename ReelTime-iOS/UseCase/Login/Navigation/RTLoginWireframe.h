@@ -16,6 +16,8 @@
 
 - (void)presentLoginInterface;
 
+- (void)presentReloginInterface;
+
 - (void)presentPostLoginInterface;
 
 - (void)presentDeviceRegistrationInterface;

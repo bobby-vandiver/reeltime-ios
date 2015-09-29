@@ -17,6 +17,8 @@
 @property RTDeviceRegistrationWireframe *deviceRegistrationWireframe;
 @property RTResetPasswordWireframe *resetPasswordWireframe;
 
+@property BOOL reloginInProgress;
+
 @end
 
 @implementation RTLoginWireframe
@@ -37,13 +39,26 @@
 }
 
 - (void)presentLoginInterface {
+    self.reloginInProgress = NO;
+    [self.applicationWireframe presentNavigationRootViewController:self.viewController];
+}
+
+- (void)presentReloginInterface {
+    self.reloginInProgress = YES;
     [self.applicationWireframe presentNavigationRootViewController:self.viewController];
 }
 
 - (void)presentPostLoginInterface {
-    DDLogDebug(@"Login succeeded");
-    // TODO: Present record video interface when available
-    [self.applicationWireframe presentTabBarManagedScreen];
+    if (!self.reloginInProgress) {
+        DDLogDebug(@"Login succeeded");
+
+        // TODO: Present record video interface when available
+        [self.applicationWireframe presentTabBarManagedScreen];
+    }
+    else {
+        DDLogDebug(@"Relogin succeeded");
+        [self.applicationWireframe presentPreviousScreen];
+    }
 }
 
 - (void)presentDeviceRegistrationInterface {

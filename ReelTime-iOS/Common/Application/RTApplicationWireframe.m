@@ -38,6 +38,10 @@
     [self.wireframeContainer.loginWireframe presentLoginInterface];
 }
 
+- (void)presentPreviousScreen {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)presentTabBarManagedScreen {
     self.window.rootViewController = self.tabBarController;
 }

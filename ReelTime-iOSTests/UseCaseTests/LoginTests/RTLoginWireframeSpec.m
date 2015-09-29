@@ -44,6 +44,40 @@ describe(@"login wireframe", ^{
         });
     });
     
+    describe(@"presenting relogin", ^{
+        it(@"should do the same as the login interface and install view controller as root of application-level navigation controller", ^{
+            [wireframe presentReloginInterface];
+            [verify(applicationWireframe) presentNavigationRootViewController:viewController];
+        });
+    });
+    
+    describe(@"presenting post login interface", ^{
+        
+        context(@"when login was requested", ^{
+            beforeEach(^{
+                [wireframe presentLoginInterface];
+                [verify(applicationWireframe) reset];
+            });
+            
+            it(@"should present tab bar managed screen", ^{
+                [wireframe presentPostLoginInterface];
+                [verify(applicationWireframe) presentTabBarManagedScreen];
+            });
+        });
+        
+        context(@"when relogin was requested", ^{
+            beforeEach(^{
+                [wireframe presentReloginInterface];
+                [verify(applicationWireframe) reset];
+            });
+            
+            it(@"should present previous screen", ^{
+                [wireframe presentPostLoginInterface];
+                [verify(applicationWireframe) presentPreviousScreen];
+            });
+        });
+    });
+    
     describe(@"presenting device registration", ^{
         it(@"should delegate to device registration wireframe", ^{
             [wireframe presentDeviceRegistrationInterface];

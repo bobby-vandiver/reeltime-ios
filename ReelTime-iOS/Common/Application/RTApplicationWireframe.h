@@ -14,6 +14,8 @@
 
 - (void)presentInitialScreen;
 
+- (void)presentPreviousScreen;
+
 - (void)presentTabBarManagedScreen;
 
 - (void)presentNavigationRootViewController:(UIViewController *)viewController;
