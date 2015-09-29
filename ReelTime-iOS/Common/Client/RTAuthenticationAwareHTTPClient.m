@@ -213,16 +213,19 @@
                  success:(SuccessCallback)success
                  failure:(FailureCallback)failure {
     
+    __block __weak NoArgsCallback weakRetryableOperation;
+    
     NoArgsCallback retryableOperation = ^{
         RKSuccessCallback successCallback = [self successHandlerWithCallback:success];
 
         RKFailureCallback failureCallback = [self serverFailureHandlerWithCallback:failure
-                                                             forRetryableOperation:retryableOperation
+                                                             forRetryableOperation:weakRetryableOperation
                                                                      authenticated:authenticated];
         
         operation(successCallback, failureCallback);
     };
     
+    weakRetryableOperation = retryableOperation;
     retryableOperation();
 }
 
@@ -251,7 +254,9 @@
             
             [self.delegate renegotiateTokenDueToTokenError:tokenError
                                                    success:retryableOperation
-                                                   failure:nil];
+                                                   failure:^{
+                                                       DDLogWarn(@"Renegotiation failed");
+                                                   }];
         }
         else {
             callback(errors);
