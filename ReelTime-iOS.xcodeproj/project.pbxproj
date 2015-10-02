@@ -358,6 +358,7 @@
 		71921F2D1B2B66590088D080 /* RTManageDevicesWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 71921F2C1B2B66590088D080 /* RTManageDevicesWireframe.m */; };
 		71921F2F1B2B66DD0088D080 /* RTManageDevicesWireframeSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71921F2E1B2B66DD0088D080 /* RTManageDevicesWireframeSpec.m */; };
 		71926B611B778ED70058F091 /* RTBrowseAllWireframeSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71926B601B778ED70058F091 /* RTBrowseAllWireframeSpec.m */; };
+		7194CB941BBE3158008F90CA /* RTOAuth2TokenRenegotiationStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 7194CB931BBE3158008F90CA /* RTOAuth2TokenRenegotiationStatus.m */; };
 		7196FBF91B07F80000E13359 /* RTResetPasswordInteractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7196FBF81B07F80000E13359 /* RTResetPasswordInteractorSpec.m */; };
 		719B35DB1A51012E00FFD543 /* RTClientAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 719B35DA1A51012E00FFD543 /* RTClientAssembly.m */; };
 		719B35DE1A51140900FFD543 /* RTRestAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 719B35DD1A51140900FFD543 /* RTRestAPI.m */; };
@@ -1110,6 +1111,8 @@
 		71921F2C1B2B66590088D080 /* RTManageDevicesWireframe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTManageDevicesWireframe.m; sourceTree = "<group>"; };
 		71921F2E1B2B66DD0088D080 /* RTManageDevicesWireframeSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTManageDevicesWireframeSpec.m; sourceTree = "<group>"; };
 		71926B601B778ED70058F091 /* RTBrowseAllWireframeSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseAllWireframeSpec.m; sourceTree = "<group>"; };
+		7194CB921BBE3158008F90CA /* RTOAuth2TokenRenegotiationStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTOAuth2TokenRenegotiationStatus.h; sourceTree = "<group>"; };
+		7194CB931BBE3158008F90CA /* RTOAuth2TokenRenegotiationStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTOAuth2TokenRenegotiationStatus.m; sourceTree = "<group>"; };
 		7196FBF81B07F80000E13359 /* RTResetPasswordInteractorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTResetPasswordInteractorSpec.m; sourceTree = "<group>"; };
 		719B35D91A51012E00FFD543 /* RTClientAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTClientAssembly.h; sourceTree = "<group>"; };
 		719B35DA1A51012E00FFD543 /* RTClientAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTClientAssembly.m; sourceTree = "<group>"; };
@@ -2240,6 +2243,8 @@
 				719B35DD1A51140900FFD543 /* RTRestAPI.m */,
 				71361D7C1B86C93700C0CB4D /* RTAuthorizationHeaderSupport.h */,
 				71361D7D1B86C93700C0CB4D /* RTAuthorizationHeaderSupport.m */,
+				7194CB921BBE3158008F90CA /* RTOAuth2TokenRenegotiationStatus.h */,
+				7194CB931BBE3158008F90CA /* RTOAuth2TokenRenegotiationStatus.m */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -4368,6 +4373,7 @@
 				7164A3CD1B461D230006FE2E /* RTBrowseAudienceMembersAssembly.m in Sources */,
 				71053AB21B2BBBAD008C800C /* RTChangePasswordWireframe.m in Sources */,
 				714843031AEC108D001B885A /* RTDeviceRegistrationWireframe.m in Sources */,
+				7194CB941BBE3158008F90CA /* RTOAuth2TokenRenegotiationStatus.m in Sources */,
 				71386E601AD36C01009D064C /* RTVideoDescription.m in Sources */,
 				713DE8461B0926E100A5BBF0 /* RTAccountRegistrationErrorCodeToErrorMessageMapping.m in Sources */,
 				718F43F51B20CCAF00732ACE /* RTClientList.m in Sources */,

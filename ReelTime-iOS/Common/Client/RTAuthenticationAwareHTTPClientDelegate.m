@@ -4,20 +4,16 @@
 #import "RTCurrentUserService.h"
 
 #import "RTOAuth2Token.h"
+#import "RTOAuth2TokenRenegotiationStatus.h"
 
 #import "RTLogging.h"
-
-static NSString *const RTTokenRenegotiationFinished = @"RTTokenRenegotiationFinished";
 
 @interface RTAuthenticationAwareHTTPClientDelegate ()
 
 @property RTAPIClient *client;
 @property RTCurrentUserService *currentUserService;
 
-@property NSCondition *condition;
-
-@property (nonatomic) BOOL renegotiationInProgress;
-@property (nonatomic) BOOL renegotiationSucceeded;
+@property RTOAuth2TokenRenegotiationStatus *tokenRenegotiationStatus;
 
 @end
 
@@ -29,11 +25,8 @@ static NSString *const RTTokenRenegotiationFinished = @"RTTokenRenegotiationFini
     if (self) {
         self.client = client;
         self.currentUserService = currentUserService;
-        
-        self.condition = [[NSCondition alloc] init];
-        
-        self.renegotiationInProgress = NO;
-        self.renegotiationSucceeded = NO;
+
+        self.tokenRenegotiationStatus = [[RTOAuth2TokenRenegotiationStatus alloc] init];
     }
     return self;
 }
@@ -49,21 +42,13 @@ static NSString *const RTTokenRenegotiationFinished = @"RTTokenRenegotiationFini
                                 failure:(NoArgsCallback)failure {
     
     DDLogDebug(@"entering renegotiateTokenDueToTokenError:success:failure");
+
+    RTOAuth2TokenRenegotiationStatus *status = self.tokenRenegotiationStatus;
     
-    [self.condition lock];
-    BOOL renegotiationInProgress = self.renegotiationInProgress;
-    [self.condition unlock];
-    
-    DDLogDebug(@"renegotiationInProgress before branch = %@", (renegotiationInProgress ? @"YES" : @"NO"));
-    
-    if (renegotiationInProgress) {
-        [self waitUntilRenegotiationIsFinished:^{
-            
-            [self.condition lock];
-            BOOL renegotiationSucceeded = self.renegotiationSucceeded;
-            [self.condition unlock];
-            
-            if (renegotiationSucceeded) {
+    if (status.renegotiationInProgress) {
+        
+        [status waitUntilRenegotiationIsFinished:^{
+            if (status.lastRenegotiationSucceeded) {
                 DDLogDebug(@"Waited on successful renegotiation.");
                 success();
             }
@@ -73,7 +58,7 @@ static NSString *const RTTokenRenegotiationFinished = @"RTTokenRenegotiationFini
         }];
     }
     else {
-        [self startRenegotiation];
+        [status renegotiationStarted];
         
         RTOAuth2Token *token = [self.currentUserService tokenForCurrentUser];
         RTClientCredentials *clientCredentials = [self.currentUserService clientCredentialsForCurrentUser];
@@ -85,52 +70,14 @@ static NSString *const RTTokenRenegotiationFinished = @"RTTokenRenegotiationFini
     }
 }
 
-- (void)waitUntilRenegotiationIsFinished:(NoArgsCallback)callback {
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [self.condition lock];
-        
-        DDLogDebug(@"waiting until renegotiation is finished...");
-        
-        while (self.renegotiationInProgress) {
-            [self.condition wait];
-        }
-        
-        [self.condition unlock];
-        
-        callback();
-    });
-}
-
-- (void)startRenegotiation {
-    [self.condition lock];
-    
-    DDLogDebug(@"start renegotiation");
-    self.renegotiationInProgress = YES;
-    
-    [self.condition unlock];
-}
-
-- (void)renegotiationFinished:(BOOL)success {
-    [self.condition lock];
-    
-    DDLogDebug(@"@renegotiation finished -- success = %@", (success ? @"YES" : @"NO"));
-    
-    self.renegotiationInProgress = NO;
-    self.renegotiationSucceeded = success;
-    
-    [self.condition signal];
-    [self.condition unlock];
-}
-
 - (TokenCallback)tokenSuccessCallbackWithSuccess:(NoArgsCallback)success
                                          failure:(NoArgsCallback)failure {
     return ^(RTOAuth2Token *token) {
-        DDLogDebug(@"succesful refresh -- token = %@", token);
+        DDLogDebug(@"successful refresh -- token = %@", token);
         
         BOOL stored = [self.currentUserService storeTokenForCurrentUser:token];
         
-        [self renegotiationFinished:stored];
+        [self.tokenRenegotiationStatus renegotiationFinished:stored];
         
         stored ? success() : failure();
     };
@@ -139,7 +86,7 @@ static NSString *const RTTokenRenegotiationFinished = @"RTTokenRenegotiationFini
 - (TokenErrorCallback)tokenFailureCallbackWithFailure:(NoArgsCallback)failure {
     return ^(RTOAuth2TokenError *tokenError) {
         DDLogDebug(@"failed refresh -- token error = %@", tokenError);
-        [self renegotiationFinished:NO];
+        [self.tokenRenegotiationStatus renegotiationFinished:NO];
     };
 };
 
