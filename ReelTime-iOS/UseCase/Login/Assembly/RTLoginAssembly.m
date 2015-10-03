@@ -52,10 +52,11 @@
 
 - (RTLoginInteractor *)loginInteractor {
     return [TyphoonDefinition withClass:[RTLoginInteractor class] configuration:^(TyphoonDefinition *definition) {
-        [definition injectMethod:@selector(initWithDelegate:dataManager:)
+        [definition injectMethod:@selector(initWithDelegate:dataManager:notificationCenter:)
                       parameters:^(TyphoonMethod *initializer) {
                           [initializer injectParameterWith:[self loginPresenter]];
                           [initializer injectParameterWith:[self loginDataManager]];
+                          [initializer injectParameterWith:[NSNotificationCenter defaultCenter]];
         }];
     }];
 }

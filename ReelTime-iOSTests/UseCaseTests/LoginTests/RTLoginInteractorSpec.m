@@ -6,6 +6,8 @@
 #import "RTLoginDataManager.h"
 #import "RTLoginError.h"
 
+#import "RTLoginNotification.h"
+
 #import "RTClientCredentials.h"
 #import "RTUserCredentials.h"
 #import "RTOAuth2Token.h"
@@ -17,8 +19,11 @@ SpecBegin(RTLoginInteractor)
 describe(@"login interactor", ^{
     
     __block RTLoginInteractor *interactor;
+
     __block id<RTLoginInteractorDelegate> delegate;
     __block RTLoginDataManager *dataManager;
+    
+    __block NSNotificationCenter *notificationCenter;
 
     __block RTClientCredentials *clientCredentials;
     __block RTOAuth2Token *token;
@@ -48,8 +53,11 @@ describe(@"login interactor", ^{
         delegate = mockProtocol(@protocol(RTLoginInteractorDelegate));
         dataManager = mock([RTLoginDataManager class]);
         
+        notificationCenter = mock([NSNotificationCenter class]);
+        
         interactor = [[RTLoginInteractor alloc] initWithDelegate:delegate
-                                                     dataManager:dataManager];
+                                                     dataManager:dataManager
+                                              notificationCenter:notificationCenter];
     });
     
     describe(@"login requested", ^{
@@ -114,8 +122,8 @@ describe(@"login interactor", ^{
                     nestedCallback();
                     
                     [verify(delegate) loginSucceeded];
+                    [verify(notificationCenter) postNotificationName:RTLoginDidSucceedNotification object:interactor];
                 });
-                
             });
         });
         

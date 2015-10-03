@@ -8,7 +8,8 @@
 @interface RTLoginInteractor : NSObject <RTLoginDataManagerDelegate>
 
 - (instancetype)initWithDelegate:(id<RTLoginInteractorDelegate>)delegate
-                     dataManager:(RTLoginDataManager *)dataManager;
+                     dataManager:(RTLoginDataManager *)dataManager
+              notificationCenter:(NSNotificationCenter *)notificationCenter;
 
 - (void)loginWithUsername:(NSString *)username
                  password:(NSString *)password;

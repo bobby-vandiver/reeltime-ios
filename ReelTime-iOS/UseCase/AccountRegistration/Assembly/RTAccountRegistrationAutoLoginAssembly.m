@@ -12,10 +12,11 @@
 
 - (RTLoginInteractor *)accountRegistrationAutoLoginInteractor {
     return [TyphoonDefinition withClass:[RTLoginInteractor class] configuration:^(TyphoonDefinition *definition) {
-        [definition injectMethod:@selector(initWithDelegate:dataManager:)
+        [definition injectMethod:@selector(initWithDelegate:dataManager:notificationCenter:)
                       parameters:^(TyphoonMethod *initializer) {
                           [initializer injectParameterWith:[self.accountRegistrationAssembly accountRegistrationPresenter]];
                           [initializer injectParameterWith:[self accountRegistrationAutoLoginDataManager]];
+                          [initializer injectParameterWith:[NSNotificationCenter defaultCenter]];
         }];
     }];
 }

@@ -7,21 +7,27 @@
 #import "RTLoginError.h"
 #import "RTErrorFactory.h"
 
+#import "RTLoginNotification.h"
+
 @interface RTLoginInteractor ()
 
 @property (weak) id<RTLoginInteractorDelegate> delegate;
 @property RTLoginDataManager *dataManager;
+
+@property NSNotificationCenter *notificationCenter;
 
 @end
 
 @implementation RTLoginInteractor
 
 - (instancetype)initWithDelegate:(id<RTLoginInteractorDelegate>)delegate
-                     dataManager:(RTLoginDataManager *)dataManager {
+                     dataManager:(RTLoginDataManager *)dataManager
+              notificationCenter:(NSNotificationCenter *)notificationCenter {
     self = [super init];
     if (self) {
         self.delegate = delegate;
         self.dataManager = dataManager;
+        self.notificationCenter = notificationCenter;
     }
     return self;
 }
@@ -51,6 +57,7 @@
                                                  callback:^(RTOAuth2Token *token, NSString *username) {
             [self.dataManager setLoggedInUserWithToken:token username:username callback:^{
                 [welf.delegate loginSucceeded];
+                [welf.notificationCenter postNotificationName:RTLoginDidSucceedNotification object:welf];
             }];
         }];
     }
