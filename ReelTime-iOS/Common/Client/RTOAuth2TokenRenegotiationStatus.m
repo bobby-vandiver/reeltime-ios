@@ -48,6 +48,7 @@
     
     [self performCriticalBlock:^{
         self.inProgress = YES;
+        self.succeeded = NO;
     }];
 }
 
