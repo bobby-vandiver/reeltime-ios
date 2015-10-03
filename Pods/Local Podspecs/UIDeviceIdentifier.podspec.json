@@ -1,6 +1,6 @@
 {
   "name": "UIDeviceIdentifier",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "summary": "UIDeviceHardware is a class which allows querying of the current users device, and returns a human formatted string.",
   "homepage": "https://github.com/squarefrog/UIDeviceIdentifier",
   "license": "MIT",
@@ -10,7 +10,7 @@
   ],
   "source": {
     "git": "https://github.com/squarefrog/UIDeviceIdentifier.git",
-    "tag": "0.4.4"
+    "tag": "0.4.5"
   },
   "platforms": {
     "ios": null
