@@ -1,7 +1,9 @@
 #import "RTAuthenticationAwareHTTPClientDelegate.h"
 
 #import "RTAPIClient.h"
+
 #import "RTCurrentUserService.h"
+#import "RTLoginWireframe.h"
 
 #import "RTOAuth2Token.h"
 #import "RTOAuth2TokenRenegotiationStatus.h"
@@ -11,7 +13,9 @@
 @interface RTAuthenticationAwareHTTPClientDelegate ()
 
 @property RTAPIClient *client;
+
 @property RTCurrentUserService *currentUserService;
+@property RTLoginWireframe *loginWireframe;
 
 @property RTOAuth2TokenRenegotiationStatus *tokenRenegotiationStatus;
 
@@ -20,11 +24,14 @@
 @implementation RTAuthenticationAwareHTTPClientDelegate
 
 - (instancetype)initWithAPIClient:(RTAPIClient *)client
-               currentUserService:(RTCurrentUserService *)currentUserService {
+               currentUserService:(RTCurrentUserService *)currentUserService
+                   loginWireframe:(RTLoginWireframe *)loginWireframe {
     self = [super init];
     if (self) {
         self.client = client;
+
         self.currentUserService = currentUserService;
+        self.loginWireframe = loginWireframe;
 
         self.tokenRenegotiationStatus = [[RTOAuth2TokenRenegotiationStatus alloc] init];
     }
@@ -66,7 +73,7 @@
         [self.client refreshToken:token
             withClientCredentials:clientCredentials
                           success:[self tokenSuccessCallbackWithSuccess:success failure:failure]
-                          failure:[self tokenFailureCallbackWithFailure:failure]];
+                          failure:[self tokenFailureCallbackWithSuccess:success failure:failure]];
     }
 }
 
@@ -83,9 +90,11 @@
     };
 }
 
-- (TokenErrorCallback)tokenFailureCallbackWithFailure:(NoArgsCallback)failure {
+- (TokenErrorCallback)tokenFailureCallbackWithSuccess:(NoArgsCallback)success
+                                              failure:(NoArgsCallback)failure {
     return ^(RTOAuth2TokenError *tokenError) {
         DDLogDebug(@"failed refresh -- token error = %@", tokenError);
+        [self.loginWireframe presentReloginInterface];
         [self.tokenRenegotiationStatus renegotiationFinished:NO];
     };
 };

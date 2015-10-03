@@ -4,7 +4,9 @@
 #import "RTAuthenticationAwareHTTPClientDelegate.h"
 
 #import "RTAPIClient.h"
+
 #import "RTCurrentUserService.h"
+#import "RTLoginWireframe.h"
 
 #import "RTClientCredentials.h"
 
@@ -17,17 +19,22 @@ describe(@"http client delegate", ^{
     __block RTAuthenticationAwareHTTPClientDelegate *delegate;
     
     __block RTAPIClient *client;
+    
     __block RTCurrentUserService *currentUserService;
+    __block RTLoginWireframe *loginWireframe;
 
     __block RTOAuth2Token *token;
     __block RTClientCredentials *clientCredentials;
 
     beforeEach(^{
         client = mock([RTAPIClient class]);
+        
         currentUserService = mock([RTCurrentUserService class]);
+        loginWireframe = mock([RTLoginWireframe class]);
         
         delegate = [[RTAuthenticationAwareHTTPClientDelegate alloc] initWithAPIClient:client
-                                                                   currentUserService:currentUserService];
+                                                                   currentUserService:currentUserService
+                                                                       loginWireframe:loginWireframe];
 
         token = [[RTOAuth2Token alloc] init];
         clientCredentials = [[RTClientCredentials alloc] initWithClientId:clientId
@@ -90,7 +97,7 @@ describe(@"http client delegate", ^{
             });
 
             context(@"successfully refreshed token", ^{
-                __block NoArgsCallback successHandler;
+                __block TokenCallback successHandler;
                 
                 beforeEach(^{
                     successHandler = [successCaptor value];
@@ -106,6 +113,27 @@ describe(@"http client delegate", ^{
                     [given([currentUserService storeTokenForCurrentUser:token]) willReturnBool:NO];
                     successHandler(token);
                     [renegotiationFailure expectCallbackExecuted];
+                });
+            });
+            
+            context(@"refresh token has expired", ^{
+                __block TokenErrorCallback failureHandler;
+                __block RTOAuth2TokenError *tokenError;
+                
+                beforeEach(^{
+                    failureHandler = [failureCaptor value];
+                });
+                
+                context(@"refresh attempted failed due to invalid_token", ^{
+                    beforeEach(^{
+                        tokenError = [[RTOAuth2TokenError alloc] initWithErrorCode:@"invalid_token"
+                                                                  errorDescription:@"Invalid refresh token (expired): access-token"];
+                        failureHandler(tokenError);
+                    });
+                    
+                    it(@"should present relogin interface", ^{
+                        [verify(loginWireframe) presentReloginInterface];
+                    });
                 });
             });
         });

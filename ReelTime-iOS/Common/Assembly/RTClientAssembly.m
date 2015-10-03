@@ -2,6 +2,7 @@
 
 #import "RTSecureStoreAssembly.h"
 #import "RTServiceAssembly.h"
+#import "RTLoginAssembly.h"
 
 #import "RTAPIClient.h"
 #import "RTAuthenticationAwareHTTPClientDelegate.h"
@@ -41,10 +42,11 @@
 
 - (RTAuthenticationAwareHTTPClientDelegate *)authenticationAwareHTTPClientDelegate {
     return [TyphoonDefinition withClass:[RTAuthenticationAwareHTTPClientDelegate class] configuration:^(TyphoonDefinition *definition) {
-        [definition injectMethod:@selector(initWithAPIClient:currentUserService:)
+        [definition injectMethod:@selector(initWithAPIClient:currentUserService:loginWireframe:)
                         parameters:^(TyphoonMethod *initializer) {
                             [initializer injectParameterWith:[self reelTimeClient]];
                             [initializer injectParameterWith:[self.serviceAssembly currentUserService]];
+                            [initializer injectParameterWith:[self.loginAssembly loginWireframe]];
                         }];
     }];
 }
