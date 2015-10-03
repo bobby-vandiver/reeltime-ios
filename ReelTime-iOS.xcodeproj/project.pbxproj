@@ -2991,15 +2991,15 @@
 			isa = PBXGroup;
 			children = (
 				717A4B7F1A535942004C2BC1 /* RTAPIClientSpec.m */,
+				71647BE71A7F185500F44996 /* RTAuthenticationAwareHTTPClientDelegateSpec.m */,
+				71BF64231BB83DB50039ADE6 /* RTAuthenticationAwareHTTPClientSpec.m */,
 				711FF4C41AA23A3A00E11BDE /* RTAuthenticationAwareHTTPClientSpy.h */,
 				711FF4C51AA23A3A00E11BDE /* RTAuthenticationAwareHTTPClientSpy.m */,
-				71647BE71A7F185500F44996 /* RTAuthenticationAwareHTTPClientDelegateSpec.m */,
 				710D842F1B49BA82000FCFFF /* RTClientSpecCallbackExpectation.h */,
 				710D84301B49BA82000FCFFF /* RTClientSpecCallbackExpectation.m */,
 				713470BB1A9ABFAB000CFCA3 /* RTClientSpecHelper.h */,
 				713470BC1A9ABFAB000CFCA3 /* RTClientSpecHelper.m */,
 				717A4B7D1A53503B004C2BC1 /* RTRestAPIMappingFactorySpec.m */,
-				71BF64231BB83DB50039ADE6 /* RTAuthenticationAwareHTTPClientSpec.m */,
 			);
 			path = ClientTests;
 			sourceTree = "<group>";

@@ -18,7 +18,6 @@
 - (NSString *)accessTokenForCurrentUser;
 
 - (void)renegotiateTokenDueToTokenError:(RTOAuth2TokenError *)tokenError
-                                success:(NoArgsCallback)success
-                                failure:(NoArgsCallback)failure;
+                           withCallback:(NoArgsCallback)callback;
 
 @end

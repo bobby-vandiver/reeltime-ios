@@ -253,10 +253,7 @@
             RTOAuth2TokenError *tokenError = (RTOAuth2TokenError *)errors;
             
             [self.delegate renegotiateTokenDueToTokenError:tokenError
-                                                   success:retryableOperation
-                                                   failure:^{
-                                                       DDLogWarn(@"Renegotiation failed");
-                                                   }];
+                                              withCallback:retryableOperation];
         }
         else {
             callback(errors);

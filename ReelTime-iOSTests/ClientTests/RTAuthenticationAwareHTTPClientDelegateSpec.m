@@ -60,14 +60,12 @@ describe(@"http client delegate", ^{
     
     describe(@"renegotiating token", ^{
         __block RTCallbackTestExpectation *renegotiationSuccess;
-        __block RTCallbackTestExpectation *renegotiationFailure;
         
         __block MKTArgumentCaptor *successCaptor;
         __block MKTArgumentCaptor *failureCaptor;
         
         beforeEach(^{
             renegotiationSuccess = [RTCallbackTestExpectation noArgsCallbackTestExpectation];
-            renegotiationFailure = [RTCallbackTestExpectation noArgsCallbackTestExpectation];
             
             successCaptor = [[MKTArgumentCaptor alloc] init];
             failureCaptor = [[MKTArgumentCaptor alloc] init];
@@ -84,8 +82,7 @@ describe(@"http client delegate", ^{
                                                           errorDescription:@"Access token expired: access-token"];
                 
                 [delegate renegotiateTokenDueToTokenError:tokenError
-                                                  success:renegotiationSuccess.noArgsCallback
-                                                  failure:renegotiationFailure.noArgsCallback];
+                                             withCallback:renegotiationSuccess.noArgsCallback];
                 
                 [verify(client) refreshToken:token
                        withClientCredentials:clientCredentials
@@ -93,7 +90,6 @@ describe(@"http client delegate", ^{
                                      failure:[failureCaptor capture]];
                 
                 [renegotiationSuccess expectCallbackNotExecuted];
-                [renegotiationFailure expectCallbackNotExecuted];
             });
 
             context(@"successfully refreshed token", ^{
@@ -103,16 +99,16 @@ describe(@"http client delegate", ^{
                     successHandler = [successCaptor value];
                 });
                 
-                it(@"should invoke success callback when successfully storing token", ^{
+                it(@"should invoke callback when successfully storing token", ^{
                     [given([currentUserService storeTokenForCurrentUser:token]) willReturnBool:YES];
                     successHandler(token);
                     [renegotiationSuccess expectCallbackExecuted];
                 });
                 
-                it(@"should invoke failure callback when storing token fails", ^{
+                it(@"should not invoke callback when storing token fails", ^{
                     [given([currentUserService storeTokenForCurrentUser:token]) willReturnBool:NO];
                     successHandler(token);
-                    [renegotiationFailure expectCallbackExecuted];
+                    [renegotiationSuccess expectCallbackNotExecuted];
                 });
             });
             

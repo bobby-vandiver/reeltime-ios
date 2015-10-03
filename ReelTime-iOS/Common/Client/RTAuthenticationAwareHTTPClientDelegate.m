@@ -45,8 +45,7 @@
 }
 
 - (void)renegotiateTokenDueToTokenError:(RTOAuth2TokenError *)tokenError
-                                success:(NoArgsCallback)success
-                                failure:(NoArgsCallback)failure {
+                           withCallback:(NoArgsCallback)callback {
     
     DDLogDebug(@"entering renegotiateTokenDueToTokenError:success:failure");
 
@@ -57,7 +56,7 @@
         [status waitUntilRenegotiationIsFinished:^{
             if (status.lastRenegotiationSucceeded) {
                 DDLogDebug(@"Waited on successful renegotiation.");
-                success();
+                callback();
             }
             else {
                 DDLogDebug(@"Waited for failed renegotiation. Depending on failure to kick off recovery mechanism...");
@@ -72,26 +71,25 @@
         
         [self.client refreshToken:token
             withClientCredentials:clientCredentials
-                          success:[self tokenSuccessCallbackWithSuccess:success failure:failure]
-                          failure:[self tokenFailureCallbackWithSuccess:success failure:failure]];
+                          success:[self tokenSuccessCallbackWithCallback:callback]
+                          failure:[self tokenFailureCallbackWithCallback:callback]];
     }
 }
 
-- (TokenCallback)tokenSuccessCallbackWithSuccess:(NoArgsCallback)success
-                                         failure:(NoArgsCallback)failure {
+- (TokenCallback)tokenSuccessCallbackWithCallback:(NoArgsCallback)callback {
     return ^(RTOAuth2Token *token) {
         DDLogDebug(@"successful refresh -- token = %@", token);
         
-        BOOL stored = [self.currentUserService storeTokenForCurrentUser:token];
+        BOOL success = [self.currentUserService storeTokenForCurrentUser:token];
+        [self.tokenRenegotiationStatus renegotiationFinished:success];
         
-        [self.tokenRenegotiationStatus renegotiationFinished:stored];
-        
-        stored ? success() : failure();
+        if (success) {
+            callback();
+        }
     };
 }
 
-- (TokenErrorCallback)tokenFailureCallbackWithSuccess:(NoArgsCallback)success
-                                              failure:(NoArgsCallback)failure {
+- (TokenErrorCallback)tokenFailureCallbackWithCallback:(NoArgsCallback)callback {
     return ^(RTOAuth2TokenError *tokenError) {
         DDLogDebug(@"failed refresh -- token error = %@", tokenError);
         [self.loginWireframe presentReloginInterface];

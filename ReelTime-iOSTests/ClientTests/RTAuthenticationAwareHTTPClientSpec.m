@@ -50,12 +50,10 @@ describe(@"authentication aware http client", ^{
         });
         
         describe(@"encountered a token error", ^{
-            __block MKTArgumentCaptor *successCaptor;
-            __block MKTArgumentCaptor *failureCaptor;
+            __block MKTArgumentCaptor *callbackCaptor;
             
             beforeEach(^{
-                successCaptor = [[MKTArgumentCaptor alloc] init];
-                failureCaptor = [[MKTArgumentCaptor alloc] init];
+                callbackCaptor = [[MKTArgumentCaptor alloc] init];
                 
                 RKFailureCallback failureCallback = [httpClient serverFailureHandlerWithCallback:callback.argsCallback
                                                                                 forRetryableOperation:retryableOperation.argsCallback
@@ -70,8 +68,7 @@ describe(@"authentication aware http client", ^{
                 
                 failureCallback(operation, error);
                 [verify(delegate) renegotiateTokenDueToTokenError:[captor capture]
-                                                          success:[successCaptor capture]
-                                                          failure:[failureCaptor capture]];
+                                                     withCallback:[callbackCaptor capture]];
                 
                 [callback expectCallbackNotExecuted];
                 [retryableOperation expectCallbackNotExecuted];
@@ -84,8 +81,8 @@ describe(@"authentication aware http client", ^{
             });
             
             it(@"should retry operation on successful token renegotiation", ^{
-                NoArgsCallback successHandler = [successCaptor value];
-                successHandler();
+                NoArgsCallback callback = [callbackCaptor value];
+                callback();
                 [retryableOperation expectCallbackExecuted];
             });
         });
