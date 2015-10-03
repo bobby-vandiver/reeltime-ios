@@ -8,7 +8,7 @@ PODS:
     - CocoaLumberjack/Core
   - CocoaLumberjack/Extensions (2.0.1):
     - CocoaLumberjack/Default
-  - Expecta (0.4.2)
+  - Expecta (1.0.3)
   - ISO8601DateFormatterValueTransformer (0.6.1):
     - RKValueTransformers (~> 1.1.0)
   - Nocilla (0.10.0)
@@ -38,7 +38,7 @@ PODS:
     - RestKit/Network
   - RKValueTransformers (1.1.2)
   - SOCKit (1.1)
-  - Specta (0.5.0)
+  - Specta (1.0.4)
   - TransitionKit (2.1.1)
   - Typhoon (3.3.2):
     - Typhoon/no-arc (= 3.3.2)
@@ -48,15 +48,15 @@ PODS:
 
 DEPENDENCIES:
   - CocoaLumberjack (~> 2.0)
-  - Expecta (~> 0.4)
+  - Expecta (~> 1.0)
   - ISO8601DateFormatterValueTransformer (~> 0.6.1)
   - Nocilla (~> 0.9)
   - OCHamcrest (~> 4.1.1)
   - OCMockito (~> 1.4)
   - RestKit (~> 0.25)
   - RestKit/Testing (~> 0.25)
-  - Specta (~> 0.5)
-  - Typhoon (~> 3.2)
+  - Specta (~> 1.0)
+  - Typhoon (~> 3.3)
   - UICKeyChainStore (~> 2.0)
   - UIDeviceIdentifier (from `https://github.com/squarefrog/UIDeviceIdentifier.git`)
 
@@ -72,7 +72,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   AFNetworking: cf8e418e16f0c9c7e5c3150d019a3c679d015018
   CocoaLumberjack: 019d1361244274a6138c788c6cb80baabc13fb8f
-  Expecta: 78b4e8b0c8291fa4524d7f74016b6065c2e391ec
+  Expecta: 9d1bff6c8b0eeee73a166a2ee898892478927a15
   ISO8601DateFormatterValueTransformer: 52da467d6ec899d6aedda8e48280ac92e8ee97e6
   Nocilla: ae0a2b05f3087b473624ac2b25903695df51246a
   OCHamcrest: 6f03ffa81d12feab872638490a44ab0a6d3aca10
@@ -80,10 +80,10 @@ SPEC CHECKSUMS:
   RestKit: a4fcaf3d4bb2c204679856a46d596160bf208095
   RKValueTransformers: 66ac5e4f077fdbe3496e792d89eeff4c3eb67701
   SOCKit: c7376ac262bea9115b8f749358f762522a47d392
-  Specta: eb90708ed77569bbda089f8ead10bb99b8e9489e
+  Specta: 69bb134672aae190a1379ff91df07dad8dd1f869
   TransitionKit: 3a14b6acc7cf2d1dd3e454e24dbad1cfab9a1ef1
   Typhoon: d0f4b40120b7011ac41748c3ca141cb12aac3737
   UICKeyChainStore: c5719c814e8bd69e74e4a0fc09daf8f4d6257a59
-  UIDeviceIdentifier: c9ee256b8792e8e343d170f0836b4317d091153e
+  UIDeviceIdentifier: 2eb1070f189a069184611e21b5e8832443e6f8ec
 
-COCOAPODS: 0.35.0
+COCOAPODS: 0.38.2

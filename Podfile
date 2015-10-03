@@ -3,7 +3,7 @@ platform :ios, '8.0'
 target 'ReelTime-iOS', :exclusive => true do
     # Typhoon cannot be linked into the test target
     # See: https://github.com/appsquickly/Typhoon/issues/242
-    pod 'Typhoon', '~> 3.2'
+    pod 'Typhoon', '~> 3.3'
 
     pod 'UICKeyChainStore', '~> 2.0'
     pod 'CocoaLumberjack', '~> 2.0'
@@ -22,8 +22,8 @@ target 'ReelTime-iOS', :exclusive => true do
 end
 
 target 'ReelTime-iOSTests' do
-    pod 'Specta', '~> 0.5'
-    pod 'Expecta', '~> 0.4'
+    pod 'Specta', '~> 1.0'
+    pod 'Expecta', '~> 1.0'
     pod 'OCMockito', '~> 1.4'
 
     # OCHamcrest has a few cast warnings
