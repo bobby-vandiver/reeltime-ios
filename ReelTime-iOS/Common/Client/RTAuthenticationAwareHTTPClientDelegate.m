@@ -5,6 +5,8 @@
 #import "RTCurrentUserService.h"
 #import "RTLoginWireframe.h"
 
+#import "RTLoginNotification.h"
+
 #import "RTOAuth2Token.h"
 #import "RTOAuth2TokenRenegotiationStatus.h"
 
@@ -18,6 +20,7 @@
 @property RTLoginWireframe *loginWireframe;
 
 @property RTOAuth2TokenRenegotiationStatus *tokenRenegotiationStatus;
+@property NSNotificationCenter *notificationCenter;
 
 @end
 
@@ -25,7 +28,9 @@
 
 - (instancetype)initWithAPIClient:(RTAPIClient *)client
                currentUserService:(RTCurrentUserService *)currentUserService
-                   loginWireframe:(RTLoginWireframe *)loginWireframe {
+                   loginWireframe:(RTLoginWireframe *)loginWireframe
+         tokenRenegotiationStatus:(RTOAuth2TokenRenegotiationStatus *)tokenRenegotiationStatus
+               notificationCenter:(NSNotificationCenter *)notificationCenter {
     self = [super init];
     if (self) {
         self.client = client;
@@ -33,11 +38,20 @@
         self.currentUserService = currentUserService;
         self.loginWireframe = loginWireframe;
 
-        self.tokenRenegotiationStatus = [[RTOAuth2TokenRenegotiationStatus alloc] init];
+        self.tokenRenegotiationStatus = tokenRenegotiationStatus;
+        self.notificationCenter = notificationCenter;
+        
+        [self.notificationCenter addObserver:self
+                                    selector:@selector(receivedLoginDidSucceedNotification:)
+                                        name:RTLoginDidSucceedNotification
+                                      object:nil];
     }
     return self;
 }
 
+- (void)dealloc {
+    [self.notificationCenter removeObserver:self name:RTLoginDidSucceedNotification object:nil];
+}
 
 - (NSString *)accessTokenForCurrentUser {
     RTOAuth2Token *token = [self.currentUserService tokenForCurrentUser];
@@ -93,8 +107,21 @@
     return ^(RTOAuth2TokenError *tokenError) {
         DDLogDebug(@"failed refresh -- token error = %@", tokenError);
         [self.loginWireframe presentReloginInterface];
-        [self.tokenRenegotiationStatus renegotiationFinished:NO];
+        
+        RTOAuth2TokenRenegotiationStatus *status = self.tokenRenegotiationStatus;
+
+        [status waitUntilRenegotiationIsFinished:^{
+            DDLogDebug(@"Renegotiation finished");
+            
+            if (status.lastRenegotiationSucceeded) {
+                callback();
+            }
+        }];
     };
 };
+
+- (void)receivedLoginDidSucceedNotification:(NSNotification *)notification {
+    [self.tokenRenegotiationStatus renegotiationFinished:YES];
+}
 
 @end

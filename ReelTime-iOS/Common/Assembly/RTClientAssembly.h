@@ -7,6 +7,7 @@
 @class RTAPIClient;
 @class RTAuthenticationAwareHTTPClient;
 @class RTAuthenticationAwareHTTPClientDelegate;
+@class RTOAuth2TokenRenegotiationStatus;
 @class RKObjectManager;
 @class RTEndpointPathFormatter;
 
@@ -21,6 +22,8 @@
 - (RTAuthenticationAwareHTTPClient *)authenticationAwareHTTPClient;
 
 - (RTAuthenticationAwareHTTPClientDelegate *)authenticationAwareHTTPClientDelegate;
+
+- (RTOAuth2TokenRenegotiationStatus *)tokenRenegotationStatus;
 
 - (RKObjectManager *)restKitObjectManager;
 

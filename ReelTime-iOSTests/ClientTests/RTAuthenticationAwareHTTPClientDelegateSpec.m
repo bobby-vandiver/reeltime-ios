@@ -13,6 +13,15 @@
 #import "RTOAuth2Token.h"
 #import "RTOAuth2TokenError.h"
 
+#import "RTOAuth2TokenRenegotiationStatus.h"
+#import "RTLoginNotification.h"
+
+@interface RTAuthenticationAwareHTTPClientDelegate (Test)
+
+- (void)receivedLoginDidSucceedNotification:(NSNotification *)notification;
+
+@end
+
 SpecBegin(RTAuthenticationAwareHTTPClientDelegate)
 
 describe(@"http client delegate", ^{
@@ -23,6 +32,9 @@ describe(@"http client delegate", ^{
     __block RTCurrentUserService *currentUserService;
     __block RTLoginWireframe *loginWireframe;
 
+    __block RTOAuth2TokenRenegotiationStatus *tokenRenegotiationStatus;
+    __block NSNotificationCenter *notificationCenter;
+    
     __block RTOAuth2Token *token;
     __block RTClientCredentials *clientCredentials;
 
@@ -32,9 +44,14 @@ describe(@"http client delegate", ^{
         currentUserService = mock([RTCurrentUserService class]);
         loginWireframe = mock([RTLoginWireframe class]);
         
+        tokenRenegotiationStatus = [[RTOAuth2TokenRenegotiationStatus alloc] init];
+        notificationCenter = mock([NSNotificationCenter class]);
+        
         delegate = [[RTAuthenticationAwareHTTPClientDelegate alloc] initWithAPIClient:client
                                                                    currentUserService:currentUserService
-                                                                       loginWireframe:loginWireframe];
+                                                                       loginWireframe:loginWireframe
+                                                             tokenRenegotiationStatus:tokenRenegotiationStatus
+                                                                   notificationCenter:notificationCenter];
 
         token = [[RTOAuth2Token alloc] init];
         clientCredentials = [[RTClientCredentials alloc] initWithClientId:clientId
@@ -115,7 +132,7 @@ describe(@"http client delegate", ^{
             context(@"refresh token has expired", ^{
                 __block TokenErrorCallback failureHandler;
                 __block RTOAuth2TokenError *tokenError;
-                
+
                 beforeEach(^{
                     failureHandler = [failureCaptor value];
                 });
@@ -129,6 +146,17 @@ describe(@"http client delegate", ^{
                     
                     it(@"should present relogin interface", ^{
                         [verify(loginWireframe) presentReloginInterface];
+                    });
+                    
+                    it(@"should not execute callback until successufl login notification is recevied", ^{
+                        [renegotiationSuccess expectCallbackNotExecuted];
+                        
+                        NSNotification *notification = [[NSNotification alloc] initWithName:RTLoginDidSucceedNotification
+                                                                                     object:anything()
+                                                                                   userInfo:anything()];
+
+                        [delegate receivedLoginDidSucceedNotification:notification];
+                        [renegotiationSuccess expectCallbackNotExecuted];
                     });
                 });
             });

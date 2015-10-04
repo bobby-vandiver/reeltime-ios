@@ -7,13 +7,16 @@
 @class RTCurrentUserService;
 @class RTLoginWireframe;
 
+@class RTOAuth2TokenRenegotiationStatus;
 @class RTOAuth2TokenError;
 
 @interface RTAuthenticationAwareHTTPClientDelegate : NSObject
 
 - (instancetype)initWithAPIClient:(RTAPIClient *)client
                currentUserService:(RTCurrentUserService *)currentUserService
-                   loginWireframe:(RTLoginWireframe *)loginWireframe;
+                   loginWireframe:(RTLoginWireframe *)loginWireframe
+         tokenRenegotiationStatus:(RTOAuth2TokenRenegotiationStatus *)tokenRenegotiationStatus
+               notificationCenter:(NSNotificationCenter *)notificationCenter;
 
 - (NSString *)accessTokenForCurrentUser;
 
