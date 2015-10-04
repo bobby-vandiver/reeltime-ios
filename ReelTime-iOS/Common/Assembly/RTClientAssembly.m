@@ -2,6 +2,8 @@
 
 #import "RTSecureStoreAssembly.h"
 #import "RTServiceAssembly.h"
+
+#import "RTCommonComponentsAssembly.h"
 #import "RTLoginAssembly.h"
 
 #import "RTAPIClient.h"
@@ -51,7 +53,7 @@
                             [initializer injectParameterWith:[self.serviceAssembly currentUserService]];
                             [initializer injectParameterWith:[self.loginAssembly loginWireframe]];
                             [initializer injectParameterWith:[self tokenRenegotationStatus]];
-                            [initializer injectParameterWith:[NSNotificationCenter defaultCenter]];
+                            [initializer injectParameterWith:[self.commonComponentsAssembly notificationCenter]];
                         }];
     }];
 }

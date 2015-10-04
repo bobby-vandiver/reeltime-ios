@@ -4,6 +4,8 @@
 @class RTClientAssembly;
 @class RTApplicationAssembly;
 
+@class RTCommonComponentsAssembly;
+
 @class RTPlayVideoWireframe;
 @class RTPlayerFactory;
 
@@ -11,6 +13,7 @@
 
 @property (nonatomic, strong, readonly) RTClientAssembly *clientAssembly;
 @property (nonatomic, strong, readonly) RTApplicationAssembly *applicationAssembly;
+@property (nonatomic, strong, readonly) RTCommonComponentsAssembly *commonComponentsAssembly;
 
 - (RTPlayVideoWireframe *)playVideoWireframe;
 

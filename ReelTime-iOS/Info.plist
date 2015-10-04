@@ -24,6 +24,7 @@
 	<true/>
 	<key>TyphoonInitialAssemblies</key>
 	<array>
+		<string>RTCommonComponentsAssembly</string>
 		<string>RTPlayVideoAssembly</string>
 		<string>RTBrowseUserFolloweesAssembly</string>
 		<string>RTBrowseUserFollowersAssembly</string>

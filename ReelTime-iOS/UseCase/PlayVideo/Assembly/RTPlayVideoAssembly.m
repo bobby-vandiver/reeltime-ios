@@ -3,6 +3,8 @@
 #import "RTClientAssembly.h"
 #import "RTApplicationAssembly.h"
 
+#import "RTCommonComponentsAssembly.h"
+
 #import "RTPlayVideoWireframe.h"
 #import "RTPlayVideoViewController.h"
 
@@ -24,7 +26,7 @@
         [definition useInitializer:@selector(viewControllerForVideoId:withPlayerFactory:notificationCenter:) parameters:^(TyphoonMethod *initializer) {
             [initializer injectParameterWith:videoId];
             [initializer injectParameterWith:[self playerFactory]];
-            [initializer injectParameterWith:[NSNotificationCenter defaultCenter]];
+            [initializer injectParameterWith:[self.commonComponentsAssembly notificationCenter]];
         }];
     }];
 }

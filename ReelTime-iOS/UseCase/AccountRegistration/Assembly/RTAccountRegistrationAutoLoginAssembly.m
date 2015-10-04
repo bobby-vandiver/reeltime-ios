@@ -2,6 +2,7 @@
 
 #import "RTClientAssembly.h"
 #import "RTSecureStoreAssembly.h"
+#import "RTCommonComponentsAssembly.h"
 #import "RTAccountRegistrationAssembly.h"
 
 #import "RTLoginPresenter.h"
@@ -16,7 +17,7 @@
                       parameters:^(TyphoonMethod *initializer) {
                           [initializer injectParameterWith:[self.accountRegistrationAssembly accountRegistrationPresenter]];
                           [initializer injectParameterWith:[self accountRegistrationAutoLoginDataManager]];
-                          [initializer injectParameterWith:[NSNotificationCenter defaultCenter]];
+                          [initializer injectParameterWith:[self.commonComponentsAssembly notificationCenter]];
         }];
     }];
 }

@@ -2,6 +2,8 @@
 
 @class RTSecureStoreAssembly;
 @class RTServiceAssembly;
+
+@class RTCommonComponentsAssembly;
 @class RTLoginAssembly;
 
 @class RTAPIClient;
@@ -15,6 +17,8 @@
 
 @property (nonatomic, strong, readonly) RTSecureStoreAssembly *secureStoreAssembly;
 @property (nonatomic, strong, readonly) RTServiceAssembly *serviceAssembly;
+
+@property (nonatomic, strong, readonly) RTCommonComponentsAssembly *commonComponentsAssembly;
 @property (nonatomic, strong, readonly) RTLoginAssembly *loginAssembly;
 
 - (RTAPIClient *)reelTimeClient;
