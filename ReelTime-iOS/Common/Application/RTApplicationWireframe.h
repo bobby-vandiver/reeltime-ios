@@ -5,12 +5,15 @@
 @class RTApplicationTabBarController;
 @class RTApplicationWireframeContainer;
 
+@protocol RTApplicationNavigationControllerFactory;
+
 @interface RTApplicationWireframe : NSObject
 
 - (instancetype)initWithWindow:(UIWindow *)window
           navigationController:(RTApplicationNavigationController *)navigationController
               tabBarController:(RTApplicationTabBarController *)tabBarController
-            wireframeContainer:(RTApplicationWireframeContainer *)wireframeContainer;
+            wireframeContainer:(RTApplicationWireframeContainer *)wireframeContainer
+   navigationControllerFactory:(id<RTApplicationNavigationControllerFactory>)navigationControllerFactory;
 
 - (void)presentInitialScreen;
 

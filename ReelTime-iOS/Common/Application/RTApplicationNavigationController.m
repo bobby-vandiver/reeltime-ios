@@ -1,5 +1,7 @@
 #import "RTApplicationNavigationController.h"
 
+static const NSInteger EffectiveRootViewControllerIndex = 1;
+
 @interface RTApplicationNavigationController ()
 
 @property UIViewController *fakeRootViewController;
@@ -20,7 +22,7 @@
 - (instancetype)initWithRootViewController:(UIViewController *)rootViewController {
     self = [self initWithoutRootViewController];
     if (self) {
-        [self setRootViewController:rootViewController];
+        self.rootViewController = rootViewController;
     }
     return self;
 }
@@ -44,6 +46,16 @@
 
 - (NSArray *)popToRootViewControllerAnimated:(BOOL)animated {
     return [self popToViewController:self.fakeRootViewController animated:animated];
+}
+
+- (UIViewController *)rootViewController {
+    NSArray *viewControllers = [super viewControllers];
+    
+    if (viewControllers != nil && viewControllers.count > EffectiveRootViewControllerIndex) {
+        return viewControllers[EffectiveRootViewControllerIndex];
+    }
+    
+    return nil;
 }
 
 - (void)setRootViewController:(UIViewController *)rootViewController {

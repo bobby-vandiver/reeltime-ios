@@ -7,8 +7,8 @@
 
 @interface RTApplicationNavigationController : UINavigationController
 
-- (instancetype)initWithoutRootViewController;
+@property UIViewController *rootViewController;
 
-- (void)setRootViewController:(UIViewController *)rootViewController;
+- (instancetype)initWithoutRootViewController;
 
 @end

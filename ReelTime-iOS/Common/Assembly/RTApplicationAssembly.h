@@ -1,5 +1,7 @@
 #import <Typhoon/Typhoon.h>
 
+#import "RTApplicationNavigationControllerFactory.h"
+
 #import "RTLoginAssembly.h"
 
 #import "RTAppDelegate.h"
@@ -9,7 +11,7 @@
 #import "RTNewsfeedAssembly.h"
 #import "RTBrowseAllAssembly.h"
 
-@interface RTApplicationAssembly : TyphoonAssembly
+@interface RTApplicationAssembly : TyphoonAssembly <RTApplicationNavigationControllerFactory>
 
 @property (nonatomic, strong, readonly) RTLoginAssembly *loginAssembly;
 

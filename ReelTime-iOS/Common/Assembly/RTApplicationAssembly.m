@@ -34,12 +34,13 @@
     return [TyphoonDefinition withClass:[RTApplicationWireframe class] configuration:^(TyphoonDefinition *definition) {
         definition.scope = TyphoonScopeSingleton;
         
-        [definition injectMethod:@selector(initWithWindow:navigationController:tabBarController:wireframeContainer:)
+        [definition injectMethod:@selector(initWithWindow:navigationController:tabBarController:wireframeContainer:navigationControllerFactory:)
                       parameters:^(TyphoonMethod *initializer) {
                           [initializer injectParameterWith:[self mainWindow]];
                           [initializer injectParameterWith:[self applicationNavigationController]];
                           [initializer injectParameterWith:[self applicationTabBarController]];
                           [initializer injectParameterWith:[self applicationWireframeContainer]];
+                          [initializer injectParameterWith:self];
         }];
     }];
 }

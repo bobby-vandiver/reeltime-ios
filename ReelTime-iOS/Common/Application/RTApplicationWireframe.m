@@ -15,6 +15,7 @@
 @property RTApplicationTabBarController *tabBarController;
 
 @property RTApplicationWireframeContainer *wireframeContainer;
+@property id<RTApplicationNavigationControllerFactory> navigationControllerFactory;
 
 @end
 
@@ -23,13 +24,15 @@
 - (instancetype)initWithWindow:(UIWindow *)window
           navigationController:(RTApplicationNavigationController *)navigationController
               tabBarController:(RTApplicationTabBarController *)tabBarController
-            wireframeContainer:(RTApplicationWireframeContainer *)wireframeContainer {
+            wireframeContainer:(RTApplicationWireframeContainer *)wireframeContainer
+   navigationControllerFactory:(id<RTApplicationNavigationControllerFactory>)navigationControllerFactory {
     self = [super init];
     if (self) {
         self.window = window;
         self.navigationController = navigationController;
         self.tabBarController = tabBarController;
         self.wireframeContainer = wireframeContainer;
+        self.navigationControllerFactory = navigationControllerFactory;
     }
     return self;
 }
