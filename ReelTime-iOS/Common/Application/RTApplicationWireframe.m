@@ -45,6 +45,15 @@
 - (void)presentPreviousScreen {
     if (self.previousRootViewController) {
         self.window.rootViewController = self.previousRootViewController;
+
+        if ([self.previousRootViewController isKindOfClass:[RTApplicationTabBarController class]]) {
+            self.tabBarController = (RTApplicationTabBarController *) self.previousRootViewController;
+        }
+        else if ([self.previousRootViewController isKindOfClass:[RTApplicationNavigationController class]]) {
+            self.navigationController = (RTApplicationNavigationController *) self.previousRootViewController;
+        }
+
+        self.previousRootViewController = nil;
     }
 }
 

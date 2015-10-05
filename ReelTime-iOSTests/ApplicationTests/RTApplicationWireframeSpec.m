@@ -13,6 +13,8 @@
 @interface RTApplicationWireframe (Test)
 
 @property RTApplicationNavigationController *navigationController;
+@property RTApplicationTabBarController *tabBarController;
+
 @property UIViewController *previousRootViewController;
 
 @end
@@ -66,6 +68,9 @@ describe(@"application wireframe", ^{
     });
     
     describe(@"presenting previous screen", ^{
+        afterEach(^{
+            expect(wireframe.previousRootViewController).to.beNil();
+        });
         
         context(@"no previous screen available", ^{
             beforeEach(^{
@@ -78,14 +83,37 @@ describe(@"application wireframe", ^{
             });
         });
         
-        context(@"previous screen available", ^{
+        context(@"previous screen available -- tab bar controller", ^{
             beforeEach(^{
-                wireframe.previousRootViewController = viewController;
+                wireframe.previousRootViewController = tabBarController;
+                wireframe.tabBarController = nil;
+
+                [wireframe presentPreviousScreen];
             });
             
             it(@"should restore previous root view controller", ^{
+                [verify(window) setRootViewController:tabBarController];
+            });
+            
+            it(@"should restore tab bar controller", ^{
+                expect(wireframe.tabBarController).to.equal(tabBarController);
+            });
+        });
+        
+        context(@"previous screen available -- navigation controller", ^{
+            beforeEach(^{
+                wireframe.previousRootViewController = navigationController;
+                wireframe.navigationController = nil;
+                
                 [wireframe presentPreviousScreen];
-                [verify(window) setRootViewController:viewController];
+            });
+            
+            it(@"should restore previous root view controller", ^{
+                [verify(window) setRootViewController:navigationController];
+            });
+            
+            it(@"should restore navigation controller", ^{
+                expect(wireframe.navigationController).to.equal(navigationController);
             });
         });
     });
