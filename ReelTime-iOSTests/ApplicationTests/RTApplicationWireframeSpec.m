@@ -13,6 +13,7 @@
 @interface RTApplicationWireframe (Test)
 
 @property RTApplicationNavigationController *navigationController;
+@property UIViewController *previousRootViewController;
 
 @end
 
@@ -65,13 +66,27 @@ describe(@"application wireframe", ^{
     });
     
     describe(@"presenting previous screen", ^{
-        beforeEach(^{
-            setNavigationController();
+        
+        context(@"no previous screen available", ^{
+            beforeEach(^{
+                wireframe.previousRootViewController = nil;
+            });
+            
+            it(@"should do nothing", ^{
+                [wireframe presentPreviousScreen];
+                [verifyCount(window, never()) setRootViewController:anything()];
+            });
         });
         
-        it(@"should pop view controller on navigation controller", ^{
-            [wireframe presentPreviousScreen];
-            [verify(navigationController) popViewControllerAnimated:YES];
+        context(@"previous screen available", ^{
+            beforeEach(^{
+                wireframe.previousRootViewController = viewController;
+            });
+            
+            it(@"should restore previous root view controller", ^{
+                [wireframe presentPreviousScreen];
+                [verify(window) setRootViewController:viewController];
+            });
         });
     });
     
@@ -80,17 +95,31 @@ describe(@"application wireframe", ^{
             [wireframe presentTabBarManagedScreen];
             [verify(window) setRootViewController:tabBarController];
         });
-    });
-    
-    describe(@"presenting navigation root controller", ^{
-        it(@"should create navigation view controller with the provided view controller and install it as the root view controller", ^{
-            [given([navigationControllerFactory applicationNavigationControllerWithRootViewController:viewController]) willReturn:navigationController];
-            
-            [wireframe presentNavigationRootViewController:viewController];
-            [verify(window) setRootViewController:navigationController];
+        
+        it(@"should save current root view controller as the last view controller", ^{
+            [given([window rootViewController]) willReturn:viewController];
+            [wireframe presentTabBarManagedScreen];
+            expect(wireframe.previousRootViewController).to.equal(viewController);
         });
     });
     
+    describe(@"presenting navigation root controller", ^{
+        beforeEach(^{
+            [given([navigationControllerFactory applicationNavigationControllerWithRootViewController:viewController]) willReturn:navigationController];
+        });
+        
+        it(@"should create navigation view controller with the provided view controller and install it as the root view controller", ^{
+            [wireframe presentNavigationRootViewController:viewController];
+            [verify(window) setRootViewController:navigationController];
+        });
+        
+        it(@"should save current root view controller as the last view controller", ^{
+            [given([window rootViewController]) willReturn:viewController];
+            [wireframe presentNavigationRootViewController:anything()];
+            expect(wireframe.previousRootViewController).to.equal(viewController);
+        });
+    });
+
     describe(@"navigating to a view controller", ^{
         
         context(@"on tab bar managed screen", ^{

@@ -18,6 +18,8 @@
 @property RTApplicationWireframeContainer *wireframeContainer;
 @property id<RTApplicationNavigationControllerFactory> navigationControllerFactory;
 
+@property UIViewController *previousRootViewController;
+
 @end
 
 @implementation RTApplicationWireframe
@@ -41,16 +43,26 @@
 }
 
 - (void)presentPreviousScreen {
-    [self.navigationController popViewControllerAnimated:YES];
+    if (self.previousRootViewController) {
+        self.window.rootViewController = self.previousRootViewController;
+    }
 }
 
 - (void)presentTabBarManagedScreen {
+    [self saveCurrentRootViewController];
+    
     self.window.rootViewController = self.tabBarController;
 }
 
 - (void)presentNavigationRootViewController:(UIViewController *)viewController {
+    [self saveCurrentRootViewController];
+
     self.navigationController = [self.navigationControllerFactory applicationNavigationControllerWithRootViewController:viewController];
     self.window.rootViewController = self.navigationController;
+}
+
+- (void)saveCurrentRootViewController {
+    self.previousRootViewController = self.window.rootViewController;
 }
 
 - (void)navigateToViewController:(UIViewController *)viewController {
