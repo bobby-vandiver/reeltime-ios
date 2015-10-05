@@ -25,8 +25,6 @@
 
 - (RTApplicationWireframeContainer *)applicationWireframeContainer;
 
-- (RTApplicationNavigationController *)applicationNavigationController;
-
 - (RTApplicationTabBarController *)applicationTabBarController;
 
 @end

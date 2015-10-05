@@ -34,10 +34,9 @@
     return [TyphoonDefinition withClass:[RTApplicationWireframe class] configuration:^(TyphoonDefinition *definition) {
         definition.scope = TyphoonScopeSingleton;
         
-        [definition injectMethod:@selector(initWithWindow:navigationController:tabBarController:wireframeContainer:navigationControllerFactory:)
+        [definition injectMethod:@selector(initWithWindow:tabBarController:wireframeContainer:navigationControllerFactory:)
                       parameters:^(TyphoonMethod *initializer) {
                           [initializer injectParameterWith:[self mainWindow]];
-                          [initializer injectParameterWith:[self applicationNavigationController]];
                           [initializer injectParameterWith:[self applicationTabBarController]];
                           [initializer injectParameterWith:[self applicationWireframeContainer]];
                           [initializer injectParameterWith:self];
@@ -51,10 +50,12 @@
     }];
 }
 
-- (RTApplicationNavigationController *)applicationNavigationController {
+- (RTApplicationNavigationController *)applicationNavigationControllerWithRootViewController:(UIViewController *)rootViewController {
     return [TyphoonDefinition withClass:[RTApplicationNavigationController class] configuration:^(TyphoonDefinition *definition) {
-        [definition useInitializer:@selector(initWithoutRootViewController)];
-    }];    
+        [definition injectMethod:@selector(initWithRootViewController:) parameters:^(TyphoonMethod *method) {
+            [method injectParameterWith:rootViewController];
+        }];
+    }];
 }
 
 - (RTApplicationTabBarController *)applicationTabBarController {

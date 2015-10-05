@@ -3,6 +3,7 @@
 #import "RTApplicationNavigationController.h"
 #import "RTApplicationTabBarController.h"
 #import "RTApplicationWireframeContainer.h"
+#import "RTApplicationNavigationControllerFactory.h"
 
 #import "RTLoginWireframe.h"
 #import "RTBrowseAllViewController.h"
@@ -22,14 +23,12 @@
 @implementation RTApplicationWireframe
 
 - (instancetype)initWithWindow:(UIWindow *)window
-          navigationController:(RTApplicationNavigationController *)navigationController
               tabBarController:(RTApplicationTabBarController *)tabBarController
             wireframeContainer:(RTApplicationWireframeContainer *)wireframeContainer
    navigationControllerFactory:(id<RTApplicationNavigationControllerFactory>)navigationControllerFactory {
     self = [super init];
     if (self) {
         self.window = window;
-        self.navigationController = navigationController;
         self.tabBarController = tabBarController;
         self.wireframeContainer = wireframeContainer;
         self.navigationControllerFactory = navigationControllerFactory;
@@ -50,8 +49,8 @@
 }
 
 - (void)presentNavigationRootViewController:(UIViewController *)viewController {
+    self.navigationController = [self.navigationControllerFactory applicationNavigationControllerWithRootViewController:viewController];
     self.window.rootViewController = self.navigationController;
-    [self.navigationController setRootViewController:viewController];
 }
 
 - (void)navigateToViewController:(UIViewController *)viewController {

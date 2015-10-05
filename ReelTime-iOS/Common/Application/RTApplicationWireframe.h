@@ -10,7 +10,6 @@
 @interface RTApplicationWireframe : NSObject
 
 - (instancetype)initWithWindow:(UIWindow *)window
-          navigationController:(RTApplicationNavigationController *)navigationController
               tabBarController:(RTApplicationTabBarController *)tabBarController
             wireframeContainer:(RTApplicationWireframeContainer *)wireframeContainer
    navigationControllerFactory:(id<RTApplicationNavigationControllerFactory>)navigationControllerFactory;

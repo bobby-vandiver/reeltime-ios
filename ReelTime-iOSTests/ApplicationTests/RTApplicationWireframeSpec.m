@@ -10,6 +10,12 @@
 #import "RTApplicationWireframeContainer.h"
 #import "RTLoginWireframe.h"
 
+@interface RTApplicationWireframe (Test)
+
+@property RTApplicationNavigationController *navigationController;
+
+@end
+
 SpecBegin(RTApplicationWireframe)
 
 describe(@"application wireframe", ^{
@@ -27,6 +33,10 @@ describe(@"application wireframe", ^{
     __block UIWindow *window;
     __block UIViewController *viewController;
 
+    void (^setNavigationController)() = ^{
+        wireframe.navigationController = navigationController;
+    };
+    
     beforeEach(^{
         window = mock([UIWindow class]);
         viewController = mock([UIViewController class]);
@@ -42,7 +52,6 @@ describe(@"application wireframe", ^{
         wireframeContainer.loginWireframe = loginWireframe;
         
         wireframe = [[RTApplicationWireframe alloc]initWithWindow:window
-                                             navigationController:navigationController
                                                   tabBarController:tabBarController
                                                 wireframeContainer:wireframeContainer
                                       navigationControllerFactory:navigationControllerFactory];
@@ -56,6 +65,10 @@ describe(@"application wireframe", ^{
     });
     
     describe(@"presenting previous screen", ^{
+        beforeEach(^{
+            setNavigationController();
+        });
+        
         it(@"should pop view controller on navigation controller", ^{
             [wireframe presentPreviousScreen];
             [verify(navigationController) popViewControllerAnimated:YES];
@@ -70,11 +83,11 @@ describe(@"application wireframe", ^{
     });
     
     describe(@"presenting navigation root controller", ^{
-        it(@"should install navigation view controller and install the provided root view controller", ^{
+        it(@"should create navigation view controller with the provided view controller and install it as the root view controller", ^{
+            [given([navigationControllerFactory applicationNavigationControllerWithRootViewController:viewController]) willReturn:navigationController];
+            
             [wireframe presentNavigationRootViewController:viewController];
-
             [verify(window) setRootViewController:navigationController];
-            [verify(navigationController) setRootViewController:viewController];
         });
     });
     
@@ -102,6 +115,10 @@ describe(@"application wireframe", ^{
     });
     
     describe(@"checking visible view controller", ^{
+        beforeEach(^{
+            setNavigationController();
+        });
+        
         it(@"view controller is visible", ^{
             [given([navigationController visibleViewController]) willReturn:viewController];
             expect([wireframe isVisibleViewController:viewController]).to.beTruthy();

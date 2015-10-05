@@ -4,6 +4,6 @@
 
 @protocol RTApplicationNavigationControllerFactory <NSObject>
 
-- (RTApplicationNavigationController *)applicationNavigationController;
+- (RTApplicationNavigationController *)applicationNavigationControllerWithRootViewController:(UIViewController *)rootViewController;
 
 @end

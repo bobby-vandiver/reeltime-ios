@@ -9,6 +9,4 @@
 
 @property UIViewController *rootViewController;
 
-- (instancetype)initWithoutRootViewController;
-
 @end
