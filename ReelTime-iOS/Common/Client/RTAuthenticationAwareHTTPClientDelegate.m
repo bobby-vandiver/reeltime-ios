@@ -121,7 +121,9 @@
 };
 
 - (void)receivedLoginDidSucceedNotification:(NSNotification *)notification {
-    [self.tokenRenegotiationStatus renegotiationFinished:YES];
+    if (self.tokenRenegotiationStatus.renegotiationInProgress) {
+        [self.tokenRenegotiationStatus renegotiationFinished:YES];
+    }
 }
 
 @end

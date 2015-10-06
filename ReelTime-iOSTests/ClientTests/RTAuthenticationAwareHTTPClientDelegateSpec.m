@@ -37,6 +37,8 @@ describe(@"http client delegate", ^{
     
     __block RTOAuth2Token *token;
     __block RTClientCredentials *clientCredentials;
+    
+    __block NSNotification *loginSucceededNotification;
 
     beforeEach(^{
         client = mock([RTAPIClient class]);
@@ -56,6 +58,10 @@ describe(@"http client delegate", ^{
         token = [[RTOAuth2Token alloc] init];
         clientCredentials = [[RTClientCredentials alloc] initWithClientId:clientId
                                                              clientSecret:clientSecret];
+        
+        loginSucceededNotification = [[NSNotification alloc] initWithName:RTLoginDidSucceedNotification
+                                                                   object:anything()
+                                                                 userInfo:anything()];
     });
     
     describe(@"getting access token for current user", ^{
@@ -107,6 +113,8 @@ describe(@"http client delegate", ^{
                                      failure:[failureCaptor capture]];
                 
                 [renegotiationSuccess expectCallbackNotExecuted];
+                
+                expect(tokenRenegotiationStatus.renegotiationInProgress).to.beTruthy();
             });
 
             context(@"successfully refreshed token", ^{
@@ -149,17 +157,23 @@ describe(@"http client delegate", ^{
                     });
                     
                     it(@"should not execute callback until successufl login notification is recevied", ^{
-                        [renegotiationSuccess expectCallbackNotExecuted];
-                        
-                        NSNotification *notification = [[NSNotification alloc] initWithName:RTLoginDidSucceedNotification
-                                                                                     object:anything()
-                                                                                   userInfo:anything()];
-
-                        [delegate receivedLoginDidSucceedNotification:notification];
-                        [renegotiationSuccess expectCallbackNotExecuted];
+                        [delegate receivedLoginDidSucceedNotification:loginSucceededNotification];
+                        expect(tokenRenegotiationStatus.renegotiationInProgress).to.beFalsy();
                     });
                 });
             });
+        });
+    });
+    
+    describe(@"received login notification when renegotiation not in progress", ^{
+        beforeEach(^{
+            expect(tokenRenegotiationStatus.renegotiationInProgress).to.beFalsy();
+            expect(tokenRenegotiationStatus.lastRenegotiationSucceeded).to.beFalsy();
+        });
+        
+        it(@"should do nothing", ^{
+            [delegate receivedLoginDidSucceedNotification:loginSucceededNotification];
+            expect(tokenRenegotiationStatus.lastRenegotiationSucceeded).to.beFalsy();
         });
     });
 });
