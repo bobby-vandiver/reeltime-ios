@@ -373,6 +373,8 @@
 		71AD86741B94D0C800AF15F3 /* RTCreateReelDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 71AD86731B94D0C800AF15F3 /* RTCreateReelDataManager.m */; };
 		71AD86771B94D14C00AF15F3 /* RTCreateReelDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71AD86761B94D14C00AF15F3 /* RTCreateReelDataManagerSpec.m */; };
 		71AD867A1B94D60600AF15F3 /* RTCreateReelServerErrorMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 71AD86791B94D60600AF15F3 /* RTCreateReelServerErrorMapping.m */; };
+		71AE25D11BCAE0AB00CD0E23 /* RTOAuth2TokenRenegotiator.m in Sources */ = {isa = PBXBuildFile; fileRef = 71AE25D01BCAE0AB00CD0E23 /* RTOAuth2TokenRenegotiator.m */; settings = {ASSET_TAGS = (); }; };
+		71AE25D31BCAE11A00CD0E23 /* RTOAuth2TokenRenegotiatorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71AE25D21BCAE11A00CD0E23 /* RTOAuth2TokenRenegotiatorSpec.m */; settings = {ASSET_TAGS = (); }; };
 		71AFF6941B12161A003378C5 /* RTPasswordValidationMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 71AFF6931B12161A003378C5 /* RTPasswordValidationMapping.m */; };
 		71AFF6961B122016003378C5 /* RTChangePasswordPresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71AFF6951B122016003378C5 /* RTChangePasswordPresenterSpec.m */; };
 		71B238481B042F06002DE5DA /* RTCurrentUserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B238471B042F06002DE5DA /* RTCurrentUserService.m */; };
@@ -1138,6 +1140,9 @@
 		71AD86761B94D14C00AF15F3 /* RTCreateReelDataManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTCreateReelDataManagerSpec.m; sourceTree = "<group>"; };
 		71AD86781B94D60600AF15F3 /* RTCreateReelServerErrorMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCreateReelServerErrorMapping.h; sourceTree = "<group>"; };
 		71AD86791B94D60600AF15F3 /* RTCreateReelServerErrorMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTCreateReelServerErrorMapping.m; sourceTree = "<group>"; };
+		71AE25CF1BCAE0AB00CD0E23 /* RTOAuth2TokenRenegotiator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTOAuth2TokenRenegotiator.h; sourceTree = "<group>"; };
+		71AE25D01BCAE0AB00CD0E23 /* RTOAuth2TokenRenegotiator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTOAuth2TokenRenegotiator.m; sourceTree = "<group>"; };
+		71AE25D21BCAE11A00CD0E23 /* RTOAuth2TokenRenegotiatorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTOAuth2TokenRenegotiatorSpec.m; sourceTree = "<group>"; };
 		71AFF6921B12161A003378C5 /* RTPasswordValidationMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTPasswordValidationMapping.h; sourceTree = "<group>"; };
 		71AFF6931B12161A003378C5 /* RTPasswordValidationMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTPasswordValidationMapping.m; sourceTree = "<group>"; };
 		71AFF6951B122016003378C5 /* RTChangePasswordPresenterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTChangePasswordPresenterSpec.m; sourceTree = "<group>"; };
@@ -2234,24 +2239,26 @@
 				717A4B751A534E7B004C2BC1 /* Factory */,
 				71073CF41A83060700BE6E19 /* RKObjectManager+IncludeHeaders.h */,
 				71073CF51A83060700BE6E19 /* RKObjectManager+IncludeHeaders.m */,
+				713D7A4A1A50A33300754A06 /* RTAPIClient.h */,
+				713D7A4B1A50A33300754A06 /* RTAPIClient.m */,
 				715555A51A9ED1F40091F432 /* RTAuthenticationAwareHTTPClient.h */,
 				715555A61A9ED1F40091F432 /* RTAuthenticationAwareHTTPClient.m */,
 				71647BE41A7F17CC00F44996 /* RTAuthenticationAwareHTTPClientDelegate.h */,
 				71647BE51A7F17CD00F44996 /* RTAuthenticationAwareHTTPClientDelegate.m */,
-				713D7A4A1A50A33300754A06 /* RTAPIClient.h */,
-				713D7A4B1A50A33300754A06 /* RTAPIClient.m */,
+				71361D7C1B86C93700C0CB4D /* RTAuthorizationHeaderSupport.h */,
+				71361D7D1B86C93700C0CB4D /* RTAuthorizationHeaderSupport.m */,
 				712EA2C31A9C1B4600AFCA15 /* RTClientAdditionalConfiguration.h */,
 				712EA2C41A9C1B4600AFCA15 /* RTClientAdditionalConfiguration.m */,
 				7157589D1A9A3B93002859DE /* RTEndpointPathFormatter.h */,
 				7157589E1A9A3B93002859DE /* RTEndpointPathFormatter.m */,
 				718BC4C21ACB7F8D00C1257F /* RTImagePNGSerialization.h */,
 				718BC4C31ACB7F8E00C1257F /* RTImagePNGSerialization.m */,
-				719B35DC1A51086600FFD543 /* RTRestAPI.h */,
-				719B35DD1A51140900FFD543 /* RTRestAPI.m */,
-				71361D7C1B86C93700C0CB4D /* RTAuthorizationHeaderSupport.h */,
-				71361D7D1B86C93700C0CB4D /* RTAuthorizationHeaderSupport.m */,
 				7194CB921BBE3158008F90CA /* RTOAuth2TokenRenegotiationStatus.h */,
 				7194CB931BBE3158008F90CA /* RTOAuth2TokenRenegotiationStatus.m */,
+				71AE25CF1BCAE0AB00CD0E23 /* RTOAuth2TokenRenegotiator.h */,
+				71AE25D01BCAE0AB00CD0E23 /* RTOAuth2TokenRenegotiator.m */,
+				719B35DC1A51086600FFD543 /* RTRestAPI.h */,
+				719B35DD1A51140900FFD543 /* RTRestAPI.m */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -3010,6 +3017,7 @@
 				713470BB1A9ABFAB000CFCA3 /* RTClientSpecHelper.h */,
 				713470BC1A9ABFAB000CFCA3 /* RTClientSpecHelper.m */,
 				717A4B7D1A53503B004C2BC1 /* RTRestAPIMappingFactorySpec.m */,
+				71AE25D21BCAE11A00CD0E23 /* RTOAuth2TokenRenegotiatorSpec.m */,
 			);
 			path = ClientTests;
 			sourceTree = "<group>";
@@ -4566,6 +4574,7 @@
 				71921F2D1B2B66590088D080 /* RTManageDevicesWireframe.m in Sources */,
 				712441671B2DE75E00752901 /* RTConfirmAccountWireframe.m in Sources */,
 				713F4ACA1BADA7DB008220EC /* RTRemoveVideoFromReelErrorCodeToErrorMessageMapping.m in Sources */,
+				71AE25D11BCAE0AB00CD0E23 /* RTOAuth2TokenRenegotiator.m in Sources */,
 				713A239F1AB4FF4C0098CE48 /* RTMutableArrayDataSource.m in Sources */,
 				71361D7E1B86C93700C0CB4D /* RTAuthorizationHeaderSupport.m in Sources */,
 				7103A2C21B87FD6200DB4B50 /* RTPlayVideoIdExtractor.m in Sources */,
@@ -4581,6 +4590,7 @@
 			files = (
 				712BE3021A75D74C00478277 /* EXPMatchers+beError.m in Sources */,
 				712441631B2DE3DD00752901 /* RTConfirmAccountViewControllerSpec.m in Sources */,
+				71AE25D31BCAE11A00CD0E23 /* RTOAuth2TokenRenegotiatorSpec.m in Sources */,
 				713A23921AB4EB950098CE48 /* RTBrowseVideosDataManagerSpec.m in Sources */,
 				71854B4B1B7434590045E281 /* RTVideoDescriptionSpec.m in Sources */,
 				714DDE6D1B0C187500D96F74 /* RTCallbackTestExpectation.m in Sources */,

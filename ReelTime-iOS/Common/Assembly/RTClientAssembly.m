@@ -12,6 +12,7 @@
 #import "RTAuthenticationAwareHTTPClient.h"
 #import "RTAuthenticationAwareHTTPClientDelegate.h"
 
+#import "RTOAuth2TokenRenegotiator.h"
 #import "RTOAuth2TokenRenegotiationStatus.h"
 
 #import "RTEndpointPathFormatter.h"
@@ -55,6 +56,19 @@
                             [initializer injectParameterWith:[self tokenRenegotationStatus]];
                             [initializer injectParameterWith:[self.commonComponentsAssembly notificationCenter]];
                         }];
+    }];
+}
+
+- (RTOAuth2TokenRenegotiator *)tokenRenegotiator {
+    return [TyphoonDefinition withClass:[RTOAuth2TokenRenegotiator class] configuration:^(TyphoonDefinition *definition) {
+        [definition injectMethod:@selector(initWithClient:currentUserService:loginWireframe:tokenRenegotiationStatus:notificationCenter:)
+                      parameters:^(TyphoonMethod *initializer) {
+                          [initializer injectParameterWith:[self reelTimeClient]];
+                          [initializer injectParameterWith:[self.serviceAssembly currentUserService]];
+                          [initializer injectParameterWith:[self.loginAssembly loginWireframe]];
+                          [initializer injectParameterWith:[self tokenRenegotationStatus]];
+                          [initializer injectParameterWith:[self.commonComponentsAssembly notificationCenter]];
+        }];
     }];
 }
 

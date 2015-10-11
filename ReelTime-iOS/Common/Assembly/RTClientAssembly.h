@@ -7,9 +7,13 @@
 @class RTLoginAssembly;
 
 @class RTAPIClient;
+
 @class RTAuthenticationAwareHTTPClient;
 @class RTAuthenticationAwareHTTPClientDelegate;
+
+@class RTOAuth2TokenRenegotiator;
 @class RTOAuth2TokenRenegotiationStatus;
+
 @class RKObjectManager;
 @class RTEndpointPathFormatter;
 
@@ -26,6 +30,8 @@
 - (RTAuthenticationAwareHTTPClient *)authenticationAwareHTTPClient;
 
 - (RTAuthenticationAwareHTTPClientDelegate *)authenticationAwareHTTPClientDelegate;
+
+- (RTOAuth2TokenRenegotiator *)tokenRenegotiator;
 
 - (RTOAuth2TokenRenegotiationStatus *)tokenRenegotationStatus;
 
