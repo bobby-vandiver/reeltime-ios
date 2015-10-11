@@ -7,7 +7,9 @@
 #import "RTLoginAssembly.h"
 
 #import "RTAPIClient.h"
+
 #import "RTAuthenticationAwareHTTPClient.h"
+#import "RTAuthorizationHeaderSupport.h"
 
 #import "RTOAuth2TokenRenegotiator.h"
 #import "RTOAuth2TokenRenegotiationStatus.h"
@@ -37,13 +39,18 @@
 
 - (RTAuthenticationAwareHTTPClient *)authenticationAwareHTTPClient {
     return [TyphoonDefinition withClass:[RTAuthenticationAwareHTTPClient class] configuration:^(TyphoonDefinition *definition) {
-        [definition injectMethod:@selector(initWithCurrentUserService:tokenRenegotiator:objectManager:)
+        [definition injectMethod:@selector(initWithCurrentUserService:tokenRenegotiator:authorizationHeaderSupport:objectManager:)
                         parameters:^(TyphoonMethod *initializer) {
                             [initializer injectParameterWith:[self.serviceAssembly currentUserService]];
                             [initializer injectParameterWith:[self tokenRenegotiator]];
+                            [initializer injectParameterWith:[self authorizationHeaderSupport]];
                             [initializer injectParameterWith:[self restKitObjectManager]];
                         }];
     }];
+}
+
+- (RTAuthorizationHeaderSupport *)authorizationHeaderSupport {
+    return [TyphoonDefinition withClass:[RTAuthorizationHeaderSupport class]];
 }
 
 - (RTOAuth2TokenRenegotiator *)tokenRenegotiator {

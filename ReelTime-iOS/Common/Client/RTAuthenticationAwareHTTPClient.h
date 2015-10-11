@@ -2,6 +2,7 @@
 
 @class RTCurrentUserService;
 @class RTOAuth2TokenRenegotiator;
+@class RTAuthorizationHeaderSupport;
 
 @class RKObjectManager;
 @protocol AFMultipartFormData;
@@ -15,6 +16,7 @@ typedef void (^MultipartFormDataBlock)(id<AFMultipartFormData> formData);
 
 - (instancetype)initWithCurrentUserService:(RTCurrentUserService *)currentUserService
                          tokenRenegotiator:(RTOAuth2TokenRenegotiator *)tokenRenegotiator
+                authorizationHeaderSupport:(RTAuthorizationHeaderSupport *)authorizationHeaderSupport
                              objectManager:(RKObjectManager *)objectManager;
 
 - (void)authenticatedGetBinaryForPath:(NSString *)path

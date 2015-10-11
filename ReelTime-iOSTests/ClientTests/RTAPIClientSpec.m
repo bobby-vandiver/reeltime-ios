@@ -11,6 +11,8 @@
 #import "RTAuthenticationAwareHTTPClient.h"
 #import "RTAuthenticationAwareHTTPClientSpy.h"
 
+#import "RTAuthorizationHeaderSupport.h"
+
 #import "RTCurrentUserService.h"
 #import "RTOAuth2TokenRenegotiator.h"
 
@@ -79,8 +81,11 @@ describe(@"ReelTime Client", ^{
             currentUserService = mock([RTCurrentUserService class]);
             tokenRenegotiator = mock([RTOAuth2TokenRenegotiator class]);
             
+            RTAuthorizationHeaderSupport *authorizationHeaderSupport = [[RTAuthorizationHeaderSupport alloc] init];
+            
             httpClient = [[RTAuthenticationAwareHTTPClientSpy alloc] initWithCurrentUserService:currentUserService
                                                                               tokenRenegotiator:tokenRenegotiator
+                                                                     authorizationHeaderSupport:authorizationHeaderSupport
                                                                                   objectManager:objectManager];
             return httpClient;
         }];

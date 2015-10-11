@@ -27,13 +27,14 @@
 
 - (instancetype)initWithCurrentUserService:(RTCurrentUserService *)currentUserService
                          tokenRenegotiator:(RTOAuth2TokenRenegotiator *)tokenRenegotiator
+                authorizationHeaderSupport:(RTAuthorizationHeaderSupport *)authorizationHeaderSupport
                              objectManager:(RKObjectManager *)objectManager {
     self = [super init];
     if (self) {
         self.currentUserService = currentUserService;
         self.tokenRenegotiator = tokenRenegotiator;
+        self.authorizationHeaderSupport = authorizationHeaderSupport;
         self.objectManager = objectManager;
-        self.authorizationHeaderSupport = [[RTAuthorizationHeaderSupport alloc] init];
     }
     return self;
 }

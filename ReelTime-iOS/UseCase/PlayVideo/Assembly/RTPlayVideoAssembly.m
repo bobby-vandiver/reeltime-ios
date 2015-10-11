@@ -3,12 +3,18 @@
 #import "RTClientAssembly.h"
 #import "RTApplicationAssembly.h"
 
+#import "RTServiceAssembly.h"
 #import "RTCommonComponentsAssembly.h"
 
 #import "RTPlayVideoWireframe.h"
 #import "RTPlayVideoViewController.h"
 
 #import "RTPlayerFactory.h"
+
+#import "RTPlayVideoConnectionFactory.h"
+#import "RTPlayVideoIdExtractor.h"
+
+#import "RTPlayVideoURLProtocol.h"
 
 @implementation RTPlayVideoAssembly
 
@@ -36,6 +42,32 @@
         [definition injectMethod:@selector(initWithServerUrl:pathFormatter:) parameters:^(TyphoonMethod *method) {
             [method injectParameterWith:[self.clientAssembly baseUrl]];
             [method injectParameterWith:[self.clientAssembly endpointPathFormatter]];
+        }];
+    }];
+}
+
+- (RTPlayVideoConnectionFactory *)playVideoConnectionFactory {
+    return [TyphoonDefinition withClass:[RTPlayVideoConnectionFactory class]];
+}
+
+- (RTPlayVideoIdExtractor *)playVideoIdExtractor {
+    return [TyphoonDefinition withClass:[RTPlayVideoIdExtractor class]];
+}
+
+- (RTPlayVideoURLProtocol *)playVideoURLProtocolWithRequest:(NSURLRequest *)request
+                                             cachedResponse:(NSCachedURLResponse *)cachedResponse
+                                                     client:(id<NSURLProtocolClient>)client {
+    return [TyphoonDefinition withClass:[RTPlayVideoURLProtocol class] configuration:^(TyphoonDefinition *definition) {
+        [definition injectMethod:@selector(initWithRequest:cachedResponse:client:currentUserService:connectionFactory:videoIdExtractor:authorizationHeaderSupport:notificationCenter:)
+                      parameters:^(TyphoonMethod *method) {
+                          [method injectParameterWith:request];
+                          [method injectParameterWith:cachedResponse];
+                          [method injectParameterWith:client];
+                          [method injectParameterWith:[self.serviceAssembly currentUserService]];
+                          [method injectParameterWith:[self playVideoConnectionFactory]];
+                          [method injectParameterWith:[self playVideoIdExtractor]];
+                          [method injectParameterWith:[self.clientAssembly authorizationHeaderSupport]];
+                          [method injectParameterWith:[self.commonComponentsAssembly notificationCenter]];
         }];
     }];
 }

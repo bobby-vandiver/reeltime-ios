@@ -1,7 +1,7 @@
 #import "RTPlayVideoURLProtocol.h"
 #import "RTPlayVideoConnectionDelegate.h"
 
-#import "RTServiceAssembly.h"
+#import "RTPlayVideoAssembly.h"
 #import "RTCurrentUserService.h"
 
 #import "RTPlayVideoConnectionFactory.h"
@@ -55,24 +55,11 @@ static NSString *const HandledKey = @"RTPlayVideoURLProtocolHandledKey";
                  cachedResponse:(NSCachedURLResponse *)cachedResponse
                          client:(id<NSURLProtocolClient>)client {
     
-    RTServiceAssembly *serviceAssembly = [[RTServiceAssembly assembly] activate];
-    RTCurrentUserService *currentUserService = [serviceAssembly currentUserService];
-    
-    RTPlayVideoConnectionFactory *connectionFactory = [[RTPlayVideoConnectionFactory alloc] init];
-    RTPlayVideoIdExtractor *videoIdExtractor = [[RTPlayVideoIdExtractor alloc] init];
-    
-    RTAuthorizationHeaderSupport *authorizationHeaderSupport = [[RTAuthorizationHeaderSupport alloc] init];
-    
-    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-    
-    return [self initWithRequest:request
-                  cachedResponse:cachedResponse
-                          client:client
-              currentUserService:currentUserService
-               connectionFactory:connectionFactory
-                videoIdExtractor:videoIdExtractor
-      authorizationHeaderSupport:authorizationHeaderSupport
-              notificationCenter:notificationCenter];
+    RTPlayVideoAssembly *playVideoAssembly = [[RTPlayVideoAssembly assembly] activate];
+
+    return [playVideoAssembly playVideoURLProtocolWithRequest:request
+                                               cachedResponse:cachedResponse
+                                                       client:client];
 }
 
 - (instancetype)initWithRequest:(NSURLRequest *)request

@@ -3,9 +3,10 @@
 
 #import "RTAuthenticationAwareHTTPClient.h"
 
+#import "RTAuthorizationHeaderSupport.h"
 #import "RTCurrentUserService.h"
-#import "RTOAuth2TokenRenegotiator.h"
 
+#import "RTOAuth2TokenRenegotiator.h"
 #import "RTOAuth2TokenError.h"
 
 #import <RestKit/RestKit.h>
@@ -29,17 +30,20 @@ describe(@"authentication aware http client", ^{
 
     __block RTCurrentUserService *currentUserService;
     __block RTOAuth2TokenRenegotiator *tokenRenegotiator;
-    
+
+    __block RTAuthorizationHeaderSupport *authorizationHeaderSupport;
     __block RKObjectManager *objectManager;
 
     beforeEach(^{
         currentUserService = mock([RTCurrentUserService class]);
         tokenRenegotiator = mock([RTOAuth2TokenRenegotiator class]);
 
+        authorizationHeaderSupport = mock([RTAuthorizationHeaderSupport class]);
         objectManager = mock([RKObjectManager class]);
         
         httpClient = [[RTAuthenticationAwareHTTPClient alloc] initWithCurrentUserService:currentUserService
                                                                        tokenRenegotiator:tokenRenegotiator
+                                                              authorizationHeaderSupport:authorizationHeaderSupport
                                                                            objectManager:objectManager];
     });
     
