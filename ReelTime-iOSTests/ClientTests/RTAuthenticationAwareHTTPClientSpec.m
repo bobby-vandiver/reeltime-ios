@@ -2,7 +2,9 @@
 #import "RTCallbackTestExpectation.h"
 
 #import "RTAuthenticationAwareHTTPClient.h"
-#import "RTAuthenticationAwareHTTPClientDelegate.h"
+
+#import "RTCurrentUserService.h"
+#import "RTOAuth2TokenRenegotiator.h"
 
 #import "RTOAuth2TokenError.h"
 
@@ -24,21 +26,22 @@ SpecBegin(RTAuthenticationAwareHTTPClient)
 describe(@"authentication aware http client", ^{
     
     __block RTAuthenticationAwareHTTPClient *httpClient;
-    __block RTAuthenticationAwareHTTPClientDelegate *delegate;
+
+    __block RTCurrentUserService *currentUserService;
+    __block RTOAuth2TokenRenegotiator *tokenRenegotiator;
     
     __block RKObjectManager *objectManager;
-    __block MKTArgumentCaptor *captor;
 
     beforeEach(^{
-        delegate = mock([RTAuthenticationAwareHTTPClientDelegate class]);
+        currentUserService = mock([RTCurrentUserService class]);
+        tokenRenegotiator = mock([RTOAuth2TokenRenegotiator class]);
+
         objectManager = mock([RKObjectManager class]);
         
-        httpClient = [[RTAuthenticationAwareHTTPClient alloc] initWithDelegate:delegate
-                                                          restKitObjectManager:objectManager];
-        
-        captor = [[MKTArgumentCaptor alloc] init];
+        httpClient = [[RTAuthenticationAwareHTTPClient alloc] initWithCurrentUserService:currentUserService
+                                                                       tokenRenegotiator:tokenRenegotiator
+                                                                           objectManager:objectManager];
     });
-    
     
     describe(@"server failure handler", ^{
         __block RTCallbackTestExpectation *callback;
@@ -67,17 +70,11 @@ describe(@"authentication aware http client", ^{
                                                  userInfo:@{ RKObjectMapperErrorObjectsKey: @[tokenError] }];
                 
                 failureCallback(operation, error);
-                [verify(delegate) renegotiateTokenDueToTokenError:[captor capture]
-                                                     withCallback:[callbackCaptor capture]];
+
+                [verify(tokenRenegotiator) renegotiateTokenWithCallback:[callbackCaptor capture]];
                 
                 [callback expectCallbackNotExecuted];
                 [retryableOperation expectCallbackNotExecuted];
-            });
-
-            it(@"should pass token error to delegate", ^{
-                RTOAuth2TokenError *captured = (RTOAuth2TokenError *)captor.value;
-                expect(captured.errorCode).to.equal(@"token_error");
-                expect(captured.errorDescription).to.equal(@"test");
             });
             
             it(@"should retry operation on successful token renegotiation", ^{

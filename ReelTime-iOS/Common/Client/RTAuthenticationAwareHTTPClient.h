@@ -1,8 +1,9 @@
 #import <Foundation/Foundation.h>
 
-@class RTAuthenticationAwareHTTPClientDelegate;
+@class RTCurrentUserService;
+@class RTOAuth2TokenRenegotiator;
+
 @class RKObjectManager;
-@class RTServerErrors;
 @protocol AFMultipartFormData;
 
 typedef void (^SuccessCallback)(id result);
@@ -12,8 +13,9 @@ typedef void (^MultipartFormDataBlock)(id<AFMultipartFormData> formData);
 
 @interface RTAuthenticationAwareHTTPClient : NSObject
 
-- (instancetype)initWithDelegate:(RTAuthenticationAwareHTTPClientDelegate *)delegate
-            restKitObjectManager:(RKObjectManager *)objectManager;
+- (instancetype)initWithCurrentUserService:(RTCurrentUserService *)currentUserService
+                         tokenRenegotiator:(RTOAuth2TokenRenegotiator *)tokenRenegotiator
+                             objectManager:(RKObjectManager *)objectManager;
 
 - (void)authenticatedGetBinaryForPath:(NSString *)path
                        withParameters:(NSDictionary *)parameters

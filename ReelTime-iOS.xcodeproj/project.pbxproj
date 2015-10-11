@@ -269,8 +269,6 @@
 		71647BDB1A7E802200F44996 /* RTReel.m in Sources */ = {isa = PBXBuildFile; fileRef = 71647BDA1A7E802200F44996 /* RTReel.m */; };
 		71647BDE1A7E817000F44996 /* RTActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 71647BDD1A7E817000F44996 /* RTActivity.m */; };
 		71647BE31A7EA68C00F44996 /* RTNewsfeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 71647BE21A7EA68C00F44996 /* RTNewsfeed.m */; };
-		71647BE61A7F17CD00F44996 /* RTAuthenticationAwareHTTPClientDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 71647BE51A7F17CD00F44996 /* RTAuthenticationAwareHTTPClientDelegate.m */; };
-		71647BE81A7F185500F44996 /* RTAuthenticationAwareHTTPClientDelegateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71647BE71A7F185500F44996 /* RTAuthenticationAwareHTTPClientDelegateSpec.m */; };
 		7164A3BD1B45B4C30006FE2E /* RTBrowseAudienceMembersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7164A3BC1B45B4C30006FE2E /* RTBrowseAudienceMembersViewController.m */; };
 		7164A3BF1B45BD620006FE2E /* RTBrowseAudienceMembersViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7164A3BE1B45BD620006FE2E /* RTBrowseAudienceMembersViewControllerSpec.m */; };
 		7164A3C21B45C9710006FE2E /* RTAudienceMemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7164A3C11B45C9710006FE2E /* RTAudienceMemberCell.m */; };
@@ -953,9 +951,6 @@
 		71647BDD1A7E817000F44996 /* RTActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTActivity.m; path = "ReelTime-iOS/Common/Model/RTActivity.m"; sourceTree = SOURCE_ROOT; };
 		71647BE11A7EA68C00F44996 /* RTNewsfeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTNewsfeed.h; path = "ReelTime-iOS/Common/Model/RTNewsfeed.h"; sourceTree = SOURCE_ROOT; };
 		71647BE21A7EA68C00F44996 /* RTNewsfeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTNewsfeed.m; path = "ReelTime-iOS/Common/Model/RTNewsfeed.m"; sourceTree = SOURCE_ROOT; };
-		71647BE41A7F17CC00F44996 /* RTAuthenticationAwareHTTPClientDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTAuthenticationAwareHTTPClientDelegate.h; sourceTree = "<group>"; };
-		71647BE51A7F17CD00F44996 /* RTAuthenticationAwareHTTPClientDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAuthenticationAwareHTTPClientDelegate.m; sourceTree = "<group>"; };
-		71647BE71A7F185500F44996 /* RTAuthenticationAwareHTTPClientDelegateSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAuthenticationAwareHTTPClientDelegateSpec.m; sourceTree = "<group>"; };
 		71647BE91A7F24E000F44996 /* RTKeyChainError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTKeyChainError.h; sourceTree = "<group>"; };
 		7164A3BB1B45B4C30006FE2E /* RTBrowseAudienceMembersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseAudienceMembersViewController.h; sourceTree = "<group>"; };
 		7164A3BC1B45B4C30006FE2E /* RTBrowseAudienceMembersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseAudienceMembersViewController.m; sourceTree = "<group>"; };
@@ -2243,8 +2238,6 @@
 				713D7A4B1A50A33300754A06 /* RTAPIClient.m */,
 				715555A51A9ED1F40091F432 /* RTAuthenticationAwareHTTPClient.h */,
 				715555A61A9ED1F40091F432 /* RTAuthenticationAwareHTTPClient.m */,
-				71647BE41A7F17CC00F44996 /* RTAuthenticationAwareHTTPClientDelegate.h */,
-				71647BE51A7F17CD00F44996 /* RTAuthenticationAwareHTTPClientDelegate.m */,
 				71361D7C1B86C93700C0CB4D /* RTAuthorizationHeaderSupport.h */,
 				71361D7D1B86C93700C0CB4D /* RTAuthorizationHeaderSupport.m */,
 				712EA2C31A9C1B4600AFCA15 /* RTClientAdditionalConfiguration.h */,
@@ -3008,7 +3001,6 @@
 			isa = PBXGroup;
 			children = (
 				717A4B7F1A535942004C2BC1 /* RTAPIClientSpec.m */,
-				71647BE71A7F185500F44996 /* RTAuthenticationAwareHTTPClientDelegateSpec.m */,
 				71BF64231BB83DB50039ADE6 /* RTAuthenticationAwareHTTPClientSpec.m */,
 				711FF4C41AA23A3A00E11BDE /* RTAuthenticationAwareHTTPClientSpy.h */,
 				711FF4C51AA23A3A00E11BDE /* RTAuthenticationAwareHTTPClientSpy.m */,
@@ -4498,7 +4490,6 @@
 				71828EDB1B616BBC00CA47CA /* RTFollowUserInteractor.m in Sources */,
 				71201F8C1A96B7CD003F2831 /* RTNewsfeedAssembly.m in Sources */,
 				71647BD81A7E7F9D00F44996 /* RTUser.m in Sources */,
-				71647BE61A7F17CD00F44996 /* RTAuthenticationAwareHTTPClientDelegate.m in Sources */,
 				71F384D01B3772C8002BC9A0 /* RTUserProfilePresenter.m in Sources */,
 				718BC4C41ACB7F8E00C1257F /* RTImagePNGSerialization.m in Sources */,
 				7103A2C91B88C38200DB4B50 /* AVPlayerItem+StatusText.m in Sources */,
@@ -4736,7 +4727,6 @@
 				712AAB081B2C6E4900E7AE4E /* RTChangeDisplayNameViewControllerSpec.m in Sources */,
 				71386E501AD34F8F009D064C /* RTBrowseUserReelsDataManagerDelegateSpec.m in Sources */,
 				7103A2C61B880CC800DB4B50 /* RTPlayVideoIdExtractorSpec.m in Sources */,
-				71647BE81A7F185500F44996 /* RTAuthenticationAwareHTTPClientDelegateSpec.m in Sources */,
 				7108D78D1B13FBB9000451AD /* RTChangeDisplayNameInteractorSpec.m in Sources */,
 				713CF1CF1AE28F7D003E2F89 /* RTArrayDataSourceSpec.m in Sources */,
 				71194C231A81C37900904A06 /* EXPMatchers+beReel.m in Sources */,

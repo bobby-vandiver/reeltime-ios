@@ -10,7 +10,9 @@
 
 #import "RTAuthenticationAwareHTTPClient.h"
 #import "RTAuthenticationAwareHTTPClientSpy.h"
-#import "RTAuthenticationAwareHTTPClientDelegate.h"
+
+#import "RTCurrentUserService.h"
+#import "RTOAuth2TokenRenegotiator.h"
 
 #import "RTClientCredentials.h"
 #import "RTUserCredentials.h"
@@ -37,10 +39,11 @@ SpecBegin(RTAPIClient)
 describe(@"ReelTime Client", ^{
     
     __block RTAPIClient *client;
-
     __block RTAuthenticationAwareHTTPClientSpy *httpClient;
-    __block RTAuthenticationAwareHTTPClientDelegate *delegate;
 
+    __block RTCurrentUserService *currentUserService;
+    __block RTOAuth2TokenRenegotiator *tokenRenegotiator;
+    
     __block RTClientSpecHelper *helper;
     __block RTClientSpecCallbackExpectation *callbacks;
 
@@ -73,9 +76,12 @@ describe(@"ReelTime Client", ^{
         [patcher patchDefinitionWithSelector:@selector(authenticationAwareHTTPClient) withObject:^id{
             RKObjectManager *objectManager = [(RTClientAssembly *)factory restKitObjectManager];
             
-            delegate = mock([RTAuthenticationAwareHTTPClientDelegate class]);
-            httpClient = [[RTAuthenticationAwareHTTPClientSpy alloc] initWithDelegate:delegate
-                                                                 restKitObjectManager:objectManager];
+            currentUserService = mock([RTCurrentUserService class]);
+            tokenRenegotiator = mock([RTOAuth2TokenRenegotiator class]);
+            
+            httpClient = [[RTAuthenticationAwareHTTPClientSpy alloc] initWithCurrentUserService:currentUserService
+                                                                              tokenRenegotiator:tokenRenegotiator
+                                                                                  objectManager:objectManager];
             return httpClient;
         }];
         
@@ -513,11 +519,14 @@ describe(@"ReelTime Client", ^{
     
     context(@"access token is required and valid", ^{
         beforeEach(^{
-            [given([delegate accessTokenForCurrentUser]) willReturn:ACCESS_TOKEN];
+            RTOAuth2Token *token = [[RTOAuth2Token alloc] init];
+            token.accessToken = ACCESS_TOKEN;
+                                    
+            [given([currentUserService tokenForCurrentUser]) willReturn:token];
         });
         
         afterEach(^{
-            [verify(delegate) accessTokenForCurrentUser];
+            [verify(currentUserService) tokenForCurrentUser];
         });
 
         describe(@"account removal", ^{

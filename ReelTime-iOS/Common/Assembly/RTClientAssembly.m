@@ -7,16 +7,15 @@
 #import "RTLoginAssembly.h"
 
 #import "RTAPIClient.h"
-#import "RTClientAdditionalConfiguration.h"
-
 #import "RTAuthenticationAwareHTTPClient.h"
-#import "RTAuthenticationAwareHTTPClientDelegate.h"
 
 #import "RTOAuth2TokenRenegotiator.h"
 #import "RTOAuth2TokenRenegotiationStatus.h"
 
 #import "RTEndpointPathFormatter.h"
 #import "RTResponseDescriptorFactory.h"
+
+#import "RTClientAdditionalConfiguration.h"
 
 #import <RestKit/RestKit.h>
 
@@ -38,23 +37,11 @@
 
 - (RTAuthenticationAwareHTTPClient *)authenticationAwareHTTPClient {
     return [TyphoonDefinition withClass:[RTAuthenticationAwareHTTPClient class] configuration:^(TyphoonDefinition *definition) {
-        [definition injectMethod:@selector(initWithDelegate:restKitObjectManager:)
+        [definition injectMethod:@selector(initWithCurrentUserService:tokenRenegotiator:objectManager:)
                         parameters:^(TyphoonMethod *initializer) {
-                            [initializer injectParameterWith:[self authenticationAwareHTTPClientDelegate]];
-                            [initializer injectParameterWith:[self restKitObjectManager]];
-                        }];
-    }];
-}
-
-- (RTAuthenticationAwareHTTPClientDelegate *)authenticationAwareHTTPClientDelegate {
-    return [TyphoonDefinition withClass:[RTAuthenticationAwareHTTPClientDelegate class] configuration:^(TyphoonDefinition *definition) {
-        [definition injectMethod:@selector(initWithAPIClient:currentUserService:loginWireframe:tokenRenegotiationStatus:notificationCenter:)
-                        parameters:^(TyphoonMethod *initializer) {
-                            [initializer injectParameterWith:[self reelTimeClient]];
                             [initializer injectParameterWith:[self.serviceAssembly currentUserService]];
-                            [initializer injectParameterWith:[self.loginAssembly loginWireframe]];
-                            [initializer injectParameterWith:[self tokenRenegotationStatus]];
-                            [initializer injectParameterWith:[self.commonComponentsAssembly notificationCenter]];
+                            [initializer injectParameterWith:[self tokenRenegotiator]];
+                            [initializer injectParameterWith:[self restKitObjectManager]];
                         }];
     }];
 }

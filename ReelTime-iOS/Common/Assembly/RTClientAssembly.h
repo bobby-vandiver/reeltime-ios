@@ -9,7 +9,6 @@
 @class RTAPIClient;
 
 @class RTAuthenticationAwareHTTPClient;
-@class RTAuthenticationAwareHTTPClientDelegate;
 
 @class RTOAuth2TokenRenegotiator;
 @class RTOAuth2TokenRenegotiationStatus;
@@ -28,8 +27,6 @@
 - (RTAPIClient *)reelTimeClient;
 
 - (RTAuthenticationAwareHTTPClient *)authenticationAwareHTTPClient;
-
-- (RTAuthenticationAwareHTTPClientDelegate *)authenticationAwareHTTPClientDelegate;
 
 - (RTOAuth2TokenRenegotiator *)tokenRenegotiator;
 

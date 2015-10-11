@@ -1,7 +1,11 @@
 #import "RTAuthenticationAwareHTTPClient.h"
-#import "RTAuthenticationAwareHTTPClientDelegate.h"
+
+#import "RTCurrentUserService.h"
+#import "RTOAuth2TokenRenegotiator.h"
 
 #import "RTAuthorizationHeaderSupport.h"
+
+#import "RTOAuth2Token.h"
 #import "RTOAuth2TokenError.h"
 
 #import "RTLogging.h"
@@ -11,20 +15,23 @@
 
 @interface RTAuthenticationAwareHTTPClient ()
 
-@property RTAuthenticationAwareHTTPClientDelegate *delegate;
-@property RKObjectManager *objectManager;
+@property RTCurrentUserService *currentUserService;
+@property RTOAuth2TokenRenegotiator *tokenRenegotiator;
 
+@property RKObjectManager *objectManager;
 @property RTAuthorizationHeaderSupport *authorizationHeaderSupport;
 
 @end
 
 @implementation RTAuthenticationAwareHTTPClient
 
-- (instancetype)initWithDelegate:(RTAuthenticationAwareHTTPClientDelegate *)delegate
-            restKitObjectManager:(RKObjectManager *)objectManager {
+- (instancetype)initWithCurrentUserService:(RTCurrentUserService *)currentUserService
+                         tokenRenegotiator:(RTOAuth2TokenRenegotiator *)tokenRenegotiator
+                             objectManager:(RKObjectManager *)objectManager {
     self = [super init];
     if (self) {
-        self.delegate = delegate;
+        self.currentUserService = currentUserService;
+        self.tokenRenegotiator = tokenRenegotiator;
         self.objectManager = objectManager;
         self.authorizationHeaderSupport = [[RTAuthorizationHeaderSupport alloc] init];
     }
@@ -203,8 +210,8 @@
 }
 
 - (NSDictionary *)authorizationHeader {
-    NSString *accessToken = [self.delegate accessTokenForCurrentUser];
-    NSString *bearerTokenHeader = [self.authorizationHeaderSupport bearerTokenHeaderFromAccessToken:accessToken];
+    RTOAuth2Token *token = [self.currentUserService tokenForCurrentUser];
+    NSString *bearerTokenHeader = [self.authorizationHeaderSupport bearerTokenHeaderFromAccessToken:token.accessToken];
     return @{RTAuthorizationHeader:bearerTokenHeader};
 }
 
@@ -251,9 +258,9 @@
         
         if (authenticated && [errors isKindOfClass:[RTOAuth2TokenError class]]) {
             RTOAuth2TokenError *tokenError = (RTOAuth2TokenError *)errors;
-            
-            [self.delegate renegotiateTokenDueToTokenError:tokenError
-                                              withCallback:retryableOperation];
+
+            DDLogDebug(@"Renegotiating token due to token error: %@", tokenError);
+            [self.tokenRenegotiator renegotiateTokenWithCallback:retryableOperation];
         }
         else {
             callback(errors);
