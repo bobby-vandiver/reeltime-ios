@@ -1,5 +1,7 @@
 #import "TyphoonAssembly.h"
+
 #import "RTPlayVideoViewControllerFactory.h"
+#import "RTPlayVideoConnectionFactory.h"
 
 @class RTClientAssembly;
 @class RTApplicationAssembly;
@@ -10,12 +12,12 @@
 @class RTPlayVideoWireframe;
 @class RTPlayerFactory;
 
-@class RTPlayVideoConnectionFactory;
 @class RTPlayVideoIdExtractor;
-
 @class RTPlayVideoURLProtocol;
 
-@interface RTPlayVideoAssembly : TyphoonAssembly <RTPlayVideoViewControllerFactory>
+@class RTPlayVideoConnectionDelegate;
+
+@interface RTPlayVideoAssembly : TyphoonAssembly <RTPlayVideoViewControllerFactory, RTPlayVideoConnectionFactory>
 
 @property (nonatomic, strong, readonly) RTClientAssembly *clientAssembly;
 @property (nonatomic, strong, readonly) RTApplicationAssembly *applicationAssembly;
@@ -27,12 +29,13 @@
 
 - (RTPlayerFactory *)playerFactory;
 
-- (RTPlayVideoConnectionFactory *)playVideoConnectionFactory;
-
 - (RTPlayVideoIdExtractor *)playVideoIdExtractor;
 
 - (RTPlayVideoURLProtocol *)playVideoURLProtocolWithRequest:(NSURLRequest *)request
                                              cachedResponse:(NSCachedURLResponse *)cachedResponse
                                                      client:(id<NSURLProtocolClient>)client;
+
+- (RTPlayVideoConnectionDelegate *)playVideoConnectionDelegateWithURLProtocol:(NSURLProtocol *)URLProtocol
+                                                                   forVideoId:(NSNumber *)videoId;
 
 @end

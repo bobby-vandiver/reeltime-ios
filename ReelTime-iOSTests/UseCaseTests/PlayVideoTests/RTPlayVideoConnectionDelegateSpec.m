@@ -23,9 +23,10 @@ describe(@"play video connection delegate", ^{
         urlProtocol = mock([NSURLProtocol class]);
         [given([urlProtocol client]) willReturn:urlProtocolClient];
         
-        connectionDelegate = [RTPlayVideoConnectionDelegate connectionDelegateForURLProtocol:urlProtocol
-                                                                          notificationCenter:notificationCenter
-                                                                                     videoId:@(videoId)];
+        connectionDelegate = [[RTPlayVideoConnectionDelegate alloc] initWithURLProtocol:urlProtocol
+                                                                     notificationCenter:notificationCenter
+                                                                             forVideoId:@(videoId)];
+        
         connection = mock([NSURLConnection class]);
     });
     

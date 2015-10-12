@@ -27,12 +27,11 @@ describe(@"play video url protocol", ^{
     
     __block RTCurrentUserService *currentUserService;
 
-    __block RTPlayVideoConnectionFactory *connectionFactory;
+    __block id<RTPlayVideoConnectionFactory> connectionFactory;
     __block RTPlayVideoIdExtractor *videoIdExtractor;
     
     __block RTAuthorizationHeaderSupport *authorizationHeaderSupport;
-    __block NSNotificationCenter *notificationCenter;
-    
+
     beforeEach(^{
         request = mock([NSURLRequest class]);
         response = mock([NSCachedURLResponse class]);
@@ -41,11 +40,10 @@ describe(@"play video url protocol", ^{
         
         currentUserService = mock([RTCurrentUserService class]);
 
-        connectionFactory = mock([RTPlayVideoConnectionFactory class]);
-        videoIdExtractor = mock([RTPlayVideoIdExtractor class]);
+        connectionFactory = mockProtocol(@protocol(RTPlayVideoConnectionFactory));
         
+        videoIdExtractor = mock([RTPlayVideoIdExtractor class]);
         authorizationHeaderSupport = mock([RTAuthorizationHeaderSupport class]);
-        notificationCenter = mock([NSNotificationCenter class]);
         
         protocol = [[RTPlayVideoURLProtocol alloc] initWithRequest:request
                                                     cachedResponse:response
@@ -53,8 +51,7 @@ describe(@"play video url protocol", ^{
                                                 currentUserService:currentUserService
                                                  connectionFactory:connectionFactory
                                                   videoIdExtractor:videoIdExtractor
-                                        authorizationHeaderSupport:authorizationHeaderSupport
-                                                notificationCenter:notificationCenter];
+                                        authorizationHeaderSupport:authorizationHeaderSupport];
     });
     
     describe(@"unsupported urls", ^{
@@ -149,19 +146,19 @@ describe(@"play video url protocol", ^{
             [given([videoIdExtractor videoIdFromURL:url]) willReturn:@(videoId)];
 
             connection = mock([NSURLConnection class]);
-            [given([connectionFactory connectionWithRequest:mutableRequest
-                                             forURLProtocol:protocol
-                                         notificationCenter:notificationCenter
-                                                    videoId:@(videoId)]) willReturn:connection];
+
+            [given([connectionFactory playVideoConnectionWithRequest:mutableRequest
+                                                         URLProtocol:protocol
+                                                          forVideoId:@(videoId)]) willReturn:connection];
         });
         
         describe(@"starting", ^{
             it(@"should extract video id and create connection", ^{
                 [protocol startLoading];
-                [verify(connectionFactory) connectionWithRequest:mutableRequest
-                                                  forURLProtocol:protocol
-                                              notificationCenter:notificationCenter
-                                                         videoId:@(videoId)];
+
+                [verify(connectionFactory) playVideoConnectionWithRequest:mutableRequest
+                                                              URLProtocol:protocol
+                                                               forVideoId:@(videoId)];
                 
                 expect(protocol.connection).to.equal(connection);
             });

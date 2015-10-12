@@ -17,18 +17,9 @@
 
 @implementation RTPlayVideoConnectionDelegate
 
-+ (instancetype)connectionDelegateForURLProtocol:(NSURLProtocol *)URLProtocol
-                              notificationCenter:(NSNotificationCenter *)notificationCenter
-                                         videoId:(NSNumber *)videoId {
-    
-    return [[RTPlayVideoConnectionDelegate alloc] initWithURLProtocol:URLProtocol
-                                                   notificationCenter:notificationCenter
-                                                              videoId:videoId];
-}
-
 - (instancetype)initWithURLProtocol:(NSURLProtocol *)URLProtocol
                  notificationCenter:(NSNotificationCenter *)notificationCenter
-                            videoId:(NSNumber *)videoId {
+                         forVideoId:(NSNumber *)videoId {
     self = [super init];
     if (self) {
         self.URLProtocol = URLProtocol;

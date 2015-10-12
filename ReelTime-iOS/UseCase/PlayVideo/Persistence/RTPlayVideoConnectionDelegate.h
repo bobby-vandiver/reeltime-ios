@@ -2,8 +2,8 @@
 
 @interface RTPlayVideoConnectionDelegate : NSObject <NSURLConnectionDelegate, NSURLConnectionDataDelegate>
 
-+ (instancetype)connectionDelegateForURLProtocol:(NSURLProtocol *)URLProtocol
-                              notificationCenter:(NSNotificationCenter *)notificationCenter
-                                         videoId:(NSNumber *)videoId;
+- (instancetype)initWithURLProtocol:(NSURLProtocol *)URLProtocol
+                 notificationCenter:(NSNotificationCenter *)notificationCenter
+                         forVideoId:(NSNumber *)videoId;
 
 @end

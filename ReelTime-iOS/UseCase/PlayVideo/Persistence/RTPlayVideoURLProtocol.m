@@ -20,7 +20,7 @@
 
 @property RTCurrentUserService *currentUserService;
 
-@property RTPlayVideoConnectionFactory *connectionFactory;
+@property id<RTPlayVideoConnectionFactory> connectionFactory;
 @property RTPlayVideoIdExtractor *videoIdExtractor;
 
 @property RTAuthorizationHeaderSupport *authorizationHeaderSupport;
@@ -66,10 +66,9 @@ static NSString *const HandledKey = @"RTPlayVideoURLProtocolHandledKey";
                  cachedResponse:(NSCachedURLResponse *)cachedResponse
                          client:(id<NSURLProtocolClient>)client
              currentUserService:(RTCurrentUserService *)currentUserService
-              connectionFactory:(RTPlayVideoConnectionFactory *)connectionFactory
+              connectionFactory:(id<RTPlayVideoConnectionFactory>)connectionFactory
                videoIdExtractor:(RTPlayVideoIdExtractor *)videoIdExtractor
-     authorizationHeaderSupport:(RTAuthorizationHeaderSupport *)authorizationHeaderSupport
-             notificationCenter:(NSNotificationCenter *)notificationCenter {
+     authorizationHeaderSupport:(RTAuthorizationHeaderSupport *)authorizationHeaderSupport {
     
     self = [super initWithRequest:request cachedResponse:cachedResponse client:client];
     if (self) {
@@ -77,7 +76,6 @@ static NSString *const HandledKey = @"RTPlayVideoURLProtocolHandledKey";
         self.connectionFactory = connectionFactory;
         self.videoIdExtractor = videoIdExtractor;
         self.authorizationHeaderSupport = authorizationHeaderSupport;
-        self.notificationCenter = notificationCenter;
     }
     return self;
 }
@@ -98,11 +96,10 @@ static NSString *const HandledKey = @"RTPlayVideoURLProtocolHandledKey";
     [NSURLProtocol setProperty:@(YES) forKey:HandledKey inRequest:newRequest];
 
     NSNumber *videoId = [self.videoIdExtractor videoIdFromURL:newRequest.URL];
-
-    self.connection = [self.connectionFactory connectionWithRequest:newRequest
-                                                     forURLProtocol:self
-                                                 notificationCenter:self.notificationCenter
-                                                            videoId:videoId];
+    
+    self.connection = [self.connectionFactory playVideoConnectionWithRequest:newRequest
+                                                                 URLProtocol:self
+                                                                  forVideoId:videoId];
 }
 
 - (void)stopLoading {
