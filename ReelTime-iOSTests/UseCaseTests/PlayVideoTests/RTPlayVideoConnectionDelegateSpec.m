@@ -4,6 +4,8 @@
 #import "RTPlayVideoError.h"
 #import "RTPlayVideoNotification.h"
 
+#import "RTOAuth2TokenRenegotiator.h"
+
 SpecBegin(RTPlayVideoConnectionDelegate)
 
 describe(@"play video connection delegate", ^{
@@ -15,6 +17,8 @@ describe(@"play video connection delegate", ^{
     
     __block NSNotificationCenter *notificationCenter;
     __block NSURLConnection *connection;
+
+    __block RTOAuth2TokenRenegotiator *tokenRenegotiator;
     
     beforeEach(^{
         notificationCenter = mock([NSNotificationCenter class]);
@@ -23,8 +27,11 @@ describe(@"play video connection delegate", ^{
         urlProtocol = mock([NSURLProtocol class]);
         [given([urlProtocol client]) willReturn:urlProtocolClient];
         
+        tokenRenegotiator = mock([RTOAuth2TokenRenegotiator class]);
+        
         connectionDelegate = [[RTPlayVideoConnectionDelegate alloc] initWithURLProtocol:urlProtocol
                                                                      notificationCenter:notificationCenter
+                                                                      tokenRenegotiator:tokenRenegotiator
                                                                              forVideoId:@(videoId)];
         
         connection = mock([NSURLConnection class]);
@@ -38,10 +45,13 @@ describe(@"play video connection delegate", ^{
         
         __block NSHTTPURLResponse *httpResponse;
 
+        __block MKTArgumentCaptor *captor;
+        
         beforeEach(^{
             url = [NSURL URLWithString:@"http://anywhere/"];
             httpVersion = @"HTTP/1.1";
             headers = @{};
+            captor = [[MKTArgumentCaptor alloc] init];
         });
         
         context(@"successful response", ^{
@@ -60,13 +70,44 @@ describe(@"play video connection delegate", ^{
                                     cacheStoragePolicy:NSURLCacheStorageNotAllowed];
             });
         });
-                
-        context(@"video not found response", ^{
-            __block MKTArgumentCaptor *captor;
+        
+        context(@"unauthorized response", ^{
+            __block MKTArgumentCaptor *callbackCaptor;
             
             beforeEach(^{
-                captor = [[MKTArgumentCaptor alloc] init];
-
+                httpResponse = [[NSHTTPURLResponse alloc] initWithURL:url
+                                                           statusCode:401
+                                                          HTTPVersion:httpVersion
+                                                         headerFields:headers];
+                
+                [connectionDelegate connection:connection didReceiveResponse:httpResponse];
+                
+                callbackCaptor = [[MKTArgumentCaptor alloc] init];
+            });
+            
+            it(@"should cancel connection", ^{
+                [verify(connection) cancel];
+            });
+            
+            it(@"should renegotiate token and publish notification on completion", ^{
+                [verify(tokenRenegotiator) renegotiateTokenWithCallback:[callbackCaptor capture]];
+                
+                NoArgsCallback callback = callbackCaptor.value;
+                callback();
+                
+                [verify(notificationCenter) postNotificationName:RTPlayVideoNotificationReloadVideo
+                                                          object:connectionDelegate
+                                                        userInfo:[captor capture]];
+                
+                NSDictionary *userInfo = captor.value;
+                
+                expect(userInfo).to.haveACountOf(1);
+                expect(userInfo[RTPlayVideoNotificationVideoIdKey]).to.equal(@(videoId));
+            });
+        });
+                
+        context(@"video not found response", ^{
+            beforeEach(^{
                 httpResponse = [[NSHTTPURLResponse alloc] initWithURL:url
                                                            statusCode:404
                                                           HTTPVersion:httpVersion

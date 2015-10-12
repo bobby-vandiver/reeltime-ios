@@ -70,10 +70,11 @@
 - (RTPlayVideoConnectionDelegate *)playVideoConnectionDelegateWithURLProtocol:(NSURLProtocol *)URLProtocol
                                                                    forVideoId:(NSNumber *)videoId {
     return [TyphoonDefinition withClass:[RTPlayVideoConnectionDelegate class] configuration:^(TyphoonDefinition *definition) {
-        [definition injectMethod:@selector(initWithURLProtocol:notificationCenter:forVideoId:)
+        [definition injectMethod:@selector(initWithURLProtocol:notificationCenter:tokenRenegotiator:forVideoId:)
                       parameters:^(TyphoonMethod *method) {
                           [method injectParameterWith:URLProtocol];
                           [method injectParameterWith:[self.commonComponentsAssembly notificationCenter]];
+                          [method injectParameterWith:[self.clientAssembly tokenRenegotiator]];
                           [method injectParameterWith:videoId];
         }];
     }];
