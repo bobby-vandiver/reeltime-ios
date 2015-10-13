@@ -20,8 +20,6 @@
 
 - (UIWindow *)mainWindow {
     return [TyphoonDefinition withClass:[UIWindow class] configuration:^(TyphoonDefinition *definition) {
-        definition.scope = TyphoonScopeSingleton;
-        
         [definition useInitializer:@selector(initWithFrame:)
                         parameters:^(TyphoonMethod *initializer) {
                             CGRect bounds = [[UIScreen mainScreen] bounds];
@@ -31,9 +29,7 @@
 }
 
 - (RTApplicationWireframe *)applicationWireframe {
-    return [TyphoonDefinition withClass:[RTApplicationWireframe class] configuration:^(TyphoonDefinition *definition) {
-        definition.scope = TyphoonScopeSingleton;
-        
+    return [TyphoonDefinition withClass:[RTApplicationWireframe class] configuration:^(TyphoonDefinition *definition) {        
         [definition injectMethod:@selector(initWithWindow:tabBarController:wireframeContainer:navigationControllerFactory:)
                       parameters:^(TyphoonMethod *initializer) {
                           [initializer injectParameterWith:[self mainWindow]];
