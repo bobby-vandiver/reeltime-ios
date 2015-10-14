@@ -1,5 +1,6 @@
 #import "RTApplicationWireframe.h"
 
+#import "RTApplicationWindowHandle.h"
 #import "RTApplicationNavigationController.h"
 #import "RTApplicationTabBarController.h"
 #import "RTApplicationWireframeContainer.h"
@@ -10,7 +11,7 @@
 
 @interface RTApplicationWireframe ()
 
-@property (nonatomic) UIWindow *window;
+@property RTApplicationWindowHandle *windowHandle;
 
 @property RTApplicationNavigationController *navigationController;
 @property RTApplicationTabBarController *tabBarController;
@@ -18,24 +19,29 @@
 @property RTApplicationWireframeContainer *wireframeContainer;
 @property id<RTApplicationNavigationControllerFactory> navigationControllerFactory;
 
+@property (readonly) UIWindow *window;
 @property UIViewController *previousRootViewController;
 
 @end
 
 @implementation RTApplicationWireframe
 
-- (instancetype)initWithWindow:(UIWindow *)window
-              tabBarController:(RTApplicationTabBarController *)tabBarController
-            wireframeContainer:(RTApplicationWireframeContainer *)wireframeContainer
-   navigationControllerFactory:(id<RTApplicationNavigationControllerFactory>)navigationControllerFactory {
+- (instancetype)initWithWindowHandle:(RTApplicationWindowHandle *)windowHandle
+                    tabBarController:(RTApplicationTabBarController *)tabBarController
+                  wireframeContainer:(RTApplicationWireframeContainer *)wireframeContainer
+         navigationControllerFactory:(id<RTApplicationNavigationControllerFactory>)navigationControllerFactory {
     self = [super init];
     if (self) {
-        self.window = window;
+        self.windowHandle = windowHandle;
         self.tabBarController = tabBarController;
         self.wireframeContainer = wireframeContainer;
         self.navigationControllerFactory = navigationControllerFactory;
     }
     return self;
+}
+
+- (UIWindow *)window {
+    return self.windowHandle.window;
 }
 
 - (void)presentInitialScreen {

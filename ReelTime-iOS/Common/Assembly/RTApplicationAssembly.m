@@ -1,6 +1,8 @@
 #import "RTApplicationAssembly.h"
 #import "RTApplicationWireframe.h"
 
+#import "RTApplicationWindowHandle.h"
+
 #import "RTApplicationNavigationController.h"
 #import "RTApplicationTabBarController.h"
 
@@ -28,11 +30,15 @@
     }];
 }
 
+- (RTApplicationWindowHandle *)applicationWindowHandle {
+    return [TyphoonDefinition withClass:[RTApplicationWindowHandle class]];
+}
+
 - (RTApplicationWireframe *)applicationWireframe {
     return [TyphoonDefinition withClass:[RTApplicationWireframe class] configuration:^(TyphoonDefinition *definition) {        
-        [definition injectMethod:@selector(initWithWindow:tabBarController:wireframeContainer:navigationControllerFactory:)
+        [definition injectMethod:@selector(initWithWindowHandle:tabBarController:wireframeContainer:navigationControllerFactory:)
                       parameters:^(TyphoonMethod *initializer) {
-                          [initializer injectParameterWith:[self mainWindow]];
+                          [initializer injectParameterWith:[self applicationWindowHandle]];
                           [initializer injectParameterWith:[self applicationTabBarController]];
                           [initializer injectParameterWith:[self applicationWireframeContainer]];
                           [initializer injectParameterWith:self];

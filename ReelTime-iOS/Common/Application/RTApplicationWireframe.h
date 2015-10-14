@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+@class RTApplicationWindowHandle;
 @class RTApplicationNavigationController;
 @class RTApplicationTabBarController;
 @class RTApplicationWireframeContainer;
@@ -9,10 +10,10 @@
 
 @interface RTApplicationWireframe : NSObject
 
-- (instancetype)initWithWindow:(UIWindow *)window
-              tabBarController:(RTApplicationTabBarController *)tabBarController
-            wireframeContainer:(RTApplicationWireframeContainer *)wireframeContainer
-   navigationControllerFactory:(id<RTApplicationNavigationControllerFactory>)navigationControllerFactory;
+- (instancetype)initWithWindowHandle:(RTApplicationWindowHandle *)windowHandle
+                    tabBarController:(RTApplicationTabBarController *)tabBarController
+                  wireframeContainer:(RTApplicationWireframeContainer *)wireframeContainer
+         navigationControllerFactory:(id<RTApplicationNavigationControllerFactory>)navigationControllerFactory;
 
 - (void)presentInitialScreen;
 

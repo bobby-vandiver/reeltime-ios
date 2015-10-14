@@ -5,6 +5,7 @@
 #import "RTLoginAssembly.h"
 
 #import "RTAppDelegate.h"
+#import "RTApplicationWindowHandle.h"
 #import "RTApplicationWireframe.h"
 #import "RTApplicationWireframeContainer.h"
 
@@ -20,6 +21,8 @@
 @property (nonatomic, strong, readonly) RTBrowseAllAssembly *browseAllAssembly;
 
 - (RTAppDelegate *)appDelegate;
+
+- (RTApplicationWindowHandle *)applicationWindowHandle;
 
 - (RTApplicationWireframe *)applicationWireframe;
 
