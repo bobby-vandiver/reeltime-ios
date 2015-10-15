@@ -4,6 +4,8 @@
 #import "RTPlayerFactory.h"
 
 #import "RTPlayerView.h"
+#import "RTPlayVideoNotification.h"
+
 #import "RTLogging.h"
 
 #import <AVFoundation/AVFoundation.h>
@@ -47,15 +49,25 @@ static NSString *const CurrentItemStatusKeyPath = @"currentItem.status";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setUpPlayer];
+}
 
+- (void)viewWillAppear:(BOOL)animated {
+    [self addObservers];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [self removeObservers];
+}
+
+- (void)setUpPlayer {
     self.player = [self.playerFactory playerForVideoId:self.videoId];
-    self.player.actionAtItemEnd = AVPlayerActionAtItemEndNone;
-
+    
     self.playerView.player = self.player;
     self.playerView.playerLayer.needsDisplayOnBoundsChange = YES;
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)addObservers {
     DDLogDebug(@"Adding observers");
     
     [self.player addObserver:self forKeyPath:CurrentItemStatusKeyPath options:0 context:NULL];
@@ -67,6 +79,11 @@ static NSString *const CurrentItemStatusKeyPath = @"currentItem.status";
                                 selector:@selector(reachedEndOfVideo:)
                                     name:AVPlayerItemDidPlayToEndTimeNotification
                                   object:self.player.currentItem];
+    
+    [self.notificationCenter addObserver:self
+                                selector:@selector(reloadVideo:)
+                                    name:RTPlayVideoNotificationReloadVideo
+                                  object:nil];
 }
 
 - (void (^)(CMTime))timeObserverCallback {
@@ -85,11 +102,21 @@ static NSString *const CurrentItemStatusKeyPath = @"currentItem.status";
 }
 
 - (void)reachedEndOfVideo:(NSNotification *)notification {
+    DDLogDebug(@"Reached end of video");
     [self seekToStart];
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
+- (void)reloadVideo:(NSNotification *)notification {
+    DDLogDebug(@"Reloading video with userInfo = %@", notification.userInfo);
+    [self setUpPlayer];
+}
+
+- (void)removeObservers {
     DDLogDebug(@"Removing observers");
+
+    [self.notificationCenter removeObserver:self
+                                       name:RTPlayVideoNotificationReloadVideo
+                                     object:nil];
     
     [self.notificationCenter removeObserver:self
                                        name:AVPlayerItemDidPlayToEndTimeNotification

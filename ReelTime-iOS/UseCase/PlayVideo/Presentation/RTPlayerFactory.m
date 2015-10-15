@@ -29,7 +29,11 @@
     NSURL *videoUrl = [NSURL URLWithString:path
                              relativeToURL:self.serverUrl];
     
-    return [AVPlayer playerWithURL:videoUrl];
+    AVPlayer *player = [AVPlayer playerWithURL:videoUrl];
+
+    player.actionAtItemEnd = AVPlayerActionAtItemEndNone;
+    
+    return player;
 }
 
 @end

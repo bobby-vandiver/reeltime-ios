@@ -76,7 +76,6 @@
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    DDLogDebug(@"connectionDidFinishLoading...");
     [self.URLProtocol.client URLProtocolDidFinishLoading:self.URLProtocol];
 }
 
