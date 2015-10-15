@@ -7,7 +7,9 @@
 #import "RTLoginNotification.h"
 
 #import "RTOAuth2Token.h"
+
 #import "RTOAuth2TokenRenegotiationStatus.h"
+#import "RTOAuth2TokenRenegotiationNotification.h"
 
 #import "RTLogging.h"
 
@@ -53,7 +55,8 @@
 }
 
 - (void)renegotiateTokenWithCallback:(NoArgsCallback)callback {
-    DDLogDebug(@"entering renegotiateTokenWithCallback");
+
+    [self.notificationCenter postNotificationName:RTOAuth2TokenRenegotiationStartedNotification object:self];
     
     RTOAuth2TokenRenegotiationStatus *status = self.tokenRenegotiationStatus;
     

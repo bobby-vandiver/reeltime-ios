@@ -13,6 +13,8 @@
 #import "RTOAuth2TokenError.h"
 
 #import "RTOAuth2TokenRenegotiationStatus.h"
+#import "RTOAuth2TokenRenegotiationNotification.h"
+
 #import "RTLoginNotification.h"
 
 @interface RTOAuth2TokenRenegotiator (Test)
@@ -91,6 +93,11 @@ describe(@"token renegotiator", ^{
                 [renegotiationSuccess expectCallbackNotExecuted];
                 
                 expect(tokenRenegotiationStatus.renegotiationInProgress).to.beTruthy();
+            });
+
+            it(@"should post notification that renegotiation has started", ^{
+                [verify(notificationCenter) postNotificationName:RTOAuth2TokenRenegotiationStartedNotification
+                                                          object:renegotiator];
             });
             
             context(@"successfully refreshed token", ^{
