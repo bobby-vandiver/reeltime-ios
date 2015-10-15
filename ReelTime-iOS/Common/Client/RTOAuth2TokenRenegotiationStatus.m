@@ -59,7 +59,7 @@
         self.inProgress = NO;
         self.succeeded = success;
         
-        [self.condition signal];
+        [self.condition broadcast];
     }];
 }
 
