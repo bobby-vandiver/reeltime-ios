@@ -1,11 +1,33 @@
 #import "RTSynchronizedMutableArray.h"
 
+@interface RTSynchronizedMutableArray ()
+
+@property NSMutableArray *objects;
+
+@end
+
 @implementation RTSynchronizedMutableArray
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.objects = [NSMutableArray array];
+    }
+    return self;
+}
+
+- (instancetype)initWithCapacity:(NSUInteger)numItems {
+    self = [super init];
+    if (self) {
+        self.objects = [NSMutableArray arrayWithCapacity:numItems];
+    }
+    return self;
+}
 
 - (NSUInteger)count {
     NSUInteger count = 0;
     @synchronized(self) {
-        count = [super count];
+        count = [self.objects count];
     }
     return count;
 }
@@ -13,7 +35,7 @@
 - (id)objectAtIndex:(NSUInteger)index {
     id object;
     @synchronized(self) {
-        object = [super objectAtIndex:index];
+        object = [self.objects objectAtIndex:index];
     }
     return object;
 }
@@ -21,31 +43,31 @@
 - (void)insertObject:(id)anObject
              atIndex:(NSUInteger)index {
     @synchronized(self) {
-        [super insertObject:anObject atIndex:index];
+        [self.objects insertObject:anObject atIndex:index];
     }
 }
 
 - (void)removeObjectAtIndex:(NSUInteger)index {
     @synchronized(self) {
-        [super removeObjectAtIndex:index];
+        [self.objects removeObjectAtIndex:index];
     }
 }
 
 - (void)addObject:(id)anObject {
     @synchronized(self) {
-        [super addObject:anObject];
+        [self.objects addObject:anObject];
     }
 }
 
 - (void)removeLastObject {
     @synchronized(self) {
-        [super removeLastObject];
+        [self.objects removeLastObject];
     }
 }
 
 - (void)replaceObjectAtIndex:(NSUInteger)index withObject:(id)anObject {
     @synchronized(self) {
-        [super replaceObjectAtIndex:index withObject:anObject];
+        [self.objects replaceObjectAtIndex:index withObject:anObject];
     }
 }
 
