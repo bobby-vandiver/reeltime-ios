@@ -29,7 +29,7 @@
 }
 
 - (void)setItems:(NSArray *)items {
-    self.mutableItems = [items mutableCopy];
+    self.mutableItems = [RTSynchronizedMutableArray arrayWithArray:items];
 }
 
 - (void)addItem:(id)item {
