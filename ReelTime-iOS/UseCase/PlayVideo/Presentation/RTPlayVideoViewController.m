@@ -47,12 +47,8 @@ static NSString *const CurrentItemStatusKeyPath = @"currentItem.status";
     return @"Play Video View Controller";
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    [self setUpPlayer];
-}
-
 - (void)viewWillAppear:(BOOL)animated {
+    [self setUpPlayer];
     [self addObservers];
 }
 
@@ -61,6 +57,8 @@ static NSString *const CurrentItemStatusKeyPath = @"currentItem.status";
 }
 
 - (void)setUpPlayer {
+    DDLogDebug(@"Setting up player");
+    
     self.player = [self.playerFactory playerForVideoId:self.videoId];
     
     self.playerView.player = self.player;
@@ -108,7 +106,6 @@ static NSString *const CurrentItemStatusKeyPath = @"currentItem.status";
 
 - (void)reloadVideo:(NSNotification *)notification {
     DDLogDebug(@"Reloading video with userInfo = %@", notification.userInfo);
-    [self setUpPlayer];
 }
 
 - (void)removeObservers {
