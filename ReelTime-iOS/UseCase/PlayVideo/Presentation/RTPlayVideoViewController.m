@@ -12,7 +12,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "AVPlayerItem+StatusText.h"
 
-static NSString *const CurrentItemStatusKeyPath = @"currentItem.status";
+static NSString *const StatusKeyPath = @"status";
 
 @interface RTPlayVideoViewController ()
 
@@ -83,10 +83,13 @@ static NSString *const CurrentItemStatusKeyPath = @"currentItem.status";
 - (void)addObservers {
     DDLogDebug(@"Adding observers");
     
-    [self.player addObserver:self forKeyPath:CurrentItemStatusKeyPath options:0 context:NULL];
+    [self.player addObserver:self forKeyPath:StatusKeyPath options:0 context:NULL];
+
     self.timeObserver = [self.player addPeriodicTimeObserverForInterval:CMTimeMake(1, 1)
                                                                   queue:dispatch_get_main_queue()
                                                              usingBlock:[self timeObserverCallback]];
+    
+    [self.player.currentItem addObserver:self forKeyPath:StatusKeyPath options:0 context:NULL];
     
     [self.notificationCenter addObserver:self
                                 selector:@selector(reachedEndOfVideo:)
@@ -141,6 +144,12 @@ static NSString *const CurrentItemStatusKeyPath = @"currentItem.status";
         default:
             break;
     }
+    
+    if (self.player.currentItem.status == AVPlayerItemStatusUnknown) {
+        DDLogDebug(@"Player in unknown state post reload");
+        [self setUpPlayer];
+    }
+    
 }
 
 - (void)removeObservers {
@@ -154,8 +163,10 @@ static NSString *const CurrentItemStatusKeyPath = @"currentItem.status";
                                        name:AVPlayerItemDidPlayToEndTimeNotification
                                      object:self.player.currentItem];
     
+    [self.player.currentItem removeObserver:self forKeyPath:StatusKeyPath];
+
     [self.player removeTimeObserver:self.timeObserver];
-    [self.player removeObserver:self forKeyPath:CurrentItemStatusKeyPath];
+    [self.player removeObserver:self forKeyPath:StatusKeyPath];
     
     DDLogDebug(@"Leaving removeObservers");
 }
@@ -165,15 +176,17 @@ static NSString *const CurrentItemStatusKeyPath = @"currentItem.status";
                         change:(NSDictionary *)change
                        context:(void *)context {
     
-    if (object == self.player) {
-        DDLogDebug(@"Received status = %@", self.player.currentItem.statusText);
+    if (object == self.player && [keyPath isEqual:StatusKeyPath]) {
+        DDLogDebug(@"------ Received self.player.status = %@", self.player.currentItem.statusText);
         
-        if (self.player.currentItem.status == AVPlayerItemStatusReadyToPlay) {
+        if (self.player.status == AVPlayerItemStatusReadyToPlay) {
             [self setLabel:self.currentTimeLabel toTime:kCMTimeZero];
-            [self setLabel:self.totalTimeLabel toTime:self.player.currentItem.duration];
-
             [self play];
         }
+    }
+    else if (object == self.player.currentItem && [keyPath isEqual:StatusKeyPath]) {
+        DDLogDebug(@"====== Received self.player.currentItem.status = %@", self.player.currentItem.statusText);
+        [self setLabel:self.totalTimeLabel toTime:self.player.currentItem.duration];
     }
 }
 
@@ -187,8 +200,11 @@ static NSString *const CurrentItemStatusKeyPath = @"currentItem.status";
 
 - (void)play {
     DDLogDebug(@"Playing at time = %f", CMTimeGetSeconds(self.currentTime));
+
+    [self.player seekToTime:self.currentTime completionHandler:^(BOOL finished) {
+        DDLogDebug(@"seeked to time = %f, finished = %@", CMTimeGetSeconds(self.currentTime), [self stringForBool:finished]);
+    }];
     
-    [self.player seekToTime:self.currentTime];
     [self.player play];
 }
 
