@@ -175,8 +175,6 @@ static NSString *const StatusKeyPath = @"status";
 
     [self.player removeTimeObserver:self.timeObserver];
     [self.player removeObserver:self forKeyPath:StatusKeyPath];
-    
-    DDLogDebug(@"Leaving removeObservers");
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
@@ -185,10 +183,9 @@ static NSString *const StatusKeyPath = @"status";
                        context:(void *)context {
     
     if (object == self.player && [keyPath isEqual:StatusKeyPath]) {
-        DDLogDebug(@"------ Received self.player.status = %@", self.player.currentItem.statusText);
+        DDLogDebug(@"------ Received self.player.status = %@", self.player.statusText);
         
         if (self.player.status == AVPlayerStatusReadyToPlay) {
-            [self setLabel:self.currentTimeLabel toTime:kCMTimeZero];
             [self play];
         }
     }
@@ -196,6 +193,7 @@ static NSString *const StatusKeyPath = @"status";
         DDLogDebug(@"====== Received self.player.currentItem.status = %@", self.player.currentItem.statusText);
         
         if (self.player.currentItem.status == AVPlayerItemStatusReadyToPlay) {
+            [self setLabel:self.currentTimeLabel toTime:kCMTimeZero];
             [self setLabel:self.totalTimeLabel toTime:self.player.currentItem.duration];
         }
     }
@@ -208,10 +206,7 @@ static NSString *const StatusKeyPath = @"status";
 - (void)play {
     DDLogDebug(@"Playing at time = %f", CMTimeGetSeconds(self.currentTime));
 
-    [self.player seekToTime:self.currentTime completionHandler:^(BOOL finished) {
-        DDLogDebug(@"seeked to time = %f, finished = %@", CMTimeGetSeconds(self.currentTime), stringForBool(finished));
-    }];
-
+    [self.player seekToTime:self.currentTime];
     [self.player play];
 }
 
