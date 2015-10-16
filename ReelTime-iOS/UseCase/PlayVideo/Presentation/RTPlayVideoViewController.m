@@ -129,24 +129,26 @@ static NSString *const StatusKeyPath = @"status";
 - (void)reloadVideo:(NSNotification *)notification {
     DDLogDebug(@"Reloading video with userInfo = %@", notification.userInfo);
     
-    switch (self.player.currentItem.status) {
-        case AVPlayerItemStatusUnknown:
-            DDLogDebug(@"status = AVPlayerItemStatusUnknown");
+    switch (self.player.status) {
+        case AVPlayerStatusUnknown:
+            DDLogDebug(@"status = AVPlayerStatusUnknown");
             break;
             
-        case AVPlayerItemStatusReadyToPlay:
-            DDLogDebug(@"status = AVPlayerItemStatusReadyToPlay");
+        case AVPlayerStatusReadyToPlay:
+            DDLogDebug(@"status = AVPlayerStatusReadyToPlay");
             break;
             
-        case AVPlayerItemStatusFailed:
-            DDLogDebug(@"status = AVPlayerItemStatusFailed");
+        case AVPlayerStatusFailed:
+            DDLogDebug(@"status = AVPlayerStatusFailed");
             
         default:
             break;
     }
     
-    if (self.player.currentItem.status == AVPlayerItemStatusUnknown) {
-        DDLogDebug(@"Player in unknown state post reload");
+    if (self.player.status != AVPlayerStatusReadyToPlay) {
+        DDLogDebug(@"Current player is no longer usable - creating a new player");
+
+        [self tearDownPlayer];
         [self setUpPlayer];
     }
     
@@ -179,14 +181,17 @@ static NSString *const StatusKeyPath = @"status";
     if (object == self.player && [keyPath isEqual:StatusKeyPath]) {
         DDLogDebug(@"------ Received self.player.status = %@", self.player.currentItem.statusText);
         
-        if (self.player.status == AVPlayerItemStatusReadyToPlay) {
+        if (self.player.status == AVPlayerStatusReadyToPlay) {
             [self setLabel:self.currentTimeLabel toTime:kCMTimeZero];
             [self play];
         }
     }
     else if (object == self.player.currentItem && [keyPath isEqual:StatusKeyPath]) {
         DDLogDebug(@"====== Received self.player.currentItem.status = %@", self.player.currentItem.statusText);
-        [self setLabel:self.totalTimeLabel toTime:self.player.currentItem.duration];
+        
+        if (self.player.currentItem.status == AVPlayerItemStatusReadyToPlay) {
+            [self setLabel:self.totalTimeLabel toTime:self.player.currentItem.duration];
+        }
     }
 }
 
