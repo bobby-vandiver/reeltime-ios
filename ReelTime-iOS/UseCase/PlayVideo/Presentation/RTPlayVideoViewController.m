@@ -26,6 +26,9 @@ static NSString *const StatusKeyPath = @"status";
 
 @property CMTime currentTime;
 
+@property BOOL tokenHasBeenRenegotiated;
+@property CMTime timeAtTokenRenegotationStart;
+
 @end
 
 @implementation RTPlayVideoViewController
@@ -62,8 +65,17 @@ static NSString *const StatusKeyPath = @"status";
 //    [self removeObservers];
 }
 
+- (void)restoreCurrentTimeIfNecessary {
+    if (self.tokenHasBeenRenegotiated) {
+        self.currentTime = self.timeAtTokenRenegotationStart;
+        self.tokenHasBeenRenegotiated = NO;
+    }
+}
+
 - (void)setUpPlayer {
     DDLogDebug(@"Setting up player");
+
+    [self restoreCurrentTimeIfNecessary];
     
     self.player = [self.playerFactory playerForVideoId:self.videoId];
     
@@ -97,6 +109,11 @@ static NSString *const StatusKeyPath = @"status";
                                   object:self.player.currentItem];
     
     [self.notificationCenter addObserver:self
+                                selector:@selector(tokenRenegotiationStarted:)
+                                    name:RTOAuth2TokenRenegotiationStartedNotification
+                                  object:nil];
+    
+    [self.notificationCenter addObserver:self
                                 selector:@selector(reloadVideo:)
                                     name:RTPlayVideoNotificationReloadVideo
                                   object:nil];
@@ -126,6 +143,11 @@ static NSString *const StatusKeyPath = @"status";
     [self seekToStart];
 }
 
+- (void)tokenRenegotiationStarted:(NSNotification *)notification {
+    DDLogDebug(@"Token renegotiation started at time = %f", CMTimeGetSeconds(self.currentTime));
+    self.timeAtTokenRenegotationStart = self.currentTime;
+}
+
 - (void)reloadVideo:(NSNotification *)notification {
     DDLogDebug(@"Reloading video with userInfo = %@", notification.userInfo);
     
@@ -144,6 +166,8 @@ static NSString *const StatusKeyPath = @"status";
         default:
             break;
     }
+
+    self.tokenHasBeenRenegotiated = YES;
     
     if (self.player.status != AVPlayerStatusReadyToPlay) {
         DDLogDebug(@"Current player is no longer usable - creating a new player");
@@ -209,7 +233,7 @@ static NSString *const StatusKeyPath = @"status";
     [self.player seekToTime:self.currentTime completionHandler:^(BOOL finished) {
         DDLogDebug(@"seeked to time = %f, finished = %@", CMTimeGetSeconds(self.currentTime), [self stringForBool:finished]);
     }];
-    
+
     [self.player play];
 }
 
