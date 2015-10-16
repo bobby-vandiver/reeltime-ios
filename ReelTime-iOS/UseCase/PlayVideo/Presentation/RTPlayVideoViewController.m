@@ -6,6 +6,7 @@
 #import "RTPlayerView.h"
 #import "RTPlayVideoNotification.h"
 
+#import "RTOAuth2TokenRenegotiationNotification.h"
 #import "RTLogging.h"
 
 #import <AVFoundation/AVFoundation.h>
@@ -23,6 +24,8 @@ static NSString *const CurrentItemStatusKeyPath = @"currentItem.status";
 @property (strong, nonatomic) AVPlayer *player;
 @property id timeObserver;
 
+@property CMTime currentTime;
+
 @end
 
 @implementation RTPlayVideoViewController
@@ -38,6 +41,7 @@ static NSString *const CurrentItemStatusKeyPath = @"currentItem.status";
         controller.videoId = videoId;
         controller.playerFactory = playerFactory;
         controller.notificationCenter = notificationCenter;
+        controller.currentTime = kCMTimeZero;
     }
     
     return controller;
@@ -49,11 +53,13 @@ static NSString *const CurrentItemStatusKeyPath = @"currentItem.status";
 
 - (void)viewWillAppear:(BOOL)animated {
     [self setUpPlayer];
-    [self addObservers];
+//    [self addObservers];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
-    [self removeObservers];
+    [self pause];
+    [self tearDownPlayer];
+//    [self removeObservers];
 }
 
 - (void)setUpPlayer {
@@ -63,6 +69,15 @@ static NSString *const CurrentItemStatusKeyPath = @"currentItem.status";
     
     self.playerView.player = self.player;
     self.playerView.playerLayer.needsDisplayOnBoundsChange = YES;
+
+    [self addObservers];
+}
+
+- (void)tearDownPlayer {
+    [self removeObservers];
+    
+    self.player = nil;
+    self.playerView.player = nil;
 }
 
 - (void)addObservers {
@@ -82,12 +97,16 @@ static NSString *const CurrentItemStatusKeyPath = @"currentItem.status";
                                 selector:@selector(reloadVideo:)
                                     name:RTPlayVideoNotificationReloadVideo
                                   object:nil];
+    
+    DDLogDebug(@"Leaving addObservers");
 }
 
 - (void (^)(CMTime))timeObserverCallback {
     __weak RTPlayVideoViewController *weakSelf = self;
 
     return ^(CMTime time) {
+        self.currentTime = time;
+
         CMTime duration = weakSelf.player.currentItem.duration;
         
         if (CMTimeCompare(time, duration) >= 0) {
@@ -106,6 +125,22 @@ static NSString *const CurrentItemStatusKeyPath = @"currentItem.status";
 
 - (void)reloadVideo:(NSNotification *)notification {
     DDLogDebug(@"Reloading video with userInfo = %@", notification.userInfo);
+    
+    switch (self.player.currentItem.status) {
+        case AVPlayerItemStatusUnknown:
+            DDLogDebug(@"status = AVPlayerItemStatusUnknown");
+            break;
+            
+        case AVPlayerItemStatusReadyToPlay:
+            DDLogDebug(@"status = AVPlayerItemStatusReadyToPlay");
+            break;
+            
+        case AVPlayerItemStatusFailed:
+            DDLogDebug(@"status = AVPlayerItemStatusFailed");
+            
+        default:
+            break;
+    }
 }
 
 - (void)removeObservers {
@@ -121,6 +156,8 @@ static NSString *const CurrentItemStatusKeyPath = @"currentItem.status";
     
     [self.player removeTimeObserver:self.timeObserver];
     [self.player removeObserver:self forKeyPath:CurrentItemStatusKeyPath];
+    
+    DDLogDebug(@"Leaving removeObservers");
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
@@ -134,6 +171,8 @@ static NSString *const CurrentItemStatusKeyPath = @"currentItem.status";
         if (self.player.currentItem.status == AVPlayerItemStatusReadyToPlay) {
             [self setLabel:self.currentTimeLabel toTime:kCMTimeZero];
             [self setLabel:self.totalTimeLabel toTime:self.player.currentItem.duration];
+
+            [self play];
         }
     }
 }
@@ -146,17 +185,33 @@ static NSString *const CurrentItemStatusKeyPath = @"currentItem.status";
     label.text = [NSString stringWithFormat:@"%f", CMTimeGetSeconds(time)];
 }
 
-- (void)seekToStart {
-    [self.player seekToTime:kCMTimeZero];
-    [self.player pause];
-}
-
-- (IBAction)pressedPlayButton {
+- (void)play {
+    DDLogDebug(@"Playing at time = %f", CMTimeGetSeconds(self.currentTime));
+    
+    [self.player seekToTime:self.currentTime];
     [self.player play];
 }
 
-- (IBAction)pressedPauseButton {
+- (void)pause {
     [self.player pause];
+    self.currentTime = self.player.currentItem.currentTime;
+
+    DDLogDebug(@"Paused at time = %f", CMTimeGetSeconds(self.currentTime));
+}
+
+- (void)seekToStart {
+    self.currentTime = kCMTimeZero;
+
+    [self.player seekToTime:self.currentTime];
+    [self pause];
+}
+
+- (IBAction)pressedPlayButton {
+    [self play];
+}
+
+- (IBAction)pressedPauseButton {
+    [self pause];
 }
 
 - (IBAction)pressedResetButton {
