@@ -19,6 +19,7 @@
             break;
             
         default:
+            text = @"AVPlayerItemStatusUndefined";
             break;
     }
     

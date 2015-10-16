@@ -254,6 +254,7 @@
 		715E082A1B0576CD0037A17E /* RTResetPasswordDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 715E08291B0576CD0037A17E /* RTResetPasswordDataManagerSpec.m */; };
 		715E082E1B0582170037A17E /* RTResetPasswordServerErrorMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 715E082D1B0582170037A17E /* RTResetPasswordServerErrorMapping.m */; };
 		715F9EAB1BD187B800CE816E /* RTLogging.m in Sources */ = {isa = PBXBuildFile; fileRef = 715F9EAA1BD187B800CE816E /* RTLogging.m */; settings = {ASSET_TAGS = (); }; };
+		715F9EAE1BD188C700CE816E /* AVPlayer+StatusText.m in Sources */ = {isa = PBXBuildFile; fileRef = 715F9EAD1BD188C700CE816E /* AVPlayer+StatusText.m */; settings = {ASSET_TAGS = (); }; };
 		7160C2BF1A6F48A60045ADDA /* RTAccountRegistrationValidatorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7160C2BE1A6F48A60045ADDA /* RTAccountRegistrationValidatorSpec.m */; };
 		716170401B9528BF000466BB /* RTCreateReelInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7161703F1B9528BF000466BB /* RTCreateReelInteractor.m */; };
 		716170421B95291B000466BB /* RTCreateReelInteractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 716170411B95291B000466BB /* RTCreateReelInteractorSpec.m */; };
@@ -924,6 +925,8 @@
 		715E082C1B0582170037A17E /* RTResetPasswordServerErrorMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTResetPasswordServerErrorMapping.h; sourceTree = "<group>"; };
 		715E082D1B0582170037A17E /* RTResetPasswordServerErrorMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTResetPasswordServerErrorMapping.m; sourceTree = "<group>"; };
 		715F9EAA1BD187B800CE816E /* RTLogging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLogging.m; sourceTree = "<group>"; };
+		715F9EAC1BD188A800CE816E /* AVPlayer+StatusText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AVPlayer+StatusText.h"; sourceTree = "<group>"; };
+		715F9EAD1BD188C700CE816E /* AVPlayer+StatusText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVPlayer+StatusText.m"; sourceTree = "<group>"; };
 		7160C2BE1A6F48A60045ADDA /* RTAccountRegistrationValidatorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAccountRegistrationValidatorSpec.m; sourceTree = "<group>"; };
 		7161703D1B95287B000466BB /* RTCreateReelInteractorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCreateReelInteractorDelegate.h; sourceTree = "<group>"; };
 		7161703E1B9528BF000466BB /* RTCreateReelInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCreateReelInteractor.h; sourceTree = "<group>"; };
@@ -1497,6 +1500,8 @@
 		710B6B6D1B76EA78009318D0 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				715F9EAC1BD188A800CE816E /* AVPlayer+StatusText.h */,
+				715F9EAD1BD188C700CE816E /* AVPlayer+StatusText.m */,
 				7103A2C71B88C36F00DB4B50 /* AVPlayerItem+StatusText.h */,
 				7103A2C81B88C38200DB4B50 /* AVPlayerItem+StatusText.m */,
 				71D8865B1B8572F600886940 /* RTPlayerFactory.h */,
@@ -4325,6 +4330,7 @@
 				71C7D0FA1B5C525600BDDA4F /* RTLeaveAudiencePresenter.m in Sources */,
 				71D886571B85601D00886940 /* RTPlayVideoURLProtocol.m in Sources */,
 				710B6B711B76ED3A009318D0 /* RTPlayVideoViewController.m in Sources */,
+				715F9EAE1BD188C700CE816E /* AVPlayer+StatusText.m in Sources */,
 				712AAB041B2C68E700E7AE4E /* RTChangeDisplayNameViewController.m in Sources */,
 				71386E5E1AD36C01009D064C /* RTReelDescription.m in Sources */,
 				7172159B1A8659050002ECC7 /* RTAccountRegistrationAssembly.m in Sources */,

@@ -10,6 +10,8 @@
 #import "RTLogging.h"
 
 #import <AVFoundation/AVFoundation.h>
+
+#import "AVPlayer+StatusText.h"
 #import "AVPlayerItem+StatusText.h"
 
 static NSString *const StatusKeyPath = @"status";
@@ -56,13 +58,11 @@ static NSString *const StatusKeyPath = @"status";
 
 - (void)viewWillAppear:(BOOL)animated {
     [self setUpPlayer];
-//    [self addObservers];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [self pause];
     [self tearDownPlayer];
-//    [self removeObservers];
 }
 
 - (void)restoreCurrentTimeIfNecessary {
@@ -117,8 +117,6 @@ static NSString *const StatusKeyPath = @"status";
                                 selector:@selector(reloadVideo:)
                                     name:RTPlayVideoNotificationReloadVideo
                                   object:nil];
-    
-    DDLogDebug(@"Leaving addObservers");
 }
 
 - (void (^)(CMTime))timeObserverCallback {
@@ -149,24 +147,8 @@ static NSString *const StatusKeyPath = @"status";
 }
 
 - (void)reloadVideo:(NSNotification *)notification {
-    DDLogDebug(@"Reloading video with userInfo = %@", notification.userInfo);
+    DDLogDebug(@"Reloading video with userInfo = %@ and player status = %@", notification.userInfo, self.player.statusText);
     
-    switch (self.player.status) {
-        case AVPlayerStatusUnknown:
-            DDLogDebug(@"status = AVPlayerStatusUnknown");
-            break;
-            
-        case AVPlayerStatusReadyToPlay:
-            DDLogDebug(@"status = AVPlayerStatusReadyToPlay");
-            break;
-            
-        case AVPlayerStatusFailed:
-            DDLogDebug(@"status = AVPlayerStatusFailed");
-            
-        default:
-            break;
-    }
-
     self.tokenHasBeenRenegotiated = YES;
     
     if (self.player.status != AVPlayerStatusReadyToPlay) {
