@@ -219,10 +219,6 @@ static NSString *const StatusKeyPath = @"status";
     }
 }
 
-- (NSString *)stringForBool:(BOOL)b {
-    return b ? @"YES" : @"NO";
-}
-
 - (void)setLabel:(UILabel *)label toTime:(CMTime)time {
     label.text = [NSString stringWithFormat:@"%f", CMTimeGetSeconds(time)];
 }
@@ -231,7 +227,7 @@ static NSString *const StatusKeyPath = @"status";
     DDLogDebug(@"Playing at time = %f", CMTimeGetSeconds(self.currentTime));
 
     [self.player seekToTime:self.currentTime completionHandler:^(BOOL finished) {
-        DDLogDebug(@"seeked to time = %f, finished = %@", CMTimeGetSeconds(self.currentTime), [self stringForBool:finished]);
+        DDLogDebug(@"seeked to time = %f, finished = %@", CMTimeGetSeconds(self.currentTime), stringForBool(finished));
     }];
 
     [self.player play];
