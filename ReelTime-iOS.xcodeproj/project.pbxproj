@@ -479,7 +479,6 @@
 		71FFC1D31B969E30005803B3 /* RTDeleteReelErrorCodeToErrorMessageMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 71FFC1D21B969E30005803B3 /* RTDeleteReelErrorCodeToErrorMessageMapping.m */; };
 		71FFC1D61B969E70005803B3 /* RTDeleteReelPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 71FFC1D51B969E70005803B3 /* RTDeleteReelPresenter.m */; };
 		71FFC1D81B969F02005803B3 /* RTDeleteReelPresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71FFC1D71B969F02005803B3 /* RTDeleteReelPresenterSpec.m */; };
-		BCBE070F3639F3393A1BF1A9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2682314A72FFBF85E182F6FE /* libPods.a */; };
 		F5855EE53AD6BF2CC0D24A71 /* libPods-ReelTime-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DFC463C3A66781E8DEEE7436 /* libPods-ReelTime-iOS.a */; };
 /* End PBXBuildFile section */
 
@@ -1356,7 +1355,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BCBE070F3639F3393A1BF1A9 /* libPods.a in Frameworks */,
 				F5855EE53AD6BF2CC0D24A71 /* libPods-ReelTime-iOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4169,6 +4167,7 @@
 				TargetAttributes = {
 					718A0BDB1A4DA87900137C49 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = TFRSMX83VP;
 					};
 					718A0BF41A4DA87900137C49 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -4873,9 +4872,11 @@
 			baseConfigurationReference = 9F10A54522F42FAE4C712E1A /* Pods-ReelTime-iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "ReelTime-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "in.reeltime.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "in.reeltime.ReelTime-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -4885,9 +4886,11 @@
 			baseConfigurationReference = A29C600554F5BB4A5E37291D /* Pods-ReelTime-iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "ReelTime-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "in.reeltime.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "in.reeltime.ReelTime-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
