@@ -29,40 +29,47 @@
 
 - (void)registerForKeyboardNotifications {
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardFrameDidChange:)
-                                                 name:UIKeyboardWillChangeFrameNotification
+                                             selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardDidShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillBeHidden:)
+                                                 name:UIKeyboardWillHideNotification
                                                object:nil];
 }
 
 - (void)unregisterForKeyboardNotifications {
     [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIKeyboardWillChangeFrameNotification
+                                                    name:UIKeyboardDidShowNotification
+                                                  object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillHideNotification
                                                   object:nil];
 }
 
-- (void)keyboardFrameDidChange:(NSNotification *)notification {
+- (void)keyboardWasShown:(NSNotification *)notification {
     NSDictionary *userInfo = [notification userInfo];
 
-    CGRect keyboardBeginFrame = [userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue];
-    CGRect keyboardEndFrame = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-
-    CGRect frame = self.view.frame;
-    CGRect convertedKeyboardBeginFrame = [self.view convertRect:keyboardBeginFrame toView:nil];
-    CGRect convertedKeyboardEndFrame = [self.view convertRect:keyboardEndFrame toView:nil];
+    CGSize keyboardSize = [userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     
-    CGFloat yOffset = frame.origin.y - (convertedKeyboardBeginFrame.origin.y - convertedKeyboardEndFrame.origin.y);
-    
-    CGFloat top = self.scrollView.contentInset.top + yOffset;
-    CGFloat bottom = self.scrollView.contentInset.bottom + yOffset;
-    
-    CGFloat left = self.scrollView.contentInset.left;
-    CGFloat right = self.scrollView.contentInset.right;
-    
-    UIEdgeInsets contentInsets = UIEdgeInsetsMake(top, left, bottom, right);
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height, 0.0);
     self.scrollView.contentInset = contentInsets;
     self.scrollView.scrollIndicatorInsets = contentInsets;
     
-    // TODO: Scroll active text field into view if keyboard pushes it off screen
+    CGRect frame = self.view.frame;
+    frame.size.height -= keyboardSize.height;
+    
+    if (!CGRectContainsPoint(frame, self.activeTextField.frame.origin)) {
+        [self.scrollView scrollRectToVisible:self.activeTextField.frame animated:YES];
+    }
+}
+
+- (void)keyboardWillBeHidden:(NSNotification *)notification {
+    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    self.scrollView.contentInset = contentInsets;
+    self.scrollView.scrollIndicatorInsets = contentInsets;
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
