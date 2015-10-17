@@ -861,6 +861,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="aGb-su-KmA">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BrowseCell" id="TFN-lQ-OOU">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TFN-lQ-OOU" id="EU6-pR-hIs">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                            </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qz7-qT-5Nf" userLabel="Selector Container">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
@@ -900,20 +914,6 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="aGb-su-KmA">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BrowseCell" id="TFN-lQ-OOU">
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TFN-lQ-OOU" id="EU6-pR-hIs">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                                <sections/>
-                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -923,20 +923,20 @@
                             <constraint firstItem="aGb-su-KmA" firstAttribute="bottom" secondItem="ooW-hr-Koz" secondAttribute="top" id="MYR-12-xM8"/>
                             <constraint firstItem="aGb-su-KmA" firstAttribute="centerX" secondItem="qz7-qT-5Nf" secondAttribute="centerX" id="PY1-uC-RNd"/>
                             <constraint firstItem="qz7-qT-5Nf" firstAttribute="top" secondItem="O7Q-z3-pzh" secondAttribute="bottom" constant="-20" id="QdY-pN-s7O">
-                                <variation key="widthClass=compact" constant="50"/>
+                                <variation key="widthClass=compact" constant="22"/>
                             </constraint>
                             <constraint firstItem="ooW-hr-Koz" firstAttribute="top" secondItem="qz7-qT-5Nf" secondAttribute="bottom" constant="534" id="TNJ-zj-Rop">
-                                <variation key="widthClass=compact" constant="464"/>
+                                <variation key="widthClass=compact" constant="492"/>
                             </constraint>
                             <constraint firstAttribute="trailing" secondItem="qz7-qT-5Nf" secondAttribute="trailing" id="WRY-Hc-lK3"/>
                             <constraint firstItem="aGb-su-KmA" firstAttribute="top" secondItem="qz7-qT-5Nf" secondAttribute="bottom" constant="8" symbolic="YES" id="Wzg-eF-lwo">
-                                <variation key="widthClass=compact" constant="0.0"/>
+                                <variation key="widthClass=compact" constant="28"/>
                             </constraint>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="qz7-qT-5Nf"/>
                                 <exclude reference="aGb-su-KmA"/>
+                                <exclude reference="qz7-qT-5Nf"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="TNJ-zj-Rop"/>
@@ -952,8 +952,8 @@
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
-                                <include reference="qz7-qT-5Nf"/>
                                 <include reference="aGb-su-KmA"/>
+                                <include reference="qz7-qT-5Nf"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="TNJ-zj-Rop"/>
