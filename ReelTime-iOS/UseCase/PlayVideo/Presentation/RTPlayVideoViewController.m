@@ -188,6 +188,9 @@ static NSString *const StatusKeyPath = @"status";
         if (self.player.status == AVPlayerStatusReadyToPlay) {
             [self play];
         }
+        else if (self.player.status == AVPlayerStatusFailed) {
+            DDLogError(@"Received AVPlayerStatusFailed with error = %@", self.player.error);
+        }
     }
     else if (object == self.player.currentItem && [keyPath isEqual:StatusKeyPath]) {
         DDLogDebug(@"====== Received self.player.currentItem.status = %@", self.player.currentItem.statusText);
@@ -195,6 +198,9 @@ static NSString *const StatusKeyPath = @"status";
         if (self.player.currentItem.status == AVPlayerItemStatusReadyToPlay) {
             [self setLabel:self.currentTimeLabel toTime:kCMTimeZero];
             [self setLabel:self.totalTimeLabel toTime:self.player.currentItem.duration];
+        }
+        else if (self.player.currentItem.status == AVPlayerItemStatusFailed) {
+            DDLogError(@"Received AVPlayerItemStatusFailed with error = %@", self.player.currentItem.error);
         }
     }
 }
