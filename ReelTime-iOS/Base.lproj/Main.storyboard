@@ -849,6 +849,23 @@
             </objects>
             <point key="canvasLocation" x="970.5" y="54"/>
         </scene>
+        <!--Record Video-->
+        <scene sceneID="mtQ-95-p2B">
+            <objects>
+                <viewController storyboardIdentifier="Record Video View Controller" title="Record Video" id="Zlf-kU-S7L" customClass="RTRecordVideoViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fJb-b2-7si"/>
+                        <viewControllerLayoutGuide type="bottom" id="EZ7-oq-871"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1lQ-Ao-SPw">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u8d-FV-hOR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="970.5" y="714"/>
+        </scene>
         <!--Browse-->
         <scene sceneID="JBE-W5-Bds">
             <objects>
