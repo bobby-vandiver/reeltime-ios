@@ -9,6 +9,7 @@
 #import "RTApplicationWireframe.h"
 #import "RTApplicationWireframeContainer.h"
 
+#import "RTRecordVideoAssembly.h"
 #import "RTNewsfeedAssembly.h"
 #import "RTBrowseAllAssembly.h"
 
@@ -17,6 +18,7 @@
 @property (nonatomic, strong, readonly) RTLoginAssembly *loginAssembly;
 
 // TODO: These should be removed along with their headers
+@property (nonatomic, strong, readonly) RTRecordVideoAssembly *recordVideoAssembly;
 @property (nonatomic, strong, readonly) RTNewsfeedAssembly *newsfeedAssembly;
 @property (nonatomic, strong, readonly) RTBrowseAllAssembly *browseAllAssembly;
 

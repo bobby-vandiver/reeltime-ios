@@ -8,6 +8,7 @@
 
 #import "RTApplicationWireframeContainer.h"
 
+#import "RTRecordVideoViewController.h"
 #import "RTNewsfeedViewController.h"
 #import "RTBrowseAllViewController.h"
 
@@ -70,14 +71,22 @@
     return [TyphoonDefinition withClass:[NSMutableArray class] configuration:^(TyphoonDefinition *definition) {
         [definition useInitializer:@selector(array)];
 
-        RTNewsfeedViewController *newsfeedViewController = [self.newsfeedAssembly newsfeedViewController];
-        RTBrowseAllViewController *browseAllViewController = [self.browseAllAssembly browseAllViewController];
+        RTRecordVideoViewController *recordVideoViewController = [self.recordVideoAssembly recordVideoViewController];
+
+        [definition injectMethod:@selector(addObject:) parameters:^(TyphoonMethod *method) {
+            UIViewController *vc = [self navigationControllerWithRootViewController:recordVideoViewController];
+            [method injectParameterWith:vc];
+        }];
         
+        RTNewsfeedViewController *newsfeedViewController = [self.newsfeedAssembly newsfeedViewController];
+
         [definition injectMethod:@selector(addObject:) parameters:^(TyphoonMethod *method) {
             UIViewController *vc = [self navigationControllerWithRootViewController:newsfeedViewController];
             [method injectParameterWith:vc];
         }];
         
+        RTBrowseAllViewController *browseAllViewController = [self.browseAllAssembly browseAllViewController];
+
         [definition injectMethod:@selector(addObject:) parameters:^(TyphoonMethod *method) {
             UIViewController *vc = [self navigationControllerWithRootViewController:browseAllViewController];
             [method injectParameterWith:vc];
