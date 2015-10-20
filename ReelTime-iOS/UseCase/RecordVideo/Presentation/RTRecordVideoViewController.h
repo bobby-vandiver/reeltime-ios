@@ -1,5 +1,9 @@
 #import <UIKit/UIKit.h>
 
-@interface RTRecordVideoViewController : UIViewController
+#import "RTStoryboardViewController.h"
+
+@interface RTRecordVideoViewController : UIViewController <RTStoryboardViewController>
+
++ (instancetype)viewController;
 
 @end

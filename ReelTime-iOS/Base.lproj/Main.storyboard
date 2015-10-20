@@ -858,6 +858,7 @@
                         <viewControllerLayoutGuide type="bottom" id="EZ7-oq-871"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="1lQ-Ao-SPw">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -919,12 +920,12 @@
                                 <exclude reference="aGb-su-KmA"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="4PL-Cl-sxg"/>
-                                <exclude reference="hoa-oP-68N"/>
-                                <exclude reference="kkY-VP-odr"/>
                                 <exclude reference="4j6-zz-uDE"/>
                                 <exclude reference="OQK-gr-kXQ"/>
                                 <exclude reference="u0D-jl-PKy"/>
+                                <exclude reference="4PL-Cl-sxg"/>
+                                <exclude reference="hoa-oP-68N"/>
+                                <exclude reference="kkY-VP-odr"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -933,12 +934,12 @@
                                 <include reference="aGb-su-KmA"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="4PL-Cl-sxg"/>
-                                <include reference="hoa-oP-68N"/>
-                                <include reference="kkY-VP-odr"/>
                                 <include reference="4j6-zz-uDE"/>
                                 <include reference="OQK-gr-kXQ"/>
                                 <include reference="u0D-jl-PKy"/>
+                                <include reference="4PL-Cl-sxg"/>
+                                <include reference="hoa-oP-68N"/>
+                                <include reference="kkY-VP-odr"/>
                             </mask>
                         </variation>
                     </view>

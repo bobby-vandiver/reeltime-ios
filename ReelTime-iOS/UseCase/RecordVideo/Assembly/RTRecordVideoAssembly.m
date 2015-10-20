@@ -7,7 +7,9 @@
 @implementation RTRecordVideoAssembly
 
 - (RTRecordVideoViewController *)recordVideoViewController {
-    return [TyphoonDefinition withClass:[RTRecordVideoViewController class]];
+    return [TyphoonDefinition withClass:[RTRecordVideoViewController class] configuration:^(TyphoonDefinition *definition) {
+        [definition useInitializer:@selector(viewController)];
+    }];
 }
 
 - (RTRecordVideoWireframe *)recordVideoWireframe {
