@@ -1,4 +1,5 @@
 #import "RTRecordVideoViewController.h"
+#import "RTRecordVideoPreviewView.h"
 
 #import "RTStoryboardViewControllerFactory.h"
 #import "RTLogging.h"
@@ -32,8 +33,6 @@ static const char *AudioOutputQueueLabel = "in.reeltime.record.video.audio.outpu
 @property AVAssetWriterInput *videoAssetWriterInput;
 @property AVAssetWriterInput *audioAssetWriterInput;
 
-@property AVCaptureVideoPreviewLayer *previewLayer;
-
 @end
 
 @implementation RTRecordVideoViewController
@@ -43,6 +42,9 @@ static const char *AudioOutputQueueLabel = "in.reeltime.record.video.audio.outpu
     RTRecordVideoViewController *controller = [RTStoryboardViewControllerFactory viewControllerWithStoryboardIdentifier:identifier];
 
     return controller;
+}
+
+- (IBAction)pressedRecordButton {
 }
 
 + (NSString *)storyboardIdentifier {
@@ -56,8 +58,10 @@ static const char *AudioOutputQueueLabel = "in.reeltime.record.video.audio.outpu
 
 - (void)configureSession {
     self.session = [[AVCaptureSession alloc] init];
+    self.previewView.session = self.session;
+
     self.sessionQueue = dispatch_queue_create(SessionQueueLabel, DISPATCH_QUEUE_SERIAL);
-    
+
     dispatch_async(self.sessionQueue, ^{
         NSError *error;
 
@@ -72,13 +76,6 @@ static const char *AudioOutputQueueLabel = "in.reeltime.record.video.audio.outpu
         
         if ([self.session canAddInput:self.videoDeviceInput]) {
             [self.session addInput:self.videoDeviceInput];
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                self.previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:self.session];
-                self.previewLayer.frame = self.view.bounds;
-                
-                [self.view.layer addSublayer:self.previewLayer];
-            });
         }
         else {
             DDLogError(@"Could not add video device input to session");
@@ -187,10 +184,10 @@ static const char *AudioOutputQueueLabel = "in.reeltime.record.video.audio.outpu
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection {
 
     if (connection == self.videoOutputConnection) {
-        DDLogDebug(@"Captured video output");
+//        DDLogDebug(@"Captured video output");
     }
     else if (connection == self.audioOutputConnection) {
-        DDLogDebug(@"Captured audio output");
+//        DDLogDebug(@"Captured audio output");
     }
 }
 
