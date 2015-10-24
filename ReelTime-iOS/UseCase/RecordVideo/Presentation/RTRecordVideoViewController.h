@@ -5,7 +5,7 @@
 
 @class RTRecordVideoPreviewView;
 
-@interface RTRecordVideoViewController : UIViewController <AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureAudioDataOutputSampleBufferDelegate, RTStoryboardViewController>
+@interface RTRecordVideoViewController : UIViewController <RTStoryboardViewController>
 
 @property (weak, nonatomic) IBOutlet RTRecordVideoPreviewView *previewView;
 @property (weak, nonatomic) IBOutlet UIButton *recordButton;
