@@ -11,6 +11,8 @@ static const char *AudioOutputQueueLabel = "in.reeltime.record.video.audio.outpu
 
 @interface RTRecordVideoViewController ()
 
+@property BOOL recording;
+
 @property dispatch_queue_t sessionQueue;
 @property dispatch_queue_t videoOutputQueue;
 @property dispatch_queue_t audioOutputQueue;
@@ -42,9 +44,6 @@ static const char *AudioOutputQueueLabel = "in.reeltime.record.video.audio.outpu
     RTRecordVideoViewController *controller = [RTStoryboardViewControllerFactory viewControllerWithStoryboardIdentifier:identifier];
 
     return controller;
-}
-
-- (IBAction)pressedRecordButton {
 }
 
 + (NSString *)storyboardIdentifier {
@@ -97,9 +96,9 @@ static const char *AudioOutputQueueLabel = "in.reeltime.record.video.audio.outpu
         
         self.videoDataOutput = [[AVCaptureVideoDataOutput alloc] init];
         self.videoOutputQueue = dispatch_queue_create(VideoOutputQueueLabel, DISPATCH_QUEUE_SERIAL);
-
+        
         [self.videoDataOutput setSampleBufferDelegate:self queue:self.videoOutputQueue];
-
+        
         if ([self.session canAddOutput:self.videoDataOutput]) {
             [self.session addOutput:self.videoDataOutput];
         }
@@ -122,37 +121,7 @@ static const char *AudioOutputQueueLabel = "in.reeltime.record.video.audio.outpu
         }
         
         self.audioOutputConnection = [self.audioDataOutput connectionWithMediaType:AVMediaTypeAudio];
-        
-//        NSURL *tempFileUrl = [NSURL URLWithString:[self tmpFile]];
-//        
-//        self.assetWriter = [AVAssetWriter assetWriterWithURL:tempFileUrl
-//                                                    fileType:AVFileTypeMPEG4
-//                                                       error:&error];
-//        
-//        if (!self.assetWriter) {
-//            DDLogError(@"Failed to create asset writer = %@", error);
-//        }
-//        
-//        self.videoAssetWriterInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeVideo outputSettings:nil];
-//        self.videoAssetWriterInput.expectsMediaDataInRealTime = YES;
-//        
-//        if ([self.assetWriter canAddInput:self.videoAssetWriterInput]) {
-//            [self.assetWriter addInput:self.videoAssetWriterInput];
-//        }
-//        else {
-//            DDLogError(@"Could not add video asset writer input to asset writer");
-//        }
-//        
-//        self.audioAssetWriterInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeAudio outputSettings:nil];
-//        self.audioAssetWriterInput.expectsMediaDataInRealTime = YES;
-//        
-//        if ([self.assetWriter canAddInput:self.audioAssetWriterInput]) {
-//            [self.assetWriter addInput:self.audioAssetWriterInput];
-//        }
-//        else {
-//            DDLogError(@"Could not add audio asset writer input to asset writer");
-//        }
-        
+
         [self.session commitConfiguration];
     });
 }
@@ -163,6 +132,64 @@ static const char *AudioOutputQueueLabel = "in.reeltime.record.video.audio.outpu
 
     NSArray *filteredDevices = [videoDevices filteredArrayUsingPredicate:predicate];
     return filteredDevices.count > 0 ? filteredDevices[0] : nil;
+}
+
+- (IBAction)pressedRecordButton {
+    !self.recording ? [self startRecording] : [self stopRecording];
+}
+
+- (void)startRecording {
+    self.recording = YES;
+    
+    [self.recordButton setTitle:@"Stop" forState:UIControlStateNormal];
+
+//    dispatch_async(self.sessionQueue, ^{
+        NSError *error;
+        
+        NSURL *tempFileUrl = [NSURL fileURLWithPath:[self tmpFile]];
+        DDLogDebug(@"tempFileUrl = %@", tempFileUrl);
+
+        self.assetWriter = [AVAssetWriter assetWriterWithURL:tempFileUrl
+                                                    fileType:AVFileTypeMPEG4
+                                                       error:&error];
+
+        if (!self.assetWriter) {
+            DDLogError(@"Failed to create asset writer = %@", error);
+        }
+
+        self.videoAssetWriterInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeVideo outputSettings:nil];
+        self.videoAssetWriterInput.expectsMediaDataInRealTime = YES;
+
+        if ([self.assetWriter canAddInput:self.videoAssetWriterInput]) {
+            [self.assetWriter addInput:self.videoAssetWriterInput];
+        }
+        else {
+            DDLogError(@"Could not add video asset writer input to asset writer");
+        }
+
+        self.audioAssetWriterInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeAudio outputSettings:nil];
+        self.audioAssetWriterInput.expectsMediaDataInRealTime = YES;
+
+        if ([self.assetWriter canAddInput:self.audioAssetWriterInput]) {
+            [self.assetWriter addInput:self.audioAssetWriterInput];
+        }
+        else {
+            DDLogError(@"Could not add audio asset writer input to asset writer");
+        }
+        
+        [self.assetWriter startWriting];
+        [self.assetWriter startSessionAtSourceTime:kCMTimeZero];
+//    });
+}
+
+- (void)stopRecording {
+    dispatch_async(self.sessionQueue, ^{
+        [self.assetWriter finishWritingWithCompletionHandler:^{
+            DDLogDebug(@"finished writing");
+            self.recording = NO;
+            [self.recordButton setTitle:@"Record" forState:UIControlStateNormal];
+        }];
+    });
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -183,43 +210,71 @@ static const char *AudioOutputQueueLabel = "in.reeltime.record.video.audio.outpu
 
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection {
 
-    if (connection == self.videoOutputConnection) {
-//        DDLogDebug(@"Captured video output");
+    if (!self.recording) {
+        return;
     }
-    else if (connection == self.audioOutputConnection) {
-//        DDLogDebug(@"Captured audio output");
+    
+//    CMTime timeStamp = CMSampleBufferGetPresentationTimeStamp(sampleBuffer);
+//    
+//    if (CMTIME_IS_INVALID(timeStamp)) {
+//        NSString *timeStampDescription = (NSString *)CFBridgingRelease(CMTimeCopyDescription(NULL, timeStamp));
+//
+//        DDLogError(@"timeStamp = %@ is invalid", timeStampDescription);
+//        return;
+//    }
+   
+    if (CMSampleBufferDataIsReady(sampleBuffer)) {
+        if (self.assetWriter.status == AVAssetWriterStatusUnknown) {
+            DDLogWarn(@"AVAssetWriterStatusUnknown");
+            return;
+        }
+        else if (self.assetWriter.status == AVAssetWriterStatusFailed) {
+            DDLogError(@"AVAssetWriterStatusFailed -- error = %@", self.assetWriter.error);
+            return;
+        }
+        
+        if (connection == self.videoOutputConnection && [self.videoAssetWriterInput isReadyForMoreMediaData]) {
+            dispatch_async(self.videoOutputQueue, ^{
+                [self.videoAssetWriterInput appendSampleBuffer:sampleBuffer];
+            });
+        }
+        else if (connection == self.audioOutputConnection && [self.audioAssetWriterInput isReadyForMoreMediaData]) {
+            dispatch_async(self.audioOutputQueue, ^{
+                [self.audioAssetWriterInput appendSampleBuffer:sampleBuffer];
+            });
+        }
     }
+    
+    
+//    [self.assetWriter startSessionAtSourceTime:timeStamp];
+    
+//    if (connection == self.videoOutputConnection) {
+//        [self.videoAssetWriterInput appendSampleBuffer:sampleBuffer];
+//    }
+//    else if (connection == self.audioOutputConnection) {
+//        [self.audioAssetWriterInput appendSampleBuffer:sampleBuffer];
+//    }
+//    
+//    [self.assetWriter endSessionAtSourceTime:timeStamp];
 }
 
 // TODO: Move to shared location
 // Source: http://joris.kluivers.nl/blog/2009/11/12/creating-temporary-files/
 
 - (NSString *)tmpFile {
-    NSString *tempFileTemplate = [NSTemporaryDirectory()
-                                  stringByAppendingPathComponent:@"recording-XXXXXX.caf"];
+    NSString *uuid = [[NSUUID UUID] UUIDString];
+    NSString *filename = [uuid stringByAppendingString:@".mp4"];
     
-    const char *tempFileTemplateCString =
-    [tempFileTemplate fileSystemRepresentation];
+    NSString *path = [NSTemporaryDirectory() stringByAppendingString:filename];
+
+    NSError *error;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
     
-    char *tempFileNameCString = (char *)malloc(strlen(tempFileTemplateCString) + 1);
-    strcpy(tempFileNameCString, tempFileTemplateCString);
-    int fileDescriptor = mkstemps(tempFileNameCString, 4);
-    
-    // no need to keep it open
-    close(fileDescriptor);
-    
-    if (fileDescriptor == -1) {
-        NSLog(@"Error while creating tmp file");
-        return nil;
+    if (![fileManager removeItemAtPath:path error:&error]) {
+        DDLogError(@"Failed to remove item at %@ due to error = %@", path, error);
     }
     
-    NSString *tempFileName = [[NSFileManager defaultManager]
-                              stringWithFileSystemRepresentation:tempFileNameCString
-                              length:strlen(tempFileNameCString)];
-    
-    free(tempFileNameCString);
-    
-    return tempFileName;
+    return path;
 }
 
 @end

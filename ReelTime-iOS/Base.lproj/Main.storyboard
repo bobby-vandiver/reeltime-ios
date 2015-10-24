@@ -861,56 +861,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eOW-1H-M5z" customClass="RTRecordVideoPreviewView">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ngE-WV-JSD">
-                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="127" id="AMg-Xb-sLc"/>
-                                        </constraints>
-                                        <state key="normal" title="Record"/>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="AMg-Xb-sLc"/>
-                                            </mask>
-                                        </variation>
-                                        <variation key="widthClass=compact">
-                                            <mask key="constraints">
-                                                <include reference="AMg-Xb-sLc"/>
-                                            </mask>
-                                        </variation>
-                                        <connections>
-                                            <action selector="pressedRecordButton" destination="Zlf-kU-S7L" eventType="touchUpInside" id="ozr-sn-EVk"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ngE-WV-JSD">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="ngE-WV-JSD" firstAttribute="centerY" secondItem="eOW-1H-M5z" secondAttribute="centerY" id="giZ-E1-v8H">
-                                        <variation key="widthClass=compact" constant="227"/>
-                                    </constraint>
-                                    <constraint firstItem="ngE-WV-JSD" firstAttribute="centerX" secondItem="eOW-1H-M5z" secondAttribute="centerX" id="qla-lX-O0Z"/>
+                                    <constraint firstAttribute="width" constant="127" id="AMg-Xb-sLc"/>
                                 </constraints>
+                                <state key="normal" title="Record"/>
                                 <variation key="default">
-                                    <mask key="subviews">
-                                        <exclude reference="ngE-WV-JSD"/>
-                                    </mask>
                                     <mask key="constraints">
-                                        <exclude reference="giZ-E1-v8H"/>
-                                        <exclude reference="qla-lX-O0Z"/>
+                                        <exclude reference="AMg-Xb-sLc"/>
                                     </mask>
                                 </variation>
                                 <variation key="widthClass=compact">
-                                    <mask key="subviews">
-                                        <include reference="ngE-WV-JSD"/>
-                                    </mask>
                                     <mask key="constraints">
-                                        <include reference="giZ-E1-v8H"/>
-                                        <include reference="qla-lX-O0Z"/>
+                                        <include reference="AMg-Xb-sLc"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <action selector="pressedRecordButton" destination="Zlf-kU-S7L" eventType="touchUpInside" id="ozr-sn-EVk"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eOW-1H-M5z" customClass="RTRecordVideoPreviewView">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -924,13 +898,17 @@
                             </constraint>
                             <constraint firstItem="eOW-1H-M5z" firstAttribute="top" secondItem="fJb-b2-7si" secondAttribute="bottom" id="HK9-pb-Qlk"/>
                             <constraint firstItem="eOW-1H-M5z" firstAttribute="centerY" secondItem="1lQ-Ao-SPw" secondAttribute="centerY" id="KMf-OO-hCC">
-                                <variation key="widthClass=compact" constant="0.0"/>
+                                <variation key="widthClass=compact" constant="-26"/>
                             </constraint>
                             <constraint firstItem="eOW-1H-M5z" firstAttribute="bottom" secondItem="EZ7-oq-871" secondAttribute="top" id="KdI-bX-4CL"/>
                             <constraint firstItem="eOW-1H-M5z" firstAttribute="top" secondItem="fJb-b2-7si" secondAttribute="bottom" id="OTz-Y0-He2"/>
+                            <constraint firstItem="ngE-WV-JSD" firstAttribute="centerX" secondItem="eOW-1H-M5z" secondAttribute="centerX" id="Rd6-XT-n5o"/>
+                            <constraint firstAttribute="bottom" secondItem="ngE-WV-JSD" secondAttribute="bottom" constant="20" symbolic="YES" id="eOI-eI-4KA"/>
+                            <constraint firstItem="ngE-WV-JSD" firstAttribute="top" secondItem="eOW-1H-M5z" secondAttribute="bottom" constant="22" id="pSY-8D-y7g"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
+                                <exclude reference="ngE-WV-JSD"/>
                                 <exclude reference="eOW-1H-M5z"/>
                             </mask>
                             <mask key="constraints">
@@ -941,10 +919,14 @@
                                 <exclude reference="KMf-OO-hCC"/>
                                 <exclude reference="KdI-bX-4CL"/>
                                 <exclude reference="OTz-Y0-He2"/>
+                                <exclude reference="Rd6-XT-n5o"/>
+                                <exclude reference="eOI-eI-4KA"/>
+                                <exclude reference="pSY-8D-y7g"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
+                                <include reference="ngE-WV-JSD"/>
                                 <include reference="eOW-1H-M5z"/>
                             </mask>
                             <mask key="constraints">
@@ -955,6 +937,9 @@
                                 <include reference="KMf-OO-hCC"/>
                                 <exclude reference="KdI-bX-4CL"/>
                                 <exclude reference="OTz-Y0-He2"/>
+                                <include reference="Rd6-XT-n5o"/>
+                                <include reference="eOI-eI-4KA"/>
+                                <include reference="pSY-8D-y7g"/>
                             </mask>
                         </variation>
                     </view>
