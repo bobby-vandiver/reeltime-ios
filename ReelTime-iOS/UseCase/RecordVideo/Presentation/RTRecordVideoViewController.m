@@ -6,19 +6,15 @@
 
 #import <AssetsLibrary/AssetsLibrary.h>
 
-static const char *SessionQueueLabel = "in.reeltime.record.video.session.queue";
-
-static const char *VideoOutputQueueLabel = "in.reeltime.record.video.video.output.queue";
-static const char *AudioOutputQueueLabel = "in.reeltime.record.video.audio.output.queue";
+static const char *SessionQueueLabel = "in.reeltime.record.video.SessionQueue";
+static const char *CaptureQueueLabel = "in.reeltime.record.video.CaptureQueue";
 
 @interface RTRecordVideoViewController () <AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureAudioDataOutputSampleBufferDelegate>
 
 @property BOOL recording;
 
 @property dispatch_queue_t sessionQueue;
-
-@property dispatch_queue_t videoOutputQueue;
-@property dispatch_queue_t audioOutputQueue;
+@property dispatch_queue_t captureQueue;
 
 @property AVCaptureSession *session;
 
@@ -65,6 +61,7 @@ static const char *AudioOutputQueueLabel = "in.reeltime.record.video.audio.outpu
     self.previewView.session = self.session;
 
     self.sessionQueue = dispatch_queue_create(SessionQueueLabel, DISPATCH_QUEUE_SERIAL);
+    self.captureQueue = dispatch_queue_create(CaptureQueueLabel, DISPATCH_QUEUE_SERIAL);
 
     dispatch_async(self.sessionQueue, ^{
         NSError *error;
@@ -100,9 +97,7 @@ static const char *AudioOutputQueueLabel = "in.reeltime.record.video.audio.outpu
         }
         
         self.videoDataOutput = [[AVCaptureVideoDataOutput alloc] init];        
-        self.videoOutputQueue = dispatch_queue_create(VideoOutputQueueLabel, DISPATCH_QUEUE_SERIAL);
-        
-        [self.videoDataOutput setSampleBufferDelegate:self queue:self.videoOutputQueue];
+        [self.videoDataOutput setSampleBufferDelegate:self queue:self.captureQueue];
         
         if ([self.session canAddOutput:self.videoDataOutput]) {
             [self.session addOutput:self.videoDataOutput];
@@ -114,9 +109,7 @@ static const char *AudioOutputQueueLabel = "in.reeltime.record.video.audio.outpu
         self.videoOutputConnection = [self.videoDataOutput connectionWithMediaType:AVMediaTypeVideo];
         
         self.audioDataOutput = [[AVCaptureAudioDataOutput alloc] init];
-        self.audioOutputQueue = dispatch_queue_create(AudioOutputQueueLabel, DISPATCH_QUEUE_SERIAL);
-        
-        [self.audioDataOutput setSampleBufferDelegate:self queue:self.audioOutputQueue];
+        [self.audioDataOutput setSampleBufferDelegate:self queue:self.captureQueue];
         
         if ([self.session canAddOutput:self.audioDataOutput]) {
             [self.session addOutput:self.audioDataOutput];
@@ -144,68 +137,29 @@ static const char *AudioOutputQueueLabel = "in.reeltime.record.video.audio.outpu
 }
 
 - (void)startRecording {
-    
-    DDLogDebug(@"Start recording");
-    self.recording = YES;
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.recordButton setTitle:@"Stop" forState:UIControlStateNormal];
-    });
-    
-
-    dispatch_async(self.sessionQueue, ^{
-        NSError *error;
+    @synchronized(self) {
+        DDLogDebug(@"Start recording");
+        self.recording = YES;
         
-        NSURL *tempFileUrl = [NSURL fileURLWithPath:[self tempFilePath]];
-        DDLogDebug(@"tempFileUrl = %@", tempFileUrl);
-
-        self.assetWriter = [AVAssetWriter assetWriterWithURL:tempFileUrl
-                                                    fileType:AVFileTypeMPEG4
-                                                       error:&error];
-
-        if (!self.assetWriter) {
-            DDLogError(@"Failed to create asset writer = %@", error);
-        }
-
-        NSDictionary *videoOutputSettings = [self.videoDataOutput recommendedVideoSettingsForAssetWriterWithOutputFileType:AVFileTypeMPEG4];
-        
-        self.videoAssetWriterInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeVideo outputSettings:videoOutputSettings];
-        self.videoAssetWriterInput.expectsMediaDataInRealTime = YES;
-
-        if ([self.assetWriter canAddInput:self.videoAssetWriterInput]) {
-            [self.assetWriter addInput:self.videoAssetWriterInput];
-        }
-        else {
-            DDLogError(@"Could not add video asset writer input to asset writer");
-        }
-
-        NSDictionary *audioOutputSettings = [self.audioDataOutput recommendedAudioSettingsForAssetWriterWithOutputFileType:AVFileTypeMPEG4];
-        
-        self.audioAssetWriterInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeAudio outputSettings:audioOutputSettings];
-        self.audioAssetWriterInput.expectsMediaDataInRealTime = YES;
-
-        if ([self.assetWriter canAddInput:self.audioAssetWriterInput]) {
-            [self.assetWriter addInput:self.audioAssetWriterInput];
-        }
-        else {
-            DDLogError(@"Could not add audio asset writer input to asset writer");
-        }
-        
-        [self.assetWriter startWriting];
-        [self.assetWriter startSessionAtSourceTime:kCMTimeZero];
-    });
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.recordButton setTitle:@"Stop" forState:UIControlStateNormal];
+        });
+    }
 }
 
 - (void)stopRecording {
-    DDLogDebug(@"Stop recording");
+    @synchronized(self) {
+        DDLogDebug(@"Stop recording");
 
-    [self.assetWriter finishWritingWithCompletionHandler:^{
-        self.recording = NO;
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.recordButton setTitle:@"Record" forState:UIControlStateNormal];
-        });
-    }];
+        [self.assetWriter finishWritingWithCompletionHandler:^{
+            self.recording = NO;
+            self.assetWriter = nil;
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.recordButton setTitle:@"Record" forState:UIControlStateNormal];
+            });
+        }];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -225,53 +179,77 @@ static const char *AudioOutputQueueLabel = "in.reeltime.record.video.audio.outpu
 }
 
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection {
+    
+    @synchronized(self) {
+        if (!self.recording) {
+            return;
+        }
+        
+        if (!self.assetWriter) {
+            [self initAssetWriter];
+        }
+    }
+    
+    if (CMSampleBufferDataIsReady(sampleBuffer)) {
+        
+        if (self.assetWriter.status == AVAssetWriterStatusUnknown) {
+            CMTime startTime = CMSampleBufferGetPresentationTimeStamp(sampleBuffer);
+            
+            [self.assetWriter startWriting];
+            [self.assetWriter startSessionAtSourceTime:startTime];
+        }
+        
+        if (self.assetWriter.status == AVAssetWriterStatusFailed) {
+            DDLogError(@"Writer failed with error = %@", self.assetWriter.error);
+            return;
+        }
+        
+        if (connection == self.videoOutputConnection && self.videoAssetWriterInput.isReadyForMoreMediaData) {
+            [self.videoAssetWriterInput appendSampleBuffer:sampleBuffer];
+        }
+        else if (connection == self.audioOutputConnection && self.audioAssetWriterInput.isReadyForMoreMediaData) {
+            [self.audioAssetWriterInput appendSampleBuffer:sampleBuffer];
+        }
+    }
+}
 
-//    if (!self.recording) {
-//        return;
-//    }
-//    
-//    CMTime timeStamp = CMSampleBufferGetPresentationTimeStamp(sampleBuffer);
-//    
-//    if (CMTIME_IS_INVALID(timeStamp)) {
-//        NSString *timeStampDescription = (NSString *)CFBridgingRelease(CMTimeCopyDescription(NULL, timeStamp));
-//
-//        DDLogError(@"timeStamp = %@ is invalid", timeStampDescription);
-//        return;
-//    }
-   
-//    if (CMSampleBufferDataIsReady(sampleBuffer)) {
-//        if (self.assetWriter.status == AVAssetWriterStatusUnknown) {
-//            DDLogWarn(@"AVAssetWriterStatusUnknown");
-//            return;
-//        }
-//        else if (self.assetWriter.status == AVAssetWriterStatusFailed) {
-//            DDLogError(@"AVAssetWriterStatusFailed -- error = %@", self.assetWriter.error);
-//            return;
-//        }
-//        
-//        if (connection == self.videoOutputConnection && [self.videoAssetWriterInput isReadyForMoreMediaData]) {
-//            dispatch_async(self.videoOutputQueue, ^{
-//                [self.videoAssetWriterInput appendSampleBuffer:sampleBuffer];
-//            });
-//        }
-//        else if (connection == self.audioOutputConnection && [self.audioAssetWriterInput isReadyForMoreMediaData]) {
-//            dispatch_async(self.audioOutputQueue, ^{
-//                [self.audioAssetWriterInput appendSampleBuffer:sampleBuffer];
-//            });
-//        }
-//    }
-//    
+- (void)initAssetWriter {
+    NSError *error;
     
-//    [self.assetWriter startSessionAtSourceTime:timeStamp];
+    NSURL *tempFileUrl = [NSURL fileURLWithPath:[self tempFilePath]];
+    DDLogDebug(@"tempFileUrl = %@", tempFileUrl);
     
-//    if (connection == self.videoOutputConnection) {
-//        [self.videoAssetWriterInput appendSampleBuffer:sampleBuffer];
-//    }
-//    else if (connection == self.audioOutputConnection) {
-//        [self.audioAssetWriterInput appendSampleBuffer:sampleBuffer];
-//    }
-//    
-//    [self.assetWriter endSessionAtSourceTime:timeStamp];
+    self.assetWriter = [AVAssetWriter assetWriterWithURL:tempFileUrl
+                                                fileType:AVFileTypeMPEG4
+                                                   error:&error];
+    
+    if (!self.assetWriter) {
+        DDLogError(@"Failed to create asset writer = %@", error);
+    }
+    
+    NSDictionary *videoOutputSettings = [self.videoDataOutput recommendedVideoSettingsForAssetWriterWithOutputFileType:AVFileTypeMPEG4];
+    
+    self.videoAssetWriterInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeVideo outputSettings:videoOutputSettings];
+    self.videoAssetWriterInput.expectsMediaDataInRealTime = YES;
+    
+    if ([self.assetWriter canAddInput:self.videoAssetWriterInput]) {
+        [self.assetWriter addInput:self.videoAssetWriterInput];
+    }
+    else {
+        DDLogError(@"Could not add video asset writer input to asset writer");
+    }
+    
+    NSDictionary *audioOutputSettings = [self.audioDataOutput recommendedAudioSettingsForAssetWriterWithOutputFileType:AVFileTypeMPEG4];
+    
+    self.audioAssetWriterInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeAudio outputSettings:audioOutputSettings];
+    self.audioAssetWriterInput.expectsMediaDataInRealTime = YES;
+    
+    if ([self.assetWriter canAddInput:self.audioAssetWriterInput]) {
+        [self.assetWriter addInput:self.audioAssetWriterInput];
+    }
+    else {
+        DDLogError(@"Could not add audio asset writer input to asset writer");
+    }
 }
 
 - (NSString *)tempFilePath {
