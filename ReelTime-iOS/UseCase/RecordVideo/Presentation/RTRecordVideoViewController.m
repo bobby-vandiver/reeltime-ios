@@ -96,7 +96,7 @@ static const char *CaptureQueueLabel = "in.reeltime.record.video.CaptureQueue";
             DDLogError(@"Could not add audio device input to session");
         }
         
-        self.videoDataOutput = [[AVCaptureVideoDataOutput alloc] init];        
+        self.videoDataOutput = [[AVCaptureVideoDataOutput alloc] init];
         [self.videoDataOutput setSampleBufferDelegate:self queue:self.captureQueue];
         
         if ([self.session canAddOutput:self.videoDataOutput]) {
@@ -107,7 +107,8 @@ static const char *CaptureQueueLabel = "in.reeltime.record.video.CaptureQueue";
         }
         
         self.videoOutputConnection = [self.videoDataOutput connectionWithMediaType:AVMediaTypeVideo];
-        
+        self.videoOutputConnection.videoOrientation = AVCaptureVideoOrientationPortrait;
+
         self.audioDataOutput = [[AVCaptureAudioDataOutput alloc] init];
         [self.audioDataOutput setSampleBufferDelegate:self queue:self.captureQueue];
         
@@ -227,7 +228,20 @@ static const char *CaptureQueueLabel = "in.reeltime.record.video.CaptureQueue";
         DDLogError(@"Failed to create asset writer = %@", error);
     }
     
-    NSDictionary *videoOutputSettings = [self.videoDataOutput recommendedVideoSettingsForAssetWriterWithOutputFileType:AVFileTypeMPEG4];
+//    NSDictionary *videoOutputSettings = [self.videoDataOutput recommendedVideoSettingsForAssetWriterWithOutputFileType:AVFileTypeMPEG4];
+    
+    CGRect mainScreenBounds = [[UIScreen mainScreen] bounds];
+    
+    NSNumber *videoWidth = @(mainScreenBounds.size.width);
+    NSNumber *videoHeight = @(mainScreenBounds.size.height);
+    
+    DDLogDebug(@"width = %@, height = %@", videoWidth, videoHeight);
+    
+    NSDictionary *videoOutputSettings = @{
+                                          AVVideoCodecKey: AVVideoCodecH264,
+                                          AVVideoWidthKey: videoWidth,
+                                          AVVideoHeightKey: videoHeight
+                                          };
     
     self.videoAssetWriterInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeVideo outputSettings:videoOutputSettings];
     self.videoAssetWriterInput.expectsMediaDataInRealTime = YES;
