@@ -20,8 +20,7 @@ static NSString *const UserFolloweeCellIdentifier = @"UserFolloweeCell";
 
 + (instancetype)viewControllerWithUsersPresenter:(RTBrowseUsersPresenter *)usersPresenter {
     
-    NSString *identifier = [RTBrowseUserFolloweesViewController storyboardIdentifier];
-    RTBrowseUserFolloweesViewController *controller = [RTStoryboardViewControllerFactory viewControllerWithStoryboardIdentifier:identifier];
+    RTBrowseUserFolloweesViewController *controller = [RTStoryboardViewControllerFactory storyboardViewController:self];
     
     if (controller) {
         controller.usersPresenter = usersPresenter;

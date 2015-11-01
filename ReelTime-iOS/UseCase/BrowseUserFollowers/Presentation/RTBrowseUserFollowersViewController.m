@@ -19,9 +19,7 @@ static NSString *const UserFollowerCellIdentifier = @"UserFollowerCell";
 @implementation RTBrowseUserFollowersViewController
 
 + (instancetype)viewControllerWithUsersPresenter:(RTBrowseUsersPresenter *)usersPresenter {
-    
-    NSString *identifier = [RTBrowseUserFollowersViewController storyboardIdentifier];
-    RTBrowseUserFollowersViewController *controller = [RTStoryboardViewControllerFactory viewControllerWithStoryboardIdentifier:identifier];
+    RTBrowseUserFollowersViewController *controller = [RTStoryboardViewControllerFactory storyboardViewController:self];
     
     if (controller) {
         controller.usersPresenter = usersPresenter;

@@ -1,10 +1,9 @@
 #import <Foundation/Foundation.h>
 
-@class RTLoginViewController;
-@class RTAccountRegistrationViewController;
+@protocol RTStoryboardViewController;
 
 @interface RTStoryboardViewControllerFactory : NSObject
 
-+ (id)viewControllerWithStoryboardIdentifier:(NSString *)identifier;
++ (id)storyboardViewController:(Class<RTStoryboardViewController>)clazz;
 
 @end

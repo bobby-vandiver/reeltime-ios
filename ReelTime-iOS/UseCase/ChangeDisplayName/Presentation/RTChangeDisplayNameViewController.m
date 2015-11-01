@@ -12,9 +12,7 @@
 @implementation RTChangeDisplayNameViewController
 
 + (instancetype)viewControllerWithPresenter:(RTChangeDisplayNamePresenter *)presenter {
-    NSString *identifier = [RTChangeDisplayNameViewController storyboardIdentifier];
-    RTChangeDisplayNameViewController *controller = [RTStoryboardViewControllerFactory viewControllerWithStoryboardIdentifier:identifier];
-    
+    RTChangeDisplayNameViewController *controller = [RTStoryboardViewControllerFactory storyboardViewController:self];
     if (controller) {
         controller.presenter = presenter;
     }

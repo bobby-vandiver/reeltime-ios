@@ -12,12 +12,12 @@
 @implementation RTConfirmAccountViewController
 
 + (instancetype)viewControllerWithPresenter:(RTConfirmAccountPresenter *)presenter {
-    NSString *identifier = [RTConfirmAccountViewController storyboardIdentifier];
-    RTConfirmAccountViewController *controller = [RTStoryboardViewControllerFactory viewControllerWithStoryboardIdentifier:identifier];
-    
+    RTConfirmAccountViewController *controller = [RTStoryboardViewControllerFactory storyboardViewController:self];
+
     if (controller) {
         controller.presenter = presenter;
     }
+    
     return controller;
 }
 

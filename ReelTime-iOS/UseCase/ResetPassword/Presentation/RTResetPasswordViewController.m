@@ -12,11 +12,12 @@
 @implementation RTResetPasswordViewController
 
 + (instancetype)viewControllerWithPresenter:(RTResetPasswordPresenter *)presenter {
-    NSString *identifier = [self storyboardIdentifier];
-    RTResetPasswordViewController *controller = [RTStoryboardViewControllerFactory viewControllerWithStoryboardIdentifier:identifier];
+    RTResetPasswordViewController *controller = [RTStoryboardViewControllerFactory storyboardViewController:self];
+
     if (controller) {
         controller.presenter = presenter;
     }
+    
     return controller;
 }
 

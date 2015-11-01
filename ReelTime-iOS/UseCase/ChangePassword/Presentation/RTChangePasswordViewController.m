@@ -12,8 +12,7 @@
 @implementation RTChangePasswordViewController
 
 + (instancetype)viewControllerWithPresenter:(RTChangePasswordPresenter *)presenter {
-    NSString *identifier = [RTChangePasswordViewController storyboardIdentifier];
-    RTChangePasswordViewController *controller = [RTStoryboardViewControllerFactory viewControllerWithStoryboardIdentifier:identifier];
+    RTChangePasswordViewController *controller = [RTStoryboardViewControllerFactory storyboardViewController:self];
     
     if (controller) {
         controller.presenter = presenter;

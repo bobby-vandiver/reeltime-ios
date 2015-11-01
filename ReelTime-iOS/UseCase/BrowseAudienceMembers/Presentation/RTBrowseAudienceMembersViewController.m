@@ -19,9 +19,7 @@ static NSString *const AudienceMemberCellIdentifier = @"AudienceMemberCell";
 @implementation RTBrowseAudienceMembersViewController
 
 + (instancetype)viewControllerWithUsersPresenter:(RTBrowseUsersPresenter *)usersPresenter {
-    
-    NSString *identifier = [RTBrowseAudienceMembersViewController storyboardIdentifier];
-    RTBrowseAudienceMembersViewController *controller = [RTStoryboardViewControllerFactory viewControllerWithStoryboardIdentifier:identifier];
+    RTBrowseAudienceMembersViewController *controller = [RTStoryboardViewControllerFactory storyboardViewController:self];
     
     if (controller) {
         controller.usersPresenter = usersPresenter;

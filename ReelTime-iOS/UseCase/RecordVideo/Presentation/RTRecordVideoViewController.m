@@ -15,9 +15,7 @@
 @implementation RTRecordVideoViewController
 
 + (instancetype)viewController {
-    NSString *identifier = [RTRecordVideoViewController storyboardIdentifier];
-    RTRecordVideoViewController *controller = [RTStoryboardViewControllerFactory viewControllerWithStoryboardIdentifier:identifier];    
-    return controller;
+    return [RTStoryboardViewControllerFactory storyboardViewController:self];
 }
 
 + (NSString *)storyboardIdentifier {

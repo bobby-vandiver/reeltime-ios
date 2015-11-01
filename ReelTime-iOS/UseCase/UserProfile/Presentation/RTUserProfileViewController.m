@@ -83,8 +83,7 @@ static NSString *const UserReelCellIdentifier = @"UserReelCell";
                          thumbnailSupport:(RTThumbnailSupport *)thumbnailSupport
                        currentUserService:(RTCurrentUserService *)currentUserService {
 
-    NSString *identifier = [RTUserProfileViewController storyboardIdentifier];
-    RTUserProfileViewController *controller = [RTStoryboardViewControllerFactory viewControllerWithStoryboardIdentifier:identifier];
+    RTUserProfileViewController *controller = [RTStoryboardViewControllerFactory storyboardViewController:self];
     
     if (controller) {
         controller.username = username;

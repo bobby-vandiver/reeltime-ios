@@ -21,13 +21,13 @@ static NSString *const DeviceCellIdentifier = @"DeviceCell";
 @implementation RTManageDevicesViewController
 
 + (instancetype)viewControllerWithPresenter:(RTManageDevicesPresenter *)presenter {
-    NSString *identifier = [RTManageDevicesViewController storyboardIdentifier];
-    RTManageDevicesViewController *controller = [RTStoryboardViewControllerFactory viewControllerWithStoryboardIdentifier:identifier];
+    RTManageDevicesViewController *controller = [RTStoryboardViewControllerFactory storyboardViewController:self];
     
     if (controller) {
         controller.devicesPresenter = presenter;
         controller.devicesDataSource = [self createDataSourceWithPresenter:presenter];
     }
+
     return controller;
 }
 

@@ -1,11 +1,13 @@
 #import "RTStoryboardViewControllerFactory.h"
+#import "RTStoryboardViewController.h"
 
-#import "RTLoginViewController.h"
-#import "RTAccountRegistrationViewController.h"
+#import <UIKit/UIKit.h>
 
 @implementation RTStoryboardViewControllerFactory
 
-+ (id)viewControllerWithStoryboardIdentifier:(NSString *)identifier {
++ (id)storyboardViewController:(Class<RTStoryboardViewController>)clazz {
+    NSString *identifier = [clazz storyboardIdentifier];
+
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     return [mainStoryboard instantiateViewControllerWithIdentifier:identifier];
 }

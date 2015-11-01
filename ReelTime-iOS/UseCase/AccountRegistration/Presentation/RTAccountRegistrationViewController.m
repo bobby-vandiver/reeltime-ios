@@ -12,12 +12,12 @@
 @implementation RTAccountRegistrationViewController
 
 + (instancetype)viewControllerWithPresenter:(RTAccountRegistrationPresenter *)presenter {
-    NSString *identifier = [RTAccountRegistrationViewController storyboardIdentifier];
-    RTAccountRegistrationViewController *controller = [RTStoryboardViewControllerFactory viewControllerWithStoryboardIdentifier:identifier];
+    RTAccountRegistrationViewController *controller = [RTStoryboardViewControllerFactory storyboardViewController:self];
     
     if (controller) {
         controller.presenter = presenter;
     }
+
     return controller;
 }
 

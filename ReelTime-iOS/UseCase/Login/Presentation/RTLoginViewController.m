@@ -13,12 +13,12 @@
 @implementation RTLoginViewController
 
 + (instancetype)viewControllerWithPresenter:(RTLoginPresenter *)presenter {
-    NSString *identifier = [RTLoginViewController storyboardIdentifier];
-    RTLoginViewController *controller = [RTStoryboardViewControllerFactory viewControllerWithStoryboardIdentifier:identifier];
+    RTLoginViewController *controller = [RTStoryboardViewControllerFactory storyboardViewController:self];
 
     if (controller) {
         controller.presenter = presenter;
     }
+
     return controller;
 }
 

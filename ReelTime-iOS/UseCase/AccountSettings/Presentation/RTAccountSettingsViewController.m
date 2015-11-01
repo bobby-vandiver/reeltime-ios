@@ -27,12 +27,12 @@ static const NSInteger LogoutRow = 0;
 @implementation RTAccountSettingsViewController
 
 + (instancetype)viewControllerWithPresenter:(RTAccountSettingsPresenter *)presenter {
-    NSString *identifier = [RTAccountSettingsViewController storyboardIdentifier];
-    RTAccountSettingsViewController *controller = [RTStoryboardViewControllerFactory viewControllerWithStoryboardIdentifier:identifier];
+    RTAccountSettingsViewController *controller = [RTStoryboardViewControllerFactory storyboardViewController:self];
     
     if (controller) {
         controller.presenter = presenter;
     }
+
     return controller;
 }
 

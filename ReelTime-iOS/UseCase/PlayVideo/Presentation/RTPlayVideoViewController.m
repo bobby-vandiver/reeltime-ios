@@ -39,8 +39,7 @@ static NSString *const StatusKeyPath = @"status";
                        withPlayerFactory:(RTPlayerFactory *)playerFactory
                       notificationCenter:(NSNotificationCenter *)notificationCenter {
     
-    NSString *identifier = [RTPlayVideoViewController storyboardIdentifier];
-    RTPlayVideoViewController *controller = [RTStoryboardViewControllerFactory viewControllerWithStoryboardIdentifier:identifier];
+    RTPlayVideoViewController *controller = [RTStoryboardViewControllerFactory storyboardViewController:self];
     
     if (controller) {
         controller.videoId = videoId;
