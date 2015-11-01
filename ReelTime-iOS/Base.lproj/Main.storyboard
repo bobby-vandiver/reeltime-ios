@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -912,6 +912,9 @@
                                 <exclude reference="eOW-1H-M5z"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="Rd6-XT-n5o"/>
+                                <exclude reference="eOI-eI-4KA"/>
+                                <exclude reference="pSY-8D-y7g"/>
                                 <exclude reference="1C3-TR-SGd"/>
                                 <exclude reference="52d-AV-DSR"/>
                                 <exclude reference="6NO-eB-4A3"/>
@@ -919,9 +922,6 @@
                                 <exclude reference="KMf-OO-hCC"/>
                                 <exclude reference="KdI-bX-4CL"/>
                                 <exclude reference="OTz-Y0-He2"/>
-                                <exclude reference="Rd6-XT-n5o"/>
-                                <exclude reference="eOI-eI-4KA"/>
-                                <exclude reference="pSY-8D-y7g"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -930,6 +930,9 @@
                                 <include reference="eOW-1H-M5z"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="Rd6-XT-n5o"/>
+                                <include reference="eOI-eI-4KA"/>
+                                <include reference="pSY-8D-y7g"/>
                                 <include reference="1C3-TR-SGd"/>
                                 <include reference="52d-AV-DSR"/>
                                 <include reference="6NO-eB-4A3"/>
@@ -937,9 +940,6 @@
                                 <include reference="KMf-OO-hCC"/>
                                 <exclude reference="KdI-bX-4CL"/>
                                 <exclude reference="OTz-Y0-He2"/>
-                                <include reference="Rd6-XT-n5o"/>
-                                <include reference="eOI-eI-4KA"/>
-                                <include reference="pSY-8D-y7g"/>
                             </mask>
                         </variation>
                     </view>
