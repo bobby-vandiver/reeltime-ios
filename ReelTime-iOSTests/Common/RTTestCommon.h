@@ -37,6 +37,7 @@ extern NSString *const clientName;
 extern NSString *const BLANK;
 
 extern NSString *const reelName;
+extern NSString *const videoTitle;
 
 extern const NSUInteger reelId;
 extern const NSUInteger videoId;

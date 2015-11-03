@@ -13,6 +13,7 @@ NSString *const clientName = @"iPhone";
 NSString *const BLANK = @"";
 
 NSString *const reelName = @"reelName";
+NSString *const videoTitle = @"videoTitle";
 
 const NSUInteger reelId = 49132;
 const NSUInteger videoId = 841;

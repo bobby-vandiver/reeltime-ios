@@ -19,6 +19,7 @@
 #import "RTRemoveVideoFromReelError.h"
 #import "RTRevokeClientError.h"
 #import "RTUnfollowUserError.h"
+#import "RTUploadVideoError.h"
 #import "RTUserSummaryError.h"
 
 NSString *const RTAccountRegistrationErrorDomain = @"in.reeltime.AccountRegistration";
@@ -42,4 +43,5 @@ NSString *const RTRemoveVideoFromReelErrorDomain = @"in.reeltime.RemoveVideoFrom
 NSString *const RTResetPasswordErrorDomain = @"in.reeltime.ResetPassword";
 NSString *const RTRevokeClientErrorDomain = @"in.reeltime.RevokeClient";
 NSString *const RTUnfollowUserErrorDomain = @"in.reeltime.UnfollowUser";
+NSString *const RTUploadVideoErrorDomain = @"in.reeltime.UploadVideo";
 NSString *const RTUserSummaryErrorDomain = @"in.reeltime.UserSummary";
