@@ -1,9 +1,15 @@
 #import "RTUploadVideoDataManager.h"
 #import "RTAPIClient.h"
 
+#import "RTServerErrors.h"
+#import "RTServerErrorsConverter.h"
+
+#import "RTUploadVideoServerErrorMapping.h"
+
 @interface RTUploadVideoDataManager ()
 
 @property RTAPIClient *client;
+@property RTServerErrorsConverter *serverErrorsConverter;
 
 @end
 
@@ -13,6 +19,9 @@
     self = [super init];
     if (self) {
         self.client = client;
+        
+        RTUploadVideoServerErrorMapping *mapping = [[RTUploadVideoServerErrorMapping alloc] init];
+        self.serverErrorsConverter = [[RTServerErrorsConverter alloc] initWithMapping:mapping];
     }
     return self;
 }
@@ -29,7 +38,8 @@
     };
     
     ServerErrorsCallback failureCallback = ^(RTServerErrors *serverErrors) {
-        
+        NSArray *uploadErrors = [self.serverErrorsConverter convertServerErrors:serverErrors];
+        failure(uploadErrors);
     };
     
     [self.client addVideoFromFileURL:videoUrl
