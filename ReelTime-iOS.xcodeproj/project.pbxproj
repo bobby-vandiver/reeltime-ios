@@ -227,6 +227,8 @@
 		7148430B1AEC145A001B885A /* RTAccountRegistrationWireframeSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7148430A1AEC145A001B885A /* RTAccountRegistrationWireframeSpec.m */; };
 		7148430E1AEC16A2001B885A /* RTDeviceRegistrationAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 7148430D1AEC16A2001B885A /* RTDeviceRegistrationAssembly.m */; };
 		714843101AEC1F50001B885A /* RTLoginWireframeSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7148430F1AEC1F50001B885A /* RTLoginWireframeSpec.m */; };
+		7149E9E01BE9B59800959B17 /* RTUploadVideoInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7149E9DF1BE9B59800959B17 /* RTUploadVideoInteractor.m */; };
+		7149E9E41BE9B65F00959B17 /* RTUploadVideoValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7149E9E31BE9B65F00959B17 /* RTUploadVideoValidator.m */; };
 		714DDE571B0C0CC600D96F74 /* RTChangePasswordDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 714DDE561B0C0CC600D96F74 /* RTChangePasswordDataManager.m */; };
 		714DDE5B1B0C0D0100D96F74 /* RTChangePasswordInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 714DDE5A1B0C0D0100D96F74 /* RTChangePasswordInteractor.m */; };
 		714DDE631B0C0E3C00D96F74 /* RTChangePasswordPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 714DDE621B0C0E3C00D96F74 /* RTChangePasswordPresenter.m */; };
@@ -879,6 +881,11 @@
 		7148430C1AEC16A2001B885A /* RTDeviceRegistrationAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTDeviceRegistrationAssembly.h; sourceTree = "<group>"; };
 		7148430D1AEC16A2001B885A /* RTDeviceRegistrationAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTDeviceRegistrationAssembly.m; sourceTree = "<group>"; };
 		7148430F1AEC1F50001B885A /* RTLoginWireframeSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLoginWireframeSpec.m; sourceTree = "<group>"; };
+		7149E9DE1BE9B59800959B17 /* RTUploadVideoInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTUploadVideoInteractor.h; sourceTree = "<group>"; };
+		7149E9DF1BE9B59800959B17 /* RTUploadVideoInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTUploadVideoInteractor.m; sourceTree = "<group>"; };
+		7149E9E11BE9B5C600959B17 /* RTUploadVideoInteractorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTUploadVideoInteractorDelegate.h; sourceTree = "<group>"; };
+		7149E9E21BE9B65F00959B17 /* RTUploadVideoValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTUploadVideoValidator.h; sourceTree = "<group>"; };
+		7149E9E31BE9B65F00959B17 /* RTUploadVideoValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTUploadVideoValidator.m; sourceTree = "<group>"; };
 		714DDE551B0C0CC600D96F74 /* RTChangePasswordDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTChangePasswordDataManager.h; sourceTree = "<group>"; };
 		714DDE561B0C0CC600D96F74 /* RTChangePasswordDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTChangePasswordDataManager.m; sourceTree = "<group>"; };
 		714DDE591B0C0D0100D96F74 /* RTChangePasswordInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTChangePasswordInteractor.h; sourceTree = "<group>"; };
@@ -1890,6 +1897,11 @@
 			isa = PBXGroup;
 			children = (
 				7127EAA21BE85506000A4182 /* RTUploadVideoError.h */,
+				7149E9DE1BE9B59800959B17 /* RTUploadVideoInteractor.h */,
+				7149E9DF1BE9B59800959B17 /* RTUploadVideoInteractor.m */,
+				7149E9E11BE9B5C600959B17 /* RTUploadVideoInteractorDelegate.h */,
+				7149E9E21BE9B65F00959B17 /* RTUploadVideoValidator.h */,
+				7149E9E31BE9B65F00959B17 /* RTUploadVideoValidator.m */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -4561,6 +4573,7 @@
 				718F43F51B20CCAF00732ACE /* RTClientList.m in Sources */,
 				713CF1D31AE2A4E6003E2F89 /* RTThumbnailSupport.m in Sources */,
 				717D926D1A5B722300EAB6BF /* NSError+RTError.m in Sources */,
+				7149E9E01BE9B59800959B17 /* RTUploadVideoInteractor.m in Sources */,
 				717215A41A86590D0002ECC7 /* RTAccountRegistrationValidator.m in Sources */,
 				710B6B811B7712BB009318D0 /* RTPlayVideoAssembly.m in Sources */,
 				7195CF2C1BD429520061F100 /* RTRecordVideoAssembly.m in Sources */,
@@ -4736,6 +4749,7 @@
 				7148430E1AEC16A2001B885A /* RTDeviceRegistrationAssembly.m in Sources */,
 				7153D3DF1B82964C00A1FE29 /* RTPlayerView.m in Sources */,
 				71026C4E1B92C0510072A3E0 /* RTDeleteVideoInteractor.m in Sources */,
+				7149E9E41BE9B65F00959B17 /* RTUploadVideoValidator.m in Sources */,
 				7116C0541AD982D600590DAF /* RTPagedListViewScrollHandler.m in Sources */,
 				7124363D1ADDE35B00D39A95 /* RTSynchronizedMutableArray.m in Sources */,
 				713A239A1AB4F5F80098CE48 /* RTBrowseVideosPresenter.m in Sources */,
