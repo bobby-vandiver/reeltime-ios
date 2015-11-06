@@ -103,6 +103,10 @@
     return [self errorWithDomain:RTUnfollowUserErrorDomain code:code];
 }
 
++ (NSError *)uploadVideoErrorWithCode:(RTUploadVideoError)code {
+    return [self errorWithDomain:RTUploadVideoErrorDomain code:code];
+}
+
 + (NSError *)userSummaryErrorWithCode:(RTUserSummaryError)code {
     return [self errorWithDomain:RTUserSummaryErrorDomain code:code];
 }

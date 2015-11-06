@@ -29,8 +29,8 @@ NSNull *null() {
     return [NSNull null];
 }
 
-NSString *getParameterOrDefault(NSString *parameter, NSString *defaultValue) {
-    NSString *value;
+id getParameterOrDefault(NSString *parameter, id defaultValue) {
+    id value;
     
     if (parameter) {
         value = [parameter isEqual:null()] ? nil : parameter;

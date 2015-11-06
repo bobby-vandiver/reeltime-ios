@@ -50,4 +50,4 @@ extern NSString *const accessToken;
 extern NSString *const refreshToken;
 
 extern NSNull *null();
-extern NSString *getParameterOrDefault(NSString *parameter, NSString *defaultValue);
+extern id getParameterOrDefault(NSString *parameter, id defaultValue);

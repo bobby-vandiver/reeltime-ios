@@ -12,7 +12,7 @@
                        validator:(RTUploadVideoValidator *)validator;
 
 - (void)uploadVideo:(NSURL *)videoUrl
-          thumbnail:(NSURL *)thumbnail
+          thumbnail:(NSURL *)thumbnailUrl
      withVideoTitle:(NSString *)videoTitle
      toReelWithName:(NSString *)reelName;
 

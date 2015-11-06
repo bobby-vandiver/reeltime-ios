@@ -2,14 +2,24 @@
 #import <Expecta/Expecta.h>
 
 NSString *const USERNAME_KEY = @"username";
+
 NSString *const PASSWORD_KEY = @"password";
 NSString *const CONFIRMATION_PASSWORD_KEY = @"confirmationPassword";
+
 NSString *const EMAIL_KEY = @"email";
 NSString *const DISPLAY_NAME_KEY = @"displayName";
+
 NSString *const CLIENT_NAME_KEY = @"clientName";
 NSString *const CLIENT_ID_KEY = @"clientId";
+
 NSString *const CONFIRMATION_CODE_KEY = @"confirmationCode";
 NSString *const RESET_CODE_KEY = @"resetCode";
+
+NSString *const VIDEO_URL_KEY = @"videoUrl";
+NSString *const THUMBNAIL_URL_KEY = @"thumbnailUrl";
+
+NSString *const VIDEO_TITLE_KEY = @"videoTitle";
+NSString *const REEL_NAME_KEY = @"reelName";
 
 @interface RTValidationTestHelper ()
 

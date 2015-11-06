@@ -21,6 +21,7 @@
 #import "RTResetPasswordError.h"
 #import "RTRevokeClientError.h"
 #import "RTUnfollowUserError.h"
+#import "RTUploadVideoError.h"
 #import "RTUserSummaryError.h"
 
 @interface RTErrorFactory : NSObject
@@ -76,6 +77,8 @@
 + (NSError *)revokeClientErrorWithCode:(RTRevokeClientError)code;
 
 + (NSError *)unfollowUserErrorWithCode:(RTUnfollowUserError)code;
+
++ (NSError *)uploadVideoErrorWithCode:(RTUploadVideoError)code;
 
 + (NSError *)userSummaryErrorWithCode:(RTUserSummaryError)code;
 

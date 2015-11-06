@@ -28,10 +28,36 @@
 }
 
 - (void)uploadVideo:(NSURL *)videoUrl
-          thumbnail:(NSURL *)thumbnail
+          thumbnail:(NSURL *)thumbnailUrl
      withVideoTitle:(NSString *)videoTitle
      toReelWithName:(NSString *)reelName {
     
+    NSArray *errors;
+    BOOL valid = [self.validator validateVideo:videoUrl thumbnail:thumbnailUrl videoTitle:videoTitle reelName:reelName errors:&errors];
+    
+    if (!valid) {
+        [self.delegate uploadFailedWithErrors:errors];
+        return;
+    }
+    
+    [self.dataManager uploadVideo:videoUrl
+                        thumbnail:thumbnailUrl
+                        withTitle:videoTitle
+                           toReel:reelName
+                          success:[self uploadVideoSuccessCallback]
+                          failure:[self uploadVideoFailureCallback]];
+}
+
+- (VideoCallback)uploadVideoSuccessCallback {
+    return ^(RTVideo *video) {
+        [self.delegate uploadSucceededForVideo:video];
+    };
+}
+
+- (ArrayCallback)uploadVideoFailureCallback {
+    return ^(NSArray *errors) {
+        [self.delegate uploadFailedWithErrors:errors];
+    };
 }
 
 @end
