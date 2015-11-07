@@ -17,17 +17,17 @@ describe(@"reset password presenter", ^{
     __block id<RTResetPasswordView> view;
     
     __block RTResetPasswordInteractor *interactor;
-    __block RTResetPasswordWireframe *wireFrame;
+    __block RTResetPasswordWireframe *wireframe;
         
     beforeEach(^{
-        wireFrame = mock([RTResetPasswordWireframe class]);
+        wireframe = mock([RTResetPasswordWireframe class]);
         interactor = mock([RTResetPasswordInteractor class]);
 
         view = mockProtocol(@protocol(RTResetPasswordView));
         
         presenter = [[RTResetPasswordPresenter alloc] initWithView:view
                                                         interactor:interactor
-                                                         wireframe:wireFrame];
+                                                         wireframe:wireframe];
     });
     
     describe(@"requested reset password email", ^{
@@ -58,14 +58,14 @@ describe(@"reset password presenter", ^{
         it(@"should route to the reset password interface", ^{
             [presenter resetPasswordEmailSent];
             [verify(view) showMessage:@"Please check your email to complete the reset process"];
-            [verify(wireFrame) presentResetPasswordInterface];
+            [verify(wireframe) presentResetPasswordInterface];
         });
     });
     
     describe(@"reset password successfully", ^{
         it(@"should route to the login interface", ^{
             [presenter resetPasswordSucceeded];
-            [verify(wireFrame) presentLoginInterface];
+            [verify(wireframe) presentLoginInterface];
         });
     });
     
