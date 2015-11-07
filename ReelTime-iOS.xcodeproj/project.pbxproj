@@ -37,6 +37,9 @@
 		710BB5F91ACDF6EE00F724C7 /* RTCountDownLatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 710BB5F81ACDF6EE00F724C7 /* RTCountDownLatch.m */; };
 		710C0A371B27BD66006209F4 /* RTManageDevicesPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 710C0A361B27BD66006209F4 /* RTManageDevicesPresenter.m */; };
 		710C0A3B1B27C00D006209F4 /* RTManageDevicesPresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 710C0A3A1B27C00D006209F4 /* RTManageDevicesPresenterSpec.m */; };
+		710C2C351BED96DD00C57C09 /* RTUploadVideoPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 710C2C341BED96DD00C57C09 /* RTUploadVideoPresenter.m */; };
+		710C2C391BED977B00C57C09 /* RTUploadVideoWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 710C2C381BED977B00C57C09 /* RTUploadVideoWireframe.m */; };
+		710C2C3B1BED988E00C57C09 /* RTUploadVideoPresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 710C2C3A1BED988E00C57C09 /* RTUploadVideoPresenterSpec.m */; };
 		710D84311B49BA82000FCFFF /* RTClientSpecCallbackExpectation.m in Sources */ = {isa = PBXBuildFile; fileRef = 710D84301B49BA82000FCFFF /* RTClientSpecCallbackExpectation.m */; };
 		711296F21BCDF34800F5378E /* RTApplicationWindowHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 711296F11BCDF34800F5378E /* RTApplicationWindowHandle.m */; };
 		7112EF491AA915BC00BC7731 /* user-list-multiple-users.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7112EF481AA915BC00BC7731 /* user-list-multiple-users.txt */; };
@@ -561,6 +564,12 @@
 		710C0A361B27BD66006209F4 /* RTManageDevicesPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTManageDevicesPresenter.m; sourceTree = "<group>"; };
 		710C0A381B27BDC6006209F4 /* RTManageDevicesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTManageDevicesView.h; sourceTree = "<group>"; };
 		710C0A3A1B27C00D006209F4 /* RTManageDevicesPresenterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTManageDevicesPresenterSpec.m; sourceTree = "<group>"; };
+		710C2C331BED96DD00C57C09 /* RTUploadVideoPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTUploadVideoPresenter.h; sourceTree = "<group>"; };
+		710C2C341BED96DD00C57C09 /* RTUploadVideoPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTUploadVideoPresenter.m; sourceTree = "<group>"; };
+		710C2C361BED974B00C57C09 /* RTUploadVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTUploadVideoView.h; sourceTree = "<group>"; };
+		710C2C371BED977B00C57C09 /* RTUploadVideoWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTUploadVideoWireframe.h; sourceTree = "<group>"; };
+		710C2C381BED977B00C57C09 /* RTUploadVideoWireframe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTUploadVideoWireframe.m; sourceTree = "<group>"; };
+		710C2C3A1BED988E00C57C09 /* RTUploadVideoPresenterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTUploadVideoPresenterSpec.m; sourceTree = "<group>"; };
 		710D842F1B49BA82000FCFFF /* RTClientSpecCallbackExpectation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTClientSpecCallbackExpectation.h; sourceTree = "<group>"; };
 		710D84301B49BA82000FCFFF /* RTClientSpecCallbackExpectation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTClientSpecCallbackExpectation.m; sourceTree = "<group>"; };
 		710D84321B49CA2C000FCFFF /* RTLogoutError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLogoutError.h; sourceTree = "<group>"; };
@@ -1920,6 +1929,8 @@
 		7127EAA01BE854BF000A4182 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				710C2C371BED977B00C57C09 /* RTUploadVideoWireframe.h */,
+				710C2C381BED977B00C57C09 /* RTUploadVideoWireframe.m */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -1927,6 +1938,9 @@
 		7127EAA11BE854CA000A4182 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				710C2C331BED96DD00C57C09 /* RTUploadVideoPresenter.h */,
+				710C2C341BED96DD00C57C09 /* RTUploadVideoPresenter.m */,
+				710C2C361BED974B00C57C09 /* RTUploadVideoView.h */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -1937,6 +1951,7 @@
 				7127EAA71BE855B1000A4182 /* RTUploadVideoDataManagerSpec.m */,
 				71165CEC1BEC3FF1008FCA3A /* RTUploadVideoInteractorSpec.m */,
 				71165CEE1BEC452C008FCA3A /* RTUploadVideoValidatorSpec.m */,
+				710C2C3A1BED988E00C57C09 /* RTUploadVideoPresenterSpec.m */,
 			);
 			path = UploadVideoTests;
 			sourceTree = "<group>";
@@ -4765,6 +4780,8 @@
 				712441671B2DE75E00752901 /* RTConfirmAccountWireframe.m in Sources */,
 				713F4ACA1BADA7DB008220EC /* RTRemoveVideoFromReelErrorCodeToErrorMessageMapping.m in Sources */,
 				71AE25D11BCAE0AB00CD0E23 /* RTOAuth2TokenRenegotiator.m in Sources */,
+				710C2C391BED977B00C57C09 /* RTUploadVideoWireframe.m in Sources */,
+				710C2C351BED96DD00C57C09 /* RTUploadVideoPresenter.m in Sources */,
 				713A239F1AB4FF4C0098CE48 /* RTMutableArrayDataSource.m in Sources */,
 				71361D7E1B86C93700C0CB4D /* RTAuthorizationHeaderSupport.m in Sources */,
 				7103A2C21B87FD6200DB4B50 /* RTPlayVideoIdExtractor.m in Sources */,
@@ -4860,6 +4877,7 @@
 				71854B511B7445FB0045E281 /* RTClientDescriptionSpec.m in Sources */,
 				713BCE041A5908E4000F2D96 /* RTOAuth2TokenStoreSpec.m in Sources */,
 				7153EDFB1AED171D00000D1C /* RTDeviceRegistrationDataManagerSpec.m in Sources */,
+				710C2C3B1BED988E00C57C09 /* RTUploadVideoPresenterSpec.m in Sources */,
 				71AD75C71B62955000E76BFA /* RTUnfollowUserPresenterSpec.m in Sources */,
 				7195CF291BD425A70061F100 /* RTRecordVideoWireframeSpec.m in Sources */,
 				710564A71B8EA10000FEC81E /* RTDeleteVideoDataManagerSpec.m in Sources */,
