@@ -961,6 +961,7 @@
                         <viewControllerLayoutGuide type="bottom" id="xaZ-dd-Pw5"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="lGl-kk-tYl">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5gF-4m-4RT" userLabel="Upload Form Scroll View">
@@ -984,6 +985,9 @@
                                                 <variation key="widthClass=compact" fixedFrame="YES">
                                                     <rect key="frame" x="142" y="218" width="116" height="30"/>
                                                 </variation>
+                                                <connections>
+                                                    <action selector="pressedSubmitButton" destination="rl7-J0-Bh9" eventType="touchUpInside" id="s7t-nK-1yx"/>
+                                                </connections>
                                             </button>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="E66-Cd-QAi" userLabel="Reel Name Field">
                                                 <rect key="frame" x="-25" y="-30" width="97" height="30"/>
@@ -1060,11 +1064,11 @@
                                 <exclude reference="5gF-4m-4RT"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="EM1-RV-9av"/>
                                 <exclude reference="2QW-M7-Bup"/>
                                 <exclude reference="8ZB-5l-Bwz"/>
                                 <exclude reference="m1x-Rk-rJy"/>
                                 <exclude reference="uqT-mA-WNd"/>
-                                <exclude reference="EM1-RV-9av"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -1072,14 +1076,18 @@
                                 <include reference="5gF-4m-4RT"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="EM1-RV-9av"/>
                                 <include reference="2QW-M7-Bup"/>
                                 <include reference="8ZB-5l-Bwz"/>
                                 <include reference="m1x-Rk-rJy"/>
                                 <include reference="uqT-mA-WNd"/>
-                                <include reference="EM1-RV-9av"/>
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="reelNameField" destination="E66-Cd-QAi" id="Ckr-f4-EzP"/>
+                        <outlet property="videoTitleField" destination="SGd-D7-jRA" id="0Ce-md-buB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Du6-bw-FEw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
