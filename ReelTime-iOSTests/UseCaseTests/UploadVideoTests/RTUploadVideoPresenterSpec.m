@@ -42,6 +42,13 @@ describe(@"upload video presenter", ^{
             [verify(interactor) uploadVideo:videoUrl thumbnail:thumbnailUrl withVideoTitle:videoTitle toReelWithName:reelName];
         });
     });
+    
+    describe(@"upload succeeded", ^{
+        it(@"should present video camera interface", ^{
+            [presenter uploadSucceededForVideo:anything()];
+            [verify(wireframe) presentVideoCameraInterface];
+        });
+    });
 });
 
 SpecEnd

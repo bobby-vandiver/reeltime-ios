@@ -22,6 +22,15 @@ describe(@"video", ^{
         video = [[RTVideo alloc] initWithVideoId:videoId title:title thumbnail:thumbnail];
     });
     
+    describe(@"description", ^{
+        it(@"includes video id, title and thumbnail hash", ^{
+            NSString *expected = [NSString stringWithFormat:@"{videoId: 1, title: title, thumbnail: %lu}",
+                                  (unsigned long)thumbnail.hash];
+            
+            expect([video description]).to.equal(expected);
+        });
+    });
+
     describe(@"isEqual for video with non-video", ^{
         it(@"nil", ^{
             BOOL equal = [video isEqual:nil];

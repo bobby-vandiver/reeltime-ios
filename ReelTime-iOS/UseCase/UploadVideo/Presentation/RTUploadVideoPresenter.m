@@ -4,6 +4,8 @@
 #import "RTUploadVideoInteractor.h"
 #import "RTUploadVideoWireframe.h"
 
+#import "RTLogging.h"
+
 @interface RTUploadVideoPresenter ()
 
 @property id<RTUploadVideoView> view;
@@ -39,7 +41,8 @@
 }
 
 - (void)uploadSucceededForVideo:(RTVideo *)video {
-    
+    DDLogDebug(@"Uploaded video: %@", video);
+    [self.wireframe presentVideoCameraInterface];
 }
 
 - (void)uploadFailedWithErrors:(NSArray *)errors {

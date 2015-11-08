@@ -35,4 +35,9 @@
     return [self.videoId hash];
 }
 
+- (NSString *)description {
+    return [NSString stringWithFormat:@"{videoId: %@, title: %@, thumbnail: %lu}",
+            self.videoId, self.title, self.thumbnail.hash];
+}
+
 @end
