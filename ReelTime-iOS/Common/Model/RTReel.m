@@ -1,4 +1,6 @@
 #import "RTReel.h"
+#import "RTUser.h"
+#import "RTStringUtils.h"
 
 @implementation RTReel
 
@@ -38,6 +40,10 @@
 
 - (NSUInteger)hash {
     return [self.reelId hash];
+}
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"{reelId: %@, name: %@, audienceSize: %@, numberOfVideos: %@, currentUserIsAnAudienceMember: %@, owner: %@}", self.reelId, self.name, self.audienceSize, self.numberOfVideos, stringForBool(self.currentUserIsAnAudienceMember), [self.owner description]];
 }
 
 @end

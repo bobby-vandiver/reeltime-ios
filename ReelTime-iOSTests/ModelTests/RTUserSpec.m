@@ -26,6 +26,19 @@ describe(@"user", ^{
                          currentUserIsFollowing:currentUserIsFollowing];
     });
     
+    describe(@"description", ^{
+        it(@"contains all fields", ^{
+            NSString *expected = [NSString stringWithFormat:
+                                  @"{username: %@, displayName: %@, "
+                                  @"numberOfFollowers: 3, numberOfFollowees: 4, "
+                                  @"numberOfReelsOwned: 5, numberOfAudienceMemberships: 6, "
+                                  @"currentUserIsFollowing: YES}",
+                                  username, displayName];
+            
+            expect([user description]).to.equal(expected);
+        });
+    });
+    
     describe(@"isEqual for user with non-user", ^{
         it(@"nil", ^{
             BOOL equal = [user isEqual:nil];

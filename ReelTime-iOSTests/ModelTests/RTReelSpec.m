@@ -1,13 +1,14 @@
 #import "RTTestCommon.h"
 
 #import "RTReel.h"
+#import "RTUser.h"
 
 SpecBegin(RTReel)
 
 describe(@"reel", ^{
     
     __block RTReel *reel;
-    
+
     NSNumber *reelId = @(42);
     NSString *name = @"reel name";
     
@@ -23,6 +24,17 @@ describe(@"reel", ^{
                                numberOfVideos:numberOfVideos
                 currentUserIsAnAudienceMember:currentUserIsAnAudienceMember
                                         owner:nil];
+    });
+    
+    describe(@"description", ^{       
+        it(@"should include all fields", ^{
+            NSString *expectedBeginning = @"{reelId: 42, name: reel name, audienceSize: 63, numberOfVideos: 81, currentUserIsAnAudienceMember: YES, owner: ";
+            NSString *expectedEnding = @"}";
+            
+            NSString *actual = [reel description];
+            expect(actual).to.beginWith(expectedBeginning);
+            expect(actual).to.endWith(expectedEnding);
+        });
     });
     
     describe(@"isEqual for reel with non-reel", ^{

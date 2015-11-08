@@ -266,7 +266,6 @@
 		715C54201AD4C9A7009C755F /* RTUserSummaryPresenterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 715C541F1AD4C9A7009C755F /* RTUserSummaryPresenterSpec.m */; };
 		715E082A1B0576CD0037A17E /* RTResetPasswordDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 715E08291B0576CD0037A17E /* RTResetPasswordDataManagerSpec.m */; };
 		715E082E1B0582170037A17E /* RTResetPasswordServerErrorMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 715E082D1B0582170037A17E /* RTResetPasswordServerErrorMapping.m */; };
-		715F9EAB1BD187B800CE816E /* RTLogging.m in Sources */ = {isa = PBXBuildFile; fileRef = 715F9EAA1BD187B800CE816E /* RTLogging.m */; };
 		715F9EAE1BD188C700CE816E /* AVPlayer+StatusText.m in Sources */ = {isa = PBXBuildFile; fileRef = 715F9EAD1BD188C700CE816E /* AVPlayer+StatusText.m */; };
 		7160C2BF1A6F48A60045ADDA /* RTAccountRegistrationValidatorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7160C2BE1A6F48A60045ADDA /* RTAccountRegistrationValidatorSpec.m */; };
 		716170401B9528BF000466BB /* RTCreateReelInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7161703F1B9528BF000466BB /* RTCreateReelInteractor.m */; };
@@ -475,6 +474,7 @@
 		71D886571B85601D00886940 /* RTPlayVideoURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D886551B85601D00886940 /* RTPlayVideoURLProtocol.m */; };
 		71D8865D1B8572F600886940 /* RTPlayerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D8865C1B8572F600886940 /* RTPlayerFactory.m */; };
 		71D8E5DD1BEFAC8A00D83E78 /* RTUploadVideoViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D8E5DC1BEFAC8A00D83E78 /* RTUploadVideoViewControllerSpec.m */; };
+		71D8E5E11BEFCB7400D83E78 /* RTStringUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D8E5E01BEFCB7400D83E78 /* RTStringUtils.m */; };
 		71D947981A4FCB5600401963 /* RTLoginInteractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D947971A4FCB5600401963 /* RTLoginInteractorSpec.m */; };
 		71E8EB581BD06F8D0035966C /* RTOAuth2TokenRenegotiationNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E8EB571BD06F8D0035966C /* RTOAuth2TokenRenegotiationNotification.m */; };
 		71F384D01B3772C8002BC9A0 /* RTUserProfilePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F384CF1B3772C8002BC9A0 /* RTUserProfilePresenter.m */; };
@@ -968,7 +968,6 @@
 		715E08291B0576CD0037A17E /* RTResetPasswordDataManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTResetPasswordDataManagerSpec.m; sourceTree = "<group>"; };
 		715E082C1B0582170037A17E /* RTResetPasswordServerErrorMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTResetPasswordServerErrorMapping.h; sourceTree = "<group>"; };
 		715E082D1B0582170037A17E /* RTResetPasswordServerErrorMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTResetPasswordServerErrorMapping.m; sourceTree = "<group>"; };
-		715F9EAA1BD187B800CE816E /* RTLogging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLogging.m; sourceTree = "<group>"; };
 		715F9EAC1BD188A800CE816E /* AVPlayer+StatusText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AVPlayer+StatusText.h"; sourceTree = "<group>"; };
 		715F9EAD1BD188C700CE816E /* AVPlayer+StatusText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVPlayer+StatusText.m"; sourceTree = "<group>"; };
 		7160C2BE1A6F48A60045ADDA /* RTAccountRegistrationValidatorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAccountRegistrationValidatorSpec.m; sourceTree = "<group>"; };
@@ -1355,6 +1354,8 @@
 		71D8865B1B8572F600886940 /* RTPlayerFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTPlayerFactory.h; sourceTree = "<group>"; };
 		71D8865C1B8572F600886940 /* RTPlayerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTPlayerFactory.m; sourceTree = "<group>"; };
 		71D8E5DC1BEFAC8A00D83E78 /* RTUploadVideoViewControllerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTUploadVideoViewControllerSpec.m; sourceTree = "<group>"; };
+		71D8E5DF1BEFCB7400D83E78 /* RTStringUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTStringUtils.h; sourceTree = "<group>"; };
+		71D8E5E01BEFCB7400D83E78 /* RTStringUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTStringUtils.m; sourceTree = "<group>"; };
 		71D947971A4FCB5600401963 /* RTLoginInteractorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLoginInteractorSpec.m; sourceTree = "<group>"; };
 		71E8EB561BD06F280035966C /* RTOAuth2TokenRenegotiationNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTOAuth2TokenRenegotiationNotification.h; sourceTree = "<group>"; };
 		71E8EB571BD06F8D0035966C /* RTOAuth2TokenRenegotiationNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTOAuth2TokenRenegotiationNotification.m; sourceTree = "<group>"; };
@@ -1702,7 +1703,6 @@
 			isa = PBXGroup;
 			children = (
 				7114DF711AB4AF3A003B1D2E /* RTLogging.h */,
-				715F9EAA1BD187B800CE816E /* RTLogging.m */,
 			);
 			path = Logging;
 			sourceTree = "<group>";
@@ -3919,6 +3919,15 @@
 			path = Persistence;
 			sourceTree = "<group>";
 		};
+		71D8E5DE1BEFCB6100D83E78 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				71D8E5DF1BEFCB7400D83E78 /* RTStringUtils.h */,
+				71D8E5E01BEFCB7400D83E78 /* RTStringUtils.m */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		71D9477E1A4FB37E00401963 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -3938,6 +3947,7 @@
 				71D947831A4FB7BC00401963 /* Store */,
 				711690991A6AEBA80031578E /* Storyboard */,
 				715370F71A8867EA00D3355B /* UI */,
+				71D8E5DE1BEFCB6100D83E78 /* Utilities */,
 				713188A61A912DFB006155E6 /* Validation */,
 			);
 			path = Common;
@@ -4643,7 +4653,6 @@
 				717215B11A8659230002ECC7 /* RTAccountRegistrationPresenter.m in Sources */,
 				7127EAAB1BE858AB000A4182 /* RTUploadVideoServerErrorMapping.m in Sources */,
 				71B5D6CB1B93F1F100A9EC73 /* RTJoinAudienceErrorCodeToErrorMessageMapping.m in Sources */,
-				715F9EAB1BD187B800CE816E /* RTLogging.m in Sources */,
 				71B5D6D71B940A7900A9EC73 /* RTFollowUserServerErrorMapping.m in Sources */,
 				71FFC1D31B969E30005803B3 /* RTDeleteReelErrorCodeToErrorMessageMapping.m in Sources */,
 				7134F1FF1B24CAEB001EBF4E /* RTRevokeClientServerErrorMapping.m in Sources */,
@@ -4671,6 +4680,7 @@
 				71828EF31B618E2300CA47CA /* RTUnfollowUserInteractor.m in Sources */,
 				71C7D0EE1B5C47A600BDDA4F /* RTLeaveAudienceDataManager.m in Sources */,
 				7153EE041AED39C500000D1C /* RTDeviceRegistrationServerErrorMapping.m in Sources */,
+				71D8E5E11BEFCB7400D83E78 /* RTStringUtils.m in Sources */,
 				712EA2C51A9C1B4600AFCA15 /* RTClientAdditionalConfiguration.m in Sources */,
 				7101F6071BD80B130016D238 /* RTRecordVideoPreviewView.m in Sources */,
 				71399DF71ADB68C600500E6C /* RTVideoThumbnailCell.m in Sources */,

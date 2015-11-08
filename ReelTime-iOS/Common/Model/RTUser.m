@@ -1,4 +1,5 @@
 #import "RTUser.h"
+#import "RTStringUtils.h"
 
 @implementation RTUser
 
@@ -40,6 +41,26 @@
 
 - (NSUInteger)hash {
     return [self.username hash];
+}
+
+- (NSString *)description {
+    return [NSString stringWithFormat:
+            @"{"
+            @"username: %@, "
+            @"displayName: %@, "
+            @"numberOfFollowers: %@, "
+            @"numberOfFollowees: %@, "
+            @"numberOfReelsOwned: %@, "
+            @"numberOfAudienceMemberships: %@, "
+            @"currentUserIsFollowing: %@"
+            @"}",
+            self.username,
+            self.displayName,
+            self.numberOfFollowers,
+            self.numberOfFollowees,
+            self.numberOfReelsOwned,
+            self.numberOfAudienceMemberships,
+            stringForBool(self.currentUserIsFollowing)];
 }
 
 @end
