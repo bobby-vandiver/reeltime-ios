@@ -475,6 +475,7 @@
 		71D8865D1B8572F600886940 /* RTPlayerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D8865C1B8572F600886940 /* RTPlayerFactory.m */; };
 		71D8E5DD1BEFAC8A00D83E78 /* RTUploadVideoViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D8E5DC1BEFAC8A00D83E78 /* RTUploadVideoViewControllerSpec.m */; };
 		71D8E5E11BEFCB7400D83E78 /* RTStringUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D8E5E01BEFCB7400D83E78 /* RTStringUtils.m */; };
+		71D8E5E41BEFFA2A00D83E78 /* RTUploadVideoErrorCodeToErrorMessageMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D8E5E31BEFFA2A00D83E78 /* RTUploadVideoErrorCodeToErrorMessageMapping.m */; };
 		71D947981A4FCB5600401963 /* RTLoginInteractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D947971A4FCB5600401963 /* RTLoginInteractorSpec.m */; };
 		71E8EB581BD06F8D0035966C /* RTOAuth2TokenRenegotiationNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E8EB571BD06F8D0035966C /* RTOAuth2TokenRenegotiationNotification.m */; };
 		71F384D01B3772C8002BC9A0 /* RTUserProfilePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F384CF1B3772C8002BC9A0 /* RTUserProfilePresenter.m */; };
@@ -1356,6 +1357,8 @@
 		71D8E5DC1BEFAC8A00D83E78 /* RTUploadVideoViewControllerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTUploadVideoViewControllerSpec.m; sourceTree = "<group>"; };
 		71D8E5DF1BEFCB7400D83E78 /* RTStringUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTStringUtils.h; sourceTree = "<group>"; };
 		71D8E5E01BEFCB7400D83E78 /* RTStringUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTStringUtils.m; sourceTree = "<group>"; };
+		71D8E5E21BEFFA2A00D83E78 /* RTUploadVideoErrorCodeToErrorMessageMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTUploadVideoErrorCodeToErrorMessageMapping.h; sourceTree = "<group>"; };
+		71D8E5E31BEFFA2A00D83E78 /* RTUploadVideoErrorCodeToErrorMessageMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTUploadVideoErrorCodeToErrorMessageMapping.m; sourceTree = "<group>"; };
 		71D947971A4FCB5600401963 /* RTLoginInteractorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLoginInteractorSpec.m; sourceTree = "<group>"; };
 		71E8EB561BD06F280035966C /* RTOAuth2TokenRenegotiationNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTOAuth2TokenRenegotiationNotification.h; sourceTree = "<group>"; };
 		71E8EB571BD06F8D0035966C /* RTOAuth2TokenRenegotiationNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTOAuth2TokenRenegotiationNotification.m; sourceTree = "<group>"; };
@@ -1947,6 +1950,8 @@
 		7127EAA11BE854CA000A4182 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				71D8E5E21BEFFA2A00D83E78 /* RTUploadVideoErrorCodeToErrorMessageMapping.h */,
+				71D8E5E31BEFFA2A00D83E78 /* RTUploadVideoErrorCodeToErrorMessageMapping.m */,
 				710C2C331BED96DD00C57C09 /* RTUploadVideoPresenter.h */,
 				710C2C341BED96DD00C57C09 /* RTUploadVideoPresenter.m */,
 				710C2C361BED974B00C57C09 /* RTUploadVideoView.h */,
@@ -4546,6 +4551,7 @@
 				71053AAC1B2BAF8A008C800C /* RTChangePasswordViewController.m in Sources */,
 				7138A9291AFD5002007D3878 /* RTKeyboardAwareFormViewController.m in Sources */,
 				713DE84C1B092A0000A5BBF0 /* RTResetPasswordWireframe.m in Sources */,
+				71D8E5E41BEFFA2A00D83E78 /* RTUploadVideoErrorCodeToErrorMessageMapping.m in Sources */,
 				7136A53F1AA3652C0059DF43 /* RTUserList.m in Sources */,
 				7164A3BD1B45B4C30006FE2E /* RTBrowseAudienceMembersViewController.m in Sources */,
 				712441581B2DC81300752901 /* RTConfirmAccountPresenter.m in Sources */,

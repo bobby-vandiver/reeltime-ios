@@ -49,6 +49,47 @@ describe(@"upload video presenter", ^{
             [verify(wireframe) presentVideoCameraInterface];
         });
     });
+    
+    describe(@"upload failure", ^{
+        __block RTErrorPresentationChecker *errorChecker;
+        __block RTFieldErrorPresentationChecker *fieldErrorChecker;
+        
+        ErrorFactoryCallback errorFactoryCallback = ^NSError * (NSInteger code) {
+            return [RTErrorFactory uploadVideoErrorWithCode:code];
+        };
+        
+        ArrayCallback errorsCallback = ^(NSArray *errors) {
+            [presenter uploadFailedWithErrors:errors];
+        };
+        
+        beforeEach(^{
+            errorChecker = [[RTErrorPresentationChecker alloc] initWithView:view
+                                                             errorsCallback:errorsCallback
+                                                       errorFactoryCallback:errorFactoryCallback];
+            
+            fieldErrorChecker = [[RTFieldErrorPresentationChecker alloc] initWithView:view
+                                                                       errorsCallback:errorsCallback
+                                                                 errorFactoryCallback:errorFactoryCallback];
+        });
+
+        it(@"missing reel name", ^{
+            [fieldErrorChecker verifyErrorMessage:@"Reel name is required"
+                              isShownForErrorCode:RTUploadVideoErrorMissingReelName
+                                            field:RTUploadVideoViewFieldReelName];
+        });
+        
+        it(@"missing video title", ^{
+            [fieldErrorChecker verifyErrorMessage:@"Video title is required"
+                              isShownForErrorCode:RTUploadVideoErrorMissingVideoTitle
+                                            field:RTUploadVideoViewFieldVideoTitle];
+        });
+        
+        it(@"invalid video title", ^{
+            [fieldErrorChecker verifyErrorMessage:@"Video title is invalid"
+                              isShownForErrorCode:RTUploadVideoErrorInvalidVideoTitle
+                                            field:RTUploadVideoViewFieldVideoTitle];
+        });
+    });
 });
 
 SpecEnd

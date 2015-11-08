@@ -4,14 +4,19 @@
 #import "RTUploadVideoInteractor.h"
 #import "RTUploadVideoWireframe.h"
 
+#import "RTUploadVideoError.h"
+
+#import "RTUploadVideoErrorCodeToErrorMessageMapping.h"
+#import "RTErrorCodeToErrorMessagePresenter.h"
+
 #import "RTLogging.h"
 
 @interface RTUploadVideoPresenter ()
 
 @property id<RTUploadVideoView> view;
-
 @property RTUploadVideoInteractor *interactor;
 @property RTUploadVideoWireframe *wireframe;
+@property RTErrorCodeToErrorMessagePresenter *errorPresenter;
 
 @end
 
@@ -25,6 +30,9 @@
         self.view = view;
         self.interactor = interactor;
         self.wireframe = wireframe;
+        
+        RTUploadVideoErrorCodeToErrorMessageMapping *mapping = [[RTUploadVideoErrorCodeToErrorMessageMapping alloc] init];
+        self.errorPresenter = [[RTErrorCodeToErrorMessagePresenter alloc] initWithDelegate:self mapping:mapping];
     }
     return self;
 }
@@ -46,12 +54,24 @@
 }
 
 - (void)uploadFailedWithErrors:(NSArray *)errors {
-    
+    [self.errorPresenter presentErrors:errors];
 }
 
 - (void)presentErrorMessage:(NSString *)message
                     forCode:(NSInteger)code {
-    
+    switch (code) {
+        case RTUploadVideoErrorMissingReelName:
+            [self.view showValidationErrorMessage:message forField:RTUploadVideoViewFieldReelName];
+            break;
+            
+        case RTUploadVideoErrorMissingVideoTitle:
+        case RTUploadVideoErrorInvalidVideoTitle:
+            [self.view showValidationErrorMessage:message forField:RTUploadVideoViewFieldVideoTitle];
+            break;
+            
+        default:
+            break;
+    }
 }
 
 @end
