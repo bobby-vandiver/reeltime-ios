@@ -952,6 +952,139 @@
             </objects>
             <point key="canvasLocation" x="970.5" y="714"/>
         </scene>
+        <!--Upload Video-->
+        <scene sceneID="K7k-zB-7ZB">
+            <objects>
+                <viewController storyboardIdentifier="Upload Video View Controller" title="Upload Video" id="rl7-J0-Bh9" customClass="RTUploadVideoViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wUh-fb-6F1"/>
+                        <viewControllerLayoutGuide type="bottom" id="xaZ-dd-Pw5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lGl-kk-tYl">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5gF-4m-4RT" userLabel="Upload Form Scroll View">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hzc-ra-YKs" userLabel="Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                        <subviews>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SGd-D7-jRA" userLabel="Video Title Field">
+                                                <rect key="frame" x="-25" y="-30" width="97" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <variation key="widthClass=compact" fixedFrame="YES">
+                                                    <rect key="frame" x="88" y="142" width="224" height="30"/>
+                                                </variation>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pVM-HK-7Xk" userLabel="Submit Button">
+                                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <state key="normal" title="Submit"/>
+                                                <variation key="widthClass=compact" fixedFrame="YES">
+                                                    <rect key="frame" x="142" y="218" width="116" height="30"/>
+                                                </variation>
+                                            </button>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="E66-Cd-QAi" userLabel="Reel Name Field">
+                                                <rect key="frame" x="-25" y="-30" width="97" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <variation key="widthClass=compact" fixedFrame="YES">
+                                                    <rect key="frame" x="88" y="180" width="224" height="30"/>
+                                                </variation>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <variation key="default">
+                                            <mask key="subviews">
+                                                <exclude reference="SGd-D7-jRA"/>
+                                                <exclude reference="pVM-HK-7Xk"/>
+                                                <exclude reference="E66-Cd-QAi"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="widthClass=compact">
+                                            <mask key="subviews">
+                                                <include reference="SGd-D7-jRA"/>
+                                                <include reference="pVM-HK-7Xk"/>
+                                                <include reference="E66-Cd-QAi"/>
+                                            </mask>
+                                        </variation>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="hzc-ra-YKs" firstAttribute="leading" secondItem="5gF-4m-4RT" secondAttribute="leading" id="3pw-Uf-UdT"/>
+                                    <constraint firstAttribute="trailing" secondItem="hzc-ra-YKs" secondAttribute="trailing" id="Erj-gv-oX7"/>
+                                    <constraint firstAttribute="bottom" secondItem="hzc-ra-YKs" secondAttribute="bottom" id="KCt-zi-Fbj"/>
+                                    <constraint firstItem="hzc-ra-YKs" firstAttribute="top" secondItem="5gF-4m-4RT" secondAttribute="top" id="PuC-5u-Glq"/>
+                                    <constraint firstItem="hzc-ra-YKs" firstAttribute="centerY" secondItem="5gF-4m-4RT" secondAttribute="centerY" id="qPZ-hN-doG"/>
+                                    <constraint firstItem="hzc-ra-YKs" firstAttribute="centerX" secondItem="5gF-4m-4RT" secondAttribute="centerX" id="uaC-UB-36d"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="hzc-ra-YKs"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <exclude reference="3pw-Uf-UdT"/>
+                                        <exclude reference="Erj-gv-oX7"/>
+                                        <exclude reference="KCt-zi-Fbj"/>
+                                        <exclude reference="PuC-5u-Glq"/>
+                                        <exclude reference="qPZ-hN-doG"/>
+                                        <exclude reference="uaC-UB-36d"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="subviews">
+                                        <include reference="hzc-ra-YKs"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <include reference="3pw-Uf-UdT"/>
+                                        <include reference="Erj-gv-oX7"/>
+                                        <include reference="KCt-zi-Fbj"/>
+                                        <include reference="PuC-5u-Glq"/>
+                                        <include reference="qPZ-hN-doG"/>
+                                        <include reference="uaC-UB-36d"/>
+                                    </mask>
+                                </variation>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="5gF-4m-4RT" firstAttribute="centerY" secondItem="lGl-kk-tYl" secondAttribute="centerY" id="2QW-M7-Bup"/>
+                            <constraint firstItem="5gF-4m-4RT" firstAttribute="centerX" secondItem="lGl-kk-tYl" secondAttribute="centerX" id="8ZB-5l-Bwz"/>
+                            <constraint firstItem="xaZ-dd-Pw5" firstAttribute="top" secondItem="5gF-4m-4RT" secondAttribute="bottom" id="EM1-RV-9av"/>
+                            <constraint firstItem="5gF-4m-4RT" firstAttribute="top" secondItem="lGl-kk-tYl" secondAttribute="topMargin" id="m1x-Rk-rJy"/>
+                            <constraint firstItem="5gF-4m-4RT" firstAttribute="leading" secondItem="lGl-kk-tYl" secondAttribute="leading" id="uqT-mA-WNd"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="5gF-4m-4RT"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="2QW-M7-Bup"/>
+                                <exclude reference="8ZB-5l-Bwz"/>
+                                <exclude reference="m1x-Rk-rJy"/>
+                                <exclude reference="uqT-mA-WNd"/>
+                                <exclude reference="EM1-RV-9av"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="5gF-4m-4RT"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="2QW-M7-Bup"/>
+                                <include reference="8ZB-5l-Bwz"/>
+                                <include reference="m1x-Rk-rJy"/>
+                                <include reference="uqT-mA-WNd"/>
+                                <include reference="EM1-RV-9av"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Du6-bw-FEw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="970.5" y="1372"/>
+        </scene>
         <!--Browse-->
         <scene sceneID="JBE-W5-Bds">
             <objects>
