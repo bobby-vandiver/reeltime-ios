@@ -49,7 +49,7 @@
 }
 
 - (void)uploadSucceededForVideo:(RTVideo *)video {
-    DDLogDebug(@"Uploaded video: %@", video);
+    DDLogInfo(@"Uploaded video: %@", video);
     [self.wireframe presentVideoCameraInterface];
 }
 
@@ -61,12 +61,23 @@
                     forCode:(NSInteger)code {
     switch (code) {
         case RTUploadVideoErrorMissingReelName:
+        case RTUploadVideoErrorInvalidReelName:
+        case RTUploadVideoErrorUnknownReel:
             [self.view showValidationErrorMessage:message forField:RTUploadVideoViewFieldReelName];
             break;
             
         case RTUploadVideoErrorMissingVideoTitle:
         case RTUploadVideoErrorInvalidVideoTitle:
             [self.view showValidationErrorMessage:message forField:RTUploadVideoViewFieldVideoTitle];
+            break;
+            
+        case RTUploadVideoErrorMissingThumbnail:
+        case RTUploadVideoErrorInvalidThumbnail:
+        case RTUploadVideoErrorMissingVideo:
+        case RTUploadVideoErrorInvalidVideo:
+        case RTUploadVideoErrorServiceUnavailable:
+        case RTUploadVideoErrorUnknownError:
+            [self.view showErrorMessage:message];
             break;
             
         default:

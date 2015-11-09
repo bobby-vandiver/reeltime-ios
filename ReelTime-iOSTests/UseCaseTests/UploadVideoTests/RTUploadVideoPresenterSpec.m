@@ -78,16 +78,58 @@ describe(@"upload video presenter", ^{
                                             field:RTUploadVideoViewFieldReelName];
         });
         
+        it(@"missing thumbnail", ^{
+            [errorChecker verifyErrorMessage:@"Thumbnail is required"
+                         isShownForErrorCode:RTUploadVideoErrorMissingThumbnail];
+        });
+        
+        it(@"missing video", ^{
+            [errorChecker verifyErrorMessage:@"Video is required"
+                         isShownForErrorCode:RTUploadVideoErrorMissingVideo];
+        });
+        
         it(@"missing video title", ^{
             [fieldErrorChecker verifyErrorMessage:@"Video title is required"
                               isShownForErrorCode:RTUploadVideoErrorMissingVideoTitle
                                             field:RTUploadVideoViewFieldVideoTitle];
         });
         
+        it(@"invalid reel name", ^{
+            [fieldErrorChecker verifyErrorMessage:@"Reel name is invalid"
+                              isShownForErrorCode:RTUploadVideoErrorInvalidReelName
+                                            field:RTUploadVideoViewFieldReelName];
+        });
+        
+        it(@"invalid thumbnail", ^{
+            [errorChecker verifyErrorMessage:@"Thumbnail is invalid"
+                         isShownForErrorCode:RTUploadVideoErrorInvalidThumbnail];
+        });
+        
+        it(@"invalid video", ^{
+            [errorChecker verifyErrorMessage:@"Video is invalid"
+                         isShownForErrorCode:RTUploadVideoErrorInvalidVideo];
+        });
+        
         it(@"invalid video title", ^{
             [fieldErrorChecker verifyErrorMessage:@"Video title is invalid"
                               isShownForErrorCode:RTUploadVideoErrorInvalidVideoTitle
                                             field:RTUploadVideoViewFieldVideoTitle];
+        });
+        
+        it(@"unknown reel", ^{
+            [fieldErrorChecker verifyErrorMessage:@"Unknown reel"
+                              isShownForErrorCode:RTUploadVideoErrorUnknownReel
+                                            field:RTUploadVideoViewFieldReelName];
+        });
+        
+        it(@"service unavailable", ^{
+            [errorChecker verifyErrorMessage:@"Could not upload video at this time. Please try again."
+                         isShownForErrorCode:RTUploadVideoErrorServiceUnavailable];
+        });
+        
+        it(@"unknown error", ^{
+            [errorChecker verifyErrorMessage:@"An unexpected error occurred. Please try again."
+                         isShownForErrorCode:RTUploadVideoErrorUnknownError];
         });
     });
 });
