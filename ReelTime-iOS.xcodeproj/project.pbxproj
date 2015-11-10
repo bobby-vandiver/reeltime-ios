@@ -628,7 +628,6 @@
 		71194C1F1A81B5D300904A06 /* EXPMatchers+ErrorMessages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EXPMatchers+ErrorMessages.m"; sourceTree = "<group>"; };
 		71194C211A81C30900904A06 /* EXPMatchers+beReel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+beReel.h"; sourceTree = "<group>"; };
 		71194C221A81C37900904A06 /* EXPMatchers+beReel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EXPMatchers+beReel.m"; sourceTree = "<group>"; };
-		711C5DE51A8D657F007652FC /* RTActivityType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTActivityType.h; sourceTree = SOURCE_ROOT; };
 		711DE5EC1AE05C2300F923E9 /* RTBrowseReelVideosPresenterFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseReelVideosPresenterFactory.h; sourceTree = "<group>"; };
 		711DE5ED1AE05C5D00F923E9 /* RTUserProfileViewControllerFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTUserProfileViewControllerFactory.h; sourceTree = "<group>"; };
 		711FF4B61AA20CEC00E11BDE /* bad-request-with-errors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "bad-request-with-errors.txt"; sourceTree = "<group>"; };
@@ -917,7 +916,6 @@
 		714DDE611B0C0E3C00D96F74 /* RTChangePasswordPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTChangePasswordPresenter.h; sourceTree = "<group>"; };
 		714DDE621B0C0E3C00D96F74 /* RTChangePasswordPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTChangePasswordPresenter.m; sourceTree = "<group>"; };
 		714DDE651B0C0F0500D96F74 /* RTChangePasswordDataManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTChangePasswordDataManagerSpec.m; sourceTree = "<group>"; };
-		714DDE671B0C136300D96F74 /* RTCallbacks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCallbacks.h; sourceTree = SOURCE_ROOT; };
 		714DDE6B1B0C187500D96F74 /* RTCallbackTestExpectation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCallbackTestExpectation.h; sourceTree = "<group>"; };
 		714DDE6C1B0C187500D96F74 /* RTCallbackTestExpectation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTCallbackTestExpectation.m; sourceTree = "<group>"; };
 		714F42081BC03E3500F4C11C /* RTLoginNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLoginNotification.h; sourceTree = "<group>"; };
@@ -1363,6 +1361,8 @@
 		71D8E5E21BEFFA2A00D83E78 /* RTUploadVideoErrorCodeToErrorMessageMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTUploadVideoErrorCodeToErrorMessageMapping.h; sourceTree = "<group>"; };
 		71D8E5E31BEFFA2A00D83E78 /* RTUploadVideoErrorCodeToErrorMessageMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTUploadVideoErrorCodeToErrorMessageMapping.m; sourceTree = "<group>"; };
 		71D947971A4FCB5600401963 /* RTLoginInteractorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLoginInteractorSpec.m; sourceTree = "<group>"; };
+		71DDE8A71BF19336007506B5 /* RTCallbacks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTCallbacks.h; path = "ReelTime-iOS/Common/Model/RTCallbacks.h"; sourceTree = SOURCE_ROOT; };
+		71DDE8A81BF19362007506B5 /* RTActivityType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTActivityType.h; path = "ReelTime-iOS/Common/Model/RTActivityType.h"; sourceTree = SOURCE_ROOT; };
 		71E8EB561BD06F280035966C /* RTOAuth2TokenRenegotiationNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTOAuth2TokenRenegotiationNotification.h; sourceTree = "<group>"; };
 		71E8EB571BD06F8D0035966C /* RTOAuth2TokenRenegotiationNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTOAuth2TokenRenegotiationNotification.m; sourceTree = "<group>"; };
 		71F384CE1B3772C8002BC9A0 /* RTUserProfilePresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTUserProfilePresenter.h; sourceTree = "<group>"; };
@@ -3970,8 +3970,8 @@
 				718CFFC91A6C007C00B418F9 /* RTAccountRegistration.m */,
 				71647BDC1A7E817000F44996 /* RTActivity.h */,
 				71647BDD1A7E817000F44996 /* RTActivity.m */,
-				711C5DE51A8D657F007652FC /* RTActivityType.h */,
-				714DDE671B0C136300D96F74 /* RTCallbacks.h */,
+				71DDE8A81BF19362007506B5 /* RTActivityType.h */,
+				71DDE8A71BF19336007506B5 /* RTCallbacks.h */,
 				718F43F01B20C79800732ACE /* RTClient.h */,
 				718F43F11B20C79800732ACE /* RTClient.m */,
 				713D7A461A509ACC00754A06 /* RTClientCredentials.h */,
