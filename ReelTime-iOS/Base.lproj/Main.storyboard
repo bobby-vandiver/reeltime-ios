@@ -952,6 +952,73 @@
             </objects>
             <point key="canvasLocation" x="970.5" y="714"/>
         </scene>
+        <!--Capture Thumbnail-->
+        <scene sceneID="og9-Qu-fng">
+            <objects>
+                <viewController storyboardIdentifier="Capture Thumbnail View Controller" title="Capture Thumbnail" id="6O4-nh-nLv" customClass="RTCaptureThumbnailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nr0-tr-8eP"/>
+                        <viewControllerLayoutGuide type="bottom" id="Oqp-aG-fiN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DTY-5d-IV4">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qK0-Dg-Yo6">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="LHb-Ub-7li"/>
+                                    <constraint firstAttribute="width" constant="107" id="OK4-bi-xmW"/>
+                                </constraints>
+                                <state key="normal" title="Capture"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="LHb-Ub-7li"/>
+                                        <exclude reference="OK4-bi-xmW"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="LHb-Ub-7li"/>
+                                        <include reference="OK4-bi-xmW"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="pressedCaptureButton" destination="6O4-nh-nLv" eventType="touchUpInside" id="m3I-XA-vzE"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="qK0-Dg-Yo6" firstAttribute="centerX" secondItem="DTY-5d-IV4" secondAttribute="centerX" id="F3n-Jq-jeb">
+                                <variation key="widthClass=compact" constant="-3.5"/>
+                            </constraint>
+                            <constraint firstItem="qK0-Dg-Yo6" firstAttribute="centerY" secondItem="DTY-5d-IV4" secondAttribute="centerY" id="wkx-6n-bSN"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="qK0-Dg-Yo6"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="F3n-Jq-jeb"/>
+                                <exclude reference="wkx-6n-bSN"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="qK0-Dg-Yo6"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="F3n-Jq-jeb"/>
+                                <include reference="wkx-6n-bSN"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DiY-t3-Mbm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="970.5" y="1383"/>
+        </scene>
         <!--Upload Video-->
         <scene sceneID="K7k-zB-7ZB">
             <objects>
@@ -1091,7 +1158,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Du6-bw-FEw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="970.5" y="1372"/>
+            <point key="canvasLocation" x="970.5" y="2051"/>
         </scene>
         <!--Browse-->
         <scene sceneID="JBE-W5-Bds">
