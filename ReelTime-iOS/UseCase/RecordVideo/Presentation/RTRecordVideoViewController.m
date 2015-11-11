@@ -56,12 +56,12 @@
 }
 
 - (void)recordingStopped:(NSURL *)videoURL {
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        [self.recordButton setTitle:@"Record" forState:UIControlStateNormal];
-//    });
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.recordButton setTitle:@"Record" forState:UIControlStateNormal];
 
-    DDLogDebug(@"Finished recording video = %@", videoURL);
-    [self.presenter recordedVideo:videoURL];
+        DDLogDebug(@"Finished recording video = %@", videoURL);
+        [self.presenter recordedVideo:videoURL];
+    });
 }
 
 @end
