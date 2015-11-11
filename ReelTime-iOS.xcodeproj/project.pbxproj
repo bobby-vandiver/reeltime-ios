@@ -4196,8 +4196,8 @@
 		71DDE8B41BF197C3007506B5 /* CaptureThumbnailTests */ = {
 			isa = PBXGroup;
 			children = (
-				71DDE8B51BF197ED007506B5 /* RTCaptureThumbnailWireframeSpec.m */,
 				71DDE8BA1BF1A2FC007506B5 /* RTCaptureThumbnailPresenterSpec.m */,
+				71DDE8B51BF197ED007506B5 /* RTCaptureThumbnailWireframeSpec.m */,
 			);
 			path = CaptureThumbnailTests;
 			sourceTree = "<group>";

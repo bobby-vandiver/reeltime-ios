@@ -1,15 +1,16 @@
 #import "RTApplicationAwareWireframe.h"
 
 @protocol RTCaptureThumbnailViewControllerFactory;
+@class RTUploadVideoWireframe;
 
 @interface RTCaptureThumbnailWireframe : RTApplicationAwareWireframe
 
-// TODO: Inject upload video wireframe and add plumbing
 - (instancetype)initWithViewControllerFactory:(id<RTCaptureThumbnailViewControllerFactory>)viewControllerFactory
+                         uploadVideoWireframe:(RTUploadVideoWireframe *)uploadVideoWireframe
                          applicationWireframe:(RTApplicationWireframe *)applicationWireframe;
 
 - (void)presentCaptureThumbnailInterfaceForVideo:(NSURL *)videoURL;
 
-- (void)presentUploadVideoInterfaceForVideo:(NSURL *)videoUrl
-                                  thumbnail:(NSURL *)thumbnailUrl;
+- (void)presentUploadVideoInterfaceForVideo:(NSURL *)videoURL
+                                  thumbnail:(NSURL *)thumbnailURL;
 @end

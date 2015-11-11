@@ -6,6 +6,7 @@
 
 - (instancetype)initWithWireframe:(RTCaptureThumbnailWireframe *)wireframe;
 
-- (void)capturedThumbnail:(NSURL *)thumbnailURL;
+- (void)capturedThumbnail:(NSURL *)thumbnailURL
+                 forVideo:(NSURL *)videoURL;
 
 @end
