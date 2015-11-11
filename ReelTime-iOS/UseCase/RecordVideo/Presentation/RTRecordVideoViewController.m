@@ -1,4 +1,5 @@
 #import "RTRecordVideoViewController.h"
+#import "RTRecordVideoPresenter.h"
 
 #import "RTRecordVideoCamera.h"
 #import "RTRecordVideoPreviewView.h"
@@ -8,14 +9,21 @@
 
 @interface RTRecordVideoViewController ()
 
+@property RTRecordVideoPresenter *presenter;
 @property RTRecordVideoCamera *camera;
 
 @end
 
 @implementation RTRecordVideoViewController
 
-+ (instancetype)viewController {
-    return [RTStoryboardViewControllerFactory storyboardViewController:self];
++ (instancetype)viewControllerWithPresenter:(RTRecordVideoPresenter *)presenter {
+    RTRecordVideoViewController *controller = [RTStoryboardViewControllerFactory storyboardViewController:self];
+    
+    if (controller) {
+        controller.presenter = presenter;
+    }
+    
+    return controller;
 }
 
 + (NSString *)storyboardIdentifier {
@@ -47,10 +55,13 @@
     });
 }
 
-- (void)recordingStopped {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.recordButton setTitle:@"Record" forState:UIControlStateNormal];
-    });
+- (void)recordingStopped:(NSURL *)videoURL {
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        [self.recordButton setTitle:@"Record" forState:UIControlStateNormal];
+//    });
+
+    DDLogDebug(@"Finished recording video = %@", videoURL);
+    [self.presenter recordedVideo:videoURL];
 }
 
 @end

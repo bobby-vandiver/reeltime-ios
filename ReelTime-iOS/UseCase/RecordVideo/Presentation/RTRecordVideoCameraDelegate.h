@@ -6,6 +6,6 @@
 
 - (void)recordingStarted;
 
-- (void)recordingStopped;
+- (void)recordingStopped:(NSURL *)videoURL;
 
 @end

@@ -19,6 +19,8 @@ static const char *CaptureQueueLabel = "in.reeltime.record.video.CaptureQueue";
 @property RTFilePathGenerator *filePathGenerator;
 @property (readwrite) BOOL recording;
 
+@property NSURL *videoURL;
+
 @property dispatch_queue_t sessionQueue;
 @property dispatch_queue_t captureQueue;
 
@@ -165,7 +167,7 @@ static const char *CaptureQueueLabel = "in.reeltime.record.video.CaptureQueue";
         [self.assetWriter finishWritingWithCompletionHandler:^{
             self.recording = NO;
             self.assetWriter = nil;
-            [self.delegate recordingStopped];
+            [self.delegate recordingStopped:self.videoURL];
         }];
     }
 }
@@ -208,12 +210,12 @@ static const char *CaptureQueueLabel = "in.reeltime.record.video.CaptureQueue";
 - (void)initAssetWriter {
     NSError *error;
     
-    NSString *tempFilePath = [self.filePathGenerator tempFilePath:@".mp4"];
-    NSURL *tempFileUrl = [NSURL fileURLWithPath:tempFilePath];
+    NSString *videoPath = [self.filePathGenerator tempFilePath:@".mp4"];
+    self.videoURL = [NSURL fileURLWithPath:videoPath];
     
-    DDLogDebug(@"tempFileUrl = %@", tempFileUrl);
+    DDLogDebug(@"self.videoURL = %@", self.videoURL);
     
-    self.assetWriter = [AVAssetWriter assetWriterWithURL:tempFileUrl
+    self.assetWriter = [AVAssetWriter assetWriterWithURL:self.videoURL
                                                 fileType:AVFileTypeMPEG4
                                                    error:&error];
     

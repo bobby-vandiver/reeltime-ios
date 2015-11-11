@@ -4,6 +4,7 @@
 #import "RTRecordVideoCameraDelegate.h"
 #import "RTStoryboardViewController.h"
 
+@class RTRecordVideoPresenter;
 @class RTRecordVideoCamera;
 @class RTRecordVideoPreviewView;
 
@@ -12,7 +13,7 @@
 @property (weak, nonatomic) IBOutlet RTRecordVideoPreviewView *previewView;
 @property (weak, nonatomic) IBOutlet UIButton *recordButton;
 
-+ (instancetype)viewController;
++ (instancetype)viewControllerWithPresenter:(RTRecordVideoPresenter *)presenter;
 
 - (IBAction)pressedRecordButton;
 
