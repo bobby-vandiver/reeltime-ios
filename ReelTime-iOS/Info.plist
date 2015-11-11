@@ -32,6 +32,7 @@
 	<key>TyphoonInitialAssemblies</key>
 	<array>
 		<string>RTUploadVideoAssembly</string>
+		<string>RTCaptureThumbnailAssembly</string>
 		<string>RTRecordVideoAssembly</string>
 		<string>RTCommonComponentsAssembly</string>
 		<string>RTPlayVideoAssembly</string>
