@@ -9,6 +9,9 @@
 #import "RTLoginWireframe.h"
 #import "RTBrowseAllViewController.h"
 
+#import "RTLogging.h"
+#import "RTStringUtils.h"
+
 @interface RTApplicationWireframe ()
 
 @property RTApplicationWindowHandle *windowHandle;
@@ -80,11 +83,20 @@
     self.previousRootViewController = self.window.rootViewController;
 }
 
+// TODO: Need to *always* retrieve navigationController and tabBarController via self.window
 - (void)navigateToViewController:(UIViewController *)viewController {
     BOOL onTabBarManagedScreen = [self.window.rootViewController isKindOfClass:[UITabBarController class]];
+
+//        DDLogDebug(@"navigating to view controller = %@, on tab bar managed screen = %@", viewController, stringForBool(onTabBarManagedScreen));
     
     if (onTabBarManagedScreen) {
-        UINavigationController *tabNavController = (UINavigationController *) self.tabBarController.selectedViewController;
+        UITabBarController *tabBarController = (UITabBarController *) self.window.rootViewController;
+        DDLogDebug(@"tabBarController = %@, self.tabBarController = %@", tabBarController, self.tabBarController);
+
+//            UINavigationController *tabNavController = (UINavigationController *) self.tabBarController.selectedViewController;
+        UINavigationController *tabNavController = (UINavigationController *) tabBarController.selectedViewController;
+        
+        DDLogDebug(@"tabNavController = %@", tabNavController);
         [tabNavController pushViewController:viewController animated:YES];
     }
     else {

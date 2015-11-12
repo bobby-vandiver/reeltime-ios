@@ -134,9 +134,6 @@
 		712EA2C51A9C1B4600AFCA15 /* RTClientAdditionalConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 712EA2C41A9C1B4600AFCA15 /* RTClientAdditionalConfiguration.m */; };
 		712EF86A1AD20A200051E28B /* RTBrowseAllUsersDataManagerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 712EF8691AD20A200051E28B /* RTBrowseAllUsersDataManagerDelegate.m */; };
 		712EF86C1AD20DEC0051E28B /* RTBrowseAllUsersDataManagerDelegateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 712EF86B1AD20DEC0051E28B /* RTBrowseAllUsersDataManagerDelegateSpec.m */; };
-		7130FD8C1A67593D00AE2ACD /* boxxy.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7130FD891A67593D00AE2ACD /* boxxy.jpg */; };
-		7130FD8D1A67593D00AE2ACD /* maddox.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7130FD8A1A67593D00AE2ACD /* maddox.jpg */; };
-		7130FD8E1A67593D00AE2ACD /* boogie2988-rage.png in Resources */ = {isa = PBXBuildFile; fileRef = 7130FD8B1A67593D00AE2ACD /* boogie2988-rage.png */; };
 		713163F21B2A59F9000DC48C /* RTManageDevicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 713163F11B2A59F9000DC48C /* RTManageDevicesViewController.m */; };
 		713163F41B2A76B0000DC48C /* RTManageDevicesViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 713163F31B2A76B0000DC48C /* RTManageDevicesViewControllerSpec.m */; };
 		713188A91A912E4D006155E6 /* RTRegexPattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 713188A81A912E4D006155E6 /* RTRegexPattern.m */; };
@@ -303,6 +300,7 @@
 		7169F1761A5F6CDD00E161C4 /* RTLoginDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7169F1751A5F6CDD00E161C4 /* RTLoginDataManagerSpec.m */; };
 		716C452A1B02E09D00BA9834 /* RTResetPasswordInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 716C45291B02E09D00BA9834 /* RTResetPasswordInteractor.m */; };
 		716C452F1B02E65900BA9834 /* RTResetPasswordDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 716C452E1B02E65900BA9834 /* RTResetPasswordDataManager.m */; };
+		716F08D31BF43C6E004CEA83 /* small.png in Resources */ = {isa = PBXBuildFile; fileRef = 716F08D21BF43C6E004CEA83 /* small.png */; };
 		7170C8691A59926E00C460BB /* RTErrorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7170C8681A59926E00C460BB /* RTErrorFactory.m */; };
 		7170C86D1A59A98600C460BB /* RTKeyChainWrapperSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7170C86C1A59A98600C460BB /* RTKeyChainWrapperSpec.m */; };
 		7172157E1A8657540002ECC7 /* RTLoginAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 7172157D1A8657540002ECC7 /* RTLoginAssembly.m */; };
@@ -737,9 +735,6 @@
 		712EF8681AD20A200051E28B /* RTBrowseAllUsersDataManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBrowseAllUsersDataManagerDelegate.h; sourceTree = "<group>"; };
 		712EF8691AD20A200051E28B /* RTBrowseAllUsersDataManagerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseAllUsersDataManagerDelegate.m; sourceTree = "<group>"; };
 		712EF86B1AD20DEC0051E28B /* RTBrowseAllUsersDataManagerDelegateSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBrowseAllUsersDataManagerDelegateSpec.m; sourceTree = "<group>"; };
-		7130FD891A67593D00AE2ACD /* boxxy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = boxxy.jpg; sourceTree = "<group>"; };
-		7130FD8A1A67593D00AE2ACD /* maddox.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = maddox.jpg; sourceTree = "<group>"; };
-		7130FD8B1A67593D00AE2ACD /* boogie2988-rage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boogie2988-rage.png"; sourceTree = "<group>"; };
 		713163F01B2A59F9000DC48C /* RTManageDevicesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTManageDevicesViewController.h; sourceTree = "<group>"; };
 		713163F11B2A59F9000DC48C /* RTManageDevicesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTManageDevicesViewController.m; sourceTree = "<group>"; };
 		713163F31B2A76B0000DC48C /* RTManageDevicesViewControllerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTManageDevicesViewControllerSpec.m; sourceTree = "<group>"; };
@@ -1046,6 +1041,7 @@
 		716C452C1B02E0E500BA9834 /* RTResetPasswordError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTResetPasswordError.h; sourceTree = "<group>"; };
 		716C452D1B02E65900BA9834 /* RTResetPasswordDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTResetPasswordDataManager.h; sourceTree = "<group>"; };
 		716C452E1B02E65900BA9834 /* RTResetPasswordDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTResetPasswordDataManager.m; sourceTree = "<group>"; };
+		716F08D21BF43C6E004CEA83 /* small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = small.png; sourceTree = "<group>"; };
 		7170C8671A59926E00C460BB /* RTErrorFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTErrorFactory.h; sourceTree = "<group>"; };
 		7170C8681A59926E00C460BB /* RTErrorFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTErrorFactory.m; sourceTree = "<group>"; };
 		7170C86C1A59A98600C460BB /* RTKeyChainWrapperSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTKeyChainWrapperSpec.m; sourceTree = "<group>"; };
@@ -2168,9 +2164,7 @@
 		7130FD881A67592400AE2ACD /* Placeholders */ = {
 			isa = PBXGroup;
 			children = (
-				7130FD891A67593D00AE2ACD /* boxxy.jpg */,
-				7130FD8A1A67593D00AE2ACD /* maddox.jpg */,
-				7130FD8B1A67593D00AE2ACD /* boogie2988-rage.png */,
+				716F08D21BF43C6E004CEA83 /* small.png */,
 			);
 			path = Placeholders;
 			sourceTree = "<group>";
@@ -4496,14 +4490,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				71868CAF1B47155B00CF0B3B /* RTUserReelHeaderView.xib in Resources */,
-				7130FD8E1A67593D00AE2ACD /* boogie2988-rage.png in Resources */,
+				716F08D31BF43C6E004CEA83 /* small.png in Resources */,
 				718A0BEB1A4DA87900137C49 /* Main.storyboard in Resources */,
 				71868CB11B471BB400CF0B3B /* RTUserReelFooterView.xib in Resources */,
 				7134C63A1A9588D50048CFCF /* JoinReelAudienceIcon.png in Resources */,
 				7134C6391A9588D50048CFCF /* CreateReelIcon.png in Resources */,
-				7130FD8D1A67593D00AE2ACD /* maddox.jpg in Resources */,
 				718A0BF01A4DA87900137C49 /* LaunchScreen.xib in Resources */,
-				7130FD8C1A67593D00AE2ACD /* boxxy.jpg in Resources */,
 				718A0BED1A4DA87900137C49 /* Images.xcassets in Resources */,
 				7134C6381A9588D50048CFCF /* AddVideoToReelIcon.png in Resources */,
 			);

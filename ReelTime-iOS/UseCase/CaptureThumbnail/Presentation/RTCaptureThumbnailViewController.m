@@ -29,7 +29,7 @@
 
 - (IBAction)pressedCaptureButton {
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    NSString *path = [bundle pathForResource:@"boogie2988-rage" ofType:@"png"];
+    NSString *path = [bundle pathForResource:@"small" ofType:@"png"];
 
     NSURL *placeholderThumbnailURL = [NSURL fileURLWithPath:path];
     [self.presenter capturedThumbnail:placeholderThumbnailURL forVideo:self.videoURL];
