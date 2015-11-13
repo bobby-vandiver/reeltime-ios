@@ -25,6 +25,9 @@
 @property (readonly) UIWindow *window;
 @property UIViewController *previousRootViewController;
 
+@property (readonly) RTApplicationNavigationController *rootNavigationController;
+@property (readonly) RTApplicationTabBarController *rootTabBarController;
+
 @end
 
 @implementation RTApplicationWireframe
@@ -45,6 +48,19 @@
 
 - (UIWindow *)window {
     return self.windowHandle.window;
+}
+
+- (RTApplicationNavigationController *)rootNavigationController {
+    return [self rootViewControllerIfKindOfClass:[RTApplicationNavigationController class]];
+}
+
+- (RTApplicationTabBarController *)rootTabBarController {
+    return [self rootViewControllerIfKindOfClass:[RTApplicationTabBarController class]];
+}
+
+- (id)rootViewControllerIfKindOfClass:(Class)clazz {
+    UIViewController *rootViewController = self.window.rootViewController;
+    return [rootViewController isKindOfClass:clazz] ? rootViewController : nil;
 }
 
 - (void)presentInitialScreen {
@@ -83,29 +99,20 @@
     self.previousRootViewController = self.window.rootViewController;
 }
 
-// TODO: Need to *always* retrieve navigationController and tabBarController via self.window
 - (void)navigateToViewController:(UIViewController *)viewController {
     BOOL onTabBarManagedScreen = [self.window.rootViewController isKindOfClass:[UITabBarController class]];
 
-//        DDLogDebug(@"navigating to view controller = %@, on tab bar managed screen = %@", viewController, stringForBool(onTabBarManagedScreen));
-    
     if (onTabBarManagedScreen) {
-        UITabBarController *tabBarController = (UITabBarController *) self.window.rootViewController;
-        DDLogDebug(@"tabBarController = %@, self.tabBarController = %@", tabBarController, self.tabBarController);
-
-//            UINavigationController *tabNavController = (UINavigationController *) self.tabBarController.selectedViewController;
-        UINavigationController *tabNavController = (UINavigationController *) tabBarController.selectedViewController;
-        
-        DDLogDebug(@"tabNavController = %@", tabNavController);
+        UINavigationController *tabNavController = (UINavigationController *) self.rootTabBarController.selectedViewController;
         [tabNavController pushViewController:viewController animated:YES];
     }
     else {
-        [self.navigationController pushViewController:viewController animated:YES];
+        [self.rootNavigationController pushViewController:viewController animated:YES];
     }
 }
 
 - (BOOL)isVisibleViewController:(UIViewController *)viewController {
-    return [self.navigationController visibleViewController] == viewController;
+    return [self.rootNavigationController visibleViewController] == viewController;
 }
 
 @end

@@ -38,8 +38,9 @@ describe(@"application wireframe", ^{
     __block UIWindow *window;
     __block UIViewController *viewController;
 
-    void (^setNavigationController)() = ^{
+    void (^setNavigationControllerAsRootViewController)() = ^{
         wireframe.navigationController = navigationController;
+        [given([window rootViewController]) willReturn:navigationController];
     };
     
     beforeEach(^{
@@ -179,7 +180,7 @@ describe(@"application wireframe", ^{
     
     describe(@"checking visible view controller", ^{
         beforeEach(^{
-            setNavigationController();
+            setNavigationControllerAsRootViewController();
         });
         
         it(@"view controller is visible", ^{
