@@ -25,12 +25,13 @@
 
 - (RTCaptureThumbnailViewController *)captureThumbnailViewControllerForVideo:(NSURL *)videoURL {
     return [TyphoonDefinition withClass:[RTCaptureThumbnailViewController class] configuration:^(TyphoonDefinition *definition) {
-        [definition useInitializer:@selector(viewControllerForVideo:withPresenter:playerFactory:notificationCenter:)
+        [definition useInitializer:@selector(viewControllerForVideo:withPresenter:playerFactory:notificationCenter:filePathGenerator:)
                         parameters:^(TyphoonMethod *initializer) {
                             [initializer injectParameterWith:videoURL];
                             [initializer injectParameterWith:[self captureThumbnailPresenterForVideo:videoURL]];
                             [initializer injectParameterWith:[self.playVideoAssembly playerFactory]];
                             [initializer injectParameterWith:[self.commonComponentsAssembly notificationCenter]];
+                            [initializer injectParameterWith:[self.commonComponentsAssembly filePathGenerator]];
         }];
     }];
 }

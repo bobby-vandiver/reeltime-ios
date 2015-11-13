@@ -7,9 +7,13 @@
 #import "RTPlayerView.h"
 #import "RTPlayVideoNotification.h"
 
+#import "RTFilePathGenerator.h"
 #import "RTLogging.h"
 
 #import <AVFoundation/AVFoundation.h>
+
+#import <ImageIO/ImageIO.h>
+#import <MobileCoreServices/MobileCoreServices.h>
 
 #import "AVPlayer+StatusText.h"
 #import "AVPlayerItem+StatusText.h"
@@ -24,8 +28,12 @@ static NSString *const StatusKeyPath = @"status";
 @property RTPlayerFactory *playerFactory;
 
 @property NSNotificationCenter *notificationCenter;
+@property RTFilePathGenerator *filePathGenerator;
 
 @property (strong, nonatomic) AVPlayer *player;
+@property id timeObserver;
+
+@property CMTime currentTime;
 
 @end
 
@@ -36,7 +44,8 @@ static NSString *const StatusKeyPath = @"status";
 + (instancetype)viewControllerForVideo:(NSURL *)videoURL
                          withPresenter:(RTCaptureThumbnailPresenter *)presenter
                          playerFactory:(RTPlayerFactory *)playerFactory
-                    notificationCenter:(NSNotificationCenter *)notificationCenter {
+                    notificationCenter:(NSNotificationCenter *)notificationCenter
+                     filePathGenerator:(RTFilePathGenerator *)filePathGenerator {
     
     RTCaptureThumbnailViewController *controller = [RTStoryboardViewControllerFactory storyboardViewController:self];
     
@@ -45,6 +54,8 @@ static NSString *const StatusKeyPath = @"status";
         controller.presenter = presenter;
         controller.playerFactory = playerFactory;
         controller.notificationCenter = notificationCenter;
+        controller.filePathGenerator = filePathGenerator;
+        controller.currentTime = kCMTimeZero;
     }
 
     return controller;
@@ -81,6 +92,11 @@ static NSString *const StatusKeyPath = @"status";
 
 - (void)addObservers {
     [self.player addObserver:self forKeyPath:StatusKeyPath options:0 context:NULL];
+    
+    self.timeObserver = [self.player addPeriodicTimeObserverForInterval:CMTimeMake(1, 1)
+                                                                  queue:dispatch_get_main_queue()
+                                                             usingBlock:[self timeObserverCallback]];
+    
     [self.player.currentItem addObserver:self forKeyPath:StatusKeyPath options:0 context:NULL];
     
     [self.notificationCenter addObserver:self
@@ -92,6 +108,12 @@ static NSString *const StatusKeyPath = @"status";
                                 selector:@selector(reloadVideo:)
                                     name:RTPlayVideoNotificationReloadVideo
                                   object:nil];
+}
+
+- (void (^)(CMTime))timeObserverCallback {
+    return ^(CMTime time) {
+        self.currentTime = time;
+    };
 }
 
 - (void)reachedEndOfVideo:(NSNotification *)notification {
@@ -117,6 +139,7 @@ static NSString *const StatusKeyPath = @"status";
     
     [self.player.currentItem removeObserver:self forKeyPath:StatusKeyPath];
     
+    [self.player removeTimeObserver:self.timeObserver];
     [self.player removeObserver:self forKeyPath:StatusKeyPath];
 }
 
@@ -143,24 +166,67 @@ static NSString *const StatusKeyPath = @"status";
 }
 
 - (void)play {
+    [self.player seekToTime:self.currentTime];
     [self.player play];
 }
 
 - (void)pause {
     [self.player pause];
+    self.currentTime = self.player.currentItem.currentTime;
 }
 
 - (void)seekToStart {
-    [self.player seekToTime:kCMTimeZero];
+    self.currentTime = kCMTimeZero;
+
+    [self.player seekToTime:self.currentTime];
     [self pause];
 }
 
 - (IBAction)pressedCaptureButton {
-    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    NSString *path = [bundle pathForResource:@"small" ofType:@"png"];
 
-    NSURL *placeholderThumbnailURL = [NSURL fileURLWithPath:path];
-    [self.presenter capturedThumbnail:placeholderThumbnailURL forVideo:self.videoURL];
+    NSError *error;
+    CGImageRef image = [self generateImageWithError:&error];
+    
+    if (image) {
+        NSString *path = [self.filePathGenerator tempFilePath:@".png"];
+        NSURL *thumbnailURL = [NSURL fileURLWithPath:path];
+        
+        DDLogDebug(@"thumbnailURL = %@", thumbnailURL);
+
+        BOOL success = [self writeThumbnailImage:image toFile:thumbnailURL];
+        CGImageRelease(image);
+        
+        if (success) {
+            [self.presenter capturedThumbnail:thumbnailURL forVideo:self.videoURL];
+        }
+    }
+    else {
+        DDLogError(@"Failed to create CGImage = %@", error);
+    }
+}
+
+- (CGImageRef)generateImageWithError:(NSError *__autoreleasing *)error {
+    AVAsset *asset = [AVAsset assetWithURL:self.videoURL];
+    AVAssetImageGenerator *imageGenerator = [[AVAssetImageGenerator alloc] initWithAsset:asset];
+    return [imageGenerator copyCGImageAtTime:self.currentTime actualTime:NULL error:error];
+}
+
+- (BOOL)writeThumbnailImage:(CGImageRef)image
+                     toFile:(NSURL *)file {
+
+    CFURLRef URL = (__bridge CFURLRef)file;
+    CGImageDestinationRef destination = CGImageDestinationCreateWithURL(URL, kUTTypePNG, 1, NULL);
+
+    if (!destination) {
+        DDLogError(@"Failed to create CGImageDestination");
+        return NO;
+    }
+
+    CGImageDestinationAddImage(destination, image, NULL);
+    BOOL finalized = CGImageDestinationFinalize(destination);
+
+    CFRelease(destination);
+    return finalized;
 }
 
 - (IBAction)pressedPlayButton {

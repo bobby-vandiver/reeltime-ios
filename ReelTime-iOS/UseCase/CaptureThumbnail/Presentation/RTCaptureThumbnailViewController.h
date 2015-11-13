@@ -3,6 +3,8 @@
 
 @class RTPlayerFactory;
 @class RTPlayerView;
+@class RTFilePathGenerator;
+
 @class RTCaptureThumbnailPresenter;
 
 @interface RTCaptureThumbnailViewController : UIViewController <RTStoryboardViewController>
@@ -12,7 +14,8 @@
 + (instancetype)viewControllerForVideo:(NSURL *)videoURL
                          withPresenter:(RTCaptureThumbnailPresenter *)presenter
                          playerFactory:(RTPlayerFactory *)playerFactory
-                    notificationCenter:(NSNotificationCenter *)notificationCenter;
+                    notificationCenter:(NSNotificationCenter *)notificationCenter
+                     filePathGenerator:(RTFilePathGenerator *)filePathGenerator;
 
 - (IBAction)pressedCaptureButton;
 
