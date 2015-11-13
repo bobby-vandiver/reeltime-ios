@@ -10,4 +10,6 @@
 
 - (AVPlayer *)playerForVideoId:(NSNumber *)videoId;
 
+- (AVPlayer *)playerForVideoURL:(NSURL *)videoURL;
+
 @end

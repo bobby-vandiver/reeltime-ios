@@ -26,13 +26,15 @@
     NSString *path = [self.pathFormatter formatPath:API_VARIANT_PLAYLIST
                                         withVideoId:[videoId integerValue]];
     
-    NSURL *videoUrl = [NSURL URLWithString:path
+    NSURL *videoURL = [NSURL URLWithString:path
                              relativeToURL:self.serverUrl];
-    
-    AVPlayer *player = [AVPlayer playerWithURL:videoUrl];
 
+    return [self playerForVideoURL:videoURL];
+}
+
+- (AVPlayer *)playerForVideoURL:(NSURL *)videoURL {
+    AVPlayer *player = [AVPlayer playerWithURL:videoURL];
     player.actionAtItemEnd = AVPlayerActionAtItemEndNone;
-    
     return player;
 }
 

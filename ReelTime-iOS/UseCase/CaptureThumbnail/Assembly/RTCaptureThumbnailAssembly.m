@@ -1,6 +1,9 @@
 #import "RTCaptureThumbnailAssembly.h"
 
 #import "RTUploadVideoAssembly.h"
+#import "RTPlayVideoAssembly.h"
+
+#import "RTCommonComponentsAssembly.h"
 #import "RTApplicationAssembly.h"
 
 #import "RTCaptureThumbnailWireframe.h"
@@ -22,10 +25,12 @@
 
 - (RTCaptureThumbnailViewController *)captureThumbnailViewControllerForVideo:(NSURL *)videoURL {
     return [TyphoonDefinition withClass:[RTCaptureThumbnailViewController class] configuration:^(TyphoonDefinition *definition) {
-        [definition useInitializer:@selector(viewControllerWithPresenter:forVideo:)
+        [definition useInitializer:@selector(viewControllerForVideo:withPresenter:playerFactory:notificationCenter:)
                         parameters:^(TyphoonMethod *initializer) {
-                            [initializer injectParameterWith:[self captureThumbnailPresenterForVideo:videoURL]];
                             [initializer injectParameterWith:videoURL];
+                            [initializer injectParameterWith:[self captureThumbnailPresenterForVideo:videoURL]];
+                            [initializer injectParameterWith:[self.playVideoAssembly playerFactory]];
+                            [initializer injectParameterWith:[self.commonComponentsAssembly notificationCenter]];
         }];
     }];
 }
