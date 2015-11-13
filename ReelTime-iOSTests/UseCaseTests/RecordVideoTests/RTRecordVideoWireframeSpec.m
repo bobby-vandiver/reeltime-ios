@@ -30,7 +30,7 @@ describe(@"record video wireframe", ^{
     describe(@"presenting video camera", ^{
         it(@"should navigate to video camera interface", ^{
             [wireframe presentVideoCameraInterface];
-            [verify(applicationWireframe) navigateToViewController:viewController];
+            [verify(applicationWireframe) resetNavigationToViewController:viewController];
         });
     });
     

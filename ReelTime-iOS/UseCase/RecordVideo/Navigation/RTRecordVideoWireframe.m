@@ -27,7 +27,7 @@
 }
 
 - (void)presentVideoCameraInterface {
-    [self.applicationWireframe navigateToViewController:self.viewController];
+    [self.applicationWireframe resetNavigationToViewController:self.viewController];
 }
 
 - (void)presentCaptureThumbnailInterfaceForVideo:(NSURL *)videoURL {

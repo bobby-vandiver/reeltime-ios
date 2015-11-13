@@ -111,6 +111,18 @@
     }
 }
 
+- (void)resetNavigationToViewController:(UIViewController *)viewController {
+    BOOL onTabBarManagedScreen = [self.window.rootViewController isKindOfClass:[UITabBarController class]];
+    
+    if (onTabBarManagedScreen) {
+        UINavigationController *tabNavController = (UINavigationController *) self.rootTabBarController.selectedViewController;
+        [tabNavController setViewControllers:@[viewController] animated:NO];
+    }
+    else {
+        [self.rootNavigationController setViewControllers:@[viewController] animated:NO];
+    }
+}
+
 - (BOOL)isVisibleViewController:(UIViewController *)viewController {
     return [self.rootNavigationController visibleViewController] == viewController;
 }
