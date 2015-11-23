@@ -17,6 +17,7 @@
 #import "RTLogoutError.h"
 #import "RTPagedListError.h"
 #import "RTPlayVideoError.h"
+#import "RTRemoveAccountError.h"
 #import "RTRemoveVideoFromReelError.h"
 #import "RTResetPasswordError.h"
 #import "RTRevokeClientError.h"
@@ -69,6 +70,8 @@
 + (NSError *)pagedListErrorWithCode:(RTPagedListError)code;
 
 + (NSError *)playVideoErrorWithCode:(RTPlayVideoError)code;
+
++ (NSError *)removeAccountErrorWithCode:(RTRemoveAccountError)code;
 
 + (NSError *)removeVideoFromReelErrorWithCode:(RTRemoveVideoFromReelError)code;
 

@@ -95,7 +95,7 @@ withClientCredentials:(RTClientCredentials *)clientCredentials
 }
 
 - (void)removeAccountWithSuccess:(NoArgsCallback)success
-                         failure:(NoArgsCallback)failure {
+                         failure:(ServerErrorsCallback)failure {
     [self.httpClient authenticatedDeleteForPath:API_REMOVE_ACCOUNT
                                  withParameters:nil
                                         success:success

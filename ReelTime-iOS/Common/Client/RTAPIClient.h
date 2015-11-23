@@ -21,7 +21,7 @@ withClientCredentials:(RTClientCredentials *)clientCredentials
                 failure:(ServerErrorsCallback)failure;
 
 - (void)removeAccountWithSuccess:(NoArgsCallback)success
-                         failure:(NoArgsCallback)failure;
+                         failure:(ServerErrorsCallback)failure;
 
 - (void)listClientsPage:(NSUInteger)page
                 success:(ClientListCallback)success
