@@ -16,6 +16,8 @@
 
 - (void)requestedDeviceManagement;
 
+- (void)requestedAccountRemoval;
+
 - (void)requestedLogout;
 
 @end

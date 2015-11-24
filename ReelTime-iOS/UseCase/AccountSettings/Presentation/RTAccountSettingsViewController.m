@@ -2,6 +2,7 @@
 #import "RTAccountSettingsPresenter.h"
 
 #import "RTStoryboardViewControllerFactory.h"
+#import "RTLogging.h"
 
 static const NSInteger ChangePasswordSection = 0;
 static const NSInteger ChangePasswordRow = 0;
@@ -15,8 +16,11 @@ static const NSInteger ConfirmAccountRow = 0;
 static const NSInteger ManageDevicesSection = 1;
 static const NSInteger ManageDevicesRow = 1;
 
+static const NSInteger RemoveAccountSection = 2;
+static const NSInteger RemoveAccountRow = 0;
+
 static const NSInteger LogoutSection = 2;
-static const NSInteger LogoutRow = 0;
+static const NSInteger LogoutRow = 1;
 
 @interface RTAccountSettingsViewController ()
 
@@ -56,8 +60,14 @@ static const NSInteger LogoutRow = 0;
     else if (section == ManageDevicesSection && row == ManageDevicesRow) {
         [self.presenter requestedDeviceManagement];
     }
+    else if (section == RemoveAccountSection && row == RemoveAccountRow) {
+        [self.presenter requestedAccountRemoval];
+    }
     else if (section == LogoutSection && row == LogoutRow) {
         [self.presenter requestedLogout];
+    }
+    else {
+        DDLogWarn(@"Selected unknown section = %ld, row = %ld", (long)section, (long)row);
     }
 }
 

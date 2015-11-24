@@ -38,6 +38,10 @@
     [self.wireframe presentManageDevicesInterface];
 }
 
+- (void)requestedAccountRemoval {
+    [self.wireframe presentRemoveAccountInterface];
+}
+
 - (void)requestedLogout {
     [self.logoutPresenter requestedLogout];
 }

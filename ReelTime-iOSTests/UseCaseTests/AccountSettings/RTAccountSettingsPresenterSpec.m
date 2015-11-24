@@ -50,6 +50,13 @@ describe(@"account settings presenter", ^{
         });
     });
     
+    describe(@"requested account removal", ^{
+        it(@"should route to the remove account interface", ^{
+            [presenter requestedAccountRemoval];
+            [verify(wireframe) presentRemoveAccountInterface];
+        });
+    });
+    
     describe(@"requested logout", ^{
         it(@"should delegate to logout presenter", ^{
             [presenter requestedLogout];
