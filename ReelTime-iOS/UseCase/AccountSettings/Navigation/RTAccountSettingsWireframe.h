@@ -6,6 +6,7 @@
 @class RTChangePasswordWireframe;
 @class RTConfirmAccountWireframe;
 @class RTManageDevicesWireframe;
+@class RTRemoveAccountWireframe;
 
 @interface RTAccountSettingsWireframe : RTApplicationAwareWireframe
 
@@ -14,6 +15,7 @@
                changePasswordWireframe:(RTChangePasswordWireframe *)changePasswordWireframe
                confirmAccountWireframe:(RTConfirmAccountWireframe *)confirmAccountWireframe
                 manageDevicesWireframe:(RTManageDevicesWireframe *)manageDevicesWireframe
+                removeAccountWireframe:(RTRemoveAccountWireframe *)removeAccountWireframe
                   applicationWireframe:(RTApplicationWireframe *)applicationWireframe;
 
 - (void)presentAccountSettingsInterface;
@@ -25,5 +27,7 @@
 - (void)presentConfirmAccountInterface;
 
 - (void)presentManageDevicesInterface;
+
+- (void)presentRemoveAccountInterface;
 
 @end

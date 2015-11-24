@@ -6,6 +6,8 @@
 #import "RTConfirmAccountAssembly.h"
 #import "RTManageDevicesAssembly.h"
 
+#import "RTRemoveAccountAssembly.h"
+
 #import "RTLogoutAssembly.h"
 #import "RTApplicationAssembly.h"
 
@@ -17,13 +19,14 @@
 
 - (RTAccountSettingsWireframe *)accountSettingsWireframe {
     return [TyphoonDefinition withClass:[RTAccountSettingsWireframe class] configuration:^(TyphoonDefinition *definition) {
-        [definition injectMethod:@selector(initWithViewController:changeDisplayNameWireframe:changePasswordWireframe:confirmAccountWireframe:manageDevicesWireframe:applicationWireframe:)
+        [definition injectMethod:@selector(initWithViewController:changeDisplayNameWireframe:changePasswordWireframe:confirmAccountWireframe:manageDevicesWireframe:removeAccountWireframe:applicationWireframe:)
                       parameters:^(TyphoonMethod *method) {
                           [method injectParameterWith:[self accountSettingsViewController]];
                           [method injectParameterWith:[self.changeDisplayNameAssembly changeDisplayNameWireframe]];
                           [method injectParameterWith:[self.changePasswordAssembly changePasswordWireframe]];
                           [method injectParameterWith:[self.confirmAccountAssembly confirmAccountWireframe]];
                           [method injectParameterWith:[self.manageDevicesAssembly manageDevicesWireframe]];
+                          [method injectParameterWith:[self.removeAccountAssembly removeAccountWireframe]];
                           [method injectParameterWith:[self.applicationAssembly applicationWireframe]];
         }];
     }];

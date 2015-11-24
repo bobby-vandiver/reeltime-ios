@@ -9,6 +9,7 @@
 #import "RTConfirmAccountWireframe.h"
 #import "RTManageDevicesWireframe.h"
 
+#import "RTRemoveAccountWireframe.h"
 #import "RTApplicationWireframe.h"
 
 SpecBegin(RTAccountSettingsWireframe)
@@ -24,17 +25,19 @@ describe(@"account settings wireframe", ^{
     __block RTConfirmAccountWireframe *confirmAccountWireframe;
     __block RTManageDevicesWireframe *manageDevicesWireframe;
     
+    __block RTRemoveAccountWireframe *removeAccountWireframe;
     __block RTApplicationWireframe *applicationWireframe;
     
     beforeEach(^{
         viewController = mock([RTAccountSettingsViewController class]);
-        
+         
         changeDisplayNameWireframe = mock([RTChangeDisplayNameWireframe class]);
         changePasswordWireframe = mock([RTChangePasswordWireframe class]);
         
         confirmAccountWireframe = mock([RTConfirmAccountWireframe class]);
         manageDevicesWireframe = mock([RTManageDevicesWireframe class]);
         
+        removeAccountWireframe = mock([RTRemoveAccountWireframe class]);
         applicationWireframe = mock([RTApplicationWireframe class]);
         
         wireframe = [[RTAccountSettingsWireframe alloc] initWithViewController:viewController
@@ -42,6 +45,7 @@ describe(@"account settings wireframe", ^{
                                                        changePasswordWireframe:changePasswordWireframe
                                                        confirmAccountWireframe:confirmAccountWireframe
                                                         manageDevicesWireframe:manageDevicesWireframe
+                                                        removeAccountWireframe:removeAccountWireframe
                                                           applicationWireframe:applicationWireframe];
     });
     
@@ -77,6 +81,13 @@ describe(@"account settings wireframe", ^{
         it(@"should delegate to manage devices wireframe", ^{
             [wireframe presentManageDevicesInterface];
             [verify(manageDevicesWireframe) presentManageDevicesInterface];
+        });
+    });
+    
+    describe(@"presenting account removal interface", ^{
+        it(@"should delegate to remove account wireframe", ^{
+            [wireframe presentRemoveAccountInterface];
+            [verify(removeAccountWireframe) presentRemoveAccountInterface];
         });
     });
 });

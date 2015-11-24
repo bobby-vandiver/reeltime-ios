@@ -5,6 +5,7 @@
 #import "RTChangePasswordWireframe.h"
 #import "RTConfirmAccountWireframe.h"
 #import "RTManageDevicesWireframe.h"
+#import "RTRemoveAccountWireframe.h"
 
 #import "RTApplicationWireframe.h"
 
@@ -16,6 +17,7 @@
 @property RTChangePasswordWireframe *changePasswordWireframe;
 @property RTConfirmAccountWireframe *confirmAccountWireframe;
 @property RTManageDevicesWireframe *manageDevicesWireframe;
+@property RTRemoveAccountWireframe *removeAccountWireframe;
 
 @end
 
@@ -26,6 +28,7 @@
                changePasswordWireframe:(RTChangePasswordWireframe *)changePasswordWireframe
                confirmAccountWireframe:(RTConfirmAccountWireframe *)confirmAccountWireframe
                 manageDevicesWireframe:(RTManageDevicesWireframe *)manageDevicesWireframe
+                removeAccountWireframe:(RTRemoveAccountWireframe *)removeAccountWireframe
                   applicationWireframe:(RTApplicationWireframe *)applicationWireframe {
 
     self = [super initWithApplicationWireframe:applicationWireframe];
@@ -35,6 +38,7 @@
         self.changePasswordWireframe = changePasswordWireframe;
         self.confirmAccountWireframe = confirmAccountWireframe;
         self.manageDevicesWireframe = manageDevicesWireframe;
+        self.removeAccountWireframe = removeAccountWireframe;
     }
     return self;
 }
@@ -57,6 +61,10 @@
 
 - (void)presentManageDevicesInterface {
     [self.manageDevicesWireframe presentManageDevicesInterface];
+}
+
+- (void)presentRemoveAccountInterface {
+    [self.removeAccountWireframe presentRemoveAccountInterface];
 }
 
 @end
