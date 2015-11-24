@@ -13,9 +13,11 @@
 
 + (instancetype)viewControllerWithPresenter:(RTChangeDisplayNamePresenter *)presenter {
     RTChangeDisplayNameViewController *controller = [RTStoryboardViewControllerFactory storyboardViewController:self];
+
     if (controller) {
         controller.presenter = presenter;
     }
+    
     return controller;
 }
 
