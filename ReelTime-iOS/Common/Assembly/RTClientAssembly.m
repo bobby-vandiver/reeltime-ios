@@ -198,7 +198,7 @@
 //            [initializer injectParameterWith:@"http://localhost:8080/reeltime/"];
             
             // TODO: Figure out some way to inject the local hostname running the web service
-            [initializer injectParameterWith:@"http://bobbys-mac-mini.local:8080/reeltime/"];
+            [initializer injectParameterWith:@"http://bobbys-mac-mini.local:8080/"];
         }];
     }];
 }
